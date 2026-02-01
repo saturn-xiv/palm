@@ -488,7 +488,7 @@ proto.palm.blog.v1.Settings.toObject = function(includeInstance, msg) {
 title: jspb.Message.getFieldWithDefault(msg, 1, ""),
 description: jspb.Message.getFieldWithDefault(msg, 2, ""),
 language: jspb.Message.getFieldWithDefault(msg, 3, ""),
-favicon: (f = msg.getFavicon()) && portal_pb.Attachment.toObject(includeInstance, f),
+favicon: (f = msg.getFavicon()) && portal_pb.File.toObject(includeInstance, f),
 bootstrap5: (f = msg.getBootstrap5()) && proto.palm.blog.v1.Bootstrap5Theme.toObject(includeInstance, f),
 bulma: (f = msg.getBulma()) && proto.palm.blog.v1.BulmaTheme.toObject(includeInstance, f)
   };
@@ -540,8 +540,8 @@ proto.palm.blog.v1.Settings.deserializeBinaryFromReader = function(msg, reader) 
       msg.setLanguage(value);
       break;
     case 4:
-      var value = new portal_pb.Attachment;
-      reader.readMessage(value,portal_pb.Attachment.deserializeBinaryFromReader);
+      var value = new portal_pb.File;
+      reader.readMessage(value,portal_pb.File.deserializeBinaryFromReader);
       msg.setFavicon(value);
       break;
     case 91:
@@ -609,7 +609,7 @@ proto.palm.blog.v1.Settings.serializeBinaryToWriter = function(message, writer) 
     writer.writeMessage(
       4,
       f,
-      portal_pb.Attachment.serializeBinaryToWriter
+      portal_pb.File.serializeBinaryToWriter
     );
   }
   f = message.getBootstrap5();
@@ -686,17 +686,17 @@ proto.palm.blog.v1.Settings.prototype.setLanguage = function(value) {
 
 
 /**
- * optional palm.portal.v1.Attachment favicon = 4;
- * @return {?proto.palm.portal.v1.Attachment}
+ * optional palm.portal.v1.File favicon = 4;
+ * @return {?proto.palm.portal.v1.File}
  */
 proto.palm.blog.v1.Settings.prototype.getFavicon = function() {
-  return /** @type{?proto.palm.portal.v1.Attachment} */ (
-    jspb.Message.getWrapperField(this, portal_pb.Attachment, 4));
+  return /** @type{?proto.palm.portal.v1.File} */ (
+    jspb.Message.getWrapperField(this, portal_pb.File, 4));
 };
 
 
 /**
- * @param {?proto.palm.portal.v1.Attachment|undefined} value
+ * @param {?proto.palm.portal.v1.File|undefined} value
  * @return {!proto.palm.blog.v1.Settings} returns this
 */
 proto.palm.blog.v1.Settings.prototype.setFavicon = function(value) {

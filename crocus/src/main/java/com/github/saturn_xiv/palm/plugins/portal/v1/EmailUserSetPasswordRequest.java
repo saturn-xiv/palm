@@ -6,13 +6,13 @@
 package com.github.saturn_xiv.palm.plugins.portal.v1;
 
 /**
- * Protobuf type {@code palm.portal.v1.Attachment}
+ * Protobuf type {@code palm.portal.v1.EmailUserSetPasswordRequest}
  */
 @com.google.protobuf.Generated
-public final class Attachment extends
+public final class EmailUserSetPasswordRequest extends
     com.google.protobuf.GeneratedMessage implements
-    // @@protoc_insertion_point(message_implements:palm.portal.v1.Attachment)
-    AttachmentOrBuilder {
+    // @@protoc_insertion_point(message_implements:palm.portal.v1.EmailUserSetPasswordRequest)
+    EmailUserSetPasswordRequestOrBuilder {
 private static final long serialVersionUID = 0L;
   static {
     com.google.protobuf.RuntimeVersion.validateProtobufGencodeVersion(
@@ -21,102 +21,73 @@ private static final long serialVersionUID = 0L;
       /* minor= */ 31,
       /* patch= */ 1,
       /* suffix= */ "",
-      Attachment.class.getName());
+      EmailUserSetPasswordRequest.class.getName());
   }
-  // Use Attachment.newBuilder() to construct.
-  private Attachment(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
+  // Use EmailUserSetPasswordRequest.newBuilder() to construct.
+  private EmailUserSetPasswordRequest(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
     super(builder);
   }
-  private Attachment() {
-    bucket_ = "";
-    object_ = "";
+  private EmailUserSetPasswordRequest() {
+    password_ = "";
   }
 
   public static final com.google.protobuf.Descriptors.Descriptor
       getDescriptor() {
-    return com.github.saturn_xiv.palm.plugins.portal.v1.PortalProto.internal_static_palm_portal_v1_Attachment_descriptor;
+    return com.github.saturn_xiv.palm.plugins.portal.v1.PortalProto.internal_static_palm_portal_v1_EmailUserSetPasswordRequest_descriptor;
   }
 
   @java.lang.Override
   protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
       internalGetFieldAccessorTable() {
-    return com.github.saturn_xiv.palm.plugins.portal.v1.PortalProto.internal_static_palm_portal_v1_Attachment_fieldAccessorTable
+    return com.github.saturn_xiv.palm.plugins.portal.v1.PortalProto.internal_static_palm_portal_v1_EmailUserSetPasswordRequest_fieldAccessorTable
         .ensureFieldAccessorsInitialized(
-            com.github.saturn_xiv.palm.plugins.portal.v1.Attachment.class, com.github.saturn_xiv.palm.plugins.portal.v1.Attachment.Builder.class);
+            com.github.saturn_xiv.palm.plugins.portal.v1.EmailUserSetPasswordRequest.class, com.github.saturn_xiv.palm.plugins.portal.v1.EmailUserSetPasswordRequest.Builder.class);
   }
 
-  public static final int BUCKET_FIELD_NUMBER = 1;
-  @SuppressWarnings("serial")
-  private volatile java.lang.Object bucket_ = "";
+  public static final int ID_FIELD_NUMBER = 1;
+  private long id_ = 0L;
   /**
-   * <code>string bucket = 1;</code>
-   * @return The bucket.
+   * <code>int64 id = 1;</code>
+   * @return The id.
    */
   @java.lang.Override
-  public java.lang.String getBucket() {
-    java.lang.Object ref = bucket_;
+  public long getId() {
+    return id_;
+  }
+
+  public static final int PASSWORD_FIELD_NUMBER = 2;
+  @SuppressWarnings("serial")
+  private volatile java.lang.Object password_ = "";
+  /**
+   * <code>string password = 2;</code>
+   * @return The password.
+   */
+  @java.lang.Override
+  public java.lang.String getPassword() {
+    java.lang.Object ref = password_;
     if (ref instanceof java.lang.String) {
       return (java.lang.String) ref;
     } else {
       com.google.protobuf.ByteString bs = 
           (com.google.protobuf.ByteString) ref;
       java.lang.String s = bs.toStringUtf8();
-      bucket_ = s;
+      password_ = s;
       return s;
     }
   }
   /**
-   * <code>string bucket = 1;</code>
-   * @return The bytes for bucket.
+   * <code>string password = 2;</code>
+   * @return The bytes for password.
    */
   @java.lang.Override
   public com.google.protobuf.ByteString
-      getBucketBytes() {
-    java.lang.Object ref = bucket_;
+      getPasswordBytes() {
+    java.lang.Object ref = password_;
     if (ref instanceof java.lang.String) {
       com.google.protobuf.ByteString b = 
           com.google.protobuf.ByteString.copyFromUtf8(
               (java.lang.String) ref);
-      bucket_ = b;
-      return b;
-    } else {
-      return (com.google.protobuf.ByteString) ref;
-    }
-  }
-
-  public static final int OBJECT_FIELD_NUMBER = 2;
-  @SuppressWarnings("serial")
-  private volatile java.lang.Object object_ = "";
-  /**
-   * <code>string object = 2;</code>
-   * @return The object.
-   */
-  @java.lang.Override
-  public java.lang.String getObject() {
-    java.lang.Object ref = object_;
-    if (ref instanceof java.lang.String) {
-      return (java.lang.String) ref;
-    } else {
-      com.google.protobuf.ByteString bs = 
-          (com.google.protobuf.ByteString) ref;
-      java.lang.String s = bs.toStringUtf8();
-      object_ = s;
-      return s;
-    }
-  }
-  /**
-   * <code>string object = 2;</code>
-   * @return The bytes for object.
-   */
-  @java.lang.Override
-  public com.google.protobuf.ByteString
-      getObjectBytes() {
-    java.lang.Object ref = object_;
-    if (ref instanceof java.lang.String) {
-      com.google.protobuf.ByteString b = 
-          com.google.protobuf.ByteString.copyFromUtf8(
-              (java.lang.String) ref);
-      object_ = b;
+      password_ = b;
       return b;
     } else {
       return (com.google.protobuf.ByteString) ref;
@@ -137,11 +108,11 @@ private static final long serialVersionUID = 0L;
   @java.lang.Override
   public void writeTo(com.google.protobuf.CodedOutputStream output)
                       throws java.io.IOException {
-    if (!com.google.protobuf.GeneratedMessage.isStringEmpty(bucket_)) {
-      com.google.protobuf.GeneratedMessage.writeString(output, 1, bucket_);
+    if (id_ != 0L) {
+      output.writeInt64(1, id_);
     }
-    if (!com.google.protobuf.GeneratedMessage.isStringEmpty(object_)) {
-      com.google.protobuf.GeneratedMessage.writeString(output, 2, object_);
+    if (!com.google.protobuf.GeneratedMessage.isStringEmpty(password_)) {
+      com.google.protobuf.GeneratedMessage.writeString(output, 2, password_);
     }
     getUnknownFields().writeTo(output);
   }
@@ -152,11 +123,12 @@ private static final long serialVersionUID = 0L;
     if (size != -1) return size;
 
     size = 0;
-    if (!com.google.protobuf.GeneratedMessage.isStringEmpty(bucket_)) {
-      size += com.google.protobuf.GeneratedMessage.computeStringSize(1, bucket_);
+    if (id_ != 0L) {
+      size += com.google.protobuf.CodedOutputStream
+        .computeInt64Size(1, id_);
     }
-    if (!com.google.protobuf.GeneratedMessage.isStringEmpty(object_)) {
-      size += com.google.protobuf.GeneratedMessage.computeStringSize(2, object_);
+    if (!com.google.protobuf.GeneratedMessage.isStringEmpty(password_)) {
+      size += com.google.protobuf.GeneratedMessage.computeStringSize(2, password_);
     }
     size += getUnknownFields().getSerializedSize();
     memoizedSize = size;
@@ -168,15 +140,15 @@ private static final long serialVersionUID = 0L;
     if (obj == this) {
      return true;
     }
-    if (!(obj instanceof com.github.saturn_xiv.palm.plugins.portal.v1.Attachment)) {
+    if (!(obj instanceof com.github.saturn_xiv.palm.plugins.portal.v1.EmailUserSetPasswordRequest)) {
       return super.equals(obj);
     }
-    com.github.saturn_xiv.palm.plugins.portal.v1.Attachment other = (com.github.saturn_xiv.palm.plugins.portal.v1.Attachment) obj;
+    com.github.saturn_xiv.palm.plugins.portal.v1.EmailUserSetPasswordRequest other = (com.github.saturn_xiv.palm.plugins.portal.v1.EmailUserSetPasswordRequest) obj;
 
-    if (!getBucket()
-        .equals(other.getBucket())) return false;
-    if (!getObject()
-        .equals(other.getObject())) return false;
+    if (getId()
+        != other.getId()) return false;
+    if (!getPassword()
+        .equals(other.getPassword())) return false;
     if (!getUnknownFields().equals(other.getUnknownFields())) return false;
     return true;
   }
@@ -188,53 +160,54 @@ private static final long serialVersionUID = 0L;
     }
     int hash = 41;
     hash = (19 * hash) + getDescriptor().hashCode();
-    hash = (37 * hash) + BUCKET_FIELD_NUMBER;
-    hash = (53 * hash) + getBucket().hashCode();
-    hash = (37 * hash) + OBJECT_FIELD_NUMBER;
-    hash = (53 * hash) + getObject().hashCode();
+    hash = (37 * hash) + ID_FIELD_NUMBER;
+    hash = (53 * hash) + com.google.protobuf.Internal.hashLong(
+        getId());
+    hash = (37 * hash) + PASSWORD_FIELD_NUMBER;
+    hash = (53 * hash) + getPassword().hashCode();
     hash = (29 * hash) + getUnknownFields().hashCode();
     memoizedHashCode = hash;
     return hash;
   }
 
-  public static com.github.saturn_xiv.palm.plugins.portal.v1.Attachment parseFrom(
+  public static com.github.saturn_xiv.palm.plugins.portal.v1.EmailUserSetPasswordRequest parseFrom(
       java.nio.ByteBuffer data)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data);
   }
-  public static com.github.saturn_xiv.palm.plugins.portal.v1.Attachment parseFrom(
+  public static com.github.saturn_xiv.palm.plugins.portal.v1.EmailUserSetPasswordRequest parseFrom(
       java.nio.ByteBuffer data,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data, extensionRegistry);
   }
-  public static com.github.saturn_xiv.palm.plugins.portal.v1.Attachment parseFrom(
+  public static com.github.saturn_xiv.palm.plugins.portal.v1.EmailUserSetPasswordRequest parseFrom(
       com.google.protobuf.ByteString data)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data);
   }
-  public static com.github.saturn_xiv.palm.plugins.portal.v1.Attachment parseFrom(
+  public static com.github.saturn_xiv.palm.plugins.portal.v1.EmailUserSetPasswordRequest parseFrom(
       com.google.protobuf.ByteString data,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data, extensionRegistry);
   }
-  public static com.github.saturn_xiv.palm.plugins.portal.v1.Attachment parseFrom(byte[] data)
+  public static com.github.saturn_xiv.palm.plugins.portal.v1.EmailUserSetPasswordRequest parseFrom(byte[] data)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data);
   }
-  public static com.github.saturn_xiv.palm.plugins.portal.v1.Attachment parseFrom(
+  public static com.github.saturn_xiv.palm.plugins.portal.v1.EmailUserSetPasswordRequest parseFrom(
       byte[] data,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws com.google.protobuf.InvalidProtocolBufferException {
     return PARSER.parseFrom(data, extensionRegistry);
   }
-  public static com.github.saturn_xiv.palm.plugins.portal.v1.Attachment parseFrom(java.io.InputStream input)
+  public static com.github.saturn_xiv.palm.plugins.portal.v1.EmailUserSetPasswordRequest parseFrom(java.io.InputStream input)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessage
         .parseWithIOException(PARSER, input);
   }
-  public static com.github.saturn_xiv.palm.plugins.portal.v1.Attachment parseFrom(
+  public static com.github.saturn_xiv.palm.plugins.portal.v1.EmailUserSetPasswordRequest parseFrom(
       java.io.InputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws java.io.IOException {
@@ -242,26 +215,26 @@ private static final long serialVersionUID = 0L;
         .parseWithIOException(PARSER, input, extensionRegistry);
   }
 
-  public static com.github.saturn_xiv.palm.plugins.portal.v1.Attachment parseDelimitedFrom(java.io.InputStream input)
+  public static com.github.saturn_xiv.palm.plugins.portal.v1.EmailUserSetPasswordRequest parseDelimitedFrom(java.io.InputStream input)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessage
         .parseDelimitedWithIOException(PARSER, input);
   }
 
-  public static com.github.saturn_xiv.palm.plugins.portal.v1.Attachment parseDelimitedFrom(
+  public static com.github.saturn_xiv.palm.plugins.portal.v1.EmailUserSetPasswordRequest parseDelimitedFrom(
       java.io.InputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessage
         .parseDelimitedWithIOException(PARSER, input, extensionRegistry);
   }
-  public static com.github.saturn_xiv.palm.plugins.portal.v1.Attachment parseFrom(
+  public static com.github.saturn_xiv.palm.plugins.portal.v1.EmailUserSetPasswordRequest parseFrom(
       com.google.protobuf.CodedInputStream input)
       throws java.io.IOException {
     return com.google.protobuf.GeneratedMessage
         .parseWithIOException(PARSER, input);
   }
-  public static com.github.saturn_xiv.palm.plugins.portal.v1.Attachment parseFrom(
+  public static com.github.saturn_xiv.palm.plugins.portal.v1.EmailUserSetPasswordRequest parseFrom(
       com.google.protobuf.CodedInputStream input,
       com.google.protobuf.ExtensionRegistryLite extensionRegistry)
       throws java.io.IOException {
@@ -274,7 +247,7 @@ private static final long serialVersionUID = 0L;
   public static Builder newBuilder() {
     return DEFAULT_INSTANCE.toBuilder();
   }
-  public static Builder newBuilder(com.github.saturn_xiv.palm.plugins.portal.v1.Attachment prototype) {
+  public static Builder newBuilder(com.github.saturn_xiv.palm.plugins.portal.v1.EmailUserSetPasswordRequest prototype) {
     return DEFAULT_INSTANCE.toBuilder().mergeFrom(prototype);
   }
   @java.lang.Override
@@ -290,26 +263,26 @@ private static final long serialVersionUID = 0L;
     return builder;
   }
   /**
-   * Protobuf type {@code palm.portal.v1.Attachment}
+   * Protobuf type {@code palm.portal.v1.EmailUserSetPasswordRequest}
    */
   public static final class Builder extends
       com.google.protobuf.GeneratedMessage.Builder<Builder> implements
-      // @@protoc_insertion_point(builder_implements:palm.portal.v1.Attachment)
-      com.github.saturn_xiv.palm.plugins.portal.v1.AttachmentOrBuilder {
+      // @@protoc_insertion_point(builder_implements:palm.portal.v1.EmailUserSetPasswordRequest)
+      com.github.saturn_xiv.palm.plugins.portal.v1.EmailUserSetPasswordRequestOrBuilder {
     public static final com.google.protobuf.Descriptors.Descriptor
         getDescriptor() {
-      return com.github.saturn_xiv.palm.plugins.portal.v1.PortalProto.internal_static_palm_portal_v1_Attachment_descriptor;
+      return com.github.saturn_xiv.palm.plugins.portal.v1.PortalProto.internal_static_palm_portal_v1_EmailUserSetPasswordRequest_descriptor;
     }
 
     @java.lang.Override
     protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
         internalGetFieldAccessorTable() {
-      return com.github.saturn_xiv.palm.plugins.portal.v1.PortalProto.internal_static_palm_portal_v1_Attachment_fieldAccessorTable
+      return com.github.saturn_xiv.palm.plugins.portal.v1.PortalProto.internal_static_palm_portal_v1_EmailUserSetPasswordRequest_fieldAccessorTable
           .ensureFieldAccessorsInitialized(
-              com.github.saturn_xiv.palm.plugins.portal.v1.Attachment.class, com.github.saturn_xiv.palm.plugins.portal.v1.Attachment.Builder.class);
+              com.github.saturn_xiv.palm.plugins.portal.v1.EmailUserSetPasswordRequest.class, com.github.saturn_xiv.palm.plugins.portal.v1.EmailUserSetPasswordRequest.Builder.class);
     }
 
-    // Construct using com.github.saturn_xiv.palm.plugins.portal.v1.Attachment.newBuilder()
+    // Construct using com.github.saturn_xiv.palm.plugins.portal.v1.EmailUserSetPasswordRequest.newBuilder()
     private Builder() {
 
     }
@@ -323,25 +296,25 @@ private static final long serialVersionUID = 0L;
     public Builder clear() {
       super.clear();
       bitField0_ = 0;
-      bucket_ = "";
-      object_ = "";
+      id_ = 0L;
+      password_ = "";
       return this;
     }
 
     @java.lang.Override
     public com.google.protobuf.Descriptors.Descriptor
         getDescriptorForType() {
-      return com.github.saturn_xiv.palm.plugins.portal.v1.PortalProto.internal_static_palm_portal_v1_Attachment_descriptor;
+      return com.github.saturn_xiv.palm.plugins.portal.v1.PortalProto.internal_static_palm_portal_v1_EmailUserSetPasswordRequest_descriptor;
     }
 
     @java.lang.Override
-    public com.github.saturn_xiv.palm.plugins.portal.v1.Attachment getDefaultInstanceForType() {
-      return com.github.saturn_xiv.palm.plugins.portal.v1.Attachment.getDefaultInstance();
+    public com.github.saturn_xiv.palm.plugins.portal.v1.EmailUserSetPasswordRequest getDefaultInstanceForType() {
+      return com.github.saturn_xiv.palm.plugins.portal.v1.EmailUserSetPasswordRequest.getDefaultInstance();
     }
 
     @java.lang.Override
-    public com.github.saturn_xiv.palm.plugins.portal.v1.Attachment build() {
-      com.github.saturn_xiv.palm.plugins.portal.v1.Attachment result = buildPartial();
+    public com.github.saturn_xiv.palm.plugins.portal.v1.EmailUserSetPasswordRequest build() {
+      com.github.saturn_xiv.palm.plugins.portal.v1.EmailUserSetPasswordRequest result = buildPartial();
       if (!result.isInitialized()) {
         throw newUninitializedMessageException(result);
       }
@@ -349,42 +322,40 @@ private static final long serialVersionUID = 0L;
     }
 
     @java.lang.Override
-    public com.github.saturn_xiv.palm.plugins.portal.v1.Attachment buildPartial() {
-      com.github.saturn_xiv.palm.plugins.portal.v1.Attachment result = new com.github.saturn_xiv.palm.plugins.portal.v1.Attachment(this);
+    public com.github.saturn_xiv.palm.plugins.portal.v1.EmailUserSetPasswordRequest buildPartial() {
+      com.github.saturn_xiv.palm.plugins.portal.v1.EmailUserSetPasswordRequest result = new com.github.saturn_xiv.palm.plugins.portal.v1.EmailUserSetPasswordRequest(this);
       if (bitField0_ != 0) { buildPartial0(result); }
       onBuilt();
       return result;
     }
 
-    private void buildPartial0(com.github.saturn_xiv.palm.plugins.portal.v1.Attachment result) {
+    private void buildPartial0(com.github.saturn_xiv.palm.plugins.portal.v1.EmailUserSetPasswordRequest result) {
       int from_bitField0_ = bitField0_;
       if (((from_bitField0_ & 0x00000001) != 0)) {
-        result.bucket_ = bucket_;
+        result.id_ = id_;
       }
       if (((from_bitField0_ & 0x00000002) != 0)) {
-        result.object_ = object_;
+        result.password_ = password_;
       }
     }
 
     @java.lang.Override
     public Builder mergeFrom(com.google.protobuf.Message other) {
-      if (other instanceof com.github.saturn_xiv.palm.plugins.portal.v1.Attachment) {
-        return mergeFrom((com.github.saturn_xiv.palm.plugins.portal.v1.Attachment)other);
+      if (other instanceof com.github.saturn_xiv.palm.plugins.portal.v1.EmailUserSetPasswordRequest) {
+        return mergeFrom((com.github.saturn_xiv.palm.plugins.portal.v1.EmailUserSetPasswordRequest)other);
       } else {
         super.mergeFrom(other);
         return this;
       }
     }
 
-    public Builder mergeFrom(com.github.saturn_xiv.palm.plugins.portal.v1.Attachment other) {
-      if (other == com.github.saturn_xiv.palm.plugins.portal.v1.Attachment.getDefaultInstance()) return this;
-      if (!other.getBucket().isEmpty()) {
-        bucket_ = other.bucket_;
-        bitField0_ |= 0x00000001;
-        onChanged();
+    public Builder mergeFrom(com.github.saturn_xiv.palm.plugins.portal.v1.EmailUserSetPasswordRequest other) {
+      if (other == com.github.saturn_xiv.palm.plugins.portal.v1.EmailUserSetPasswordRequest.getDefaultInstance()) return this;
+      if (other.getId() != 0L) {
+        setId(other.getId());
       }
-      if (!other.getObject().isEmpty()) {
-        object_ = other.object_;
+      if (!other.getPassword().isEmpty()) {
+        password_ = other.password_;
         bitField0_ |= 0x00000002;
         onChanged();
       }
@@ -414,13 +385,13 @@ private static final long serialVersionUID = 0L;
             case 0:
               done = true;
               break;
-            case 10: {
-              bucket_ = input.readStringRequireUtf8();
+            case 8: {
+              id_ = input.readInt64();
               bitField0_ |= 0x00000001;
               break;
-            } // case 10
+            } // case 8
             case 18: {
-              object_ = input.readStringRequireUtf8();
+              password_ = input.readStringRequireUtf8();
               bitField0_ |= 0x00000002;
               break;
             } // case 18
@@ -441,167 +412,127 @@ private static final long serialVersionUID = 0L;
     }
     private int bitField0_;
 
-    private java.lang.Object bucket_ = "";
+    private long id_ ;
     /**
-     * <code>string bucket = 1;</code>
-     * @return The bucket.
+     * <code>int64 id = 1;</code>
+     * @return The id.
      */
-    public java.lang.String getBucket() {
-      java.lang.Object ref = bucket_;
-      if (!(ref instanceof java.lang.String)) {
-        com.google.protobuf.ByteString bs =
-            (com.google.protobuf.ByteString) ref;
-        java.lang.String s = bs.toStringUtf8();
-        bucket_ = s;
-        return s;
-      } else {
-        return (java.lang.String) ref;
-      }
+    @java.lang.Override
+    public long getId() {
+      return id_;
     }
     /**
-     * <code>string bucket = 1;</code>
-     * @return The bytes for bucket.
-     */
-    public com.google.protobuf.ByteString
-        getBucketBytes() {
-      java.lang.Object ref = bucket_;
-      if (ref instanceof String) {
-        com.google.protobuf.ByteString b = 
-            com.google.protobuf.ByteString.copyFromUtf8(
-                (java.lang.String) ref);
-        bucket_ = b;
-        return b;
-      } else {
-        return (com.google.protobuf.ByteString) ref;
-      }
-    }
-    /**
-     * <code>string bucket = 1;</code>
-     * @param value The bucket to set.
+     * <code>int64 id = 1;</code>
+     * @param value The id to set.
      * @return This builder for chaining.
      */
-    public Builder setBucket(
-        java.lang.String value) {
-      if (value == null) { throw new NullPointerException(); }
-      bucket_ = value;
+    public Builder setId(long value) {
+
+      id_ = value;
       bitField0_ |= 0x00000001;
       onChanged();
       return this;
     }
     /**
-     * <code>string bucket = 1;</code>
+     * <code>int64 id = 1;</code>
      * @return This builder for chaining.
      */
-    public Builder clearBucket() {
-      bucket_ = getDefaultInstance().getBucket();
+    public Builder clearId() {
       bitField0_ = (bitField0_ & ~0x00000001);
-      onChanged();
-      return this;
-    }
-    /**
-     * <code>string bucket = 1;</code>
-     * @param value The bytes for bucket to set.
-     * @return This builder for chaining.
-     */
-    public Builder setBucketBytes(
-        com.google.protobuf.ByteString value) {
-      if (value == null) { throw new NullPointerException(); }
-      checkByteStringIsUtf8(value);
-      bucket_ = value;
-      bitField0_ |= 0x00000001;
+      id_ = 0L;
       onChanged();
       return this;
     }
 
-    private java.lang.Object object_ = "";
+    private java.lang.Object password_ = "";
     /**
-     * <code>string object = 2;</code>
-     * @return The object.
+     * <code>string password = 2;</code>
+     * @return The password.
      */
-    public java.lang.String getObject() {
-      java.lang.Object ref = object_;
+    public java.lang.String getPassword() {
+      java.lang.Object ref = password_;
       if (!(ref instanceof java.lang.String)) {
         com.google.protobuf.ByteString bs =
             (com.google.protobuf.ByteString) ref;
         java.lang.String s = bs.toStringUtf8();
-        object_ = s;
+        password_ = s;
         return s;
       } else {
         return (java.lang.String) ref;
       }
     }
     /**
-     * <code>string object = 2;</code>
-     * @return The bytes for object.
+     * <code>string password = 2;</code>
+     * @return The bytes for password.
      */
     public com.google.protobuf.ByteString
-        getObjectBytes() {
-      java.lang.Object ref = object_;
+        getPasswordBytes() {
+      java.lang.Object ref = password_;
       if (ref instanceof String) {
         com.google.protobuf.ByteString b = 
             com.google.protobuf.ByteString.copyFromUtf8(
                 (java.lang.String) ref);
-        object_ = b;
+        password_ = b;
         return b;
       } else {
         return (com.google.protobuf.ByteString) ref;
       }
     }
     /**
-     * <code>string object = 2;</code>
-     * @param value The object to set.
+     * <code>string password = 2;</code>
+     * @param value The password to set.
      * @return This builder for chaining.
      */
-    public Builder setObject(
+    public Builder setPassword(
         java.lang.String value) {
       if (value == null) { throw new NullPointerException(); }
-      object_ = value;
+      password_ = value;
       bitField0_ |= 0x00000002;
       onChanged();
       return this;
     }
     /**
-     * <code>string object = 2;</code>
+     * <code>string password = 2;</code>
      * @return This builder for chaining.
      */
-    public Builder clearObject() {
-      object_ = getDefaultInstance().getObject();
+    public Builder clearPassword() {
+      password_ = getDefaultInstance().getPassword();
       bitField0_ = (bitField0_ & ~0x00000002);
       onChanged();
       return this;
     }
     /**
-     * <code>string object = 2;</code>
-     * @param value The bytes for object to set.
+     * <code>string password = 2;</code>
+     * @param value The bytes for password to set.
      * @return This builder for chaining.
      */
-    public Builder setObjectBytes(
+    public Builder setPasswordBytes(
         com.google.protobuf.ByteString value) {
       if (value == null) { throw new NullPointerException(); }
       checkByteStringIsUtf8(value);
-      object_ = value;
+      password_ = value;
       bitField0_ |= 0x00000002;
       onChanged();
       return this;
     }
 
-    // @@protoc_insertion_point(builder_scope:palm.portal.v1.Attachment)
+    // @@protoc_insertion_point(builder_scope:palm.portal.v1.EmailUserSetPasswordRequest)
   }
 
-  // @@protoc_insertion_point(class_scope:palm.portal.v1.Attachment)
-  private static final com.github.saturn_xiv.palm.plugins.portal.v1.Attachment DEFAULT_INSTANCE;
+  // @@protoc_insertion_point(class_scope:palm.portal.v1.EmailUserSetPasswordRequest)
+  private static final com.github.saturn_xiv.palm.plugins.portal.v1.EmailUserSetPasswordRequest DEFAULT_INSTANCE;
   static {
-    DEFAULT_INSTANCE = new com.github.saturn_xiv.palm.plugins.portal.v1.Attachment();
+    DEFAULT_INSTANCE = new com.github.saturn_xiv.palm.plugins.portal.v1.EmailUserSetPasswordRequest();
   }
 
-  public static com.github.saturn_xiv.palm.plugins.portal.v1.Attachment getDefaultInstance() {
+  public static com.github.saturn_xiv.palm.plugins.portal.v1.EmailUserSetPasswordRequest getDefaultInstance() {
     return DEFAULT_INSTANCE;
   }
 
-  private static final com.google.protobuf.Parser<Attachment>
-      PARSER = new com.google.protobuf.AbstractParser<Attachment>() {
+  private static final com.google.protobuf.Parser<EmailUserSetPasswordRequest>
+      PARSER = new com.google.protobuf.AbstractParser<EmailUserSetPasswordRequest>() {
     @java.lang.Override
-    public Attachment parsePartialFrom(
+    public EmailUserSetPasswordRequest parsePartialFrom(
         com.google.protobuf.CodedInputStream input,
         com.google.protobuf.ExtensionRegistryLite extensionRegistry)
         throws com.google.protobuf.InvalidProtocolBufferException {
@@ -620,17 +551,17 @@ private static final long serialVersionUID = 0L;
     }
   };
 
-  public static com.google.protobuf.Parser<Attachment> parser() {
+  public static com.google.protobuf.Parser<EmailUserSetPasswordRequest> parser() {
     return PARSER;
   }
 
   @java.lang.Override
-  public com.google.protobuf.Parser<Attachment> getParserForType() {
+  public com.google.protobuf.Parser<EmailUserSetPasswordRequest> getParserForType() {
     return PARSER;
   }
 
   @java.lang.Override
-  public com.github.saturn_xiv.palm.plugins.portal.v1.Attachment getDefaultInstanceForType() {
+  public com.github.saturn_xiv.palm.plugins.portal.v1.EmailUserSetPasswordRequest getDefaultInstanceForType() {
     return DEFAULT_INSTANCE;
   }
 

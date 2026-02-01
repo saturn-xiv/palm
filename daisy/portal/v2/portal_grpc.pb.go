@@ -342,6 +342,644 @@ var Site_ServiceDesc = grpc.ServiceDesc{
 }
 
 const (
+	EmailUser_Index_FullMethodName          = "/palm.portal.v1.EmailUser/Index"
+	EmailUser_Destroy_FullMethodName        = "/palm.portal.v1.EmailUser/Destroy"
+	EmailUser_Confirm_FullMethodName        = "/palm.portal.v1.EmailUser/Confirm"
+	EmailUser_SetPassword_FullMethodName    = "/palm.portal.v1.EmailUser/SetPassword"
+	EmailUser_SignUp_FullMethodName         = "/palm.portal.v1.EmailUser/SignUp"
+	EmailUser_SignIn_FullMethodName         = "/palm.portal.v1.EmailUser/SignIn"
+	EmailUser_UnlockByEmail_FullMethodName  = "/palm.portal.v1.EmailUser/UnlockByEmail"
+	EmailUser_UnlockByToken_FullMethodName  = "/palm.portal.v1.EmailUser/UnlockByToken"
+	EmailUser_ConfirmByEmail_FullMethodName = "/palm.portal.v1.EmailUser/ConfirmByEmail"
+	EmailUser_ConfirmByToken_FullMethodName = "/palm.portal.v1.EmailUser/ConfirmByToken"
+	EmailUser_ForgotPassword_FullMethodName = "/palm.portal.v1.EmailUser/ForgotPassword"
+	EmailUser_ResetPassword_FullMethodName  = "/palm.portal.v1.EmailUser/ResetPassword"
+	EmailUser_SetName_FullMethodName        = "/palm.portal.v1.EmailUser/SetName"
+	EmailUser_SetAvatar_FullMethodName      = "/palm.portal.v1.EmailUser/SetAvatar"
+	EmailUser_ChangePassword_FullMethodName = "/palm.portal.v1.EmailUser/ChangePassword"
+)
+
+// EmailUserClient is the client API for EmailUser service.
+//
+// For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
+//
+// ----------------------------------------------------------------------------
+type EmailUserClient interface {
+	Index(ctx context.Context, in *Page, opts ...grpc.CallOption) (*EmailUserIndexResponse, error)
+	Destroy(ctx context.Context, in *IdRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	Confirm(ctx context.Context, in *IdRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	SetPassword(ctx context.Context, in *EmailUserSetPasswordRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	SignUp(ctx context.Context, in *EmailUserSignUpRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	SignIn(ctx context.Context, in *EmailUserSignInRequest, opts ...grpc.CallOption) (*UserSignInResponse, error)
+	UnlockByEmail(ctx context.Context, in *EmailUserUnlockByEmailRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	UnlockByToken(ctx context.Context, in *EmailUserUnlockByTokenRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	ConfirmByEmail(ctx context.Context, in *EmailUserConfirmByEmailRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	ConfirmByToken(ctx context.Context, in *EmailUserConfirmByTokenRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	ForgotPassword(ctx context.Context, in *EmailUserForgotPasswordRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	ResetPassword(ctx context.Context, in *EmailUserResetPasswordRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	SetName(ctx context.Context, in *EmailUserSetNameRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	SetAvatar(ctx context.Context, in *EmailUserSetAvatarRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	ChangePassword(ctx context.Context, in *EmailUserChangePasswordRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
+}
+
+type emailUserClient struct {
+	cc grpc.ClientConnInterface
+}
+
+func NewEmailUserClient(cc grpc.ClientConnInterface) EmailUserClient {
+	return &emailUserClient{cc}
+}
+
+func (c *emailUserClient) Index(ctx context.Context, in *Page, opts ...grpc.CallOption) (*EmailUserIndexResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(EmailUserIndexResponse)
+	err := c.cc.Invoke(ctx, EmailUser_Index_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *emailUserClient) Destroy(ctx context.Context, in *IdRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(emptypb.Empty)
+	err := c.cc.Invoke(ctx, EmailUser_Destroy_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *emailUserClient) Confirm(ctx context.Context, in *IdRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(emptypb.Empty)
+	err := c.cc.Invoke(ctx, EmailUser_Confirm_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *emailUserClient) SetPassword(ctx context.Context, in *EmailUserSetPasswordRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(emptypb.Empty)
+	err := c.cc.Invoke(ctx, EmailUser_SetPassword_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *emailUserClient) SignUp(ctx context.Context, in *EmailUserSignUpRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(emptypb.Empty)
+	err := c.cc.Invoke(ctx, EmailUser_SignUp_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *emailUserClient) SignIn(ctx context.Context, in *EmailUserSignInRequest, opts ...grpc.CallOption) (*UserSignInResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(UserSignInResponse)
+	err := c.cc.Invoke(ctx, EmailUser_SignIn_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *emailUserClient) UnlockByEmail(ctx context.Context, in *EmailUserUnlockByEmailRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(emptypb.Empty)
+	err := c.cc.Invoke(ctx, EmailUser_UnlockByEmail_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *emailUserClient) UnlockByToken(ctx context.Context, in *EmailUserUnlockByTokenRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(emptypb.Empty)
+	err := c.cc.Invoke(ctx, EmailUser_UnlockByToken_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *emailUserClient) ConfirmByEmail(ctx context.Context, in *EmailUserConfirmByEmailRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(emptypb.Empty)
+	err := c.cc.Invoke(ctx, EmailUser_ConfirmByEmail_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *emailUserClient) ConfirmByToken(ctx context.Context, in *EmailUserConfirmByTokenRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(emptypb.Empty)
+	err := c.cc.Invoke(ctx, EmailUser_ConfirmByToken_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *emailUserClient) ForgotPassword(ctx context.Context, in *EmailUserForgotPasswordRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(emptypb.Empty)
+	err := c.cc.Invoke(ctx, EmailUser_ForgotPassword_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *emailUserClient) ResetPassword(ctx context.Context, in *EmailUserResetPasswordRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(emptypb.Empty)
+	err := c.cc.Invoke(ctx, EmailUser_ResetPassword_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *emailUserClient) SetName(ctx context.Context, in *EmailUserSetNameRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(emptypb.Empty)
+	err := c.cc.Invoke(ctx, EmailUser_SetName_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *emailUserClient) SetAvatar(ctx context.Context, in *EmailUserSetAvatarRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(emptypb.Empty)
+	err := c.cc.Invoke(ctx, EmailUser_SetAvatar_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *emailUserClient) ChangePassword(ctx context.Context, in *EmailUserChangePasswordRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(emptypb.Empty)
+	err := c.cc.Invoke(ctx, EmailUser_ChangePassword_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+// EmailUserServer is the server API for EmailUser service.
+// All implementations must embed UnimplementedEmailUserServer
+// for forward compatibility.
+//
+// ----------------------------------------------------------------------------
+type EmailUserServer interface {
+	Index(context.Context, *Page) (*EmailUserIndexResponse, error)
+	Destroy(context.Context, *IdRequest) (*emptypb.Empty, error)
+	Confirm(context.Context, *IdRequest) (*emptypb.Empty, error)
+	SetPassword(context.Context, *EmailUserSetPasswordRequest) (*emptypb.Empty, error)
+	SignUp(context.Context, *EmailUserSignUpRequest) (*emptypb.Empty, error)
+	SignIn(context.Context, *EmailUserSignInRequest) (*UserSignInResponse, error)
+	UnlockByEmail(context.Context, *EmailUserUnlockByEmailRequest) (*emptypb.Empty, error)
+	UnlockByToken(context.Context, *EmailUserUnlockByTokenRequest) (*emptypb.Empty, error)
+	ConfirmByEmail(context.Context, *EmailUserConfirmByEmailRequest) (*emptypb.Empty, error)
+	ConfirmByToken(context.Context, *EmailUserConfirmByTokenRequest) (*emptypb.Empty, error)
+	ForgotPassword(context.Context, *EmailUserForgotPasswordRequest) (*emptypb.Empty, error)
+	ResetPassword(context.Context, *EmailUserResetPasswordRequest) (*emptypb.Empty, error)
+	SetName(context.Context, *EmailUserSetNameRequest) (*emptypb.Empty, error)
+	SetAvatar(context.Context, *EmailUserSetAvatarRequest) (*emptypb.Empty, error)
+	ChangePassword(context.Context, *EmailUserChangePasswordRequest) (*emptypb.Empty, error)
+	mustEmbedUnimplementedEmailUserServer()
+}
+
+// UnimplementedEmailUserServer must be embedded to have
+// forward compatible implementations.
+//
+// NOTE: this should be embedded by value instead of pointer to avoid a nil
+// pointer dereference when methods are called.
+type UnimplementedEmailUserServer struct{}
+
+func (UnimplementedEmailUserServer) Index(context.Context, *Page) (*EmailUserIndexResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method Index not implemented")
+}
+func (UnimplementedEmailUserServer) Destroy(context.Context, *IdRequest) (*emptypb.Empty, error) {
+	return nil, status.Error(codes.Unimplemented, "method Destroy not implemented")
+}
+func (UnimplementedEmailUserServer) Confirm(context.Context, *IdRequest) (*emptypb.Empty, error) {
+	return nil, status.Error(codes.Unimplemented, "method Confirm not implemented")
+}
+func (UnimplementedEmailUserServer) SetPassword(context.Context, *EmailUserSetPasswordRequest) (*emptypb.Empty, error) {
+	return nil, status.Error(codes.Unimplemented, "method SetPassword not implemented")
+}
+func (UnimplementedEmailUserServer) SignUp(context.Context, *EmailUserSignUpRequest) (*emptypb.Empty, error) {
+	return nil, status.Error(codes.Unimplemented, "method SignUp not implemented")
+}
+func (UnimplementedEmailUserServer) SignIn(context.Context, *EmailUserSignInRequest) (*UserSignInResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method SignIn not implemented")
+}
+func (UnimplementedEmailUserServer) UnlockByEmail(context.Context, *EmailUserUnlockByEmailRequest) (*emptypb.Empty, error) {
+	return nil, status.Error(codes.Unimplemented, "method UnlockByEmail not implemented")
+}
+func (UnimplementedEmailUserServer) UnlockByToken(context.Context, *EmailUserUnlockByTokenRequest) (*emptypb.Empty, error) {
+	return nil, status.Error(codes.Unimplemented, "method UnlockByToken not implemented")
+}
+func (UnimplementedEmailUserServer) ConfirmByEmail(context.Context, *EmailUserConfirmByEmailRequest) (*emptypb.Empty, error) {
+	return nil, status.Error(codes.Unimplemented, "method ConfirmByEmail not implemented")
+}
+func (UnimplementedEmailUserServer) ConfirmByToken(context.Context, *EmailUserConfirmByTokenRequest) (*emptypb.Empty, error) {
+	return nil, status.Error(codes.Unimplemented, "method ConfirmByToken not implemented")
+}
+func (UnimplementedEmailUserServer) ForgotPassword(context.Context, *EmailUserForgotPasswordRequest) (*emptypb.Empty, error) {
+	return nil, status.Error(codes.Unimplemented, "method ForgotPassword not implemented")
+}
+func (UnimplementedEmailUserServer) ResetPassword(context.Context, *EmailUserResetPasswordRequest) (*emptypb.Empty, error) {
+	return nil, status.Error(codes.Unimplemented, "method ResetPassword not implemented")
+}
+func (UnimplementedEmailUserServer) SetName(context.Context, *EmailUserSetNameRequest) (*emptypb.Empty, error) {
+	return nil, status.Error(codes.Unimplemented, "method SetName not implemented")
+}
+func (UnimplementedEmailUserServer) SetAvatar(context.Context, *EmailUserSetAvatarRequest) (*emptypb.Empty, error) {
+	return nil, status.Error(codes.Unimplemented, "method SetAvatar not implemented")
+}
+func (UnimplementedEmailUserServer) ChangePassword(context.Context, *EmailUserChangePasswordRequest) (*emptypb.Empty, error) {
+	return nil, status.Error(codes.Unimplemented, "method ChangePassword not implemented")
+}
+func (UnimplementedEmailUserServer) mustEmbedUnimplementedEmailUserServer() {}
+func (UnimplementedEmailUserServer) testEmbeddedByValue()                   {}
+
+// UnsafeEmailUserServer may be embedded to opt out of forward compatibility for this service.
+// Use of this interface is not recommended, as added methods to EmailUserServer will
+// result in compilation errors.
+type UnsafeEmailUserServer interface {
+	mustEmbedUnimplementedEmailUserServer()
+}
+
+func RegisterEmailUserServer(s grpc.ServiceRegistrar, srv EmailUserServer) {
+	// If the following call panics, it indicates UnimplementedEmailUserServer was
+	// embedded by pointer and is nil.  This will cause panics if an
+	// unimplemented method is ever invoked, so we test this at initialization
+	// time to prevent it from happening at runtime later due to I/O.
+	if t, ok := srv.(interface{ testEmbeddedByValue() }); ok {
+		t.testEmbeddedByValue()
+	}
+	s.RegisterService(&EmailUser_ServiceDesc, srv)
+}
+
+func _EmailUser_Index_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(Page)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(EmailUserServer).Index(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: EmailUser_Index_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(EmailUserServer).Index(ctx, req.(*Page))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _EmailUser_Destroy_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(IdRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(EmailUserServer).Destroy(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: EmailUser_Destroy_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(EmailUserServer).Destroy(ctx, req.(*IdRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _EmailUser_Confirm_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(IdRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(EmailUserServer).Confirm(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: EmailUser_Confirm_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(EmailUserServer).Confirm(ctx, req.(*IdRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _EmailUser_SetPassword_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(EmailUserSetPasswordRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(EmailUserServer).SetPassword(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: EmailUser_SetPassword_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(EmailUserServer).SetPassword(ctx, req.(*EmailUserSetPasswordRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _EmailUser_SignUp_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(EmailUserSignUpRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(EmailUserServer).SignUp(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: EmailUser_SignUp_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(EmailUserServer).SignUp(ctx, req.(*EmailUserSignUpRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _EmailUser_SignIn_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(EmailUserSignInRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(EmailUserServer).SignIn(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: EmailUser_SignIn_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(EmailUserServer).SignIn(ctx, req.(*EmailUserSignInRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _EmailUser_UnlockByEmail_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(EmailUserUnlockByEmailRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(EmailUserServer).UnlockByEmail(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: EmailUser_UnlockByEmail_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(EmailUserServer).UnlockByEmail(ctx, req.(*EmailUserUnlockByEmailRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _EmailUser_UnlockByToken_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(EmailUserUnlockByTokenRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(EmailUserServer).UnlockByToken(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: EmailUser_UnlockByToken_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(EmailUserServer).UnlockByToken(ctx, req.(*EmailUserUnlockByTokenRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _EmailUser_ConfirmByEmail_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(EmailUserConfirmByEmailRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(EmailUserServer).ConfirmByEmail(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: EmailUser_ConfirmByEmail_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(EmailUserServer).ConfirmByEmail(ctx, req.(*EmailUserConfirmByEmailRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _EmailUser_ConfirmByToken_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(EmailUserConfirmByTokenRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(EmailUserServer).ConfirmByToken(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: EmailUser_ConfirmByToken_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(EmailUserServer).ConfirmByToken(ctx, req.(*EmailUserConfirmByTokenRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _EmailUser_ForgotPassword_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(EmailUserForgotPasswordRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(EmailUserServer).ForgotPassword(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: EmailUser_ForgotPassword_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(EmailUserServer).ForgotPassword(ctx, req.(*EmailUserForgotPasswordRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _EmailUser_ResetPassword_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(EmailUserResetPasswordRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(EmailUserServer).ResetPassword(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: EmailUser_ResetPassword_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(EmailUserServer).ResetPassword(ctx, req.(*EmailUserResetPasswordRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _EmailUser_SetName_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(EmailUserSetNameRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(EmailUserServer).SetName(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: EmailUser_SetName_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(EmailUserServer).SetName(ctx, req.(*EmailUserSetNameRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _EmailUser_SetAvatar_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(EmailUserSetAvatarRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(EmailUserServer).SetAvatar(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: EmailUser_SetAvatar_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(EmailUserServer).SetAvatar(ctx, req.(*EmailUserSetAvatarRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _EmailUser_ChangePassword_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(EmailUserChangePasswordRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(EmailUserServer).ChangePassword(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: EmailUser_ChangePassword_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(EmailUserServer).ChangePassword(ctx, req.(*EmailUserChangePasswordRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+// EmailUser_ServiceDesc is the grpc.ServiceDesc for EmailUser service.
+// It's only intended for direct use with grpc.RegisterService,
+// and not to be introspected or modified (even as a copy)
+var EmailUser_ServiceDesc = grpc.ServiceDesc{
+	ServiceName: "palm.portal.v1.EmailUser",
+	HandlerType: (*EmailUserServer)(nil),
+	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "Index",
+			Handler:    _EmailUser_Index_Handler,
+		},
+		{
+			MethodName: "Destroy",
+			Handler:    _EmailUser_Destroy_Handler,
+		},
+		{
+			MethodName: "Confirm",
+			Handler:    _EmailUser_Confirm_Handler,
+		},
+		{
+			MethodName: "SetPassword",
+			Handler:    _EmailUser_SetPassword_Handler,
+		},
+		{
+			MethodName: "SignUp",
+			Handler:    _EmailUser_SignUp_Handler,
+		},
+		{
+			MethodName: "SignIn",
+			Handler:    _EmailUser_SignIn_Handler,
+		},
+		{
+			MethodName: "UnlockByEmail",
+			Handler:    _EmailUser_UnlockByEmail_Handler,
+		},
+		{
+			MethodName: "UnlockByToken",
+			Handler:    _EmailUser_UnlockByToken_Handler,
+		},
+		{
+			MethodName: "ConfirmByEmail",
+			Handler:    _EmailUser_ConfirmByEmail_Handler,
+		},
+		{
+			MethodName: "ConfirmByToken",
+			Handler:    _EmailUser_ConfirmByToken_Handler,
+		},
+		{
+			MethodName: "ForgotPassword",
+			Handler:    _EmailUser_ForgotPassword_Handler,
+		},
+		{
+			MethodName: "ResetPassword",
+			Handler:    _EmailUser_ResetPassword_Handler,
+		},
+		{
+			MethodName: "SetName",
+			Handler:    _EmailUser_SetName_Handler,
+		},
+		{
+			MethodName: "SetAvatar",
+			Handler:    _EmailUser_SetAvatar_Handler,
+		},
+		{
+			MethodName: "ChangePassword",
+			Handler:    _EmailUser_ChangePassword_Handler,
+		},
+	},
+	Streams:  []grpc.StreamDesc{},
+	Metadata: "proto/portal.proto",
+}
+
+const (
 	User_Index_FullMethodName                 = "/palm.portal.v1.User/Index"
 	User_Destroy_FullMethodName               = "/palm.portal.v1.User/Destroy"
 	User_Lock_FullMethodName                  = "/palm.portal.v1.User/Lock"
@@ -352,6 +990,9 @@ const (
 	User_SetAttachmentUploaded_FullMethodName = "/palm.portal.v1.User/SetAttachmentUploaded"
 	User_SetAttachmentTitle_FullMethodName    = "/palm.portal.v1.User/SetAttachmentTitle"
 	User_DestroyAttachment_FullMethodName     = "/palm.portal.v1.User/DestroyAttachment"
+	User_IndexLog_FullMethodName              = "/palm.portal.v1.User/IndexLog"
+	User_SetLang_FullMethodName               = "/palm.portal.v1.User/SetLang"
+	User_SetTimezone_FullMethodName           = "/palm.portal.v1.User/SetTimezone"
 )
 
 // UserClient is the client API for User service.
@@ -368,6 +1009,9 @@ type UserClient interface {
 	SetAttachmentUploaded(ctx context.Context, in *IdRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	SetAttachmentTitle(ctx context.Context, in *UserSetAttachmentTitleRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	DestroyAttachment(ctx context.Context, in *IdRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	IndexLog(ctx context.Context, in *Page, opts ...grpc.CallOption) (*UserIndexLogResponse, error)
+	SetLang(ctx context.Context, in *UserSetLangRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
+	SetTimezone(ctx context.Context, in *UserSetTimezoneRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 }
 
 type userClient struct {
@@ -478,6 +1122,36 @@ func (c *userClient) DestroyAttachment(ctx context.Context, in *IdRequest, opts 
 	return out, nil
 }
 
+func (c *userClient) IndexLog(ctx context.Context, in *Page, opts ...grpc.CallOption) (*UserIndexLogResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(UserIndexLogResponse)
+	err := c.cc.Invoke(ctx, User_IndexLog_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *userClient) SetLang(ctx context.Context, in *UserSetLangRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(emptypb.Empty)
+	err := c.cc.Invoke(ctx, User_SetLang_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *userClient) SetTimezone(ctx context.Context, in *UserSetTimezoneRequest, opts ...grpc.CallOption) (*emptypb.Empty, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(emptypb.Empty)
+	err := c.cc.Invoke(ctx, User_SetTimezone_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // UserServer is the server API for User service.
 // All implementations must embed UnimplementedUserServer
 // for forward compatibility.
@@ -492,6 +1166,9 @@ type UserServer interface {
 	SetAttachmentUploaded(context.Context, *IdRequest) (*emptypb.Empty, error)
 	SetAttachmentTitle(context.Context, *UserSetAttachmentTitleRequest) (*emptypb.Empty, error)
 	DestroyAttachment(context.Context, *IdRequest) (*emptypb.Empty, error)
+	IndexLog(context.Context, *Page) (*UserIndexLogResponse, error)
+	SetLang(context.Context, *UserSetLangRequest) (*emptypb.Empty, error)
+	SetTimezone(context.Context, *UserSetTimezoneRequest) (*emptypb.Empty, error)
 	mustEmbedUnimplementedUserServer()
 }
 
@@ -531,6 +1208,15 @@ func (UnimplementedUserServer) SetAttachmentTitle(context.Context, *UserSetAttac
 }
 func (UnimplementedUserServer) DestroyAttachment(context.Context, *IdRequest) (*emptypb.Empty, error) {
 	return nil, status.Error(codes.Unimplemented, "method DestroyAttachment not implemented")
+}
+func (UnimplementedUserServer) IndexLog(context.Context, *Page) (*UserIndexLogResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method IndexLog not implemented")
+}
+func (UnimplementedUserServer) SetLang(context.Context, *UserSetLangRequest) (*emptypb.Empty, error) {
+	return nil, status.Error(codes.Unimplemented, "method SetLang not implemented")
+}
+func (UnimplementedUserServer) SetTimezone(context.Context, *UserSetTimezoneRequest) (*emptypb.Empty, error) {
+	return nil, status.Error(codes.Unimplemented, "method SetTimezone not implemented")
 }
 func (UnimplementedUserServer) mustEmbedUnimplementedUserServer() {}
 func (UnimplementedUserServer) testEmbeddedByValue()              {}
@@ -733,6 +1419,60 @@ func _User_DestroyAttachment_Handler(srv interface{}, ctx context.Context, dec f
 	return interceptor(ctx, in, info, handler)
 }
 
+func _User_IndexLog_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(Page)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(UserServer).IndexLog(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: User_IndexLog_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(UserServer).IndexLog(ctx, req.(*Page))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _User_SetLang_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UserSetLangRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(UserServer).SetLang(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: User_SetLang_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(UserServer).SetLang(ctx, req.(*UserSetLangRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _User_SetTimezone_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UserSetTimezoneRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(UserServer).SetTimezone(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: User_SetTimezone_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(UserServer).SetTimezone(ctx, req.(*UserSetTimezoneRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // User_ServiceDesc is the grpc.ServiceDesc for User service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -779,6 +1519,18 @@ var User_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "DestroyAttachment",
 			Handler:    _User_DestroyAttachment_Handler,
+		},
+		{
+			MethodName: "IndexLog",
+			Handler:    _User_IndexLog_Handler,
+		},
+		{
+			MethodName: "SetLang",
+			Handler:    _User_SetLang_Handler,
+		},
+		{
+			MethodName: "SetTimezone",
+			Handler:    _User_SetTimezone_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

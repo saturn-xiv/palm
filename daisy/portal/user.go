@@ -7,6 +7,7 @@ import (
 
 	"github.com/casbin/casbin/v3"
 	"github.com/minio/minio-go/v7"
+	"golang.org/x/text/language"
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"
 	"google.golang.org/protobuf/types/known/emptypb"
@@ -244,7 +245,7 @@ func (p *UserServer) Destroy(ctx context.Context, req *v2.IdRequest) (*emptypb.E
 		if err := tx.Delete(&it).Error; err != nil {
 			return err
 		}
-		return models.CreateLog(tx, it.ID, v2.Plugin(), ss.ClientIp, v2.Log_WARNING, fmt.Sprintf("deleted by %s", ss.Name))
+		return models.CreateLog(tx, it.ID, v2.Plugin(), ss.ClientIp, v2.UserIndexLogResponse_Item_WARNING, fmt.Sprintf("deleted by %s", ss.Name))
 	}); err != nil {
 		return nil, err
 	}
@@ -273,7 +274,7 @@ func (p *UserServer) Lock(ctx context.Context, req *v2.IdRequest) (*emptypb.Empt
 		if err := tx.Model(&it).Updates(map[string]interface{}{"locked_at": nil}).Error; err != nil {
 			return err
 		}
-		return models.CreateLog(tx, it.ID, v2.Plugin(), ss.ClientIp, v2.Log_WARNING, fmt.Sprintf("lock by %s", ss.Name))
+		return models.CreateLog(tx, it.ID, v2.Plugin(), ss.ClientIp, v2.UserIndexLogResponse_Item_WARNING, fmt.Sprintf("lock by %s", ss.Name))
 	}); err != nil {
 		return nil, err
 	}
@@ -302,13 +303,85 @@ func (p *UserServer) Unlock(ctx context.Context, req *v2.IdRequest) (*emptypb.Em
 		if err := tx.Model(&it).Updates(map[string]interface{}{"locked_at": nil}).Error; err != nil {
 			return err
 		}
-		return models.CreateLog(tx, it.ID, v2.Plugin(), ss.ClientIp, v2.Log_WARNING, fmt.Sprintf("unlock by %s", ss.Name))
+		return models.CreateLog(tx, it.ID, v2.Plugin(), ss.ClientIp, v2.UserIndexLogResponse_Item_WARNING, fmt.Sprintf("unlock by %s", ss.Name))
 	}); err != nil {
 		return nil, err
 	}
 	return &emptypb.Empty{}, nil
 }
 
+func (p *UserServer) IndexLog(ctx context.Context, req *v2.Page) (*v2.UserIndexLogResponse, error) {
+	ss, err := rbac.CurrentUser(ctx, p.db, p.jwt)
+	if err != nil {
+		return nil, err
+	}
+	var total int64
+	if err := p.db.Model(&models.Log{}).Where("user_id = ?", ss.User.Id).Count(&total).Error; err != nil {
+		return nil, err
+	}
+	pagination := v2.NewPagination(req, total)
+	var items []models.Log
+	if err := p.db.Where("user_id = ?", ss.User.Id).Order("created_at DESC").Offset(int(pagination.Current.Offset())).Limit(int(pagination.Current.Size)).Find(&items).Error; err != nil {
+		return nil, err
+	}
+	res := v2.UserIndexLogResponse{
+		Items:      []*v2.UserIndexLogResponse_Item{},
+		Pagination: pagination,
+	}
+	for _, it := range items {
+		res.Items = append(res.Items, new_log(&it))
+	}
+	return &res, nil
+}
+func (p *UserServer) SetLang(ctx context.Context, req *v2.UserSetLangRequest) (*emptypb.Empty, error) {
+	tag, err := language.Parse(req.Lang)
+	if err != nil {
+		return nil, err
+	}
+	ss, err := rbac.CurrentUser(ctx, p.db, p.jwt)
+	if err != nil {
+		return nil, err
+	}
+	if err := p.db.Transaction(func(tx *gorm.DB) error {
+		if err := tx.Model(&models.User{}).Where("id = ?", ss.User.Id).Updates(map[string]interface{}{"lang": tag.String()}).Error; err != nil {
+			return err
+		}
+		return models.CreateLog(tx, uint(ss.User.Id), v2.Plugin(), ss.ClientIp, v2.UserIndexLogResponse_Item_INFO, "update lang")
+	}); err != nil {
+		return nil, err
+	}
+	return &emptypb.Empty{}, nil
+}
+func (p *UserServer) SetTimezone(ctx context.Context, req *v2.UserSetTimezoneRequest) (*emptypb.Empty, error) {
+	tz, err := time.LoadLocation(req.Timezone)
+	if err != nil {
+		return nil, err
+	}
+	ss, err := rbac.CurrentUser(ctx, p.db, p.jwt)
+	if err != nil {
+		return nil, err
+	}
+	if err := p.db.Transaction(func(tx *gorm.DB) error {
+		if err := tx.Model(&models.User{}).Where("id = ?", ss.User.Id).Updates(map[string]interface{}{"timezone": tz.String()}).Error; err != nil {
+			return err
+		}
+		return models.CreateLog(tx, uint(ss.User.Id), v2.Plugin(), ss.ClientIp, v2.UserIndexLogResponse_Item_INFO, "update timezone")
+	}); err != nil {
+		return nil, err
+	}
+	return &emptypb.Empty{}, nil
+}
+
+func new_log(it *models.Log) *v2.UserIndexLogResponse_Item {
+	return &v2.UserIndexLogResponse_Item{
+		Id:        int64(it.ID),
+		Plugin:    it.Plugin,
+		Ip:        it.Ip,
+		Message:   it.Message,
+		Level:     v2.UserIndexLogResponse_Item_Level(it.Level),
+		CreatedAt: timestamppb.New(it.CreatedAt),
+	}
+}
 func new_attachment(it *models.Attachment) *v2.UserIndexAttachmentResponse_Item {
 	v := v2.UserIndexAttachmentResponse_Item{
 		Id:          int64(it.ID),

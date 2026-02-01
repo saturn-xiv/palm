@@ -322,6 +322,99 @@ public final class UserGrpc {
     return getDestroyAttachmentMethod;
   }
 
+  private static volatile io.grpc.MethodDescriptor<com.github.saturn_xiv.palm.plugins.portal.v1.Page,
+      com.github.saturn_xiv.palm.plugins.portal.v1.UserIndexLogResponse> getIndexLogMethod;
+
+  @io.grpc.stub.annotations.RpcMethod(
+      fullMethodName = SERVICE_NAME + '/' + "IndexLog",
+      requestType = com.github.saturn_xiv.palm.plugins.portal.v1.Page.class,
+      responseType = com.github.saturn_xiv.palm.plugins.portal.v1.UserIndexLogResponse.class,
+      methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
+  public static io.grpc.MethodDescriptor<com.github.saturn_xiv.palm.plugins.portal.v1.Page,
+      com.github.saturn_xiv.palm.plugins.portal.v1.UserIndexLogResponse> getIndexLogMethod() {
+    io.grpc.MethodDescriptor<com.github.saturn_xiv.palm.plugins.portal.v1.Page, com.github.saturn_xiv.palm.plugins.portal.v1.UserIndexLogResponse> getIndexLogMethod;
+    if ((getIndexLogMethod = UserGrpc.getIndexLogMethod) == null) {
+      synchronized (UserGrpc.class) {
+        if ((getIndexLogMethod = UserGrpc.getIndexLogMethod) == null) {
+          UserGrpc.getIndexLogMethod = getIndexLogMethod =
+              io.grpc.MethodDescriptor.<com.github.saturn_xiv.palm.plugins.portal.v1.Page, com.github.saturn_xiv.palm.plugins.portal.v1.UserIndexLogResponse>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(SERVICE_NAME, "IndexLog"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.github.saturn_xiv.palm.plugins.portal.v1.Page.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.github.saturn_xiv.palm.plugins.portal.v1.UserIndexLogResponse.getDefaultInstance()))
+              .setSchemaDescriptor(new UserMethodDescriptorSupplier("IndexLog"))
+              .build();
+        }
+      }
+    }
+    return getIndexLogMethod;
+  }
+
+  private static volatile io.grpc.MethodDescriptor<com.github.saturn_xiv.palm.plugins.portal.v1.UserSetLangRequest,
+      com.google.protobuf.Empty> getSetLangMethod;
+
+  @io.grpc.stub.annotations.RpcMethod(
+      fullMethodName = SERVICE_NAME + '/' + "SetLang",
+      requestType = com.github.saturn_xiv.palm.plugins.portal.v1.UserSetLangRequest.class,
+      responseType = com.google.protobuf.Empty.class,
+      methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
+  public static io.grpc.MethodDescriptor<com.github.saturn_xiv.palm.plugins.portal.v1.UserSetLangRequest,
+      com.google.protobuf.Empty> getSetLangMethod() {
+    io.grpc.MethodDescriptor<com.github.saturn_xiv.palm.plugins.portal.v1.UserSetLangRequest, com.google.protobuf.Empty> getSetLangMethod;
+    if ((getSetLangMethod = UserGrpc.getSetLangMethod) == null) {
+      synchronized (UserGrpc.class) {
+        if ((getSetLangMethod = UserGrpc.getSetLangMethod) == null) {
+          UserGrpc.getSetLangMethod = getSetLangMethod =
+              io.grpc.MethodDescriptor.<com.github.saturn_xiv.palm.plugins.portal.v1.UserSetLangRequest, com.google.protobuf.Empty>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(SERVICE_NAME, "SetLang"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.github.saturn_xiv.palm.plugins.portal.v1.UserSetLangRequest.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.protobuf.Empty.getDefaultInstance()))
+              .setSchemaDescriptor(new UserMethodDescriptorSupplier("SetLang"))
+              .build();
+        }
+      }
+    }
+    return getSetLangMethod;
+  }
+
+  private static volatile io.grpc.MethodDescriptor<com.github.saturn_xiv.palm.plugins.portal.v1.UserSetTimezoneRequest,
+      com.google.protobuf.Empty> getSetTimezoneMethod;
+
+  @io.grpc.stub.annotations.RpcMethod(
+      fullMethodName = SERVICE_NAME + '/' + "SetTimezone",
+      requestType = com.github.saturn_xiv.palm.plugins.portal.v1.UserSetTimezoneRequest.class,
+      responseType = com.google.protobuf.Empty.class,
+      methodType = io.grpc.MethodDescriptor.MethodType.UNARY)
+  public static io.grpc.MethodDescriptor<com.github.saturn_xiv.palm.plugins.portal.v1.UserSetTimezoneRequest,
+      com.google.protobuf.Empty> getSetTimezoneMethod() {
+    io.grpc.MethodDescriptor<com.github.saturn_xiv.palm.plugins.portal.v1.UserSetTimezoneRequest, com.google.protobuf.Empty> getSetTimezoneMethod;
+    if ((getSetTimezoneMethod = UserGrpc.getSetTimezoneMethod) == null) {
+      synchronized (UserGrpc.class) {
+        if ((getSetTimezoneMethod = UserGrpc.getSetTimezoneMethod) == null) {
+          UserGrpc.getSetTimezoneMethod = getSetTimezoneMethod =
+              io.grpc.MethodDescriptor.<com.github.saturn_xiv.palm.plugins.portal.v1.UserSetTimezoneRequest, com.google.protobuf.Empty>newBuilder()
+              .setType(io.grpc.MethodDescriptor.MethodType.UNARY)
+              .setFullMethodName(generateFullMethodName(SERVICE_NAME, "SetTimezone"))
+              .setSampledToLocalTracing(true)
+              .setRequestMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.github.saturn_xiv.palm.plugins.portal.v1.UserSetTimezoneRequest.getDefaultInstance()))
+              .setResponseMarshaller(io.grpc.protobuf.ProtoUtils.marshaller(
+                  com.google.protobuf.Empty.getDefaultInstance()))
+              .setSchemaDescriptor(new UserMethodDescriptorSupplier("SetTimezone"))
+              .build();
+        }
+      }
+    }
+    return getSetTimezoneMethod;
+  }
+
   /**
    * Creates a new async stub that supports all call types for the service
    */
@@ -454,6 +547,27 @@ public final class UserGrpc {
         io.grpc.stub.StreamObserver<com.google.protobuf.Empty> responseObserver) {
       io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getDestroyAttachmentMethod(), responseObserver);
     }
+
+    /**
+     */
+    default void indexLog(com.github.saturn_xiv.palm.plugins.portal.v1.Page request,
+        io.grpc.stub.StreamObserver<com.github.saturn_xiv.palm.plugins.portal.v1.UserIndexLogResponse> responseObserver) {
+      io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getIndexLogMethod(), responseObserver);
+    }
+
+    /**
+     */
+    default void setLang(com.github.saturn_xiv.palm.plugins.portal.v1.UserSetLangRequest request,
+        io.grpc.stub.StreamObserver<com.google.protobuf.Empty> responseObserver) {
+      io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getSetLangMethod(), responseObserver);
+    }
+
+    /**
+     */
+    default void setTimezone(com.github.saturn_xiv.palm.plugins.portal.v1.UserSetTimezoneRequest request,
+        io.grpc.stub.StreamObserver<com.google.protobuf.Empty> responseObserver) {
+      io.grpc.stub.ServerCalls.asyncUnimplementedUnaryCall(getSetTimezoneMethod(), responseObserver);
+    }
   }
 
   /**
@@ -562,6 +676,30 @@ public final class UserGrpc {
       io.grpc.stub.ClientCalls.asyncUnaryCall(
           getChannel().newCall(getDestroyAttachmentMethod(), getCallOptions()), request, responseObserver);
     }
+
+    /**
+     */
+    public void indexLog(com.github.saturn_xiv.palm.plugins.portal.v1.Page request,
+        io.grpc.stub.StreamObserver<com.github.saturn_xiv.palm.plugins.portal.v1.UserIndexLogResponse> responseObserver) {
+      io.grpc.stub.ClientCalls.asyncUnaryCall(
+          getChannel().newCall(getIndexLogMethod(), getCallOptions()), request, responseObserver);
+    }
+
+    /**
+     */
+    public void setLang(com.github.saturn_xiv.palm.plugins.portal.v1.UserSetLangRequest request,
+        io.grpc.stub.StreamObserver<com.google.protobuf.Empty> responseObserver) {
+      io.grpc.stub.ClientCalls.asyncUnaryCall(
+          getChannel().newCall(getSetLangMethod(), getCallOptions()), request, responseObserver);
+    }
+
+    /**
+     */
+    public void setTimezone(com.github.saturn_xiv.palm.plugins.portal.v1.UserSetTimezoneRequest request,
+        io.grpc.stub.StreamObserver<com.google.protobuf.Empty> responseObserver) {
+      io.grpc.stub.ClientCalls.asyncUnaryCall(
+          getChannel().newCall(getSetTimezoneMethod(), getCallOptions()), request, responseObserver);
+    }
   }
 
   /**
@@ -649,6 +787,27 @@ public final class UserGrpc {
       return io.grpc.stub.ClientCalls.blockingV2UnaryCall(
           getChannel(), getDestroyAttachmentMethod(), getCallOptions(), request);
     }
+
+    /**
+     */
+    public com.github.saturn_xiv.palm.plugins.portal.v1.UserIndexLogResponse indexLog(com.github.saturn_xiv.palm.plugins.portal.v1.Page request) throws io.grpc.StatusException {
+      return io.grpc.stub.ClientCalls.blockingV2UnaryCall(
+          getChannel(), getIndexLogMethod(), getCallOptions(), request);
+    }
+
+    /**
+     */
+    public com.google.protobuf.Empty setLang(com.github.saturn_xiv.palm.plugins.portal.v1.UserSetLangRequest request) throws io.grpc.StatusException {
+      return io.grpc.stub.ClientCalls.blockingV2UnaryCall(
+          getChannel(), getSetLangMethod(), getCallOptions(), request);
+    }
+
+    /**
+     */
+    public com.google.protobuf.Empty setTimezone(com.github.saturn_xiv.palm.plugins.portal.v1.UserSetTimezoneRequest request) throws io.grpc.StatusException {
+      return io.grpc.stub.ClientCalls.blockingV2UnaryCall(
+          getChannel(), getSetTimezoneMethod(), getCallOptions(), request);
+    }
   }
 
   /**
@@ -735,6 +894,27 @@ public final class UserGrpc {
     public com.google.protobuf.Empty destroyAttachment(com.github.saturn_xiv.palm.plugins.portal.v1.IdRequest request) {
       return io.grpc.stub.ClientCalls.blockingUnaryCall(
           getChannel(), getDestroyAttachmentMethod(), getCallOptions(), request);
+    }
+
+    /**
+     */
+    public com.github.saturn_xiv.palm.plugins.portal.v1.UserIndexLogResponse indexLog(com.github.saturn_xiv.palm.plugins.portal.v1.Page request) {
+      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+          getChannel(), getIndexLogMethod(), getCallOptions(), request);
+    }
+
+    /**
+     */
+    public com.google.protobuf.Empty setLang(com.github.saturn_xiv.palm.plugins.portal.v1.UserSetLangRequest request) {
+      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+          getChannel(), getSetLangMethod(), getCallOptions(), request);
+    }
+
+    /**
+     */
+    public com.google.protobuf.Empty setTimezone(com.github.saturn_xiv.palm.plugins.portal.v1.UserSetTimezoneRequest request) {
+      return io.grpc.stub.ClientCalls.blockingUnaryCall(
+          getChannel(), getSetTimezoneMethod(), getCallOptions(), request);
     }
   }
 
@@ -833,6 +1013,30 @@ public final class UserGrpc {
       return io.grpc.stub.ClientCalls.futureUnaryCall(
           getChannel().newCall(getDestroyAttachmentMethod(), getCallOptions()), request);
     }
+
+    /**
+     */
+    public com.google.common.util.concurrent.ListenableFuture<com.github.saturn_xiv.palm.plugins.portal.v1.UserIndexLogResponse> indexLog(
+        com.github.saturn_xiv.palm.plugins.portal.v1.Page request) {
+      return io.grpc.stub.ClientCalls.futureUnaryCall(
+          getChannel().newCall(getIndexLogMethod(), getCallOptions()), request);
+    }
+
+    /**
+     */
+    public com.google.common.util.concurrent.ListenableFuture<com.google.protobuf.Empty> setLang(
+        com.github.saturn_xiv.palm.plugins.portal.v1.UserSetLangRequest request) {
+      return io.grpc.stub.ClientCalls.futureUnaryCall(
+          getChannel().newCall(getSetLangMethod(), getCallOptions()), request);
+    }
+
+    /**
+     */
+    public com.google.common.util.concurrent.ListenableFuture<com.google.protobuf.Empty> setTimezone(
+        com.github.saturn_xiv.palm.plugins.portal.v1.UserSetTimezoneRequest request) {
+      return io.grpc.stub.ClientCalls.futureUnaryCall(
+          getChannel().newCall(getSetTimezoneMethod(), getCallOptions()), request);
+    }
   }
 
   private static final int METHODID_INDEX = 0;
@@ -845,6 +1049,9 @@ public final class UserGrpc {
   private static final int METHODID_SET_ATTACHMENT_UPLOADED = 7;
   private static final int METHODID_SET_ATTACHMENT_TITLE = 8;
   private static final int METHODID_DESTROY_ATTACHMENT = 9;
+  private static final int METHODID_INDEX_LOG = 10;
+  private static final int METHODID_SET_LANG = 11;
+  private static final int METHODID_SET_TIMEZONE = 12;
 
   private static final class MethodHandlers<Req, Resp> implements
       io.grpc.stub.ServerCalls.UnaryMethod<Req, Resp>,
@@ -901,6 +1108,18 @@ public final class UserGrpc {
           break;
         case METHODID_DESTROY_ATTACHMENT:
           serviceImpl.destroyAttachment((com.github.saturn_xiv.palm.plugins.portal.v1.IdRequest) request,
+              (io.grpc.stub.StreamObserver<com.google.protobuf.Empty>) responseObserver);
+          break;
+        case METHODID_INDEX_LOG:
+          serviceImpl.indexLog((com.github.saturn_xiv.palm.plugins.portal.v1.Page) request,
+              (io.grpc.stub.StreamObserver<com.github.saturn_xiv.palm.plugins.portal.v1.UserIndexLogResponse>) responseObserver);
+          break;
+        case METHODID_SET_LANG:
+          serviceImpl.setLang((com.github.saturn_xiv.palm.plugins.portal.v1.UserSetLangRequest) request,
+              (io.grpc.stub.StreamObserver<com.google.protobuf.Empty>) responseObserver);
+          break;
+        case METHODID_SET_TIMEZONE:
+          serviceImpl.setTimezone((com.github.saturn_xiv.palm.plugins.portal.v1.UserSetTimezoneRequest) request,
               (io.grpc.stub.StreamObserver<com.google.protobuf.Empty>) responseObserver);
           break;
         default:
@@ -991,6 +1210,27 @@ public final class UserGrpc {
               com.github.saturn_xiv.palm.plugins.portal.v1.IdRequest,
               com.google.protobuf.Empty>(
                 service, METHODID_DESTROY_ATTACHMENT)))
+        .addMethod(
+          getIndexLogMethod(),
+          io.grpc.stub.ServerCalls.asyncUnaryCall(
+            new MethodHandlers<
+              com.github.saturn_xiv.palm.plugins.portal.v1.Page,
+              com.github.saturn_xiv.palm.plugins.portal.v1.UserIndexLogResponse>(
+                service, METHODID_INDEX_LOG)))
+        .addMethod(
+          getSetLangMethod(),
+          io.grpc.stub.ServerCalls.asyncUnaryCall(
+            new MethodHandlers<
+              com.github.saturn_xiv.palm.plugins.portal.v1.UserSetLangRequest,
+              com.google.protobuf.Empty>(
+                service, METHODID_SET_LANG)))
+        .addMethod(
+          getSetTimezoneMethod(),
+          io.grpc.stub.ServerCalls.asyncUnaryCall(
+            new MethodHandlers<
+              com.github.saturn_xiv.palm.plugins.portal.v1.UserSetTimezoneRequest,
+              com.google.protobuf.Empty>(
+                service, METHODID_SET_TIMEZONE)))
         .build();
   }
 
@@ -1049,6 +1289,9 @@ public final class UserGrpc {
               .addMethod(getSetAttachmentUploadedMethod())
               .addMethod(getSetAttachmentTitleMethod())
               .addMethod(getDestroyAttachmentMethod())
+              .addMethod(getIndexLogMethod())
+              .addMethod(getSetLangMethod())
+              .addMethod(getSetTimezoneMethod())
               .build();
         }
       }

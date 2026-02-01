@@ -55,7 +55,7 @@ type emailUserForm struct {
 }
 
 func send_email(ctx context.Context, db *gorm.DB, queue *queue.RabbitMQ, jwt *crypto.Jwt, home string, user *models.EmailUser, audience string) error {
-	token, err := jwt.Sign(env.Plugin(), user.Sn, []string{audience}, time.Hour*1)
+	token, err := jwt.Sign(env.Plugin(), user.Email, []string{audience}, time.Hour*1)
 	if err != nil {
 		return err
 	}

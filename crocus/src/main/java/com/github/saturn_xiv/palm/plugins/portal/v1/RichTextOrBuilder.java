@@ -34,26 +34,26 @@ public interface RichTextOrBuilder extends
       getBodyBytes();
 
   /**
-   * <code>repeated .palm.portal.v1.Attachment attachments = 3;</code>
+   * <code>repeated .palm.portal.v1.File attachments = 3;</code>
    */
-  java.util.List<com.github.saturn_xiv.palm.plugins.portal.v1.Attachment> 
+  java.util.List<com.github.saturn_xiv.palm.plugins.portal.v1.File> 
       getAttachmentsList();
   /**
-   * <code>repeated .palm.portal.v1.Attachment attachments = 3;</code>
+   * <code>repeated .palm.portal.v1.File attachments = 3;</code>
    */
-  com.github.saturn_xiv.palm.plugins.portal.v1.Attachment getAttachments(int index);
+  com.github.saturn_xiv.palm.plugins.portal.v1.File getAttachments(int index);
   /**
-   * <code>repeated .palm.portal.v1.Attachment attachments = 3;</code>
+   * <code>repeated .palm.portal.v1.File attachments = 3;</code>
    */
   int getAttachmentsCount();
   /**
-   * <code>repeated .palm.portal.v1.Attachment attachments = 3;</code>
+   * <code>repeated .palm.portal.v1.File attachments = 3;</code>
    */
-  java.util.List<? extends com.github.saturn_xiv.palm.plugins.portal.v1.AttachmentOrBuilder> 
+  java.util.List<? extends com.github.saturn_xiv.palm.plugins.portal.v1.FileOrBuilder> 
       getAttachmentsOrBuilderList();
   /**
-   * <code>repeated .palm.portal.v1.Attachment attachments = 3;</code>
+   * <code>repeated .palm.portal.v1.File attachments = 3;</code>
    */
-  com.github.saturn_xiv.palm.plugins.portal.v1.AttachmentOrBuilder getAttachmentsOrBuilder(
+  com.github.saturn_xiv.palm.plugins.portal.v1.FileOrBuilder getAttachmentsOrBuilder(
       int index);
 }

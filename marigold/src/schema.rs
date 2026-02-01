@@ -85,8 +85,6 @@ diesel::table! {
         updated_at -> Timestamptz,
         deleted_at -> Nullable<Timestamptz>,
         user_id -> Int8,
-        #[max_length = 36]
-        sn -> Varchar,
         #[max_length = 63]
         name -> Varchar,
         #[max_length = 31]
@@ -139,21 +137,6 @@ diesel::table! {
         version -> Int8,
         created_at -> Timestamptz,
         updated_at -> Timestamptz,
-    }
-}
-
-diesel::table! {
-    logs (id) {
-        id -> Int8,
-        user_id -> Int8,
-        #[max_length = 15]
-        plugin -> Varchar,
-        #[max_length = 45]
-        ip -> Varchar,
-        #[max_length = 7]
-        level -> Varchar,
-        message -> Text,
-        created_at -> Timestamptz,
     }
 }
 
@@ -223,7 +206,6 @@ diesel::joinable!(attachments_resources -> attachments (attachment_id));
 diesel::joinable!(categories_resources -> categories (category_id));
 diesel::joinable!(email_users -> users (user_id));
 diesel::joinable!(google_oauth2_users -> users (user_id));
-diesel::joinable!(logs -> users (user_id));
 diesel::joinable!(tags_resources -> tags (tag_id));
 
 diesel::allow_tables_to_appear_in_same_query!(
@@ -235,7 +217,6 @@ diesel::allow_tables_to_appear_in_same_query!(
     email_users,
     google_oauth2_users,
     locales,
-    logs,
     settings,
     tags,
     tags_resources,

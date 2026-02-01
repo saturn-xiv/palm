@@ -47,19 +47,19 @@ public interface SettingsOrBuilder extends
       getLanguageBytes();
 
   /**
-   * <code>.palm.portal.v1.Attachment favicon = 4;</code>
+   * <code>.palm.portal.v1.File favicon = 4;</code>
    * @return Whether the favicon field is set.
    */
   boolean hasFavicon();
   /**
-   * <code>.palm.portal.v1.Attachment favicon = 4;</code>
+   * <code>.palm.portal.v1.File favicon = 4;</code>
    * @return The favicon.
    */
-  com.github.saturn_xiv.palm.plugins.portal.v1.Attachment getFavicon();
+  com.github.saturn_xiv.palm.plugins.portal.v1.File getFavicon();
   /**
-   * <code>.palm.portal.v1.Attachment favicon = 4;</code>
+   * <code>.palm.portal.v1.File favicon = 4;</code>
    */
-  com.github.saturn_xiv.palm.plugins.portal.v1.AttachmentOrBuilder getFaviconOrBuilder();
+  com.github.saturn_xiv.palm.plugins.portal.v1.FileOrBuilder getFaviconOrBuilder();
 
   /**
    * <code>.palm.blog.v1.Bootstrap5Theme bootstrap5 = 91;</code>

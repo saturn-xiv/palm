@@ -213,41 +213,41 @@ private static final long serialVersionUID = 0L;
 
   public static final int ATTACHMENTS_FIELD_NUMBER = 3;
   @SuppressWarnings("serial")
-  private java.util.List<com.github.saturn_xiv.palm.plugins.portal.v1.Attachment> attachments_;
+  private java.util.List<com.github.saturn_xiv.palm.plugins.portal.v1.File> attachments_;
   /**
-   * <code>repeated .palm.portal.v1.Attachment attachments = 3;</code>
+   * <code>repeated .palm.portal.v1.File attachments = 3;</code>
    */
   @java.lang.Override
-  public java.util.List<com.github.saturn_xiv.palm.plugins.portal.v1.Attachment> getAttachmentsList() {
+  public java.util.List<com.github.saturn_xiv.palm.plugins.portal.v1.File> getAttachmentsList() {
     return attachments_;
   }
   /**
-   * <code>repeated .palm.portal.v1.Attachment attachments = 3;</code>
+   * <code>repeated .palm.portal.v1.File attachments = 3;</code>
    */
   @java.lang.Override
-  public java.util.List<? extends com.github.saturn_xiv.palm.plugins.portal.v1.AttachmentOrBuilder> 
+  public java.util.List<? extends com.github.saturn_xiv.palm.plugins.portal.v1.FileOrBuilder> 
       getAttachmentsOrBuilderList() {
     return attachments_;
   }
   /**
-   * <code>repeated .palm.portal.v1.Attachment attachments = 3;</code>
+   * <code>repeated .palm.portal.v1.File attachments = 3;</code>
    */
   @java.lang.Override
   public int getAttachmentsCount() {
     return attachments_.size();
   }
   /**
-   * <code>repeated .palm.portal.v1.Attachment attachments = 3;</code>
+   * <code>repeated .palm.portal.v1.File attachments = 3;</code>
    */
   @java.lang.Override
-  public com.github.saturn_xiv.palm.plugins.portal.v1.Attachment getAttachments(int index) {
+  public com.github.saturn_xiv.palm.plugins.portal.v1.File getAttachments(int index) {
     return attachments_.get(index);
   }
   /**
-   * <code>repeated .palm.portal.v1.Attachment attachments = 3;</code>
+   * <code>repeated .palm.portal.v1.File attachments = 3;</code>
    */
   @java.lang.Override
-  public com.github.saturn_xiv.palm.plugins.portal.v1.AttachmentOrBuilder getAttachmentsOrBuilder(
+  public com.github.saturn_xiv.palm.plugins.portal.v1.FileOrBuilder getAttachmentsOrBuilder(
       int index) {
     return attachments_.get(index);
   }
@@ -611,9 +611,9 @@ private static final long serialVersionUID = 0L;
               break;
             } // case 18
             case 26: {
-              com.github.saturn_xiv.palm.plugins.portal.v1.Attachment m =
+              com.github.saturn_xiv.palm.plugins.portal.v1.File m =
                   input.readMessage(
-                      com.github.saturn_xiv.palm.plugins.portal.v1.Attachment.parser(),
+                      com.github.saturn_xiv.palm.plugins.portal.v1.File.parser(),
                       extensionRegistry);
               if (attachmentsBuilder_ == null) {
                 ensureAttachmentsIsMutable();
@@ -763,22 +763,22 @@ private static final long serialVersionUID = 0L;
       return this;
     }
 
-    private java.util.List<com.github.saturn_xiv.palm.plugins.portal.v1.Attachment> attachments_ =
+    private java.util.List<com.github.saturn_xiv.palm.plugins.portal.v1.File> attachments_ =
       java.util.Collections.emptyList();
     private void ensureAttachmentsIsMutable() {
       if (!((bitField0_ & 0x00000004) != 0)) {
-        attachments_ = new java.util.ArrayList<com.github.saturn_xiv.palm.plugins.portal.v1.Attachment>(attachments_);
+        attachments_ = new java.util.ArrayList<com.github.saturn_xiv.palm.plugins.portal.v1.File>(attachments_);
         bitField0_ |= 0x00000004;
        }
     }
 
     private com.google.protobuf.RepeatedFieldBuilder<
-        com.github.saturn_xiv.palm.plugins.portal.v1.Attachment, com.github.saturn_xiv.palm.plugins.portal.v1.Attachment.Builder, com.github.saturn_xiv.palm.plugins.portal.v1.AttachmentOrBuilder> attachmentsBuilder_;
+        com.github.saturn_xiv.palm.plugins.portal.v1.File, com.github.saturn_xiv.palm.plugins.portal.v1.File.Builder, com.github.saturn_xiv.palm.plugins.portal.v1.FileOrBuilder> attachmentsBuilder_;
 
     /**
-     * <code>repeated .palm.portal.v1.Attachment attachments = 3;</code>
+     * <code>repeated .palm.portal.v1.File attachments = 3;</code>
      */
-    public java.util.List<com.github.saturn_xiv.palm.plugins.portal.v1.Attachment> getAttachmentsList() {
+    public java.util.List<com.github.saturn_xiv.palm.plugins.portal.v1.File> getAttachmentsList() {
       if (attachmentsBuilder_ == null) {
         return java.util.Collections.unmodifiableList(attachments_);
       } else {
@@ -786,7 +786,7 @@ private static final long serialVersionUID = 0L;
       }
     }
     /**
-     * <code>repeated .palm.portal.v1.Attachment attachments = 3;</code>
+     * <code>repeated .palm.portal.v1.File attachments = 3;</code>
      */
     public int getAttachmentsCount() {
       if (attachmentsBuilder_ == null) {
@@ -796,9 +796,9 @@ private static final long serialVersionUID = 0L;
       }
     }
     /**
-     * <code>repeated .palm.portal.v1.Attachment attachments = 3;</code>
+     * <code>repeated .palm.portal.v1.File attachments = 3;</code>
      */
-    public com.github.saturn_xiv.palm.plugins.portal.v1.Attachment getAttachments(int index) {
+    public com.github.saturn_xiv.palm.plugins.portal.v1.File getAttachments(int index) {
       if (attachmentsBuilder_ == null) {
         return attachments_.get(index);
       } else {
@@ -806,10 +806,10 @@ private static final long serialVersionUID = 0L;
       }
     }
     /**
-     * <code>repeated .palm.portal.v1.Attachment attachments = 3;</code>
+     * <code>repeated .palm.portal.v1.File attachments = 3;</code>
      */
     public Builder setAttachments(
-        int index, com.github.saturn_xiv.palm.plugins.portal.v1.Attachment value) {
+        int index, com.github.saturn_xiv.palm.plugins.portal.v1.File value) {
       if (attachmentsBuilder_ == null) {
         if (value == null) {
           throw new NullPointerException();
@@ -823,10 +823,10 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>repeated .palm.portal.v1.Attachment attachments = 3;</code>
+     * <code>repeated .palm.portal.v1.File attachments = 3;</code>
      */
     public Builder setAttachments(
-        int index, com.github.saturn_xiv.palm.plugins.portal.v1.Attachment.Builder builderForValue) {
+        int index, com.github.saturn_xiv.palm.plugins.portal.v1.File.Builder builderForValue) {
       if (attachmentsBuilder_ == null) {
         ensureAttachmentsIsMutable();
         attachments_.set(index, builderForValue.build());
@@ -837,9 +837,9 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>repeated .palm.portal.v1.Attachment attachments = 3;</code>
+     * <code>repeated .palm.portal.v1.File attachments = 3;</code>
      */
-    public Builder addAttachments(com.github.saturn_xiv.palm.plugins.portal.v1.Attachment value) {
+    public Builder addAttachments(com.github.saturn_xiv.palm.plugins.portal.v1.File value) {
       if (attachmentsBuilder_ == null) {
         if (value == null) {
           throw new NullPointerException();
@@ -853,10 +853,10 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>repeated .palm.portal.v1.Attachment attachments = 3;</code>
+     * <code>repeated .palm.portal.v1.File attachments = 3;</code>
      */
     public Builder addAttachments(
-        int index, com.github.saturn_xiv.palm.plugins.portal.v1.Attachment value) {
+        int index, com.github.saturn_xiv.palm.plugins.portal.v1.File value) {
       if (attachmentsBuilder_ == null) {
         if (value == null) {
           throw new NullPointerException();
@@ -870,10 +870,10 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>repeated .palm.portal.v1.Attachment attachments = 3;</code>
+     * <code>repeated .palm.portal.v1.File attachments = 3;</code>
      */
     public Builder addAttachments(
-        com.github.saturn_xiv.palm.plugins.portal.v1.Attachment.Builder builderForValue) {
+        com.github.saturn_xiv.palm.plugins.portal.v1.File.Builder builderForValue) {
       if (attachmentsBuilder_ == null) {
         ensureAttachmentsIsMutable();
         attachments_.add(builderForValue.build());
@@ -884,10 +884,10 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>repeated .palm.portal.v1.Attachment attachments = 3;</code>
+     * <code>repeated .palm.portal.v1.File attachments = 3;</code>
      */
     public Builder addAttachments(
-        int index, com.github.saturn_xiv.palm.plugins.portal.v1.Attachment.Builder builderForValue) {
+        int index, com.github.saturn_xiv.palm.plugins.portal.v1.File.Builder builderForValue) {
       if (attachmentsBuilder_ == null) {
         ensureAttachmentsIsMutable();
         attachments_.add(index, builderForValue.build());
@@ -898,10 +898,10 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>repeated .palm.portal.v1.Attachment attachments = 3;</code>
+     * <code>repeated .palm.portal.v1.File attachments = 3;</code>
      */
     public Builder addAllAttachments(
-        java.lang.Iterable<? extends com.github.saturn_xiv.palm.plugins.portal.v1.Attachment> values) {
+        java.lang.Iterable<? extends com.github.saturn_xiv.palm.plugins.portal.v1.File> values) {
       if (attachmentsBuilder_ == null) {
         ensureAttachmentsIsMutable();
         com.google.protobuf.AbstractMessageLite.Builder.addAll(
@@ -913,7 +913,7 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>repeated .palm.portal.v1.Attachment attachments = 3;</code>
+     * <code>repeated .palm.portal.v1.File attachments = 3;</code>
      */
     public Builder clearAttachments() {
       if (attachmentsBuilder_ == null) {
@@ -926,7 +926,7 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>repeated .palm.portal.v1.Attachment attachments = 3;</code>
+     * <code>repeated .palm.portal.v1.File attachments = 3;</code>
      */
     public Builder removeAttachments(int index) {
       if (attachmentsBuilder_ == null) {
@@ -939,16 +939,16 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>repeated .palm.portal.v1.Attachment attachments = 3;</code>
+     * <code>repeated .palm.portal.v1.File attachments = 3;</code>
      */
-    public com.github.saturn_xiv.palm.plugins.portal.v1.Attachment.Builder getAttachmentsBuilder(
+    public com.github.saturn_xiv.palm.plugins.portal.v1.File.Builder getAttachmentsBuilder(
         int index) {
       return internalGetAttachmentsFieldBuilder().getBuilder(index);
     }
     /**
-     * <code>repeated .palm.portal.v1.Attachment attachments = 3;</code>
+     * <code>repeated .palm.portal.v1.File attachments = 3;</code>
      */
-    public com.github.saturn_xiv.palm.plugins.portal.v1.AttachmentOrBuilder getAttachmentsOrBuilder(
+    public com.github.saturn_xiv.palm.plugins.portal.v1.FileOrBuilder getAttachmentsOrBuilder(
         int index) {
       if (attachmentsBuilder_ == null) {
         return attachments_.get(index);  } else {
@@ -956,9 +956,9 @@ private static final long serialVersionUID = 0L;
       }
     }
     /**
-     * <code>repeated .palm.portal.v1.Attachment attachments = 3;</code>
+     * <code>repeated .palm.portal.v1.File attachments = 3;</code>
      */
-    public java.util.List<? extends com.github.saturn_xiv.palm.plugins.portal.v1.AttachmentOrBuilder> 
+    public java.util.List<? extends com.github.saturn_xiv.palm.plugins.portal.v1.FileOrBuilder> 
          getAttachmentsOrBuilderList() {
       if (attachmentsBuilder_ != null) {
         return attachmentsBuilder_.getMessageOrBuilderList();
@@ -967,33 +967,33 @@ private static final long serialVersionUID = 0L;
       }
     }
     /**
-     * <code>repeated .palm.portal.v1.Attachment attachments = 3;</code>
+     * <code>repeated .palm.portal.v1.File attachments = 3;</code>
      */
-    public com.github.saturn_xiv.palm.plugins.portal.v1.Attachment.Builder addAttachmentsBuilder() {
+    public com.github.saturn_xiv.palm.plugins.portal.v1.File.Builder addAttachmentsBuilder() {
       return internalGetAttachmentsFieldBuilder().addBuilder(
-          com.github.saturn_xiv.palm.plugins.portal.v1.Attachment.getDefaultInstance());
+          com.github.saturn_xiv.palm.plugins.portal.v1.File.getDefaultInstance());
     }
     /**
-     * <code>repeated .palm.portal.v1.Attachment attachments = 3;</code>
+     * <code>repeated .palm.portal.v1.File attachments = 3;</code>
      */
-    public com.github.saturn_xiv.palm.plugins.portal.v1.Attachment.Builder addAttachmentsBuilder(
+    public com.github.saturn_xiv.palm.plugins.portal.v1.File.Builder addAttachmentsBuilder(
         int index) {
       return internalGetAttachmentsFieldBuilder().addBuilder(
-          index, com.github.saturn_xiv.palm.plugins.portal.v1.Attachment.getDefaultInstance());
+          index, com.github.saturn_xiv.palm.plugins.portal.v1.File.getDefaultInstance());
     }
     /**
-     * <code>repeated .palm.portal.v1.Attachment attachments = 3;</code>
+     * <code>repeated .palm.portal.v1.File attachments = 3;</code>
      */
-    public java.util.List<com.github.saturn_xiv.palm.plugins.portal.v1.Attachment.Builder> 
+    public java.util.List<com.github.saturn_xiv.palm.plugins.portal.v1.File.Builder> 
          getAttachmentsBuilderList() {
       return internalGetAttachmentsFieldBuilder().getBuilderList();
     }
     private com.google.protobuf.RepeatedFieldBuilder<
-        com.github.saturn_xiv.palm.plugins.portal.v1.Attachment, com.github.saturn_xiv.palm.plugins.portal.v1.Attachment.Builder, com.github.saturn_xiv.palm.plugins.portal.v1.AttachmentOrBuilder> 
+        com.github.saturn_xiv.palm.plugins.portal.v1.File, com.github.saturn_xiv.palm.plugins.portal.v1.File.Builder, com.github.saturn_xiv.palm.plugins.portal.v1.FileOrBuilder> 
         internalGetAttachmentsFieldBuilder() {
       if (attachmentsBuilder_ == null) {
         attachmentsBuilder_ = new com.google.protobuf.RepeatedFieldBuilder<
-            com.github.saturn_xiv.palm.plugins.portal.v1.Attachment, com.github.saturn_xiv.palm.plugins.portal.v1.Attachment.Builder, com.github.saturn_xiv.palm.plugins.portal.v1.AttachmentOrBuilder>(
+            com.github.saturn_xiv.palm.plugins.portal.v1.File, com.github.saturn_xiv.palm.plugins.portal.v1.File.Builder, com.github.saturn_xiv.palm.plugins.portal.v1.FileOrBuilder>(
                 attachments_,
                 ((bitField0_ & 0x00000004) != 0),
                 getParentForChildren(),

@@ -278,6 +278,672 @@ export class SiteClient {
 
 }
 
+export class EmailUserClient {
+  client_: grpcWeb.AbstractClientBase;
+  hostname_: string;
+  credentials_: null | { [index: string]: string; };
+  options_: null | { [index: string]: any; };
+
+  constructor (hostname: string,
+               credentials?: null | { [index: string]: string; },
+               options?: null | { [index: string]: any; }) {
+    if (!options) options = {};
+    if (!credentials) credentials = {};
+    options['format'] = 'binary';
+
+    this.client_ = new grpcWeb.GrpcWebClientBase(options);
+    this.hostname_ = hostname.replace(/\/+$/, '');
+    this.credentials_ = credentials;
+    this.options_ = options;
+  }
+
+  methodDescriptorIndex = new grpcWeb.MethodDescriptor(
+    '/palm.portal.v1.EmailUser/Index',
+    grpcWeb.MethodType.UNARY,
+    portal_pb.Page,
+    portal_pb.EmailUserIndexResponse,
+    (request: portal_pb.Page) => {
+      return request.serializeBinary();
+    },
+    portal_pb.EmailUserIndexResponse.deserializeBinary
+  );
+
+  index(
+    request: portal_pb.Page,
+    metadata?: grpcWeb.Metadata | null): Promise<portal_pb.EmailUserIndexResponse>;
+
+  index(
+    request: portal_pb.Page,
+    metadata: grpcWeb.Metadata | null,
+    callback: (err: grpcWeb.RpcError,
+               response: portal_pb.EmailUserIndexResponse) => void): grpcWeb.ClientReadableStream<portal_pb.EmailUserIndexResponse>;
+
+  index(
+    request: portal_pb.Page,
+    metadata?: grpcWeb.Metadata | null,
+    callback?: (err: grpcWeb.RpcError,
+               response: portal_pb.EmailUserIndexResponse) => void) {
+    if (callback !== undefined) {
+      return this.client_.rpcCall(
+        this.hostname_ +
+          '/palm.portal.v1.EmailUser/Index',
+        request,
+        metadata || {},
+        this.methodDescriptorIndex,
+        callback);
+    }
+    return this.client_.unaryCall(
+    this.hostname_ +
+      '/palm.portal.v1.EmailUser/Index',
+    request,
+    metadata || {},
+    this.methodDescriptorIndex);
+  }
+
+  methodDescriptorDestroy = new grpcWeb.MethodDescriptor(
+    '/palm.portal.v1.EmailUser/Destroy',
+    grpcWeb.MethodType.UNARY,
+    portal_pb.IdRequest,
+    google_protobuf_empty_pb.Empty,
+    (request: portal_pb.IdRequest) => {
+      return request.serializeBinary();
+    },
+    google_protobuf_empty_pb.Empty.deserializeBinary
+  );
+
+  destroy(
+    request: portal_pb.IdRequest,
+    metadata?: grpcWeb.Metadata | null): Promise<google_protobuf_empty_pb.Empty>;
+
+  destroy(
+    request: portal_pb.IdRequest,
+    metadata: grpcWeb.Metadata | null,
+    callback: (err: grpcWeb.RpcError,
+               response: google_protobuf_empty_pb.Empty) => void): grpcWeb.ClientReadableStream<google_protobuf_empty_pb.Empty>;
+
+  destroy(
+    request: portal_pb.IdRequest,
+    metadata?: grpcWeb.Metadata | null,
+    callback?: (err: grpcWeb.RpcError,
+               response: google_protobuf_empty_pb.Empty) => void) {
+    if (callback !== undefined) {
+      return this.client_.rpcCall(
+        this.hostname_ +
+          '/palm.portal.v1.EmailUser/Destroy',
+        request,
+        metadata || {},
+        this.methodDescriptorDestroy,
+        callback);
+    }
+    return this.client_.unaryCall(
+    this.hostname_ +
+      '/palm.portal.v1.EmailUser/Destroy',
+    request,
+    metadata || {},
+    this.methodDescriptorDestroy);
+  }
+
+  methodDescriptorConfirm = new grpcWeb.MethodDescriptor(
+    '/palm.portal.v1.EmailUser/Confirm',
+    grpcWeb.MethodType.UNARY,
+    portal_pb.IdRequest,
+    google_protobuf_empty_pb.Empty,
+    (request: portal_pb.IdRequest) => {
+      return request.serializeBinary();
+    },
+    google_protobuf_empty_pb.Empty.deserializeBinary
+  );
+
+  confirm(
+    request: portal_pb.IdRequest,
+    metadata?: grpcWeb.Metadata | null): Promise<google_protobuf_empty_pb.Empty>;
+
+  confirm(
+    request: portal_pb.IdRequest,
+    metadata: grpcWeb.Metadata | null,
+    callback: (err: grpcWeb.RpcError,
+               response: google_protobuf_empty_pb.Empty) => void): grpcWeb.ClientReadableStream<google_protobuf_empty_pb.Empty>;
+
+  confirm(
+    request: portal_pb.IdRequest,
+    metadata?: grpcWeb.Metadata | null,
+    callback?: (err: grpcWeb.RpcError,
+               response: google_protobuf_empty_pb.Empty) => void) {
+    if (callback !== undefined) {
+      return this.client_.rpcCall(
+        this.hostname_ +
+          '/palm.portal.v1.EmailUser/Confirm',
+        request,
+        metadata || {},
+        this.methodDescriptorConfirm,
+        callback);
+    }
+    return this.client_.unaryCall(
+    this.hostname_ +
+      '/palm.portal.v1.EmailUser/Confirm',
+    request,
+    metadata || {},
+    this.methodDescriptorConfirm);
+  }
+
+  methodDescriptorSetPassword = new grpcWeb.MethodDescriptor(
+    '/palm.portal.v1.EmailUser/SetPassword',
+    grpcWeb.MethodType.UNARY,
+    portal_pb.EmailUserSetPasswordRequest,
+    google_protobuf_empty_pb.Empty,
+    (request: portal_pb.EmailUserSetPasswordRequest) => {
+      return request.serializeBinary();
+    },
+    google_protobuf_empty_pb.Empty.deserializeBinary
+  );
+
+  setPassword(
+    request: portal_pb.EmailUserSetPasswordRequest,
+    metadata?: grpcWeb.Metadata | null): Promise<google_protobuf_empty_pb.Empty>;
+
+  setPassword(
+    request: portal_pb.EmailUserSetPasswordRequest,
+    metadata: grpcWeb.Metadata | null,
+    callback: (err: grpcWeb.RpcError,
+               response: google_protobuf_empty_pb.Empty) => void): grpcWeb.ClientReadableStream<google_protobuf_empty_pb.Empty>;
+
+  setPassword(
+    request: portal_pb.EmailUserSetPasswordRequest,
+    metadata?: grpcWeb.Metadata | null,
+    callback?: (err: grpcWeb.RpcError,
+               response: google_protobuf_empty_pb.Empty) => void) {
+    if (callback !== undefined) {
+      return this.client_.rpcCall(
+        this.hostname_ +
+          '/palm.portal.v1.EmailUser/SetPassword',
+        request,
+        metadata || {},
+        this.methodDescriptorSetPassword,
+        callback);
+    }
+    return this.client_.unaryCall(
+    this.hostname_ +
+      '/palm.portal.v1.EmailUser/SetPassword',
+    request,
+    metadata || {},
+    this.methodDescriptorSetPassword);
+  }
+
+  methodDescriptorSignUp = new grpcWeb.MethodDescriptor(
+    '/palm.portal.v1.EmailUser/SignUp',
+    grpcWeb.MethodType.UNARY,
+    portal_pb.EmailUserSignUpRequest,
+    google_protobuf_empty_pb.Empty,
+    (request: portal_pb.EmailUserSignUpRequest) => {
+      return request.serializeBinary();
+    },
+    google_protobuf_empty_pb.Empty.deserializeBinary
+  );
+
+  signUp(
+    request: portal_pb.EmailUserSignUpRequest,
+    metadata?: grpcWeb.Metadata | null): Promise<google_protobuf_empty_pb.Empty>;
+
+  signUp(
+    request: portal_pb.EmailUserSignUpRequest,
+    metadata: grpcWeb.Metadata | null,
+    callback: (err: grpcWeb.RpcError,
+               response: google_protobuf_empty_pb.Empty) => void): grpcWeb.ClientReadableStream<google_protobuf_empty_pb.Empty>;
+
+  signUp(
+    request: portal_pb.EmailUserSignUpRequest,
+    metadata?: grpcWeb.Metadata | null,
+    callback?: (err: grpcWeb.RpcError,
+               response: google_protobuf_empty_pb.Empty) => void) {
+    if (callback !== undefined) {
+      return this.client_.rpcCall(
+        this.hostname_ +
+          '/palm.portal.v1.EmailUser/SignUp',
+        request,
+        metadata || {},
+        this.methodDescriptorSignUp,
+        callback);
+    }
+    return this.client_.unaryCall(
+    this.hostname_ +
+      '/palm.portal.v1.EmailUser/SignUp',
+    request,
+    metadata || {},
+    this.methodDescriptorSignUp);
+  }
+
+  methodDescriptorSignIn = new grpcWeb.MethodDescriptor(
+    '/palm.portal.v1.EmailUser/SignIn',
+    grpcWeb.MethodType.UNARY,
+    portal_pb.EmailUserSignInRequest,
+    portal_pb.UserSignInResponse,
+    (request: portal_pb.EmailUserSignInRequest) => {
+      return request.serializeBinary();
+    },
+    portal_pb.UserSignInResponse.deserializeBinary
+  );
+
+  signIn(
+    request: portal_pb.EmailUserSignInRequest,
+    metadata?: grpcWeb.Metadata | null): Promise<portal_pb.UserSignInResponse>;
+
+  signIn(
+    request: portal_pb.EmailUserSignInRequest,
+    metadata: grpcWeb.Metadata | null,
+    callback: (err: grpcWeb.RpcError,
+               response: portal_pb.UserSignInResponse) => void): grpcWeb.ClientReadableStream<portal_pb.UserSignInResponse>;
+
+  signIn(
+    request: portal_pb.EmailUserSignInRequest,
+    metadata?: grpcWeb.Metadata | null,
+    callback?: (err: grpcWeb.RpcError,
+               response: portal_pb.UserSignInResponse) => void) {
+    if (callback !== undefined) {
+      return this.client_.rpcCall(
+        this.hostname_ +
+          '/palm.portal.v1.EmailUser/SignIn',
+        request,
+        metadata || {},
+        this.methodDescriptorSignIn,
+        callback);
+    }
+    return this.client_.unaryCall(
+    this.hostname_ +
+      '/palm.portal.v1.EmailUser/SignIn',
+    request,
+    metadata || {},
+    this.methodDescriptorSignIn);
+  }
+
+  methodDescriptorUnlockByEmail = new grpcWeb.MethodDescriptor(
+    '/palm.portal.v1.EmailUser/UnlockByEmail',
+    grpcWeb.MethodType.UNARY,
+    portal_pb.EmailUserUnlockByEmailRequest,
+    google_protobuf_empty_pb.Empty,
+    (request: portal_pb.EmailUserUnlockByEmailRequest) => {
+      return request.serializeBinary();
+    },
+    google_protobuf_empty_pb.Empty.deserializeBinary
+  );
+
+  unlockByEmail(
+    request: portal_pb.EmailUserUnlockByEmailRequest,
+    metadata?: grpcWeb.Metadata | null): Promise<google_protobuf_empty_pb.Empty>;
+
+  unlockByEmail(
+    request: portal_pb.EmailUserUnlockByEmailRequest,
+    metadata: grpcWeb.Metadata | null,
+    callback: (err: grpcWeb.RpcError,
+               response: google_protobuf_empty_pb.Empty) => void): grpcWeb.ClientReadableStream<google_protobuf_empty_pb.Empty>;
+
+  unlockByEmail(
+    request: portal_pb.EmailUserUnlockByEmailRequest,
+    metadata?: grpcWeb.Metadata | null,
+    callback?: (err: grpcWeb.RpcError,
+               response: google_protobuf_empty_pb.Empty) => void) {
+    if (callback !== undefined) {
+      return this.client_.rpcCall(
+        this.hostname_ +
+          '/palm.portal.v1.EmailUser/UnlockByEmail',
+        request,
+        metadata || {},
+        this.methodDescriptorUnlockByEmail,
+        callback);
+    }
+    return this.client_.unaryCall(
+    this.hostname_ +
+      '/palm.portal.v1.EmailUser/UnlockByEmail',
+    request,
+    metadata || {},
+    this.methodDescriptorUnlockByEmail);
+  }
+
+  methodDescriptorUnlockByToken = new grpcWeb.MethodDescriptor(
+    '/palm.portal.v1.EmailUser/UnlockByToken',
+    grpcWeb.MethodType.UNARY,
+    portal_pb.EmailUserUnlockByTokenRequest,
+    google_protobuf_empty_pb.Empty,
+    (request: portal_pb.EmailUserUnlockByTokenRequest) => {
+      return request.serializeBinary();
+    },
+    google_protobuf_empty_pb.Empty.deserializeBinary
+  );
+
+  unlockByToken(
+    request: portal_pb.EmailUserUnlockByTokenRequest,
+    metadata?: grpcWeb.Metadata | null): Promise<google_protobuf_empty_pb.Empty>;
+
+  unlockByToken(
+    request: portal_pb.EmailUserUnlockByTokenRequest,
+    metadata: grpcWeb.Metadata | null,
+    callback: (err: grpcWeb.RpcError,
+               response: google_protobuf_empty_pb.Empty) => void): grpcWeb.ClientReadableStream<google_protobuf_empty_pb.Empty>;
+
+  unlockByToken(
+    request: portal_pb.EmailUserUnlockByTokenRequest,
+    metadata?: grpcWeb.Metadata | null,
+    callback?: (err: grpcWeb.RpcError,
+               response: google_protobuf_empty_pb.Empty) => void) {
+    if (callback !== undefined) {
+      return this.client_.rpcCall(
+        this.hostname_ +
+          '/palm.portal.v1.EmailUser/UnlockByToken',
+        request,
+        metadata || {},
+        this.methodDescriptorUnlockByToken,
+        callback);
+    }
+    return this.client_.unaryCall(
+    this.hostname_ +
+      '/palm.portal.v1.EmailUser/UnlockByToken',
+    request,
+    metadata || {},
+    this.methodDescriptorUnlockByToken);
+  }
+
+  methodDescriptorConfirmByEmail = new grpcWeb.MethodDescriptor(
+    '/palm.portal.v1.EmailUser/ConfirmByEmail',
+    grpcWeb.MethodType.UNARY,
+    portal_pb.EmailUserConfirmByEmailRequest,
+    google_protobuf_empty_pb.Empty,
+    (request: portal_pb.EmailUserConfirmByEmailRequest) => {
+      return request.serializeBinary();
+    },
+    google_protobuf_empty_pb.Empty.deserializeBinary
+  );
+
+  confirmByEmail(
+    request: portal_pb.EmailUserConfirmByEmailRequest,
+    metadata?: grpcWeb.Metadata | null): Promise<google_protobuf_empty_pb.Empty>;
+
+  confirmByEmail(
+    request: portal_pb.EmailUserConfirmByEmailRequest,
+    metadata: grpcWeb.Metadata | null,
+    callback: (err: grpcWeb.RpcError,
+               response: google_protobuf_empty_pb.Empty) => void): grpcWeb.ClientReadableStream<google_protobuf_empty_pb.Empty>;
+
+  confirmByEmail(
+    request: portal_pb.EmailUserConfirmByEmailRequest,
+    metadata?: grpcWeb.Metadata | null,
+    callback?: (err: grpcWeb.RpcError,
+               response: google_protobuf_empty_pb.Empty) => void) {
+    if (callback !== undefined) {
+      return this.client_.rpcCall(
+        this.hostname_ +
+          '/palm.portal.v1.EmailUser/ConfirmByEmail',
+        request,
+        metadata || {},
+        this.methodDescriptorConfirmByEmail,
+        callback);
+    }
+    return this.client_.unaryCall(
+    this.hostname_ +
+      '/palm.portal.v1.EmailUser/ConfirmByEmail',
+    request,
+    metadata || {},
+    this.methodDescriptorConfirmByEmail);
+  }
+
+  methodDescriptorConfirmByToken = new grpcWeb.MethodDescriptor(
+    '/palm.portal.v1.EmailUser/ConfirmByToken',
+    grpcWeb.MethodType.UNARY,
+    portal_pb.EmailUserConfirmByTokenRequest,
+    google_protobuf_empty_pb.Empty,
+    (request: portal_pb.EmailUserConfirmByTokenRequest) => {
+      return request.serializeBinary();
+    },
+    google_protobuf_empty_pb.Empty.deserializeBinary
+  );
+
+  confirmByToken(
+    request: portal_pb.EmailUserConfirmByTokenRequest,
+    metadata?: grpcWeb.Metadata | null): Promise<google_protobuf_empty_pb.Empty>;
+
+  confirmByToken(
+    request: portal_pb.EmailUserConfirmByTokenRequest,
+    metadata: grpcWeb.Metadata | null,
+    callback: (err: grpcWeb.RpcError,
+               response: google_protobuf_empty_pb.Empty) => void): grpcWeb.ClientReadableStream<google_protobuf_empty_pb.Empty>;
+
+  confirmByToken(
+    request: portal_pb.EmailUserConfirmByTokenRequest,
+    metadata?: grpcWeb.Metadata | null,
+    callback?: (err: grpcWeb.RpcError,
+               response: google_protobuf_empty_pb.Empty) => void) {
+    if (callback !== undefined) {
+      return this.client_.rpcCall(
+        this.hostname_ +
+          '/palm.portal.v1.EmailUser/ConfirmByToken',
+        request,
+        metadata || {},
+        this.methodDescriptorConfirmByToken,
+        callback);
+    }
+    return this.client_.unaryCall(
+    this.hostname_ +
+      '/palm.portal.v1.EmailUser/ConfirmByToken',
+    request,
+    metadata || {},
+    this.methodDescriptorConfirmByToken);
+  }
+
+  methodDescriptorForgotPassword = new grpcWeb.MethodDescriptor(
+    '/palm.portal.v1.EmailUser/ForgotPassword',
+    grpcWeb.MethodType.UNARY,
+    portal_pb.EmailUserForgotPasswordRequest,
+    google_protobuf_empty_pb.Empty,
+    (request: portal_pb.EmailUserForgotPasswordRequest) => {
+      return request.serializeBinary();
+    },
+    google_protobuf_empty_pb.Empty.deserializeBinary
+  );
+
+  forgotPassword(
+    request: portal_pb.EmailUserForgotPasswordRequest,
+    metadata?: grpcWeb.Metadata | null): Promise<google_protobuf_empty_pb.Empty>;
+
+  forgotPassword(
+    request: portal_pb.EmailUserForgotPasswordRequest,
+    metadata: grpcWeb.Metadata | null,
+    callback: (err: grpcWeb.RpcError,
+               response: google_protobuf_empty_pb.Empty) => void): grpcWeb.ClientReadableStream<google_protobuf_empty_pb.Empty>;
+
+  forgotPassword(
+    request: portal_pb.EmailUserForgotPasswordRequest,
+    metadata?: grpcWeb.Metadata | null,
+    callback?: (err: grpcWeb.RpcError,
+               response: google_protobuf_empty_pb.Empty) => void) {
+    if (callback !== undefined) {
+      return this.client_.rpcCall(
+        this.hostname_ +
+          '/palm.portal.v1.EmailUser/ForgotPassword',
+        request,
+        metadata || {},
+        this.methodDescriptorForgotPassword,
+        callback);
+    }
+    return this.client_.unaryCall(
+    this.hostname_ +
+      '/palm.portal.v1.EmailUser/ForgotPassword',
+    request,
+    metadata || {},
+    this.methodDescriptorForgotPassword);
+  }
+
+  methodDescriptorResetPassword = new grpcWeb.MethodDescriptor(
+    '/palm.portal.v1.EmailUser/ResetPassword',
+    grpcWeb.MethodType.UNARY,
+    portal_pb.EmailUserResetPasswordRequest,
+    google_protobuf_empty_pb.Empty,
+    (request: portal_pb.EmailUserResetPasswordRequest) => {
+      return request.serializeBinary();
+    },
+    google_protobuf_empty_pb.Empty.deserializeBinary
+  );
+
+  resetPassword(
+    request: portal_pb.EmailUserResetPasswordRequest,
+    metadata?: grpcWeb.Metadata | null): Promise<google_protobuf_empty_pb.Empty>;
+
+  resetPassword(
+    request: portal_pb.EmailUserResetPasswordRequest,
+    metadata: grpcWeb.Metadata | null,
+    callback: (err: grpcWeb.RpcError,
+               response: google_protobuf_empty_pb.Empty) => void): grpcWeb.ClientReadableStream<google_protobuf_empty_pb.Empty>;
+
+  resetPassword(
+    request: portal_pb.EmailUserResetPasswordRequest,
+    metadata?: grpcWeb.Metadata | null,
+    callback?: (err: grpcWeb.RpcError,
+               response: google_protobuf_empty_pb.Empty) => void) {
+    if (callback !== undefined) {
+      return this.client_.rpcCall(
+        this.hostname_ +
+          '/palm.portal.v1.EmailUser/ResetPassword',
+        request,
+        metadata || {},
+        this.methodDescriptorResetPassword,
+        callback);
+    }
+    return this.client_.unaryCall(
+    this.hostname_ +
+      '/palm.portal.v1.EmailUser/ResetPassword',
+    request,
+    metadata || {},
+    this.methodDescriptorResetPassword);
+  }
+
+  methodDescriptorSetName = new grpcWeb.MethodDescriptor(
+    '/palm.portal.v1.EmailUser/SetName',
+    grpcWeb.MethodType.UNARY,
+    portal_pb.EmailUserSetNameRequest,
+    google_protobuf_empty_pb.Empty,
+    (request: portal_pb.EmailUserSetNameRequest) => {
+      return request.serializeBinary();
+    },
+    google_protobuf_empty_pb.Empty.deserializeBinary
+  );
+
+  setName(
+    request: portal_pb.EmailUserSetNameRequest,
+    metadata?: grpcWeb.Metadata | null): Promise<google_protobuf_empty_pb.Empty>;
+
+  setName(
+    request: portal_pb.EmailUserSetNameRequest,
+    metadata: grpcWeb.Metadata | null,
+    callback: (err: grpcWeb.RpcError,
+               response: google_protobuf_empty_pb.Empty) => void): grpcWeb.ClientReadableStream<google_protobuf_empty_pb.Empty>;
+
+  setName(
+    request: portal_pb.EmailUserSetNameRequest,
+    metadata?: grpcWeb.Metadata | null,
+    callback?: (err: grpcWeb.RpcError,
+               response: google_protobuf_empty_pb.Empty) => void) {
+    if (callback !== undefined) {
+      return this.client_.rpcCall(
+        this.hostname_ +
+          '/palm.portal.v1.EmailUser/SetName',
+        request,
+        metadata || {},
+        this.methodDescriptorSetName,
+        callback);
+    }
+    return this.client_.unaryCall(
+    this.hostname_ +
+      '/palm.portal.v1.EmailUser/SetName',
+    request,
+    metadata || {},
+    this.methodDescriptorSetName);
+  }
+
+  methodDescriptorSetAvatar = new grpcWeb.MethodDescriptor(
+    '/palm.portal.v1.EmailUser/SetAvatar',
+    grpcWeb.MethodType.UNARY,
+    portal_pb.EmailUserSetAvatarRequest,
+    google_protobuf_empty_pb.Empty,
+    (request: portal_pb.EmailUserSetAvatarRequest) => {
+      return request.serializeBinary();
+    },
+    google_protobuf_empty_pb.Empty.deserializeBinary
+  );
+
+  setAvatar(
+    request: portal_pb.EmailUserSetAvatarRequest,
+    metadata?: grpcWeb.Metadata | null): Promise<google_protobuf_empty_pb.Empty>;
+
+  setAvatar(
+    request: portal_pb.EmailUserSetAvatarRequest,
+    metadata: grpcWeb.Metadata | null,
+    callback: (err: grpcWeb.RpcError,
+               response: google_protobuf_empty_pb.Empty) => void): grpcWeb.ClientReadableStream<google_protobuf_empty_pb.Empty>;
+
+  setAvatar(
+    request: portal_pb.EmailUserSetAvatarRequest,
+    metadata?: grpcWeb.Metadata | null,
+    callback?: (err: grpcWeb.RpcError,
+               response: google_protobuf_empty_pb.Empty) => void) {
+    if (callback !== undefined) {
+      return this.client_.rpcCall(
+        this.hostname_ +
+          '/palm.portal.v1.EmailUser/SetAvatar',
+        request,
+        metadata || {},
+        this.methodDescriptorSetAvatar,
+        callback);
+    }
+    return this.client_.unaryCall(
+    this.hostname_ +
+      '/palm.portal.v1.EmailUser/SetAvatar',
+    request,
+    metadata || {},
+    this.methodDescriptorSetAvatar);
+  }
+
+  methodDescriptorChangePassword = new grpcWeb.MethodDescriptor(
+    '/palm.portal.v1.EmailUser/ChangePassword',
+    grpcWeb.MethodType.UNARY,
+    portal_pb.EmailUserChangePasswordRequest,
+    google_protobuf_empty_pb.Empty,
+    (request: portal_pb.EmailUserChangePasswordRequest) => {
+      return request.serializeBinary();
+    },
+    google_protobuf_empty_pb.Empty.deserializeBinary
+  );
+
+  changePassword(
+    request: portal_pb.EmailUserChangePasswordRequest,
+    metadata?: grpcWeb.Metadata | null): Promise<google_protobuf_empty_pb.Empty>;
+
+  changePassword(
+    request: portal_pb.EmailUserChangePasswordRequest,
+    metadata: grpcWeb.Metadata | null,
+    callback: (err: grpcWeb.RpcError,
+               response: google_protobuf_empty_pb.Empty) => void): grpcWeb.ClientReadableStream<google_protobuf_empty_pb.Empty>;
+
+  changePassword(
+    request: portal_pb.EmailUserChangePasswordRequest,
+    metadata?: grpcWeb.Metadata | null,
+    callback?: (err: grpcWeb.RpcError,
+               response: google_protobuf_empty_pb.Empty) => void) {
+    if (callback !== undefined) {
+      return this.client_.rpcCall(
+        this.hostname_ +
+          '/palm.portal.v1.EmailUser/ChangePassword',
+        request,
+        metadata || {},
+        this.methodDescriptorChangePassword,
+        callback);
+    }
+    return this.client_.unaryCall(
+    this.hostname_ +
+      '/palm.portal.v1.EmailUser/ChangePassword',
+    request,
+    metadata || {},
+    this.methodDescriptorChangePassword);
+  }
+
+}
+
 export class UserClient {
   client_: grpcWeb.AbstractClientBase;
   hostname_: string;
@@ -725,6 +1391,135 @@ export class UserClient {
     request,
     metadata || {},
     this.methodDescriptorDestroyAttachment);
+  }
+
+  methodDescriptorIndexLog = new grpcWeb.MethodDescriptor(
+    '/palm.portal.v1.User/IndexLog',
+    grpcWeb.MethodType.UNARY,
+    portal_pb.Page,
+    portal_pb.UserIndexLogResponse,
+    (request: portal_pb.Page) => {
+      return request.serializeBinary();
+    },
+    portal_pb.UserIndexLogResponse.deserializeBinary
+  );
+
+  indexLog(
+    request: portal_pb.Page,
+    metadata?: grpcWeb.Metadata | null): Promise<portal_pb.UserIndexLogResponse>;
+
+  indexLog(
+    request: portal_pb.Page,
+    metadata: grpcWeb.Metadata | null,
+    callback: (err: grpcWeb.RpcError,
+               response: portal_pb.UserIndexLogResponse) => void): grpcWeb.ClientReadableStream<portal_pb.UserIndexLogResponse>;
+
+  indexLog(
+    request: portal_pb.Page,
+    metadata?: grpcWeb.Metadata | null,
+    callback?: (err: grpcWeb.RpcError,
+               response: portal_pb.UserIndexLogResponse) => void) {
+    if (callback !== undefined) {
+      return this.client_.rpcCall(
+        this.hostname_ +
+          '/palm.portal.v1.User/IndexLog',
+        request,
+        metadata || {},
+        this.methodDescriptorIndexLog,
+        callback);
+    }
+    return this.client_.unaryCall(
+    this.hostname_ +
+      '/palm.portal.v1.User/IndexLog',
+    request,
+    metadata || {},
+    this.methodDescriptorIndexLog);
+  }
+
+  methodDescriptorSetLang = new grpcWeb.MethodDescriptor(
+    '/palm.portal.v1.User/SetLang',
+    grpcWeb.MethodType.UNARY,
+    portal_pb.UserSetLangRequest,
+    google_protobuf_empty_pb.Empty,
+    (request: portal_pb.UserSetLangRequest) => {
+      return request.serializeBinary();
+    },
+    google_protobuf_empty_pb.Empty.deserializeBinary
+  );
+
+  setLang(
+    request: portal_pb.UserSetLangRequest,
+    metadata?: grpcWeb.Metadata | null): Promise<google_protobuf_empty_pb.Empty>;
+
+  setLang(
+    request: portal_pb.UserSetLangRequest,
+    metadata: grpcWeb.Metadata | null,
+    callback: (err: grpcWeb.RpcError,
+               response: google_protobuf_empty_pb.Empty) => void): grpcWeb.ClientReadableStream<google_protobuf_empty_pb.Empty>;
+
+  setLang(
+    request: portal_pb.UserSetLangRequest,
+    metadata?: grpcWeb.Metadata | null,
+    callback?: (err: grpcWeb.RpcError,
+               response: google_protobuf_empty_pb.Empty) => void) {
+    if (callback !== undefined) {
+      return this.client_.rpcCall(
+        this.hostname_ +
+          '/palm.portal.v1.User/SetLang',
+        request,
+        metadata || {},
+        this.methodDescriptorSetLang,
+        callback);
+    }
+    return this.client_.unaryCall(
+    this.hostname_ +
+      '/palm.portal.v1.User/SetLang',
+    request,
+    metadata || {},
+    this.methodDescriptorSetLang);
+  }
+
+  methodDescriptorSetTimezone = new grpcWeb.MethodDescriptor(
+    '/palm.portal.v1.User/SetTimezone',
+    grpcWeb.MethodType.UNARY,
+    portal_pb.UserSetTimezoneRequest,
+    google_protobuf_empty_pb.Empty,
+    (request: portal_pb.UserSetTimezoneRequest) => {
+      return request.serializeBinary();
+    },
+    google_protobuf_empty_pb.Empty.deserializeBinary
+  );
+
+  setTimezone(
+    request: portal_pb.UserSetTimezoneRequest,
+    metadata?: grpcWeb.Metadata | null): Promise<google_protobuf_empty_pb.Empty>;
+
+  setTimezone(
+    request: portal_pb.UserSetTimezoneRequest,
+    metadata: grpcWeb.Metadata | null,
+    callback: (err: grpcWeb.RpcError,
+               response: google_protobuf_empty_pb.Empty) => void): grpcWeb.ClientReadableStream<google_protobuf_empty_pb.Empty>;
+
+  setTimezone(
+    request: portal_pb.UserSetTimezoneRequest,
+    metadata?: grpcWeb.Metadata | null,
+    callback?: (err: grpcWeb.RpcError,
+               response: google_protobuf_empty_pb.Empty) => void) {
+    if (callback !== undefined) {
+      return this.client_.rpcCall(
+        this.hostname_ +
+          '/palm.portal.v1.User/SetTimezone',
+        request,
+        metadata || {},
+        this.methodDescriptorSetTimezone,
+        callback);
+    }
+    return this.client_.unaryCall(
+    this.hostname_ +
+      '/palm.portal.v1.User/SetTimezone',
+    request,
+    metadata || {},
+    this.methodDescriptorSetTimezone);
   }
 
 }

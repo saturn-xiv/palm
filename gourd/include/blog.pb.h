@@ -1028,19 +1028,19 @@ class Settings final : public ::google::protobuf::Message
   ::std::string* PROTOBUF_NONNULL _internal_mutable_language();
 
   public:
-  // .palm.portal.v1.Attachment favicon = 4;
+  // .palm.portal.v1.File favicon = 4;
   bool has_favicon() const;
   void clear_favicon() ;
-  const ::palm::portal::v1::Attachment& favicon() const;
-  [[nodiscard]] ::palm::portal::v1::Attachment* PROTOBUF_NULLABLE release_favicon();
-  ::palm::portal::v1::Attachment* PROTOBUF_NONNULL mutable_favicon();
-  void set_allocated_favicon(::palm::portal::v1::Attachment* PROTOBUF_NULLABLE value);
-  void unsafe_arena_set_allocated_favicon(::palm::portal::v1::Attachment* PROTOBUF_NULLABLE value);
-  ::palm::portal::v1::Attachment* PROTOBUF_NULLABLE unsafe_arena_release_favicon();
+  const ::palm::portal::v1::File& favicon() const;
+  [[nodiscard]] ::palm::portal::v1::File* PROTOBUF_NULLABLE release_favicon();
+  ::palm::portal::v1::File* PROTOBUF_NONNULL mutable_favicon();
+  void set_allocated_favicon(::palm::portal::v1::File* PROTOBUF_NULLABLE value);
+  void unsafe_arena_set_allocated_favicon(::palm::portal::v1::File* PROTOBUF_NULLABLE value);
+  ::palm::portal::v1::File* PROTOBUF_NULLABLE unsafe_arena_release_favicon();
 
   private:
-  const ::palm::portal::v1::Attachment& _internal_favicon() const;
-  ::palm::portal::v1::Attachment* PROTOBUF_NONNULL _internal_mutable_favicon();
+  const ::palm::portal::v1::File& _internal_favicon() const;
+  ::palm::portal::v1::File* PROTOBUF_NONNULL _internal_mutable_favicon();
 
   public:
   // .palm.blog.v1.Bootstrap5Theme bootstrap5 = 91;
@@ -1116,7 +1116,7 @@ class Settings final : public ::google::protobuf::Message
     ::google::protobuf::internal::ArenaStringPtr title_;
     ::google::protobuf::internal::ArenaStringPtr description_;
     ::google::protobuf::internal::ArenaStringPtr language_;
-    ::palm::portal::v1::Attachment* PROTOBUF_NULLABLE favicon_;
+    ::palm::portal::v1::File* PROTOBUF_NULLABLE favicon_;
     union ThemeUnion {
       constexpr ThemeUnion() : _constinit_{} {}
       ::google::protobuf::internal::ConstantInitialized _constinit_;
@@ -2361,28 +2361,28 @@ inline void Settings::set_allocated_language(::std::string* PROTOBUF_NULLABLE va
   // @@protoc_insertion_point(field_set_allocated:palm.blog.v1.Settings.language)
 }
 
-// .palm.portal.v1.Attachment favicon = 4;
+// .palm.portal.v1.File favicon = 4;
 inline bool Settings::has_favicon() const {
   bool value = (_impl_._has_bits_[0] & 0x00000008u) != 0;
   PROTOBUF_ASSUME(!value || _impl_.favicon_ != nullptr);
   return value;
 }
-inline const ::palm::portal::v1::Attachment& Settings::_internal_favicon() const {
+inline const ::palm::portal::v1::File& Settings::_internal_favicon() const {
   ::google::protobuf::internal::TSanRead(&_impl_);
-  const ::palm::portal::v1::Attachment* p = _impl_.favicon_;
-  return p != nullptr ? *p : reinterpret_cast<const ::palm::portal::v1::Attachment&>(::palm::portal::v1::_Attachment_default_instance_);
+  const ::palm::portal::v1::File* p = _impl_.favicon_;
+  return p != nullptr ? *p : reinterpret_cast<const ::palm::portal::v1::File&>(::palm::portal::v1::_File_default_instance_);
 }
-inline const ::palm::portal::v1::Attachment& Settings::favicon() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
+inline const ::palm::portal::v1::File& Settings::favicon() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
   // @@protoc_insertion_point(field_get:palm.blog.v1.Settings.favicon)
   return _internal_favicon();
 }
 inline void Settings::unsafe_arena_set_allocated_favicon(
-    ::palm::portal::v1::Attachment* PROTOBUF_NULLABLE value) {
+    ::palm::portal::v1::File* PROTOBUF_NULLABLE value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   if (GetArena() == nullptr) {
     delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.favicon_);
   }
-  _impl_.favicon_ = reinterpret_cast<::palm::portal::v1::Attachment*>(value);
+  _impl_.favicon_ = reinterpret_cast<::palm::portal::v1::File*>(value);
   if (value != nullptr) {
     _impl_._has_bits_[0] |= 0x00000008u;
   } else {
@@ -2390,11 +2390,11 @@ inline void Settings::unsafe_arena_set_allocated_favicon(
   }
   // @@protoc_insertion_point(field_unsafe_arena_set_allocated:palm.blog.v1.Settings.favicon)
 }
-inline ::palm::portal::v1::Attachment* PROTOBUF_NULLABLE Settings::release_favicon() {
+inline ::palm::portal::v1::File* PROTOBUF_NULLABLE Settings::release_favicon() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
 
   _impl_._has_bits_[0] &= ~0x00000008u;
-  ::palm::portal::v1::Attachment* released = _impl_.favicon_;
+  ::palm::portal::v1::File* released = _impl_.favicon_;
   _impl_.favicon_ = nullptr;
   if (::google::protobuf::internal::DebugHardenForceCopyInRelease()) {
     auto* old = reinterpret_cast<::google::protobuf::MessageLite*>(released);
@@ -2409,31 +2409,31 @@ inline ::palm::portal::v1::Attachment* PROTOBUF_NULLABLE Settings::release_favic
   }
   return released;
 }
-inline ::palm::portal::v1::Attachment* PROTOBUF_NULLABLE Settings::unsafe_arena_release_favicon() {
+inline ::palm::portal::v1::File* PROTOBUF_NULLABLE Settings::unsafe_arena_release_favicon() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   // @@protoc_insertion_point(field_release:palm.blog.v1.Settings.favicon)
 
   _impl_._has_bits_[0] &= ~0x00000008u;
-  ::palm::portal::v1::Attachment* temp = _impl_.favicon_;
+  ::palm::portal::v1::File* temp = _impl_.favicon_;
   _impl_.favicon_ = nullptr;
   return temp;
 }
-inline ::palm::portal::v1::Attachment* PROTOBUF_NONNULL Settings::_internal_mutable_favicon() {
+inline ::palm::portal::v1::File* PROTOBUF_NONNULL Settings::_internal_mutable_favicon() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   if (_impl_.favicon_ == nullptr) {
-    auto* p = ::google::protobuf::Message::DefaultConstruct<::palm::portal::v1::Attachment>(GetArena());
-    _impl_.favicon_ = reinterpret_cast<::palm::portal::v1::Attachment*>(p);
+    auto* p = ::google::protobuf::Message::DefaultConstruct<::palm::portal::v1::File>(GetArena());
+    _impl_.favicon_ = reinterpret_cast<::palm::portal::v1::File*>(p);
   }
   return _impl_.favicon_;
 }
-inline ::palm::portal::v1::Attachment* PROTOBUF_NONNULL Settings::mutable_favicon()
+inline ::palm::portal::v1::File* PROTOBUF_NONNULL Settings::mutable_favicon()
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
   _impl_._has_bits_[0] |= 0x00000008u;
-  ::palm::portal::v1::Attachment* _msg = _internal_mutable_favicon();
+  ::palm::portal::v1::File* _msg = _internal_mutable_favicon();
   // @@protoc_insertion_point(field_mutable:palm.blog.v1.Settings.favicon)
   return _msg;
 }
-inline void Settings::set_allocated_favicon(::palm::portal::v1::Attachment* PROTOBUF_NULLABLE value) {
+inline void Settings::set_allocated_favicon(::palm::portal::v1::File* PROTOBUF_NULLABLE value) {
   ::google::protobuf::Arena* message_arena = GetArena();
   ::google::protobuf::internal::TSanWrite(&_impl_);
   if (message_arena == nullptr) {
@@ -2450,7 +2450,7 @@ inline void Settings::set_allocated_favicon(::palm::portal::v1::Attachment* PROT
     _impl_._has_bits_[0] &= ~0x00000008u;
   }
 
-  _impl_.favicon_ = reinterpret_cast<::palm::portal::v1::Attachment*>(value);
+  _impl_.favicon_ = reinterpret_cast<::palm::portal::v1::File*>(value);
   // @@protoc_insertion_point(field_set_allocated:palm.blog.v1.Settings.favicon)
 }
 

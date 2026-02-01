@@ -81,22 +81,22 @@ export namespace Pagination {
   };
 }
 
-export class Attachment extends jspb.Message {
+export class File extends jspb.Message {
   getBucket(): string;
-  setBucket(value: string): Attachment;
+  setBucket(value: string): File;
 
   getObject(): string;
-  setObject(value: string): Attachment;
+  setObject(value: string): File;
 
   serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): Attachment.AsObject;
-  static toObject(includeInstance: boolean, msg: Attachment): Attachment.AsObject;
-  static serializeBinaryToWriter(message: Attachment, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): Attachment;
-  static deserializeBinaryFromReader(message: Attachment, reader: jspb.BinaryReader): Attachment;
+  toObject(includeInstance?: boolean): File.AsObject;
+  static toObject(includeInstance: boolean, msg: File): File.AsObject;
+  static serializeBinaryToWriter(message: File, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): File;
+  static deserializeBinaryFromReader(message: File, reader: jspb.BinaryReader): File;
 }
 
-export namespace Attachment {
+export namespace File {
   export type AsObject = {
     bucket: string;
     object: string;
@@ -110,10 +110,10 @@ export class RichText extends jspb.Message {
   getBody(): string;
   setBody(value: string): RichText;
 
-  getAttachmentsList(): Array<Attachment>;
-  setAttachmentsList(value: Array<Attachment>): RichText;
+  getAttachmentsList(): Array<File>;
+  setAttachmentsList(value: Array<File>): RichText;
   clearAttachmentsList(): RichText;
-  addAttachments(value?: Attachment, index?: number): Attachment;
+  addAttachments(value?: File, index?: number): File;
 
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): RichText.AsObject;
@@ -127,7 +127,7 @@ export namespace RichText {
   export type AsObject = {
     editor: RichText.Editor;
     body: string;
-    attachmentsList: Array<Attachment.AsObject>;
+    attachmentsList: Array<File.AsObject>;
   };
 
   export enum Editor {
@@ -359,6 +359,420 @@ export namespace CurrenciesResponse {
     }
   }
 
+}
+
+export class EmailUserSignInRequest extends jspb.Message {
+  getEmail(): string;
+  setEmail(value: string): EmailUserSignInRequest;
+
+  getPassword(): string;
+  setPassword(value: string): EmailUserSignInRequest;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): EmailUserSignInRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: EmailUserSignInRequest): EmailUserSignInRequest.AsObject;
+  static serializeBinaryToWriter(message: EmailUserSignInRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): EmailUserSignInRequest;
+  static deserializeBinaryFromReader(message: EmailUserSignInRequest, reader: jspb.BinaryReader): EmailUserSignInRequest;
+}
+
+export namespace EmailUserSignInRequest {
+  export type AsObject = {
+    email: string;
+    password: string;
+  };
+}
+
+export class EmailUserSignUpRequest extends jspb.Message {
+  getName(): string;
+  setName(value: string): EmailUserSignUpRequest;
+
+  getEmail(): string;
+  setEmail(value: string): EmailUserSignUpRequest;
+
+  getPassword(): string;
+  setPassword(value: string): EmailUserSignUpRequest;
+
+  getLang(): string;
+  setLang(value: string): EmailUserSignUpRequest;
+
+  getTimezone(): string;
+  setTimezone(value: string): EmailUserSignUpRequest;
+
+  getHome(): string;
+  setHome(value: string): EmailUserSignUpRequest;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): EmailUserSignUpRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: EmailUserSignUpRequest): EmailUserSignUpRequest.AsObject;
+  static serializeBinaryToWriter(message: EmailUserSignUpRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): EmailUserSignUpRequest;
+  static deserializeBinaryFromReader(message: EmailUserSignUpRequest, reader: jspb.BinaryReader): EmailUserSignUpRequest;
+}
+
+export namespace EmailUserSignUpRequest {
+  export type AsObject = {
+    name: string;
+    email: string;
+    password: string;
+    lang: string;
+    timezone: string;
+    home: string;
+  };
+}
+
+export class EmailUserUnlockByEmailRequest extends jspb.Message {
+  getEmail(): string;
+  setEmail(value: string): EmailUserUnlockByEmailRequest;
+
+  getHome(): string;
+  setHome(value: string): EmailUserUnlockByEmailRequest;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): EmailUserUnlockByEmailRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: EmailUserUnlockByEmailRequest): EmailUserUnlockByEmailRequest.AsObject;
+  static serializeBinaryToWriter(message: EmailUserUnlockByEmailRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): EmailUserUnlockByEmailRequest;
+  static deserializeBinaryFromReader(message: EmailUserUnlockByEmailRequest, reader: jspb.BinaryReader): EmailUserUnlockByEmailRequest;
+}
+
+export namespace EmailUserUnlockByEmailRequest {
+  export type AsObject = {
+    email: string;
+    home: string;
+  };
+}
+
+export class EmailUserUnlockByTokenRequest extends jspb.Message {
+  getToken(): string;
+  setToken(value: string): EmailUserUnlockByTokenRequest;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): EmailUserUnlockByTokenRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: EmailUserUnlockByTokenRequest): EmailUserUnlockByTokenRequest.AsObject;
+  static serializeBinaryToWriter(message: EmailUserUnlockByTokenRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): EmailUserUnlockByTokenRequest;
+  static deserializeBinaryFromReader(message: EmailUserUnlockByTokenRequest, reader: jspb.BinaryReader): EmailUserUnlockByTokenRequest;
+}
+
+export namespace EmailUserUnlockByTokenRequest {
+  export type AsObject = {
+    token: string;
+  };
+}
+
+export class EmailUserConfirmByEmailRequest extends jspb.Message {
+  getEmail(): string;
+  setEmail(value: string): EmailUserConfirmByEmailRequest;
+
+  getHome(): string;
+  setHome(value: string): EmailUserConfirmByEmailRequest;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): EmailUserConfirmByEmailRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: EmailUserConfirmByEmailRequest): EmailUserConfirmByEmailRequest.AsObject;
+  static serializeBinaryToWriter(message: EmailUserConfirmByEmailRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): EmailUserConfirmByEmailRequest;
+  static deserializeBinaryFromReader(message: EmailUserConfirmByEmailRequest, reader: jspb.BinaryReader): EmailUserConfirmByEmailRequest;
+}
+
+export namespace EmailUserConfirmByEmailRequest {
+  export type AsObject = {
+    email: string;
+    home: string;
+  };
+}
+
+export class EmailUserConfirmByTokenRequest extends jspb.Message {
+  getToken(): string;
+  setToken(value: string): EmailUserConfirmByTokenRequest;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): EmailUserConfirmByTokenRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: EmailUserConfirmByTokenRequest): EmailUserConfirmByTokenRequest.AsObject;
+  static serializeBinaryToWriter(message: EmailUserConfirmByTokenRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): EmailUserConfirmByTokenRequest;
+  static deserializeBinaryFromReader(message: EmailUserConfirmByTokenRequest, reader: jspb.BinaryReader): EmailUserConfirmByTokenRequest;
+}
+
+export namespace EmailUserConfirmByTokenRequest {
+  export type AsObject = {
+    token: string;
+  };
+}
+
+export class EmailUserForgotPasswordRequest extends jspb.Message {
+  getEmail(): string;
+  setEmail(value: string): EmailUserForgotPasswordRequest;
+
+  getHome(): string;
+  setHome(value: string): EmailUserForgotPasswordRequest;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): EmailUserForgotPasswordRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: EmailUserForgotPasswordRequest): EmailUserForgotPasswordRequest.AsObject;
+  static serializeBinaryToWriter(message: EmailUserForgotPasswordRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): EmailUserForgotPasswordRequest;
+  static deserializeBinaryFromReader(message: EmailUserForgotPasswordRequest, reader: jspb.BinaryReader): EmailUserForgotPasswordRequest;
+}
+
+export namespace EmailUserForgotPasswordRequest {
+  export type AsObject = {
+    email: string;
+    home: string;
+  };
+}
+
+export class EmailUserResetPasswordRequest extends jspb.Message {
+  getToken(): string;
+  setToken(value: string): EmailUserResetPasswordRequest;
+
+  getPassword(): string;
+  setPassword(value: string): EmailUserResetPasswordRequest;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): EmailUserResetPasswordRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: EmailUserResetPasswordRequest): EmailUserResetPasswordRequest.AsObject;
+  static serializeBinaryToWriter(message: EmailUserResetPasswordRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): EmailUserResetPasswordRequest;
+  static deserializeBinaryFromReader(message: EmailUserResetPasswordRequest, reader: jspb.BinaryReader): EmailUserResetPasswordRequest;
+}
+
+export namespace EmailUserResetPasswordRequest {
+  export type AsObject = {
+    token: string;
+    password: string;
+  };
+}
+
+export class EmailUserSetNameRequest extends jspb.Message {
+  getName(): string;
+  setName(value: string): EmailUserSetNameRequest;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): EmailUserSetNameRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: EmailUserSetNameRequest): EmailUserSetNameRequest.AsObject;
+  static serializeBinaryToWriter(message: EmailUserSetNameRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): EmailUserSetNameRequest;
+  static deserializeBinaryFromReader(message: EmailUserSetNameRequest, reader: jspb.BinaryReader): EmailUserSetNameRequest;
+}
+
+export namespace EmailUserSetNameRequest {
+  export type AsObject = {
+    name: string;
+  };
+}
+
+export class EmailUserSetAvatarRequest extends jspb.Message {
+  getUrl(): string;
+  setUrl(value: string): EmailUserSetAvatarRequest;
+  hasUrl(): boolean;
+  clearUrl(): EmailUserSetAvatarRequest;
+
+  getFile(): File | undefined;
+  setFile(value?: File): EmailUserSetAvatarRequest;
+  hasFile(): boolean;
+  clearFile(): EmailUserSetAvatarRequest;
+
+  getByCase(): EmailUserSetAvatarRequest.ByCase;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): EmailUserSetAvatarRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: EmailUserSetAvatarRequest): EmailUserSetAvatarRequest.AsObject;
+  static serializeBinaryToWriter(message: EmailUserSetAvatarRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): EmailUserSetAvatarRequest;
+  static deserializeBinaryFromReader(message: EmailUserSetAvatarRequest, reader: jspb.BinaryReader): EmailUserSetAvatarRequest;
+}
+
+export namespace EmailUserSetAvatarRequest {
+  export type AsObject = {
+    url?: string;
+    file?: File.AsObject;
+  };
+
+  export enum ByCase {
+    BY_NOT_SET = 0,
+    URL = 1,
+    FILE = 2,
+  }
+}
+
+export class EmailUserChangePasswordRequest extends jspb.Message {
+  getCurrentPassword(): string;
+  setCurrentPassword(value: string): EmailUserChangePasswordRequest;
+
+  getNewPassword(): string;
+  setNewPassword(value: string): EmailUserChangePasswordRequest;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): EmailUserChangePasswordRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: EmailUserChangePasswordRequest): EmailUserChangePasswordRequest.AsObject;
+  static serializeBinaryToWriter(message: EmailUserChangePasswordRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): EmailUserChangePasswordRequest;
+  static deserializeBinaryFromReader(message: EmailUserChangePasswordRequest, reader: jspb.BinaryReader): EmailUserChangePasswordRequest;
+}
+
+export namespace EmailUserChangePasswordRequest {
+  export type AsObject = {
+    currentPassword: string;
+    newPassword: string;
+  };
+}
+
+export class EmailUserIndexResponse extends jspb.Message {
+  getItemsList(): Array<EmailUserIndexResponse.Item>;
+  setItemsList(value: Array<EmailUserIndexResponse.Item>): EmailUserIndexResponse;
+  clearItemsList(): EmailUserIndexResponse;
+  addItems(value?: EmailUserIndexResponse.Item, index?: number): EmailUserIndexResponse.Item;
+
+  getPagination(): Pagination | undefined;
+  setPagination(value?: Pagination): EmailUserIndexResponse;
+  hasPagination(): boolean;
+  clearPagination(): EmailUserIndexResponse;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): EmailUserIndexResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: EmailUserIndexResponse): EmailUserIndexResponse.AsObject;
+  static serializeBinaryToWriter(message: EmailUserIndexResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): EmailUserIndexResponse;
+  static deserializeBinaryFromReader(message: EmailUserIndexResponse, reader: jspb.BinaryReader): EmailUserIndexResponse;
+}
+
+export namespace EmailUserIndexResponse {
+  export type AsObject = {
+    itemsList: Array<EmailUserIndexResponse.Item.AsObject>;
+    pagination?: Pagination.AsObject;
+  };
+
+  export class Item extends jspb.Message {
+    getId(): number;
+    setId(value: number): Item;
+
+    getEmail(): string;
+    setEmail(value: string): Item;
+
+    getName(): string;
+    setName(value: string): Item;
+
+    getAvatar(): string;
+    setAvatar(value: string): Item;
+    hasAvatar(): boolean;
+    clearAvatar(): Item;
+
+    getConfirmedAt(): google_protobuf_timestamp_pb.Timestamp | undefined;
+    setConfirmedAt(value?: google_protobuf_timestamp_pb.Timestamp): Item;
+    hasConfirmedAt(): boolean;
+    clearConfirmedAt(): Item;
+
+    getDeletedAt(): google_protobuf_timestamp_pb.Timestamp | undefined;
+    setDeletedAt(value?: google_protobuf_timestamp_pb.Timestamp): Item;
+    hasDeletedAt(): boolean;
+    clearDeletedAt(): Item;
+
+    getUpdatedAt(): google_protobuf_timestamp_pb.Timestamp | undefined;
+    setUpdatedAt(value?: google_protobuf_timestamp_pb.Timestamp): Item;
+    hasUpdatedAt(): boolean;
+    clearUpdatedAt(): Item;
+
+    getUser(): UserIndexResponse.Item | undefined;
+    setUser(value?: UserIndexResponse.Item): Item;
+    hasUser(): boolean;
+    clearUser(): Item;
+
+    serializeBinary(): Uint8Array;
+    toObject(includeInstance?: boolean): Item.AsObject;
+    static toObject(includeInstance: boolean, msg: Item): Item.AsObject;
+    static serializeBinaryToWriter(message: Item, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): Item;
+    static deserializeBinaryFromReader(message: Item, reader: jspb.BinaryReader): Item;
+  }
+
+  export namespace Item {
+    export type AsObject = {
+      id: number;
+      email: string;
+      name: string;
+      avatar?: string;
+      confirmedAt?: google_protobuf_timestamp_pb.Timestamp.AsObject;
+      deletedAt?: google_protobuf_timestamp_pb.Timestamp.AsObject;
+      updatedAt?: google_protobuf_timestamp_pb.Timestamp.AsObject;
+      user?: UserIndexResponse.Item.AsObject;
+    };
+
+    export enum AvatarCase {
+      _AVATAR_NOT_SET = 0,
+      AVATAR = 16,
+    }
+
+    export enum ConfirmedAtCase {
+      _CONFIRMED_AT_NOT_SET = 0,
+      CONFIRMED_AT = 17,
+    }
+
+    export enum DeletedAtCase {
+      _DELETED_AT_NOT_SET = 0,
+      DELETED_AT = 18,
+    }
+  }
+
+}
+
+export class EmailUserSetPasswordRequest extends jspb.Message {
+  getId(): number;
+  setId(value: number): EmailUserSetPasswordRequest;
+
+  getPassword(): string;
+  setPassword(value: string): EmailUserSetPasswordRequest;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): EmailUserSetPasswordRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: EmailUserSetPasswordRequest): EmailUserSetPasswordRequest.AsObject;
+  static serializeBinaryToWriter(message: EmailUserSetPasswordRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): EmailUserSetPasswordRequest;
+  static deserializeBinaryFromReader(message: EmailUserSetPasswordRequest, reader: jspb.BinaryReader): EmailUserSetPasswordRequest;
+}
+
+export namespace EmailUserSetPasswordRequest {
+  export type AsObject = {
+    id: number;
+    password: string;
+  };
+}
+
+export class UserSetLangRequest extends jspb.Message {
+  getLang(): string;
+  setLang(value: string): UserSetLangRequest;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): UserSetLangRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: UserSetLangRequest): UserSetLangRequest.AsObject;
+  static serializeBinaryToWriter(message: UserSetLangRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): UserSetLangRequest;
+  static deserializeBinaryFromReader(message: UserSetLangRequest, reader: jspb.BinaryReader): UserSetLangRequest;
+}
+
+export namespace UserSetLangRequest {
+  export type AsObject = {
+    lang: string;
+  };
+}
+
+export class UserSetTimezoneRequest extends jspb.Message {
+  getTimezone(): string;
+  setTimezone(value: string): UserSetTimezoneRequest;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): UserSetTimezoneRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: UserSetTimezoneRequest): UserSetTimezoneRequest.AsObject;
+  static serializeBinaryToWriter(message: UserSetTimezoneRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): UserSetTimezoneRequest;
+  static deserializeBinaryFromReader(message: UserSetTimezoneRequest, reader: jspb.BinaryReader): UserSetTimezoneRequest;
+}
+
+export namespace UserSetTimezoneRequest {
+  export type AsObject = {
+    timezone: string;
+  };
 }
 
 export class UserIndexResponse extends jspb.Message {
@@ -735,25 +1149,78 @@ export namespace UserIndexAttachmentResponse {
 
 }
 
-export class Log extends jspb.Message {
+export class UserIndexLogResponse extends jspb.Message {
+  getItemsList(): Array<UserIndexLogResponse.Item>;
+  setItemsList(value: Array<UserIndexLogResponse.Item>): UserIndexLogResponse;
+  clearItemsList(): UserIndexLogResponse;
+  addItems(value?: UserIndexLogResponse.Item, index?: number): UserIndexLogResponse.Item;
+
+  getPagination(): Pagination | undefined;
+  setPagination(value?: Pagination): UserIndexLogResponse;
+  hasPagination(): boolean;
+  clearPagination(): UserIndexLogResponse;
+
   serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): Log.AsObject;
-  static toObject(includeInstance: boolean, msg: Log): Log.AsObject;
-  static serializeBinaryToWriter(message: Log, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): Log;
-  static deserializeBinaryFromReader(message: Log, reader: jspb.BinaryReader): Log;
+  toObject(includeInstance?: boolean): UserIndexLogResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: UserIndexLogResponse): UserIndexLogResponse.AsObject;
+  static serializeBinaryToWriter(message: UserIndexLogResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): UserIndexLogResponse;
+  static deserializeBinaryFromReader(message: UserIndexLogResponse, reader: jspb.BinaryReader): UserIndexLogResponse;
 }
 
-export namespace Log {
+export namespace UserIndexLogResponse {
   export type AsObject = {
+    itemsList: Array<UserIndexLogResponse.Item.AsObject>;
+    pagination?: Pagination.AsObject;
   };
 
-  export enum Level {
-    DEBUG = 0,
-    INFO = 1,
-    WARNING = 2,
-    ERROR = 3,
+  export class Item extends jspb.Message {
+    getId(): number;
+    setId(value: number): Item;
+
+    getPlugin(): string;
+    setPlugin(value: string): Item;
+
+    getIp(): string;
+    setIp(value: string): Item;
+
+    getLevel(): UserIndexLogResponse.Item.Level;
+    setLevel(value: UserIndexLogResponse.Item.Level): Item;
+
+    getMessage(): string;
+    setMessage(value: string): Item;
+
+    getCreatedAt(): google_protobuf_timestamp_pb.Timestamp | undefined;
+    setCreatedAt(value?: google_protobuf_timestamp_pb.Timestamp): Item;
+    hasCreatedAt(): boolean;
+    clearCreatedAt(): Item;
+
+    serializeBinary(): Uint8Array;
+    toObject(includeInstance?: boolean): Item.AsObject;
+    static toObject(includeInstance: boolean, msg: Item): Item.AsObject;
+    static serializeBinaryToWriter(message: Item, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): Item;
+    static deserializeBinaryFromReader(message: Item, reader: jspb.BinaryReader): Item;
   }
+
+  export namespace Item {
+    export type AsObject = {
+      id: number;
+      plugin: string;
+      ip: string;
+      level: UserIndexLogResponse.Item.Level;
+      message: string;
+      createdAt?: google_protobuf_timestamp_pb.Timestamp.AsObject;
+    };
+
+    export enum Level {
+      DEBUG = 0,
+      INFO = 1,
+      WARNING = 2,
+      ERROR = 3,
+    }
+  }
+
 }
 
 export class Session extends jspb.Message {
@@ -798,5 +1265,23 @@ export namespace Session {
     WECHAT_OAUTH2 = 3,
     WECHAT_MINI_PROGRAM = 4,
   }
+}
+
+export class UserSignInResponse extends jspb.Message {
+  getToken(): string;
+  setToken(value: string): UserSignInResponse;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): UserSignInResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: UserSignInResponse): UserSignInResponse.AsObject;
+  static serializeBinaryToWriter(message: UserSignInResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): UserSignInResponse;
+  static deserializeBinaryFromReader(message: UserSignInResponse, reader: jspb.BinaryReader): UserSignInResponse;
+}
+
+export namespace UserSignInResponse {
+  export type AsObject = {
+    token: string;
+  };
 }
 

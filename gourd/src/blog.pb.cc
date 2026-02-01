@@ -384,41 +384,40 @@ const char descriptor_table_protodef_blog_2eproto[] ABSL_ATTRIBUTE_SECTION_VARIA
     protodesc_cold) = {
     "\n\nblog.proto\022\014palm.blog.v1\032\037google/proto"
     "buf/timestamp.proto\032\014portal.proto\"\021\n\017Boo"
-    "tstrap5Theme\"\014\n\nBulmaTheme\"\326\001\n\010Settings\022"
+    "tstrap5Theme\"\014\n\nBulmaTheme\"\320\001\n\010Settings\022"
     "\r\n\005title\030\001 \001(\t\022\023\n\013description\030\002 \001(\t\022\020\n\010l"
-    "anguage\030\003 \001(\t\022+\n\007favicon\030\004 \001(\0132\032.palm.po"
-    "rtal.v1.Attachment\0223\n\nbootstrap5\030[ \001(\0132\035"
-    ".palm.blog.v1.Bootstrap5ThemeH\000\022)\n\005bulma"
-    "\030\\ \001(\0132\030.palm.blog.v1.BulmaThemeH\000B\007\n\005th"
-    "eme\"\330\003\n\021IndexPostResponse\022.\n\npagination\030"
-    "\001 \001(\0132\032.palm.portal.v1.Pagination\0223\n\005ite"
-    "ms\030\002 \003(\0132$.palm.blog.v1.IndexPostRespons"
-    "e.Item\032\335\002\n\004Item\022\n\n\002id\030\001 \001(\004\022\r\n\005title\030\002 \001"
-    "(\t\022&\n\004body\030\003 \001(\0132\030.palm.portal.v1.RichTe"
-    "xt\022\016\n\006labels\030\013 \003(\t\0220\n\014published_at\030\014 \001(\013"
-    "2\032.google.protobuf.Timestamp\022\021\n\tpermalin"
-    "k\030\r \001(\t\022/\n\010location\030\016 \001(\0132\030.palm.portal."
-    "v1.LocationH\000\210\001\001\022=\n\007options\030\023 \001(\0132,.palm"
-    ".blog.v1.IndexPostResponse.Item.Options\032"
-    "@\n\007Options\0225\n\017reader_comments\030\001 \001(\0162\034.pa"
-    "lm.blog.v1.ReaderCommentsB\013\n\t_location\"\330"
-    "\002\n\021IndexPageResponse\022.\n\npagination\030\001 \001(\013"
-    "2\032.palm.portal.v1.Pagination\0223\n\005items\030\002 "
-    "\003(\0132$.palm.blog.v1.IndexPageResponse.Ite"
-    "m\032\335\001\n\004Item\022\n\n\002id\030\001 \001(\004\022\r\n\005title\030\002 \001(\t\022&\n"
-    "\004body\030\003 \001(\0132\030.palm.portal.v1.RichText\022\021\n"
-    "\tpermalink\030\013 \001(\t\022=\n\007options\030\023 \001(\0132,.palm"
-    ".blog.v1.IndexPageResponse.Item.Options\032"
-    "@\n\007Options\0225\n\017reader_comments\030\001 \001(\0162\034.pa"
-    "lm.blog.v1.ReaderComments*/\n\016ReaderComme"
-    "nts\022\t\n\005Allow\020\000\022\010\n\004Show\020\001\022\010\n\004Hide\020\0022H\n\004Po"
-    "st\022@\n\005Index\022\024.palm.portal.v1.Page\032\037.palm"
-    ".blog.v1.IndexPostResponse\"\0002H\n\004Page\022@\n\005"
+    "anguage\030\003 \001(\t\022%\n\007favicon\030\004 \001(\0132\024.palm.po"
+    "rtal.v1.File\0223\n\nbootstrap5\030[ \001(\0132\035.palm."
+    "blog.v1.Bootstrap5ThemeH\000\022)\n\005bulma\030\\ \001(\013"
+    "2\030.palm.blog.v1.BulmaThemeH\000B\007\n\005theme\"\330\003"
+    "\n\021IndexPostResponse\022.\n\npagination\030\001 \001(\0132"
+    "\032.palm.portal.v1.Pagination\0223\n\005items\030\002 \003"
+    "(\0132$.palm.blog.v1.IndexPostResponse.Item"
+    "\032\335\002\n\004Item\022\n\n\002id\030\001 \001(\004\022\r\n\005title\030\002 \001(\t\022&\n\004"
+    "body\030\003 \001(\0132\030.palm.portal.v1.RichText\022\016\n\006"
+    "labels\030\013 \003(\t\0220\n\014published_at\030\014 \001(\0132\032.goo"
+    "gle.protobuf.Timestamp\022\021\n\tpermalink\030\r \001("
+    "\t\022/\n\010location\030\016 \001(\0132\030.palm.portal.v1.Loc"
+    "ationH\000\210\001\001\022=\n\007options\030\023 \001(\0132,.palm.blog."
+    "v1.IndexPostResponse.Item.Options\032@\n\007Opt"
+    "ions\0225\n\017reader_comments\030\001 \001(\0162\034.palm.blo"
+    "g.v1.ReaderCommentsB\013\n\t_location\"\330\002\n\021Ind"
+    "exPageResponse\022.\n\npagination\030\001 \001(\0132\032.pal"
+    "m.portal.v1.Pagination\0223\n\005items\030\002 \003(\0132$."
+    "palm.blog.v1.IndexPageResponse.Item\032\335\001\n\004"
+    "Item\022\n\n\002id\030\001 \001(\004\022\r\n\005title\030\002 \001(\t\022&\n\004body\030"
+    "\003 \001(\0132\030.palm.portal.v1.RichText\022\021\n\tperma"
+    "link\030\013 \001(\t\022=\n\007options\030\023 \001(\0132,.palm.blog."
+    "v1.IndexPageResponse.Item.Options\032@\n\007Opt"
+    "ions\0225\n\017reader_comments\030\001 \001(\0162\034.palm.blo"
+    "g.v1.ReaderComments*/\n\016ReaderComments\022\t\n"
+    "\005Allow\020\000\022\010\n\004Show\020\001\022\010\n\004Hide\020\0022H\n\004Post\022@\n\005"
     "Index\022\024.palm.portal.v1.Page\032\037.palm.blog."
-    "v1.IndexPageResponse\"\000BY\n*com.github.sat"
-    "urn_xiv.palm.plugins.blog.v1B\tBlogProtoP"
-    "\001Z\005./;v2\252\002\026Palm.Plugins.Blog.Grpcb\006proto"
-    "3"
+    "v1.IndexPostResponse\"\0002H\n\004Page\022@\n\005Index\022"
+    "\024.palm.portal.v1.Page\032\037.palm.blog.v1.Ind"
+    "exPageResponse\"\000BY\n*com.github.saturn_xi"
+    "v.palm.plugins.blog.v1B\tBlogProtoP\001Z\005./;"
+    "v2\252\002\026Palm.Plugins.Blog.Grpcb\006proto3"
 };
 static const ::_pbi::DescriptorTable* PROTOBUF_NONNULL const
     descriptor_table_blog_2eproto_deps[2] = {
@@ -429,7 +428,7 @@ static ::absl::once_flag descriptor_table_blog_2eproto_once;
 PROTOBUF_CONSTINIT const ::_pbi::DescriptorTable descriptor_table_blog_2eproto = {
     false,
     false,
-    1441,
+    1435,
     descriptor_table_protodef_blog_2eproto,
     "blog.proto",
     &descriptor_table_blog_2eproto_once,
@@ -885,7 +884,7 @@ Settings::_table_ = {
     ::_pbi::TcParser::GetTable<::palm::blog::v1::Settings>(),  // to_prefetch
     #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
   }, {{
-    // .palm.portal.v1.Attachment favicon = 4;
+    // .palm.portal.v1.File favicon = 4;
     {::_pbi::TcParser::FastMtS1,
      {34, 3, 0, PROTOBUF_FIELD_OFFSET(Settings, _impl_.favicon_)}},
     // string title = 1;
@@ -911,7 +910,7 @@ Settings::_table_ = {
     // string language = 3;
     {PROTOBUF_FIELD_OFFSET(Settings, _impl_.language_), _Internal::kHasBitsOffset + 2, 0,
     (0 | ::_fl::kFcOptional | ::_fl::kUtf8String | ::_fl::kRepAString)},
-    // .palm.portal.v1.Attachment favicon = 4;
+    // .palm.portal.v1.File favicon = 4;
     {PROTOBUF_FIELD_OFFSET(Settings, _impl_.favicon_), _Internal::kHasBitsOffset + 3, 0,
     (0 | ::_fl::kFcOptional | ::_fl::kMessage | ::_fl::kTvTable)},
     // .palm.blog.v1.Bootstrap5Theme bootstrap5 = 91;
@@ -922,7 +921,7 @@ Settings::_table_ = {
     (0 | ::_fl::kFcOneof | ::_fl::kMessage | ::_fl::kTvTable)},
   }},
   {{
-      {::_pbi::TcParser::GetTable<::palm::portal::v1::Attachment>()},
+      {::_pbi::TcParser::GetTable<::palm::portal::v1::File>()},
       {::_pbi::TcParser::GetTable<::palm::blog::v1::Bootstrap5Theme>()},
       {::_pbi::TcParser::GetTable<::palm::blog::v1::BulmaTheme>()},
   }},
@@ -1008,7 +1007,7 @@ PROTOBUF_NOINLINE void Settings::Clear() {
   }
 
   cached_has_bits = this_._impl_._has_bits_[0];
-  // .palm.portal.v1.Attachment favicon = 4;
+  // .palm.portal.v1.File favicon = 4;
   if ((cached_has_bits & 0x00000008u) != 0) {
     target = ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
         4, *this_._impl_.favicon_, this_._impl_.favicon_->GetCachedSize(), target,
@@ -1078,7 +1077,7 @@ PROTOBUF_NOINLINE void Settings::Clear() {
                                         this_._internal_language());
       }
     }
-    // .palm.portal.v1.Attachment favicon = 4;
+    // .palm.portal.v1.File favicon = 4;
     if ((cached_has_bits & 0x00000008u) != 0) {
       total_size += 1 +
                     ::google::protobuf::internal::WireFormatLite::MessageSize(*this_._impl_.favicon_);

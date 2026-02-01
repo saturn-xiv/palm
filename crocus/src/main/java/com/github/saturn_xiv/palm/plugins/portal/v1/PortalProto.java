@@ -42,10 +42,10 @@ public final class PortalProto {
     com.google.protobuf.GeneratedMessage.FieldAccessorTable
       internal_static_palm_portal_v1_Pagination_fieldAccessorTable;
   static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_palm_portal_v1_Attachment_descriptor;
+    internal_static_palm_portal_v1_File_descriptor;
   static final 
     com.google.protobuf.GeneratedMessage.FieldAccessorTable
-      internal_static_palm_portal_v1_Attachment_fieldAccessorTable;
+      internal_static_palm_portal_v1_File_fieldAccessorTable;
   static final com.google.protobuf.Descriptors.Descriptor
     internal_static_palm_portal_v1_RichText_descriptor;
   static final 
@@ -92,6 +92,86 @@ public final class PortalProto {
     com.google.protobuf.GeneratedMessage.FieldAccessorTable
       internal_static_palm_portal_v1_CurrenciesResponse_Item_fieldAccessorTable;
   static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_palm_portal_v1_EmailUserSignInRequest_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_palm_portal_v1_EmailUserSignInRequest_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_palm_portal_v1_EmailUserSignUpRequest_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_palm_portal_v1_EmailUserSignUpRequest_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_palm_portal_v1_EmailUserUnlockByEmailRequest_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_palm_portal_v1_EmailUserUnlockByEmailRequest_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_palm_portal_v1_EmailUserUnlockByTokenRequest_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_palm_portal_v1_EmailUserUnlockByTokenRequest_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_palm_portal_v1_EmailUserConfirmByEmailRequest_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_palm_portal_v1_EmailUserConfirmByEmailRequest_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_palm_portal_v1_EmailUserConfirmByTokenRequest_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_palm_portal_v1_EmailUserConfirmByTokenRequest_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_palm_portal_v1_EmailUserForgotPasswordRequest_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_palm_portal_v1_EmailUserForgotPasswordRequest_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_palm_portal_v1_EmailUserResetPasswordRequest_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_palm_portal_v1_EmailUserResetPasswordRequest_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_palm_portal_v1_EmailUserSetNameRequest_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_palm_portal_v1_EmailUserSetNameRequest_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_palm_portal_v1_EmailUserSetAvatarRequest_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_palm_portal_v1_EmailUserSetAvatarRequest_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_palm_portal_v1_EmailUserChangePasswordRequest_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_palm_portal_v1_EmailUserChangePasswordRequest_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_palm_portal_v1_EmailUserIndexResponse_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_palm_portal_v1_EmailUserIndexResponse_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_palm_portal_v1_EmailUserIndexResponse_Item_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_palm_portal_v1_EmailUserIndexResponse_Item_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_palm_portal_v1_EmailUserSetPasswordRequest_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_palm_portal_v1_EmailUserSetPasswordRequest_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_palm_portal_v1_UserSetLangRequest_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_palm_portal_v1_UserSetLangRequest_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_palm_portal_v1_UserSetTimezoneRequest_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_palm_portal_v1_UserSetTimezoneRequest_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
     internal_static_palm_portal_v1_UserIndexResponse_descriptor;
   static final 
     com.google.protobuf.GeneratedMessage.FieldAccessorTable
@@ -137,15 +217,25 @@ public final class PortalProto {
     com.google.protobuf.GeneratedMessage.FieldAccessorTable
       internal_static_palm_portal_v1_UserIndexAttachmentResponse_Item_fieldAccessorTable;
   static final com.google.protobuf.Descriptors.Descriptor
-    internal_static_palm_portal_v1_Log_descriptor;
+    internal_static_palm_portal_v1_UserIndexLogResponse_descriptor;
   static final 
     com.google.protobuf.GeneratedMessage.FieldAccessorTable
-      internal_static_palm_portal_v1_Log_fieldAccessorTable;
+      internal_static_palm_portal_v1_UserIndexLogResponse_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_palm_portal_v1_UserIndexLogResponse_Item_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_palm_portal_v1_UserIndexLogResponse_Item_fieldAccessorTable;
   static final com.google.protobuf.Descriptors.Descriptor
     internal_static_palm_portal_v1_Session_descriptor;
   static final 
     com.google.protobuf.GeneratedMessage.FieldAccessorTable
       internal_static_palm_portal_v1_Session_fieldAccessorTable;
+  static final com.google.protobuf.Descriptors.Descriptor
+    internal_static_palm_portal_v1_UserSignInResponse_descriptor;
+  static final 
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_palm_portal_v1_UserSignInResponse_fieldAccessorTable;
 
   public static com.google.protobuf.Descriptors.FileDescriptor
       getDescriptor() {
@@ -162,112 +252,191 @@ public final class PortalProto {
       "\005index\030\001 \001(\003\022\014\n\004size\030\002 \001(\003\"y\n\nPagination" +
       "\022%\n\007current\030\001 \001(\0132\024.palm.portal.v1.Page\022" +
       "\024\n\014has_previous\030\002 \001(\010\022\020\n\010has_next\030\003 \001(\010\022" +
-      "\r\n\005pages\030\004 \001(\003\022\r\n\005total\030\005 \001(\003\",\n\nAttachm" +
-      "ent\022\016\n\006bucket\030\001 \001(\t\022\016\n\006object\030\002 \001(\t\"\223\001\n\010" +
-      "RichText\022/\n\006editor\030\001 \001(\0162\037.palm.portal.v" +
-      "1.RichText.Editor\022\014\n\004body\030\002 \001(\t\022/\n\013attac" +
-      "hments\030\003 \003(\0132\032.palm.portal.v1.Attachment" +
-      "\"\027\n\006Editor\022\r\n\tCK_EDITOR\020\000\"Y\n\010Location\022)\n" +
-      "\003map\030\001 \001(\0162\034.palm.portal.v1.Location.Map" +
-      "\022\017\n\007address\030\002 \001(\t\"\021\n\003Map\022\n\n\006GOOGLE\020\000\"?\n\020" +
-      "LocaleSetRequest\022\014\n\004lang\030\001 \001(\t\022\014\n\004code\030\002" +
-      " \001(\t\022\017\n\007message\030\003 \001(\t\"#\n\023LocaleByLangReq" +
-      "uest\022\014\n\004lang\030\001 \001(\t\"O\n\024LocaleByLangRespon" +
-      "se\0227\n\005items\030\001 \003(\0132(.palm.portal.v1.Local" +
-      "eIndexResponse.Item\"\357\001\n\023LocaleIndexRespo" +
-      "nse\0227\n\005items\030\001 \003(\0132(.palm.portal.v1.Loca" +
-      "leIndexResponse.Item\022.\n\npagination\030\t \001(\013" +
-      "2\032.palm.portal.v1.Pagination\032o\n\004Item\022\n\n\002" +
-      "id\030\001 \001(\003\022\014\n\004lang\030\002 \001(\t\022\014\n\004code\030\003 \001(\t\022\017\n\007" +
-      "message\030\004 \001(\t\022.\n\nupdated_at\030\t \001(\0132\032.goog" +
-      "le.protobuf.Timestamp\"\322\001\n\022CurrenciesResp" +
-      "onse\0226\n\005items\030\001 \003(\0132\'.palm.portal.v1.Cur" +
-      "renciesResponse.Item\032\203\001\n\004Item\022\014\n\004code\030\001 " +
-      "\001(\t\022\014\n\004name\030\002 \001(\t\022\017\n\007country\030\003 \001(\t\022\016\n\006nu" +
-      "mber\030\004 \001(\r\022\022\n\005units\030\005 \001(\rH\000\210\001\001\022\024\n\007is_fun" +
-      "d\030\006 \001(\010H\001\210\001\001B\010\n\006_unitsB\n\n\010_is_fund\"\246\005\n\021U" +
-      "serIndexResponse\0225\n\005items\030\001 \003(\0132&.palm.p" +
-      "ortal.v1.UserIndexResponse.Item\022.\n\npagin" +
-      "ation\030\t \001(\0132\032.palm.portal.v1.Pagination\032" +
-      "\251\004\n\004Item\022\n\n\002id\030\001 \001(\003\022\n\n\002sn\030\002 \001(\t\022\014\n\004lang" +
-      "\030\003 \001(\t\022\020\n\010timezone\030\004 \001(\t\022\027\n\017signed_in_to" +
-      "tal\030\013 \001(\003\022=\n\024current_signed_in_at\030\014 \001(\0132" +
-      "\032.google.protobuf.TimestampH\000\210\001\001\022!\n\024curr" +
-      "ent_signed_in_ip\030\r \001(\tH\001\210\001\001\022:\n\021last_sign" +
-      "ed_in_at\030\016 \001(\0132\032.google.protobuf.Timesta" +
-      "mpH\002\210\001\001\022\036\n\021last_signed_in_ip\030\017 \001(\tH\003\210\001\001\022" +
-      "2\n\tlocked_at\030\021 \001(\0132\032.google.protobuf.Tim" +
-      "estampH\004\210\001\001\0223\n\ndeleted_at\030\022 \001(\0132\032.google" +
-      ".protobuf.TimestampH\005\210\001\001\022.\n\nupdated_at\030\023" +
-      " \001(\0132\032.google.protobuf.TimestampB\027\n\025_cur" +
-      "rent_signed_in_atB\027\n\025_current_signed_in_" +
-      "ipB\024\n\022_last_signed_in_atB\024\n\022_last_signed" +
-      "_in_ipB\014\n\n_locked_atB\r\n\013_deleted_at\":\n\035U" +
-      "serSetAttachmentTitleRequest\022\n\n\002id\030\001 \001(\003" +
-      "\022\r\n\005title\030\002 \001(\t\"n\n\031UserShowAttachmentReq" +
-      "uest\022\n\n\002id\030\001 \001(\003\022\020\n\010download\030\002 \001(\010\022+\n\003tt" +
-      "l\030\t \001(\0132\031.google.protobuf.DurationH\000\210\001\001B" +
-      "\006\n\004_ttl\")\n\032UserShowAttachmentResponse\022\013\n" +
-      "\003url\030\001 \001(\t\"\276\001\n\033UserCreateAttachmentReque" +
-      "st\022\r\n\005title\030\001 \001(\t\022\024\n\014content_type\030\002 \001(\t\022" +
-      "\014\n\004size\030\003 \001(\004\022\036\n\021expire_after_days\030\004 \001(\r" +
-      "H\000\210\001\001\022\016\n\006public\030\005 \001(\010\022&\n\003ttl\030\t \001(\0132\031.goo" +
-      "gle.protobuf.DurationB\024\n\022_expire_after_d" +
-      "ays\"q\n\"UserCreateAttachmentUploadRespons" +
-      "e\022\013\n\003url\030\001 \001(\t\022>\n\004item\030\002 \001(\01320.palm.port" +
-      "al.v1.UserIndexAttachmentResponse.Item\"\262" +
-      "\003\n\033UserIndexAttachmentResponse\022?\n\005items\030" +
-      "\001 \003(\01320.palm.portal.v1.UserIndexAttachme" +
-      "ntResponse.Item\022.\n\npagination\030\002 \001(\0132\032.pa" +
-      "lm.portal.v1.Pagination\032\241\002\n\004Item\022\n\n\002id\030\001" +
-      " \001(\003\022\016\n\006bucket\030\002 \001(\t\022\016\n\006object\030\003 \001(\t\022\r\n\005" +
-      "title\030\004 \001(\t\022\024\n\014content_type\030\005 \001(\t\022\014\n\004siz" +
-      "e\030\006 \001(\004\0224\n\013uploaded_at\030\007 \001(\0132\032.google.pr" +
-      "otobuf.TimestampH\000\210\001\001\022\036\n\021expire_after_da" +
-      "ys\030\010 \001(\rH\001\210\001\001\022\016\n\006public\030\t \001(\010\022.\n\nupdated" +
-      "_at\030\023 \001(\0132\032.google.protobuf.TimestampB\016\n" +
-      "\014_uploaded_atB\024\n\022_expire_after_days\";\n\003L" +
-      "og\"4\n\005Level\022\t\n\005DEBUG\020\000\022\010\n\004INFO\020\001\022\013\n\007WARN" +
-      "ING\020\002\022\t\n\005ERROR\020\003\"\205\002\n\007Session\0222\n\004type\030\001 \001" +
-      "(\0162$.palm.portal.v1.Session.ProviderType" +
-      "\022\n\n\002sn\030\002 \001(\t\022\014\n\004name\030\003 \001(\t\0224\n\004user\030\010 \001(\013" +
-      "2&.palm.portal.v1.UserIndexResponse.Item" +
-      "\022\021\n\tclient_ip\030\t \001(\t\"c\n\014ProviderType\022\t\n\005E" +
-      "MAIL\020\000\022\t\n\005PHONE\020\001\022\021\n\rGOOGLE_OAUTH2\020\002\022\021\n\r" +
-      "WECHAT_OAUTH2\020\003\022\027\n\023WECHAT_MINI_PROGRAM\020\004" +
-      "2\250\002\n\006Locale\022D\n\005Index\022\024.palm.portal.v1.Pa" +
-      "ge\032#.palm.portal.v1.LocaleIndexResponse\"" +
-      "\000\022A\n\003Set\022 .palm.portal.v1.LocaleSetReque" +
-      "st\032\026.google.protobuf.Empty\"\000\022U\n\006ByLang\022#" +
-      ".palm.portal.v1.LocaleByLangRequest\032$.pa" +
-      "lm.portal.v1.LocaleByLangResponse\"\000\022>\n\007D" +
-      "estroy\022\031.palm.portal.v1.IdRequest\032\026.goog" +
-      "le.protobuf.Empty\"\0002R\n\004Site\022J\n\nCurrencie" +
-      "s\022\026.google.protobuf.Empty\032\".palm.portal." +
-      "v1.CurrenciesResponse\"\0002\267\006\n\004User\022B\n\005Inde" +
-      "x\022\024.palm.portal.v1.Page\032!.palm.portal.v1" +
-      ".UserIndexResponse\"\000\022>\n\007Destroy\022\031.palm.p" +
-      "ortal.v1.IdRequest\032\026.google.protobuf.Emp" +
-      "ty\"\000\022;\n\004Lock\022\031.palm.portal.v1.IdRequest\032" +
-      "\026.google.protobuf.Empty\"\000\022=\n\006Unlock\022\031.pa" +
-      "lm.portal.v1.IdRequest\032\026.google.protobuf" +
-      ".Empty\"\000\022V\n\017IndexAttachment\022\024.palm.porta" +
-      "l.v1.Page\032+.palm.portal.v1.UserIndexAtta" +
-      "chmentResponse\"\000\022u\n\020CreateAttachment\022+.p" +
-      "alm.portal.v1.UserCreateAttachmentReques" +
-      "t\0322.palm.portal.v1.UserCreateAttachmentU" +
-      "ploadResponse\"\000\022i\n\016ShowAttachment\022).palm" +
-      ".portal.v1.UserShowAttachmentRequest\032*.p" +
-      "alm.portal.v1.UserShowAttachmentResponse" +
-      "\"\000\022L\n\025SetAttachmentUploaded\022\031.palm.porta" +
-      "l.v1.IdRequest\032\026.google.protobuf.Empty\"\000" +
-      "\022]\n\022SetAttachmentTitle\022-.palm.portal.v1." +
-      "UserSetAttachmentTitleRequest\032\026.google.p" +
-      "rotobuf.Empty\"\000\022H\n\021DestroyAttachment\022\031.p" +
-      "alm.portal.v1.IdRequest\032\026.google.protobu" +
-      "f.Empty\"\000B_\n,com.github.saturn_xiv.palm." +
-      "plugins.portal.v1B\013PortalProtoP\001Z\005./;v2\252" +
-      "\002\030Palm.Plugins.Portal.Grpcb\006proto3"
+      "\r\n\005pages\030\004 \001(\003\022\r\n\005total\030\005 \001(\003\"&\n\004File\022\016\n" +
+      "\006bucket\030\001 \001(\t\022\016\n\006object\030\002 \001(\t\"\215\001\n\010RichTe" +
+      "xt\022/\n\006editor\030\001 \001(\0162\037.palm.portal.v1.Rich" +
+      "Text.Editor\022\014\n\004body\030\002 \001(\t\022)\n\013attachments" +
+      "\030\003 \003(\0132\024.palm.portal.v1.File\"\027\n\006Editor\022\r" +
+      "\n\tCK_EDITOR\020\000\"Y\n\010Location\022)\n\003map\030\001 \001(\0162\034" +
+      ".palm.portal.v1.Location.Map\022\017\n\007address\030" +
+      "\002 \001(\t\"\021\n\003Map\022\n\n\006GOOGLE\020\000\"?\n\020LocaleSetReq" +
+      "uest\022\014\n\004lang\030\001 \001(\t\022\014\n\004code\030\002 \001(\t\022\017\n\007mess" +
+      "age\030\003 \001(\t\"#\n\023LocaleByLangRequest\022\014\n\004lang" +
+      "\030\001 \001(\t\"O\n\024LocaleByLangResponse\0227\n\005items\030" +
+      "\001 \003(\0132(.palm.portal.v1.LocaleIndexRespon" +
+      "se.Item\"\357\001\n\023LocaleIndexResponse\0227\n\005items" +
+      "\030\001 \003(\0132(.palm.portal.v1.LocaleIndexRespo" +
+      "nse.Item\022.\n\npagination\030\t \001(\0132\032.palm.port" +
+      "al.v1.Pagination\032o\n\004Item\022\n\n\002id\030\001 \001(\003\022\014\n\004" +
+      "lang\030\002 \001(\t\022\014\n\004code\030\003 \001(\t\022\017\n\007message\030\004 \001(" +
+      "\t\022.\n\nupdated_at\030\t \001(\0132\032.google.protobuf." +
+      "Timestamp\"\322\001\n\022CurrenciesResponse\0226\n\005item" +
+      "s\030\001 \003(\0132\'.palm.portal.v1.CurrenciesRespo" +
+      "nse.Item\032\203\001\n\004Item\022\014\n\004code\030\001 \001(\t\022\014\n\004name\030" +
+      "\002 \001(\t\022\017\n\007country\030\003 \001(\t\022\016\n\006number\030\004 \001(\r\022\022" +
+      "\n\005units\030\005 \001(\rH\000\210\001\001\022\024\n\007is_fund\030\006 \001(\010H\001\210\001\001" +
+      "B\010\n\006_unitsB\n\n\010_is_fund\"9\n\026EmailUserSignI" +
+      "nRequest\022\r\n\005email\030\001 \001(\t\022\020\n\010password\030\002 \001(" +
+      "\t\"u\n\026EmailUserSignUpRequest\022\014\n\004name\030\001 \001(" +
+      "\t\022\r\n\005email\030\002 \001(\t\022\020\n\010password\030\003 \001(\t\022\014\n\004la" +
+      "ng\030\010 \001(\t\022\020\n\010timezone\030\t \001(\t\022\014\n\004home\030c \001(\t" +
+      "\"<\n\035EmailUserUnlockByEmailRequest\022\r\n\005ema" +
+      "il\030\001 \001(\t\022\014\n\004home\030c \001(\t\".\n\035EmailUserUnloc" +
+      "kByTokenRequest\022\r\n\005token\030\001 \001(\t\"=\n\036EmailU" +
+      "serConfirmByEmailRequest\022\r\n\005email\030\001 \001(\t\022" +
+      "\014\n\004home\030c \001(\t\"/\n\036EmailUserConfirmByToken" +
+      "Request\022\r\n\005token\030\001 \001(\t\"=\n\036EmailUserForgo" +
+      "tPasswordRequest\022\r\n\005email\030\001 \001(\t\022\014\n\004home\030" +
+      "c \001(\t\"@\n\035EmailUserResetPasswordRequest\022\r" +
+      "\n\005token\030\001 \001(\t\022\020\n\010password\030\002 \001(\t\"\'\n\027Email" +
+      "UserSetNameRequest\022\014\n\004name\030\001 \001(\t\"V\n\031Emai" +
+      "lUserSetAvatarRequest\022\r\n\003url\030\001 \001(\tH\000\022$\n\004" +
+      "file\030\002 \001(\0132\024.palm.portal.v1.FileH\000B\004\n\002by" +
+      "\"P\n\036EmailUserChangePasswordRequest\022\030\n\020cu" +
+      "rrent_password\030\001 \001(\t\022\024\n\014new_password\030\002 \001" +
+      "(\t\"\310\003\n\026EmailUserIndexResponse\022:\n\005items\030\001" +
+      " \003(\0132+.palm.portal.v1.EmailUserIndexResp" +
+      "onse.Item\022.\n\npagination\030\t \001(\0132\032.palm.por" +
+      "tal.v1.Pagination\032\301\002\n\004Item\022\n\n\002id\030\001 \001(\003\022\r" +
+      "\n\005email\030\002 \001(\t\022\014\n\004name\030\003 \001(\t\022\023\n\006avatar\030\020 " +
+      "\001(\tH\000\210\001\001\0225\n\014confirmed_at\030\021 \001(\0132\032.google." +
+      "protobuf.TimestampH\001\210\001\001\0223\n\ndeleted_at\030\022 " +
+      "\001(\0132\032.google.protobuf.TimestampH\002\210\001\001\022.\n\n" +
+      "updated_at\030\023 \001(\0132\032.google.protobuf.Times" +
+      "tamp\0224\n\004user\030c \001(\0132&.palm.portal.v1.User" +
+      "IndexResponse.ItemB\t\n\007_avatarB\017\n\r_confir" +
+      "med_atB\r\n\013_deleted_at\";\n\033EmailUserSetPas" +
+      "swordRequest\022\n\n\002id\030\001 \001(\003\022\020\n\010password\030\002 \001" +
+      "(\t\"\"\n\022UserSetLangRequest\022\014\n\004lang\030\001 \001(\t\"*" +
+      "\n\026UserSetTimezoneRequest\022\020\n\010timezone\030\001 \001" +
+      "(\t\"\246\005\n\021UserIndexResponse\0225\n\005items\030\001 \003(\0132" +
+      "&.palm.portal.v1.UserIndexResponse.Item\022" +
+      ".\n\npagination\030\t \001(\0132\032.palm.portal.v1.Pag" +
+      "ination\032\251\004\n\004Item\022\n\n\002id\030\001 \001(\003\022\n\n\002sn\030\002 \001(\t" +
+      "\022\014\n\004lang\030\003 \001(\t\022\020\n\010timezone\030\004 \001(\t\022\027\n\017sign" +
+      "ed_in_total\030\013 \001(\003\022=\n\024current_signed_in_a" +
+      "t\030\014 \001(\0132\032.google.protobuf.TimestampH\000\210\001\001" +
+      "\022!\n\024current_signed_in_ip\030\r \001(\tH\001\210\001\001\022:\n\021l" +
+      "ast_signed_in_at\030\016 \001(\0132\032.google.protobuf" +
+      ".TimestampH\002\210\001\001\022\036\n\021last_signed_in_ip\030\017 \001" +
+      "(\tH\003\210\001\001\0222\n\tlocked_at\030\021 \001(\0132\032.google.prot" +
+      "obuf.TimestampH\004\210\001\001\0223\n\ndeleted_at\030\022 \001(\0132" +
+      "\032.google.protobuf.TimestampH\005\210\001\001\022.\n\nupda" +
+      "ted_at\030\023 \001(\0132\032.google.protobuf.Timestamp" +
+      "B\027\n\025_current_signed_in_atB\027\n\025_current_si" +
+      "gned_in_ipB\024\n\022_last_signed_in_atB\024\n\022_las" +
+      "t_signed_in_ipB\014\n\n_locked_atB\r\n\013_deleted" +
+      "_at\":\n\035UserSetAttachmentTitleRequest\022\n\n\002" +
+      "id\030\001 \001(\003\022\r\n\005title\030\002 \001(\t\"n\n\031UserShowAttac" +
+      "hmentRequest\022\n\n\002id\030\001 \001(\003\022\020\n\010download\030\002 \001" +
+      "(\010\022+\n\003ttl\030\t \001(\0132\031.google.protobuf.Durati" +
+      "onH\000\210\001\001B\006\n\004_ttl\")\n\032UserShowAttachmentRes" +
+      "ponse\022\013\n\003url\030\001 \001(\t\"\276\001\n\033UserCreateAttachm" +
+      "entRequest\022\r\n\005title\030\001 \001(\t\022\024\n\014content_typ" +
+      "e\030\002 \001(\t\022\014\n\004size\030\003 \001(\004\022\036\n\021expire_after_da" +
+      "ys\030\004 \001(\rH\000\210\001\001\022\016\n\006public\030\005 \001(\010\022&\n\003ttl\030\t \001" +
+      "(\0132\031.google.protobuf.DurationB\024\n\022_expire" +
+      "_after_days\"q\n\"UserCreateAttachmentUploa" +
+      "dResponse\022\013\n\003url\030\001 \001(\t\022>\n\004item\030\002 \001(\01320.p" +
+      "alm.portal.v1.UserIndexAttachmentRespons" +
+      "e.Item\"\262\003\n\033UserIndexAttachmentResponse\022?" +
+      "\n\005items\030\001 \003(\01320.palm.portal.v1.UserIndex" +
+      "AttachmentResponse.Item\022.\n\npagination\030\002 " +
+      "\001(\0132\032.palm.portal.v1.Pagination\032\241\002\n\004Item" +
+      "\022\n\n\002id\030\001 \001(\003\022\016\n\006bucket\030\002 \001(\t\022\016\n\006object\030\003" +
+      " \001(\t\022\r\n\005title\030\004 \001(\t\022\024\n\014content_type\030\005 \001(" +
+      "\t\022\014\n\004size\030\006 \001(\004\0224\n\013uploaded_at\030\007 \001(\0132\032.g" +
+      "oogle.protobuf.TimestampH\000\210\001\001\022\036\n\021expire_" +
+      "after_days\030\010 \001(\rH\001\210\001\001\022\016\n\006public\030\t \001(\010\022.\n" +
+      "\nupdated_at\030\023 \001(\0132\032.google.protobuf.Time" +
+      "stampB\016\n\014_uploaded_atB\024\n\022_expire_after_d" +
+      "ays\"\350\002\n\024UserIndexLogResponse\0228\n\005items\030\001 " +
+      "\003(\0132).palm.portal.v1.UserIndexLogRespons" +
+      "e.Item\022.\n\npagination\030\t \001(\0132\032.palm.portal" +
+      ".v1.Pagination\032\345\001\n\004Item\022\n\n\002id\030\001 \001(\003\022\016\n\006p" +
+      "lugin\030\002 \001(\t\022\n\n\002ip\030\003 \001(\t\022>\n\005level\030\004 \001(\0162/" +
+      ".palm.portal.v1.UserIndexLogResponse.Ite" +
+      "m.Level\022\017\n\007message\030\005 \001(\t\022.\n\ncreated_at\030\t" +
+      " \001(\0132\032.google.protobuf.Timestamp\"4\n\005Leve" +
+      "l\022\t\n\005DEBUG\020\000\022\010\n\004INFO\020\001\022\013\n\007WARNING\020\002\022\t\n\005E" +
+      "RROR\020\003\"\205\002\n\007Session\0222\n\004type\030\001 \001(\0162$.palm." +
+      "portal.v1.Session.ProviderType\022\n\n\002sn\030\002 \001" +
+      "(\t\022\014\n\004name\030\003 \001(\t\0224\n\004user\030\010 \001(\0132&.palm.po" +
+      "rtal.v1.UserIndexResponse.Item\022\021\n\tclient" +
+      "_ip\030\t \001(\t\"c\n\014ProviderType\022\t\n\005EMAIL\020\000\022\t\n\005" +
+      "PHONE\020\001\022\021\n\rGOOGLE_OAUTH2\020\002\022\021\n\rWECHAT_OAU" +
+      "TH2\020\003\022\027\n\023WECHAT_MINI_PROGRAM\020\004\"#\n\022UserSi" +
+      "gnInResponse\022\r\n\005token\030\001 \001(\t2\250\002\n\006Locale\022D" +
+      "\n\005Index\022\024.palm.portal.v1.Page\032#.palm.por" +
+      "tal.v1.LocaleIndexResponse\"\000\022A\n\003Set\022 .pa" +
+      "lm.portal.v1.LocaleSetRequest\032\026.google.p" +
+      "rotobuf.Empty\"\000\022U\n\006ByLang\022#.palm.portal." +
+      "v1.LocaleByLangRequest\032$.palm.portal.v1." +
+      "LocaleByLangResponse\"\000\022>\n\007Destroy\022\031.palm" +
+      ".portal.v1.IdRequest\032\026.google.protobuf.E" +
+      "mpty\"\0002R\n\004Site\022J\n\nCurrencies\022\026.google.pr" +
+      "otobuf.Empty\032\".palm.portal.v1.Currencies" +
+      "Response\"\0002\354\t\n\tEmailUser\022G\n\005Index\022\024.palm" +
+      ".portal.v1.Page\032&.palm.portal.v1.EmailUs" +
+      "erIndexResponse\"\000\022>\n\007Destroy\022\031.palm.port" +
+      "al.v1.IdRequest\032\026.google.protobuf.Empty\"" +
+      "\000\022>\n\007Confirm\022\031.palm.portal.v1.IdRequest\032" +
+      "\026.google.protobuf.Empty\"\000\022T\n\013SetPassword" +
+      "\022+.palm.portal.v1.EmailUserSetPasswordRe" +
+      "quest\032\026.google.protobuf.Empty\"\000\022J\n\006SignU" +
+      "p\022&.palm.portal.v1.EmailUserSignUpReques" +
+      "t\032\026.google.protobuf.Empty\"\000\022V\n\006SignIn\022&." +
+      "palm.portal.v1.EmailUserSignInRequest\032\"." +
+      "palm.portal.v1.UserSignInResponse\"\000\022X\n\rU" +
+      "nlockByEmail\022-.palm.portal.v1.EmailUserU" +
+      "nlockByEmailRequest\032\026.google.protobuf.Em" +
+      "pty\"\000\022X\n\rUnlockByToken\022-.palm.portal.v1." +
+      "EmailUserUnlockByTokenRequest\032\026.google.p" +
+      "rotobuf.Empty\"\000\022Z\n\016ConfirmByEmail\022..palm" +
+      ".portal.v1.EmailUserConfirmByEmailReques" +
+      "t\032\026.google.protobuf.Empty\"\000\022Z\n\016ConfirmBy" +
+      "Token\022..palm.portal.v1.EmailUserConfirmB" +
+      "yTokenRequest\032\026.google.protobuf.Empty\"\000\022" +
+      "Z\n\016ForgotPassword\022..palm.portal.v1.Email" +
+      "UserForgotPasswordRequest\032\026.google.proto" +
+      "buf.Empty\"\000\022X\n\rResetPassword\022-.palm.port" +
+      "al.v1.EmailUserResetPasswordRequest\032\026.go" +
+      "ogle.protobuf.Empty\"\000\022L\n\007SetName\022\'.palm." +
+      "portal.v1.EmailUserSetNameRequest\032\026.goog" +
+      "le.protobuf.Empty\"\000\022P\n\tSetAvatar\022).palm." +
+      "portal.v1.EmailUserSetAvatarRequest\032\026.go" +
+      "ogle.protobuf.Empty\"\000\022Z\n\016ChangePassword\022" +
+      "..palm.portal.v1.EmailUserChangePassword" +
+      "Request\032\026.google.protobuf.Empty\"\0002\233\010\n\004Us" +
+      "er\022B\n\005Index\022\024.palm.portal.v1.Page\032!.palm" +
+      ".portal.v1.UserIndexResponse\"\000\022>\n\007Destro" +
+      "y\022\031.palm.portal.v1.IdRequest\032\026.google.pr" +
+      "otobuf.Empty\"\000\022;\n\004Lock\022\031.palm.portal.v1." +
+      "IdRequest\032\026.google.protobuf.Empty\"\000\022=\n\006U" +
+      "nlock\022\031.palm.portal.v1.IdRequest\032\026.googl" +
+      "e.protobuf.Empty\"\000\022V\n\017IndexAttachment\022\024." +
+      "palm.portal.v1.Page\032+.palm.portal.v1.Use" +
+      "rIndexAttachmentResponse\"\000\022u\n\020CreateAtta" +
+      "chment\022+.palm.portal.v1.UserCreateAttach" +
+      "mentRequest\0322.palm.portal.v1.UserCreateA" +
+      "ttachmentUploadResponse\"\000\022i\n\016ShowAttachm" +
+      "ent\022).palm.portal.v1.UserShowAttachmentR" +
+      "equest\032*.palm.portal.v1.UserShowAttachme" +
+      "ntResponse\"\000\022L\n\025SetAttachmentUploaded\022\031." +
+      "palm.portal.v1.IdRequest\032\026.google.protob" +
+      "uf.Empty\"\000\022]\n\022SetAttachmentTitle\022-.palm." +
+      "portal.v1.UserSetAttachmentTitleRequest\032" +
+      "\026.google.protobuf.Empty\"\000\022H\n\021DestroyAtta" +
+      "chment\022\031.palm.portal.v1.IdRequest\032\026.goog" +
+      "le.protobuf.Empty\"\000\022H\n\010IndexLog\022\024.palm.p" +
+      "ortal.v1.Page\032$.palm.portal.v1.UserIndex" +
+      "LogResponse\"\000\022G\n\007SetLang\022\".palm.portal.v" +
+      "1.UserSetLangRequest\032\026.google.protobuf.E" +
+      "mpty\"\000\022O\n\013SetTimezone\022&.palm.portal.v1.U" +
+      "serSetTimezoneRequest\032\026.google.protobuf." +
+      "Empty\"\000B_\n,com.github.saturn_xiv.palm.pl" +
+      "ugins.portal.v1B\013PortalProtoP\001Z\005./;v2\252\002\030" +
+      "Palm.Plugins.Portal.Grpcb\006proto3"
     };
     descriptor = com.google.protobuf.Descriptors.FileDescriptor
       .internalBuildGeneratedFileFrom(descriptorData,
@@ -294,11 +463,11 @@ public final class PortalProto {
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_palm_portal_v1_Pagination_descriptor,
         new java.lang.String[] { "Current", "HasPrevious", "HasNext", "Pages", "Total", });
-    internal_static_palm_portal_v1_Attachment_descriptor =
+    internal_static_palm_portal_v1_File_descriptor =
       getDescriptor().getMessageTypes().get(3);
-    internal_static_palm_portal_v1_Attachment_fieldAccessorTable = new
+    internal_static_palm_portal_v1_File_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
-        internal_static_palm_portal_v1_Attachment_descriptor,
+        internal_static_palm_portal_v1_File_descriptor,
         new java.lang.String[] { "Bucket", "Object", });
     internal_static_palm_portal_v1_RichText_descriptor =
       getDescriptor().getMessageTypes().get(4);
@@ -354,8 +523,104 @@ public final class PortalProto {
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_palm_portal_v1_CurrenciesResponse_Item_descriptor,
         new java.lang.String[] { "Code", "Name", "Country", "Number", "Units", "IsFund", });
-    internal_static_palm_portal_v1_UserIndexResponse_descriptor =
+    internal_static_palm_portal_v1_EmailUserSignInRequest_descriptor =
       getDescriptor().getMessageTypes().get(11);
+    internal_static_palm_portal_v1_EmailUserSignInRequest_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+        internal_static_palm_portal_v1_EmailUserSignInRequest_descriptor,
+        new java.lang.String[] { "Email", "Password", });
+    internal_static_palm_portal_v1_EmailUserSignUpRequest_descriptor =
+      getDescriptor().getMessageTypes().get(12);
+    internal_static_palm_portal_v1_EmailUserSignUpRequest_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+        internal_static_palm_portal_v1_EmailUserSignUpRequest_descriptor,
+        new java.lang.String[] { "Name", "Email", "Password", "Lang", "Timezone", "Home", });
+    internal_static_palm_portal_v1_EmailUserUnlockByEmailRequest_descriptor =
+      getDescriptor().getMessageTypes().get(13);
+    internal_static_palm_portal_v1_EmailUserUnlockByEmailRequest_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+        internal_static_palm_portal_v1_EmailUserUnlockByEmailRequest_descriptor,
+        new java.lang.String[] { "Email", "Home", });
+    internal_static_palm_portal_v1_EmailUserUnlockByTokenRequest_descriptor =
+      getDescriptor().getMessageTypes().get(14);
+    internal_static_palm_portal_v1_EmailUserUnlockByTokenRequest_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+        internal_static_palm_portal_v1_EmailUserUnlockByTokenRequest_descriptor,
+        new java.lang.String[] { "Token", });
+    internal_static_palm_portal_v1_EmailUserConfirmByEmailRequest_descriptor =
+      getDescriptor().getMessageTypes().get(15);
+    internal_static_palm_portal_v1_EmailUserConfirmByEmailRequest_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+        internal_static_palm_portal_v1_EmailUserConfirmByEmailRequest_descriptor,
+        new java.lang.String[] { "Email", "Home", });
+    internal_static_palm_portal_v1_EmailUserConfirmByTokenRequest_descriptor =
+      getDescriptor().getMessageTypes().get(16);
+    internal_static_palm_portal_v1_EmailUserConfirmByTokenRequest_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+        internal_static_palm_portal_v1_EmailUserConfirmByTokenRequest_descriptor,
+        new java.lang.String[] { "Token", });
+    internal_static_palm_portal_v1_EmailUserForgotPasswordRequest_descriptor =
+      getDescriptor().getMessageTypes().get(17);
+    internal_static_palm_portal_v1_EmailUserForgotPasswordRequest_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+        internal_static_palm_portal_v1_EmailUserForgotPasswordRequest_descriptor,
+        new java.lang.String[] { "Email", "Home", });
+    internal_static_palm_portal_v1_EmailUserResetPasswordRequest_descriptor =
+      getDescriptor().getMessageTypes().get(18);
+    internal_static_palm_portal_v1_EmailUserResetPasswordRequest_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+        internal_static_palm_portal_v1_EmailUserResetPasswordRequest_descriptor,
+        new java.lang.String[] { "Token", "Password", });
+    internal_static_palm_portal_v1_EmailUserSetNameRequest_descriptor =
+      getDescriptor().getMessageTypes().get(19);
+    internal_static_palm_portal_v1_EmailUserSetNameRequest_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+        internal_static_palm_portal_v1_EmailUserSetNameRequest_descriptor,
+        new java.lang.String[] { "Name", });
+    internal_static_palm_portal_v1_EmailUserSetAvatarRequest_descriptor =
+      getDescriptor().getMessageTypes().get(20);
+    internal_static_palm_portal_v1_EmailUserSetAvatarRequest_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+        internal_static_palm_portal_v1_EmailUserSetAvatarRequest_descriptor,
+        new java.lang.String[] { "Url", "File", "By", });
+    internal_static_palm_portal_v1_EmailUserChangePasswordRequest_descriptor =
+      getDescriptor().getMessageTypes().get(21);
+    internal_static_palm_portal_v1_EmailUserChangePasswordRequest_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+        internal_static_palm_portal_v1_EmailUserChangePasswordRequest_descriptor,
+        new java.lang.String[] { "CurrentPassword", "NewPassword", });
+    internal_static_palm_portal_v1_EmailUserIndexResponse_descriptor =
+      getDescriptor().getMessageTypes().get(22);
+    internal_static_palm_portal_v1_EmailUserIndexResponse_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+        internal_static_palm_portal_v1_EmailUserIndexResponse_descriptor,
+        new java.lang.String[] { "Items", "Pagination", });
+    internal_static_palm_portal_v1_EmailUserIndexResponse_Item_descriptor =
+      internal_static_palm_portal_v1_EmailUserIndexResponse_descriptor.getNestedTypes().get(0);
+    internal_static_palm_portal_v1_EmailUserIndexResponse_Item_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+        internal_static_palm_portal_v1_EmailUserIndexResponse_Item_descriptor,
+        new java.lang.String[] { "Id", "Email", "Name", "Avatar", "ConfirmedAt", "DeletedAt", "UpdatedAt", "User", });
+    internal_static_palm_portal_v1_EmailUserSetPasswordRequest_descriptor =
+      getDescriptor().getMessageTypes().get(23);
+    internal_static_palm_portal_v1_EmailUserSetPasswordRequest_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+        internal_static_palm_portal_v1_EmailUserSetPasswordRequest_descriptor,
+        new java.lang.String[] { "Id", "Password", });
+    internal_static_palm_portal_v1_UserSetLangRequest_descriptor =
+      getDescriptor().getMessageTypes().get(24);
+    internal_static_palm_portal_v1_UserSetLangRequest_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+        internal_static_palm_portal_v1_UserSetLangRequest_descriptor,
+        new java.lang.String[] { "Lang", });
+    internal_static_palm_portal_v1_UserSetTimezoneRequest_descriptor =
+      getDescriptor().getMessageTypes().get(25);
+    internal_static_palm_portal_v1_UserSetTimezoneRequest_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+        internal_static_palm_portal_v1_UserSetTimezoneRequest_descriptor,
+        new java.lang.String[] { "Timezone", });
+    internal_static_palm_portal_v1_UserIndexResponse_descriptor =
+      getDescriptor().getMessageTypes().get(26);
     internal_static_palm_portal_v1_UserIndexResponse_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_palm_portal_v1_UserIndexResponse_descriptor,
@@ -367,37 +632,37 @@ public final class PortalProto {
         internal_static_palm_portal_v1_UserIndexResponse_Item_descriptor,
         new java.lang.String[] { "Id", "Sn", "Lang", "Timezone", "SignedInTotal", "CurrentSignedInAt", "CurrentSignedInIp", "LastSignedInAt", "LastSignedInIp", "LockedAt", "DeletedAt", "UpdatedAt", });
     internal_static_palm_portal_v1_UserSetAttachmentTitleRequest_descriptor =
-      getDescriptor().getMessageTypes().get(12);
+      getDescriptor().getMessageTypes().get(27);
     internal_static_palm_portal_v1_UserSetAttachmentTitleRequest_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_palm_portal_v1_UserSetAttachmentTitleRequest_descriptor,
         new java.lang.String[] { "Id", "Title", });
     internal_static_palm_portal_v1_UserShowAttachmentRequest_descriptor =
-      getDescriptor().getMessageTypes().get(13);
+      getDescriptor().getMessageTypes().get(28);
     internal_static_palm_portal_v1_UserShowAttachmentRequest_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_palm_portal_v1_UserShowAttachmentRequest_descriptor,
         new java.lang.String[] { "Id", "Download", "Ttl", });
     internal_static_palm_portal_v1_UserShowAttachmentResponse_descriptor =
-      getDescriptor().getMessageTypes().get(14);
+      getDescriptor().getMessageTypes().get(29);
     internal_static_palm_portal_v1_UserShowAttachmentResponse_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_palm_portal_v1_UserShowAttachmentResponse_descriptor,
         new java.lang.String[] { "Url", });
     internal_static_palm_portal_v1_UserCreateAttachmentRequest_descriptor =
-      getDescriptor().getMessageTypes().get(15);
+      getDescriptor().getMessageTypes().get(30);
     internal_static_palm_portal_v1_UserCreateAttachmentRequest_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_palm_portal_v1_UserCreateAttachmentRequest_descriptor,
         new java.lang.String[] { "Title", "ContentType", "Size", "ExpireAfterDays", "Public", "Ttl", });
     internal_static_palm_portal_v1_UserCreateAttachmentUploadResponse_descriptor =
-      getDescriptor().getMessageTypes().get(16);
+      getDescriptor().getMessageTypes().get(31);
     internal_static_palm_portal_v1_UserCreateAttachmentUploadResponse_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_palm_portal_v1_UserCreateAttachmentUploadResponse_descriptor,
         new java.lang.String[] { "Url", "Item", });
     internal_static_palm_portal_v1_UserIndexAttachmentResponse_descriptor =
-      getDescriptor().getMessageTypes().get(17);
+      getDescriptor().getMessageTypes().get(32);
     internal_static_palm_portal_v1_UserIndexAttachmentResponse_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_palm_portal_v1_UserIndexAttachmentResponse_descriptor,
@@ -408,18 +673,30 @@ public final class PortalProto {
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_palm_portal_v1_UserIndexAttachmentResponse_Item_descriptor,
         new java.lang.String[] { "Id", "Bucket", "Object", "Title", "ContentType", "Size", "UploadedAt", "ExpireAfterDays", "Public", "UpdatedAt", });
-    internal_static_palm_portal_v1_Log_descriptor =
-      getDescriptor().getMessageTypes().get(18);
-    internal_static_palm_portal_v1_Log_fieldAccessorTable = new
+    internal_static_palm_portal_v1_UserIndexLogResponse_descriptor =
+      getDescriptor().getMessageTypes().get(33);
+    internal_static_palm_portal_v1_UserIndexLogResponse_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
-        internal_static_palm_portal_v1_Log_descriptor,
-        new java.lang.String[] { });
+        internal_static_palm_portal_v1_UserIndexLogResponse_descriptor,
+        new java.lang.String[] { "Items", "Pagination", });
+    internal_static_palm_portal_v1_UserIndexLogResponse_Item_descriptor =
+      internal_static_palm_portal_v1_UserIndexLogResponse_descriptor.getNestedTypes().get(0);
+    internal_static_palm_portal_v1_UserIndexLogResponse_Item_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+        internal_static_palm_portal_v1_UserIndexLogResponse_Item_descriptor,
+        new java.lang.String[] { "Id", "Plugin", "Ip", "Level", "Message", "CreatedAt", });
     internal_static_palm_portal_v1_Session_descriptor =
-      getDescriptor().getMessageTypes().get(19);
+      getDescriptor().getMessageTypes().get(34);
     internal_static_palm_portal_v1_Session_fieldAccessorTable = new
       com.google.protobuf.GeneratedMessage.FieldAccessorTable(
         internal_static_palm_portal_v1_Session_descriptor,
         new java.lang.String[] { "Type", "Sn", "Name", "User", "ClientIp", });
+    internal_static_palm_portal_v1_UserSignInResponse_descriptor =
+      getDescriptor().getMessageTypes().get(35);
+    internal_static_palm_portal_v1_UserSignInResponse_fieldAccessorTable = new
+      com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+        internal_static_palm_portal_v1_UserSignInResponse_descriptor,
+        new java.lang.String[] { "Token", });
     descriptor.resolveAllFeaturesImmutable();
     com.google.protobuf.EmptyProto.getDescriptor();
     com.google.protobuf.TimestampProto.getDescriptor();

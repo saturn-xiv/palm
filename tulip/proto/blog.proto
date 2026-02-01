@@ -12,22 +12,23 @@ import "portal.proto";
 
 enum ReaderComments {
   Allow = 0;
-  Show = 1;
-  Hide = 2;
+  Show  = 1;
+  Hide  = 2;
 }
 
 message Bootstrap5Theme {}
+
 message BulmaTheme {}
 
 message Settings {
-  string title = 1;
-  string description = 2;
-  string language = 3;
-  palm.portal.v1.Attachment favicon = 4;
+  string              title       = 1;
+  string              description = 2;
+  string              language    = 3;
+  palm.portal.v1.File favicon     = 4;
 
   oneof theme {
     Bootstrap5Theme bootstrap5 = 91;
-    BulmaTheme bulma = 92;
+    BulmaTheme      bulma      = 92;
   }
 }
 // ----------------------------------------------------------------------------
@@ -42,18 +43,18 @@ message IndexPostResponse {
       ReaderComments reader_comments = 1;
     }
 
-    uint64 id = 1;
-    string title = 2;
-    palm.portal.v1.RichText body = 3;
-    repeated string labels = 11;
-    google.protobuf.Timestamp published_at = 12;
-    string permalink = 13;
-    optional palm.portal.v1.Location location = 14;
-    Options options = 19;
+    uint64                           id           = 1;
+    string                           title        = 2;
+    palm.portal.v1.RichText          body         = 3;
+    repeated string                  labels       = 11;
+    google.protobuf.Timestamp        published_at = 12;
+    string                           permalink    = 13;
+    optional palm.portal.v1.Location location     = 14;
+    Options                          options      = 19;
   }
 
   palm.portal.v1.Pagination pagination = 1;
-  repeated Item items = 2;
+  repeated Item             items      = 2;
 }
 
 // ----------------------------------------------------------------------------
@@ -67,13 +68,13 @@ message IndexPageResponse {
       ReaderComments reader_comments = 1;
     }
 
-    uint64 id = 1;
-    string title = 2;
-    palm.portal.v1.RichText body = 3;
-    string permalink = 11;
-    Options options = 19;
+    uint64                  id        = 1;
+    string                  title     = 2;
+    palm.portal.v1.RichText body      = 3;
+    string                  permalink = 11;
+    Options                 options   = 19;
   }
 
   palm.portal.v1.Pagination pagination = 1;
-  repeated Item items = 2;
+  repeated Item             items      = 2;
 }

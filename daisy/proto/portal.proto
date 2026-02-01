@@ -28,7 +28,7 @@ message Pagination {
   int64 total        = 5;
 }
 
-message Attachment {
+message File  {
   string bucket = 1;
   string object = 2;
 }
@@ -37,9 +37,9 @@ message RichText {
   enum Editor {
     CK_EDITOR = 0;
   }
-  Editor              editor      = 1;
-  string              body        = 2;
-  repeated Attachment attachments = 3;
+  Editor        editor      = 1;
+  string        body        = 2;
+  repeated File attachments = 3;
 }
 
 message Location {
@@ -103,6 +103,104 @@ message CurrenciesResponse {
 }
 
 // ----------------------------------------------------------------------------
+service EmailUser{
+  rpc Index(Page) returns (EmailUserIndexResponse) {}
+  rpc Destroy(IdRequest) returns (google.protobuf.Empty){}
+  rpc Confirm(IdRequest) returns (google.protobuf.Empty){}
+  rpc SetPassword(EmailUserSetPasswordRequest) returns (google.protobuf.Empty){}
+
+  rpc SignUp(EmailUserSignUpRequest) returns (google.protobuf.Empty){}
+  rpc SignIn(EmailUserSignInRequest) returns (UserSignInResponse){}
+  rpc UnlockByEmail(EmailUserUnlockByEmailRequest) returns (google.protobuf.Empty){}
+  rpc UnlockByToken(EmailUserUnlockByTokenRequest) returns (google.protobuf.Empty){}
+  rpc ConfirmByEmail(EmailUserConfirmByEmailRequest) returns (google.protobuf.Empty){}
+  rpc ConfirmByToken(EmailUserConfirmByTokenRequest) returns (google.protobuf.Empty){}
+  rpc ForgotPassword(EmailUserForgotPasswordRequest) returns (google.protobuf.Empty){}
+  rpc ResetPassword(EmailUserResetPasswordRequest) returns (google.protobuf.Empty){}
+
+  rpc SetName(EmailUserSetNameRequest) returns (google.protobuf.Empty){}
+  rpc SetAvatar(EmailUserSetAvatarRequest) returns (google.protobuf.Empty){}
+  rpc ChangePassword(EmailUserChangePasswordRequest) returns (google.protobuf.Empty){}
+}
+
+message EmailUserSignInRequest {
+  string email    = 1;
+  string password = 2;
+}
+
+message EmailUserSignUpRequest {
+  string name     = 1;
+  string email    = 2;
+  string password = 3;
+  string lang     = 8;
+  string timezone = 9;
+  string home     = 99;
+}
+
+message EmailUserUnlockByEmailRequest {
+  string email = 1;
+  string home  = 99;
+}
+
+message EmailUserUnlockByTokenRequest {
+  string token = 1;
+}
+
+message EmailUserConfirmByEmailRequest {
+  string email = 1;
+  string home  = 99;
+}
+
+message EmailUserConfirmByTokenRequest {
+  string token = 1;
+}
+
+message EmailUserForgotPasswordRequest {
+  string email = 1;
+  string home  = 99;
+}
+
+message EmailUserResetPasswordRequest {
+  string token    = 1;
+  string password = 2;
+}
+
+message EmailUserSetNameRequest {
+  string name = 1;
+}
+
+message EmailUserSetAvatarRequest {
+  oneof by  {
+    string url  = 1;
+    File   file = 2;
+  }
+}
+
+message EmailUserChangePasswordRequest {
+  string current_password = 1;
+  string new_password     = 2;
+}
+
+message EmailUserIndexResponse{
+  message Item {
+    int64                              id           = 1;
+    string                             email        = 2;
+    string                             name         = 3;
+    optional string                    avatar       = 16;
+    optional google.protobuf.Timestamp confirmed_at = 17;
+    optional google.protobuf.Timestamp deleted_at   = 18;
+    google.protobuf.Timestamp          updated_at   = 19;
+    UserIndexResponse.Item             user         = 99;
+  }
+  repeated Item items      = 1;
+  Pagination    pagination = 9;
+}
+
+message EmailUserSetPasswordRequest{
+  int64  id       = 1;
+  string password = 2;
+}
+// ----------------------------------------------------------------------------
 
 service User {
   rpc Index(Page) returns (UserIndexResponse){}
@@ -116,6 +214,18 @@ service User {
   rpc SetAttachmentUploaded(IdRequest) returns (google.protobuf.Empty){}
   rpc SetAttachmentTitle(UserSetAttachmentTitleRequest) returns (google.protobuf.Empty){}
   rpc DestroyAttachment(IdRequest) returns (google.protobuf.Empty){}
+
+  rpc IndexLog(Page) returns (UserIndexLogResponse) {}
+  rpc SetLang(UserSetLangRequest) returns (google.protobuf.Empty){}
+  rpc SetTimezone(UserSetTimezoneRequest) returns (google.protobuf.Empty){}
+}
+
+message UserSetLangRequest {
+  string lang = 1;
+}
+
+message UserSetTimezoneRequest {
+  string timezone = 1;
 }
 
 message UserIndexResponse {
@@ -183,13 +293,23 @@ message UserIndexAttachmentResponse{
   Pagination    pagination = 2;
 }
 
-message Log {
-  enum Level {
-    DEBUG   = 0;
-    INFO    = 1;
-    WARNING = 2;
-    ERROR   = 3;
+message UserIndexLogResponse {
+  message Item{
+    enum Level {
+      DEBUG   = 0;
+      INFO    = 1;
+      WARNING = 2;
+      ERROR   = 3;
+    }
+    int64                     id         = 1;
+    string                    plugin     = 2;
+    string                    ip         = 3;
+    Level                     level      = 4;
+    string                    message    = 5;
+    google.protobuf.Timestamp created_at = 9;
   }
+  repeated Item items      = 1;
+  Pagination    pagination = 9;
 }
 
 message Session {
@@ -207,4 +327,7 @@ message Session {
   string                 client_ip = 9;
 }
 
+message UserSignInResponse {
+  string token = 1;
+}
 // ----------------------------------------------------------------------------

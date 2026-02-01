@@ -13,7 +13,7 @@ type Log struct {
 	UserID    uint      `gorm:"not null"`
 	Plugin    string    `gorm:"index;not null;size:15"`
 	Ip        string    `gorm:"index;not null;size:45"`
-	Level     string    `gorm:"index;not null;size:7"`
+	Level     int32     `gorm:"index;not null"`
 	Message   string    `gorm:"not null;type:text"`
 	CreatedAt time.Time `gorm:"not null"`
 
@@ -24,12 +24,12 @@ func (Log) TableName() string {
 	return "logs"
 }
 
-func CreateLog(db *gorm.DB, user uint, plugin string, ip string, level v2.Log_Level, message string) error {
+func CreateLog(db *gorm.DB, user uint, plugin string, ip string, level v2.UserIndexLogResponse_Item_Level, message string) error {
 	return db.Create(&Log{
 		UserID:  user,
 		Plugin:  plugin,
 		Ip:      ip,
-		Level:   level.String(),
+		Level:   int32(level),
 		Message: message,
 	}).Error
 }

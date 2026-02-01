@@ -20,7 +20,6 @@
 #include "google/protobuf/io/coded_stream.h"
 #include "google/protobuf/arena.h"
 #include "google/protobuf/arenastring.h"
-#include "google/protobuf/generated_message_bases.h"
 #include "google/protobuf/generated_message_tctable_decl.h"
 #include "google/protobuf/generated_message_util.h"
 #include "google/protobuf/metadata_lite.h"
@@ -62,16 +61,12 @@ namespace portal {
 namespace v1 {
 enum Location_Map : int;
 extern const uint32_t Location_Map_internal_data_[];
-enum Log_Level : int;
-extern const uint32_t Log_Level_internal_data_[];
 enum RichText_Editor : int;
 extern const uint32_t RichText_Editor_internal_data_[];
 enum Session_ProviderType : int;
 extern const uint32_t Session_ProviderType_internal_data_[];
-class Attachment;
-struct AttachmentDefaultTypeInternal;
-extern AttachmentDefaultTypeInternal _Attachment_default_instance_;
-extern const ::google::protobuf::internal::ClassDataFull Attachment_class_data_;
+enum UserIndexLogResponse_Item_Level : int;
+extern const uint32_t UserIndexLogResponse_Item_Level_internal_data_[];
 class CurrenciesResponse;
 struct CurrenciesResponseDefaultTypeInternal;
 extern CurrenciesResponseDefaultTypeInternal _CurrenciesResponse_default_instance_;
@@ -80,6 +75,66 @@ class CurrenciesResponse_Item;
 struct CurrenciesResponse_ItemDefaultTypeInternal;
 extern CurrenciesResponse_ItemDefaultTypeInternal _CurrenciesResponse_Item_default_instance_;
 extern const ::google::protobuf::internal::ClassDataFull CurrenciesResponse_Item_class_data_;
+class EmailUserChangePasswordRequest;
+struct EmailUserChangePasswordRequestDefaultTypeInternal;
+extern EmailUserChangePasswordRequestDefaultTypeInternal _EmailUserChangePasswordRequest_default_instance_;
+extern const ::google::protobuf::internal::ClassDataFull EmailUserChangePasswordRequest_class_data_;
+class EmailUserConfirmByEmailRequest;
+struct EmailUserConfirmByEmailRequestDefaultTypeInternal;
+extern EmailUserConfirmByEmailRequestDefaultTypeInternal _EmailUserConfirmByEmailRequest_default_instance_;
+extern const ::google::protobuf::internal::ClassDataFull EmailUserConfirmByEmailRequest_class_data_;
+class EmailUserConfirmByTokenRequest;
+struct EmailUserConfirmByTokenRequestDefaultTypeInternal;
+extern EmailUserConfirmByTokenRequestDefaultTypeInternal _EmailUserConfirmByTokenRequest_default_instance_;
+extern const ::google::protobuf::internal::ClassDataFull EmailUserConfirmByTokenRequest_class_data_;
+class EmailUserForgotPasswordRequest;
+struct EmailUserForgotPasswordRequestDefaultTypeInternal;
+extern EmailUserForgotPasswordRequestDefaultTypeInternal _EmailUserForgotPasswordRequest_default_instance_;
+extern const ::google::protobuf::internal::ClassDataFull EmailUserForgotPasswordRequest_class_data_;
+class EmailUserIndexResponse;
+struct EmailUserIndexResponseDefaultTypeInternal;
+extern EmailUserIndexResponseDefaultTypeInternal _EmailUserIndexResponse_default_instance_;
+extern const ::google::protobuf::internal::ClassDataFull EmailUserIndexResponse_class_data_;
+class EmailUserIndexResponse_Item;
+struct EmailUserIndexResponse_ItemDefaultTypeInternal;
+extern EmailUserIndexResponse_ItemDefaultTypeInternal _EmailUserIndexResponse_Item_default_instance_;
+extern const ::google::protobuf::internal::ClassDataFull EmailUserIndexResponse_Item_class_data_;
+class EmailUserResetPasswordRequest;
+struct EmailUserResetPasswordRequestDefaultTypeInternal;
+extern EmailUserResetPasswordRequestDefaultTypeInternal _EmailUserResetPasswordRequest_default_instance_;
+extern const ::google::protobuf::internal::ClassDataFull EmailUserResetPasswordRequest_class_data_;
+class EmailUserSetAvatarRequest;
+struct EmailUserSetAvatarRequestDefaultTypeInternal;
+extern EmailUserSetAvatarRequestDefaultTypeInternal _EmailUserSetAvatarRequest_default_instance_;
+extern const ::google::protobuf::internal::ClassDataFull EmailUserSetAvatarRequest_class_data_;
+class EmailUserSetNameRequest;
+struct EmailUserSetNameRequestDefaultTypeInternal;
+extern EmailUserSetNameRequestDefaultTypeInternal _EmailUserSetNameRequest_default_instance_;
+extern const ::google::protobuf::internal::ClassDataFull EmailUserSetNameRequest_class_data_;
+class EmailUserSetPasswordRequest;
+struct EmailUserSetPasswordRequestDefaultTypeInternal;
+extern EmailUserSetPasswordRequestDefaultTypeInternal _EmailUserSetPasswordRequest_default_instance_;
+extern const ::google::protobuf::internal::ClassDataFull EmailUserSetPasswordRequest_class_data_;
+class EmailUserSignInRequest;
+struct EmailUserSignInRequestDefaultTypeInternal;
+extern EmailUserSignInRequestDefaultTypeInternal _EmailUserSignInRequest_default_instance_;
+extern const ::google::protobuf::internal::ClassDataFull EmailUserSignInRequest_class_data_;
+class EmailUserSignUpRequest;
+struct EmailUserSignUpRequestDefaultTypeInternal;
+extern EmailUserSignUpRequestDefaultTypeInternal _EmailUserSignUpRequest_default_instance_;
+extern const ::google::protobuf::internal::ClassDataFull EmailUserSignUpRequest_class_data_;
+class EmailUserUnlockByEmailRequest;
+struct EmailUserUnlockByEmailRequestDefaultTypeInternal;
+extern EmailUserUnlockByEmailRequestDefaultTypeInternal _EmailUserUnlockByEmailRequest_default_instance_;
+extern const ::google::protobuf::internal::ClassDataFull EmailUserUnlockByEmailRequest_class_data_;
+class EmailUserUnlockByTokenRequest;
+struct EmailUserUnlockByTokenRequestDefaultTypeInternal;
+extern EmailUserUnlockByTokenRequestDefaultTypeInternal _EmailUserUnlockByTokenRequest_default_instance_;
+extern const ::google::protobuf::internal::ClassDataFull EmailUserUnlockByTokenRequest_class_data_;
+class File;
+struct FileDefaultTypeInternal;
+extern FileDefaultTypeInternal _File_default_instance_;
+extern const ::google::protobuf::internal::ClassDataFull File_class_data_;
 class IdRequest;
 struct IdRequestDefaultTypeInternal;
 extern IdRequestDefaultTypeInternal _IdRequest_default_instance_;
@@ -108,10 +163,6 @@ class Location;
 struct LocationDefaultTypeInternal;
 extern LocationDefaultTypeInternal _Location_default_instance_;
 extern const ::google::protobuf::internal::ClassDataFull Location_class_data_;
-class Log;
-struct LogDefaultTypeInternal;
-extern LogDefaultTypeInternal _Log_default_instance_;
-extern const ::google::protobuf::internal::ClassDataFull Log_class_data_;
 class Page;
 struct PageDefaultTypeInternal;
 extern PageDefaultTypeInternal _Page_default_instance_;
@@ -144,6 +195,14 @@ class UserIndexAttachmentResponse_Item;
 struct UserIndexAttachmentResponse_ItemDefaultTypeInternal;
 extern UserIndexAttachmentResponse_ItemDefaultTypeInternal _UserIndexAttachmentResponse_Item_default_instance_;
 extern const ::google::protobuf::internal::ClassDataFull UserIndexAttachmentResponse_Item_class_data_;
+class UserIndexLogResponse;
+struct UserIndexLogResponseDefaultTypeInternal;
+extern UserIndexLogResponseDefaultTypeInternal _UserIndexLogResponse_default_instance_;
+extern const ::google::protobuf::internal::ClassDataFull UserIndexLogResponse_class_data_;
+class UserIndexLogResponse_Item;
+struct UserIndexLogResponse_ItemDefaultTypeInternal;
+extern UserIndexLogResponse_ItemDefaultTypeInternal _UserIndexLogResponse_Item_default_instance_;
+extern const ::google::protobuf::internal::ClassDataFull UserIndexLogResponse_Item_class_data_;
 class UserIndexResponse;
 struct UserIndexResponseDefaultTypeInternal;
 extern UserIndexResponseDefaultTypeInternal _UserIndexResponse_default_instance_;
@@ -156,6 +215,14 @@ class UserSetAttachmentTitleRequest;
 struct UserSetAttachmentTitleRequestDefaultTypeInternal;
 extern UserSetAttachmentTitleRequestDefaultTypeInternal _UserSetAttachmentTitleRequest_default_instance_;
 extern const ::google::protobuf::internal::ClassDataFull UserSetAttachmentTitleRequest_class_data_;
+class UserSetLangRequest;
+struct UserSetLangRequestDefaultTypeInternal;
+extern UserSetLangRequestDefaultTypeInternal _UserSetLangRequest_default_instance_;
+extern const ::google::protobuf::internal::ClassDataFull UserSetLangRequest_class_data_;
+class UserSetTimezoneRequest;
+struct UserSetTimezoneRequestDefaultTypeInternal;
+extern UserSetTimezoneRequestDefaultTypeInternal _UserSetTimezoneRequest_default_instance_;
+extern const ::google::protobuf::internal::ClassDataFull UserSetTimezoneRequest_class_data_;
 class UserShowAttachmentRequest;
 struct UserShowAttachmentRequestDefaultTypeInternal;
 extern UserShowAttachmentRequestDefaultTypeInternal _UserShowAttachmentRequest_default_instance_;
@@ -164,6 +231,10 @@ class UserShowAttachmentResponse;
 struct UserShowAttachmentResponseDefaultTypeInternal;
 extern UserShowAttachmentResponseDefaultTypeInternal _UserShowAttachmentResponse_default_instance_;
 extern const ::google::protobuf::internal::ClassDataFull UserShowAttachmentResponse_class_data_;
+class UserSignInResponse;
+struct UserSignInResponseDefaultTypeInternal;
+extern UserSignInResponseDefaultTypeInternal _UserSignInResponse_default_instance_;
+extern const ::google::protobuf::internal::ClassDataFull UserSignInResponse_class_data_;
 }  // namespace v1
 }  // namespace portal
 }  // namespace palm
@@ -173,14 +244,14 @@ template <>
 internal::EnumTraitsT<::palm::portal::v1::Location_Map_internal_data_>
     internal::EnumTraitsImpl::value<::palm::portal::v1::Location_Map>;
 template <>
-internal::EnumTraitsT<::palm::portal::v1::Log_Level_internal_data_>
-    internal::EnumTraitsImpl::value<::palm::portal::v1::Log_Level>;
-template <>
 internal::EnumTraitsT<::palm::portal::v1::RichText_Editor_internal_data_>
     internal::EnumTraitsImpl::value<::palm::portal::v1::RichText_Editor>;
 template <>
 internal::EnumTraitsT<::palm::portal::v1::Session_ProviderType_internal_data_>
     internal::EnumTraitsImpl::value<::palm::portal::v1::Session_ProviderType>;
+template <>
+internal::EnumTraitsT<::palm::portal::v1::UserIndexLogResponse_Item_Level_internal_data_>
+    internal::EnumTraitsImpl::value<::palm::portal::v1::UserIndexLogResponse_Item_Level>;
 }  // namespace protobuf
 }  // namespace google
 
@@ -257,42 +328,42 @@ inline bool Location_Map_Parse(
   return ::google::protobuf::internal::ParseNamedEnum<Location_Map>(Location_Map_descriptor(), name,
                                            value);
 }
-enum Log_Level : int {
-  Log_Level_DEBUG = 0,
-  Log_Level_INFO = 1,
-  Log_Level_WARNING = 2,
-  Log_Level_ERROR = 3,
-  Log_Level_Log_Level_INT_MIN_SENTINEL_DO_NOT_USE_ =
+enum UserIndexLogResponse_Item_Level : int {
+  UserIndexLogResponse_Item_Level_DEBUG = 0,
+  UserIndexLogResponse_Item_Level_INFO = 1,
+  UserIndexLogResponse_Item_Level_WARNING = 2,
+  UserIndexLogResponse_Item_Level_ERROR = 3,
+  UserIndexLogResponse_Item_Level_UserIndexLogResponse_Item_Level_INT_MIN_SENTINEL_DO_NOT_USE_ =
       ::std::numeric_limits<::int32_t>::min(),
-  Log_Level_Log_Level_INT_MAX_SENTINEL_DO_NOT_USE_ =
+  UserIndexLogResponse_Item_Level_UserIndexLogResponse_Item_Level_INT_MAX_SENTINEL_DO_NOT_USE_ =
       ::std::numeric_limits<::int32_t>::max(),
 };
 
-extern const uint32_t Log_Level_internal_data_[];
-inline constexpr Log_Level Log_Level_Level_MIN =
-    static_cast<Log_Level>(0);
-inline constexpr Log_Level Log_Level_Level_MAX =
-    static_cast<Log_Level>(3);
-inline bool Log_Level_IsValid(int value) {
+extern const uint32_t UserIndexLogResponse_Item_Level_internal_data_[];
+inline constexpr UserIndexLogResponse_Item_Level UserIndexLogResponse_Item_Level_Level_MIN =
+    static_cast<UserIndexLogResponse_Item_Level>(0);
+inline constexpr UserIndexLogResponse_Item_Level UserIndexLogResponse_Item_Level_Level_MAX =
+    static_cast<UserIndexLogResponse_Item_Level>(3);
+inline bool UserIndexLogResponse_Item_Level_IsValid(int value) {
   return 0 <= value && value <= 3;
 }
-inline constexpr int Log_Level_Level_ARRAYSIZE = 3 + 1;
-const ::google::protobuf::EnumDescriptor* PROTOBUF_NONNULL Log_Level_descriptor();
+inline constexpr int UserIndexLogResponse_Item_Level_Level_ARRAYSIZE = 3 + 1;
+const ::google::protobuf::EnumDescriptor* PROTOBUF_NONNULL UserIndexLogResponse_Item_Level_descriptor();
 template <typename T>
-const ::std::string& Log_Level_Name(T value) {
-  static_assert(::std::is_same<T, Log_Level>::value ||
+const ::std::string& UserIndexLogResponse_Item_Level_Name(T value) {
+  static_assert(::std::is_same<T, UserIndexLogResponse_Item_Level>::value ||
                     ::std::is_integral<T>::value,
                 "Incorrect type passed to Level_Name().");
-  return Log_Level_Name(static_cast<Log_Level>(value));
+  return UserIndexLogResponse_Item_Level_Name(static_cast<UserIndexLogResponse_Item_Level>(value));
 }
 template <>
-inline const ::std::string& Log_Level_Name(Log_Level value) {
-  return ::google::protobuf::internal::NameOfDenseEnum<Log_Level_descriptor, 0, 3>(
+inline const ::std::string& UserIndexLogResponse_Item_Level_Name(UserIndexLogResponse_Item_Level value) {
+  return ::google::protobuf::internal::NameOfDenseEnum<UserIndexLogResponse_Item_Level_descriptor, 0, 3>(
       static_cast<int>(value));
 }
-inline bool Log_Level_Parse(
-    ::absl::string_view name, Log_Level* PROTOBUF_NONNULL value) {
-  return ::google::protobuf::internal::ParseNamedEnum<Log_Level>(Log_Level_descriptor(), name,
+inline bool UserIndexLogResponse_Item_Level_Parse(
+    ::absl::string_view name, UserIndexLogResponse_Item_Level* PROTOBUF_NONNULL value) {
+  return ::google::protobuf::internal::ParseNamedEnum<UserIndexLogResponse_Item_Level>(UserIndexLogResponse_Item_Level_descriptor(), name,
                                            value);
 }
 enum Session_ProviderType : int {
@@ -338,6 +409,202 @@ inline bool Session_ProviderType_Parse(
 // ===================================================================
 
 
+// -------------------------------------------------------------------
+
+class UserSignInResponse final : public ::google::protobuf::Message
+/* @@protoc_insertion_point(class_definition:palm.portal.v1.UserSignInResponse) */ {
+ public:
+  inline UserSignInResponse() : UserSignInResponse(nullptr) {}
+  ~UserSignInResponse() PROTOBUF_FINAL;
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+  void operator delete(UserSignInResponse* PROTOBUF_NONNULL msg, std::destroying_delete_t) {
+    SharedDtor(*msg);
+    ::google::protobuf::internal::SizedDelete(msg, sizeof(UserSignInResponse));
+  }
+#endif
+
+  template <typename = void>
+  explicit PROTOBUF_CONSTEXPR UserSignInResponse(::google::protobuf::internal::ConstantInitialized);
+
+  inline UserSignInResponse(const UserSignInResponse& from) : UserSignInResponse(nullptr, from) {}
+  inline UserSignInResponse(UserSignInResponse&& from) noexcept
+      : UserSignInResponse(nullptr, ::std::move(from)) {}
+  inline UserSignInResponse& operator=(const UserSignInResponse& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline UserSignInResponse& operator=(UserSignInResponse&& from) noexcept {
+    if (this == &from) return *this;
+    if (::google::protobuf::internal::CanMoveWithInternalSwap(GetArena(), from.GetArena())) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* PROTOBUF_NONNULL mutable_unknown_fields()
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* PROTOBUF_NONNULL descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* PROTOBUF_NONNULL GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* PROTOBUF_NONNULL GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const UserSignInResponse& default_instance() {
+    return *reinterpret_cast<const UserSignInResponse*>(
+        &_UserSignInResponse_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages = 41;
+  friend void swap(UserSignInResponse& a, UserSignInResponse& b) { a.Swap(&b); }
+  inline void Swap(UserSignInResponse* PROTOBUF_NONNULL other) {
+    if (other == this) return;
+    if (::google::protobuf::internal::CanUseInternalSwap(GetArena(), other->GetArena())) {
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(UserSignInResponse* PROTOBUF_NONNULL other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  UserSignInResponse* PROTOBUF_NONNULL New(::google::protobuf::Arena* PROTOBUF_NULLABLE arena = nullptr) const {
+    return ::google::protobuf::Message::DefaultConstruct<UserSignInResponse>(arena);
+  }
+  using ::google::protobuf::Message::CopyFrom;
+  void CopyFrom(const UserSignInResponse& from);
+  using ::google::protobuf::Message::MergeFrom;
+  void MergeFrom(const UserSignInResponse& from) { UserSignInResponse::MergeImpl(*this, from); }
+
+  private:
+  static void MergeImpl(::google::protobuf::MessageLite& to_msg,
+                        const ::google::protobuf::MessageLite& from_msg);
+
+  public:
+  bool IsInitialized() const {
+    return true;
+  }
+  ABSL_ATTRIBUTE_REINITIALIZES void Clear() PROTOBUF_FINAL;
+  #if defined(PROTOBUF_CUSTOM_VTABLE)
+  private:
+  static ::size_t ByteSizeLong(const ::google::protobuf::MessageLite& msg);
+  static ::uint8_t* PROTOBUF_NONNULL _InternalSerialize(
+      const ::google::protobuf::MessageLite& msg, ::uint8_t* PROTOBUF_NONNULL target,
+      ::google::protobuf::io::EpsCopyOutputStream* PROTOBUF_NONNULL stream);
+
+  public:
+  ::size_t ByteSizeLong() const { return ByteSizeLong(*this); }
+  ::uint8_t* PROTOBUF_NONNULL _InternalSerialize(
+      ::uint8_t* PROTOBUF_NONNULL target,
+      ::google::protobuf::io::EpsCopyOutputStream* PROTOBUF_NONNULL stream) const {
+    return _InternalSerialize(*this, target, stream);
+  }
+  #else   // PROTOBUF_CUSTOM_VTABLE
+  ::size_t ByteSizeLong() const final;
+  ::uint8_t* PROTOBUF_NONNULL _InternalSerialize(
+      ::uint8_t* PROTOBUF_NONNULL target,
+      ::google::protobuf::io::EpsCopyOutputStream* PROTOBUF_NONNULL stream) const final;
+  #endif  // PROTOBUF_CUSTOM_VTABLE
+  int GetCachedSize() const { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::google::protobuf::Arena* PROTOBUF_NULLABLE arena);
+  static void SharedDtor(MessageLite& self);
+  void InternalSwap(UserSignInResponse* PROTOBUF_NONNULL other);
+ private:
+  template <typename T>
+  friend ::absl::string_view(::google::protobuf::internal::GetAnyMessageName)();
+  static ::absl::string_view FullMessageName() { return "palm.portal.v1.UserSignInResponse"; }
+
+ protected:
+  explicit UserSignInResponse(::google::protobuf::Arena* PROTOBUF_NULLABLE arena);
+  UserSignInResponse(::google::protobuf::Arena* PROTOBUF_NULLABLE arena, const UserSignInResponse& from);
+  UserSignInResponse(
+      ::google::protobuf::Arena* PROTOBUF_NULLABLE arena, UserSignInResponse&& from) noexcept
+      : UserSignInResponse(arena) {
+    *this = ::std::move(from);
+  }
+  const ::google::protobuf::internal::ClassData* PROTOBUF_NONNULL GetClassData() const PROTOBUF_FINAL;
+  static void* PROTOBUF_NONNULL PlacementNew_(
+      const void* PROTOBUF_NONNULL, void* PROTOBUF_NONNULL mem,
+      ::google::protobuf::Arena* PROTOBUF_NULLABLE arena);
+  static constexpr auto InternalNewImpl_();
+
+ public:
+  static constexpr auto InternalGenerateClassData_();
+
+  ::google::protobuf::Metadata GetMetadata() const;
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+  enum : int {
+    kTokenFieldNumber = 1,
+  };
+  // string token = 1;
+  void clear_token() ;
+  const ::std::string& token() const;
+  template <typename Arg_ = const ::std::string&, typename... Args_>
+  void set_token(Arg_&& arg, Args_... args);
+  ::std::string* PROTOBUF_NONNULL mutable_token();
+  [[nodiscard]] ::std::string* PROTOBUF_NULLABLE release_token();
+  void set_allocated_token(::std::string* PROTOBUF_NULLABLE value);
+
+  private:
+  const ::std::string& _internal_token() const;
+  PROTOBUF_ALWAYS_INLINE void _internal_set_token(const ::std::string& value);
+  ::std::string* PROTOBUF_NONNULL _internal_mutable_token();
+
+  public:
+  // @@protoc_insertion_point(class_scope:palm.portal.v1.UserSignInResponse)
+ private:
+  class _Internal;
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<0, 1,
+                                   0, 47,
+                                   2>
+      _table_;
+
+  friend class ::google::protobuf::MessageLite;
+  friend class ::google::protobuf::Arena;
+  template <typename T>
+  friend class ::google::protobuf::Arena::InternalHelper;
+  using InternalArenaConstructable_ = void;
+  using DestructorSkippable_ = void;
+  struct Impl_ {
+    inline explicit constexpr Impl_(::google::protobuf::internal::ConstantInitialized) noexcept;
+    inline explicit Impl_(
+        ::google::protobuf::internal::InternalVisibility visibility,
+        ::google::protobuf::Arena* PROTOBUF_NULLABLE arena);
+    inline explicit Impl_(
+        ::google::protobuf::internal::InternalVisibility visibility,
+        ::google::protobuf::Arena* PROTOBUF_NULLABLE arena, const Impl_& from,
+        const UserSignInResponse& from_msg);
+    ::google::protobuf::internal::HasBits<1> _has_bits_;
+    ::google::protobuf::internal::CachedSize _cached_size_;
+    ::google::protobuf::internal::ArenaStringPtr token_;
+    PROTOBUF_TSAN_DECLARE_MEMBER
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_portal_2eproto;
+};
+
+extern const ::google::protobuf::internal::ClassDataFull UserSignInResponse_class_data_;
 // -------------------------------------------------------------------
 
 class UserShowAttachmentResponse final : public ::google::protobuf::Message
@@ -395,7 +662,7 @@ class UserShowAttachmentResponse final : public ::google::protobuf::Message
     return *reinterpret_cast<const UserShowAttachmentResponse*>(
         &_UserShowAttachmentResponse_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 17;
+  static constexpr int kIndexInFileMessages = 33;
   friend void swap(UserShowAttachmentResponse& a, UserShowAttachmentResponse& b) { a.Swap(&b); }
   inline void Swap(UserShowAttachmentResponse* PROTOBUF_NONNULL other) {
     if (other == this) return;
@@ -536,6 +803,398 @@ class UserShowAttachmentResponse final : public ::google::protobuf::Message
 extern const ::google::protobuf::internal::ClassDataFull UserShowAttachmentResponse_class_data_;
 // -------------------------------------------------------------------
 
+class UserSetTimezoneRequest final : public ::google::protobuf::Message
+/* @@protoc_insertion_point(class_definition:palm.portal.v1.UserSetTimezoneRequest) */ {
+ public:
+  inline UserSetTimezoneRequest() : UserSetTimezoneRequest(nullptr) {}
+  ~UserSetTimezoneRequest() PROTOBUF_FINAL;
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+  void operator delete(UserSetTimezoneRequest* PROTOBUF_NONNULL msg, std::destroying_delete_t) {
+    SharedDtor(*msg);
+    ::google::protobuf::internal::SizedDelete(msg, sizeof(UserSetTimezoneRequest));
+  }
+#endif
+
+  template <typename = void>
+  explicit PROTOBUF_CONSTEXPR UserSetTimezoneRequest(::google::protobuf::internal::ConstantInitialized);
+
+  inline UserSetTimezoneRequest(const UserSetTimezoneRequest& from) : UserSetTimezoneRequest(nullptr, from) {}
+  inline UserSetTimezoneRequest(UserSetTimezoneRequest&& from) noexcept
+      : UserSetTimezoneRequest(nullptr, ::std::move(from)) {}
+  inline UserSetTimezoneRequest& operator=(const UserSetTimezoneRequest& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline UserSetTimezoneRequest& operator=(UserSetTimezoneRequest&& from) noexcept {
+    if (this == &from) return *this;
+    if (::google::protobuf::internal::CanMoveWithInternalSwap(GetArena(), from.GetArena())) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* PROTOBUF_NONNULL mutable_unknown_fields()
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* PROTOBUF_NONNULL descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* PROTOBUF_NONNULL GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* PROTOBUF_NONNULL GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const UserSetTimezoneRequest& default_instance() {
+    return *reinterpret_cast<const UserSetTimezoneRequest*>(
+        &_UserSetTimezoneRequest_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages = 28;
+  friend void swap(UserSetTimezoneRequest& a, UserSetTimezoneRequest& b) { a.Swap(&b); }
+  inline void Swap(UserSetTimezoneRequest* PROTOBUF_NONNULL other) {
+    if (other == this) return;
+    if (::google::protobuf::internal::CanUseInternalSwap(GetArena(), other->GetArena())) {
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(UserSetTimezoneRequest* PROTOBUF_NONNULL other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  UserSetTimezoneRequest* PROTOBUF_NONNULL New(::google::protobuf::Arena* PROTOBUF_NULLABLE arena = nullptr) const {
+    return ::google::protobuf::Message::DefaultConstruct<UserSetTimezoneRequest>(arena);
+  }
+  using ::google::protobuf::Message::CopyFrom;
+  void CopyFrom(const UserSetTimezoneRequest& from);
+  using ::google::protobuf::Message::MergeFrom;
+  void MergeFrom(const UserSetTimezoneRequest& from) { UserSetTimezoneRequest::MergeImpl(*this, from); }
+
+  private:
+  static void MergeImpl(::google::protobuf::MessageLite& to_msg,
+                        const ::google::protobuf::MessageLite& from_msg);
+
+  public:
+  bool IsInitialized() const {
+    return true;
+  }
+  ABSL_ATTRIBUTE_REINITIALIZES void Clear() PROTOBUF_FINAL;
+  #if defined(PROTOBUF_CUSTOM_VTABLE)
+  private:
+  static ::size_t ByteSizeLong(const ::google::protobuf::MessageLite& msg);
+  static ::uint8_t* PROTOBUF_NONNULL _InternalSerialize(
+      const ::google::protobuf::MessageLite& msg, ::uint8_t* PROTOBUF_NONNULL target,
+      ::google::protobuf::io::EpsCopyOutputStream* PROTOBUF_NONNULL stream);
+
+  public:
+  ::size_t ByteSizeLong() const { return ByteSizeLong(*this); }
+  ::uint8_t* PROTOBUF_NONNULL _InternalSerialize(
+      ::uint8_t* PROTOBUF_NONNULL target,
+      ::google::protobuf::io::EpsCopyOutputStream* PROTOBUF_NONNULL stream) const {
+    return _InternalSerialize(*this, target, stream);
+  }
+  #else   // PROTOBUF_CUSTOM_VTABLE
+  ::size_t ByteSizeLong() const final;
+  ::uint8_t* PROTOBUF_NONNULL _InternalSerialize(
+      ::uint8_t* PROTOBUF_NONNULL target,
+      ::google::protobuf::io::EpsCopyOutputStream* PROTOBUF_NONNULL stream) const final;
+  #endif  // PROTOBUF_CUSTOM_VTABLE
+  int GetCachedSize() const { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::google::protobuf::Arena* PROTOBUF_NULLABLE arena);
+  static void SharedDtor(MessageLite& self);
+  void InternalSwap(UserSetTimezoneRequest* PROTOBUF_NONNULL other);
+ private:
+  template <typename T>
+  friend ::absl::string_view(::google::protobuf::internal::GetAnyMessageName)();
+  static ::absl::string_view FullMessageName() { return "palm.portal.v1.UserSetTimezoneRequest"; }
+
+ protected:
+  explicit UserSetTimezoneRequest(::google::protobuf::Arena* PROTOBUF_NULLABLE arena);
+  UserSetTimezoneRequest(::google::protobuf::Arena* PROTOBUF_NULLABLE arena, const UserSetTimezoneRequest& from);
+  UserSetTimezoneRequest(
+      ::google::protobuf::Arena* PROTOBUF_NULLABLE arena, UserSetTimezoneRequest&& from) noexcept
+      : UserSetTimezoneRequest(arena) {
+    *this = ::std::move(from);
+  }
+  const ::google::protobuf::internal::ClassData* PROTOBUF_NONNULL GetClassData() const PROTOBUF_FINAL;
+  static void* PROTOBUF_NONNULL PlacementNew_(
+      const void* PROTOBUF_NONNULL, void* PROTOBUF_NONNULL mem,
+      ::google::protobuf::Arena* PROTOBUF_NULLABLE arena);
+  static constexpr auto InternalNewImpl_();
+
+ public:
+  static constexpr auto InternalGenerateClassData_();
+
+  ::google::protobuf::Metadata GetMetadata() const;
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+  enum : int {
+    kTimezoneFieldNumber = 1,
+  };
+  // string timezone = 1;
+  void clear_timezone() ;
+  const ::std::string& timezone() const;
+  template <typename Arg_ = const ::std::string&, typename... Args_>
+  void set_timezone(Arg_&& arg, Args_... args);
+  ::std::string* PROTOBUF_NONNULL mutable_timezone();
+  [[nodiscard]] ::std::string* PROTOBUF_NULLABLE release_timezone();
+  void set_allocated_timezone(::std::string* PROTOBUF_NULLABLE value);
+
+  private:
+  const ::std::string& _internal_timezone() const;
+  PROTOBUF_ALWAYS_INLINE void _internal_set_timezone(const ::std::string& value);
+  ::std::string* PROTOBUF_NONNULL _internal_mutable_timezone();
+
+  public:
+  // @@protoc_insertion_point(class_scope:palm.portal.v1.UserSetTimezoneRequest)
+ private:
+  class _Internal;
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<0, 1,
+                                   0, 54,
+                                   2>
+      _table_;
+
+  friend class ::google::protobuf::MessageLite;
+  friend class ::google::protobuf::Arena;
+  template <typename T>
+  friend class ::google::protobuf::Arena::InternalHelper;
+  using InternalArenaConstructable_ = void;
+  using DestructorSkippable_ = void;
+  struct Impl_ {
+    inline explicit constexpr Impl_(::google::protobuf::internal::ConstantInitialized) noexcept;
+    inline explicit Impl_(
+        ::google::protobuf::internal::InternalVisibility visibility,
+        ::google::protobuf::Arena* PROTOBUF_NULLABLE arena);
+    inline explicit Impl_(
+        ::google::protobuf::internal::InternalVisibility visibility,
+        ::google::protobuf::Arena* PROTOBUF_NULLABLE arena, const Impl_& from,
+        const UserSetTimezoneRequest& from_msg);
+    ::google::protobuf::internal::HasBits<1> _has_bits_;
+    ::google::protobuf::internal::CachedSize _cached_size_;
+    ::google::protobuf::internal::ArenaStringPtr timezone_;
+    PROTOBUF_TSAN_DECLARE_MEMBER
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_portal_2eproto;
+};
+
+extern const ::google::protobuf::internal::ClassDataFull UserSetTimezoneRequest_class_data_;
+// -------------------------------------------------------------------
+
+class UserSetLangRequest final : public ::google::protobuf::Message
+/* @@protoc_insertion_point(class_definition:palm.portal.v1.UserSetLangRequest) */ {
+ public:
+  inline UserSetLangRequest() : UserSetLangRequest(nullptr) {}
+  ~UserSetLangRequest() PROTOBUF_FINAL;
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+  void operator delete(UserSetLangRequest* PROTOBUF_NONNULL msg, std::destroying_delete_t) {
+    SharedDtor(*msg);
+    ::google::protobuf::internal::SizedDelete(msg, sizeof(UserSetLangRequest));
+  }
+#endif
+
+  template <typename = void>
+  explicit PROTOBUF_CONSTEXPR UserSetLangRequest(::google::protobuf::internal::ConstantInitialized);
+
+  inline UserSetLangRequest(const UserSetLangRequest& from) : UserSetLangRequest(nullptr, from) {}
+  inline UserSetLangRequest(UserSetLangRequest&& from) noexcept
+      : UserSetLangRequest(nullptr, ::std::move(from)) {}
+  inline UserSetLangRequest& operator=(const UserSetLangRequest& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline UserSetLangRequest& operator=(UserSetLangRequest&& from) noexcept {
+    if (this == &from) return *this;
+    if (::google::protobuf::internal::CanMoveWithInternalSwap(GetArena(), from.GetArena())) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* PROTOBUF_NONNULL mutable_unknown_fields()
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* PROTOBUF_NONNULL descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* PROTOBUF_NONNULL GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* PROTOBUF_NONNULL GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const UserSetLangRequest& default_instance() {
+    return *reinterpret_cast<const UserSetLangRequest*>(
+        &_UserSetLangRequest_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages = 27;
+  friend void swap(UserSetLangRequest& a, UserSetLangRequest& b) { a.Swap(&b); }
+  inline void Swap(UserSetLangRequest* PROTOBUF_NONNULL other) {
+    if (other == this) return;
+    if (::google::protobuf::internal::CanUseInternalSwap(GetArena(), other->GetArena())) {
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(UserSetLangRequest* PROTOBUF_NONNULL other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  UserSetLangRequest* PROTOBUF_NONNULL New(::google::protobuf::Arena* PROTOBUF_NULLABLE arena = nullptr) const {
+    return ::google::protobuf::Message::DefaultConstruct<UserSetLangRequest>(arena);
+  }
+  using ::google::protobuf::Message::CopyFrom;
+  void CopyFrom(const UserSetLangRequest& from);
+  using ::google::protobuf::Message::MergeFrom;
+  void MergeFrom(const UserSetLangRequest& from) { UserSetLangRequest::MergeImpl(*this, from); }
+
+  private:
+  static void MergeImpl(::google::protobuf::MessageLite& to_msg,
+                        const ::google::protobuf::MessageLite& from_msg);
+
+  public:
+  bool IsInitialized() const {
+    return true;
+  }
+  ABSL_ATTRIBUTE_REINITIALIZES void Clear() PROTOBUF_FINAL;
+  #if defined(PROTOBUF_CUSTOM_VTABLE)
+  private:
+  static ::size_t ByteSizeLong(const ::google::protobuf::MessageLite& msg);
+  static ::uint8_t* PROTOBUF_NONNULL _InternalSerialize(
+      const ::google::protobuf::MessageLite& msg, ::uint8_t* PROTOBUF_NONNULL target,
+      ::google::protobuf::io::EpsCopyOutputStream* PROTOBUF_NONNULL stream);
+
+  public:
+  ::size_t ByteSizeLong() const { return ByteSizeLong(*this); }
+  ::uint8_t* PROTOBUF_NONNULL _InternalSerialize(
+      ::uint8_t* PROTOBUF_NONNULL target,
+      ::google::protobuf::io::EpsCopyOutputStream* PROTOBUF_NONNULL stream) const {
+    return _InternalSerialize(*this, target, stream);
+  }
+  #else   // PROTOBUF_CUSTOM_VTABLE
+  ::size_t ByteSizeLong() const final;
+  ::uint8_t* PROTOBUF_NONNULL _InternalSerialize(
+      ::uint8_t* PROTOBUF_NONNULL target,
+      ::google::protobuf::io::EpsCopyOutputStream* PROTOBUF_NONNULL stream) const final;
+  #endif  // PROTOBUF_CUSTOM_VTABLE
+  int GetCachedSize() const { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::google::protobuf::Arena* PROTOBUF_NULLABLE arena);
+  static void SharedDtor(MessageLite& self);
+  void InternalSwap(UserSetLangRequest* PROTOBUF_NONNULL other);
+ private:
+  template <typename T>
+  friend ::absl::string_view(::google::protobuf::internal::GetAnyMessageName)();
+  static ::absl::string_view FullMessageName() { return "palm.portal.v1.UserSetLangRequest"; }
+
+ protected:
+  explicit UserSetLangRequest(::google::protobuf::Arena* PROTOBUF_NULLABLE arena);
+  UserSetLangRequest(::google::protobuf::Arena* PROTOBUF_NULLABLE arena, const UserSetLangRequest& from);
+  UserSetLangRequest(
+      ::google::protobuf::Arena* PROTOBUF_NULLABLE arena, UserSetLangRequest&& from) noexcept
+      : UserSetLangRequest(arena) {
+    *this = ::std::move(from);
+  }
+  const ::google::protobuf::internal::ClassData* PROTOBUF_NONNULL GetClassData() const PROTOBUF_FINAL;
+  static void* PROTOBUF_NONNULL PlacementNew_(
+      const void* PROTOBUF_NONNULL, void* PROTOBUF_NONNULL mem,
+      ::google::protobuf::Arena* PROTOBUF_NULLABLE arena);
+  static constexpr auto InternalNewImpl_();
+
+ public:
+  static constexpr auto InternalGenerateClassData_();
+
+  ::google::protobuf::Metadata GetMetadata() const;
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+  enum : int {
+    kLangFieldNumber = 1,
+  };
+  // string lang = 1;
+  void clear_lang() ;
+  const ::std::string& lang() const;
+  template <typename Arg_ = const ::std::string&, typename... Args_>
+  void set_lang(Arg_&& arg, Args_... args);
+  ::std::string* PROTOBUF_NONNULL mutable_lang();
+  [[nodiscard]] ::std::string* PROTOBUF_NULLABLE release_lang();
+  void set_allocated_lang(::std::string* PROTOBUF_NULLABLE value);
+
+  private:
+  const ::std::string& _internal_lang() const;
+  PROTOBUF_ALWAYS_INLINE void _internal_set_lang(const ::std::string& value);
+  ::std::string* PROTOBUF_NONNULL _internal_mutable_lang();
+
+  public:
+  // @@protoc_insertion_point(class_scope:palm.portal.v1.UserSetLangRequest)
+ private:
+  class _Internal;
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<0, 1,
+                                   0, 46,
+                                   2>
+      _table_;
+
+  friend class ::google::protobuf::MessageLite;
+  friend class ::google::protobuf::Arena;
+  template <typename T>
+  friend class ::google::protobuf::Arena::InternalHelper;
+  using InternalArenaConstructable_ = void;
+  using DestructorSkippable_ = void;
+  struct Impl_ {
+    inline explicit constexpr Impl_(::google::protobuf::internal::ConstantInitialized) noexcept;
+    inline explicit Impl_(
+        ::google::protobuf::internal::InternalVisibility visibility,
+        ::google::protobuf::Arena* PROTOBUF_NULLABLE arena);
+    inline explicit Impl_(
+        ::google::protobuf::internal::InternalVisibility visibility,
+        ::google::protobuf::Arena* PROTOBUF_NULLABLE arena, const Impl_& from,
+        const UserSetLangRequest& from_msg);
+    ::google::protobuf::internal::HasBits<1> _has_bits_;
+    ::google::protobuf::internal::CachedSize _cached_size_;
+    ::google::protobuf::internal::ArenaStringPtr lang_;
+    PROTOBUF_TSAN_DECLARE_MEMBER
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_portal_2eproto;
+};
+
+extern const ::google::protobuf::internal::ClassDataFull UserSetLangRequest_class_data_;
+// -------------------------------------------------------------------
+
 class UserSetAttachmentTitleRequest final : public ::google::protobuf::Message
 /* @@protoc_insertion_point(class_definition:palm.portal.v1.UserSetAttachmentTitleRequest) */ {
  public:
@@ -591,7 +1250,7 @@ class UserSetAttachmentTitleRequest final : public ::google::protobuf::Message
     return *reinterpret_cast<const UserSetAttachmentTitleRequest*>(
         &_UserSetAttachmentTitleRequest_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 15;
+  static constexpr int kIndexInFileMessages = 31;
   friend void swap(UserSetAttachmentTitleRequest& a, UserSetAttachmentTitleRequest& b) { a.Swap(&b); }
   inline void Swap(UserSetAttachmentTitleRequest* PROTOBUF_NONNULL other) {
     if (other == this) return;
@@ -945,174 +1604,6 @@ class Page final : public ::google::protobuf::Message
 };
 
 extern const ::google::protobuf::internal::ClassDataFull Page_class_data_;
-// -------------------------------------------------------------------
-
-class Log final : public ::google::protobuf::internal::ZeroFieldsBase
-/* @@protoc_insertion_point(class_definition:palm.portal.v1.Log) */ {
- public:
-  inline Log() : Log(nullptr) {}
-
-#if defined(PROTOBUF_CUSTOM_VTABLE)
-  void operator delete(Log* PROTOBUF_NONNULL msg, std::destroying_delete_t) {
-    SharedDtor(*msg);
-    ::google::protobuf::internal::SizedDelete(msg, sizeof(Log));
-  }
-#endif
-
-  template <typename = void>
-  explicit PROTOBUF_CONSTEXPR Log(::google::protobuf::internal::ConstantInitialized);
-
-  inline Log(const Log& from) : Log(nullptr, from) {}
-  inline Log(Log&& from) noexcept
-      : Log(nullptr, ::std::move(from)) {}
-  inline Log& operator=(const Log& from) {
-    CopyFrom(from);
-    return *this;
-  }
-  inline Log& operator=(Log&& from) noexcept {
-    if (this == &from) return *this;
-    if (::google::protobuf::internal::CanMoveWithInternalSwap(GetArena(), from.GetArena())) {
-      InternalSwap(&from);
-    } else {
-      CopyFrom(from);
-    }
-    return *this;
-  }
-
-  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
-      ABSL_ATTRIBUTE_LIFETIME_BOUND {
-    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
-  }
-  inline ::google::protobuf::UnknownFieldSet* PROTOBUF_NONNULL mutable_unknown_fields()
-      ABSL_ATTRIBUTE_LIFETIME_BOUND {
-    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
-  }
-
-  static const ::google::protobuf::Descriptor* PROTOBUF_NONNULL descriptor() {
-    return GetDescriptor();
-  }
-  static const ::google::protobuf::Descriptor* PROTOBUF_NONNULL GetDescriptor() {
-    return default_instance().GetMetadata().descriptor;
-  }
-  static const ::google::protobuf::Reflection* PROTOBUF_NONNULL GetReflection() {
-    return default_instance().GetMetadata().reflection;
-  }
-  static const Log& default_instance() {
-    return *reinterpret_cast<const Log*>(
-        &_Log_default_instance_);
-  }
-  static constexpr int kIndexInFileMessages = 22;
-  friend void swap(Log& a, Log& b) { a.Swap(&b); }
-  inline void Swap(Log* PROTOBUF_NONNULL other) {
-    if (other == this) return;
-    if (::google::protobuf::internal::CanUseInternalSwap(GetArena(), other->GetArena())) {
-      InternalSwap(other);
-    } else {
-      ::google::protobuf::internal::GenericSwap(this, other);
-    }
-  }
-  void UnsafeArenaSwap(Log* PROTOBUF_NONNULL other) {
-    if (other == this) return;
-    ABSL_DCHECK(GetArena() == other->GetArena());
-    InternalSwap(other);
-  }
-
-  // implements Message ----------------------------------------------
-
-  Log* PROTOBUF_NONNULL New(::google::protobuf::Arena* PROTOBUF_NULLABLE arena = nullptr) const {
-    return ::google::protobuf::internal::ZeroFieldsBase::DefaultConstruct<Log>(arena);
-  }
-  using ::google::protobuf::internal::ZeroFieldsBase::CopyFrom;
-  inline void CopyFrom(const Log& from) {
-    ::google::protobuf::internal::ZeroFieldsBase::CopyImpl(*this, from);
-  }
-  using ::google::protobuf::internal::ZeroFieldsBase::MergeFrom;
-  void MergeFrom(const Log& from) {
-    ::google::protobuf::internal::ZeroFieldsBase::MergeImpl(*this, from);
-  }
-
-  public:
-  bool IsInitialized() const {
-    return true;
-  }
- private:
-  template <typename T>
-  friend ::absl::string_view(::google::protobuf::internal::GetAnyMessageName)();
-  static ::absl::string_view FullMessageName() { return "palm.portal.v1.Log"; }
-
- protected:
-  explicit Log(::google::protobuf::Arena* PROTOBUF_NULLABLE arena);
-  Log(::google::protobuf::Arena* PROTOBUF_NULLABLE arena, const Log& from);
-  Log(
-      ::google::protobuf::Arena* PROTOBUF_NULLABLE arena, Log&& from) noexcept
-      : Log(arena) {
-    *this = ::std::move(from);
-  }
-  const ::google::protobuf::internal::ClassData* PROTOBUF_NONNULL GetClassData() const PROTOBUF_FINAL;
-  static void* PROTOBUF_NONNULL PlacementNew_(
-      const void* PROTOBUF_NONNULL, void* PROTOBUF_NONNULL mem,
-      ::google::protobuf::Arena* PROTOBUF_NULLABLE arena);
-  static constexpr auto InternalNewImpl_();
-
- public:
-  static constexpr auto InternalGenerateClassData_();
-
-  ::google::protobuf::Metadata GetMetadata() const;
-  // nested types ----------------------------------------------------
-  using Level = Log_Level;
-  static constexpr Level DEBUG = Log_Level_DEBUG;
-  static constexpr Level INFO = Log_Level_INFO;
-  static constexpr Level WARNING = Log_Level_WARNING;
-  static constexpr Level ERROR = Log_Level_ERROR;
-  static inline bool Level_IsValid(int value) {
-    return Log_Level_IsValid(value);
-  }
-  static constexpr Level Level_MIN = Log_Level_Level_MIN;
-  static constexpr Level Level_MAX = Log_Level_Level_MAX;
-  static constexpr int Level_ARRAYSIZE = Log_Level_Level_ARRAYSIZE;
-  static inline const ::google::protobuf::EnumDescriptor* PROTOBUF_NONNULL Level_descriptor() {
-    return Log_Level_descriptor();
-  }
-  template <typename T>
-  static inline const ::std::string& Level_Name(T value) {
-    return Log_Level_Name(value);
-  }
-  static inline bool Level_Parse(
-      ::absl::string_view name, Level* PROTOBUF_NONNULL value) {
-    return Log_Level_Parse(name, value);
-  }
-
-  // accessors -------------------------------------------------------
-  // @@protoc_insertion_point(class_scope:palm.portal.v1.Log)
- private:
-  class _Internal;
-  friend class ::google::protobuf::internal::TcParser;
-  static const ::google::protobuf::internal::TcParseTable<0, 0,
-                                   0, 0,
-                                   2>
-      _table_;
-
-  friend class ::google::protobuf::MessageLite;
-  friend class ::google::protobuf::Arena;
-  template <typename T>
-  friend class ::google::protobuf::Arena::InternalHelper;
-  using InternalArenaConstructable_ = void;
-  using DestructorSkippable_ = void;
-  struct Impl_ {
-    inline explicit constexpr Impl_(::google::protobuf::internal::ConstantInitialized) noexcept;
-    inline explicit Impl_(
-        ::google::protobuf::internal::InternalVisibility visibility,
-        ::google::protobuf::Arena* PROTOBUF_NULLABLE arena);
-    inline explicit Impl_(
-        ::google::protobuf::internal::InternalVisibility visibility,
-        ::google::protobuf::Arena* PROTOBUF_NULLABLE arena, const Impl_& from,
-        const Log& from_msg);
-    PROTOBUF_TSAN_DECLARE_MEMBER
-  };
-  friend struct ::TableStruct_portal_2eproto;
-};
-
-extern const ::google::protobuf::internal::ClassDataFull Log_class_data_;
 // -------------------------------------------------------------------
 
 class Location final : public ::google::protobuf::Message
@@ -1959,6 +2450,2574 @@ class IdRequest final : public ::google::protobuf::Message
 extern const ::google::protobuf::internal::ClassDataFull IdRequest_class_data_;
 // -------------------------------------------------------------------
 
+class File final : public ::google::protobuf::Message
+/* @@protoc_insertion_point(class_definition:palm.portal.v1.File) */ {
+ public:
+  inline File() : File(nullptr) {}
+  ~File() PROTOBUF_FINAL;
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+  void operator delete(File* PROTOBUF_NONNULL msg, std::destroying_delete_t) {
+    SharedDtor(*msg);
+    ::google::protobuf::internal::SizedDelete(msg, sizeof(File));
+  }
+#endif
+
+  template <typename = void>
+  explicit PROTOBUF_CONSTEXPR File(::google::protobuf::internal::ConstantInitialized);
+
+  inline File(const File& from) : File(nullptr, from) {}
+  inline File(File&& from) noexcept
+      : File(nullptr, ::std::move(from)) {}
+  inline File& operator=(const File& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline File& operator=(File&& from) noexcept {
+    if (this == &from) return *this;
+    if (::google::protobuf::internal::CanMoveWithInternalSwap(GetArena(), from.GetArena())) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* PROTOBUF_NONNULL mutable_unknown_fields()
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* PROTOBUF_NONNULL descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* PROTOBUF_NONNULL GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* PROTOBUF_NONNULL GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const File& default_instance() {
+    return *reinterpret_cast<const File*>(
+        &_File_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages = 3;
+  friend void swap(File& a, File& b) { a.Swap(&b); }
+  inline void Swap(File* PROTOBUF_NONNULL other) {
+    if (other == this) return;
+    if (::google::protobuf::internal::CanUseInternalSwap(GetArena(), other->GetArena())) {
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(File* PROTOBUF_NONNULL other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  File* PROTOBUF_NONNULL New(::google::protobuf::Arena* PROTOBUF_NULLABLE arena = nullptr) const {
+    return ::google::protobuf::Message::DefaultConstruct<File>(arena);
+  }
+  using ::google::protobuf::Message::CopyFrom;
+  void CopyFrom(const File& from);
+  using ::google::protobuf::Message::MergeFrom;
+  void MergeFrom(const File& from) { File::MergeImpl(*this, from); }
+
+  private:
+  static void MergeImpl(::google::protobuf::MessageLite& to_msg,
+                        const ::google::protobuf::MessageLite& from_msg);
+
+  public:
+  bool IsInitialized() const {
+    return true;
+  }
+  ABSL_ATTRIBUTE_REINITIALIZES void Clear() PROTOBUF_FINAL;
+  #if defined(PROTOBUF_CUSTOM_VTABLE)
+  private:
+  static ::size_t ByteSizeLong(const ::google::protobuf::MessageLite& msg);
+  static ::uint8_t* PROTOBUF_NONNULL _InternalSerialize(
+      const ::google::protobuf::MessageLite& msg, ::uint8_t* PROTOBUF_NONNULL target,
+      ::google::protobuf::io::EpsCopyOutputStream* PROTOBUF_NONNULL stream);
+
+  public:
+  ::size_t ByteSizeLong() const { return ByteSizeLong(*this); }
+  ::uint8_t* PROTOBUF_NONNULL _InternalSerialize(
+      ::uint8_t* PROTOBUF_NONNULL target,
+      ::google::protobuf::io::EpsCopyOutputStream* PROTOBUF_NONNULL stream) const {
+    return _InternalSerialize(*this, target, stream);
+  }
+  #else   // PROTOBUF_CUSTOM_VTABLE
+  ::size_t ByteSizeLong() const final;
+  ::uint8_t* PROTOBUF_NONNULL _InternalSerialize(
+      ::uint8_t* PROTOBUF_NONNULL target,
+      ::google::protobuf::io::EpsCopyOutputStream* PROTOBUF_NONNULL stream) const final;
+  #endif  // PROTOBUF_CUSTOM_VTABLE
+  int GetCachedSize() const { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::google::protobuf::Arena* PROTOBUF_NULLABLE arena);
+  static void SharedDtor(MessageLite& self);
+  void InternalSwap(File* PROTOBUF_NONNULL other);
+ private:
+  template <typename T>
+  friend ::absl::string_view(::google::protobuf::internal::GetAnyMessageName)();
+  static ::absl::string_view FullMessageName() { return "palm.portal.v1.File"; }
+
+ protected:
+  explicit File(::google::protobuf::Arena* PROTOBUF_NULLABLE arena);
+  File(::google::protobuf::Arena* PROTOBUF_NULLABLE arena, const File& from);
+  File(
+      ::google::protobuf::Arena* PROTOBUF_NULLABLE arena, File&& from) noexcept
+      : File(arena) {
+    *this = ::std::move(from);
+  }
+  const ::google::protobuf::internal::ClassData* PROTOBUF_NONNULL GetClassData() const PROTOBUF_FINAL;
+  static void* PROTOBUF_NONNULL PlacementNew_(
+      const void* PROTOBUF_NONNULL, void* PROTOBUF_NONNULL mem,
+      ::google::protobuf::Arena* PROTOBUF_NULLABLE arena);
+  static constexpr auto InternalNewImpl_();
+
+ public:
+  static constexpr auto InternalGenerateClassData_();
+
+  ::google::protobuf::Metadata GetMetadata() const;
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+  enum : int {
+    kBucketFieldNumber = 1,
+    kObjectFieldNumber = 2,
+  };
+  // string bucket = 1;
+  void clear_bucket() ;
+  const ::std::string& bucket() const;
+  template <typename Arg_ = const ::std::string&, typename... Args_>
+  void set_bucket(Arg_&& arg, Args_... args);
+  ::std::string* PROTOBUF_NONNULL mutable_bucket();
+  [[nodiscard]] ::std::string* PROTOBUF_NULLABLE release_bucket();
+  void set_allocated_bucket(::std::string* PROTOBUF_NULLABLE value);
+
+  private:
+  const ::std::string& _internal_bucket() const;
+  PROTOBUF_ALWAYS_INLINE void _internal_set_bucket(const ::std::string& value);
+  ::std::string* PROTOBUF_NONNULL _internal_mutable_bucket();
+
+  public:
+  // string object = 2;
+  void clear_object() ;
+  const ::std::string& object() const;
+  template <typename Arg_ = const ::std::string&, typename... Args_>
+  void set_object(Arg_&& arg, Args_... args);
+  ::std::string* PROTOBUF_NONNULL mutable_object();
+  [[nodiscard]] ::std::string* PROTOBUF_NULLABLE release_object();
+  void set_allocated_object(::std::string* PROTOBUF_NULLABLE value);
+
+  private:
+  const ::std::string& _internal_object() const;
+  PROTOBUF_ALWAYS_INLINE void _internal_set_object(const ::std::string& value);
+  ::std::string* PROTOBUF_NONNULL _internal_mutable_object();
+
+  public:
+  // @@protoc_insertion_point(class_scope:palm.portal.v1.File)
+ private:
+  class _Internal;
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<1, 2,
+                                   0, 40,
+                                   2>
+      _table_;
+
+  friend class ::google::protobuf::MessageLite;
+  friend class ::google::protobuf::Arena;
+  template <typename T>
+  friend class ::google::protobuf::Arena::InternalHelper;
+  using InternalArenaConstructable_ = void;
+  using DestructorSkippable_ = void;
+  struct Impl_ {
+    inline explicit constexpr Impl_(::google::protobuf::internal::ConstantInitialized) noexcept;
+    inline explicit Impl_(
+        ::google::protobuf::internal::InternalVisibility visibility,
+        ::google::protobuf::Arena* PROTOBUF_NULLABLE arena);
+    inline explicit Impl_(
+        ::google::protobuf::internal::InternalVisibility visibility,
+        ::google::protobuf::Arena* PROTOBUF_NULLABLE arena, const Impl_& from,
+        const File& from_msg);
+    ::google::protobuf::internal::HasBits<1> _has_bits_;
+    ::google::protobuf::internal::CachedSize _cached_size_;
+    ::google::protobuf::internal::ArenaStringPtr bucket_;
+    ::google::protobuf::internal::ArenaStringPtr object_;
+    PROTOBUF_TSAN_DECLARE_MEMBER
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_portal_2eproto;
+};
+
+extern const ::google::protobuf::internal::ClassDataFull File_class_data_;
+// -------------------------------------------------------------------
+
+class EmailUserUnlockByTokenRequest final : public ::google::protobuf::Message
+/* @@protoc_insertion_point(class_definition:palm.portal.v1.EmailUserUnlockByTokenRequest) */ {
+ public:
+  inline EmailUserUnlockByTokenRequest() : EmailUserUnlockByTokenRequest(nullptr) {}
+  ~EmailUserUnlockByTokenRequest() PROTOBUF_FINAL;
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+  void operator delete(EmailUserUnlockByTokenRequest* PROTOBUF_NONNULL msg, std::destroying_delete_t) {
+    SharedDtor(*msg);
+    ::google::protobuf::internal::SizedDelete(msg, sizeof(EmailUserUnlockByTokenRequest));
+  }
+#endif
+
+  template <typename = void>
+  explicit PROTOBUF_CONSTEXPR EmailUserUnlockByTokenRequest(::google::protobuf::internal::ConstantInitialized);
+
+  inline EmailUserUnlockByTokenRequest(const EmailUserUnlockByTokenRequest& from) : EmailUserUnlockByTokenRequest(nullptr, from) {}
+  inline EmailUserUnlockByTokenRequest(EmailUserUnlockByTokenRequest&& from) noexcept
+      : EmailUserUnlockByTokenRequest(nullptr, ::std::move(from)) {}
+  inline EmailUserUnlockByTokenRequest& operator=(const EmailUserUnlockByTokenRequest& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline EmailUserUnlockByTokenRequest& operator=(EmailUserUnlockByTokenRequest&& from) noexcept {
+    if (this == &from) return *this;
+    if (::google::protobuf::internal::CanMoveWithInternalSwap(GetArena(), from.GetArena())) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* PROTOBUF_NONNULL mutable_unknown_fields()
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* PROTOBUF_NONNULL descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* PROTOBUF_NONNULL GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* PROTOBUF_NONNULL GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const EmailUserUnlockByTokenRequest& default_instance() {
+    return *reinterpret_cast<const EmailUserUnlockByTokenRequest*>(
+        &_EmailUserUnlockByTokenRequest_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages = 16;
+  friend void swap(EmailUserUnlockByTokenRequest& a, EmailUserUnlockByTokenRequest& b) { a.Swap(&b); }
+  inline void Swap(EmailUserUnlockByTokenRequest* PROTOBUF_NONNULL other) {
+    if (other == this) return;
+    if (::google::protobuf::internal::CanUseInternalSwap(GetArena(), other->GetArena())) {
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(EmailUserUnlockByTokenRequest* PROTOBUF_NONNULL other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  EmailUserUnlockByTokenRequest* PROTOBUF_NONNULL New(::google::protobuf::Arena* PROTOBUF_NULLABLE arena = nullptr) const {
+    return ::google::protobuf::Message::DefaultConstruct<EmailUserUnlockByTokenRequest>(arena);
+  }
+  using ::google::protobuf::Message::CopyFrom;
+  void CopyFrom(const EmailUserUnlockByTokenRequest& from);
+  using ::google::protobuf::Message::MergeFrom;
+  void MergeFrom(const EmailUserUnlockByTokenRequest& from) { EmailUserUnlockByTokenRequest::MergeImpl(*this, from); }
+
+  private:
+  static void MergeImpl(::google::protobuf::MessageLite& to_msg,
+                        const ::google::protobuf::MessageLite& from_msg);
+
+  public:
+  bool IsInitialized() const {
+    return true;
+  }
+  ABSL_ATTRIBUTE_REINITIALIZES void Clear() PROTOBUF_FINAL;
+  #if defined(PROTOBUF_CUSTOM_VTABLE)
+  private:
+  static ::size_t ByteSizeLong(const ::google::protobuf::MessageLite& msg);
+  static ::uint8_t* PROTOBUF_NONNULL _InternalSerialize(
+      const ::google::protobuf::MessageLite& msg, ::uint8_t* PROTOBUF_NONNULL target,
+      ::google::protobuf::io::EpsCopyOutputStream* PROTOBUF_NONNULL stream);
+
+  public:
+  ::size_t ByteSizeLong() const { return ByteSizeLong(*this); }
+  ::uint8_t* PROTOBUF_NONNULL _InternalSerialize(
+      ::uint8_t* PROTOBUF_NONNULL target,
+      ::google::protobuf::io::EpsCopyOutputStream* PROTOBUF_NONNULL stream) const {
+    return _InternalSerialize(*this, target, stream);
+  }
+  #else   // PROTOBUF_CUSTOM_VTABLE
+  ::size_t ByteSizeLong() const final;
+  ::uint8_t* PROTOBUF_NONNULL _InternalSerialize(
+      ::uint8_t* PROTOBUF_NONNULL target,
+      ::google::protobuf::io::EpsCopyOutputStream* PROTOBUF_NONNULL stream) const final;
+  #endif  // PROTOBUF_CUSTOM_VTABLE
+  int GetCachedSize() const { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::google::protobuf::Arena* PROTOBUF_NULLABLE arena);
+  static void SharedDtor(MessageLite& self);
+  void InternalSwap(EmailUserUnlockByTokenRequest* PROTOBUF_NONNULL other);
+ private:
+  template <typename T>
+  friend ::absl::string_view(::google::protobuf::internal::GetAnyMessageName)();
+  static ::absl::string_view FullMessageName() { return "palm.portal.v1.EmailUserUnlockByTokenRequest"; }
+
+ protected:
+  explicit EmailUserUnlockByTokenRequest(::google::protobuf::Arena* PROTOBUF_NULLABLE arena);
+  EmailUserUnlockByTokenRequest(::google::protobuf::Arena* PROTOBUF_NULLABLE arena, const EmailUserUnlockByTokenRequest& from);
+  EmailUserUnlockByTokenRequest(
+      ::google::protobuf::Arena* PROTOBUF_NULLABLE arena, EmailUserUnlockByTokenRequest&& from) noexcept
+      : EmailUserUnlockByTokenRequest(arena) {
+    *this = ::std::move(from);
+  }
+  const ::google::protobuf::internal::ClassData* PROTOBUF_NONNULL GetClassData() const PROTOBUF_FINAL;
+  static void* PROTOBUF_NONNULL PlacementNew_(
+      const void* PROTOBUF_NONNULL, void* PROTOBUF_NONNULL mem,
+      ::google::protobuf::Arena* PROTOBUF_NULLABLE arena);
+  static constexpr auto InternalNewImpl_();
+
+ public:
+  static constexpr auto InternalGenerateClassData_();
+
+  ::google::protobuf::Metadata GetMetadata() const;
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+  enum : int {
+    kTokenFieldNumber = 1,
+  };
+  // string token = 1;
+  void clear_token() ;
+  const ::std::string& token() const;
+  template <typename Arg_ = const ::std::string&, typename... Args_>
+  void set_token(Arg_&& arg, Args_... args);
+  ::std::string* PROTOBUF_NONNULL mutable_token();
+  [[nodiscard]] ::std::string* PROTOBUF_NULLABLE release_token();
+  void set_allocated_token(::std::string* PROTOBUF_NULLABLE value);
+
+  private:
+  const ::std::string& _internal_token() const;
+  PROTOBUF_ALWAYS_INLINE void _internal_set_token(const ::std::string& value);
+  ::std::string* PROTOBUF_NONNULL _internal_mutable_token();
+
+  public:
+  // @@protoc_insertion_point(class_scope:palm.portal.v1.EmailUserUnlockByTokenRequest)
+ private:
+  class _Internal;
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<0, 1,
+                                   0, 58,
+                                   2>
+      _table_;
+
+  friend class ::google::protobuf::MessageLite;
+  friend class ::google::protobuf::Arena;
+  template <typename T>
+  friend class ::google::protobuf::Arena::InternalHelper;
+  using InternalArenaConstructable_ = void;
+  using DestructorSkippable_ = void;
+  struct Impl_ {
+    inline explicit constexpr Impl_(::google::protobuf::internal::ConstantInitialized) noexcept;
+    inline explicit Impl_(
+        ::google::protobuf::internal::InternalVisibility visibility,
+        ::google::protobuf::Arena* PROTOBUF_NULLABLE arena);
+    inline explicit Impl_(
+        ::google::protobuf::internal::InternalVisibility visibility,
+        ::google::protobuf::Arena* PROTOBUF_NULLABLE arena, const Impl_& from,
+        const EmailUserUnlockByTokenRequest& from_msg);
+    ::google::protobuf::internal::HasBits<1> _has_bits_;
+    ::google::protobuf::internal::CachedSize _cached_size_;
+    ::google::protobuf::internal::ArenaStringPtr token_;
+    PROTOBUF_TSAN_DECLARE_MEMBER
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_portal_2eproto;
+};
+
+extern const ::google::protobuf::internal::ClassDataFull EmailUserUnlockByTokenRequest_class_data_;
+// -------------------------------------------------------------------
+
+class EmailUserUnlockByEmailRequest final : public ::google::protobuf::Message
+/* @@protoc_insertion_point(class_definition:palm.portal.v1.EmailUserUnlockByEmailRequest) */ {
+ public:
+  inline EmailUserUnlockByEmailRequest() : EmailUserUnlockByEmailRequest(nullptr) {}
+  ~EmailUserUnlockByEmailRequest() PROTOBUF_FINAL;
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+  void operator delete(EmailUserUnlockByEmailRequest* PROTOBUF_NONNULL msg, std::destroying_delete_t) {
+    SharedDtor(*msg);
+    ::google::protobuf::internal::SizedDelete(msg, sizeof(EmailUserUnlockByEmailRequest));
+  }
+#endif
+
+  template <typename = void>
+  explicit PROTOBUF_CONSTEXPR EmailUserUnlockByEmailRequest(::google::protobuf::internal::ConstantInitialized);
+
+  inline EmailUserUnlockByEmailRequest(const EmailUserUnlockByEmailRequest& from) : EmailUserUnlockByEmailRequest(nullptr, from) {}
+  inline EmailUserUnlockByEmailRequest(EmailUserUnlockByEmailRequest&& from) noexcept
+      : EmailUserUnlockByEmailRequest(nullptr, ::std::move(from)) {}
+  inline EmailUserUnlockByEmailRequest& operator=(const EmailUserUnlockByEmailRequest& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline EmailUserUnlockByEmailRequest& operator=(EmailUserUnlockByEmailRequest&& from) noexcept {
+    if (this == &from) return *this;
+    if (::google::protobuf::internal::CanMoveWithInternalSwap(GetArena(), from.GetArena())) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* PROTOBUF_NONNULL mutable_unknown_fields()
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* PROTOBUF_NONNULL descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* PROTOBUF_NONNULL GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* PROTOBUF_NONNULL GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const EmailUserUnlockByEmailRequest& default_instance() {
+    return *reinterpret_cast<const EmailUserUnlockByEmailRequest*>(
+        &_EmailUserUnlockByEmailRequest_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages = 15;
+  friend void swap(EmailUserUnlockByEmailRequest& a, EmailUserUnlockByEmailRequest& b) { a.Swap(&b); }
+  inline void Swap(EmailUserUnlockByEmailRequest* PROTOBUF_NONNULL other) {
+    if (other == this) return;
+    if (::google::protobuf::internal::CanUseInternalSwap(GetArena(), other->GetArena())) {
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(EmailUserUnlockByEmailRequest* PROTOBUF_NONNULL other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  EmailUserUnlockByEmailRequest* PROTOBUF_NONNULL New(::google::protobuf::Arena* PROTOBUF_NULLABLE arena = nullptr) const {
+    return ::google::protobuf::Message::DefaultConstruct<EmailUserUnlockByEmailRequest>(arena);
+  }
+  using ::google::protobuf::Message::CopyFrom;
+  void CopyFrom(const EmailUserUnlockByEmailRequest& from);
+  using ::google::protobuf::Message::MergeFrom;
+  void MergeFrom(const EmailUserUnlockByEmailRequest& from) { EmailUserUnlockByEmailRequest::MergeImpl(*this, from); }
+
+  private:
+  static void MergeImpl(::google::protobuf::MessageLite& to_msg,
+                        const ::google::protobuf::MessageLite& from_msg);
+
+  public:
+  bool IsInitialized() const {
+    return true;
+  }
+  ABSL_ATTRIBUTE_REINITIALIZES void Clear() PROTOBUF_FINAL;
+  #if defined(PROTOBUF_CUSTOM_VTABLE)
+  private:
+  static ::size_t ByteSizeLong(const ::google::protobuf::MessageLite& msg);
+  static ::uint8_t* PROTOBUF_NONNULL _InternalSerialize(
+      const ::google::protobuf::MessageLite& msg, ::uint8_t* PROTOBUF_NONNULL target,
+      ::google::protobuf::io::EpsCopyOutputStream* PROTOBUF_NONNULL stream);
+
+  public:
+  ::size_t ByteSizeLong() const { return ByteSizeLong(*this); }
+  ::uint8_t* PROTOBUF_NONNULL _InternalSerialize(
+      ::uint8_t* PROTOBUF_NONNULL target,
+      ::google::protobuf::io::EpsCopyOutputStream* PROTOBUF_NONNULL stream) const {
+    return _InternalSerialize(*this, target, stream);
+  }
+  #else   // PROTOBUF_CUSTOM_VTABLE
+  ::size_t ByteSizeLong() const final;
+  ::uint8_t* PROTOBUF_NONNULL _InternalSerialize(
+      ::uint8_t* PROTOBUF_NONNULL target,
+      ::google::protobuf::io::EpsCopyOutputStream* PROTOBUF_NONNULL stream) const final;
+  #endif  // PROTOBUF_CUSTOM_VTABLE
+  int GetCachedSize() const { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::google::protobuf::Arena* PROTOBUF_NULLABLE arena);
+  static void SharedDtor(MessageLite& self);
+  void InternalSwap(EmailUserUnlockByEmailRequest* PROTOBUF_NONNULL other);
+ private:
+  template <typename T>
+  friend ::absl::string_view(::google::protobuf::internal::GetAnyMessageName)();
+  static ::absl::string_view FullMessageName() { return "palm.portal.v1.EmailUserUnlockByEmailRequest"; }
+
+ protected:
+  explicit EmailUserUnlockByEmailRequest(::google::protobuf::Arena* PROTOBUF_NULLABLE arena);
+  EmailUserUnlockByEmailRequest(::google::protobuf::Arena* PROTOBUF_NULLABLE arena, const EmailUserUnlockByEmailRequest& from);
+  EmailUserUnlockByEmailRequest(
+      ::google::protobuf::Arena* PROTOBUF_NULLABLE arena, EmailUserUnlockByEmailRequest&& from) noexcept
+      : EmailUserUnlockByEmailRequest(arena) {
+    *this = ::std::move(from);
+  }
+  const ::google::protobuf::internal::ClassData* PROTOBUF_NONNULL GetClassData() const PROTOBUF_FINAL;
+  static void* PROTOBUF_NONNULL PlacementNew_(
+      const void* PROTOBUF_NONNULL, void* PROTOBUF_NONNULL mem,
+      ::google::protobuf::Arena* PROTOBUF_NULLABLE arena);
+  static constexpr auto InternalNewImpl_();
+
+ public:
+  static constexpr auto InternalGenerateClassData_();
+
+  ::google::protobuf::Metadata GetMetadata() const;
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+  enum : int {
+    kEmailFieldNumber = 1,
+    kHomeFieldNumber = 99,
+  };
+  // string email = 1;
+  void clear_email() ;
+  const ::std::string& email() const;
+  template <typename Arg_ = const ::std::string&, typename... Args_>
+  void set_email(Arg_&& arg, Args_... args);
+  ::std::string* PROTOBUF_NONNULL mutable_email();
+  [[nodiscard]] ::std::string* PROTOBUF_NULLABLE release_email();
+  void set_allocated_email(::std::string* PROTOBUF_NULLABLE value);
+
+  private:
+  const ::std::string& _internal_email() const;
+  PROTOBUF_ALWAYS_INLINE void _internal_set_email(const ::std::string& value);
+  ::std::string* PROTOBUF_NONNULL _internal_mutable_email();
+
+  public:
+  // string home = 99;
+  void clear_home() ;
+  const ::std::string& home() const;
+  template <typename Arg_ = const ::std::string&, typename... Args_>
+  void set_home(Arg_&& arg, Args_... args);
+  ::std::string* PROTOBUF_NONNULL mutable_home();
+  [[nodiscard]] ::std::string* PROTOBUF_NULLABLE release_home();
+  void set_allocated_home(::std::string* PROTOBUF_NULLABLE value);
+
+  private:
+  const ::std::string& _internal_home() const;
+  PROTOBUF_ALWAYS_INLINE void _internal_set_home(const ::std::string& value);
+  ::std::string* PROTOBUF_NONNULL _internal_mutable_home();
+
+  public:
+  // @@protoc_insertion_point(class_scope:palm.portal.v1.EmailUserUnlockByEmailRequest)
+ private:
+  class _Internal;
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<2, 2,
+                                   0, 62,
+                                   7>
+      _table_;
+
+  friend class ::google::protobuf::MessageLite;
+  friend class ::google::protobuf::Arena;
+  template <typename T>
+  friend class ::google::protobuf::Arena::InternalHelper;
+  using InternalArenaConstructable_ = void;
+  using DestructorSkippable_ = void;
+  struct Impl_ {
+    inline explicit constexpr Impl_(::google::protobuf::internal::ConstantInitialized) noexcept;
+    inline explicit Impl_(
+        ::google::protobuf::internal::InternalVisibility visibility,
+        ::google::protobuf::Arena* PROTOBUF_NULLABLE arena);
+    inline explicit Impl_(
+        ::google::protobuf::internal::InternalVisibility visibility,
+        ::google::protobuf::Arena* PROTOBUF_NULLABLE arena, const Impl_& from,
+        const EmailUserUnlockByEmailRequest& from_msg);
+    ::google::protobuf::internal::HasBits<1> _has_bits_;
+    ::google::protobuf::internal::CachedSize _cached_size_;
+    ::google::protobuf::internal::ArenaStringPtr email_;
+    ::google::protobuf::internal::ArenaStringPtr home_;
+    PROTOBUF_TSAN_DECLARE_MEMBER
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_portal_2eproto;
+};
+
+extern const ::google::protobuf::internal::ClassDataFull EmailUserUnlockByEmailRequest_class_data_;
+// -------------------------------------------------------------------
+
+class EmailUserSignUpRequest final : public ::google::protobuf::Message
+/* @@protoc_insertion_point(class_definition:palm.portal.v1.EmailUserSignUpRequest) */ {
+ public:
+  inline EmailUserSignUpRequest() : EmailUserSignUpRequest(nullptr) {}
+  ~EmailUserSignUpRequest() PROTOBUF_FINAL;
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+  void operator delete(EmailUserSignUpRequest* PROTOBUF_NONNULL msg, std::destroying_delete_t) {
+    SharedDtor(*msg);
+    ::google::protobuf::internal::SizedDelete(msg, sizeof(EmailUserSignUpRequest));
+  }
+#endif
+
+  template <typename = void>
+  explicit PROTOBUF_CONSTEXPR EmailUserSignUpRequest(::google::protobuf::internal::ConstantInitialized);
+
+  inline EmailUserSignUpRequest(const EmailUserSignUpRequest& from) : EmailUserSignUpRequest(nullptr, from) {}
+  inline EmailUserSignUpRequest(EmailUserSignUpRequest&& from) noexcept
+      : EmailUserSignUpRequest(nullptr, ::std::move(from)) {}
+  inline EmailUserSignUpRequest& operator=(const EmailUserSignUpRequest& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline EmailUserSignUpRequest& operator=(EmailUserSignUpRequest&& from) noexcept {
+    if (this == &from) return *this;
+    if (::google::protobuf::internal::CanMoveWithInternalSwap(GetArena(), from.GetArena())) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* PROTOBUF_NONNULL mutable_unknown_fields()
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* PROTOBUF_NONNULL descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* PROTOBUF_NONNULL GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* PROTOBUF_NONNULL GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const EmailUserSignUpRequest& default_instance() {
+    return *reinterpret_cast<const EmailUserSignUpRequest*>(
+        &_EmailUserSignUpRequest_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages = 14;
+  friend void swap(EmailUserSignUpRequest& a, EmailUserSignUpRequest& b) { a.Swap(&b); }
+  inline void Swap(EmailUserSignUpRequest* PROTOBUF_NONNULL other) {
+    if (other == this) return;
+    if (::google::protobuf::internal::CanUseInternalSwap(GetArena(), other->GetArena())) {
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(EmailUserSignUpRequest* PROTOBUF_NONNULL other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  EmailUserSignUpRequest* PROTOBUF_NONNULL New(::google::protobuf::Arena* PROTOBUF_NULLABLE arena = nullptr) const {
+    return ::google::protobuf::Message::DefaultConstruct<EmailUserSignUpRequest>(arena);
+  }
+  using ::google::protobuf::Message::CopyFrom;
+  void CopyFrom(const EmailUserSignUpRequest& from);
+  using ::google::protobuf::Message::MergeFrom;
+  void MergeFrom(const EmailUserSignUpRequest& from) { EmailUserSignUpRequest::MergeImpl(*this, from); }
+
+  private:
+  static void MergeImpl(::google::protobuf::MessageLite& to_msg,
+                        const ::google::protobuf::MessageLite& from_msg);
+
+  public:
+  bool IsInitialized() const {
+    return true;
+  }
+  ABSL_ATTRIBUTE_REINITIALIZES void Clear() PROTOBUF_FINAL;
+  #if defined(PROTOBUF_CUSTOM_VTABLE)
+  private:
+  static ::size_t ByteSizeLong(const ::google::protobuf::MessageLite& msg);
+  static ::uint8_t* PROTOBUF_NONNULL _InternalSerialize(
+      const ::google::protobuf::MessageLite& msg, ::uint8_t* PROTOBUF_NONNULL target,
+      ::google::protobuf::io::EpsCopyOutputStream* PROTOBUF_NONNULL stream);
+
+  public:
+  ::size_t ByteSizeLong() const { return ByteSizeLong(*this); }
+  ::uint8_t* PROTOBUF_NONNULL _InternalSerialize(
+      ::uint8_t* PROTOBUF_NONNULL target,
+      ::google::protobuf::io::EpsCopyOutputStream* PROTOBUF_NONNULL stream) const {
+    return _InternalSerialize(*this, target, stream);
+  }
+  #else   // PROTOBUF_CUSTOM_VTABLE
+  ::size_t ByteSizeLong() const final;
+  ::uint8_t* PROTOBUF_NONNULL _InternalSerialize(
+      ::uint8_t* PROTOBUF_NONNULL target,
+      ::google::protobuf::io::EpsCopyOutputStream* PROTOBUF_NONNULL stream) const final;
+  #endif  // PROTOBUF_CUSTOM_VTABLE
+  int GetCachedSize() const { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::google::protobuf::Arena* PROTOBUF_NULLABLE arena);
+  static void SharedDtor(MessageLite& self);
+  void InternalSwap(EmailUserSignUpRequest* PROTOBUF_NONNULL other);
+ private:
+  template <typename T>
+  friend ::absl::string_view(::google::protobuf::internal::GetAnyMessageName)();
+  static ::absl::string_view FullMessageName() { return "palm.portal.v1.EmailUserSignUpRequest"; }
+
+ protected:
+  explicit EmailUserSignUpRequest(::google::protobuf::Arena* PROTOBUF_NULLABLE arena);
+  EmailUserSignUpRequest(::google::protobuf::Arena* PROTOBUF_NULLABLE arena, const EmailUserSignUpRequest& from);
+  EmailUserSignUpRequest(
+      ::google::protobuf::Arena* PROTOBUF_NULLABLE arena, EmailUserSignUpRequest&& from) noexcept
+      : EmailUserSignUpRequest(arena) {
+    *this = ::std::move(from);
+  }
+  const ::google::protobuf::internal::ClassData* PROTOBUF_NONNULL GetClassData() const PROTOBUF_FINAL;
+  static void* PROTOBUF_NONNULL PlacementNew_(
+      const void* PROTOBUF_NONNULL, void* PROTOBUF_NONNULL mem,
+      ::google::protobuf::Arena* PROTOBUF_NULLABLE arena);
+  static constexpr auto InternalNewImpl_();
+
+ public:
+  static constexpr auto InternalGenerateClassData_();
+
+  ::google::protobuf::Metadata GetMetadata() const;
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+  enum : int {
+    kNameFieldNumber = 1,
+    kEmailFieldNumber = 2,
+    kPasswordFieldNumber = 3,
+    kLangFieldNumber = 8,
+    kTimezoneFieldNumber = 9,
+    kHomeFieldNumber = 99,
+  };
+  // string name = 1;
+  void clear_name() ;
+  const ::std::string& name() const;
+  template <typename Arg_ = const ::std::string&, typename... Args_>
+  void set_name(Arg_&& arg, Args_... args);
+  ::std::string* PROTOBUF_NONNULL mutable_name();
+  [[nodiscard]] ::std::string* PROTOBUF_NULLABLE release_name();
+  void set_allocated_name(::std::string* PROTOBUF_NULLABLE value);
+
+  private:
+  const ::std::string& _internal_name() const;
+  PROTOBUF_ALWAYS_INLINE void _internal_set_name(const ::std::string& value);
+  ::std::string* PROTOBUF_NONNULL _internal_mutable_name();
+
+  public:
+  // string email = 2;
+  void clear_email() ;
+  const ::std::string& email() const;
+  template <typename Arg_ = const ::std::string&, typename... Args_>
+  void set_email(Arg_&& arg, Args_... args);
+  ::std::string* PROTOBUF_NONNULL mutable_email();
+  [[nodiscard]] ::std::string* PROTOBUF_NULLABLE release_email();
+  void set_allocated_email(::std::string* PROTOBUF_NULLABLE value);
+
+  private:
+  const ::std::string& _internal_email() const;
+  PROTOBUF_ALWAYS_INLINE void _internal_set_email(const ::std::string& value);
+  ::std::string* PROTOBUF_NONNULL _internal_mutable_email();
+
+  public:
+  // string password = 3;
+  void clear_password() ;
+  const ::std::string& password() const;
+  template <typename Arg_ = const ::std::string&, typename... Args_>
+  void set_password(Arg_&& arg, Args_... args);
+  ::std::string* PROTOBUF_NONNULL mutable_password();
+  [[nodiscard]] ::std::string* PROTOBUF_NULLABLE release_password();
+  void set_allocated_password(::std::string* PROTOBUF_NULLABLE value);
+
+  private:
+  const ::std::string& _internal_password() const;
+  PROTOBUF_ALWAYS_INLINE void _internal_set_password(const ::std::string& value);
+  ::std::string* PROTOBUF_NONNULL _internal_mutable_password();
+
+  public:
+  // string lang = 8;
+  void clear_lang() ;
+  const ::std::string& lang() const;
+  template <typename Arg_ = const ::std::string&, typename... Args_>
+  void set_lang(Arg_&& arg, Args_... args);
+  ::std::string* PROTOBUF_NONNULL mutable_lang();
+  [[nodiscard]] ::std::string* PROTOBUF_NULLABLE release_lang();
+  void set_allocated_lang(::std::string* PROTOBUF_NULLABLE value);
+
+  private:
+  const ::std::string& _internal_lang() const;
+  PROTOBUF_ALWAYS_INLINE void _internal_set_lang(const ::std::string& value);
+  ::std::string* PROTOBUF_NONNULL _internal_mutable_lang();
+
+  public:
+  // string timezone = 9;
+  void clear_timezone() ;
+  const ::std::string& timezone() const;
+  template <typename Arg_ = const ::std::string&, typename... Args_>
+  void set_timezone(Arg_&& arg, Args_... args);
+  ::std::string* PROTOBUF_NONNULL mutable_timezone();
+  [[nodiscard]] ::std::string* PROTOBUF_NULLABLE release_timezone();
+  void set_allocated_timezone(::std::string* PROTOBUF_NULLABLE value);
+
+  private:
+  const ::std::string& _internal_timezone() const;
+  PROTOBUF_ALWAYS_INLINE void _internal_set_timezone(const ::std::string& value);
+  ::std::string* PROTOBUF_NONNULL _internal_mutable_timezone();
+
+  public:
+  // string home = 99;
+  void clear_home() ;
+  const ::std::string& home() const;
+  template <typename Arg_ = const ::std::string&, typename... Args_>
+  void set_home(Arg_&& arg, Args_... args);
+  ::std::string* PROTOBUF_NONNULL mutable_home();
+  [[nodiscard]] ::std::string* PROTOBUF_NULLABLE release_home();
+  void set_allocated_home(::std::string* PROTOBUF_NULLABLE value);
+
+  private:
+  const ::std::string& _internal_home() const;
+  PROTOBUF_ALWAYS_INLINE void _internal_set_home(const ::std::string& value);
+  ::std::string* PROTOBUF_NONNULL _internal_mutable_home();
+
+  public:
+  // @@protoc_insertion_point(class_scope:palm.portal.v1.EmailUserSignUpRequest)
+ private:
+  class _Internal;
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<2, 6,
+                                   0, 79,
+                                   7>
+      _table_;
+
+  friend class ::google::protobuf::MessageLite;
+  friend class ::google::protobuf::Arena;
+  template <typename T>
+  friend class ::google::protobuf::Arena::InternalHelper;
+  using InternalArenaConstructable_ = void;
+  using DestructorSkippable_ = void;
+  struct Impl_ {
+    inline explicit constexpr Impl_(::google::protobuf::internal::ConstantInitialized) noexcept;
+    inline explicit Impl_(
+        ::google::protobuf::internal::InternalVisibility visibility,
+        ::google::protobuf::Arena* PROTOBUF_NULLABLE arena);
+    inline explicit Impl_(
+        ::google::protobuf::internal::InternalVisibility visibility,
+        ::google::protobuf::Arena* PROTOBUF_NULLABLE arena, const Impl_& from,
+        const EmailUserSignUpRequest& from_msg);
+    ::google::protobuf::internal::HasBits<1> _has_bits_;
+    ::google::protobuf::internal::CachedSize _cached_size_;
+    ::google::protobuf::internal::ArenaStringPtr name_;
+    ::google::protobuf::internal::ArenaStringPtr email_;
+    ::google::protobuf::internal::ArenaStringPtr password_;
+    ::google::protobuf::internal::ArenaStringPtr lang_;
+    ::google::protobuf::internal::ArenaStringPtr timezone_;
+    ::google::protobuf::internal::ArenaStringPtr home_;
+    PROTOBUF_TSAN_DECLARE_MEMBER
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_portal_2eproto;
+};
+
+extern const ::google::protobuf::internal::ClassDataFull EmailUserSignUpRequest_class_data_;
+// -------------------------------------------------------------------
+
+class EmailUserSignInRequest final : public ::google::protobuf::Message
+/* @@protoc_insertion_point(class_definition:palm.portal.v1.EmailUserSignInRequest) */ {
+ public:
+  inline EmailUserSignInRequest() : EmailUserSignInRequest(nullptr) {}
+  ~EmailUserSignInRequest() PROTOBUF_FINAL;
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+  void operator delete(EmailUserSignInRequest* PROTOBUF_NONNULL msg, std::destroying_delete_t) {
+    SharedDtor(*msg);
+    ::google::protobuf::internal::SizedDelete(msg, sizeof(EmailUserSignInRequest));
+  }
+#endif
+
+  template <typename = void>
+  explicit PROTOBUF_CONSTEXPR EmailUserSignInRequest(::google::protobuf::internal::ConstantInitialized);
+
+  inline EmailUserSignInRequest(const EmailUserSignInRequest& from) : EmailUserSignInRequest(nullptr, from) {}
+  inline EmailUserSignInRequest(EmailUserSignInRequest&& from) noexcept
+      : EmailUserSignInRequest(nullptr, ::std::move(from)) {}
+  inline EmailUserSignInRequest& operator=(const EmailUserSignInRequest& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline EmailUserSignInRequest& operator=(EmailUserSignInRequest&& from) noexcept {
+    if (this == &from) return *this;
+    if (::google::protobuf::internal::CanMoveWithInternalSwap(GetArena(), from.GetArena())) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* PROTOBUF_NONNULL mutable_unknown_fields()
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* PROTOBUF_NONNULL descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* PROTOBUF_NONNULL GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* PROTOBUF_NONNULL GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const EmailUserSignInRequest& default_instance() {
+    return *reinterpret_cast<const EmailUserSignInRequest*>(
+        &_EmailUserSignInRequest_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages = 13;
+  friend void swap(EmailUserSignInRequest& a, EmailUserSignInRequest& b) { a.Swap(&b); }
+  inline void Swap(EmailUserSignInRequest* PROTOBUF_NONNULL other) {
+    if (other == this) return;
+    if (::google::protobuf::internal::CanUseInternalSwap(GetArena(), other->GetArena())) {
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(EmailUserSignInRequest* PROTOBUF_NONNULL other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  EmailUserSignInRequest* PROTOBUF_NONNULL New(::google::protobuf::Arena* PROTOBUF_NULLABLE arena = nullptr) const {
+    return ::google::protobuf::Message::DefaultConstruct<EmailUserSignInRequest>(arena);
+  }
+  using ::google::protobuf::Message::CopyFrom;
+  void CopyFrom(const EmailUserSignInRequest& from);
+  using ::google::protobuf::Message::MergeFrom;
+  void MergeFrom(const EmailUserSignInRequest& from) { EmailUserSignInRequest::MergeImpl(*this, from); }
+
+  private:
+  static void MergeImpl(::google::protobuf::MessageLite& to_msg,
+                        const ::google::protobuf::MessageLite& from_msg);
+
+  public:
+  bool IsInitialized() const {
+    return true;
+  }
+  ABSL_ATTRIBUTE_REINITIALIZES void Clear() PROTOBUF_FINAL;
+  #if defined(PROTOBUF_CUSTOM_VTABLE)
+  private:
+  static ::size_t ByteSizeLong(const ::google::protobuf::MessageLite& msg);
+  static ::uint8_t* PROTOBUF_NONNULL _InternalSerialize(
+      const ::google::protobuf::MessageLite& msg, ::uint8_t* PROTOBUF_NONNULL target,
+      ::google::protobuf::io::EpsCopyOutputStream* PROTOBUF_NONNULL stream);
+
+  public:
+  ::size_t ByteSizeLong() const { return ByteSizeLong(*this); }
+  ::uint8_t* PROTOBUF_NONNULL _InternalSerialize(
+      ::uint8_t* PROTOBUF_NONNULL target,
+      ::google::protobuf::io::EpsCopyOutputStream* PROTOBUF_NONNULL stream) const {
+    return _InternalSerialize(*this, target, stream);
+  }
+  #else   // PROTOBUF_CUSTOM_VTABLE
+  ::size_t ByteSizeLong() const final;
+  ::uint8_t* PROTOBUF_NONNULL _InternalSerialize(
+      ::uint8_t* PROTOBUF_NONNULL target,
+      ::google::protobuf::io::EpsCopyOutputStream* PROTOBUF_NONNULL stream) const final;
+  #endif  // PROTOBUF_CUSTOM_VTABLE
+  int GetCachedSize() const { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::google::protobuf::Arena* PROTOBUF_NULLABLE arena);
+  static void SharedDtor(MessageLite& self);
+  void InternalSwap(EmailUserSignInRequest* PROTOBUF_NONNULL other);
+ private:
+  template <typename T>
+  friend ::absl::string_view(::google::protobuf::internal::GetAnyMessageName)();
+  static ::absl::string_view FullMessageName() { return "palm.portal.v1.EmailUserSignInRequest"; }
+
+ protected:
+  explicit EmailUserSignInRequest(::google::protobuf::Arena* PROTOBUF_NULLABLE arena);
+  EmailUserSignInRequest(::google::protobuf::Arena* PROTOBUF_NULLABLE arena, const EmailUserSignInRequest& from);
+  EmailUserSignInRequest(
+      ::google::protobuf::Arena* PROTOBUF_NULLABLE arena, EmailUserSignInRequest&& from) noexcept
+      : EmailUserSignInRequest(arena) {
+    *this = ::std::move(from);
+  }
+  const ::google::protobuf::internal::ClassData* PROTOBUF_NONNULL GetClassData() const PROTOBUF_FINAL;
+  static void* PROTOBUF_NONNULL PlacementNew_(
+      const void* PROTOBUF_NONNULL, void* PROTOBUF_NONNULL mem,
+      ::google::protobuf::Arena* PROTOBUF_NULLABLE arena);
+  static constexpr auto InternalNewImpl_();
+
+ public:
+  static constexpr auto InternalGenerateClassData_();
+
+  ::google::protobuf::Metadata GetMetadata() const;
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+  enum : int {
+    kEmailFieldNumber = 1,
+    kPasswordFieldNumber = 2,
+  };
+  // string email = 1;
+  void clear_email() ;
+  const ::std::string& email() const;
+  template <typename Arg_ = const ::std::string&, typename... Args_>
+  void set_email(Arg_&& arg, Args_... args);
+  ::std::string* PROTOBUF_NONNULL mutable_email();
+  [[nodiscard]] ::std::string* PROTOBUF_NULLABLE release_email();
+  void set_allocated_email(::std::string* PROTOBUF_NULLABLE value);
+
+  private:
+  const ::std::string& _internal_email() const;
+  PROTOBUF_ALWAYS_INLINE void _internal_set_email(const ::std::string& value);
+  ::std::string* PROTOBUF_NONNULL _internal_mutable_email();
+
+  public:
+  // string password = 2;
+  void clear_password() ;
+  const ::std::string& password() const;
+  template <typename Arg_ = const ::std::string&, typename... Args_>
+  void set_password(Arg_&& arg, Args_... args);
+  ::std::string* PROTOBUF_NONNULL mutable_password();
+  [[nodiscard]] ::std::string* PROTOBUF_NULLABLE release_password();
+  void set_allocated_password(::std::string* PROTOBUF_NULLABLE value);
+
+  private:
+  const ::std::string& _internal_password() const;
+  PROTOBUF_ALWAYS_INLINE void _internal_set_password(const ::std::string& value);
+  ::std::string* PROTOBUF_NONNULL _internal_mutable_password();
+
+  public:
+  // @@protoc_insertion_point(class_scope:palm.portal.v1.EmailUserSignInRequest)
+ private:
+  class _Internal;
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<1, 2,
+                                   0, 59,
+                                   2>
+      _table_;
+
+  friend class ::google::protobuf::MessageLite;
+  friend class ::google::protobuf::Arena;
+  template <typename T>
+  friend class ::google::protobuf::Arena::InternalHelper;
+  using InternalArenaConstructable_ = void;
+  using DestructorSkippable_ = void;
+  struct Impl_ {
+    inline explicit constexpr Impl_(::google::protobuf::internal::ConstantInitialized) noexcept;
+    inline explicit Impl_(
+        ::google::protobuf::internal::InternalVisibility visibility,
+        ::google::protobuf::Arena* PROTOBUF_NULLABLE arena);
+    inline explicit Impl_(
+        ::google::protobuf::internal::InternalVisibility visibility,
+        ::google::protobuf::Arena* PROTOBUF_NULLABLE arena, const Impl_& from,
+        const EmailUserSignInRequest& from_msg);
+    ::google::protobuf::internal::HasBits<1> _has_bits_;
+    ::google::protobuf::internal::CachedSize _cached_size_;
+    ::google::protobuf::internal::ArenaStringPtr email_;
+    ::google::protobuf::internal::ArenaStringPtr password_;
+    PROTOBUF_TSAN_DECLARE_MEMBER
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_portal_2eproto;
+};
+
+extern const ::google::protobuf::internal::ClassDataFull EmailUserSignInRequest_class_data_;
+// -------------------------------------------------------------------
+
+class EmailUserSetPasswordRequest final : public ::google::protobuf::Message
+/* @@protoc_insertion_point(class_definition:palm.portal.v1.EmailUserSetPasswordRequest) */ {
+ public:
+  inline EmailUserSetPasswordRequest() : EmailUserSetPasswordRequest(nullptr) {}
+  ~EmailUserSetPasswordRequest() PROTOBUF_FINAL;
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+  void operator delete(EmailUserSetPasswordRequest* PROTOBUF_NONNULL msg, std::destroying_delete_t) {
+    SharedDtor(*msg);
+    ::google::protobuf::internal::SizedDelete(msg, sizeof(EmailUserSetPasswordRequest));
+  }
+#endif
+
+  template <typename = void>
+  explicit PROTOBUF_CONSTEXPR EmailUserSetPasswordRequest(::google::protobuf::internal::ConstantInitialized);
+
+  inline EmailUserSetPasswordRequest(const EmailUserSetPasswordRequest& from) : EmailUserSetPasswordRequest(nullptr, from) {}
+  inline EmailUserSetPasswordRequest(EmailUserSetPasswordRequest&& from) noexcept
+      : EmailUserSetPasswordRequest(nullptr, ::std::move(from)) {}
+  inline EmailUserSetPasswordRequest& operator=(const EmailUserSetPasswordRequest& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline EmailUserSetPasswordRequest& operator=(EmailUserSetPasswordRequest&& from) noexcept {
+    if (this == &from) return *this;
+    if (::google::protobuf::internal::CanMoveWithInternalSwap(GetArena(), from.GetArena())) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* PROTOBUF_NONNULL mutable_unknown_fields()
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* PROTOBUF_NONNULL descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* PROTOBUF_NONNULL GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* PROTOBUF_NONNULL GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const EmailUserSetPasswordRequest& default_instance() {
+    return *reinterpret_cast<const EmailUserSetPasswordRequest*>(
+        &_EmailUserSetPasswordRequest_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages = 26;
+  friend void swap(EmailUserSetPasswordRequest& a, EmailUserSetPasswordRequest& b) { a.Swap(&b); }
+  inline void Swap(EmailUserSetPasswordRequest* PROTOBUF_NONNULL other) {
+    if (other == this) return;
+    if (::google::protobuf::internal::CanUseInternalSwap(GetArena(), other->GetArena())) {
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(EmailUserSetPasswordRequest* PROTOBUF_NONNULL other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  EmailUserSetPasswordRequest* PROTOBUF_NONNULL New(::google::protobuf::Arena* PROTOBUF_NULLABLE arena = nullptr) const {
+    return ::google::protobuf::Message::DefaultConstruct<EmailUserSetPasswordRequest>(arena);
+  }
+  using ::google::protobuf::Message::CopyFrom;
+  void CopyFrom(const EmailUserSetPasswordRequest& from);
+  using ::google::protobuf::Message::MergeFrom;
+  void MergeFrom(const EmailUserSetPasswordRequest& from) { EmailUserSetPasswordRequest::MergeImpl(*this, from); }
+
+  private:
+  static void MergeImpl(::google::protobuf::MessageLite& to_msg,
+                        const ::google::protobuf::MessageLite& from_msg);
+
+  public:
+  bool IsInitialized() const {
+    return true;
+  }
+  ABSL_ATTRIBUTE_REINITIALIZES void Clear() PROTOBUF_FINAL;
+  #if defined(PROTOBUF_CUSTOM_VTABLE)
+  private:
+  static ::size_t ByteSizeLong(const ::google::protobuf::MessageLite& msg);
+  static ::uint8_t* PROTOBUF_NONNULL _InternalSerialize(
+      const ::google::protobuf::MessageLite& msg, ::uint8_t* PROTOBUF_NONNULL target,
+      ::google::protobuf::io::EpsCopyOutputStream* PROTOBUF_NONNULL stream);
+
+  public:
+  ::size_t ByteSizeLong() const { return ByteSizeLong(*this); }
+  ::uint8_t* PROTOBUF_NONNULL _InternalSerialize(
+      ::uint8_t* PROTOBUF_NONNULL target,
+      ::google::protobuf::io::EpsCopyOutputStream* PROTOBUF_NONNULL stream) const {
+    return _InternalSerialize(*this, target, stream);
+  }
+  #else   // PROTOBUF_CUSTOM_VTABLE
+  ::size_t ByteSizeLong() const final;
+  ::uint8_t* PROTOBUF_NONNULL _InternalSerialize(
+      ::uint8_t* PROTOBUF_NONNULL target,
+      ::google::protobuf::io::EpsCopyOutputStream* PROTOBUF_NONNULL stream) const final;
+  #endif  // PROTOBUF_CUSTOM_VTABLE
+  int GetCachedSize() const { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::google::protobuf::Arena* PROTOBUF_NULLABLE arena);
+  static void SharedDtor(MessageLite& self);
+  void InternalSwap(EmailUserSetPasswordRequest* PROTOBUF_NONNULL other);
+ private:
+  template <typename T>
+  friend ::absl::string_view(::google::protobuf::internal::GetAnyMessageName)();
+  static ::absl::string_view FullMessageName() { return "palm.portal.v1.EmailUserSetPasswordRequest"; }
+
+ protected:
+  explicit EmailUserSetPasswordRequest(::google::protobuf::Arena* PROTOBUF_NULLABLE arena);
+  EmailUserSetPasswordRequest(::google::protobuf::Arena* PROTOBUF_NULLABLE arena, const EmailUserSetPasswordRequest& from);
+  EmailUserSetPasswordRequest(
+      ::google::protobuf::Arena* PROTOBUF_NULLABLE arena, EmailUserSetPasswordRequest&& from) noexcept
+      : EmailUserSetPasswordRequest(arena) {
+    *this = ::std::move(from);
+  }
+  const ::google::protobuf::internal::ClassData* PROTOBUF_NONNULL GetClassData() const PROTOBUF_FINAL;
+  static void* PROTOBUF_NONNULL PlacementNew_(
+      const void* PROTOBUF_NONNULL, void* PROTOBUF_NONNULL mem,
+      ::google::protobuf::Arena* PROTOBUF_NULLABLE arena);
+  static constexpr auto InternalNewImpl_();
+
+ public:
+  static constexpr auto InternalGenerateClassData_();
+
+  ::google::protobuf::Metadata GetMetadata() const;
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+  enum : int {
+    kPasswordFieldNumber = 2,
+    kIdFieldNumber = 1,
+  };
+  // string password = 2;
+  void clear_password() ;
+  const ::std::string& password() const;
+  template <typename Arg_ = const ::std::string&, typename... Args_>
+  void set_password(Arg_&& arg, Args_... args);
+  ::std::string* PROTOBUF_NONNULL mutable_password();
+  [[nodiscard]] ::std::string* PROTOBUF_NULLABLE release_password();
+  void set_allocated_password(::std::string* PROTOBUF_NULLABLE value);
+
+  private:
+  const ::std::string& _internal_password() const;
+  PROTOBUF_ALWAYS_INLINE void _internal_set_password(const ::std::string& value);
+  ::std::string* PROTOBUF_NONNULL _internal_mutable_password();
+
+  public:
+  // int64 id = 1;
+  void clear_id() ;
+  ::int64_t id() const;
+  void set_id(::int64_t value);
+
+  private:
+  ::int64_t _internal_id() const;
+  void _internal_set_id(::int64_t value);
+
+  public:
+  // @@protoc_insertion_point(class_scope:palm.portal.v1.EmailUserSetPasswordRequest)
+ private:
+  class _Internal;
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<1, 2,
+                                   0, 59,
+                                   2>
+      _table_;
+
+  friend class ::google::protobuf::MessageLite;
+  friend class ::google::protobuf::Arena;
+  template <typename T>
+  friend class ::google::protobuf::Arena::InternalHelper;
+  using InternalArenaConstructable_ = void;
+  using DestructorSkippable_ = void;
+  struct Impl_ {
+    inline explicit constexpr Impl_(::google::protobuf::internal::ConstantInitialized) noexcept;
+    inline explicit Impl_(
+        ::google::protobuf::internal::InternalVisibility visibility,
+        ::google::protobuf::Arena* PROTOBUF_NULLABLE arena);
+    inline explicit Impl_(
+        ::google::protobuf::internal::InternalVisibility visibility,
+        ::google::protobuf::Arena* PROTOBUF_NULLABLE arena, const Impl_& from,
+        const EmailUserSetPasswordRequest& from_msg);
+    ::google::protobuf::internal::HasBits<1> _has_bits_;
+    ::google::protobuf::internal::CachedSize _cached_size_;
+    ::google::protobuf::internal::ArenaStringPtr password_;
+    ::int64_t id_;
+    PROTOBUF_TSAN_DECLARE_MEMBER
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_portal_2eproto;
+};
+
+extern const ::google::protobuf::internal::ClassDataFull EmailUserSetPasswordRequest_class_data_;
+// -------------------------------------------------------------------
+
+class EmailUserSetNameRequest final : public ::google::protobuf::Message
+/* @@protoc_insertion_point(class_definition:palm.portal.v1.EmailUserSetNameRequest) */ {
+ public:
+  inline EmailUserSetNameRequest() : EmailUserSetNameRequest(nullptr) {}
+  ~EmailUserSetNameRequest() PROTOBUF_FINAL;
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+  void operator delete(EmailUserSetNameRequest* PROTOBUF_NONNULL msg, std::destroying_delete_t) {
+    SharedDtor(*msg);
+    ::google::protobuf::internal::SizedDelete(msg, sizeof(EmailUserSetNameRequest));
+  }
+#endif
+
+  template <typename = void>
+  explicit PROTOBUF_CONSTEXPR EmailUserSetNameRequest(::google::protobuf::internal::ConstantInitialized);
+
+  inline EmailUserSetNameRequest(const EmailUserSetNameRequest& from) : EmailUserSetNameRequest(nullptr, from) {}
+  inline EmailUserSetNameRequest(EmailUserSetNameRequest&& from) noexcept
+      : EmailUserSetNameRequest(nullptr, ::std::move(from)) {}
+  inline EmailUserSetNameRequest& operator=(const EmailUserSetNameRequest& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline EmailUserSetNameRequest& operator=(EmailUserSetNameRequest&& from) noexcept {
+    if (this == &from) return *this;
+    if (::google::protobuf::internal::CanMoveWithInternalSwap(GetArena(), from.GetArena())) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* PROTOBUF_NONNULL mutable_unknown_fields()
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* PROTOBUF_NONNULL descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* PROTOBUF_NONNULL GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* PROTOBUF_NONNULL GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const EmailUserSetNameRequest& default_instance() {
+    return *reinterpret_cast<const EmailUserSetNameRequest*>(
+        &_EmailUserSetNameRequest_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages = 21;
+  friend void swap(EmailUserSetNameRequest& a, EmailUserSetNameRequest& b) { a.Swap(&b); }
+  inline void Swap(EmailUserSetNameRequest* PROTOBUF_NONNULL other) {
+    if (other == this) return;
+    if (::google::protobuf::internal::CanUseInternalSwap(GetArena(), other->GetArena())) {
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(EmailUserSetNameRequest* PROTOBUF_NONNULL other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  EmailUserSetNameRequest* PROTOBUF_NONNULL New(::google::protobuf::Arena* PROTOBUF_NULLABLE arena = nullptr) const {
+    return ::google::protobuf::Message::DefaultConstruct<EmailUserSetNameRequest>(arena);
+  }
+  using ::google::protobuf::Message::CopyFrom;
+  void CopyFrom(const EmailUserSetNameRequest& from);
+  using ::google::protobuf::Message::MergeFrom;
+  void MergeFrom(const EmailUserSetNameRequest& from) { EmailUserSetNameRequest::MergeImpl(*this, from); }
+
+  private:
+  static void MergeImpl(::google::protobuf::MessageLite& to_msg,
+                        const ::google::protobuf::MessageLite& from_msg);
+
+  public:
+  bool IsInitialized() const {
+    return true;
+  }
+  ABSL_ATTRIBUTE_REINITIALIZES void Clear() PROTOBUF_FINAL;
+  #if defined(PROTOBUF_CUSTOM_VTABLE)
+  private:
+  static ::size_t ByteSizeLong(const ::google::protobuf::MessageLite& msg);
+  static ::uint8_t* PROTOBUF_NONNULL _InternalSerialize(
+      const ::google::protobuf::MessageLite& msg, ::uint8_t* PROTOBUF_NONNULL target,
+      ::google::protobuf::io::EpsCopyOutputStream* PROTOBUF_NONNULL stream);
+
+  public:
+  ::size_t ByteSizeLong() const { return ByteSizeLong(*this); }
+  ::uint8_t* PROTOBUF_NONNULL _InternalSerialize(
+      ::uint8_t* PROTOBUF_NONNULL target,
+      ::google::protobuf::io::EpsCopyOutputStream* PROTOBUF_NONNULL stream) const {
+    return _InternalSerialize(*this, target, stream);
+  }
+  #else   // PROTOBUF_CUSTOM_VTABLE
+  ::size_t ByteSizeLong() const final;
+  ::uint8_t* PROTOBUF_NONNULL _InternalSerialize(
+      ::uint8_t* PROTOBUF_NONNULL target,
+      ::google::protobuf::io::EpsCopyOutputStream* PROTOBUF_NONNULL stream) const final;
+  #endif  // PROTOBUF_CUSTOM_VTABLE
+  int GetCachedSize() const { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::google::protobuf::Arena* PROTOBUF_NULLABLE arena);
+  static void SharedDtor(MessageLite& self);
+  void InternalSwap(EmailUserSetNameRequest* PROTOBUF_NONNULL other);
+ private:
+  template <typename T>
+  friend ::absl::string_view(::google::protobuf::internal::GetAnyMessageName)();
+  static ::absl::string_view FullMessageName() { return "palm.portal.v1.EmailUserSetNameRequest"; }
+
+ protected:
+  explicit EmailUserSetNameRequest(::google::protobuf::Arena* PROTOBUF_NULLABLE arena);
+  EmailUserSetNameRequest(::google::protobuf::Arena* PROTOBUF_NULLABLE arena, const EmailUserSetNameRequest& from);
+  EmailUserSetNameRequest(
+      ::google::protobuf::Arena* PROTOBUF_NULLABLE arena, EmailUserSetNameRequest&& from) noexcept
+      : EmailUserSetNameRequest(arena) {
+    *this = ::std::move(from);
+  }
+  const ::google::protobuf::internal::ClassData* PROTOBUF_NONNULL GetClassData() const PROTOBUF_FINAL;
+  static void* PROTOBUF_NONNULL PlacementNew_(
+      const void* PROTOBUF_NONNULL, void* PROTOBUF_NONNULL mem,
+      ::google::protobuf::Arena* PROTOBUF_NULLABLE arena);
+  static constexpr auto InternalNewImpl_();
+
+ public:
+  static constexpr auto InternalGenerateClassData_();
+
+  ::google::protobuf::Metadata GetMetadata() const;
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+  enum : int {
+    kNameFieldNumber = 1,
+  };
+  // string name = 1;
+  void clear_name() ;
+  const ::std::string& name() const;
+  template <typename Arg_ = const ::std::string&, typename... Args_>
+  void set_name(Arg_&& arg, Args_... args);
+  ::std::string* PROTOBUF_NONNULL mutable_name();
+  [[nodiscard]] ::std::string* PROTOBUF_NULLABLE release_name();
+  void set_allocated_name(::std::string* PROTOBUF_NULLABLE value);
+
+  private:
+  const ::std::string& _internal_name() const;
+  PROTOBUF_ALWAYS_INLINE void _internal_set_name(const ::std::string& value);
+  ::std::string* PROTOBUF_NONNULL _internal_mutable_name();
+
+  public:
+  // @@protoc_insertion_point(class_scope:palm.portal.v1.EmailUserSetNameRequest)
+ private:
+  class _Internal;
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<0, 1,
+                                   0, 51,
+                                   2>
+      _table_;
+
+  friend class ::google::protobuf::MessageLite;
+  friend class ::google::protobuf::Arena;
+  template <typename T>
+  friend class ::google::protobuf::Arena::InternalHelper;
+  using InternalArenaConstructable_ = void;
+  using DestructorSkippable_ = void;
+  struct Impl_ {
+    inline explicit constexpr Impl_(::google::protobuf::internal::ConstantInitialized) noexcept;
+    inline explicit Impl_(
+        ::google::protobuf::internal::InternalVisibility visibility,
+        ::google::protobuf::Arena* PROTOBUF_NULLABLE arena);
+    inline explicit Impl_(
+        ::google::protobuf::internal::InternalVisibility visibility,
+        ::google::protobuf::Arena* PROTOBUF_NULLABLE arena, const Impl_& from,
+        const EmailUserSetNameRequest& from_msg);
+    ::google::protobuf::internal::HasBits<1> _has_bits_;
+    ::google::protobuf::internal::CachedSize _cached_size_;
+    ::google::protobuf::internal::ArenaStringPtr name_;
+    PROTOBUF_TSAN_DECLARE_MEMBER
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_portal_2eproto;
+};
+
+extern const ::google::protobuf::internal::ClassDataFull EmailUserSetNameRequest_class_data_;
+// -------------------------------------------------------------------
+
+class EmailUserResetPasswordRequest final : public ::google::protobuf::Message
+/* @@protoc_insertion_point(class_definition:palm.portal.v1.EmailUserResetPasswordRequest) */ {
+ public:
+  inline EmailUserResetPasswordRequest() : EmailUserResetPasswordRequest(nullptr) {}
+  ~EmailUserResetPasswordRequest() PROTOBUF_FINAL;
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+  void operator delete(EmailUserResetPasswordRequest* PROTOBUF_NONNULL msg, std::destroying_delete_t) {
+    SharedDtor(*msg);
+    ::google::protobuf::internal::SizedDelete(msg, sizeof(EmailUserResetPasswordRequest));
+  }
+#endif
+
+  template <typename = void>
+  explicit PROTOBUF_CONSTEXPR EmailUserResetPasswordRequest(::google::protobuf::internal::ConstantInitialized);
+
+  inline EmailUserResetPasswordRequest(const EmailUserResetPasswordRequest& from) : EmailUserResetPasswordRequest(nullptr, from) {}
+  inline EmailUserResetPasswordRequest(EmailUserResetPasswordRequest&& from) noexcept
+      : EmailUserResetPasswordRequest(nullptr, ::std::move(from)) {}
+  inline EmailUserResetPasswordRequest& operator=(const EmailUserResetPasswordRequest& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline EmailUserResetPasswordRequest& operator=(EmailUserResetPasswordRequest&& from) noexcept {
+    if (this == &from) return *this;
+    if (::google::protobuf::internal::CanMoveWithInternalSwap(GetArena(), from.GetArena())) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* PROTOBUF_NONNULL mutable_unknown_fields()
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* PROTOBUF_NONNULL descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* PROTOBUF_NONNULL GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* PROTOBUF_NONNULL GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const EmailUserResetPasswordRequest& default_instance() {
+    return *reinterpret_cast<const EmailUserResetPasswordRequest*>(
+        &_EmailUserResetPasswordRequest_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages = 20;
+  friend void swap(EmailUserResetPasswordRequest& a, EmailUserResetPasswordRequest& b) { a.Swap(&b); }
+  inline void Swap(EmailUserResetPasswordRequest* PROTOBUF_NONNULL other) {
+    if (other == this) return;
+    if (::google::protobuf::internal::CanUseInternalSwap(GetArena(), other->GetArena())) {
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(EmailUserResetPasswordRequest* PROTOBUF_NONNULL other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  EmailUserResetPasswordRequest* PROTOBUF_NONNULL New(::google::protobuf::Arena* PROTOBUF_NULLABLE arena = nullptr) const {
+    return ::google::protobuf::Message::DefaultConstruct<EmailUserResetPasswordRequest>(arena);
+  }
+  using ::google::protobuf::Message::CopyFrom;
+  void CopyFrom(const EmailUserResetPasswordRequest& from);
+  using ::google::protobuf::Message::MergeFrom;
+  void MergeFrom(const EmailUserResetPasswordRequest& from) { EmailUserResetPasswordRequest::MergeImpl(*this, from); }
+
+  private:
+  static void MergeImpl(::google::protobuf::MessageLite& to_msg,
+                        const ::google::protobuf::MessageLite& from_msg);
+
+  public:
+  bool IsInitialized() const {
+    return true;
+  }
+  ABSL_ATTRIBUTE_REINITIALIZES void Clear() PROTOBUF_FINAL;
+  #if defined(PROTOBUF_CUSTOM_VTABLE)
+  private:
+  static ::size_t ByteSizeLong(const ::google::protobuf::MessageLite& msg);
+  static ::uint8_t* PROTOBUF_NONNULL _InternalSerialize(
+      const ::google::protobuf::MessageLite& msg, ::uint8_t* PROTOBUF_NONNULL target,
+      ::google::protobuf::io::EpsCopyOutputStream* PROTOBUF_NONNULL stream);
+
+  public:
+  ::size_t ByteSizeLong() const { return ByteSizeLong(*this); }
+  ::uint8_t* PROTOBUF_NONNULL _InternalSerialize(
+      ::uint8_t* PROTOBUF_NONNULL target,
+      ::google::protobuf::io::EpsCopyOutputStream* PROTOBUF_NONNULL stream) const {
+    return _InternalSerialize(*this, target, stream);
+  }
+  #else   // PROTOBUF_CUSTOM_VTABLE
+  ::size_t ByteSizeLong() const final;
+  ::uint8_t* PROTOBUF_NONNULL _InternalSerialize(
+      ::uint8_t* PROTOBUF_NONNULL target,
+      ::google::protobuf::io::EpsCopyOutputStream* PROTOBUF_NONNULL stream) const final;
+  #endif  // PROTOBUF_CUSTOM_VTABLE
+  int GetCachedSize() const { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::google::protobuf::Arena* PROTOBUF_NULLABLE arena);
+  static void SharedDtor(MessageLite& self);
+  void InternalSwap(EmailUserResetPasswordRequest* PROTOBUF_NONNULL other);
+ private:
+  template <typename T>
+  friend ::absl::string_view(::google::protobuf::internal::GetAnyMessageName)();
+  static ::absl::string_view FullMessageName() { return "palm.portal.v1.EmailUserResetPasswordRequest"; }
+
+ protected:
+  explicit EmailUserResetPasswordRequest(::google::protobuf::Arena* PROTOBUF_NULLABLE arena);
+  EmailUserResetPasswordRequest(::google::protobuf::Arena* PROTOBUF_NULLABLE arena, const EmailUserResetPasswordRequest& from);
+  EmailUserResetPasswordRequest(
+      ::google::protobuf::Arena* PROTOBUF_NULLABLE arena, EmailUserResetPasswordRequest&& from) noexcept
+      : EmailUserResetPasswordRequest(arena) {
+    *this = ::std::move(from);
+  }
+  const ::google::protobuf::internal::ClassData* PROTOBUF_NONNULL GetClassData() const PROTOBUF_FINAL;
+  static void* PROTOBUF_NONNULL PlacementNew_(
+      const void* PROTOBUF_NONNULL, void* PROTOBUF_NONNULL mem,
+      ::google::protobuf::Arena* PROTOBUF_NULLABLE arena);
+  static constexpr auto InternalNewImpl_();
+
+ public:
+  static constexpr auto InternalGenerateClassData_();
+
+  ::google::protobuf::Metadata GetMetadata() const;
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+  enum : int {
+    kTokenFieldNumber = 1,
+    kPasswordFieldNumber = 2,
+  };
+  // string token = 1;
+  void clear_token() ;
+  const ::std::string& token() const;
+  template <typename Arg_ = const ::std::string&, typename... Args_>
+  void set_token(Arg_&& arg, Args_... args);
+  ::std::string* PROTOBUF_NONNULL mutable_token();
+  [[nodiscard]] ::std::string* PROTOBUF_NULLABLE release_token();
+  void set_allocated_token(::std::string* PROTOBUF_NULLABLE value);
+
+  private:
+  const ::std::string& _internal_token() const;
+  PROTOBUF_ALWAYS_INLINE void _internal_set_token(const ::std::string& value);
+  ::std::string* PROTOBUF_NONNULL _internal_mutable_token();
+
+  public:
+  // string password = 2;
+  void clear_password() ;
+  const ::std::string& password() const;
+  template <typename Arg_ = const ::std::string&, typename... Args_>
+  void set_password(Arg_&& arg, Args_... args);
+  ::std::string* PROTOBUF_NONNULL mutable_password();
+  [[nodiscard]] ::std::string* PROTOBUF_NULLABLE release_password();
+  void set_allocated_password(::std::string* PROTOBUF_NULLABLE value);
+
+  private:
+  const ::std::string& _internal_password() const;
+  PROTOBUF_ALWAYS_INLINE void _internal_set_password(const ::std::string& value);
+  ::std::string* PROTOBUF_NONNULL _internal_mutable_password();
+
+  public:
+  // @@protoc_insertion_point(class_scope:palm.portal.v1.EmailUserResetPasswordRequest)
+ private:
+  class _Internal;
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<1, 2,
+                                   0, 66,
+                                   2>
+      _table_;
+
+  friend class ::google::protobuf::MessageLite;
+  friend class ::google::protobuf::Arena;
+  template <typename T>
+  friend class ::google::protobuf::Arena::InternalHelper;
+  using InternalArenaConstructable_ = void;
+  using DestructorSkippable_ = void;
+  struct Impl_ {
+    inline explicit constexpr Impl_(::google::protobuf::internal::ConstantInitialized) noexcept;
+    inline explicit Impl_(
+        ::google::protobuf::internal::InternalVisibility visibility,
+        ::google::protobuf::Arena* PROTOBUF_NULLABLE arena);
+    inline explicit Impl_(
+        ::google::protobuf::internal::InternalVisibility visibility,
+        ::google::protobuf::Arena* PROTOBUF_NULLABLE arena, const Impl_& from,
+        const EmailUserResetPasswordRequest& from_msg);
+    ::google::protobuf::internal::HasBits<1> _has_bits_;
+    ::google::protobuf::internal::CachedSize _cached_size_;
+    ::google::protobuf::internal::ArenaStringPtr token_;
+    ::google::protobuf::internal::ArenaStringPtr password_;
+    PROTOBUF_TSAN_DECLARE_MEMBER
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_portal_2eproto;
+};
+
+extern const ::google::protobuf::internal::ClassDataFull EmailUserResetPasswordRequest_class_data_;
+// -------------------------------------------------------------------
+
+class EmailUserForgotPasswordRequest final : public ::google::protobuf::Message
+/* @@protoc_insertion_point(class_definition:palm.portal.v1.EmailUserForgotPasswordRequest) */ {
+ public:
+  inline EmailUserForgotPasswordRequest() : EmailUserForgotPasswordRequest(nullptr) {}
+  ~EmailUserForgotPasswordRequest() PROTOBUF_FINAL;
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+  void operator delete(EmailUserForgotPasswordRequest* PROTOBUF_NONNULL msg, std::destroying_delete_t) {
+    SharedDtor(*msg);
+    ::google::protobuf::internal::SizedDelete(msg, sizeof(EmailUserForgotPasswordRequest));
+  }
+#endif
+
+  template <typename = void>
+  explicit PROTOBUF_CONSTEXPR EmailUserForgotPasswordRequest(::google::protobuf::internal::ConstantInitialized);
+
+  inline EmailUserForgotPasswordRequest(const EmailUserForgotPasswordRequest& from) : EmailUserForgotPasswordRequest(nullptr, from) {}
+  inline EmailUserForgotPasswordRequest(EmailUserForgotPasswordRequest&& from) noexcept
+      : EmailUserForgotPasswordRequest(nullptr, ::std::move(from)) {}
+  inline EmailUserForgotPasswordRequest& operator=(const EmailUserForgotPasswordRequest& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline EmailUserForgotPasswordRequest& operator=(EmailUserForgotPasswordRequest&& from) noexcept {
+    if (this == &from) return *this;
+    if (::google::protobuf::internal::CanMoveWithInternalSwap(GetArena(), from.GetArena())) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* PROTOBUF_NONNULL mutable_unknown_fields()
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* PROTOBUF_NONNULL descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* PROTOBUF_NONNULL GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* PROTOBUF_NONNULL GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const EmailUserForgotPasswordRequest& default_instance() {
+    return *reinterpret_cast<const EmailUserForgotPasswordRequest*>(
+        &_EmailUserForgotPasswordRequest_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages = 19;
+  friend void swap(EmailUserForgotPasswordRequest& a, EmailUserForgotPasswordRequest& b) { a.Swap(&b); }
+  inline void Swap(EmailUserForgotPasswordRequest* PROTOBUF_NONNULL other) {
+    if (other == this) return;
+    if (::google::protobuf::internal::CanUseInternalSwap(GetArena(), other->GetArena())) {
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(EmailUserForgotPasswordRequest* PROTOBUF_NONNULL other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  EmailUserForgotPasswordRequest* PROTOBUF_NONNULL New(::google::protobuf::Arena* PROTOBUF_NULLABLE arena = nullptr) const {
+    return ::google::protobuf::Message::DefaultConstruct<EmailUserForgotPasswordRequest>(arena);
+  }
+  using ::google::protobuf::Message::CopyFrom;
+  void CopyFrom(const EmailUserForgotPasswordRequest& from);
+  using ::google::protobuf::Message::MergeFrom;
+  void MergeFrom(const EmailUserForgotPasswordRequest& from) { EmailUserForgotPasswordRequest::MergeImpl(*this, from); }
+
+  private:
+  static void MergeImpl(::google::protobuf::MessageLite& to_msg,
+                        const ::google::protobuf::MessageLite& from_msg);
+
+  public:
+  bool IsInitialized() const {
+    return true;
+  }
+  ABSL_ATTRIBUTE_REINITIALIZES void Clear() PROTOBUF_FINAL;
+  #if defined(PROTOBUF_CUSTOM_VTABLE)
+  private:
+  static ::size_t ByteSizeLong(const ::google::protobuf::MessageLite& msg);
+  static ::uint8_t* PROTOBUF_NONNULL _InternalSerialize(
+      const ::google::protobuf::MessageLite& msg, ::uint8_t* PROTOBUF_NONNULL target,
+      ::google::protobuf::io::EpsCopyOutputStream* PROTOBUF_NONNULL stream);
+
+  public:
+  ::size_t ByteSizeLong() const { return ByteSizeLong(*this); }
+  ::uint8_t* PROTOBUF_NONNULL _InternalSerialize(
+      ::uint8_t* PROTOBUF_NONNULL target,
+      ::google::protobuf::io::EpsCopyOutputStream* PROTOBUF_NONNULL stream) const {
+    return _InternalSerialize(*this, target, stream);
+  }
+  #else   // PROTOBUF_CUSTOM_VTABLE
+  ::size_t ByteSizeLong() const final;
+  ::uint8_t* PROTOBUF_NONNULL _InternalSerialize(
+      ::uint8_t* PROTOBUF_NONNULL target,
+      ::google::protobuf::io::EpsCopyOutputStream* PROTOBUF_NONNULL stream) const final;
+  #endif  // PROTOBUF_CUSTOM_VTABLE
+  int GetCachedSize() const { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::google::protobuf::Arena* PROTOBUF_NULLABLE arena);
+  static void SharedDtor(MessageLite& self);
+  void InternalSwap(EmailUserForgotPasswordRequest* PROTOBUF_NONNULL other);
+ private:
+  template <typename T>
+  friend ::absl::string_view(::google::protobuf::internal::GetAnyMessageName)();
+  static ::absl::string_view FullMessageName() { return "palm.portal.v1.EmailUserForgotPasswordRequest"; }
+
+ protected:
+  explicit EmailUserForgotPasswordRequest(::google::protobuf::Arena* PROTOBUF_NULLABLE arena);
+  EmailUserForgotPasswordRequest(::google::protobuf::Arena* PROTOBUF_NULLABLE arena, const EmailUserForgotPasswordRequest& from);
+  EmailUserForgotPasswordRequest(
+      ::google::protobuf::Arena* PROTOBUF_NULLABLE arena, EmailUserForgotPasswordRequest&& from) noexcept
+      : EmailUserForgotPasswordRequest(arena) {
+    *this = ::std::move(from);
+  }
+  const ::google::protobuf::internal::ClassData* PROTOBUF_NONNULL GetClassData() const PROTOBUF_FINAL;
+  static void* PROTOBUF_NONNULL PlacementNew_(
+      const void* PROTOBUF_NONNULL, void* PROTOBUF_NONNULL mem,
+      ::google::protobuf::Arena* PROTOBUF_NULLABLE arena);
+  static constexpr auto InternalNewImpl_();
+
+ public:
+  static constexpr auto InternalGenerateClassData_();
+
+  ::google::protobuf::Metadata GetMetadata() const;
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+  enum : int {
+    kEmailFieldNumber = 1,
+    kHomeFieldNumber = 99,
+  };
+  // string email = 1;
+  void clear_email() ;
+  const ::std::string& email() const;
+  template <typename Arg_ = const ::std::string&, typename... Args_>
+  void set_email(Arg_&& arg, Args_... args);
+  ::std::string* PROTOBUF_NONNULL mutable_email();
+  [[nodiscard]] ::std::string* PROTOBUF_NULLABLE release_email();
+  void set_allocated_email(::std::string* PROTOBUF_NULLABLE value);
+
+  private:
+  const ::std::string& _internal_email() const;
+  PROTOBUF_ALWAYS_INLINE void _internal_set_email(const ::std::string& value);
+  ::std::string* PROTOBUF_NONNULL _internal_mutable_email();
+
+  public:
+  // string home = 99;
+  void clear_home() ;
+  const ::std::string& home() const;
+  template <typename Arg_ = const ::std::string&, typename... Args_>
+  void set_home(Arg_&& arg, Args_... args);
+  ::std::string* PROTOBUF_NONNULL mutable_home();
+  [[nodiscard]] ::std::string* PROTOBUF_NULLABLE release_home();
+  void set_allocated_home(::std::string* PROTOBUF_NULLABLE value);
+
+  private:
+  const ::std::string& _internal_home() const;
+  PROTOBUF_ALWAYS_INLINE void _internal_set_home(const ::std::string& value);
+  ::std::string* PROTOBUF_NONNULL _internal_mutable_home();
+
+  public:
+  // @@protoc_insertion_point(class_scope:palm.portal.v1.EmailUserForgotPasswordRequest)
+ private:
+  class _Internal;
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<2, 2,
+                                   0, 63,
+                                   7>
+      _table_;
+
+  friend class ::google::protobuf::MessageLite;
+  friend class ::google::protobuf::Arena;
+  template <typename T>
+  friend class ::google::protobuf::Arena::InternalHelper;
+  using InternalArenaConstructable_ = void;
+  using DestructorSkippable_ = void;
+  struct Impl_ {
+    inline explicit constexpr Impl_(::google::protobuf::internal::ConstantInitialized) noexcept;
+    inline explicit Impl_(
+        ::google::protobuf::internal::InternalVisibility visibility,
+        ::google::protobuf::Arena* PROTOBUF_NULLABLE arena);
+    inline explicit Impl_(
+        ::google::protobuf::internal::InternalVisibility visibility,
+        ::google::protobuf::Arena* PROTOBUF_NULLABLE arena, const Impl_& from,
+        const EmailUserForgotPasswordRequest& from_msg);
+    ::google::protobuf::internal::HasBits<1> _has_bits_;
+    ::google::protobuf::internal::CachedSize _cached_size_;
+    ::google::protobuf::internal::ArenaStringPtr email_;
+    ::google::protobuf::internal::ArenaStringPtr home_;
+    PROTOBUF_TSAN_DECLARE_MEMBER
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_portal_2eproto;
+};
+
+extern const ::google::protobuf::internal::ClassDataFull EmailUserForgotPasswordRequest_class_data_;
+// -------------------------------------------------------------------
+
+class EmailUserConfirmByTokenRequest final : public ::google::protobuf::Message
+/* @@protoc_insertion_point(class_definition:palm.portal.v1.EmailUserConfirmByTokenRequest) */ {
+ public:
+  inline EmailUserConfirmByTokenRequest() : EmailUserConfirmByTokenRequest(nullptr) {}
+  ~EmailUserConfirmByTokenRequest() PROTOBUF_FINAL;
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+  void operator delete(EmailUserConfirmByTokenRequest* PROTOBUF_NONNULL msg, std::destroying_delete_t) {
+    SharedDtor(*msg);
+    ::google::protobuf::internal::SizedDelete(msg, sizeof(EmailUserConfirmByTokenRequest));
+  }
+#endif
+
+  template <typename = void>
+  explicit PROTOBUF_CONSTEXPR EmailUserConfirmByTokenRequest(::google::protobuf::internal::ConstantInitialized);
+
+  inline EmailUserConfirmByTokenRequest(const EmailUserConfirmByTokenRequest& from) : EmailUserConfirmByTokenRequest(nullptr, from) {}
+  inline EmailUserConfirmByTokenRequest(EmailUserConfirmByTokenRequest&& from) noexcept
+      : EmailUserConfirmByTokenRequest(nullptr, ::std::move(from)) {}
+  inline EmailUserConfirmByTokenRequest& operator=(const EmailUserConfirmByTokenRequest& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline EmailUserConfirmByTokenRequest& operator=(EmailUserConfirmByTokenRequest&& from) noexcept {
+    if (this == &from) return *this;
+    if (::google::protobuf::internal::CanMoveWithInternalSwap(GetArena(), from.GetArena())) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* PROTOBUF_NONNULL mutable_unknown_fields()
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* PROTOBUF_NONNULL descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* PROTOBUF_NONNULL GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* PROTOBUF_NONNULL GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const EmailUserConfirmByTokenRequest& default_instance() {
+    return *reinterpret_cast<const EmailUserConfirmByTokenRequest*>(
+        &_EmailUserConfirmByTokenRequest_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages = 18;
+  friend void swap(EmailUserConfirmByTokenRequest& a, EmailUserConfirmByTokenRequest& b) { a.Swap(&b); }
+  inline void Swap(EmailUserConfirmByTokenRequest* PROTOBUF_NONNULL other) {
+    if (other == this) return;
+    if (::google::protobuf::internal::CanUseInternalSwap(GetArena(), other->GetArena())) {
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(EmailUserConfirmByTokenRequest* PROTOBUF_NONNULL other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  EmailUserConfirmByTokenRequest* PROTOBUF_NONNULL New(::google::protobuf::Arena* PROTOBUF_NULLABLE arena = nullptr) const {
+    return ::google::protobuf::Message::DefaultConstruct<EmailUserConfirmByTokenRequest>(arena);
+  }
+  using ::google::protobuf::Message::CopyFrom;
+  void CopyFrom(const EmailUserConfirmByTokenRequest& from);
+  using ::google::protobuf::Message::MergeFrom;
+  void MergeFrom(const EmailUserConfirmByTokenRequest& from) { EmailUserConfirmByTokenRequest::MergeImpl(*this, from); }
+
+  private:
+  static void MergeImpl(::google::protobuf::MessageLite& to_msg,
+                        const ::google::protobuf::MessageLite& from_msg);
+
+  public:
+  bool IsInitialized() const {
+    return true;
+  }
+  ABSL_ATTRIBUTE_REINITIALIZES void Clear() PROTOBUF_FINAL;
+  #if defined(PROTOBUF_CUSTOM_VTABLE)
+  private:
+  static ::size_t ByteSizeLong(const ::google::protobuf::MessageLite& msg);
+  static ::uint8_t* PROTOBUF_NONNULL _InternalSerialize(
+      const ::google::protobuf::MessageLite& msg, ::uint8_t* PROTOBUF_NONNULL target,
+      ::google::protobuf::io::EpsCopyOutputStream* PROTOBUF_NONNULL stream);
+
+  public:
+  ::size_t ByteSizeLong() const { return ByteSizeLong(*this); }
+  ::uint8_t* PROTOBUF_NONNULL _InternalSerialize(
+      ::uint8_t* PROTOBUF_NONNULL target,
+      ::google::protobuf::io::EpsCopyOutputStream* PROTOBUF_NONNULL stream) const {
+    return _InternalSerialize(*this, target, stream);
+  }
+  #else   // PROTOBUF_CUSTOM_VTABLE
+  ::size_t ByteSizeLong() const final;
+  ::uint8_t* PROTOBUF_NONNULL _InternalSerialize(
+      ::uint8_t* PROTOBUF_NONNULL target,
+      ::google::protobuf::io::EpsCopyOutputStream* PROTOBUF_NONNULL stream) const final;
+  #endif  // PROTOBUF_CUSTOM_VTABLE
+  int GetCachedSize() const { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::google::protobuf::Arena* PROTOBUF_NULLABLE arena);
+  static void SharedDtor(MessageLite& self);
+  void InternalSwap(EmailUserConfirmByTokenRequest* PROTOBUF_NONNULL other);
+ private:
+  template <typename T>
+  friend ::absl::string_view(::google::protobuf::internal::GetAnyMessageName)();
+  static ::absl::string_view FullMessageName() { return "palm.portal.v1.EmailUserConfirmByTokenRequest"; }
+
+ protected:
+  explicit EmailUserConfirmByTokenRequest(::google::protobuf::Arena* PROTOBUF_NULLABLE arena);
+  EmailUserConfirmByTokenRequest(::google::protobuf::Arena* PROTOBUF_NULLABLE arena, const EmailUserConfirmByTokenRequest& from);
+  EmailUserConfirmByTokenRequest(
+      ::google::protobuf::Arena* PROTOBUF_NULLABLE arena, EmailUserConfirmByTokenRequest&& from) noexcept
+      : EmailUserConfirmByTokenRequest(arena) {
+    *this = ::std::move(from);
+  }
+  const ::google::protobuf::internal::ClassData* PROTOBUF_NONNULL GetClassData() const PROTOBUF_FINAL;
+  static void* PROTOBUF_NONNULL PlacementNew_(
+      const void* PROTOBUF_NONNULL, void* PROTOBUF_NONNULL mem,
+      ::google::protobuf::Arena* PROTOBUF_NULLABLE arena);
+  static constexpr auto InternalNewImpl_();
+
+ public:
+  static constexpr auto InternalGenerateClassData_();
+
+  ::google::protobuf::Metadata GetMetadata() const;
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+  enum : int {
+    kTokenFieldNumber = 1,
+  };
+  // string token = 1;
+  void clear_token() ;
+  const ::std::string& token() const;
+  template <typename Arg_ = const ::std::string&, typename... Args_>
+  void set_token(Arg_&& arg, Args_... args);
+  ::std::string* PROTOBUF_NONNULL mutable_token();
+  [[nodiscard]] ::std::string* PROTOBUF_NULLABLE release_token();
+  void set_allocated_token(::std::string* PROTOBUF_NULLABLE value);
+
+  private:
+  const ::std::string& _internal_token() const;
+  PROTOBUF_ALWAYS_INLINE void _internal_set_token(const ::std::string& value);
+  ::std::string* PROTOBUF_NONNULL _internal_mutable_token();
+
+  public:
+  // @@protoc_insertion_point(class_scope:palm.portal.v1.EmailUserConfirmByTokenRequest)
+ private:
+  class _Internal;
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<0, 1,
+                                   0, 59,
+                                   2>
+      _table_;
+
+  friend class ::google::protobuf::MessageLite;
+  friend class ::google::protobuf::Arena;
+  template <typename T>
+  friend class ::google::protobuf::Arena::InternalHelper;
+  using InternalArenaConstructable_ = void;
+  using DestructorSkippable_ = void;
+  struct Impl_ {
+    inline explicit constexpr Impl_(::google::protobuf::internal::ConstantInitialized) noexcept;
+    inline explicit Impl_(
+        ::google::protobuf::internal::InternalVisibility visibility,
+        ::google::protobuf::Arena* PROTOBUF_NULLABLE arena);
+    inline explicit Impl_(
+        ::google::protobuf::internal::InternalVisibility visibility,
+        ::google::protobuf::Arena* PROTOBUF_NULLABLE arena, const Impl_& from,
+        const EmailUserConfirmByTokenRequest& from_msg);
+    ::google::protobuf::internal::HasBits<1> _has_bits_;
+    ::google::protobuf::internal::CachedSize _cached_size_;
+    ::google::protobuf::internal::ArenaStringPtr token_;
+    PROTOBUF_TSAN_DECLARE_MEMBER
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_portal_2eproto;
+};
+
+extern const ::google::protobuf::internal::ClassDataFull EmailUserConfirmByTokenRequest_class_data_;
+// -------------------------------------------------------------------
+
+class EmailUserConfirmByEmailRequest final : public ::google::protobuf::Message
+/* @@protoc_insertion_point(class_definition:palm.portal.v1.EmailUserConfirmByEmailRequest) */ {
+ public:
+  inline EmailUserConfirmByEmailRequest() : EmailUserConfirmByEmailRequest(nullptr) {}
+  ~EmailUserConfirmByEmailRequest() PROTOBUF_FINAL;
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+  void operator delete(EmailUserConfirmByEmailRequest* PROTOBUF_NONNULL msg, std::destroying_delete_t) {
+    SharedDtor(*msg);
+    ::google::protobuf::internal::SizedDelete(msg, sizeof(EmailUserConfirmByEmailRequest));
+  }
+#endif
+
+  template <typename = void>
+  explicit PROTOBUF_CONSTEXPR EmailUserConfirmByEmailRequest(::google::protobuf::internal::ConstantInitialized);
+
+  inline EmailUserConfirmByEmailRequest(const EmailUserConfirmByEmailRequest& from) : EmailUserConfirmByEmailRequest(nullptr, from) {}
+  inline EmailUserConfirmByEmailRequest(EmailUserConfirmByEmailRequest&& from) noexcept
+      : EmailUserConfirmByEmailRequest(nullptr, ::std::move(from)) {}
+  inline EmailUserConfirmByEmailRequest& operator=(const EmailUserConfirmByEmailRequest& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline EmailUserConfirmByEmailRequest& operator=(EmailUserConfirmByEmailRequest&& from) noexcept {
+    if (this == &from) return *this;
+    if (::google::protobuf::internal::CanMoveWithInternalSwap(GetArena(), from.GetArena())) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* PROTOBUF_NONNULL mutable_unknown_fields()
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* PROTOBUF_NONNULL descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* PROTOBUF_NONNULL GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* PROTOBUF_NONNULL GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const EmailUserConfirmByEmailRequest& default_instance() {
+    return *reinterpret_cast<const EmailUserConfirmByEmailRequest*>(
+        &_EmailUserConfirmByEmailRequest_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages = 17;
+  friend void swap(EmailUserConfirmByEmailRequest& a, EmailUserConfirmByEmailRequest& b) { a.Swap(&b); }
+  inline void Swap(EmailUserConfirmByEmailRequest* PROTOBUF_NONNULL other) {
+    if (other == this) return;
+    if (::google::protobuf::internal::CanUseInternalSwap(GetArena(), other->GetArena())) {
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(EmailUserConfirmByEmailRequest* PROTOBUF_NONNULL other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  EmailUserConfirmByEmailRequest* PROTOBUF_NONNULL New(::google::protobuf::Arena* PROTOBUF_NULLABLE arena = nullptr) const {
+    return ::google::protobuf::Message::DefaultConstruct<EmailUserConfirmByEmailRequest>(arena);
+  }
+  using ::google::protobuf::Message::CopyFrom;
+  void CopyFrom(const EmailUserConfirmByEmailRequest& from);
+  using ::google::protobuf::Message::MergeFrom;
+  void MergeFrom(const EmailUserConfirmByEmailRequest& from) { EmailUserConfirmByEmailRequest::MergeImpl(*this, from); }
+
+  private:
+  static void MergeImpl(::google::protobuf::MessageLite& to_msg,
+                        const ::google::protobuf::MessageLite& from_msg);
+
+  public:
+  bool IsInitialized() const {
+    return true;
+  }
+  ABSL_ATTRIBUTE_REINITIALIZES void Clear() PROTOBUF_FINAL;
+  #if defined(PROTOBUF_CUSTOM_VTABLE)
+  private:
+  static ::size_t ByteSizeLong(const ::google::protobuf::MessageLite& msg);
+  static ::uint8_t* PROTOBUF_NONNULL _InternalSerialize(
+      const ::google::protobuf::MessageLite& msg, ::uint8_t* PROTOBUF_NONNULL target,
+      ::google::protobuf::io::EpsCopyOutputStream* PROTOBUF_NONNULL stream);
+
+  public:
+  ::size_t ByteSizeLong() const { return ByteSizeLong(*this); }
+  ::uint8_t* PROTOBUF_NONNULL _InternalSerialize(
+      ::uint8_t* PROTOBUF_NONNULL target,
+      ::google::protobuf::io::EpsCopyOutputStream* PROTOBUF_NONNULL stream) const {
+    return _InternalSerialize(*this, target, stream);
+  }
+  #else   // PROTOBUF_CUSTOM_VTABLE
+  ::size_t ByteSizeLong() const final;
+  ::uint8_t* PROTOBUF_NONNULL _InternalSerialize(
+      ::uint8_t* PROTOBUF_NONNULL target,
+      ::google::protobuf::io::EpsCopyOutputStream* PROTOBUF_NONNULL stream) const final;
+  #endif  // PROTOBUF_CUSTOM_VTABLE
+  int GetCachedSize() const { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::google::protobuf::Arena* PROTOBUF_NULLABLE arena);
+  static void SharedDtor(MessageLite& self);
+  void InternalSwap(EmailUserConfirmByEmailRequest* PROTOBUF_NONNULL other);
+ private:
+  template <typename T>
+  friend ::absl::string_view(::google::protobuf::internal::GetAnyMessageName)();
+  static ::absl::string_view FullMessageName() { return "palm.portal.v1.EmailUserConfirmByEmailRequest"; }
+
+ protected:
+  explicit EmailUserConfirmByEmailRequest(::google::protobuf::Arena* PROTOBUF_NULLABLE arena);
+  EmailUserConfirmByEmailRequest(::google::protobuf::Arena* PROTOBUF_NULLABLE arena, const EmailUserConfirmByEmailRequest& from);
+  EmailUserConfirmByEmailRequest(
+      ::google::protobuf::Arena* PROTOBUF_NULLABLE arena, EmailUserConfirmByEmailRequest&& from) noexcept
+      : EmailUserConfirmByEmailRequest(arena) {
+    *this = ::std::move(from);
+  }
+  const ::google::protobuf::internal::ClassData* PROTOBUF_NONNULL GetClassData() const PROTOBUF_FINAL;
+  static void* PROTOBUF_NONNULL PlacementNew_(
+      const void* PROTOBUF_NONNULL, void* PROTOBUF_NONNULL mem,
+      ::google::protobuf::Arena* PROTOBUF_NULLABLE arena);
+  static constexpr auto InternalNewImpl_();
+
+ public:
+  static constexpr auto InternalGenerateClassData_();
+
+  ::google::protobuf::Metadata GetMetadata() const;
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+  enum : int {
+    kEmailFieldNumber = 1,
+    kHomeFieldNumber = 99,
+  };
+  // string email = 1;
+  void clear_email() ;
+  const ::std::string& email() const;
+  template <typename Arg_ = const ::std::string&, typename... Args_>
+  void set_email(Arg_&& arg, Args_... args);
+  ::std::string* PROTOBUF_NONNULL mutable_email();
+  [[nodiscard]] ::std::string* PROTOBUF_NULLABLE release_email();
+  void set_allocated_email(::std::string* PROTOBUF_NULLABLE value);
+
+  private:
+  const ::std::string& _internal_email() const;
+  PROTOBUF_ALWAYS_INLINE void _internal_set_email(const ::std::string& value);
+  ::std::string* PROTOBUF_NONNULL _internal_mutable_email();
+
+  public:
+  // string home = 99;
+  void clear_home() ;
+  const ::std::string& home() const;
+  template <typename Arg_ = const ::std::string&, typename... Args_>
+  void set_home(Arg_&& arg, Args_... args);
+  ::std::string* PROTOBUF_NONNULL mutable_home();
+  [[nodiscard]] ::std::string* PROTOBUF_NULLABLE release_home();
+  void set_allocated_home(::std::string* PROTOBUF_NULLABLE value);
+
+  private:
+  const ::std::string& _internal_home() const;
+  PROTOBUF_ALWAYS_INLINE void _internal_set_home(const ::std::string& value);
+  ::std::string* PROTOBUF_NONNULL _internal_mutable_home();
+
+  public:
+  // @@protoc_insertion_point(class_scope:palm.portal.v1.EmailUserConfirmByEmailRequest)
+ private:
+  class _Internal;
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<2, 2,
+                                   0, 63,
+                                   7>
+      _table_;
+
+  friend class ::google::protobuf::MessageLite;
+  friend class ::google::protobuf::Arena;
+  template <typename T>
+  friend class ::google::protobuf::Arena::InternalHelper;
+  using InternalArenaConstructable_ = void;
+  using DestructorSkippable_ = void;
+  struct Impl_ {
+    inline explicit constexpr Impl_(::google::protobuf::internal::ConstantInitialized) noexcept;
+    inline explicit Impl_(
+        ::google::protobuf::internal::InternalVisibility visibility,
+        ::google::protobuf::Arena* PROTOBUF_NULLABLE arena);
+    inline explicit Impl_(
+        ::google::protobuf::internal::InternalVisibility visibility,
+        ::google::protobuf::Arena* PROTOBUF_NULLABLE arena, const Impl_& from,
+        const EmailUserConfirmByEmailRequest& from_msg);
+    ::google::protobuf::internal::HasBits<1> _has_bits_;
+    ::google::protobuf::internal::CachedSize _cached_size_;
+    ::google::protobuf::internal::ArenaStringPtr email_;
+    ::google::protobuf::internal::ArenaStringPtr home_;
+    PROTOBUF_TSAN_DECLARE_MEMBER
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_portal_2eproto;
+};
+
+extern const ::google::protobuf::internal::ClassDataFull EmailUserConfirmByEmailRequest_class_data_;
+// -------------------------------------------------------------------
+
+class EmailUserChangePasswordRequest final : public ::google::protobuf::Message
+/* @@protoc_insertion_point(class_definition:palm.portal.v1.EmailUserChangePasswordRequest) */ {
+ public:
+  inline EmailUserChangePasswordRequest() : EmailUserChangePasswordRequest(nullptr) {}
+  ~EmailUserChangePasswordRequest() PROTOBUF_FINAL;
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+  void operator delete(EmailUserChangePasswordRequest* PROTOBUF_NONNULL msg, std::destroying_delete_t) {
+    SharedDtor(*msg);
+    ::google::protobuf::internal::SizedDelete(msg, sizeof(EmailUserChangePasswordRequest));
+  }
+#endif
+
+  template <typename = void>
+  explicit PROTOBUF_CONSTEXPR EmailUserChangePasswordRequest(::google::protobuf::internal::ConstantInitialized);
+
+  inline EmailUserChangePasswordRequest(const EmailUserChangePasswordRequest& from) : EmailUserChangePasswordRequest(nullptr, from) {}
+  inline EmailUserChangePasswordRequest(EmailUserChangePasswordRequest&& from) noexcept
+      : EmailUserChangePasswordRequest(nullptr, ::std::move(from)) {}
+  inline EmailUserChangePasswordRequest& operator=(const EmailUserChangePasswordRequest& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline EmailUserChangePasswordRequest& operator=(EmailUserChangePasswordRequest&& from) noexcept {
+    if (this == &from) return *this;
+    if (::google::protobuf::internal::CanMoveWithInternalSwap(GetArena(), from.GetArena())) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* PROTOBUF_NONNULL mutable_unknown_fields()
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* PROTOBUF_NONNULL descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* PROTOBUF_NONNULL GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* PROTOBUF_NONNULL GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const EmailUserChangePasswordRequest& default_instance() {
+    return *reinterpret_cast<const EmailUserChangePasswordRequest*>(
+        &_EmailUserChangePasswordRequest_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages = 23;
+  friend void swap(EmailUserChangePasswordRequest& a, EmailUserChangePasswordRequest& b) { a.Swap(&b); }
+  inline void Swap(EmailUserChangePasswordRequest* PROTOBUF_NONNULL other) {
+    if (other == this) return;
+    if (::google::protobuf::internal::CanUseInternalSwap(GetArena(), other->GetArena())) {
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(EmailUserChangePasswordRequest* PROTOBUF_NONNULL other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  EmailUserChangePasswordRequest* PROTOBUF_NONNULL New(::google::protobuf::Arena* PROTOBUF_NULLABLE arena = nullptr) const {
+    return ::google::protobuf::Message::DefaultConstruct<EmailUserChangePasswordRequest>(arena);
+  }
+  using ::google::protobuf::Message::CopyFrom;
+  void CopyFrom(const EmailUserChangePasswordRequest& from);
+  using ::google::protobuf::Message::MergeFrom;
+  void MergeFrom(const EmailUserChangePasswordRequest& from) { EmailUserChangePasswordRequest::MergeImpl(*this, from); }
+
+  private:
+  static void MergeImpl(::google::protobuf::MessageLite& to_msg,
+                        const ::google::protobuf::MessageLite& from_msg);
+
+  public:
+  bool IsInitialized() const {
+    return true;
+  }
+  ABSL_ATTRIBUTE_REINITIALIZES void Clear() PROTOBUF_FINAL;
+  #if defined(PROTOBUF_CUSTOM_VTABLE)
+  private:
+  static ::size_t ByteSizeLong(const ::google::protobuf::MessageLite& msg);
+  static ::uint8_t* PROTOBUF_NONNULL _InternalSerialize(
+      const ::google::protobuf::MessageLite& msg, ::uint8_t* PROTOBUF_NONNULL target,
+      ::google::protobuf::io::EpsCopyOutputStream* PROTOBUF_NONNULL stream);
+
+  public:
+  ::size_t ByteSizeLong() const { return ByteSizeLong(*this); }
+  ::uint8_t* PROTOBUF_NONNULL _InternalSerialize(
+      ::uint8_t* PROTOBUF_NONNULL target,
+      ::google::protobuf::io::EpsCopyOutputStream* PROTOBUF_NONNULL stream) const {
+    return _InternalSerialize(*this, target, stream);
+  }
+  #else   // PROTOBUF_CUSTOM_VTABLE
+  ::size_t ByteSizeLong() const final;
+  ::uint8_t* PROTOBUF_NONNULL _InternalSerialize(
+      ::uint8_t* PROTOBUF_NONNULL target,
+      ::google::protobuf::io::EpsCopyOutputStream* PROTOBUF_NONNULL stream) const final;
+  #endif  // PROTOBUF_CUSTOM_VTABLE
+  int GetCachedSize() const { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::google::protobuf::Arena* PROTOBUF_NULLABLE arena);
+  static void SharedDtor(MessageLite& self);
+  void InternalSwap(EmailUserChangePasswordRequest* PROTOBUF_NONNULL other);
+ private:
+  template <typename T>
+  friend ::absl::string_view(::google::protobuf::internal::GetAnyMessageName)();
+  static ::absl::string_view FullMessageName() { return "palm.portal.v1.EmailUserChangePasswordRequest"; }
+
+ protected:
+  explicit EmailUserChangePasswordRequest(::google::protobuf::Arena* PROTOBUF_NULLABLE arena);
+  EmailUserChangePasswordRequest(::google::protobuf::Arena* PROTOBUF_NULLABLE arena, const EmailUserChangePasswordRequest& from);
+  EmailUserChangePasswordRequest(
+      ::google::protobuf::Arena* PROTOBUF_NULLABLE arena, EmailUserChangePasswordRequest&& from) noexcept
+      : EmailUserChangePasswordRequest(arena) {
+    *this = ::std::move(from);
+  }
+  const ::google::protobuf::internal::ClassData* PROTOBUF_NONNULL GetClassData() const PROTOBUF_FINAL;
+  static void* PROTOBUF_NONNULL PlacementNew_(
+      const void* PROTOBUF_NONNULL, void* PROTOBUF_NONNULL mem,
+      ::google::protobuf::Arena* PROTOBUF_NULLABLE arena);
+  static constexpr auto InternalNewImpl_();
+
+ public:
+  static constexpr auto InternalGenerateClassData_();
+
+  ::google::protobuf::Metadata GetMetadata() const;
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+  enum : int {
+    kCurrentPasswordFieldNumber = 1,
+    kNewPasswordFieldNumber = 2,
+  };
+  // string current_password = 1;
+  void clear_current_password() ;
+  const ::std::string& current_password() const;
+  template <typename Arg_ = const ::std::string&, typename... Args_>
+  void set_current_password(Arg_&& arg, Args_... args);
+  ::std::string* PROTOBUF_NONNULL mutable_current_password();
+  [[nodiscard]] ::std::string* PROTOBUF_NULLABLE release_current_password();
+  void set_allocated_current_password(::std::string* PROTOBUF_NULLABLE value);
+
+  private:
+  const ::std::string& _internal_current_password() const;
+  PROTOBUF_ALWAYS_INLINE void _internal_set_current_password(const ::std::string& value);
+  ::std::string* PROTOBUF_NONNULL _internal_mutable_current_password();
+
+  public:
+  // string new_password = 2;
+  void clear_new_password() ;
+  const ::std::string& new_password() const;
+  template <typename Arg_ = const ::std::string&, typename... Args_>
+  void set_new_password(Arg_&& arg, Args_... args);
+  ::std::string* PROTOBUF_NONNULL mutable_new_password();
+  [[nodiscard]] ::std::string* PROTOBUF_NULLABLE release_new_password();
+  void set_allocated_new_password(::std::string* PROTOBUF_NULLABLE value);
+
+  private:
+  const ::std::string& _internal_new_password() const;
+  PROTOBUF_ALWAYS_INLINE void _internal_set_new_password(const ::std::string& value);
+  ::std::string* PROTOBUF_NONNULL _internal_mutable_new_password();
+
+  public:
+  // @@protoc_insertion_point(class_scope:palm.portal.v1.EmailUserChangePasswordRequest)
+ private:
+  class _Internal;
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<1, 2,
+                                   0, 82,
+                                   2>
+      _table_;
+
+  friend class ::google::protobuf::MessageLite;
+  friend class ::google::protobuf::Arena;
+  template <typename T>
+  friend class ::google::protobuf::Arena::InternalHelper;
+  using InternalArenaConstructable_ = void;
+  using DestructorSkippable_ = void;
+  struct Impl_ {
+    inline explicit constexpr Impl_(::google::protobuf::internal::ConstantInitialized) noexcept;
+    inline explicit Impl_(
+        ::google::protobuf::internal::InternalVisibility visibility,
+        ::google::protobuf::Arena* PROTOBUF_NULLABLE arena);
+    inline explicit Impl_(
+        ::google::protobuf::internal::InternalVisibility visibility,
+        ::google::protobuf::Arena* PROTOBUF_NULLABLE arena, const Impl_& from,
+        const EmailUserChangePasswordRequest& from_msg);
+    ::google::protobuf::internal::HasBits<1> _has_bits_;
+    ::google::protobuf::internal::CachedSize _cached_size_;
+    ::google::protobuf::internal::ArenaStringPtr current_password_;
+    ::google::protobuf::internal::ArenaStringPtr new_password_;
+    PROTOBUF_TSAN_DECLARE_MEMBER
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_portal_2eproto;
+};
+
+extern const ::google::protobuf::internal::ClassDataFull EmailUserChangePasswordRequest_class_data_;
+// -------------------------------------------------------------------
+
 class CurrenciesResponse_Item final : public ::google::protobuf::Message
 /* @@protoc_insertion_point(class_definition:palm.portal.v1.CurrenciesResponse.Item) */ {
  public:
@@ -2227,219 +5286,6 @@ class CurrenciesResponse_Item final : public ::google::protobuf::Message
 extern const ::google::protobuf::internal::ClassDataFull CurrenciesResponse_Item_class_data_;
 // -------------------------------------------------------------------
 
-class Attachment final : public ::google::protobuf::Message
-/* @@protoc_insertion_point(class_definition:palm.portal.v1.Attachment) */ {
- public:
-  inline Attachment() : Attachment(nullptr) {}
-  ~Attachment() PROTOBUF_FINAL;
-
-#if defined(PROTOBUF_CUSTOM_VTABLE)
-  void operator delete(Attachment* PROTOBUF_NONNULL msg, std::destroying_delete_t) {
-    SharedDtor(*msg);
-    ::google::protobuf::internal::SizedDelete(msg, sizeof(Attachment));
-  }
-#endif
-
-  template <typename = void>
-  explicit PROTOBUF_CONSTEXPR Attachment(::google::protobuf::internal::ConstantInitialized);
-
-  inline Attachment(const Attachment& from) : Attachment(nullptr, from) {}
-  inline Attachment(Attachment&& from) noexcept
-      : Attachment(nullptr, ::std::move(from)) {}
-  inline Attachment& operator=(const Attachment& from) {
-    CopyFrom(from);
-    return *this;
-  }
-  inline Attachment& operator=(Attachment&& from) noexcept {
-    if (this == &from) return *this;
-    if (::google::protobuf::internal::CanMoveWithInternalSwap(GetArena(), from.GetArena())) {
-      InternalSwap(&from);
-    } else {
-      CopyFrom(from);
-    }
-    return *this;
-  }
-
-  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
-      ABSL_ATTRIBUTE_LIFETIME_BOUND {
-    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
-  }
-  inline ::google::protobuf::UnknownFieldSet* PROTOBUF_NONNULL mutable_unknown_fields()
-      ABSL_ATTRIBUTE_LIFETIME_BOUND {
-    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
-  }
-
-  static const ::google::protobuf::Descriptor* PROTOBUF_NONNULL descriptor() {
-    return GetDescriptor();
-  }
-  static const ::google::protobuf::Descriptor* PROTOBUF_NONNULL GetDescriptor() {
-    return default_instance().GetMetadata().descriptor;
-  }
-  static const ::google::protobuf::Reflection* PROTOBUF_NONNULL GetReflection() {
-    return default_instance().GetMetadata().reflection;
-  }
-  static const Attachment& default_instance() {
-    return *reinterpret_cast<const Attachment*>(
-        &_Attachment_default_instance_);
-  }
-  static constexpr int kIndexInFileMessages = 3;
-  friend void swap(Attachment& a, Attachment& b) { a.Swap(&b); }
-  inline void Swap(Attachment* PROTOBUF_NONNULL other) {
-    if (other == this) return;
-    if (::google::protobuf::internal::CanUseInternalSwap(GetArena(), other->GetArena())) {
-      InternalSwap(other);
-    } else {
-      ::google::protobuf::internal::GenericSwap(this, other);
-    }
-  }
-  void UnsafeArenaSwap(Attachment* PROTOBUF_NONNULL other) {
-    if (other == this) return;
-    ABSL_DCHECK(GetArena() == other->GetArena());
-    InternalSwap(other);
-  }
-
-  // implements Message ----------------------------------------------
-
-  Attachment* PROTOBUF_NONNULL New(::google::protobuf::Arena* PROTOBUF_NULLABLE arena = nullptr) const {
-    return ::google::protobuf::Message::DefaultConstruct<Attachment>(arena);
-  }
-  using ::google::protobuf::Message::CopyFrom;
-  void CopyFrom(const Attachment& from);
-  using ::google::protobuf::Message::MergeFrom;
-  void MergeFrom(const Attachment& from) { Attachment::MergeImpl(*this, from); }
-
-  private:
-  static void MergeImpl(::google::protobuf::MessageLite& to_msg,
-                        const ::google::protobuf::MessageLite& from_msg);
-
-  public:
-  bool IsInitialized() const {
-    return true;
-  }
-  ABSL_ATTRIBUTE_REINITIALIZES void Clear() PROTOBUF_FINAL;
-  #if defined(PROTOBUF_CUSTOM_VTABLE)
-  private:
-  static ::size_t ByteSizeLong(const ::google::protobuf::MessageLite& msg);
-  static ::uint8_t* PROTOBUF_NONNULL _InternalSerialize(
-      const ::google::protobuf::MessageLite& msg, ::uint8_t* PROTOBUF_NONNULL target,
-      ::google::protobuf::io::EpsCopyOutputStream* PROTOBUF_NONNULL stream);
-
-  public:
-  ::size_t ByteSizeLong() const { return ByteSizeLong(*this); }
-  ::uint8_t* PROTOBUF_NONNULL _InternalSerialize(
-      ::uint8_t* PROTOBUF_NONNULL target,
-      ::google::protobuf::io::EpsCopyOutputStream* PROTOBUF_NONNULL stream) const {
-    return _InternalSerialize(*this, target, stream);
-  }
-  #else   // PROTOBUF_CUSTOM_VTABLE
-  ::size_t ByteSizeLong() const final;
-  ::uint8_t* PROTOBUF_NONNULL _InternalSerialize(
-      ::uint8_t* PROTOBUF_NONNULL target,
-      ::google::protobuf::io::EpsCopyOutputStream* PROTOBUF_NONNULL stream) const final;
-  #endif  // PROTOBUF_CUSTOM_VTABLE
-  int GetCachedSize() const { return _impl_._cached_size_.Get(); }
-
-  private:
-  void SharedCtor(::google::protobuf::Arena* PROTOBUF_NULLABLE arena);
-  static void SharedDtor(MessageLite& self);
-  void InternalSwap(Attachment* PROTOBUF_NONNULL other);
- private:
-  template <typename T>
-  friend ::absl::string_view(::google::protobuf::internal::GetAnyMessageName)();
-  static ::absl::string_view FullMessageName() { return "palm.portal.v1.Attachment"; }
-
- protected:
-  explicit Attachment(::google::protobuf::Arena* PROTOBUF_NULLABLE arena);
-  Attachment(::google::protobuf::Arena* PROTOBUF_NULLABLE arena, const Attachment& from);
-  Attachment(
-      ::google::protobuf::Arena* PROTOBUF_NULLABLE arena, Attachment&& from) noexcept
-      : Attachment(arena) {
-    *this = ::std::move(from);
-  }
-  const ::google::protobuf::internal::ClassData* PROTOBUF_NONNULL GetClassData() const PROTOBUF_FINAL;
-  static void* PROTOBUF_NONNULL PlacementNew_(
-      const void* PROTOBUF_NONNULL, void* PROTOBUF_NONNULL mem,
-      ::google::protobuf::Arena* PROTOBUF_NULLABLE arena);
-  static constexpr auto InternalNewImpl_();
-
- public:
-  static constexpr auto InternalGenerateClassData_();
-
-  ::google::protobuf::Metadata GetMetadata() const;
-  // nested types ----------------------------------------------------
-
-  // accessors -------------------------------------------------------
-  enum : int {
-    kBucketFieldNumber = 1,
-    kObjectFieldNumber = 2,
-  };
-  // string bucket = 1;
-  void clear_bucket() ;
-  const ::std::string& bucket() const;
-  template <typename Arg_ = const ::std::string&, typename... Args_>
-  void set_bucket(Arg_&& arg, Args_... args);
-  ::std::string* PROTOBUF_NONNULL mutable_bucket();
-  [[nodiscard]] ::std::string* PROTOBUF_NULLABLE release_bucket();
-  void set_allocated_bucket(::std::string* PROTOBUF_NULLABLE value);
-
-  private:
-  const ::std::string& _internal_bucket() const;
-  PROTOBUF_ALWAYS_INLINE void _internal_set_bucket(const ::std::string& value);
-  ::std::string* PROTOBUF_NONNULL _internal_mutable_bucket();
-
-  public:
-  // string object = 2;
-  void clear_object() ;
-  const ::std::string& object() const;
-  template <typename Arg_ = const ::std::string&, typename... Args_>
-  void set_object(Arg_&& arg, Args_... args);
-  ::std::string* PROTOBUF_NONNULL mutable_object();
-  [[nodiscard]] ::std::string* PROTOBUF_NULLABLE release_object();
-  void set_allocated_object(::std::string* PROTOBUF_NULLABLE value);
-
-  private:
-  const ::std::string& _internal_object() const;
-  PROTOBUF_ALWAYS_INLINE void _internal_set_object(const ::std::string& value);
-  ::std::string* PROTOBUF_NONNULL _internal_mutable_object();
-
-  public:
-  // @@protoc_insertion_point(class_scope:palm.portal.v1.Attachment)
- private:
-  class _Internal;
-  friend class ::google::protobuf::internal::TcParser;
-  static const ::google::protobuf::internal::TcParseTable<1, 2,
-                                   0, 46,
-                                   2>
-      _table_;
-
-  friend class ::google::protobuf::MessageLite;
-  friend class ::google::protobuf::Arena;
-  template <typename T>
-  friend class ::google::protobuf::Arena::InternalHelper;
-  using InternalArenaConstructable_ = void;
-  using DestructorSkippable_ = void;
-  struct Impl_ {
-    inline explicit constexpr Impl_(::google::protobuf::internal::ConstantInitialized) noexcept;
-    inline explicit Impl_(
-        ::google::protobuf::internal::InternalVisibility visibility,
-        ::google::protobuf::Arena* PROTOBUF_NULLABLE arena);
-    inline explicit Impl_(
-        ::google::protobuf::internal::InternalVisibility visibility,
-        ::google::protobuf::Arena* PROTOBUF_NULLABLE arena, const Impl_& from,
-        const Attachment& from_msg);
-    ::google::protobuf::internal::HasBits<1> _has_bits_;
-    ::google::protobuf::internal::CachedSize _cached_size_;
-    ::google::protobuf::internal::ArenaStringPtr bucket_;
-    ::google::protobuf::internal::ArenaStringPtr object_;
-    PROTOBUF_TSAN_DECLARE_MEMBER
-  };
-  union { Impl_ _impl_; };
-  friend struct ::TableStruct_portal_2eproto;
-};
-
-extern const ::google::protobuf::internal::ClassDataFull Attachment_class_data_;
-// -------------------------------------------------------------------
-
 class UserShowAttachmentRequest final : public ::google::protobuf::Message
 /* @@protoc_insertion_point(class_definition:palm.portal.v1.UserShowAttachmentRequest) */ {
  public:
@@ -2495,7 +5341,7 @@ class UserShowAttachmentRequest final : public ::google::protobuf::Message
     return *reinterpret_cast<const UserShowAttachmentRequest*>(
         &_UserShowAttachmentRequest_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 16;
+  static constexpr int kIndexInFileMessages = 32;
   friend void swap(UserShowAttachmentRequest& a, UserShowAttachmentRequest& b) { a.Swap(&b); }
   inline void Swap(UserShowAttachmentRequest* PROTOBUF_NONNULL other) {
     if (other == this) return;
@@ -2715,7 +5561,7 @@ class UserIndexResponse_Item final : public ::google::protobuf::Message
     return *reinterpret_cast<const UserIndexResponse_Item*>(
         &_UserIndexResponse_Item_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 13;
+  static constexpr int kIndexInFileMessages = 29;
   friend void swap(UserIndexResponse_Item& a, UserIndexResponse_Item& b) { a.Swap(&b); }
   inline void Swap(UserIndexResponse_Item* PROTOBUF_NONNULL other) {
     if (other == this) return;
@@ -3035,6 +5881,299 @@ class UserIndexResponse_Item final : public ::google::protobuf::Message
 extern const ::google::protobuf::internal::ClassDataFull UserIndexResponse_Item_class_data_;
 // -------------------------------------------------------------------
 
+class UserIndexLogResponse_Item final : public ::google::protobuf::Message
+/* @@protoc_insertion_point(class_definition:palm.portal.v1.UserIndexLogResponse.Item) */ {
+ public:
+  inline UserIndexLogResponse_Item() : UserIndexLogResponse_Item(nullptr) {}
+  ~UserIndexLogResponse_Item() PROTOBUF_FINAL;
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+  void operator delete(UserIndexLogResponse_Item* PROTOBUF_NONNULL msg, std::destroying_delete_t) {
+    SharedDtor(*msg);
+    ::google::protobuf::internal::SizedDelete(msg, sizeof(UserIndexLogResponse_Item));
+  }
+#endif
+
+  template <typename = void>
+  explicit PROTOBUF_CONSTEXPR UserIndexLogResponse_Item(::google::protobuf::internal::ConstantInitialized);
+
+  inline UserIndexLogResponse_Item(const UserIndexLogResponse_Item& from) : UserIndexLogResponse_Item(nullptr, from) {}
+  inline UserIndexLogResponse_Item(UserIndexLogResponse_Item&& from) noexcept
+      : UserIndexLogResponse_Item(nullptr, ::std::move(from)) {}
+  inline UserIndexLogResponse_Item& operator=(const UserIndexLogResponse_Item& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline UserIndexLogResponse_Item& operator=(UserIndexLogResponse_Item&& from) noexcept {
+    if (this == &from) return *this;
+    if (::google::protobuf::internal::CanMoveWithInternalSwap(GetArena(), from.GetArena())) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* PROTOBUF_NONNULL mutable_unknown_fields()
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* PROTOBUF_NONNULL descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* PROTOBUF_NONNULL GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* PROTOBUF_NONNULL GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const UserIndexLogResponse_Item& default_instance() {
+    return *reinterpret_cast<const UserIndexLogResponse_Item*>(
+        &_UserIndexLogResponse_Item_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages = 38;
+  friend void swap(UserIndexLogResponse_Item& a, UserIndexLogResponse_Item& b) { a.Swap(&b); }
+  inline void Swap(UserIndexLogResponse_Item* PROTOBUF_NONNULL other) {
+    if (other == this) return;
+    if (::google::protobuf::internal::CanUseInternalSwap(GetArena(), other->GetArena())) {
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(UserIndexLogResponse_Item* PROTOBUF_NONNULL other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  UserIndexLogResponse_Item* PROTOBUF_NONNULL New(::google::protobuf::Arena* PROTOBUF_NULLABLE arena = nullptr) const {
+    return ::google::protobuf::Message::DefaultConstruct<UserIndexLogResponse_Item>(arena);
+  }
+  using ::google::protobuf::Message::CopyFrom;
+  void CopyFrom(const UserIndexLogResponse_Item& from);
+  using ::google::protobuf::Message::MergeFrom;
+  void MergeFrom(const UserIndexLogResponse_Item& from) { UserIndexLogResponse_Item::MergeImpl(*this, from); }
+
+  private:
+  static void MergeImpl(::google::protobuf::MessageLite& to_msg,
+                        const ::google::protobuf::MessageLite& from_msg);
+
+  public:
+  bool IsInitialized() const {
+    return true;
+  }
+  ABSL_ATTRIBUTE_REINITIALIZES void Clear() PROTOBUF_FINAL;
+  #if defined(PROTOBUF_CUSTOM_VTABLE)
+  private:
+  static ::size_t ByteSizeLong(const ::google::protobuf::MessageLite& msg);
+  static ::uint8_t* PROTOBUF_NONNULL _InternalSerialize(
+      const ::google::protobuf::MessageLite& msg, ::uint8_t* PROTOBUF_NONNULL target,
+      ::google::protobuf::io::EpsCopyOutputStream* PROTOBUF_NONNULL stream);
+
+  public:
+  ::size_t ByteSizeLong() const { return ByteSizeLong(*this); }
+  ::uint8_t* PROTOBUF_NONNULL _InternalSerialize(
+      ::uint8_t* PROTOBUF_NONNULL target,
+      ::google::protobuf::io::EpsCopyOutputStream* PROTOBUF_NONNULL stream) const {
+    return _InternalSerialize(*this, target, stream);
+  }
+  #else   // PROTOBUF_CUSTOM_VTABLE
+  ::size_t ByteSizeLong() const final;
+  ::uint8_t* PROTOBUF_NONNULL _InternalSerialize(
+      ::uint8_t* PROTOBUF_NONNULL target,
+      ::google::protobuf::io::EpsCopyOutputStream* PROTOBUF_NONNULL stream) const final;
+  #endif  // PROTOBUF_CUSTOM_VTABLE
+  int GetCachedSize() const { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::google::protobuf::Arena* PROTOBUF_NULLABLE arena);
+  static void SharedDtor(MessageLite& self);
+  void InternalSwap(UserIndexLogResponse_Item* PROTOBUF_NONNULL other);
+ private:
+  template <typename T>
+  friend ::absl::string_view(::google::protobuf::internal::GetAnyMessageName)();
+  static ::absl::string_view FullMessageName() { return "palm.portal.v1.UserIndexLogResponse.Item"; }
+
+ protected:
+  explicit UserIndexLogResponse_Item(::google::protobuf::Arena* PROTOBUF_NULLABLE arena);
+  UserIndexLogResponse_Item(::google::protobuf::Arena* PROTOBUF_NULLABLE arena, const UserIndexLogResponse_Item& from);
+  UserIndexLogResponse_Item(
+      ::google::protobuf::Arena* PROTOBUF_NULLABLE arena, UserIndexLogResponse_Item&& from) noexcept
+      : UserIndexLogResponse_Item(arena) {
+    *this = ::std::move(from);
+  }
+  const ::google::protobuf::internal::ClassData* PROTOBUF_NONNULL GetClassData() const PROTOBUF_FINAL;
+  static void* PROTOBUF_NONNULL PlacementNew_(
+      const void* PROTOBUF_NONNULL, void* PROTOBUF_NONNULL mem,
+      ::google::protobuf::Arena* PROTOBUF_NULLABLE arena);
+  static constexpr auto InternalNewImpl_();
+
+ public:
+  static constexpr auto InternalGenerateClassData_();
+
+  ::google::protobuf::Metadata GetMetadata() const;
+  // nested types ----------------------------------------------------
+  using Level = UserIndexLogResponse_Item_Level;
+  static constexpr Level DEBUG = UserIndexLogResponse_Item_Level_DEBUG;
+  static constexpr Level INFO = UserIndexLogResponse_Item_Level_INFO;
+  static constexpr Level WARNING = UserIndexLogResponse_Item_Level_WARNING;
+  static constexpr Level ERROR = UserIndexLogResponse_Item_Level_ERROR;
+  static inline bool Level_IsValid(int value) {
+    return UserIndexLogResponse_Item_Level_IsValid(value);
+  }
+  static constexpr Level Level_MIN = UserIndexLogResponse_Item_Level_Level_MIN;
+  static constexpr Level Level_MAX = UserIndexLogResponse_Item_Level_Level_MAX;
+  static constexpr int Level_ARRAYSIZE = UserIndexLogResponse_Item_Level_Level_ARRAYSIZE;
+  static inline const ::google::protobuf::EnumDescriptor* PROTOBUF_NONNULL Level_descriptor() {
+    return UserIndexLogResponse_Item_Level_descriptor();
+  }
+  template <typename T>
+  static inline const ::std::string& Level_Name(T value) {
+    return UserIndexLogResponse_Item_Level_Name(value);
+  }
+  static inline bool Level_Parse(
+      ::absl::string_view name, Level* PROTOBUF_NONNULL value) {
+    return UserIndexLogResponse_Item_Level_Parse(name, value);
+  }
+
+  // accessors -------------------------------------------------------
+  enum : int {
+    kPluginFieldNumber = 2,
+    kIpFieldNumber = 3,
+    kMessageFieldNumber = 5,
+    kCreatedAtFieldNumber = 9,
+    kIdFieldNumber = 1,
+    kLevelFieldNumber = 4,
+  };
+  // string plugin = 2;
+  void clear_plugin() ;
+  const ::std::string& plugin() const;
+  template <typename Arg_ = const ::std::string&, typename... Args_>
+  void set_plugin(Arg_&& arg, Args_... args);
+  ::std::string* PROTOBUF_NONNULL mutable_plugin();
+  [[nodiscard]] ::std::string* PROTOBUF_NULLABLE release_plugin();
+  void set_allocated_plugin(::std::string* PROTOBUF_NULLABLE value);
+
+  private:
+  const ::std::string& _internal_plugin() const;
+  PROTOBUF_ALWAYS_INLINE void _internal_set_plugin(const ::std::string& value);
+  ::std::string* PROTOBUF_NONNULL _internal_mutable_plugin();
+
+  public:
+  // string ip = 3;
+  void clear_ip() ;
+  const ::std::string& ip() const;
+  template <typename Arg_ = const ::std::string&, typename... Args_>
+  void set_ip(Arg_&& arg, Args_... args);
+  ::std::string* PROTOBUF_NONNULL mutable_ip();
+  [[nodiscard]] ::std::string* PROTOBUF_NULLABLE release_ip();
+  void set_allocated_ip(::std::string* PROTOBUF_NULLABLE value);
+
+  private:
+  const ::std::string& _internal_ip() const;
+  PROTOBUF_ALWAYS_INLINE void _internal_set_ip(const ::std::string& value);
+  ::std::string* PROTOBUF_NONNULL _internal_mutable_ip();
+
+  public:
+  // string message = 5;
+  void clear_message() ;
+  const ::std::string& message() const;
+  template <typename Arg_ = const ::std::string&, typename... Args_>
+  void set_message(Arg_&& arg, Args_... args);
+  ::std::string* PROTOBUF_NONNULL mutable_message();
+  [[nodiscard]] ::std::string* PROTOBUF_NULLABLE release_message();
+  void set_allocated_message(::std::string* PROTOBUF_NULLABLE value);
+
+  private:
+  const ::std::string& _internal_message() const;
+  PROTOBUF_ALWAYS_INLINE void _internal_set_message(const ::std::string& value);
+  ::std::string* PROTOBUF_NONNULL _internal_mutable_message();
+
+  public:
+  // .google.protobuf.Timestamp created_at = 9;
+  bool has_created_at() const;
+  void clear_created_at() ;
+  const ::google::protobuf::Timestamp& created_at() const;
+  [[nodiscard]] ::google::protobuf::Timestamp* PROTOBUF_NULLABLE release_created_at();
+  ::google::protobuf::Timestamp* PROTOBUF_NONNULL mutable_created_at();
+  void set_allocated_created_at(::google::protobuf::Timestamp* PROTOBUF_NULLABLE value);
+  void unsafe_arena_set_allocated_created_at(::google::protobuf::Timestamp* PROTOBUF_NULLABLE value);
+  ::google::protobuf::Timestamp* PROTOBUF_NULLABLE unsafe_arena_release_created_at();
+
+  private:
+  const ::google::protobuf::Timestamp& _internal_created_at() const;
+  ::google::protobuf::Timestamp* PROTOBUF_NONNULL _internal_mutable_created_at();
+
+  public:
+  // int64 id = 1;
+  void clear_id() ;
+  ::int64_t id() const;
+  void set_id(::int64_t value);
+
+  private:
+  ::int64_t _internal_id() const;
+  void _internal_set_id(::int64_t value);
+
+  public:
+  // .palm.portal.v1.UserIndexLogResponse.Item.Level level = 4;
+  void clear_level() ;
+  ::palm::portal::v1::UserIndexLogResponse_Item_Level level() const;
+  void set_level(::palm::portal::v1::UserIndexLogResponse_Item_Level value);
+
+  private:
+  ::palm::portal::v1::UserIndexLogResponse_Item_Level _internal_level() const;
+  void _internal_set_level(::palm::portal::v1::UserIndexLogResponse_Item_Level value);
+
+  public:
+  // @@protoc_insertion_point(class_scope:palm.portal.v1.UserIndexLogResponse.Item)
+ private:
+  class _Internal;
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<3, 6,
+                                   1, 64,
+                                   2>
+      _table_;
+
+  friend class ::google::protobuf::MessageLite;
+  friend class ::google::protobuf::Arena;
+  template <typename T>
+  friend class ::google::protobuf::Arena::InternalHelper;
+  using InternalArenaConstructable_ = void;
+  using DestructorSkippable_ = void;
+  struct Impl_ {
+    inline explicit constexpr Impl_(::google::protobuf::internal::ConstantInitialized) noexcept;
+    inline explicit Impl_(
+        ::google::protobuf::internal::InternalVisibility visibility,
+        ::google::protobuf::Arena* PROTOBUF_NULLABLE arena);
+    inline explicit Impl_(
+        ::google::protobuf::internal::InternalVisibility visibility,
+        ::google::protobuf::Arena* PROTOBUF_NULLABLE arena, const Impl_& from,
+        const UserIndexLogResponse_Item& from_msg);
+    ::google::protobuf::internal::HasBits<1> _has_bits_;
+    ::google::protobuf::internal::CachedSize _cached_size_;
+    ::google::protobuf::internal::ArenaStringPtr plugin_;
+    ::google::protobuf::internal::ArenaStringPtr ip_;
+    ::google::protobuf::internal::ArenaStringPtr message_;
+    ::google::protobuf::Timestamp* PROTOBUF_NULLABLE created_at_;
+    ::int64_t id_;
+    int level_;
+    PROTOBUF_TSAN_DECLARE_MEMBER
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_portal_2eproto;
+};
+
+extern const ::google::protobuf::internal::ClassDataFull UserIndexLogResponse_Item_class_data_;
+// -------------------------------------------------------------------
+
 class UserIndexAttachmentResponse_Item final : public ::google::protobuf::Message
 /* @@protoc_insertion_point(class_definition:palm.portal.v1.UserIndexAttachmentResponse.Item) */ {
  public:
@@ -3090,7 +6229,7 @@ class UserIndexAttachmentResponse_Item final : public ::google::protobuf::Messag
     return *reinterpret_cast<const UserIndexAttachmentResponse_Item*>(
         &_UserIndexAttachmentResponse_Item_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 20;
+  static constexpr int kIndexInFileMessages = 36;
   friend void swap(UserIndexAttachmentResponse_Item& a, UserIndexAttachmentResponse_Item& b) { a.Swap(&b); }
   inline void Swap(UserIndexAttachmentResponse_Item* PROTOBUF_NONNULL other) {
     if (other == this) return;
@@ -3420,7 +6559,7 @@ class UserCreateAttachmentRequest final : public ::google::protobuf::Message
     return *reinterpret_cast<const UserCreateAttachmentRequest*>(
         &_UserCreateAttachmentRequest_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 18;
+  static constexpr int kIndexInFileMessages = 34;
   friend void swap(UserCreateAttachmentRequest& a, UserCreateAttachmentRequest& b) { a.Swap(&b); }
   inline void Swap(UserCreateAttachmentRequest* PROTOBUF_NONNULL other) {
     if (other == this) return;
@@ -3798,23 +6937,23 @@ class RichText final : public ::google::protobuf::Message
     kBodyFieldNumber = 2,
     kEditorFieldNumber = 1,
   };
-  // repeated .palm.portal.v1.Attachment attachments = 3;
+  // repeated .palm.portal.v1.File attachments = 3;
   int attachments_size() const;
   private:
   int _internal_attachments_size() const;
 
   public:
   void clear_attachments() ;
-  ::palm::portal::v1::Attachment* PROTOBUF_NONNULL mutable_attachments(int index);
-  ::google::protobuf::RepeatedPtrField<::palm::portal::v1::Attachment>* PROTOBUF_NONNULL mutable_attachments();
+  ::palm::portal::v1::File* PROTOBUF_NONNULL mutable_attachments(int index);
+  ::google::protobuf::RepeatedPtrField<::palm::portal::v1::File>* PROTOBUF_NONNULL mutable_attachments();
 
   private:
-  const ::google::protobuf::RepeatedPtrField<::palm::portal::v1::Attachment>& _internal_attachments() const;
-  ::google::protobuf::RepeatedPtrField<::palm::portal::v1::Attachment>* PROTOBUF_NONNULL _internal_mutable_attachments();
+  const ::google::protobuf::RepeatedPtrField<::palm::portal::v1::File>& _internal_attachments() const;
+  ::google::protobuf::RepeatedPtrField<::palm::portal::v1::File>* PROTOBUF_NONNULL _internal_mutable_attachments();
   public:
-  const ::palm::portal::v1::Attachment& attachments(int index) const;
-  ::palm::portal::v1::Attachment* PROTOBUF_NONNULL add_attachments();
-  const ::google::protobuf::RepeatedPtrField<::palm::portal::v1::Attachment>& attachments() const;
+  const ::palm::portal::v1::File& attachments(int index) const;
+  ::palm::portal::v1::File* PROTOBUF_NONNULL add_attachments();
+  const ::google::protobuf::RepeatedPtrField<::palm::portal::v1::File>& attachments() const;
   // string body = 2;
   void clear_body() ;
   const ::std::string& body() const;
@@ -3866,7 +7005,7 @@ class RichText final : public ::google::protobuf::Message
         const RichText& from_msg);
     ::google::protobuf::internal::HasBits<1> _has_bits_;
     ::google::protobuf::internal::CachedSize _cached_size_;
-    ::google::protobuf::RepeatedPtrField< ::palm::portal::v1::Attachment > attachments_;
+    ::google::protobuf::RepeatedPtrField< ::palm::portal::v1::File > attachments_;
     ::google::protobuf::internal::ArenaStringPtr body_;
     int editor_;
     PROTOBUF_TSAN_DECLARE_MEMBER
@@ -4381,6 +7520,239 @@ class LocaleIndexResponse_Item final : public ::google::protobuf::Message
 extern const ::google::protobuf::internal::ClassDataFull LocaleIndexResponse_Item_class_data_;
 // -------------------------------------------------------------------
 
+class EmailUserSetAvatarRequest final : public ::google::protobuf::Message
+/* @@protoc_insertion_point(class_definition:palm.portal.v1.EmailUserSetAvatarRequest) */ {
+ public:
+  inline EmailUserSetAvatarRequest() : EmailUserSetAvatarRequest(nullptr) {}
+  ~EmailUserSetAvatarRequest() PROTOBUF_FINAL;
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+  void operator delete(EmailUserSetAvatarRequest* PROTOBUF_NONNULL msg, std::destroying_delete_t) {
+    SharedDtor(*msg);
+    ::google::protobuf::internal::SizedDelete(msg, sizeof(EmailUserSetAvatarRequest));
+  }
+#endif
+
+  template <typename = void>
+  explicit PROTOBUF_CONSTEXPR EmailUserSetAvatarRequest(::google::protobuf::internal::ConstantInitialized);
+
+  inline EmailUserSetAvatarRequest(const EmailUserSetAvatarRequest& from) : EmailUserSetAvatarRequest(nullptr, from) {}
+  inline EmailUserSetAvatarRequest(EmailUserSetAvatarRequest&& from) noexcept
+      : EmailUserSetAvatarRequest(nullptr, ::std::move(from)) {}
+  inline EmailUserSetAvatarRequest& operator=(const EmailUserSetAvatarRequest& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline EmailUserSetAvatarRequest& operator=(EmailUserSetAvatarRequest&& from) noexcept {
+    if (this == &from) return *this;
+    if (::google::protobuf::internal::CanMoveWithInternalSwap(GetArena(), from.GetArena())) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* PROTOBUF_NONNULL mutable_unknown_fields()
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* PROTOBUF_NONNULL descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* PROTOBUF_NONNULL GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* PROTOBUF_NONNULL GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const EmailUserSetAvatarRequest& default_instance() {
+    return *reinterpret_cast<const EmailUserSetAvatarRequest*>(
+        &_EmailUserSetAvatarRequest_default_instance_);
+  }
+  enum ByCase {
+    kUrl = 1,
+    kFile = 2,
+    BY_NOT_SET = 0,
+  };
+  static constexpr int kIndexInFileMessages = 22;
+  friend void swap(EmailUserSetAvatarRequest& a, EmailUserSetAvatarRequest& b) { a.Swap(&b); }
+  inline void Swap(EmailUserSetAvatarRequest* PROTOBUF_NONNULL other) {
+    if (other == this) return;
+    if (::google::protobuf::internal::CanUseInternalSwap(GetArena(), other->GetArena())) {
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(EmailUserSetAvatarRequest* PROTOBUF_NONNULL other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  EmailUserSetAvatarRequest* PROTOBUF_NONNULL New(::google::protobuf::Arena* PROTOBUF_NULLABLE arena = nullptr) const {
+    return ::google::protobuf::Message::DefaultConstruct<EmailUserSetAvatarRequest>(arena);
+  }
+  using ::google::protobuf::Message::CopyFrom;
+  void CopyFrom(const EmailUserSetAvatarRequest& from);
+  using ::google::protobuf::Message::MergeFrom;
+  void MergeFrom(const EmailUserSetAvatarRequest& from) { EmailUserSetAvatarRequest::MergeImpl(*this, from); }
+
+  private:
+  static void MergeImpl(::google::protobuf::MessageLite& to_msg,
+                        const ::google::protobuf::MessageLite& from_msg);
+
+  public:
+  bool IsInitialized() const {
+    return true;
+  }
+  ABSL_ATTRIBUTE_REINITIALIZES void Clear() PROTOBUF_FINAL;
+  #if defined(PROTOBUF_CUSTOM_VTABLE)
+  private:
+  static ::size_t ByteSizeLong(const ::google::protobuf::MessageLite& msg);
+  static ::uint8_t* PROTOBUF_NONNULL _InternalSerialize(
+      const ::google::protobuf::MessageLite& msg, ::uint8_t* PROTOBUF_NONNULL target,
+      ::google::protobuf::io::EpsCopyOutputStream* PROTOBUF_NONNULL stream);
+
+  public:
+  ::size_t ByteSizeLong() const { return ByteSizeLong(*this); }
+  ::uint8_t* PROTOBUF_NONNULL _InternalSerialize(
+      ::uint8_t* PROTOBUF_NONNULL target,
+      ::google::protobuf::io::EpsCopyOutputStream* PROTOBUF_NONNULL stream) const {
+    return _InternalSerialize(*this, target, stream);
+  }
+  #else   // PROTOBUF_CUSTOM_VTABLE
+  ::size_t ByteSizeLong() const final;
+  ::uint8_t* PROTOBUF_NONNULL _InternalSerialize(
+      ::uint8_t* PROTOBUF_NONNULL target,
+      ::google::protobuf::io::EpsCopyOutputStream* PROTOBUF_NONNULL stream) const final;
+  #endif  // PROTOBUF_CUSTOM_VTABLE
+  int GetCachedSize() const { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::google::protobuf::Arena* PROTOBUF_NULLABLE arena);
+  static void SharedDtor(MessageLite& self);
+  void InternalSwap(EmailUserSetAvatarRequest* PROTOBUF_NONNULL other);
+ private:
+  template <typename T>
+  friend ::absl::string_view(::google::protobuf::internal::GetAnyMessageName)();
+  static ::absl::string_view FullMessageName() { return "palm.portal.v1.EmailUserSetAvatarRequest"; }
+
+ protected:
+  explicit EmailUserSetAvatarRequest(::google::protobuf::Arena* PROTOBUF_NULLABLE arena);
+  EmailUserSetAvatarRequest(::google::protobuf::Arena* PROTOBUF_NULLABLE arena, const EmailUserSetAvatarRequest& from);
+  EmailUserSetAvatarRequest(
+      ::google::protobuf::Arena* PROTOBUF_NULLABLE arena, EmailUserSetAvatarRequest&& from) noexcept
+      : EmailUserSetAvatarRequest(arena) {
+    *this = ::std::move(from);
+  }
+  const ::google::protobuf::internal::ClassData* PROTOBUF_NONNULL GetClassData() const PROTOBUF_FINAL;
+  static void* PROTOBUF_NONNULL PlacementNew_(
+      const void* PROTOBUF_NONNULL, void* PROTOBUF_NONNULL mem,
+      ::google::protobuf::Arena* PROTOBUF_NULLABLE arena);
+  static constexpr auto InternalNewImpl_();
+
+ public:
+  static constexpr auto InternalGenerateClassData_();
+
+  ::google::protobuf::Metadata GetMetadata() const;
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+  enum : int {
+    kUrlFieldNumber = 1,
+    kFileFieldNumber = 2,
+  };
+  // string url = 1;
+  bool has_url() const;
+  void clear_url() ;
+  const ::std::string& url() const;
+  template <typename Arg_ = const ::std::string&, typename... Args_>
+  void set_url(Arg_&& arg, Args_... args);
+  ::std::string* PROTOBUF_NONNULL mutable_url();
+  [[nodiscard]] ::std::string* PROTOBUF_NULLABLE release_url();
+  void set_allocated_url(::std::string* PROTOBUF_NULLABLE value);
+
+  private:
+  const ::std::string& _internal_url() const;
+  PROTOBUF_ALWAYS_INLINE void _internal_set_url(const ::std::string& value);
+  ::std::string* PROTOBUF_NONNULL _internal_mutable_url();
+
+  public:
+  // .palm.portal.v1.File file = 2;
+  bool has_file() const;
+  private:
+  bool _internal_has_file() const;
+
+  public:
+  void clear_file() ;
+  const ::palm::portal::v1::File& file() const;
+  [[nodiscard]] ::palm::portal::v1::File* PROTOBUF_NULLABLE release_file();
+  ::palm::portal::v1::File* PROTOBUF_NONNULL mutable_file();
+  void set_allocated_file(::palm::portal::v1::File* PROTOBUF_NULLABLE value);
+  void unsafe_arena_set_allocated_file(::palm::portal::v1::File* PROTOBUF_NULLABLE value);
+  ::palm::portal::v1::File* PROTOBUF_NULLABLE unsafe_arena_release_file();
+
+  private:
+  const ::palm::portal::v1::File& _internal_file() const;
+  ::palm::portal::v1::File* PROTOBUF_NONNULL _internal_mutable_file();
+
+  public:
+  void clear_by();
+  ByCase by_case() const;
+  // @@protoc_insertion_point(class_scope:palm.portal.v1.EmailUserSetAvatarRequest)
+ private:
+  class _Internal;
+  void set_has_url();
+  void set_has_file();
+  inline bool has_by() const;
+  inline void clear_has_by();
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<0, 2,
+                                   1, 52,
+                                   2>
+      _table_;
+
+  friend class ::google::protobuf::MessageLite;
+  friend class ::google::protobuf::Arena;
+  template <typename T>
+  friend class ::google::protobuf::Arena::InternalHelper;
+  using InternalArenaConstructable_ = void;
+  using DestructorSkippable_ = void;
+  struct Impl_ {
+    inline explicit constexpr Impl_(::google::protobuf::internal::ConstantInitialized) noexcept;
+    inline explicit Impl_(
+        ::google::protobuf::internal::InternalVisibility visibility,
+        ::google::protobuf::Arena* PROTOBUF_NULLABLE arena);
+    inline explicit Impl_(
+        ::google::protobuf::internal::InternalVisibility visibility,
+        ::google::protobuf::Arena* PROTOBUF_NULLABLE arena, const Impl_& from,
+        const EmailUserSetAvatarRequest& from_msg);
+    union ByUnion {
+      constexpr ByUnion() : _constinit_{} {}
+      ::google::protobuf::internal::ConstantInitialized _constinit_;
+      ::google::protobuf::internal::ArenaStringPtr url_;
+      ::palm::portal::v1::File* PROTOBUF_NULLABLE file_;
+    } by_;
+    ::google::protobuf::internal::CachedSize _cached_size_;
+    ::uint32_t _oneof_case_[1];
+    PROTOBUF_TSAN_DECLARE_MEMBER
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_portal_2eproto;
+};
+
+extern const ::google::protobuf::internal::ClassDataFull EmailUserSetAvatarRequest_class_data_;
+// -------------------------------------------------------------------
+
 class CurrenciesResponse final : public ::google::protobuf::Message
 /* @@protoc_insertion_point(class_definition:palm.portal.v1.CurrenciesResponse) */ {
  public:
@@ -4634,7 +8006,7 @@ class UserIndexResponse final : public ::google::protobuf::Message
     return *reinterpret_cast<const UserIndexResponse*>(
         &_UserIndexResponse_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 14;
+  static constexpr int kIndexInFileMessages = 30;
   friend void swap(UserIndexResponse& a, UserIndexResponse& b) { a.Swap(&b); }
   inline void Swap(UserIndexResponse* PROTOBUF_NONNULL other) {
     if (other == this) return;
@@ -4795,6 +8167,222 @@ class UserIndexResponse final : public ::google::protobuf::Message
 extern const ::google::protobuf::internal::ClassDataFull UserIndexResponse_class_data_;
 // -------------------------------------------------------------------
 
+class UserIndexLogResponse final : public ::google::protobuf::Message
+/* @@protoc_insertion_point(class_definition:palm.portal.v1.UserIndexLogResponse) */ {
+ public:
+  inline UserIndexLogResponse() : UserIndexLogResponse(nullptr) {}
+  ~UserIndexLogResponse() PROTOBUF_FINAL;
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+  void operator delete(UserIndexLogResponse* PROTOBUF_NONNULL msg, std::destroying_delete_t) {
+    SharedDtor(*msg);
+    ::google::protobuf::internal::SizedDelete(msg, sizeof(UserIndexLogResponse));
+  }
+#endif
+
+  template <typename = void>
+  explicit PROTOBUF_CONSTEXPR UserIndexLogResponse(::google::protobuf::internal::ConstantInitialized);
+
+  inline UserIndexLogResponse(const UserIndexLogResponse& from) : UserIndexLogResponse(nullptr, from) {}
+  inline UserIndexLogResponse(UserIndexLogResponse&& from) noexcept
+      : UserIndexLogResponse(nullptr, ::std::move(from)) {}
+  inline UserIndexLogResponse& operator=(const UserIndexLogResponse& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline UserIndexLogResponse& operator=(UserIndexLogResponse&& from) noexcept {
+    if (this == &from) return *this;
+    if (::google::protobuf::internal::CanMoveWithInternalSwap(GetArena(), from.GetArena())) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* PROTOBUF_NONNULL mutable_unknown_fields()
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* PROTOBUF_NONNULL descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* PROTOBUF_NONNULL GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* PROTOBUF_NONNULL GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const UserIndexLogResponse& default_instance() {
+    return *reinterpret_cast<const UserIndexLogResponse*>(
+        &_UserIndexLogResponse_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages = 39;
+  friend void swap(UserIndexLogResponse& a, UserIndexLogResponse& b) { a.Swap(&b); }
+  inline void Swap(UserIndexLogResponse* PROTOBUF_NONNULL other) {
+    if (other == this) return;
+    if (::google::protobuf::internal::CanUseInternalSwap(GetArena(), other->GetArena())) {
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(UserIndexLogResponse* PROTOBUF_NONNULL other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  UserIndexLogResponse* PROTOBUF_NONNULL New(::google::protobuf::Arena* PROTOBUF_NULLABLE arena = nullptr) const {
+    return ::google::protobuf::Message::DefaultConstruct<UserIndexLogResponse>(arena);
+  }
+  using ::google::protobuf::Message::CopyFrom;
+  void CopyFrom(const UserIndexLogResponse& from);
+  using ::google::protobuf::Message::MergeFrom;
+  void MergeFrom(const UserIndexLogResponse& from) { UserIndexLogResponse::MergeImpl(*this, from); }
+
+  private:
+  static void MergeImpl(::google::protobuf::MessageLite& to_msg,
+                        const ::google::protobuf::MessageLite& from_msg);
+
+  public:
+  bool IsInitialized() const {
+    return true;
+  }
+  ABSL_ATTRIBUTE_REINITIALIZES void Clear() PROTOBUF_FINAL;
+  #if defined(PROTOBUF_CUSTOM_VTABLE)
+  private:
+  static ::size_t ByteSizeLong(const ::google::protobuf::MessageLite& msg);
+  static ::uint8_t* PROTOBUF_NONNULL _InternalSerialize(
+      const ::google::protobuf::MessageLite& msg, ::uint8_t* PROTOBUF_NONNULL target,
+      ::google::protobuf::io::EpsCopyOutputStream* PROTOBUF_NONNULL stream);
+
+  public:
+  ::size_t ByteSizeLong() const { return ByteSizeLong(*this); }
+  ::uint8_t* PROTOBUF_NONNULL _InternalSerialize(
+      ::uint8_t* PROTOBUF_NONNULL target,
+      ::google::protobuf::io::EpsCopyOutputStream* PROTOBUF_NONNULL stream) const {
+    return _InternalSerialize(*this, target, stream);
+  }
+  #else   // PROTOBUF_CUSTOM_VTABLE
+  ::size_t ByteSizeLong() const final;
+  ::uint8_t* PROTOBUF_NONNULL _InternalSerialize(
+      ::uint8_t* PROTOBUF_NONNULL target,
+      ::google::protobuf::io::EpsCopyOutputStream* PROTOBUF_NONNULL stream) const final;
+  #endif  // PROTOBUF_CUSTOM_VTABLE
+  int GetCachedSize() const { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::google::protobuf::Arena* PROTOBUF_NULLABLE arena);
+  static void SharedDtor(MessageLite& self);
+  void InternalSwap(UserIndexLogResponse* PROTOBUF_NONNULL other);
+ private:
+  template <typename T>
+  friend ::absl::string_view(::google::protobuf::internal::GetAnyMessageName)();
+  static ::absl::string_view FullMessageName() { return "palm.portal.v1.UserIndexLogResponse"; }
+
+ protected:
+  explicit UserIndexLogResponse(::google::protobuf::Arena* PROTOBUF_NULLABLE arena);
+  UserIndexLogResponse(::google::protobuf::Arena* PROTOBUF_NULLABLE arena, const UserIndexLogResponse& from);
+  UserIndexLogResponse(
+      ::google::protobuf::Arena* PROTOBUF_NULLABLE arena, UserIndexLogResponse&& from) noexcept
+      : UserIndexLogResponse(arena) {
+    *this = ::std::move(from);
+  }
+  const ::google::protobuf::internal::ClassData* PROTOBUF_NONNULL GetClassData() const PROTOBUF_FINAL;
+  static void* PROTOBUF_NONNULL PlacementNew_(
+      const void* PROTOBUF_NONNULL, void* PROTOBUF_NONNULL mem,
+      ::google::protobuf::Arena* PROTOBUF_NULLABLE arena);
+  static constexpr auto InternalNewImpl_();
+
+ public:
+  static constexpr auto InternalGenerateClassData_();
+
+  ::google::protobuf::Metadata GetMetadata() const;
+  // nested types ----------------------------------------------------
+  using Item = UserIndexLogResponse_Item;
+
+  // accessors -------------------------------------------------------
+  enum : int {
+    kItemsFieldNumber = 1,
+    kPaginationFieldNumber = 9,
+  };
+  // repeated .palm.portal.v1.UserIndexLogResponse.Item items = 1;
+  int items_size() const;
+  private:
+  int _internal_items_size() const;
+
+  public:
+  void clear_items() ;
+  ::palm::portal::v1::UserIndexLogResponse_Item* PROTOBUF_NONNULL mutable_items(int index);
+  ::google::protobuf::RepeatedPtrField<::palm::portal::v1::UserIndexLogResponse_Item>* PROTOBUF_NONNULL mutable_items();
+
+  private:
+  const ::google::protobuf::RepeatedPtrField<::palm::portal::v1::UserIndexLogResponse_Item>& _internal_items() const;
+  ::google::protobuf::RepeatedPtrField<::palm::portal::v1::UserIndexLogResponse_Item>* PROTOBUF_NONNULL _internal_mutable_items();
+  public:
+  const ::palm::portal::v1::UserIndexLogResponse_Item& items(int index) const;
+  ::palm::portal::v1::UserIndexLogResponse_Item* PROTOBUF_NONNULL add_items();
+  const ::google::protobuf::RepeatedPtrField<::palm::portal::v1::UserIndexLogResponse_Item>& items() const;
+  // .palm.portal.v1.Pagination pagination = 9;
+  bool has_pagination() const;
+  void clear_pagination() ;
+  const ::palm::portal::v1::Pagination& pagination() const;
+  [[nodiscard]] ::palm::portal::v1::Pagination* PROTOBUF_NULLABLE release_pagination();
+  ::palm::portal::v1::Pagination* PROTOBUF_NONNULL mutable_pagination();
+  void set_allocated_pagination(::palm::portal::v1::Pagination* PROTOBUF_NULLABLE value);
+  void unsafe_arena_set_allocated_pagination(::palm::portal::v1::Pagination* PROTOBUF_NULLABLE value);
+  ::palm::portal::v1::Pagination* PROTOBUF_NULLABLE unsafe_arena_release_pagination();
+
+  private:
+  const ::palm::portal::v1::Pagination& _internal_pagination() const;
+  ::palm::portal::v1::Pagination* PROTOBUF_NONNULL _internal_mutable_pagination();
+
+  public:
+  // @@protoc_insertion_point(class_scope:palm.portal.v1.UserIndexLogResponse)
+ private:
+  class _Internal;
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<0, 2,
+                                   2, 0,
+                                   2>
+      _table_;
+
+  friend class ::google::protobuf::MessageLite;
+  friend class ::google::protobuf::Arena;
+  template <typename T>
+  friend class ::google::protobuf::Arena::InternalHelper;
+  using InternalArenaConstructable_ = void;
+  using DestructorSkippable_ = void;
+  struct Impl_ {
+    inline explicit constexpr Impl_(::google::protobuf::internal::ConstantInitialized) noexcept;
+    inline explicit Impl_(
+        ::google::protobuf::internal::InternalVisibility visibility,
+        ::google::protobuf::Arena* PROTOBUF_NULLABLE arena);
+    inline explicit Impl_(
+        ::google::protobuf::internal::InternalVisibility visibility,
+        ::google::protobuf::Arena* PROTOBUF_NULLABLE arena, const Impl_& from,
+        const UserIndexLogResponse& from_msg);
+    ::google::protobuf::internal::HasBits<1> _has_bits_;
+    ::google::protobuf::internal::CachedSize _cached_size_;
+    ::google::protobuf::RepeatedPtrField< ::palm::portal::v1::UserIndexLogResponse_Item > items_;
+    ::palm::portal::v1::Pagination* PROTOBUF_NULLABLE pagination_;
+    PROTOBUF_TSAN_DECLARE_MEMBER
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_portal_2eproto;
+};
+
+extern const ::google::protobuf::internal::ClassDataFull UserIndexLogResponse_class_data_;
+// -------------------------------------------------------------------
+
 class UserIndexAttachmentResponse final : public ::google::protobuf::Message
 /* @@protoc_insertion_point(class_definition:palm.portal.v1.UserIndexAttachmentResponse) */ {
  public:
@@ -4850,7 +8438,7 @@ class UserIndexAttachmentResponse final : public ::google::protobuf::Message
     return *reinterpret_cast<const UserIndexAttachmentResponse*>(
         &_UserIndexAttachmentResponse_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 21;
+  static constexpr int kIndexInFileMessages = 37;
   friend void swap(UserIndexAttachmentResponse& a, UserIndexAttachmentResponse& b) { a.Swap(&b); }
   inline void Swap(UserIndexAttachmentResponse* PROTOBUF_NONNULL other) {
     if (other == this) return;
@@ -5066,7 +8654,7 @@ class UserCreateAttachmentUploadResponse final : public ::google::protobuf::Mess
     return *reinterpret_cast<const UserCreateAttachmentUploadResponse*>(
         &_UserCreateAttachmentUploadResponse_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 19;
+  static constexpr int kIndexInFileMessages = 35;
   friend void swap(UserCreateAttachmentUploadResponse& a, UserCreateAttachmentUploadResponse& b) { a.Swap(&b); }
   inline void Swap(UserCreateAttachmentUploadResponse* PROTOBUF_NONNULL other) {
     if (other == this) return;
@@ -5279,7 +8867,7 @@ class Session final : public ::google::protobuf::Message
     return *reinterpret_cast<const Session*>(
         &_Session_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 23;
+  static constexpr int kIndexInFileMessages = 40;
   friend void swap(Session& a, Session& b) { a.Swap(&b); }
   inline void Swap(Session* PROTOBUF_NONNULL other) {
     if (other == this) return;
@@ -5917,6 +9505,533 @@ class LocaleByLangResponse final : public ::google::protobuf::Message
 };
 
 extern const ::google::protobuf::internal::ClassDataFull LocaleByLangResponse_class_data_;
+// -------------------------------------------------------------------
+
+class EmailUserIndexResponse_Item final : public ::google::protobuf::Message
+/* @@protoc_insertion_point(class_definition:palm.portal.v1.EmailUserIndexResponse.Item) */ {
+ public:
+  inline EmailUserIndexResponse_Item() : EmailUserIndexResponse_Item(nullptr) {}
+  ~EmailUserIndexResponse_Item() PROTOBUF_FINAL;
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+  void operator delete(EmailUserIndexResponse_Item* PROTOBUF_NONNULL msg, std::destroying_delete_t) {
+    SharedDtor(*msg);
+    ::google::protobuf::internal::SizedDelete(msg, sizeof(EmailUserIndexResponse_Item));
+  }
+#endif
+
+  template <typename = void>
+  explicit PROTOBUF_CONSTEXPR EmailUserIndexResponse_Item(::google::protobuf::internal::ConstantInitialized);
+
+  inline EmailUserIndexResponse_Item(const EmailUserIndexResponse_Item& from) : EmailUserIndexResponse_Item(nullptr, from) {}
+  inline EmailUserIndexResponse_Item(EmailUserIndexResponse_Item&& from) noexcept
+      : EmailUserIndexResponse_Item(nullptr, ::std::move(from)) {}
+  inline EmailUserIndexResponse_Item& operator=(const EmailUserIndexResponse_Item& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline EmailUserIndexResponse_Item& operator=(EmailUserIndexResponse_Item&& from) noexcept {
+    if (this == &from) return *this;
+    if (::google::protobuf::internal::CanMoveWithInternalSwap(GetArena(), from.GetArena())) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* PROTOBUF_NONNULL mutable_unknown_fields()
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* PROTOBUF_NONNULL descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* PROTOBUF_NONNULL GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* PROTOBUF_NONNULL GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const EmailUserIndexResponse_Item& default_instance() {
+    return *reinterpret_cast<const EmailUserIndexResponse_Item*>(
+        &_EmailUserIndexResponse_Item_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages = 24;
+  friend void swap(EmailUserIndexResponse_Item& a, EmailUserIndexResponse_Item& b) { a.Swap(&b); }
+  inline void Swap(EmailUserIndexResponse_Item* PROTOBUF_NONNULL other) {
+    if (other == this) return;
+    if (::google::protobuf::internal::CanUseInternalSwap(GetArena(), other->GetArena())) {
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(EmailUserIndexResponse_Item* PROTOBUF_NONNULL other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  EmailUserIndexResponse_Item* PROTOBUF_NONNULL New(::google::protobuf::Arena* PROTOBUF_NULLABLE arena = nullptr) const {
+    return ::google::protobuf::Message::DefaultConstruct<EmailUserIndexResponse_Item>(arena);
+  }
+  using ::google::protobuf::Message::CopyFrom;
+  void CopyFrom(const EmailUserIndexResponse_Item& from);
+  using ::google::protobuf::Message::MergeFrom;
+  void MergeFrom(const EmailUserIndexResponse_Item& from) { EmailUserIndexResponse_Item::MergeImpl(*this, from); }
+
+  private:
+  static void MergeImpl(::google::protobuf::MessageLite& to_msg,
+                        const ::google::protobuf::MessageLite& from_msg);
+
+  public:
+  bool IsInitialized() const {
+    return true;
+  }
+  ABSL_ATTRIBUTE_REINITIALIZES void Clear() PROTOBUF_FINAL;
+  #if defined(PROTOBUF_CUSTOM_VTABLE)
+  private:
+  static ::size_t ByteSizeLong(const ::google::protobuf::MessageLite& msg);
+  static ::uint8_t* PROTOBUF_NONNULL _InternalSerialize(
+      const ::google::protobuf::MessageLite& msg, ::uint8_t* PROTOBUF_NONNULL target,
+      ::google::protobuf::io::EpsCopyOutputStream* PROTOBUF_NONNULL stream);
+
+  public:
+  ::size_t ByteSizeLong() const { return ByteSizeLong(*this); }
+  ::uint8_t* PROTOBUF_NONNULL _InternalSerialize(
+      ::uint8_t* PROTOBUF_NONNULL target,
+      ::google::protobuf::io::EpsCopyOutputStream* PROTOBUF_NONNULL stream) const {
+    return _InternalSerialize(*this, target, stream);
+  }
+  #else   // PROTOBUF_CUSTOM_VTABLE
+  ::size_t ByteSizeLong() const final;
+  ::uint8_t* PROTOBUF_NONNULL _InternalSerialize(
+      ::uint8_t* PROTOBUF_NONNULL target,
+      ::google::protobuf::io::EpsCopyOutputStream* PROTOBUF_NONNULL stream) const final;
+  #endif  // PROTOBUF_CUSTOM_VTABLE
+  int GetCachedSize() const { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::google::protobuf::Arena* PROTOBUF_NULLABLE arena);
+  static void SharedDtor(MessageLite& self);
+  void InternalSwap(EmailUserIndexResponse_Item* PROTOBUF_NONNULL other);
+ private:
+  template <typename T>
+  friend ::absl::string_view(::google::protobuf::internal::GetAnyMessageName)();
+  static ::absl::string_view FullMessageName() { return "palm.portal.v1.EmailUserIndexResponse.Item"; }
+
+ protected:
+  explicit EmailUserIndexResponse_Item(::google::protobuf::Arena* PROTOBUF_NULLABLE arena);
+  EmailUserIndexResponse_Item(::google::protobuf::Arena* PROTOBUF_NULLABLE arena, const EmailUserIndexResponse_Item& from);
+  EmailUserIndexResponse_Item(
+      ::google::protobuf::Arena* PROTOBUF_NULLABLE arena, EmailUserIndexResponse_Item&& from) noexcept
+      : EmailUserIndexResponse_Item(arena) {
+    *this = ::std::move(from);
+  }
+  const ::google::protobuf::internal::ClassData* PROTOBUF_NONNULL GetClassData() const PROTOBUF_FINAL;
+  static void* PROTOBUF_NONNULL PlacementNew_(
+      const void* PROTOBUF_NONNULL, void* PROTOBUF_NONNULL mem,
+      ::google::protobuf::Arena* PROTOBUF_NULLABLE arena);
+  static constexpr auto InternalNewImpl_();
+
+ public:
+  static constexpr auto InternalGenerateClassData_();
+
+  ::google::protobuf::Metadata GetMetadata() const;
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+  enum : int {
+    kEmailFieldNumber = 2,
+    kNameFieldNumber = 3,
+    kAvatarFieldNumber = 16,
+    kConfirmedAtFieldNumber = 17,
+    kDeletedAtFieldNumber = 18,
+    kUpdatedAtFieldNumber = 19,
+    kUserFieldNumber = 99,
+    kIdFieldNumber = 1,
+  };
+  // string email = 2;
+  void clear_email() ;
+  const ::std::string& email() const;
+  template <typename Arg_ = const ::std::string&, typename... Args_>
+  void set_email(Arg_&& arg, Args_... args);
+  ::std::string* PROTOBUF_NONNULL mutable_email();
+  [[nodiscard]] ::std::string* PROTOBUF_NULLABLE release_email();
+  void set_allocated_email(::std::string* PROTOBUF_NULLABLE value);
+
+  private:
+  const ::std::string& _internal_email() const;
+  PROTOBUF_ALWAYS_INLINE void _internal_set_email(const ::std::string& value);
+  ::std::string* PROTOBUF_NONNULL _internal_mutable_email();
+
+  public:
+  // string name = 3;
+  void clear_name() ;
+  const ::std::string& name() const;
+  template <typename Arg_ = const ::std::string&, typename... Args_>
+  void set_name(Arg_&& arg, Args_... args);
+  ::std::string* PROTOBUF_NONNULL mutable_name();
+  [[nodiscard]] ::std::string* PROTOBUF_NULLABLE release_name();
+  void set_allocated_name(::std::string* PROTOBUF_NULLABLE value);
+
+  private:
+  const ::std::string& _internal_name() const;
+  PROTOBUF_ALWAYS_INLINE void _internal_set_name(const ::std::string& value);
+  ::std::string* PROTOBUF_NONNULL _internal_mutable_name();
+
+  public:
+  // optional string avatar = 16;
+  bool has_avatar() const;
+  void clear_avatar() ;
+  const ::std::string& avatar() const;
+  template <typename Arg_ = const ::std::string&, typename... Args_>
+  void set_avatar(Arg_&& arg, Args_... args);
+  ::std::string* PROTOBUF_NONNULL mutable_avatar();
+  [[nodiscard]] ::std::string* PROTOBUF_NULLABLE release_avatar();
+  void set_allocated_avatar(::std::string* PROTOBUF_NULLABLE value);
+
+  private:
+  const ::std::string& _internal_avatar() const;
+  PROTOBUF_ALWAYS_INLINE void _internal_set_avatar(const ::std::string& value);
+  ::std::string* PROTOBUF_NONNULL _internal_mutable_avatar();
+
+  public:
+  // optional .google.protobuf.Timestamp confirmed_at = 17;
+  bool has_confirmed_at() const;
+  void clear_confirmed_at() ;
+  const ::google::protobuf::Timestamp& confirmed_at() const;
+  [[nodiscard]] ::google::protobuf::Timestamp* PROTOBUF_NULLABLE release_confirmed_at();
+  ::google::protobuf::Timestamp* PROTOBUF_NONNULL mutable_confirmed_at();
+  void set_allocated_confirmed_at(::google::protobuf::Timestamp* PROTOBUF_NULLABLE value);
+  void unsafe_arena_set_allocated_confirmed_at(::google::protobuf::Timestamp* PROTOBUF_NULLABLE value);
+  ::google::protobuf::Timestamp* PROTOBUF_NULLABLE unsafe_arena_release_confirmed_at();
+
+  private:
+  const ::google::protobuf::Timestamp& _internal_confirmed_at() const;
+  ::google::protobuf::Timestamp* PROTOBUF_NONNULL _internal_mutable_confirmed_at();
+
+  public:
+  // optional .google.protobuf.Timestamp deleted_at = 18;
+  bool has_deleted_at() const;
+  void clear_deleted_at() ;
+  const ::google::protobuf::Timestamp& deleted_at() const;
+  [[nodiscard]] ::google::protobuf::Timestamp* PROTOBUF_NULLABLE release_deleted_at();
+  ::google::protobuf::Timestamp* PROTOBUF_NONNULL mutable_deleted_at();
+  void set_allocated_deleted_at(::google::protobuf::Timestamp* PROTOBUF_NULLABLE value);
+  void unsafe_arena_set_allocated_deleted_at(::google::protobuf::Timestamp* PROTOBUF_NULLABLE value);
+  ::google::protobuf::Timestamp* PROTOBUF_NULLABLE unsafe_arena_release_deleted_at();
+
+  private:
+  const ::google::protobuf::Timestamp& _internal_deleted_at() const;
+  ::google::protobuf::Timestamp* PROTOBUF_NONNULL _internal_mutable_deleted_at();
+
+  public:
+  // .google.protobuf.Timestamp updated_at = 19;
+  bool has_updated_at() const;
+  void clear_updated_at() ;
+  const ::google::protobuf::Timestamp& updated_at() const;
+  [[nodiscard]] ::google::protobuf::Timestamp* PROTOBUF_NULLABLE release_updated_at();
+  ::google::protobuf::Timestamp* PROTOBUF_NONNULL mutable_updated_at();
+  void set_allocated_updated_at(::google::protobuf::Timestamp* PROTOBUF_NULLABLE value);
+  void unsafe_arena_set_allocated_updated_at(::google::protobuf::Timestamp* PROTOBUF_NULLABLE value);
+  ::google::protobuf::Timestamp* PROTOBUF_NULLABLE unsafe_arena_release_updated_at();
+
+  private:
+  const ::google::protobuf::Timestamp& _internal_updated_at() const;
+  ::google::protobuf::Timestamp* PROTOBUF_NONNULL _internal_mutable_updated_at();
+
+  public:
+  // .palm.portal.v1.UserIndexResponse.Item user = 99;
+  bool has_user() const;
+  void clear_user() ;
+  const ::palm::portal::v1::UserIndexResponse_Item& user() const;
+  [[nodiscard]] ::palm::portal::v1::UserIndexResponse_Item* PROTOBUF_NULLABLE release_user();
+  ::palm::portal::v1::UserIndexResponse_Item* PROTOBUF_NONNULL mutable_user();
+  void set_allocated_user(::palm::portal::v1::UserIndexResponse_Item* PROTOBUF_NULLABLE value);
+  void unsafe_arena_set_allocated_user(::palm::portal::v1::UserIndexResponse_Item* PROTOBUF_NULLABLE value);
+  ::palm::portal::v1::UserIndexResponse_Item* PROTOBUF_NULLABLE unsafe_arena_release_user();
+
+  private:
+  const ::palm::portal::v1::UserIndexResponse_Item& _internal_user() const;
+  ::palm::portal::v1::UserIndexResponse_Item* PROTOBUF_NONNULL _internal_mutable_user();
+
+  public:
+  // int64 id = 1;
+  void clear_id() ;
+  ::int64_t id() const;
+  void set_id(::int64_t value);
+
+  private:
+  ::int64_t _internal_id() const;
+  void _internal_set_id(::int64_t value);
+
+  public:
+  // @@protoc_insertion_point(class_scope:palm.portal.v1.EmailUserIndexResponse.Item)
+ private:
+  class _Internal;
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<2, 8,
+                                   4, 74,
+                                   7>
+      _table_;
+
+  friend class ::google::protobuf::MessageLite;
+  friend class ::google::protobuf::Arena;
+  template <typename T>
+  friend class ::google::protobuf::Arena::InternalHelper;
+  using InternalArenaConstructable_ = void;
+  using DestructorSkippable_ = void;
+  struct Impl_ {
+    inline explicit constexpr Impl_(::google::protobuf::internal::ConstantInitialized) noexcept;
+    inline explicit Impl_(
+        ::google::protobuf::internal::InternalVisibility visibility,
+        ::google::protobuf::Arena* PROTOBUF_NULLABLE arena);
+    inline explicit Impl_(
+        ::google::protobuf::internal::InternalVisibility visibility,
+        ::google::protobuf::Arena* PROTOBUF_NULLABLE arena, const Impl_& from,
+        const EmailUserIndexResponse_Item& from_msg);
+    ::google::protobuf::internal::HasBits<1> _has_bits_;
+    ::google::protobuf::internal::CachedSize _cached_size_;
+    ::google::protobuf::internal::ArenaStringPtr email_;
+    ::google::protobuf::internal::ArenaStringPtr name_;
+    ::google::protobuf::internal::ArenaStringPtr avatar_;
+    ::google::protobuf::Timestamp* PROTOBUF_NULLABLE confirmed_at_;
+    ::google::protobuf::Timestamp* PROTOBUF_NULLABLE deleted_at_;
+    ::google::protobuf::Timestamp* PROTOBUF_NULLABLE updated_at_;
+    ::palm::portal::v1::UserIndexResponse_Item* PROTOBUF_NULLABLE user_;
+    ::int64_t id_;
+    PROTOBUF_TSAN_DECLARE_MEMBER
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_portal_2eproto;
+};
+
+extern const ::google::protobuf::internal::ClassDataFull EmailUserIndexResponse_Item_class_data_;
+// -------------------------------------------------------------------
+
+class EmailUserIndexResponse final : public ::google::protobuf::Message
+/* @@protoc_insertion_point(class_definition:palm.portal.v1.EmailUserIndexResponse) */ {
+ public:
+  inline EmailUserIndexResponse() : EmailUserIndexResponse(nullptr) {}
+  ~EmailUserIndexResponse() PROTOBUF_FINAL;
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+  void operator delete(EmailUserIndexResponse* PROTOBUF_NONNULL msg, std::destroying_delete_t) {
+    SharedDtor(*msg);
+    ::google::protobuf::internal::SizedDelete(msg, sizeof(EmailUserIndexResponse));
+  }
+#endif
+
+  template <typename = void>
+  explicit PROTOBUF_CONSTEXPR EmailUserIndexResponse(::google::protobuf::internal::ConstantInitialized);
+
+  inline EmailUserIndexResponse(const EmailUserIndexResponse& from) : EmailUserIndexResponse(nullptr, from) {}
+  inline EmailUserIndexResponse(EmailUserIndexResponse&& from) noexcept
+      : EmailUserIndexResponse(nullptr, ::std::move(from)) {}
+  inline EmailUserIndexResponse& operator=(const EmailUserIndexResponse& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline EmailUserIndexResponse& operator=(EmailUserIndexResponse&& from) noexcept {
+    if (this == &from) return *this;
+    if (::google::protobuf::internal::CanMoveWithInternalSwap(GetArena(), from.GetArena())) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* PROTOBUF_NONNULL mutable_unknown_fields()
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* PROTOBUF_NONNULL descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* PROTOBUF_NONNULL GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* PROTOBUF_NONNULL GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const EmailUserIndexResponse& default_instance() {
+    return *reinterpret_cast<const EmailUserIndexResponse*>(
+        &_EmailUserIndexResponse_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages = 25;
+  friend void swap(EmailUserIndexResponse& a, EmailUserIndexResponse& b) { a.Swap(&b); }
+  inline void Swap(EmailUserIndexResponse* PROTOBUF_NONNULL other) {
+    if (other == this) return;
+    if (::google::protobuf::internal::CanUseInternalSwap(GetArena(), other->GetArena())) {
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(EmailUserIndexResponse* PROTOBUF_NONNULL other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  EmailUserIndexResponse* PROTOBUF_NONNULL New(::google::protobuf::Arena* PROTOBUF_NULLABLE arena = nullptr) const {
+    return ::google::protobuf::Message::DefaultConstruct<EmailUserIndexResponse>(arena);
+  }
+  using ::google::protobuf::Message::CopyFrom;
+  void CopyFrom(const EmailUserIndexResponse& from);
+  using ::google::protobuf::Message::MergeFrom;
+  void MergeFrom(const EmailUserIndexResponse& from) { EmailUserIndexResponse::MergeImpl(*this, from); }
+
+  private:
+  static void MergeImpl(::google::protobuf::MessageLite& to_msg,
+                        const ::google::protobuf::MessageLite& from_msg);
+
+  public:
+  bool IsInitialized() const {
+    return true;
+  }
+  ABSL_ATTRIBUTE_REINITIALIZES void Clear() PROTOBUF_FINAL;
+  #if defined(PROTOBUF_CUSTOM_VTABLE)
+  private:
+  static ::size_t ByteSizeLong(const ::google::protobuf::MessageLite& msg);
+  static ::uint8_t* PROTOBUF_NONNULL _InternalSerialize(
+      const ::google::protobuf::MessageLite& msg, ::uint8_t* PROTOBUF_NONNULL target,
+      ::google::protobuf::io::EpsCopyOutputStream* PROTOBUF_NONNULL stream);
+
+  public:
+  ::size_t ByteSizeLong() const { return ByteSizeLong(*this); }
+  ::uint8_t* PROTOBUF_NONNULL _InternalSerialize(
+      ::uint8_t* PROTOBUF_NONNULL target,
+      ::google::protobuf::io::EpsCopyOutputStream* PROTOBUF_NONNULL stream) const {
+    return _InternalSerialize(*this, target, stream);
+  }
+  #else   // PROTOBUF_CUSTOM_VTABLE
+  ::size_t ByteSizeLong() const final;
+  ::uint8_t* PROTOBUF_NONNULL _InternalSerialize(
+      ::uint8_t* PROTOBUF_NONNULL target,
+      ::google::protobuf::io::EpsCopyOutputStream* PROTOBUF_NONNULL stream) const final;
+  #endif  // PROTOBUF_CUSTOM_VTABLE
+  int GetCachedSize() const { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::google::protobuf::Arena* PROTOBUF_NULLABLE arena);
+  static void SharedDtor(MessageLite& self);
+  void InternalSwap(EmailUserIndexResponse* PROTOBUF_NONNULL other);
+ private:
+  template <typename T>
+  friend ::absl::string_view(::google::protobuf::internal::GetAnyMessageName)();
+  static ::absl::string_view FullMessageName() { return "palm.portal.v1.EmailUserIndexResponse"; }
+
+ protected:
+  explicit EmailUserIndexResponse(::google::protobuf::Arena* PROTOBUF_NULLABLE arena);
+  EmailUserIndexResponse(::google::protobuf::Arena* PROTOBUF_NULLABLE arena, const EmailUserIndexResponse& from);
+  EmailUserIndexResponse(
+      ::google::protobuf::Arena* PROTOBUF_NULLABLE arena, EmailUserIndexResponse&& from) noexcept
+      : EmailUserIndexResponse(arena) {
+    *this = ::std::move(from);
+  }
+  const ::google::protobuf::internal::ClassData* PROTOBUF_NONNULL GetClassData() const PROTOBUF_FINAL;
+  static void* PROTOBUF_NONNULL PlacementNew_(
+      const void* PROTOBUF_NONNULL, void* PROTOBUF_NONNULL mem,
+      ::google::protobuf::Arena* PROTOBUF_NULLABLE arena);
+  static constexpr auto InternalNewImpl_();
+
+ public:
+  static constexpr auto InternalGenerateClassData_();
+
+  ::google::protobuf::Metadata GetMetadata() const;
+  // nested types ----------------------------------------------------
+  using Item = EmailUserIndexResponse_Item;
+
+  // accessors -------------------------------------------------------
+  enum : int {
+    kItemsFieldNumber = 1,
+    kPaginationFieldNumber = 9,
+  };
+  // repeated .palm.portal.v1.EmailUserIndexResponse.Item items = 1;
+  int items_size() const;
+  private:
+  int _internal_items_size() const;
+
+  public:
+  void clear_items() ;
+  ::palm::portal::v1::EmailUserIndexResponse_Item* PROTOBUF_NONNULL mutable_items(int index);
+  ::google::protobuf::RepeatedPtrField<::palm::portal::v1::EmailUserIndexResponse_Item>* PROTOBUF_NONNULL mutable_items();
+
+  private:
+  const ::google::protobuf::RepeatedPtrField<::palm::portal::v1::EmailUserIndexResponse_Item>& _internal_items() const;
+  ::google::protobuf::RepeatedPtrField<::palm::portal::v1::EmailUserIndexResponse_Item>* PROTOBUF_NONNULL _internal_mutable_items();
+  public:
+  const ::palm::portal::v1::EmailUserIndexResponse_Item& items(int index) const;
+  ::palm::portal::v1::EmailUserIndexResponse_Item* PROTOBUF_NONNULL add_items();
+  const ::google::protobuf::RepeatedPtrField<::palm::portal::v1::EmailUserIndexResponse_Item>& items() const;
+  // .palm.portal.v1.Pagination pagination = 9;
+  bool has_pagination() const;
+  void clear_pagination() ;
+  const ::palm::portal::v1::Pagination& pagination() const;
+  [[nodiscard]] ::palm::portal::v1::Pagination* PROTOBUF_NULLABLE release_pagination();
+  ::palm::portal::v1::Pagination* PROTOBUF_NONNULL mutable_pagination();
+  void set_allocated_pagination(::palm::portal::v1::Pagination* PROTOBUF_NULLABLE value);
+  void unsafe_arena_set_allocated_pagination(::palm::portal::v1::Pagination* PROTOBUF_NULLABLE value);
+  ::palm::portal::v1::Pagination* PROTOBUF_NULLABLE unsafe_arena_release_pagination();
+
+  private:
+  const ::palm::portal::v1::Pagination& _internal_pagination() const;
+  ::palm::portal::v1::Pagination* PROTOBUF_NONNULL _internal_mutable_pagination();
+
+  public:
+  // @@protoc_insertion_point(class_scope:palm.portal.v1.EmailUserIndexResponse)
+ private:
+  class _Internal;
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<0, 2,
+                                   2, 0,
+                                   2>
+      _table_;
+
+  friend class ::google::protobuf::MessageLite;
+  friend class ::google::protobuf::Arena;
+  template <typename T>
+  friend class ::google::protobuf::Arena::InternalHelper;
+  using InternalArenaConstructable_ = void;
+  using DestructorSkippable_ = void;
+  struct Impl_ {
+    inline explicit constexpr Impl_(::google::protobuf::internal::ConstantInitialized) noexcept;
+    inline explicit Impl_(
+        ::google::protobuf::internal::InternalVisibility visibility,
+        ::google::protobuf::Arena* PROTOBUF_NULLABLE arena);
+    inline explicit Impl_(
+        ::google::protobuf::internal::InternalVisibility visibility,
+        ::google::protobuf::Arena* PROTOBUF_NULLABLE arena, const Impl_& from,
+        const EmailUserIndexResponse& from_msg);
+    ::google::protobuf::internal::HasBits<1> _has_bits_;
+    ::google::protobuf::internal::CachedSize _cached_size_;
+    ::google::protobuf::RepeatedPtrField< ::palm::portal::v1::EmailUserIndexResponse_Item > items_;
+    ::palm::portal::v1::Pagination* PROTOBUF_NULLABLE pagination_;
+    PROTOBUF_TSAN_DECLARE_MEMBER
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_portal_2eproto;
+};
+
+extern const ::google::protobuf::internal::ClassDataFull EmailUserIndexResponse_class_data_;
 
 // ===================================================================
 
@@ -6210,49 +10325,49 @@ inline void Pagination::_internal_set_total(::int64_t value) {
 
 // -------------------------------------------------------------------
 
-// Attachment
+// File
 
 // string bucket = 1;
-inline void Attachment::clear_bucket() {
+inline void File::clear_bucket() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_.bucket_.ClearToEmpty();
   _impl_._has_bits_[0] &= ~0x00000001u;
 }
-inline const ::std::string& Attachment::bucket() const
+inline const ::std::string& File::bucket() const
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:palm.portal.v1.Attachment.bucket)
+  // @@protoc_insertion_point(field_get:palm.portal.v1.File.bucket)
   return _internal_bucket();
 }
 template <typename Arg_, typename... Args_>
-PROTOBUF_ALWAYS_INLINE void Attachment::set_bucket(Arg_&& arg, Args_... args) {
+PROTOBUF_ALWAYS_INLINE void File::set_bucket(Arg_&& arg, Args_... args) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_._has_bits_[0] |= 0x00000001u;
   _impl_.bucket_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
-  // @@protoc_insertion_point(field_set:palm.portal.v1.Attachment.bucket)
+  // @@protoc_insertion_point(field_set:palm.portal.v1.File.bucket)
 }
-inline ::std::string* PROTOBUF_NONNULL Attachment::mutable_bucket()
+inline ::std::string* PROTOBUF_NONNULL File::mutable_bucket()
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
   ::std::string* _s = _internal_mutable_bucket();
-  // @@protoc_insertion_point(field_mutable:palm.portal.v1.Attachment.bucket)
+  // @@protoc_insertion_point(field_mutable:palm.portal.v1.File.bucket)
   return _s;
 }
-inline const ::std::string& Attachment::_internal_bucket() const {
+inline const ::std::string& File::_internal_bucket() const {
   ::google::protobuf::internal::TSanRead(&_impl_);
   return _impl_.bucket_.Get();
 }
-inline void Attachment::_internal_set_bucket(const ::std::string& value) {
+inline void File::_internal_set_bucket(const ::std::string& value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_._has_bits_[0] |= 0x00000001u;
   _impl_.bucket_.Set(value, GetArena());
 }
-inline ::std::string* PROTOBUF_NONNULL Attachment::_internal_mutable_bucket() {
+inline ::std::string* PROTOBUF_NONNULL File::_internal_mutable_bucket() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_._has_bits_[0] |= 0x00000001u;
   return _impl_.bucket_.Mutable( GetArena());
 }
-inline ::std::string* PROTOBUF_NULLABLE Attachment::release_bucket() {
+inline ::std::string* PROTOBUF_NULLABLE File::release_bucket() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  // @@protoc_insertion_point(field_release:palm.portal.v1.Attachment.bucket)
+  // @@protoc_insertion_point(field_release:palm.portal.v1.File.bucket)
   if ((_impl_._has_bits_[0] & 0x00000001u) == 0) {
     return nullptr;
   }
@@ -6263,7 +10378,7 @@ inline ::std::string* PROTOBUF_NULLABLE Attachment::release_bucket() {
   }
   return released;
 }
-inline void Attachment::set_allocated_bucket(::std::string* PROTOBUF_NULLABLE value) {
+inline void File::set_allocated_bucket(::std::string* PROTOBUF_NULLABLE value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   if (value != nullptr) {
     _impl_._has_bits_[0] |= 0x00000001u;
@@ -6274,50 +10389,50 @@ inline void Attachment::set_allocated_bucket(::std::string* PROTOBUF_NULLABLE va
   if (::google::protobuf::internal::DebugHardenForceCopyDefaultString() && _impl_.bucket_.IsDefault()) {
     _impl_.bucket_.Set("", GetArena());
   }
-  // @@protoc_insertion_point(field_set_allocated:palm.portal.v1.Attachment.bucket)
+  // @@protoc_insertion_point(field_set_allocated:palm.portal.v1.File.bucket)
 }
 
 // string object = 2;
-inline void Attachment::clear_object() {
+inline void File::clear_object() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_.object_.ClearToEmpty();
   _impl_._has_bits_[0] &= ~0x00000002u;
 }
-inline const ::std::string& Attachment::object() const
+inline const ::std::string& File::object() const
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:palm.portal.v1.Attachment.object)
+  // @@protoc_insertion_point(field_get:palm.portal.v1.File.object)
   return _internal_object();
 }
 template <typename Arg_, typename... Args_>
-PROTOBUF_ALWAYS_INLINE void Attachment::set_object(Arg_&& arg, Args_... args) {
+PROTOBUF_ALWAYS_INLINE void File::set_object(Arg_&& arg, Args_... args) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_._has_bits_[0] |= 0x00000002u;
   _impl_.object_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
-  // @@protoc_insertion_point(field_set:palm.portal.v1.Attachment.object)
+  // @@protoc_insertion_point(field_set:palm.portal.v1.File.object)
 }
-inline ::std::string* PROTOBUF_NONNULL Attachment::mutable_object()
+inline ::std::string* PROTOBUF_NONNULL File::mutable_object()
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
   ::std::string* _s = _internal_mutable_object();
-  // @@protoc_insertion_point(field_mutable:palm.portal.v1.Attachment.object)
+  // @@protoc_insertion_point(field_mutable:palm.portal.v1.File.object)
   return _s;
 }
-inline const ::std::string& Attachment::_internal_object() const {
+inline const ::std::string& File::_internal_object() const {
   ::google::protobuf::internal::TSanRead(&_impl_);
   return _impl_.object_.Get();
 }
-inline void Attachment::_internal_set_object(const ::std::string& value) {
+inline void File::_internal_set_object(const ::std::string& value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_._has_bits_[0] |= 0x00000002u;
   _impl_.object_.Set(value, GetArena());
 }
-inline ::std::string* PROTOBUF_NONNULL Attachment::_internal_mutable_object() {
+inline ::std::string* PROTOBUF_NONNULL File::_internal_mutable_object() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_._has_bits_[0] |= 0x00000002u;
   return _impl_.object_.Mutable( GetArena());
 }
-inline ::std::string* PROTOBUF_NULLABLE Attachment::release_object() {
+inline ::std::string* PROTOBUF_NULLABLE File::release_object() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  // @@protoc_insertion_point(field_release:palm.portal.v1.Attachment.object)
+  // @@protoc_insertion_point(field_release:palm.portal.v1.File.object)
   if ((_impl_._has_bits_[0] & 0x00000002u) == 0) {
     return nullptr;
   }
@@ -6328,7 +10443,7 @@ inline ::std::string* PROTOBUF_NULLABLE Attachment::release_object() {
   }
   return released;
 }
-inline void Attachment::set_allocated_object(::std::string* PROTOBUF_NULLABLE value) {
+inline void File::set_allocated_object(::std::string* PROTOBUF_NULLABLE value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   if (value != nullptr) {
     _impl_._has_bits_[0] |= 0x00000002u;
@@ -6339,7 +10454,7 @@ inline void Attachment::set_allocated_object(::std::string* PROTOBUF_NULLABLE va
   if (::google::protobuf::internal::DebugHardenForceCopyDefaultString() && _impl_.object_.IsDefault()) {
     _impl_.object_.Set("", GetArena());
   }
-  // @@protoc_insertion_point(field_set_allocated:palm.portal.v1.Attachment.object)
+  // @@protoc_insertion_point(field_set_allocated:palm.portal.v1.File.object)
 }
 
 // -------------------------------------------------------------------
@@ -6435,7 +10550,7 @@ inline void RichText::set_allocated_body(::std::string* PROTOBUF_NULLABLE value)
   // @@protoc_insertion_point(field_set_allocated:palm.portal.v1.RichText.body)
 }
 
-// repeated .palm.portal.v1.Attachment attachments = 3;
+// repeated .palm.portal.v1.File attachments = 3;
 inline int RichText::_internal_attachments_size() const {
   return _internal_attachments().size();
 }
@@ -6446,40 +10561,40 @@ inline void RichText::clear_attachments() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_.attachments_.Clear();
 }
-inline ::palm::portal::v1::Attachment* PROTOBUF_NONNULL RichText::mutable_attachments(int index)
+inline ::palm::portal::v1::File* PROTOBUF_NONNULL RichText::mutable_attachments(int index)
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
   // @@protoc_insertion_point(field_mutable:palm.portal.v1.RichText.attachments)
   return _internal_mutable_attachments()->Mutable(index);
 }
-inline ::google::protobuf::RepeatedPtrField<::palm::portal::v1::Attachment>* PROTOBUF_NONNULL RichText::mutable_attachments()
+inline ::google::protobuf::RepeatedPtrField<::palm::portal::v1::File>* PROTOBUF_NONNULL RichText::mutable_attachments()
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
   // @@protoc_insertion_point(field_mutable_list:palm.portal.v1.RichText.attachments)
   ::google::protobuf::internal::TSanWrite(&_impl_);
   return _internal_mutable_attachments();
 }
-inline const ::palm::portal::v1::Attachment& RichText::attachments(int index) const
+inline const ::palm::portal::v1::File& RichText::attachments(int index) const
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
   // @@protoc_insertion_point(field_get:palm.portal.v1.RichText.attachments)
   return _internal_attachments().Get(index);
 }
-inline ::palm::portal::v1::Attachment* PROTOBUF_NONNULL RichText::add_attachments()
+inline ::palm::portal::v1::File* PROTOBUF_NONNULL RichText::add_attachments()
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  ::palm::portal::v1::Attachment* _add = _internal_mutable_attachments()->Add();
+  ::palm::portal::v1::File* _add = _internal_mutable_attachments()->Add();
   // @@protoc_insertion_point(field_add:palm.portal.v1.RichText.attachments)
   return _add;
 }
-inline const ::google::protobuf::RepeatedPtrField<::palm::portal::v1::Attachment>& RichText::attachments() const
+inline const ::google::protobuf::RepeatedPtrField<::palm::portal::v1::File>& RichText::attachments() const
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
   // @@protoc_insertion_point(field_list:palm.portal.v1.RichText.attachments)
   return _internal_attachments();
 }
-inline const ::google::protobuf::RepeatedPtrField<::palm::portal::v1::Attachment>&
+inline const ::google::protobuf::RepeatedPtrField<::palm::portal::v1::File>&
 RichText::_internal_attachments() const {
   ::google::protobuf::internal::TSanRead(&_impl_);
   return _impl_.attachments_;
 }
-inline ::google::protobuf::RepeatedPtrField<::palm::portal::v1::Attachment>* PROTOBUF_NONNULL
+inline ::google::protobuf::RepeatedPtrField<::palm::portal::v1::File>* PROTOBUF_NONNULL
 RichText::_internal_mutable_attachments() {
   ::google::protobuf::internal::TSanRead(&_impl_);
   return &_impl_.attachments_;
@@ -7699,6 +11814,2577 @@ inline ::google::protobuf::RepeatedPtrField<::palm::portal::v1::CurrenciesRespon
 CurrenciesResponse::_internal_mutable_items() {
   ::google::protobuf::internal::TSanRead(&_impl_);
   return &_impl_.items_;
+}
+
+// -------------------------------------------------------------------
+
+// EmailUserSignInRequest
+
+// string email = 1;
+inline void EmailUserSignInRequest::clear_email() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.email_.ClearToEmpty();
+  _impl_._has_bits_[0] &= ~0x00000001u;
+}
+inline const ::std::string& EmailUserSignInRequest::email() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:palm.portal.v1.EmailUserSignInRequest.email)
+  return _internal_email();
+}
+template <typename Arg_, typename... Args_>
+PROTOBUF_ALWAYS_INLINE void EmailUserSignInRequest::set_email(Arg_&& arg, Args_... args) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_._has_bits_[0] |= 0x00000001u;
+  _impl_.email_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:palm.portal.v1.EmailUserSignInRequest.email)
+}
+inline ::std::string* PROTOBUF_NONNULL EmailUserSignInRequest::mutable_email()
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  ::std::string* _s = _internal_mutable_email();
+  // @@protoc_insertion_point(field_mutable:palm.portal.v1.EmailUserSignInRequest.email)
+  return _s;
+}
+inline const ::std::string& EmailUserSignInRequest::_internal_email() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.email_.Get();
+}
+inline void EmailUserSignInRequest::_internal_set_email(const ::std::string& value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_._has_bits_[0] |= 0x00000001u;
+  _impl_.email_.Set(value, GetArena());
+}
+inline ::std::string* PROTOBUF_NONNULL EmailUserSignInRequest::_internal_mutable_email() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_._has_bits_[0] |= 0x00000001u;
+  return _impl_.email_.Mutable( GetArena());
+}
+inline ::std::string* PROTOBUF_NULLABLE EmailUserSignInRequest::release_email() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  // @@protoc_insertion_point(field_release:palm.portal.v1.EmailUserSignInRequest.email)
+  if ((_impl_._has_bits_[0] & 0x00000001u) == 0) {
+    return nullptr;
+  }
+  _impl_._has_bits_[0] &= ~0x00000001u;
+  auto* released = _impl_.email_.Release();
+  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString()) {
+    _impl_.email_.Set("", GetArena());
+  }
+  return released;
+}
+inline void EmailUserSignInRequest::set_allocated_email(::std::string* PROTOBUF_NULLABLE value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (value != nullptr) {
+    _impl_._has_bits_[0] |= 0x00000001u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000001u;
+  }
+  _impl_.email_.SetAllocated(value, GetArena());
+  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString() && _impl_.email_.IsDefault()) {
+    _impl_.email_.Set("", GetArena());
+  }
+  // @@protoc_insertion_point(field_set_allocated:palm.portal.v1.EmailUserSignInRequest.email)
+}
+
+// string password = 2;
+inline void EmailUserSignInRequest::clear_password() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.password_.ClearToEmpty();
+  _impl_._has_bits_[0] &= ~0x00000002u;
+}
+inline const ::std::string& EmailUserSignInRequest::password() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:palm.portal.v1.EmailUserSignInRequest.password)
+  return _internal_password();
+}
+template <typename Arg_, typename... Args_>
+PROTOBUF_ALWAYS_INLINE void EmailUserSignInRequest::set_password(Arg_&& arg, Args_... args) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_._has_bits_[0] |= 0x00000002u;
+  _impl_.password_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:palm.portal.v1.EmailUserSignInRequest.password)
+}
+inline ::std::string* PROTOBUF_NONNULL EmailUserSignInRequest::mutable_password()
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  ::std::string* _s = _internal_mutable_password();
+  // @@protoc_insertion_point(field_mutable:palm.portal.v1.EmailUserSignInRequest.password)
+  return _s;
+}
+inline const ::std::string& EmailUserSignInRequest::_internal_password() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.password_.Get();
+}
+inline void EmailUserSignInRequest::_internal_set_password(const ::std::string& value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_._has_bits_[0] |= 0x00000002u;
+  _impl_.password_.Set(value, GetArena());
+}
+inline ::std::string* PROTOBUF_NONNULL EmailUserSignInRequest::_internal_mutable_password() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_._has_bits_[0] |= 0x00000002u;
+  return _impl_.password_.Mutable( GetArena());
+}
+inline ::std::string* PROTOBUF_NULLABLE EmailUserSignInRequest::release_password() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  // @@protoc_insertion_point(field_release:palm.portal.v1.EmailUserSignInRequest.password)
+  if ((_impl_._has_bits_[0] & 0x00000002u) == 0) {
+    return nullptr;
+  }
+  _impl_._has_bits_[0] &= ~0x00000002u;
+  auto* released = _impl_.password_.Release();
+  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString()) {
+    _impl_.password_.Set("", GetArena());
+  }
+  return released;
+}
+inline void EmailUserSignInRequest::set_allocated_password(::std::string* PROTOBUF_NULLABLE value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (value != nullptr) {
+    _impl_._has_bits_[0] |= 0x00000002u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000002u;
+  }
+  _impl_.password_.SetAllocated(value, GetArena());
+  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString() && _impl_.password_.IsDefault()) {
+    _impl_.password_.Set("", GetArena());
+  }
+  // @@protoc_insertion_point(field_set_allocated:palm.portal.v1.EmailUserSignInRequest.password)
+}
+
+// -------------------------------------------------------------------
+
+// EmailUserSignUpRequest
+
+// string name = 1;
+inline void EmailUserSignUpRequest::clear_name() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.name_.ClearToEmpty();
+  _impl_._has_bits_[0] &= ~0x00000001u;
+}
+inline const ::std::string& EmailUserSignUpRequest::name() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:palm.portal.v1.EmailUserSignUpRequest.name)
+  return _internal_name();
+}
+template <typename Arg_, typename... Args_>
+PROTOBUF_ALWAYS_INLINE void EmailUserSignUpRequest::set_name(Arg_&& arg, Args_... args) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_._has_bits_[0] |= 0x00000001u;
+  _impl_.name_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:palm.portal.v1.EmailUserSignUpRequest.name)
+}
+inline ::std::string* PROTOBUF_NONNULL EmailUserSignUpRequest::mutable_name()
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  ::std::string* _s = _internal_mutable_name();
+  // @@protoc_insertion_point(field_mutable:palm.portal.v1.EmailUserSignUpRequest.name)
+  return _s;
+}
+inline const ::std::string& EmailUserSignUpRequest::_internal_name() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.name_.Get();
+}
+inline void EmailUserSignUpRequest::_internal_set_name(const ::std::string& value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_._has_bits_[0] |= 0x00000001u;
+  _impl_.name_.Set(value, GetArena());
+}
+inline ::std::string* PROTOBUF_NONNULL EmailUserSignUpRequest::_internal_mutable_name() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_._has_bits_[0] |= 0x00000001u;
+  return _impl_.name_.Mutable( GetArena());
+}
+inline ::std::string* PROTOBUF_NULLABLE EmailUserSignUpRequest::release_name() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  // @@protoc_insertion_point(field_release:palm.portal.v1.EmailUserSignUpRequest.name)
+  if ((_impl_._has_bits_[0] & 0x00000001u) == 0) {
+    return nullptr;
+  }
+  _impl_._has_bits_[0] &= ~0x00000001u;
+  auto* released = _impl_.name_.Release();
+  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString()) {
+    _impl_.name_.Set("", GetArena());
+  }
+  return released;
+}
+inline void EmailUserSignUpRequest::set_allocated_name(::std::string* PROTOBUF_NULLABLE value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (value != nullptr) {
+    _impl_._has_bits_[0] |= 0x00000001u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000001u;
+  }
+  _impl_.name_.SetAllocated(value, GetArena());
+  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString() && _impl_.name_.IsDefault()) {
+    _impl_.name_.Set("", GetArena());
+  }
+  // @@protoc_insertion_point(field_set_allocated:palm.portal.v1.EmailUserSignUpRequest.name)
+}
+
+// string email = 2;
+inline void EmailUserSignUpRequest::clear_email() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.email_.ClearToEmpty();
+  _impl_._has_bits_[0] &= ~0x00000002u;
+}
+inline const ::std::string& EmailUserSignUpRequest::email() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:palm.portal.v1.EmailUserSignUpRequest.email)
+  return _internal_email();
+}
+template <typename Arg_, typename... Args_>
+PROTOBUF_ALWAYS_INLINE void EmailUserSignUpRequest::set_email(Arg_&& arg, Args_... args) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_._has_bits_[0] |= 0x00000002u;
+  _impl_.email_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:palm.portal.v1.EmailUserSignUpRequest.email)
+}
+inline ::std::string* PROTOBUF_NONNULL EmailUserSignUpRequest::mutable_email()
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  ::std::string* _s = _internal_mutable_email();
+  // @@protoc_insertion_point(field_mutable:palm.portal.v1.EmailUserSignUpRequest.email)
+  return _s;
+}
+inline const ::std::string& EmailUserSignUpRequest::_internal_email() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.email_.Get();
+}
+inline void EmailUserSignUpRequest::_internal_set_email(const ::std::string& value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_._has_bits_[0] |= 0x00000002u;
+  _impl_.email_.Set(value, GetArena());
+}
+inline ::std::string* PROTOBUF_NONNULL EmailUserSignUpRequest::_internal_mutable_email() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_._has_bits_[0] |= 0x00000002u;
+  return _impl_.email_.Mutable( GetArena());
+}
+inline ::std::string* PROTOBUF_NULLABLE EmailUserSignUpRequest::release_email() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  // @@protoc_insertion_point(field_release:palm.portal.v1.EmailUserSignUpRequest.email)
+  if ((_impl_._has_bits_[0] & 0x00000002u) == 0) {
+    return nullptr;
+  }
+  _impl_._has_bits_[0] &= ~0x00000002u;
+  auto* released = _impl_.email_.Release();
+  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString()) {
+    _impl_.email_.Set("", GetArena());
+  }
+  return released;
+}
+inline void EmailUserSignUpRequest::set_allocated_email(::std::string* PROTOBUF_NULLABLE value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (value != nullptr) {
+    _impl_._has_bits_[0] |= 0x00000002u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000002u;
+  }
+  _impl_.email_.SetAllocated(value, GetArena());
+  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString() && _impl_.email_.IsDefault()) {
+    _impl_.email_.Set("", GetArena());
+  }
+  // @@protoc_insertion_point(field_set_allocated:palm.portal.v1.EmailUserSignUpRequest.email)
+}
+
+// string password = 3;
+inline void EmailUserSignUpRequest::clear_password() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.password_.ClearToEmpty();
+  _impl_._has_bits_[0] &= ~0x00000004u;
+}
+inline const ::std::string& EmailUserSignUpRequest::password() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:palm.portal.v1.EmailUserSignUpRequest.password)
+  return _internal_password();
+}
+template <typename Arg_, typename... Args_>
+PROTOBUF_ALWAYS_INLINE void EmailUserSignUpRequest::set_password(Arg_&& arg, Args_... args) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_._has_bits_[0] |= 0x00000004u;
+  _impl_.password_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:palm.portal.v1.EmailUserSignUpRequest.password)
+}
+inline ::std::string* PROTOBUF_NONNULL EmailUserSignUpRequest::mutable_password()
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  ::std::string* _s = _internal_mutable_password();
+  // @@protoc_insertion_point(field_mutable:palm.portal.v1.EmailUserSignUpRequest.password)
+  return _s;
+}
+inline const ::std::string& EmailUserSignUpRequest::_internal_password() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.password_.Get();
+}
+inline void EmailUserSignUpRequest::_internal_set_password(const ::std::string& value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_._has_bits_[0] |= 0x00000004u;
+  _impl_.password_.Set(value, GetArena());
+}
+inline ::std::string* PROTOBUF_NONNULL EmailUserSignUpRequest::_internal_mutable_password() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_._has_bits_[0] |= 0x00000004u;
+  return _impl_.password_.Mutable( GetArena());
+}
+inline ::std::string* PROTOBUF_NULLABLE EmailUserSignUpRequest::release_password() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  // @@protoc_insertion_point(field_release:palm.portal.v1.EmailUserSignUpRequest.password)
+  if ((_impl_._has_bits_[0] & 0x00000004u) == 0) {
+    return nullptr;
+  }
+  _impl_._has_bits_[0] &= ~0x00000004u;
+  auto* released = _impl_.password_.Release();
+  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString()) {
+    _impl_.password_.Set("", GetArena());
+  }
+  return released;
+}
+inline void EmailUserSignUpRequest::set_allocated_password(::std::string* PROTOBUF_NULLABLE value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (value != nullptr) {
+    _impl_._has_bits_[0] |= 0x00000004u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000004u;
+  }
+  _impl_.password_.SetAllocated(value, GetArena());
+  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString() && _impl_.password_.IsDefault()) {
+    _impl_.password_.Set("", GetArena());
+  }
+  // @@protoc_insertion_point(field_set_allocated:palm.portal.v1.EmailUserSignUpRequest.password)
+}
+
+// string lang = 8;
+inline void EmailUserSignUpRequest::clear_lang() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.lang_.ClearToEmpty();
+  _impl_._has_bits_[0] &= ~0x00000008u;
+}
+inline const ::std::string& EmailUserSignUpRequest::lang() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:palm.portal.v1.EmailUserSignUpRequest.lang)
+  return _internal_lang();
+}
+template <typename Arg_, typename... Args_>
+PROTOBUF_ALWAYS_INLINE void EmailUserSignUpRequest::set_lang(Arg_&& arg, Args_... args) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_._has_bits_[0] |= 0x00000008u;
+  _impl_.lang_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:palm.portal.v1.EmailUserSignUpRequest.lang)
+}
+inline ::std::string* PROTOBUF_NONNULL EmailUserSignUpRequest::mutable_lang()
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  ::std::string* _s = _internal_mutable_lang();
+  // @@protoc_insertion_point(field_mutable:palm.portal.v1.EmailUserSignUpRequest.lang)
+  return _s;
+}
+inline const ::std::string& EmailUserSignUpRequest::_internal_lang() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.lang_.Get();
+}
+inline void EmailUserSignUpRequest::_internal_set_lang(const ::std::string& value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_._has_bits_[0] |= 0x00000008u;
+  _impl_.lang_.Set(value, GetArena());
+}
+inline ::std::string* PROTOBUF_NONNULL EmailUserSignUpRequest::_internal_mutable_lang() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_._has_bits_[0] |= 0x00000008u;
+  return _impl_.lang_.Mutable( GetArena());
+}
+inline ::std::string* PROTOBUF_NULLABLE EmailUserSignUpRequest::release_lang() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  // @@protoc_insertion_point(field_release:palm.portal.v1.EmailUserSignUpRequest.lang)
+  if ((_impl_._has_bits_[0] & 0x00000008u) == 0) {
+    return nullptr;
+  }
+  _impl_._has_bits_[0] &= ~0x00000008u;
+  auto* released = _impl_.lang_.Release();
+  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString()) {
+    _impl_.lang_.Set("", GetArena());
+  }
+  return released;
+}
+inline void EmailUserSignUpRequest::set_allocated_lang(::std::string* PROTOBUF_NULLABLE value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (value != nullptr) {
+    _impl_._has_bits_[0] |= 0x00000008u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000008u;
+  }
+  _impl_.lang_.SetAllocated(value, GetArena());
+  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString() && _impl_.lang_.IsDefault()) {
+    _impl_.lang_.Set("", GetArena());
+  }
+  // @@protoc_insertion_point(field_set_allocated:palm.portal.v1.EmailUserSignUpRequest.lang)
+}
+
+// string timezone = 9;
+inline void EmailUserSignUpRequest::clear_timezone() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.timezone_.ClearToEmpty();
+  _impl_._has_bits_[0] &= ~0x00000010u;
+}
+inline const ::std::string& EmailUserSignUpRequest::timezone() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:palm.portal.v1.EmailUserSignUpRequest.timezone)
+  return _internal_timezone();
+}
+template <typename Arg_, typename... Args_>
+PROTOBUF_ALWAYS_INLINE void EmailUserSignUpRequest::set_timezone(Arg_&& arg, Args_... args) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_._has_bits_[0] |= 0x00000010u;
+  _impl_.timezone_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:palm.portal.v1.EmailUserSignUpRequest.timezone)
+}
+inline ::std::string* PROTOBUF_NONNULL EmailUserSignUpRequest::mutable_timezone()
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  ::std::string* _s = _internal_mutable_timezone();
+  // @@protoc_insertion_point(field_mutable:palm.portal.v1.EmailUserSignUpRequest.timezone)
+  return _s;
+}
+inline const ::std::string& EmailUserSignUpRequest::_internal_timezone() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.timezone_.Get();
+}
+inline void EmailUserSignUpRequest::_internal_set_timezone(const ::std::string& value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_._has_bits_[0] |= 0x00000010u;
+  _impl_.timezone_.Set(value, GetArena());
+}
+inline ::std::string* PROTOBUF_NONNULL EmailUserSignUpRequest::_internal_mutable_timezone() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_._has_bits_[0] |= 0x00000010u;
+  return _impl_.timezone_.Mutable( GetArena());
+}
+inline ::std::string* PROTOBUF_NULLABLE EmailUserSignUpRequest::release_timezone() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  // @@protoc_insertion_point(field_release:palm.portal.v1.EmailUserSignUpRequest.timezone)
+  if ((_impl_._has_bits_[0] & 0x00000010u) == 0) {
+    return nullptr;
+  }
+  _impl_._has_bits_[0] &= ~0x00000010u;
+  auto* released = _impl_.timezone_.Release();
+  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString()) {
+    _impl_.timezone_.Set("", GetArena());
+  }
+  return released;
+}
+inline void EmailUserSignUpRequest::set_allocated_timezone(::std::string* PROTOBUF_NULLABLE value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (value != nullptr) {
+    _impl_._has_bits_[0] |= 0x00000010u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000010u;
+  }
+  _impl_.timezone_.SetAllocated(value, GetArena());
+  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString() && _impl_.timezone_.IsDefault()) {
+    _impl_.timezone_.Set("", GetArena());
+  }
+  // @@protoc_insertion_point(field_set_allocated:palm.portal.v1.EmailUserSignUpRequest.timezone)
+}
+
+// string home = 99;
+inline void EmailUserSignUpRequest::clear_home() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.home_.ClearToEmpty();
+  _impl_._has_bits_[0] &= ~0x00000020u;
+}
+inline const ::std::string& EmailUserSignUpRequest::home() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:palm.portal.v1.EmailUserSignUpRequest.home)
+  return _internal_home();
+}
+template <typename Arg_, typename... Args_>
+PROTOBUF_ALWAYS_INLINE void EmailUserSignUpRequest::set_home(Arg_&& arg, Args_... args) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_._has_bits_[0] |= 0x00000020u;
+  _impl_.home_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:palm.portal.v1.EmailUserSignUpRequest.home)
+}
+inline ::std::string* PROTOBUF_NONNULL EmailUserSignUpRequest::mutable_home()
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  ::std::string* _s = _internal_mutable_home();
+  // @@protoc_insertion_point(field_mutable:palm.portal.v1.EmailUserSignUpRequest.home)
+  return _s;
+}
+inline const ::std::string& EmailUserSignUpRequest::_internal_home() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.home_.Get();
+}
+inline void EmailUserSignUpRequest::_internal_set_home(const ::std::string& value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_._has_bits_[0] |= 0x00000020u;
+  _impl_.home_.Set(value, GetArena());
+}
+inline ::std::string* PROTOBUF_NONNULL EmailUserSignUpRequest::_internal_mutable_home() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_._has_bits_[0] |= 0x00000020u;
+  return _impl_.home_.Mutable( GetArena());
+}
+inline ::std::string* PROTOBUF_NULLABLE EmailUserSignUpRequest::release_home() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  // @@protoc_insertion_point(field_release:palm.portal.v1.EmailUserSignUpRequest.home)
+  if ((_impl_._has_bits_[0] & 0x00000020u) == 0) {
+    return nullptr;
+  }
+  _impl_._has_bits_[0] &= ~0x00000020u;
+  auto* released = _impl_.home_.Release();
+  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString()) {
+    _impl_.home_.Set("", GetArena());
+  }
+  return released;
+}
+inline void EmailUserSignUpRequest::set_allocated_home(::std::string* PROTOBUF_NULLABLE value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (value != nullptr) {
+    _impl_._has_bits_[0] |= 0x00000020u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000020u;
+  }
+  _impl_.home_.SetAllocated(value, GetArena());
+  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString() && _impl_.home_.IsDefault()) {
+    _impl_.home_.Set("", GetArena());
+  }
+  // @@protoc_insertion_point(field_set_allocated:palm.portal.v1.EmailUserSignUpRequest.home)
+}
+
+// -------------------------------------------------------------------
+
+// EmailUserUnlockByEmailRequest
+
+// string email = 1;
+inline void EmailUserUnlockByEmailRequest::clear_email() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.email_.ClearToEmpty();
+  _impl_._has_bits_[0] &= ~0x00000001u;
+}
+inline const ::std::string& EmailUserUnlockByEmailRequest::email() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:palm.portal.v1.EmailUserUnlockByEmailRequest.email)
+  return _internal_email();
+}
+template <typename Arg_, typename... Args_>
+PROTOBUF_ALWAYS_INLINE void EmailUserUnlockByEmailRequest::set_email(Arg_&& arg, Args_... args) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_._has_bits_[0] |= 0x00000001u;
+  _impl_.email_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:palm.portal.v1.EmailUserUnlockByEmailRequest.email)
+}
+inline ::std::string* PROTOBUF_NONNULL EmailUserUnlockByEmailRequest::mutable_email()
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  ::std::string* _s = _internal_mutable_email();
+  // @@protoc_insertion_point(field_mutable:palm.portal.v1.EmailUserUnlockByEmailRequest.email)
+  return _s;
+}
+inline const ::std::string& EmailUserUnlockByEmailRequest::_internal_email() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.email_.Get();
+}
+inline void EmailUserUnlockByEmailRequest::_internal_set_email(const ::std::string& value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_._has_bits_[0] |= 0x00000001u;
+  _impl_.email_.Set(value, GetArena());
+}
+inline ::std::string* PROTOBUF_NONNULL EmailUserUnlockByEmailRequest::_internal_mutable_email() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_._has_bits_[0] |= 0x00000001u;
+  return _impl_.email_.Mutable( GetArena());
+}
+inline ::std::string* PROTOBUF_NULLABLE EmailUserUnlockByEmailRequest::release_email() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  // @@protoc_insertion_point(field_release:palm.portal.v1.EmailUserUnlockByEmailRequest.email)
+  if ((_impl_._has_bits_[0] & 0x00000001u) == 0) {
+    return nullptr;
+  }
+  _impl_._has_bits_[0] &= ~0x00000001u;
+  auto* released = _impl_.email_.Release();
+  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString()) {
+    _impl_.email_.Set("", GetArena());
+  }
+  return released;
+}
+inline void EmailUserUnlockByEmailRequest::set_allocated_email(::std::string* PROTOBUF_NULLABLE value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (value != nullptr) {
+    _impl_._has_bits_[0] |= 0x00000001u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000001u;
+  }
+  _impl_.email_.SetAllocated(value, GetArena());
+  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString() && _impl_.email_.IsDefault()) {
+    _impl_.email_.Set("", GetArena());
+  }
+  // @@protoc_insertion_point(field_set_allocated:palm.portal.v1.EmailUserUnlockByEmailRequest.email)
+}
+
+// string home = 99;
+inline void EmailUserUnlockByEmailRequest::clear_home() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.home_.ClearToEmpty();
+  _impl_._has_bits_[0] &= ~0x00000002u;
+}
+inline const ::std::string& EmailUserUnlockByEmailRequest::home() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:palm.portal.v1.EmailUserUnlockByEmailRequest.home)
+  return _internal_home();
+}
+template <typename Arg_, typename... Args_>
+PROTOBUF_ALWAYS_INLINE void EmailUserUnlockByEmailRequest::set_home(Arg_&& arg, Args_... args) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_._has_bits_[0] |= 0x00000002u;
+  _impl_.home_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:palm.portal.v1.EmailUserUnlockByEmailRequest.home)
+}
+inline ::std::string* PROTOBUF_NONNULL EmailUserUnlockByEmailRequest::mutable_home()
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  ::std::string* _s = _internal_mutable_home();
+  // @@protoc_insertion_point(field_mutable:palm.portal.v1.EmailUserUnlockByEmailRequest.home)
+  return _s;
+}
+inline const ::std::string& EmailUserUnlockByEmailRequest::_internal_home() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.home_.Get();
+}
+inline void EmailUserUnlockByEmailRequest::_internal_set_home(const ::std::string& value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_._has_bits_[0] |= 0x00000002u;
+  _impl_.home_.Set(value, GetArena());
+}
+inline ::std::string* PROTOBUF_NONNULL EmailUserUnlockByEmailRequest::_internal_mutable_home() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_._has_bits_[0] |= 0x00000002u;
+  return _impl_.home_.Mutable( GetArena());
+}
+inline ::std::string* PROTOBUF_NULLABLE EmailUserUnlockByEmailRequest::release_home() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  // @@protoc_insertion_point(field_release:palm.portal.v1.EmailUserUnlockByEmailRequest.home)
+  if ((_impl_._has_bits_[0] & 0x00000002u) == 0) {
+    return nullptr;
+  }
+  _impl_._has_bits_[0] &= ~0x00000002u;
+  auto* released = _impl_.home_.Release();
+  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString()) {
+    _impl_.home_.Set("", GetArena());
+  }
+  return released;
+}
+inline void EmailUserUnlockByEmailRequest::set_allocated_home(::std::string* PROTOBUF_NULLABLE value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (value != nullptr) {
+    _impl_._has_bits_[0] |= 0x00000002u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000002u;
+  }
+  _impl_.home_.SetAllocated(value, GetArena());
+  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString() && _impl_.home_.IsDefault()) {
+    _impl_.home_.Set("", GetArena());
+  }
+  // @@protoc_insertion_point(field_set_allocated:palm.portal.v1.EmailUserUnlockByEmailRequest.home)
+}
+
+// -------------------------------------------------------------------
+
+// EmailUserUnlockByTokenRequest
+
+// string token = 1;
+inline void EmailUserUnlockByTokenRequest::clear_token() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.token_.ClearToEmpty();
+  _impl_._has_bits_[0] &= ~0x00000001u;
+}
+inline const ::std::string& EmailUserUnlockByTokenRequest::token() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:palm.portal.v1.EmailUserUnlockByTokenRequest.token)
+  return _internal_token();
+}
+template <typename Arg_, typename... Args_>
+PROTOBUF_ALWAYS_INLINE void EmailUserUnlockByTokenRequest::set_token(Arg_&& arg, Args_... args) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_._has_bits_[0] |= 0x00000001u;
+  _impl_.token_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:palm.portal.v1.EmailUserUnlockByTokenRequest.token)
+}
+inline ::std::string* PROTOBUF_NONNULL EmailUserUnlockByTokenRequest::mutable_token()
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  ::std::string* _s = _internal_mutable_token();
+  // @@protoc_insertion_point(field_mutable:palm.portal.v1.EmailUserUnlockByTokenRequest.token)
+  return _s;
+}
+inline const ::std::string& EmailUserUnlockByTokenRequest::_internal_token() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.token_.Get();
+}
+inline void EmailUserUnlockByTokenRequest::_internal_set_token(const ::std::string& value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_._has_bits_[0] |= 0x00000001u;
+  _impl_.token_.Set(value, GetArena());
+}
+inline ::std::string* PROTOBUF_NONNULL EmailUserUnlockByTokenRequest::_internal_mutable_token() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_._has_bits_[0] |= 0x00000001u;
+  return _impl_.token_.Mutable( GetArena());
+}
+inline ::std::string* PROTOBUF_NULLABLE EmailUserUnlockByTokenRequest::release_token() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  // @@protoc_insertion_point(field_release:palm.portal.v1.EmailUserUnlockByTokenRequest.token)
+  if ((_impl_._has_bits_[0] & 0x00000001u) == 0) {
+    return nullptr;
+  }
+  _impl_._has_bits_[0] &= ~0x00000001u;
+  auto* released = _impl_.token_.Release();
+  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString()) {
+    _impl_.token_.Set("", GetArena());
+  }
+  return released;
+}
+inline void EmailUserUnlockByTokenRequest::set_allocated_token(::std::string* PROTOBUF_NULLABLE value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (value != nullptr) {
+    _impl_._has_bits_[0] |= 0x00000001u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000001u;
+  }
+  _impl_.token_.SetAllocated(value, GetArena());
+  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString() && _impl_.token_.IsDefault()) {
+    _impl_.token_.Set("", GetArena());
+  }
+  // @@protoc_insertion_point(field_set_allocated:palm.portal.v1.EmailUserUnlockByTokenRequest.token)
+}
+
+// -------------------------------------------------------------------
+
+// EmailUserConfirmByEmailRequest
+
+// string email = 1;
+inline void EmailUserConfirmByEmailRequest::clear_email() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.email_.ClearToEmpty();
+  _impl_._has_bits_[0] &= ~0x00000001u;
+}
+inline const ::std::string& EmailUserConfirmByEmailRequest::email() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:palm.portal.v1.EmailUserConfirmByEmailRequest.email)
+  return _internal_email();
+}
+template <typename Arg_, typename... Args_>
+PROTOBUF_ALWAYS_INLINE void EmailUserConfirmByEmailRequest::set_email(Arg_&& arg, Args_... args) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_._has_bits_[0] |= 0x00000001u;
+  _impl_.email_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:palm.portal.v1.EmailUserConfirmByEmailRequest.email)
+}
+inline ::std::string* PROTOBUF_NONNULL EmailUserConfirmByEmailRequest::mutable_email()
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  ::std::string* _s = _internal_mutable_email();
+  // @@protoc_insertion_point(field_mutable:palm.portal.v1.EmailUserConfirmByEmailRequest.email)
+  return _s;
+}
+inline const ::std::string& EmailUserConfirmByEmailRequest::_internal_email() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.email_.Get();
+}
+inline void EmailUserConfirmByEmailRequest::_internal_set_email(const ::std::string& value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_._has_bits_[0] |= 0x00000001u;
+  _impl_.email_.Set(value, GetArena());
+}
+inline ::std::string* PROTOBUF_NONNULL EmailUserConfirmByEmailRequest::_internal_mutable_email() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_._has_bits_[0] |= 0x00000001u;
+  return _impl_.email_.Mutable( GetArena());
+}
+inline ::std::string* PROTOBUF_NULLABLE EmailUserConfirmByEmailRequest::release_email() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  // @@protoc_insertion_point(field_release:palm.portal.v1.EmailUserConfirmByEmailRequest.email)
+  if ((_impl_._has_bits_[0] & 0x00000001u) == 0) {
+    return nullptr;
+  }
+  _impl_._has_bits_[0] &= ~0x00000001u;
+  auto* released = _impl_.email_.Release();
+  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString()) {
+    _impl_.email_.Set("", GetArena());
+  }
+  return released;
+}
+inline void EmailUserConfirmByEmailRequest::set_allocated_email(::std::string* PROTOBUF_NULLABLE value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (value != nullptr) {
+    _impl_._has_bits_[0] |= 0x00000001u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000001u;
+  }
+  _impl_.email_.SetAllocated(value, GetArena());
+  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString() && _impl_.email_.IsDefault()) {
+    _impl_.email_.Set("", GetArena());
+  }
+  // @@protoc_insertion_point(field_set_allocated:palm.portal.v1.EmailUserConfirmByEmailRequest.email)
+}
+
+// string home = 99;
+inline void EmailUserConfirmByEmailRequest::clear_home() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.home_.ClearToEmpty();
+  _impl_._has_bits_[0] &= ~0x00000002u;
+}
+inline const ::std::string& EmailUserConfirmByEmailRequest::home() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:palm.portal.v1.EmailUserConfirmByEmailRequest.home)
+  return _internal_home();
+}
+template <typename Arg_, typename... Args_>
+PROTOBUF_ALWAYS_INLINE void EmailUserConfirmByEmailRequest::set_home(Arg_&& arg, Args_... args) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_._has_bits_[0] |= 0x00000002u;
+  _impl_.home_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:palm.portal.v1.EmailUserConfirmByEmailRequest.home)
+}
+inline ::std::string* PROTOBUF_NONNULL EmailUserConfirmByEmailRequest::mutable_home()
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  ::std::string* _s = _internal_mutable_home();
+  // @@protoc_insertion_point(field_mutable:palm.portal.v1.EmailUserConfirmByEmailRequest.home)
+  return _s;
+}
+inline const ::std::string& EmailUserConfirmByEmailRequest::_internal_home() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.home_.Get();
+}
+inline void EmailUserConfirmByEmailRequest::_internal_set_home(const ::std::string& value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_._has_bits_[0] |= 0x00000002u;
+  _impl_.home_.Set(value, GetArena());
+}
+inline ::std::string* PROTOBUF_NONNULL EmailUserConfirmByEmailRequest::_internal_mutable_home() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_._has_bits_[0] |= 0x00000002u;
+  return _impl_.home_.Mutable( GetArena());
+}
+inline ::std::string* PROTOBUF_NULLABLE EmailUserConfirmByEmailRequest::release_home() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  // @@protoc_insertion_point(field_release:palm.portal.v1.EmailUserConfirmByEmailRequest.home)
+  if ((_impl_._has_bits_[0] & 0x00000002u) == 0) {
+    return nullptr;
+  }
+  _impl_._has_bits_[0] &= ~0x00000002u;
+  auto* released = _impl_.home_.Release();
+  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString()) {
+    _impl_.home_.Set("", GetArena());
+  }
+  return released;
+}
+inline void EmailUserConfirmByEmailRequest::set_allocated_home(::std::string* PROTOBUF_NULLABLE value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (value != nullptr) {
+    _impl_._has_bits_[0] |= 0x00000002u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000002u;
+  }
+  _impl_.home_.SetAllocated(value, GetArena());
+  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString() && _impl_.home_.IsDefault()) {
+    _impl_.home_.Set("", GetArena());
+  }
+  // @@protoc_insertion_point(field_set_allocated:palm.portal.v1.EmailUserConfirmByEmailRequest.home)
+}
+
+// -------------------------------------------------------------------
+
+// EmailUserConfirmByTokenRequest
+
+// string token = 1;
+inline void EmailUserConfirmByTokenRequest::clear_token() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.token_.ClearToEmpty();
+  _impl_._has_bits_[0] &= ~0x00000001u;
+}
+inline const ::std::string& EmailUserConfirmByTokenRequest::token() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:palm.portal.v1.EmailUserConfirmByTokenRequest.token)
+  return _internal_token();
+}
+template <typename Arg_, typename... Args_>
+PROTOBUF_ALWAYS_INLINE void EmailUserConfirmByTokenRequest::set_token(Arg_&& arg, Args_... args) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_._has_bits_[0] |= 0x00000001u;
+  _impl_.token_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:palm.portal.v1.EmailUserConfirmByTokenRequest.token)
+}
+inline ::std::string* PROTOBUF_NONNULL EmailUserConfirmByTokenRequest::mutable_token()
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  ::std::string* _s = _internal_mutable_token();
+  // @@protoc_insertion_point(field_mutable:palm.portal.v1.EmailUserConfirmByTokenRequest.token)
+  return _s;
+}
+inline const ::std::string& EmailUserConfirmByTokenRequest::_internal_token() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.token_.Get();
+}
+inline void EmailUserConfirmByTokenRequest::_internal_set_token(const ::std::string& value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_._has_bits_[0] |= 0x00000001u;
+  _impl_.token_.Set(value, GetArena());
+}
+inline ::std::string* PROTOBUF_NONNULL EmailUserConfirmByTokenRequest::_internal_mutable_token() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_._has_bits_[0] |= 0x00000001u;
+  return _impl_.token_.Mutable( GetArena());
+}
+inline ::std::string* PROTOBUF_NULLABLE EmailUserConfirmByTokenRequest::release_token() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  // @@protoc_insertion_point(field_release:palm.portal.v1.EmailUserConfirmByTokenRequest.token)
+  if ((_impl_._has_bits_[0] & 0x00000001u) == 0) {
+    return nullptr;
+  }
+  _impl_._has_bits_[0] &= ~0x00000001u;
+  auto* released = _impl_.token_.Release();
+  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString()) {
+    _impl_.token_.Set("", GetArena());
+  }
+  return released;
+}
+inline void EmailUserConfirmByTokenRequest::set_allocated_token(::std::string* PROTOBUF_NULLABLE value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (value != nullptr) {
+    _impl_._has_bits_[0] |= 0x00000001u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000001u;
+  }
+  _impl_.token_.SetAllocated(value, GetArena());
+  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString() && _impl_.token_.IsDefault()) {
+    _impl_.token_.Set("", GetArena());
+  }
+  // @@protoc_insertion_point(field_set_allocated:palm.portal.v1.EmailUserConfirmByTokenRequest.token)
+}
+
+// -------------------------------------------------------------------
+
+// EmailUserForgotPasswordRequest
+
+// string email = 1;
+inline void EmailUserForgotPasswordRequest::clear_email() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.email_.ClearToEmpty();
+  _impl_._has_bits_[0] &= ~0x00000001u;
+}
+inline const ::std::string& EmailUserForgotPasswordRequest::email() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:palm.portal.v1.EmailUserForgotPasswordRequest.email)
+  return _internal_email();
+}
+template <typename Arg_, typename... Args_>
+PROTOBUF_ALWAYS_INLINE void EmailUserForgotPasswordRequest::set_email(Arg_&& arg, Args_... args) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_._has_bits_[0] |= 0x00000001u;
+  _impl_.email_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:palm.portal.v1.EmailUserForgotPasswordRequest.email)
+}
+inline ::std::string* PROTOBUF_NONNULL EmailUserForgotPasswordRequest::mutable_email()
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  ::std::string* _s = _internal_mutable_email();
+  // @@protoc_insertion_point(field_mutable:palm.portal.v1.EmailUserForgotPasswordRequest.email)
+  return _s;
+}
+inline const ::std::string& EmailUserForgotPasswordRequest::_internal_email() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.email_.Get();
+}
+inline void EmailUserForgotPasswordRequest::_internal_set_email(const ::std::string& value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_._has_bits_[0] |= 0x00000001u;
+  _impl_.email_.Set(value, GetArena());
+}
+inline ::std::string* PROTOBUF_NONNULL EmailUserForgotPasswordRequest::_internal_mutable_email() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_._has_bits_[0] |= 0x00000001u;
+  return _impl_.email_.Mutable( GetArena());
+}
+inline ::std::string* PROTOBUF_NULLABLE EmailUserForgotPasswordRequest::release_email() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  // @@protoc_insertion_point(field_release:palm.portal.v1.EmailUserForgotPasswordRequest.email)
+  if ((_impl_._has_bits_[0] & 0x00000001u) == 0) {
+    return nullptr;
+  }
+  _impl_._has_bits_[0] &= ~0x00000001u;
+  auto* released = _impl_.email_.Release();
+  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString()) {
+    _impl_.email_.Set("", GetArena());
+  }
+  return released;
+}
+inline void EmailUserForgotPasswordRequest::set_allocated_email(::std::string* PROTOBUF_NULLABLE value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (value != nullptr) {
+    _impl_._has_bits_[0] |= 0x00000001u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000001u;
+  }
+  _impl_.email_.SetAllocated(value, GetArena());
+  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString() && _impl_.email_.IsDefault()) {
+    _impl_.email_.Set("", GetArena());
+  }
+  // @@protoc_insertion_point(field_set_allocated:palm.portal.v1.EmailUserForgotPasswordRequest.email)
+}
+
+// string home = 99;
+inline void EmailUserForgotPasswordRequest::clear_home() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.home_.ClearToEmpty();
+  _impl_._has_bits_[0] &= ~0x00000002u;
+}
+inline const ::std::string& EmailUserForgotPasswordRequest::home() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:palm.portal.v1.EmailUserForgotPasswordRequest.home)
+  return _internal_home();
+}
+template <typename Arg_, typename... Args_>
+PROTOBUF_ALWAYS_INLINE void EmailUserForgotPasswordRequest::set_home(Arg_&& arg, Args_... args) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_._has_bits_[0] |= 0x00000002u;
+  _impl_.home_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:palm.portal.v1.EmailUserForgotPasswordRequest.home)
+}
+inline ::std::string* PROTOBUF_NONNULL EmailUserForgotPasswordRequest::mutable_home()
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  ::std::string* _s = _internal_mutable_home();
+  // @@protoc_insertion_point(field_mutable:palm.portal.v1.EmailUserForgotPasswordRequest.home)
+  return _s;
+}
+inline const ::std::string& EmailUserForgotPasswordRequest::_internal_home() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.home_.Get();
+}
+inline void EmailUserForgotPasswordRequest::_internal_set_home(const ::std::string& value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_._has_bits_[0] |= 0x00000002u;
+  _impl_.home_.Set(value, GetArena());
+}
+inline ::std::string* PROTOBUF_NONNULL EmailUserForgotPasswordRequest::_internal_mutable_home() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_._has_bits_[0] |= 0x00000002u;
+  return _impl_.home_.Mutable( GetArena());
+}
+inline ::std::string* PROTOBUF_NULLABLE EmailUserForgotPasswordRequest::release_home() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  // @@protoc_insertion_point(field_release:palm.portal.v1.EmailUserForgotPasswordRequest.home)
+  if ((_impl_._has_bits_[0] & 0x00000002u) == 0) {
+    return nullptr;
+  }
+  _impl_._has_bits_[0] &= ~0x00000002u;
+  auto* released = _impl_.home_.Release();
+  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString()) {
+    _impl_.home_.Set("", GetArena());
+  }
+  return released;
+}
+inline void EmailUserForgotPasswordRequest::set_allocated_home(::std::string* PROTOBUF_NULLABLE value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (value != nullptr) {
+    _impl_._has_bits_[0] |= 0x00000002u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000002u;
+  }
+  _impl_.home_.SetAllocated(value, GetArena());
+  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString() && _impl_.home_.IsDefault()) {
+    _impl_.home_.Set("", GetArena());
+  }
+  // @@protoc_insertion_point(field_set_allocated:palm.portal.v1.EmailUserForgotPasswordRequest.home)
+}
+
+// -------------------------------------------------------------------
+
+// EmailUserResetPasswordRequest
+
+// string token = 1;
+inline void EmailUserResetPasswordRequest::clear_token() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.token_.ClearToEmpty();
+  _impl_._has_bits_[0] &= ~0x00000001u;
+}
+inline const ::std::string& EmailUserResetPasswordRequest::token() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:palm.portal.v1.EmailUserResetPasswordRequest.token)
+  return _internal_token();
+}
+template <typename Arg_, typename... Args_>
+PROTOBUF_ALWAYS_INLINE void EmailUserResetPasswordRequest::set_token(Arg_&& arg, Args_... args) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_._has_bits_[0] |= 0x00000001u;
+  _impl_.token_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:palm.portal.v1.EmailUserResetPasswordRequest.token)
+}
+inline ::std::string* PROTOBUF_NONNULL EmailUserResetPasswordRequest::mutable_token()
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  ::std::string* _s = _internal_mutable_token();
+  // @@protoc_insertion_point(field_mutable:palm.portal.v1.EmailUserResetPasswordRequest.token)
+  return _s;
+}
+inline const ::std::string& EmailUserResetPasswordRequest::_internal_token() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.token_.Get();
+}
+inline void EmailUserResetPasswordRequest::_internal_set_token(const ::std::string& value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_._has_bits_[0] |= 0x00000001u;
+  _impl_.token_.Set(value, GetArena());
+}
+inline ::std::string* PROTOBUF_NONNULL EmailUserResetPasswordRequest::_internal_mutable_token() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_._has_bits_[0] |= 0x00000001u;
+  return _impl_.token_.Mutable( GetArena());
+}
+inline ::std::string* PROTOBUF_NULLABLE EmailUserResetPasswordRequest::release_token() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  // @@protoc_insertion_point(field_release:palm.portal.v1.EmailUserResetPasswordRequest.token)
+  if ((_impl_._has_bits_[0] & 0x00000001u) == 0) {
+    return nullptr;
+  }
+  _impl_._has_bits_[0] &= ~0x00000001u;
+  auto* released = _impl_.token_.Release();
+  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString()) {
+    _impl_.token_.Set("", GetArena());
+  }
+  return released;
+}
+inline void EmailUserResetPasswordRequest::set_allocated_token(::std::string* PROTOBUF_NULLABLE value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (value != nullptr) {
+    _impl_._has_bits_[0] |= 0x00000001u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000001u;
+  }
+  _impl_.token_.SetAllocated(value, GetArena());
+  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString() && _impl_.token_.IsDefault()) {
+    _impl_.token_.Set("", GetArena());
+  }
+  // @@protoc_insertion_point(field_set_allocated:palm.portal.v1.EmailUserResetPasswordRequest.token)
+}
+
+// string password = 2;
+inline void EmailUserResetPasswordRequest::clear_password() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.password_.ClearToEmpty();
+  _impl_._has_bits_[0] &= ~0x00000002u;
+}
+inline const ::std::string& EmailUserResetPasswordRequest::password() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:palm.portal.v1.EmailUserResetPasswordRequest.password)
+  return _internal_password();
+}
+template <typename Arg_, typename... Args_>
+PROTOBUF_ALWAYS_INLINE void EmailUserResetPasswordRequest::set_password(Arg_&& arg, Args_... args) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_._has_bits_[0] |= 0x00000002u;
+  _impl_.password_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:palm.portal.v1.EmailUserResetPasswordRequest.password)
+}
+inline ::std::string* PROTOBUF_NONNULL EmailUserResetPasswordRequest::mutable_password()
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  ::std::string* _s = _internal_mutable_password();
+  // @@protoc_insertion_point(field_mutable:palm.portal.v1.EmailUserResetPasswordRequest.password)
+  return _s;
+}
+inline const ::std::string& EmailUserResetPasswordRequest::_internal_password() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.password_.Get();
+}
+inline void EmailUserResetPasswordRequest::_internal_set_password(const ::std::string& value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_._has_bits_[0] |= 0x00000002u;
+  _impl_.password_.Set(value, GetArena());
+}
+inline ::std::string* PROTOBUF_NONNULL EmailUserResetPasswordRequest::_internal_mutable_password() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_._has_bits_[0] |= 0x00000002u;
+  return _impl_.password_.Mutable( GetArena());
+}
+inline ::std::string* PROTOBUF_NULLABLE EmailUserResetPasswordRequest::release_password() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  // @@protoc_insertion_point(field_release:palm.portal.v1.EmailUserResetPasswordRequest.password)
+  if ((_impl_._has_bits_[0] & 0x00000002u) == 0) {
+    return nullptr;
+  }
+  _impl_._has_bits_[0] &= ~0x00000002u;
+  auto* released = _impl_.password_.Release();
+  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString()) {
+    _impl_.password_.Set("", GetArena());
+  }
+  return released;
+}
+inline void EmailUserResetPasswordRequest::set_allocated_password(::std::string* PROTOBUF_NULLABLE value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (value != nullptr) {
+    _impl_._has_bits_[0] |= 0x00000002u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000002u;
+  }
+  _impl_.password_.SetAllocated(value, GetArena());
+  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString() && _impl_.password_.IsDefault()) {
+    _impl_.password_.Set("", GetArena());
+  }
+  // @@protoc_insertion_point(field_set_allocated:palm.portal.v1.EmailUserResetPasswordRequest.password)
+}
+
+// -------------------------------------------------------------------
+
+// EmailUserSetNameRequest
+
+// string name = 1;
+inline void EmailUserSetNameRequest::clear_name() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.name_.ClearToEmpty();
+  _impl_._has_bits_[0] &= ~0x00000001u;
+}
+inline const ::std::string& EmailUserSetNameRequest::name() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:palm.portal.v1.EmailUserSetNameRequest.name)
+  return _internal_name();
+}
+template <typename Arg_, typename... Args_>
+PROTOBUF_ALWAYS_INLINE void EmailUserSetNameRequest::set_name(Arg_&& arg, Args_... args) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_._has_bits_[0] |= 0x00000001u;
+  _impl_.name_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:palm.portal.v1.EmailUserSetNameRequest.name)
+}
+inline ::std::string* PROTOBUF_NONNULL EmailUserSetNameRequest::mutable_name()
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  ::std::string* _s = _internal_mutable_name();
+  // @@protoc_insertion_point(field_mutable:palm.portal.v1.EmailUserSetNameRequest.name)
+  return _s;
+}
+inline const ::std::string& EmailUserSetNameRequest::_internal_name() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.name_.Get();
+}
+inline void EmailUserSetNameRequest::_internal_set_name(const ::std::string& value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_._has_bits_[0] |= 0x00000001u;
+  _impl_.name_.Set(value, GetArena());
+}
+inline ::std::string* PROTOBUF_NONNULL EmailUserSetNameRequest::_internal_mutable_name() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_._has_bits_[0] |= 0x00000001u;
+  return _impl_.name_.Mutable( GetArena());
+}
+inline ::std::string* PROTOBUF_NULLABLE EmailUserSetNameRequest::release_name() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  // @@protoc_insertion_point(field_release:palm.portal.v1.EmailUserSetNameRequest.name)
+  if ((_impl_._has_bits_[0] & 0x00000001u) == 0) {
+    return nullptr;
+  }
+  _impl_._has_bits_[0] &= ~0x00000001u;
+  auto* released = _impl_.name_.Release();
+  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString()) {
+    _impl_.name_.Set("", GetArena());
+  }
+  return released;
+}
+inline void EmailUserSetNameRequest::set_allocated_name(::std::string* PROTOBUF_NULLABLE value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (value != nullptr) {
+    _impl_._has_bits_[0] |= 0x00000001u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000001u;
+  }
+  _impl_.name_.SetAllocated(value, GetArena());
+  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString() && _impl_.name_.IsDefault()) {
+    _impl_.name_.Set("", GetArena());
+  }
+  // @@protoc_insertion_point(field_set_allocated:palm.portal.v1.EmailUserSetNameRequest.name)
+}
+
+// -------------------------------------------------------------------
+
+// EmailUserSetAvatarRequest
+
+// string url = 1;
+inline bool EmailUserSetAvatarRequest::has_url() const {
+  return by_case() == kUrl;
+}
+inline void EmailUserSetAvatarRequest::set_has_url() {
+  _impl_._oneof_case_[0] = kUrl;
+}
+inline void EmailUserSetAvatarRequest::clear_url() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (by_case() == kUrl) {
+    _impl_.by_.url_.Destroy();
+    clear_has_by();
+  }
+}
+inline const ::std::string& EmailUserSetAvatarRequest::url() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:palm.portal.v1.EmailUserSetAvatarRequest.url)
+  return _internal_url();
+}
+template <typename Arg_, typename... Args_>
+PROTOBUF_ALWAYS_INLINE void EmailUserSetAvatarRequest::set_url(Arg_&& arg, Args_... args) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (by_case() != kUrl) {
+    clear_by();
+
+    set_has_url();
+    _impl_.by_.url_.InitDefault();
+  }
+  _impl_.by_.url_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:palm.portal.v1.EmailUserSetAvatarRequest.url)
+}
+inline ::std::string* PROTOBUF_NONNULL EmailUserSetAvatarRequest::mutable_url()
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  ::std::string* _s = _internal_mutable_url();
+  // @@protoc_insertion_point(field_mutable:palm.portal.v1.EmailUserSetAvatarRequest.url)
+  return _s;
+}
+inline const ::std::string& EmailUserSetAvatarRequest::_internal_url() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  if (by_case() != kUrl) {
+    return ::google::protobuf::internal::GetEmptyStringAlreadyInited();
+  }
+  return _impl_.by_.url_.Get();
+}
+inline void EmailUserSetAvatarRequest::_internal_set_url(const ::std::string& value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (by_case() != kUrl) {
+    clear_by();
+
+    set_has_url();
+    _impl_.by_.url_.InitDefault();
+  }
+  _impl_.by_.url_.Set(value, GetArena());
+}
+inline ::std::string* PROTOBUF_NONNULL EmailUserSetAvatarRequest::_internal_mutable_url() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (by_case() != kUrl) {
+    clear_by();
+
+    set_has_url();
+    _impl_.by_.url_.InitDefault();
+  }
+  return _impl_.by_.url_.Mutable( GetArena());
+}
+inline ::std::string* PROTOBUF_NULLABLE EmailUserSetAvatarRequest::release_url() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  // @@protoc_insertion_point(field_release:palm.portal.v1.EmailUserSetAvatarRequest.url)
+  if (by_case() != kUrl) {
+    return nullptr;
+  }
+  clear_has_by();
+  return _impl_.by_.url_.Release();
+}
+inline void EmailUserSetAvatarRequest::set_allocated_url(::std::string* PROTOBUF_NULLABLE value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (has_by()) {
+    clear_by();
+  }
+  if (value != nullptr) {
+    set_has_url();
+    _impl_.by_.url_.InitAllocated(value, GetArena());
+  }
+  // @@protoc_insertion_point(field_set_allocated:palm.portal.v1.EmailUserSetAvatarRequest.url)
+}
+
+// .palm.portal.v1.File file = 2;
+inline bool EmailUserSetAvatarRequest::has_file() const {
+  return by_case() == kFile;
+}
+inline bool EmailUserSetAvatarRequest::_internal_has_file() const {
+  return by_case() == kFile;
+}
+inline void EmailUserSetAvatarRequest::set_has_file() {
+  _impl_._oneof_case_[0] = kFile;
+}
+inline void EmailUserSetAvatarRequest::clear_file() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (by_case() == kFile) {
+    if (GetArena() == nullptr) {
+      delete _impl_.by_.file_;
+    } else if (::google::protobuf::internal::DebugHardenClearOneofMessageOnArena()) {
+      ::google::protobuf::internal::MaybePoisonAfterClear(_impl_.by_.file_);
+    }
+    clear_has_by();
+  }
+}
+inline ::palm::portal::v1::File* PROTOBUF_NULLABLE EmailUserSetAvatarRequest::release_file() {
+  // @@protoc_insertion_point(field_release:palm.portal.v1.EmailUserSetAvatarRequest.file)
+  if (by_case() == kFile) {
+    clear_has_by();
+    auto* temp = _impl_.by_.file_;
+    if (GetArena() != nullptr) {
+      temp = ::google::protobuf::internal::DuplicateIfNonNull(temp);
+    }
+    _impl_.by_.file_ = nullptr;
+    return temp;
+  } else {
+    return nullptr;
+  }
+}
+inline const ::palm::portal::v1::File& EmailUserSetAvatarRequest::_internal_file() const {
+  return by_case() == kFile ? *_impl_.by_.file_ : reinterpret_cast<::palm::portal::v1::File&>(::palm::portal::v1::_File_default_instance_);
+}
+inline const ::palm::portal::v1::File& EmailUserSetAvatarRequest::file() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:palm.portal.v1.EmailUserSetAvatarRequest.file)
+  return _internal_file();
+}
+inline ::palm::portal::v1::File* PROTOBUF_NULLABLE EmailUserSetAvatarRequest::unsafe_arena_release_file() {
+  // @@protoc_insertion_point(field_unsafe_arena_release:palm.portal.v1.EmailUserSetAvatarRequest.file)
+  if (by_case() == kFile) {
+    clear_has_by();
+    auto* temp = _impl_.by_.file_;
+    _impl_.by_.file_ = nullptr;
+    return temp;
+  } else {
+    return nullptr;
+  }
+}
+inline void EmailUserSetAvatarRequest::unsafe_arena_set_allocated_file(
+    ::palm::portal::v1::File* PROTOBUF_NULLABLE value) {
+  // We rely on the oneof clear method to free the earlier contents
+  // of this oneof. We can directly use the pointer we're given to
+  // set the new value.
+  clear_by();
+  if (value) {
+    set_has_file();
+    _impl_.by_.file_ = value;
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:palm.portal.v1.EmailUserSetAvatarRequest.file)
+}
+inline ::palm::portal::v1::File* PROTOBUF_NONNULL EmailUserSetAvatarRequest::_internal_mutable_file() {
+  if (by_case() != kFile) {
+    clear_by();
+    set_has_file();
+    _impl_.by_.file_ = 
+        ::google::protobuf::Message::DefaultConstruct<::palm::portal::v1::File>(GetArena());
+  }
+  return _impl_.by_.file_;
+}
+inline ::palm::portal::v1::File* PROTOBUF_NONNULL EmailUserSetAvatarRequest::mutable_file()
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  ::palm::portal::v1::File* _msg = _internal_mutable_file();
+  // @@protoc_insertion_point(field_mutable:palm.portal.v1.EmailUserSetAvatarRequest.file)
+  return _msg;
+}
+
+inline bool EmailUserSetAvatarRequest::has_by() const {
+  return by_case() != BY_NOT_SET;
+}
+inline void EmailUserSetAvatarRequest::clear_has_by() {
+  _impl_._oneof_case_[0] = BY_NOT_SET;
+}
+inline EmailUserSetAvatarRequest::ByCase EmailUserSetAvatarRequest::by_case() const {
+  return EmailUserSetAvatarRequest::ByCase(_impl_._oneof_case_[0]);
+}
+// -------------------------------------------------------------------
+
+// EmailUserChangePasswordRequest
+
+// string current_password = 1;
+inline void EmailUserChangePasswordRequest::clear_current_password() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.current_password_.ClearToEmpty();
+  _impl_._has_bits_[0] &= ~0x00000001u;
+}
+inline const ::std::string& EmailUserChangePasswordRequest::current_password() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:palm.portal.v1.EmailUserChangePasswordRequest.current_password)
+  return _internal_current_password();
+}
+template <typename Arg_, typename... Args_>
+PROTOBUF_ALWAYS_INLINE void EmailUserChangePasswordRequest::set_current_password(Arg_&& arg, Args_... args) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_._has_bits_[0] |= 0x00000001u;
+  _impl_.current_password_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:palm.portal.v1.EmailUserChangePasswordRequest.current_password)
+}
+inline ::std::string* PROTOBUF_NONNULL EmailUserChangePasswordRequest::mutable_current_password()
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  ::std::string* _s = _internal_mutable_current_password();
+  // @@protoc_insertion_point(field_mutable:palm.portal.v1.EmailUserChangePasswordRequest.current_password)
+  return _s;
+}
+inline const ::std::string& EmailUserChangePasswordRequest::_internal_current_password() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.current_password_.Get();
+}
+inline void EmailUserChangePasswordRequest::_internal_set_current_password(const ::std::string& value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_._has_bits_[0] |= 0x00000001u;
+  _impl_.current_password_.Set(value, GetArena());
+}
+inline ::std::string* PROTOBUF_NONNULL EmailUserChangePasswordRequest::_internal_mutable_current_password() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_._has_bits_[0] |= 0x00000001u;
+  return _impl_.current_password_.Mutable( GetArena());
+}
+inline ::std::string* PROTOBUF_NULLABLE EmailUserChangePasswordRequest::release_current_password() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  // @@protoc_insertion_point(field_release:palm.portal.v1.EmailUserChangePasswordRequest.current_password)
+  if ((_impl_._has_bits_[0] & 0x00000001u) == 0) {
+    return nullptr;
+  }
+  _impl_._has_bits_[0] &= ~0x00000001u;
+  auto* released = _impl_.current_password_.Release();
+  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString()) {
+    _impl_.current_password_.Set("", GetArena());
+  }
+  return released;
+}
+inline void EmailUserChangePasswordRequest::set_allocated_current_password(::std::string* PROTOBUF_NULLABLE value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (value != nullptr) {
+    _impl_._has_bits_[0] |= 0x00000001u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000001u;
+  }
+  _impl_.current_password_.SetAllocated(value, GetArena());
+  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString() && _impl_.current_password_.IsDefault()) {
+    _impl_.current_password_.Set("", GetArena());
+  }
+  // @@protoc_insertion_point(field_set_allocated:palm.portal.v1.EmailUserChangePasswordRequest.current_password)
+}
+
+// string new_password = 2;
+inline void EmailUserChangePasswordRequest::clear_new_password() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.new_password_.ClearToEmpty();
+  _impl_._has_bits_[0] &= ~0x00000002u;
+}
+inline const ::std::string& EmailUserChangePasswordRequest::new_password() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:palm.portal.v1.EmailUserChangePasswordRequest.new_password)
+  return _internal_new_password();
+}
+template <typename Arg_, typename... Args_>
+PROTOBUF_ALWAYS_INLINE void EmailUserChangePasswordRequest::set_new_password(Arg_&& arg, Args_... args) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_._has_bits_[0] |= 0x00000002u;
+  _impl_.new_password_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:palm.portal.v1.EmailUserChangePasswordRequest.new_password)
+}
+inline ::std::string* PROTOBUF_NONNULL EmailUserChangePasswordRequest::mutable_new_password()
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  ::std::string* _s = _internal_mutable_new_password();
+  // @@protoc_insertion_point(field_mutable:palm.portal.v1.EmailUserChangePasswordRequest.new_password)
+  return _s;
+}
+inline const ::std::string& EmailUserChangePasswordRequest::_internal_new_password() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.new_password_.Get();
+}
+inline void EmailUserChangePasswordRequest::_internal_set_new_password(const ::std::string& value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_._has_bits_[0] |= 0x00000002u;
+  _impl_.new_password_.Set(value, GetArena());
+}
+inline ::std::string* PROTOBUF_NONNULL EmailUserChangePasswordRequest::_internal_mutable_new_password() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_._has_bits_[0] |= 0x00000002u;
+  return _impl_.new_password_.Mutable( GetArena());
+}
+inline ::std::string* PROTOBUF_NULLABLE EmailUserChangePasswordRequest::release_new_password() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  // @@protoc_insertion_point(field_release:palm.portal.v1.EmailUserChangePasswordRequest.new_password)
+  if ((_impl_._has_bits_[0] & 0x00000002u) == 0) {
+    return nullptr;
+  }
+  _impl_._has_bits_[0] &= ~0x00000002u;
+  auto* released = _impl_.new_password_.Release();
+  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString()) {
+    _impl_.new_password_.Set("", GetArena());
+  }
+  return released;
+}
+inline void EmailUserChangePasswordRequest::set_allocated_new_password(::std::string* PROTOBUF_NULLABLE value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (value != nullptr) {
+    _impl_._has_bits_[0] |= 0x00000002u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000002u;
+  }
+  _impl_.new_password_.SetAllocated(value, GetArena());
+  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString() && _impl_.new_password_.IsDefault()) {
+    _impl_.new_password_.Set("", GetArena());
+  }
+  // @@protoc_insertion_point(field_set_allocated:palm.portal.v1.EmailUserChangePasswordRequest.new_password)
+}
+
+// -------------------------------------------------------------------
+
+// EmailUserIndexResponse_Item
+
+// int64 id = 1;
+inline void EmailUserIndexResponse_Item::clear_id() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.id_ = ::int64_t{0};
+  _impl_._has_bits_[0] &= ~0x00000080u;
+}
+inline ::int64_t EmailUserIndexResponse_Item::id() const {
+  // @@protoc_insertion_point(field_get:palm.portal.v1.EmailUserIndexResponse.Item.id)
+  return _internal_id();
+}
+inline void EmailUserIndexResponse_Item::set_id(::int64_t value) {
+  _internal_set_id(value);
+  _impl_._has_bits_[0] |= 0x00000080u;
+  // @@protoc_insertion_point(field_set:palm.portal.v1.EmailUserIndexResponse.Item.id)
+}
+inline ::int64_t EmailUserIndexResponse_Item::_internal_id() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.id_;
+}
+inline void EmailUserIndexResponse_Item::_internal_set_id(::int64_t value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.id_ = value;
+}
+
+// string email = 2;
+inline void EmailUserIndexResponse_Item::clear_email() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.email_.ClearToEmpty();
+  _impl_._has_bits_[0] &= ~0x00000001u;
+}
+inline const ::std::string& EmailUserIndexResponse_Item::email() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:palm.portal.v1.EmailUserIndexResponse.Item.email)
+  return _internal_email();
+}
+template <typename Arg_, typename... Args_>
+PROTOBUF_ALWAYS_INLINE void EmailUserIndexResponse_Item::set_email(Arg_&& arg, Args_... args) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_._has_bits_[0] |= 0x00000001u;
+  _impl_.email_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:palm.portal.v1.EmailUserIndexResponse.Item.email)
+}
+inline ::std::string* PROTOBUF_NONNULL EmailUserIndexResponse_Item::mutable_email()
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  ::std::string* _s = _internal_mutable_email();
+  // @@protoc_insertion_point(field_mutable:palm.portal.v1.EmailUserIndexResponse.Item.email)
+  return _s;
+}
+inline const ::std::string& EmailUserIndexResponse_Item::_internal_email() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.email_.Get();
+}
+inline void EmailUserIndexResponse_Item::_internal_set_email(const ::std::string& value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_._has_bits_[0] |= 0x00000001u;
+  _impl_.email_.Set(value, GetArena());
+}
+inline ::std::string* PROTOBUF_NONNULL EmailUserIndexResponse_Item::_internal_mutable_email() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_._has_bits_[0] |= 0x00000001u;
+  return _impl_.email_.Mutable( GetArena());
+}
+inline ::std::string* PROTOBUF_NULLABLE EmailUserIndexResponse_Item::release_email() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  // @@protoc_insertion_point(field_release:palm.portal.v1.EmailUserIndexResponse.Item.email)
+  if ((_impl_._has_bits_[0] & 0x00000001u) == 0) {
+    return nullptr;
+  }
+  _impl_._has_bits_[0] &= ~0x00000001u;
+  auto* released = _impl_.email_.Release();
+  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString()) {
+    _impl_.email_.Set("", GetArena());
+  }
+  return released;
+}
+inline void EmailUserIndexResponse_Item::set_allocated_email(::std::string* PROTOBUF_NULLABLE value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (value != nullptr) {
+    _impl_._has_bits_[0] |= 0x00000001u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000001u;
+  }
+  _impl_.email_.SetAllocated(value, GetArena());
+  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString() && _impl_.email_.IsDefault()) {
+    _impl_.email_.Set("", GetArena());
+  }
+  // @@protoc_insertion_point(field_set_allocated:palm.portal.v1.EmailUserIndexResponse.Item.email)
+}
+
+// string name = 3;
+inline void EmailUserIndexResponse_Item::clear_name() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.name_.ClearToEmpty();
+  _impl_._has_bits_[0] &= ~0x00000002u;
+}
+inline const ::std::string& EmailUserIndexResponse_Item::name() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:palm.portal.v1.EmailUserIndexResponse.Item.name)
+  return _internal_name();
+}
+template <typename Arg_, typename... Args_>
+PROTOBUF_ALWAYS_INLINE void EmailUserIndexResponse_Item::set_name(Arg_&& arg, Args_... args) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_._has_bits_[0] |= 0x00000002u;
+  _impl_.name_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:palm.portal.v1.EmailUserIndexResponse.Item.name)
+}
+inline ::std::string* PROTOBUF_NONNULL EmailUserIndexResponse_Item::mutable_name()
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  ::std::string* _s = _internal_mutable_name();
+  // @@protoc_insertion_point(field_mutable:palm.portal.v1.EmailUserIndexResponse.Item.name)
+  return _s;
+}
+inline const ::std::string& EmailUserIndexResponse_Item::_internal_name() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.name_.Get();
+}
+inline void EmailUserIndexResponse_Item::_internal_set_name(const ::std::string& value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_._has_bits_[0] |= 0x00000002u;
+  _impl_.name_.Set(value, GetArena());
+}
+inline ::std::string* PROTOBUF_NONNULL EmailUserIndexResponse_Item::_internal_mutable_name() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_._has_bits_[0] |= 0x00000002u;
+  return _impl_.name_.Mutable( GetArena());
+}
+inline ::std::string* PROTOBUF_NULLABLE EmailUserIndexResponse_Item::release_name() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  // @@protoc_insertion_point(field_release:palm.portal.v1.EmailUserIndexResponse.Item.name)
+  if ((_impl_._has_bits_[0] & 0x00000002u) == 0) {
+    return nullptr;
+  }
+  _impl_._has_bits_[0] &= ~0x00000002u;
+  auto* released = _impl_.name_.Release();
+  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString()) {
+    _impl_.name_.Set("", GetArena());
+  }
+  return released;
+}
+inline void EmailUserIndexResponse_Item::set_allocated_name(::std::string* PROTOBUF_NULLABLE value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (value != nullptr) {
+    _impl_._has_bits_[0] |= 0x00000002u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000002u;
+  }
+  _impl_.name_.SetAllocated(value, GetArena());
+  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString() && _impl_.name_.IsDefault()) {
+    _impl_.name_.Set("", GetArena());
+  }
+  // @@protoc_insertion_point(field_set_allocated:palm.portal.v1.EmailUserIndexResponse.Item.name)
+}
+
+// optional string avatar = 16;
+inline bool EmailUserIndexResponse_Item::has_avatar() const {
+  bool value = (_impl_._has_bits_[0] & 0x00000004u) != 0;
+  return value;
+}
+inline void EmailUserIndexResponse_Item::clear_avatar() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.avatar_.ClearToEmpty();
+  _impl_._has_bits_[0] &= ~0x00000004u;
+}
+inline const ::std::string& EmailUserIndexResponse_Item::avatar() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:palm.portal.v1.EmailUserIndexResponse.Item.avatar)
+  return _internal_avatar();
+}
+template <typename Arg_, typename... Args_>
+PROTOBUF_ALWAYS_INLINE void EmailUserIndexResponse_Item::set_avatar(Arg_&& arg, Args_... args) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_._has_bits_[0] |= 0x00000004u;
+  _impl_.avatar_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:palm.portal.v1.EmailUserIndexResponse.Item.avatar)
+}
+inline ::std::string* PROTOBUF_NONNULL EmailUserIndexResponse_Item::mutable_avatar()
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  ::std::string* _s = _internal_mutable_avatar();
+  // @@protoc_insertion_point(field_mutable:palm.portal.v1.EmailUserIndexResponse.Item.avatar)
+  return _s;
+}
+inline const ::std::string& EmailUserIndexResponse_Item::_internal_avatar() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.avatar_.Get();
+}
+inline void EmailUserIndexResponse_Item::_internal_set_avatar(const ::std::string& value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_._has_bits_[0] |= 0x00000004u;
+  _impl_.avatar_.Set(value, GetArena());
+}
+inline ::std::string* PROTOBUF_NONNULL EmailUserIndexResponse_Item::_internal_mutable_avatar() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_._has_bits_[0] |= 0x00000004u;
+  return _impl_.avatar_.Mutable( GetArena());
+}
+inline ::std::string* PROTOBUF_NULLABLE EmailUserIndexResponse_Item::release_avatar() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  // @@protoc_insertion_point(field_release:palm.portal.v1.EmailUserIndexResponse.Item.avatar)
+  if ((_impl_._has_bits_[0] & 0x00000004u) == 0) {
+    return nullptr;
+  }
+  _impl_._has_bits_[0] &= ~0x00000004u;
+  auto* released = _impl_.avatar_.Release();
+  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString()) {
+    _impl_.avatar_.Set("", GetArena());
+  }
+  return released;
+}
+inline void EmailUserIndexResponse_Item::set_allocated_avatar(::std::string* PROTOBUF_NULLABLE value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (value != nullptr) {
+    _impl_._has_bits_[0] |= 0x00000004u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000004u;
+  }
+  _impl_.avatar_.SetAllocated(value, GetArena());
+  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString() && _impl_.avatar_.IsDefault()) {
+    _impl_.avatar_.Set("", GetArena());
+  }
+  // @@protoc_insertion_point(field_set_allocated:palm.portal.v1.EmailUserIndexResponse.Item.avatar)
+}
+
+// optional .google.protobuf.Timestamp confirmed_at = 17;
+inline bool EmailUserIndexResponse_Item::has_confirmed_at() const {
+  bool value = (_impl_._has_bits_[0] & 0x00000008u) != 0;
+  PROTOBUF_ASSUME(!value || _impl_.confirmed_at_ != nullptr);
+  return value;
+}
+inline const ::google::protobuf::Timestamp& EmailUserIndexResponse_Item::_internal_confirmed_at() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  const ::google::protobuf::Timestamp* p = _impl_.confirmed_at_;
+  return p != nullptr ? *p : reinterpret_cast<const ::google::protobuf::Timestamp&>(::google::protobuf::_Timestamp_default_instance_);
+}
+inline const ::google::protobuf::Timestamp& EmailUserIndexResponse_Item::confirmed_at() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:palm.portal.v1.EmailUserIndexResponse.Item.confirmed_at)
+  return _internal_confirmed_at();
+}
+inline void EmailUserIndexResponse_Item::unsafe_arena_set_allocated_confirmed_at(
+    ::google::protobuf::Timestamp* PROTOBUF_NULLABLE value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (GetArena() == nullptr) {
+    delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.confirmed_at_);
+  }
+  _impl_.confirmed_at_ = reinterpret_cast<::google::protobuf::Timestamp*>(value);
+  if (value != nullptr) {
+    _impl_._has_bits_[0] |= 0x00000008u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000008u;
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:palm.portal.v1.EmailUserIndexResponse.Item.confirmed_at)
+}
+inline ::google::protobuf::Timestamp* PROTOBUF_NULLABLE EmailUserIndexResponse_Item::release_confirmed_at() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+
+  _impl_._has_bits_[0] &= ~0x00000008u;
+  ::google::protobuf::Timestamp* released = _impl_.confirmed_at_;
+  _impl_.confirmed_at_ = nullptr;
+  if (::google::protobuf::internal::DebugHardenForceCopyInRelease()) {
+    auto* old = reinterpret_cast<::google::protobuf::MessageLite*>(released);
+    released = ::google::protobuf::internal::DuplicateIfNonNull(released);
+    if (GetArena() == nullptr) {
+      delete old;
+    }
+  } else {
+    if (GetArena() != nullptr) {
+      released = ::google::protobuf::internal::DuplicateIfNonNull(released);
+    }
+  }
+  return released;
+}
+inline ::google::protobuf::Timestamp* PROTOBUF_NULLABLE EmailUserIndexResponse_Item::unsafe_arena_release_confirmed_at() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  // @@protoc_insertion_point(field_release:palm.portal.v1.EmailUserIndexResponse.Item.confirmed_at)
+
+  _impl_._has_bits_[0] &= ~0x00000008u;
+  ::google::protobuf::Timestamp* temp = _impl_.confirmed_at_;
+  _impl_.confirmed_at_ = nullptr;
+  return temp;
+}
+inline ::google::protobuf::Timestamp* PROTOBUF_NONNULL EmailUserIndexResponse_Item::_internal_mutable_confirmed_at() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (_impl_.confirmed_at_ == nullptr) {
+    auto* p = ::google::protobuf::Message::DefaultConstruct<::google::protobuf::Timestamp>(GetArena());
+    _impl_.confirmed_at_ = reinterpret_cast<::google::protobuf::Timestamp*>(p);
+  }
+  return _impl_.confirmed_at_;
+}
+inline ::google::protobuf::Timestamp* PROTOBUF_NONNULL EmailUserIndexResponse_Item::mutable_confirmed_at()
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  _impl_._has_bits_[0] |= 0x00000008u;
+  ::google::protobuf::Timestamp* _msg = _internal_mutable_confirmed_at();
+  // @@protoc_insertion_point(field_mutable:palm.portal.v1.EmailUserIndexResponse.Item.confirmed_at)
+  return _msg;
+}
+inline void EmailUserIndexResponse_Item::set_allocated_confirmed_at(::google::protobuf::Timestamp* PROTOBUF_NULLABLE value) {
+  ::google::protobuf::Arena* message_arena = GetArena();
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (message_arena == nullptr) {
+    delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.confirmed_at_);
+  }
+
+  if (value != nullptr) {
+    ::google::protobuf::Arena* submessage_arena = reinterpret_cast<::google::protobuf::Message*>(value)->GetArena();
+    if (message_arena != submessage_arena) {
+      value = ::google::protobuf::internal::GetOwnedMessage(message_arena, value, submessage_arena);
+    }
+    _impl_._has_bits_[0] |= 0x00000008u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000008u;
+  }
+
+  _impl_.confirmed_at_ = reinterpret_cast<::google::protobuf::Timestamp*>(value);
+  // @@protoc_insertion_point(field_set_allocated:palm.portal.v1.EmailUserIndexResponse.Item.confirmed_at)
+}
+
+// optional .google.protobuf.Timestamp deleted_at = 18;
+inline bool EmailUserIndexResponse_Item::has_deleted_at() const {
+  bool value = (_impl_._has_bits_[0] & 0x00000010u) != 0;
+  PROTOBUF_ASSUME(!value || _impl_.deleted_at_ != nullptr);
+  return value;
+}
+inline const ::google::protobuf::Timestamp& EmailUserIndexResponse_Item::_internal_deleted_at() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  const ::google::protobuf::Timestamp* p = _impl_.deleted_at_;
+  return p != nullptr ? *p : reinterpret_cast<const ::google::protobuf::Timestamp&>(::google::protobuf::_Timestamp_default_instance_);
+}
+inline const ::google::protobuf::Timestamp& EmailUserIndexResponse_Item::deleted_at() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:palm.portal.v1.EmailUserIndexResponse.Item.deleted_at)
+  return _internal_deleted_at();
+}
+inline void EmailUserIndexResponse_Item::unsafe_arena_set_allocated_deleted_at(
+    ::google::protobuf::Timestamp* PROTOBUF_NULLABLE value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (GetArena() == nullptr) {
+    delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.deleted_at_);
+  }
+  _impl_.deleted_at_ = reinterpret_cast<::google::protobuf::Timestamp*>(value);
+  if (value != nullptr) {
+    _impl_._has_bits_[0] |= 0x00000010u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000010u;
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:palm.portal.v1.EmailUserIndexResponse.Item.deleted_at)
+}
+inline ::google::protobuf::Timestamp* PROTOBUF_NULLABLE EmailUserIndexResponse_Item::release_deleted_at() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+
+  _impl_._has_bits_[0] &= ~0x00000010u;
+  ::google::protobuf::Timestamp* released = _impl_.deleted_at_;
+  _impl_.deleted_at_ = nullptr;
+  if (::google::protobuf::internal::DebugHardenForceCopyInRelease()) {
+    auto* old = reinterpret_cast<::google::protobuf::MessageLite*>(released);
+    released = ::google::protobuf::internal::DuplicateIfNonNull(released);
+    if (GetArena() == nullptr) {
+      delete old;
+    }
+  } else {
+    if (GetArena() != nullptr) {
+      released = ::google::protobuf::internal::DuplicateIfNonNull(released);
+    }
+  }
+  return released;
+}
+inline ::google::protobuf::Timestamp* PROTOBUF_NULLABLE EmailUserIndexResponse_Item::unsafe_arena_release_deleted_at() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  // @@protoc_insertion_point(field_release:palm.portal.v1.EmailUserIndexResponse.Item.deleted_at)
+
+  _impl_._has_bits_[0] &= ~0x00000010u;
+  ::google::protobuf::Timestamp* temp = _impl_.deleted_at_;
+  _impl_.deleted_at_ = nullptr;
+  return temp;
+}
+inline ::google::protobuf::Timestamp* PROTOBUF_NONNULL EmailUserIndexResponse_Item::_internal_mutable_deleted_at() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (_impl_.deleted_at_ == nullptr) {
+    auto* p = ::google::protobuf::Message::DefaultConstruct<::google::protobuf::Timestamp>(GetArena());
+    _impl_.deleted_at_ = reinterpret_cast<::google::protobuf::Timestamp*>(p);
+  }
+  return _impl_.deleted_at_;
+}
+inline ::google::protobuf::Timestamp* PROTOBUF_NONNULL EmailUserIndexResponse_Item::mutable_deleted_at()
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  _impl_._has_bits_[0] |= 0x00000010u;
+  ::google::protobuf::Timestamp* _msg = _internal_mutable_deleted_at();
+  // @@protoc_insertion_point(field_mutable:palm.portal.v1.EmailUserIndexResponse.Item.deleted_at)
+  return _msg;
+}
+inline void EmailUserIndexResponse_Item::set_allocated_deleted_at(::google::protobuf::Timestamp* PROTOBUF_NULLABLE value) {
+  ::google::protobuf::Arena* message_arena = GetArena();
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (message_arena == nullptr) {
+    delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.deleted_at_);
+  }
+
+  if (value != nullptr) {
+    ::google::protobuf::Arena* submessage_arena = reinterpret_cast<::google::protobuf::Message*>(value)->GetArena();
+    if (message_arena != submessage_arena) {
+      value = ::google::protobuf::internal::GetOwnedMessage(message_arena, value, submessage_arena);
+    }
+    _impl_._has_bits_[0] |= 0x00000010u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000010u;
+  }
+
+  _impl_.deleted_at_ = reinterpret_cast<::google::protobuf::Timestamp*>(value);
+  // @@protoc_insertion_point(field_set_allocated:palm.portal.v1.EmailUserIndexResponse.Item.deleted_at)
+}
+
+// .google.protobuf.Timestamp updated_at = 19;
+inline bool EmailUserIndexResponse_Item::has_updated_at() const {
+  bool value = (_impl_._has_bits_[0] & 0x00000020u) != 0;
+  PROTOBUF_ASSUME(!value || _impl_.updated_at_ != nullptr);
+  return value;
+}
+inline const ::google::protobuf::Timestamp& EmailUserIndexResponse_Item::_internal_updated_at() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  const ::google::protobuf::Timestamp* p = _impl_.updated_at_;
+  return p != nullptr ? *p : reinterpret_cast<const ::google::protobuf::Timestamp&>(::google::protobuf::_Timestamp_default_instance_);
+}
+inline const ::google::protobuf::Timestamp& EmailUserIndexResponse_Item::updated_at() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:palm.portal.v1.EmailUserIndexResponse.Item.updated_at)
+  return _internal_updated_at();
+}
+inline void EmailUserIndexResponse_Item::unsafe_arena_set_allocated_updated_at(
+    ::google::protobuf::Timestamp* PROTOBUF_NULLABLE value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (GetArena() == nullptr) {
+    delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.updated_at_);
+  }
+  _impl_.updated_at_ = reinterpret_cast<::google::protobuf::Timestamp*>(value);
+  if (value != nullptr) {
+    _impl_._has_bits_[0] |= 0x00000020u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000020u;
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:palm.portal.v1.EmailUserIndexResponse.Item.updated_at)
+}
+inline ::google::protobuf::Timestamp* PROTOBUF_NULLABLE EmailUserIndexResponse_Item::release_updated_at() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+
+  _impl_._has_bits_[0] &= ~0x00000020u;
+  ::google::protobuf::Timestamp* released = _impl_.updated_at_;
+  _impl_.updated_at_ = nullptr;
+  if (::google::protobuf::internal::DebugHardenForceCopyInRelease()) {
+    auto* old = reinterpret_cast<::google::protobuf::MessageLite*>(released);
+    released = ::google::protobuf::internal::DuplicateIfNonNull(released);
+    if (GetArena() == nullptr) {
+      delete old;
+    }
+  } else {
+    if (GetArena() != nullptr) {
+      released = ::google::protobuf::internal::DuplicateIfNonNull(released);
+    }
+  }
+  return released;
+}
+inline ::google::protobuf::Timestamp* PROTOBUF_NULLABLE EmailUserIndexResponse_Item::unsafe_arena_release_updated_at() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  // @@protoc_insertion_point(field_release:palm.portal.v1.EmailUserIndexResponse.Item.updated_at)
+
+  _impl_._has_bits_[0] &= ~0x00000020u;
+  ::google::protobuf::Timestamp* temp = _impl_.updated_at_;
+  _impl_.updated_at_ = nullptr;
+  return temp;
+}
+inline ::google::protobuf::Timestamp* PROTOBUF_NONNULL EmailUserIndexResponse_Item::_internal_mutable_updated_at() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (_impl_.updated_at_ == nullptr) {
+    auto* p = ::google::protobuf::Message::DefaultConstruct<::google::protobuf::Timestamp>(GetArena());
+    _impl_.updated_at_ = reinterpret_cast<::google::protobuf::Timestamp*>(p);
+  }
+  return _impl_.updated_at_;
+}
+inline ::google::protobuf::Timestamp* PROTOBUF_NONNULL EmailUserIndexResponse_Item::mutable_updated_at()
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  _impl_._has_bits_[0] |= 0x00000020u;
+  ::google::protobuf::Timestamp* _msg = _internal_mutable_updated_at();
+  // @@protoc_insertion_point(field_mutable:palm.portal.v1.EmailUserIndexResponse.Item.updated_at)
+  return _msg;
+}
+inline void EmailUserIndexResponse_Item::set_allocated_updated_at(::google::protobuf::Timestamp* PROTOBUF_NULLABLE value) {
+  ::google::protobuf::Arena* message_arena = GetArena();
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (message_arena == nullptr) {
+    delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.updated_at_);
+  }
+
+  if (value != nullptr) {
+    ::google::protobuf::Arena* submessage_arena = reinterpret_cast<::google::protobuf::Message*>(value)->GetArena();
+    if (message_arena != submessage_arena) {
+      value = ::google::protobuf::internal::GetOwnedMessage(message_arena, value, submessage_arena);
+    }
+    _impl_._has_bits_[0] |= 0x00000020u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000020u;
+  }
+
+  _impl_.updated_at_ = reinterpret_cast<::google::protobuf::Timestamp*>(value);
+  // @@protoc_insertion_point(field_set_allocated:palm.portal.v1.EmailUserIndexResponse.Item.updated_at)
+}
+
+// .palm.portal.v1.UserIndexResponse.Item user = 99;
+inline bool EmailUserIndexResponse_Item::has_user() const {
+  bool value = (_impl_._has_bits_[0] & 0x00000040u) != 0;
+  PROTOBUF_ASSUME(!value || _impl_.user_ != nullptr);
+  return value;
+}
+inline void EmailUserIndexResponse_Item::clear_user() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (_impl_.user_ != nullptr) _impl_.user_->Clear();
+  _impl_._has_bits_[0] &= ~0x00000040u;
+}
+inline const ::palm::portal::v1::UserIndexResponse_Item& EmailUserIndexResponse_Item::_internal_user() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  const ::palm::portal::v1::UserIndexResponse_Item* p = _impl_.user_;
+  return p != nullptr ? *p : reinterpret_cast<const ::palm::portal::v1::UserIndexResponse_Item&>(::palm::portal::v1::_UserIndexResponse_Item_default_instance_);
+}
+inline const ::palm::portal::v1::UserIndexResponse_Item& EmailUserIndexResponse_Item::user() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:palm.portal.v1.EmailUserIndexResponse.Item.user)
+  return _internal_user();
+}
+inline void EmailUserIndexResponse_Item::unsafe_arena_set_allocated_user(
+    ::palm::portal::v1::UserIndexResponse_Item* PROTOBUF_NULLABLE value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (GetArena() == nullptr) {
+    delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.user_);
+  }
+  _impl_.user_ = reinterpret_cast<::palm::portal::v1::UserIndexResponse_Item*>(value);
+  if (value != nullptr) {
+    _impl_._has_bits_[0] |= 0x00000040u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000040u;
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:palm.portal.v1.EmailUserIndexResponse.Item.user)
+}
+inline ::palm::portal::v1::UserIndexResponse_Item* PROTOBUF_NULLABLE EmailUserIndexResponse_Item::release_user() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+
+  _impl_._has_bits_[0] &= ~0x00000040u;
+  ::palm::portal::v1::UserIndexResponse_Item* released = _impl_.user_;
+  _impl_.user_ = nullptr;
+  if (::google::protobuf::internal::DebugHardenForceCopyInRelease()) {
+    auto* old = reinterpret_cast<::google::protobuf::MessageLite*>(released);
+    released = ::google::protobuf::internal::DuplicateIfNonNull(released);
+    if (GetArena() == nullptr) {
+      delete old;
+    }
+  } else {
+    if (GetArena() != nullptr) {
+      released = ::google::protobuf::internal::DuplicateIfNonNull(released);
+    }
+  }
+  return released;
+}
+inline ::palm::portal::v1::UserIndexResponse_Item* PROTOBUF_NULLABLE EmailUserIndexResponse_Item::unsafe_arena_release_user() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  // @@protoc_insertion_point(field_release:palm.portal.v1.EmailUserIndexResponse.Item.user)
+
+  _impl_._has_bits_[0] &= ~0x00000040u;
+  ::palm::portal::v1::UserIndexResponse_Item* temp = _impl_.user_;
+  _impl_.user_ = nullptr;
+  return temp;
+}
+inline ::palm::portal::v1::UserIndexResponse_Item* PROTOBUF_NONNULL EmailUserIndexResponse_Item::_internal_mutable_user() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (_impl_.user_ == nullptr) {
+    auto* p = ::google::protobuf::Message::DefaultConstruct<::palm::portal::v1::UserIndexResponse_Item>(GetArena());
+    _impl_.user_ = reinterpret_cast<::palm::portal::v1::UserIndexResponse_Item*>(p);
+  }
+  return _impl_.user_;
+}
+inline ::palm::portal::v1::UserIndexResponse_Item* PROTOBUF_NONNULL EmailUserIndexResponse_Item::mutable_user()
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  _impl_._has_bits_[0] |= 0x00000040u;
+  ::palm::portal::v1::UserIndexResponse_Item* _msg = _internal_mutable_user();
+  // @@protoc_insertion_point(field_mutable:palm.portal.v1.EmailUserIndexResponse.Item.user)
+  return _msg;
+}
+inline void EmailUserIndexResponse_Item::set_allocated_user(::palm::portal::v1::UserIndexResponse_Item* PROTOBUF_NULLABLE value) {
+  ::google::protobuf::Arena* message_arena = GetArena();
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (message_arena == nullptr) {
+    delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.user_);
+  }
+
+  if (value != nullptr) {
+    ::google::protobuf::Arena* submessage_arena = value->GetArena();
+    if (message_arena != submessage_arena) {
+      value = ::google::protobuf::internal::GetOwnedMessage(message_arena, value, submessage_arena);
+    }
+    _impl_._has_bits_[0] |= 0x00000040u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000040u;
+  }
+
+  _impl_.user_ = reinterpret_cast<::palm::portal::v1::UserIndexResponse_Item*>(value);
+  // @@protoc_insertion_point(field_set_allocated:palm.portal.v1.EmailUserIndexResponse.Item.user)
+}
+
+// -------------------------------------------------------------------
+
+// EmailUserIndexResponse
+
+// repeated .palm.portal.v1.EmailUserIndexResponse.Item items = 1;
+inline int EmailUserIndexResponse::_internal_items_size() const {
+  return _internal_items().size();
+}
+inline int EmailUserIndexResponse::items_size() const {
+  return _internal_items_size();
+}
+inline void EmailUserIndexResponse::clear_items() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.items_.Clear();
+}
+inline ::palm::portal::v1::EmailUserIndexResponse_Item* PROTOBUF_NONNULL EmailUserIndexResponse::mutable_items(int index)
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_mutable:palm.portal.v1.EmailUserIndexResponse.items)
+  return _internal_mutable_items()->Mutable(index);
+}
+inline ::google::protobuf::RepeatedPtrField<::palm::portal::v1::EmailUserIndexResponse_Item>* PROTOBUF_NONNULL EmailUserIndexResponse::mutable_items()
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_mutable_list:palm.portal.v1.EmailUserIndexResponse.items)
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  return _internal_mutable_items();
+}
+inline const ::palm::portal::v1::EmailUserIndexResponse_Item& EmailUserIndexResponse::items(int index) const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:palm.portal.v1.EmailUserIndexResponse.items)
+  return _internal_items().Get(index);
+}
+inline ::palm::portal::v1::EmailUserIndexResponse_Item* PROTOBUF_NONNULL EmailUserIndexResponse::add_items()
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  ::palm::portal::v1::EmailUserIndexResponse_Item* _add = _internal_mutable_items()->Add();
+  // @@protoc_insertion_point(field_add:palm.portal.v1.EmailUserIndexResponse.items)
+  return _add;
+}
+inline const ::google::protobuf::RepeatedPtrField<::palm::portal::v1::EmailUserIndexResponse_Item>& EmailUserIndexResponse::items() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_list:palm.portal.v1.EmailUserIndexResponse.items)
+  return _internal_items();
+}
+inline const ::google::protobuf::RepeatedPtrField<::palm::portal::v1::EmailUserIndexResponse_Item>&
+EmailUserIndexResponse::_internal_items() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.items_;
+}
+inline ::google::protobuf::RepeatedPtrField<::palm::portal::v1::EmailUserIndexResponse_Item>* PROTOBUF_NONNULL
+EmailUserIndexResponse::_internal_mutable_items() {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return &_impl_.items_;
+}
+
+// .palm.portal.v1.Pagination pagination = 9;
+inline bool EmailUserIndexResponse::has_pagination() const {
+  bool value = (_impl_._has_bits_[0] & 0x00000001u) != 0;
+  PROTOBUF_ASSUME(!value || _impl_.pagination_ != nullptr);
+  return value;
+}
+inline void EmailUserIndexResponse::clear_pagination() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (_impl_.pagination_ != nullptr) _impl_.pagination_->Clear();
+  _impl_._has_bits_[0] &= ~0x00000001u;
+}
+inline const ::palm::portal::v1::Pagination& EmailUserIndexResponse::_internal_pagination() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  const ::palm::portal::v1::Pagination* p = _impl_.pagination_;
+  return p != nullptr ? *p : reinterpret_cast<const ::palm::portal::v1::Pagination&>(::palm::portal::v1::_Pagination_default_instance_);
+}
+inline const ::palm::portal::v1::Pagination& EmailUserIndexResponse::pagination() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:palm.portal.v1.EmailUserIndexResponse.pagination)
+  return _internal_pagination();
+}
+inline void EmailUserIndexResponse::unsafe_arena_set_allocated_pagination(
+    ::palm::portal::v1::Pagination* PROTOBUF_NULLABLE value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (GetArena() == nullptr) {
+    delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.pagination_);
+  }
+  _impl_.pagination_ = reinterpret_cast<::palm::portal::v1::Pagination*>(value);
+  if (value != nullptr) {
+    _impl_._has_bits_[0] |= 0x00000001u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000001u;
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:palm.portal.v1.EmailUserIndexResponse.pagination)
+}
+inline ::palm::portal::v1::Pagination* PROTOBUF_NULLABLE EmailUserIndexResponse::release_pagination() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+
+  _impl_._has_bits_[0] &= ~0x00000001u;
+  ::palm::portal::v1::Pagination* released = _impl_.pagination_;
+  _impl_.pagination_ = nullptr;
+  if (::google::protobuf::internal::DebugHardenForceCopyInRelease()) {
+    auto* old = reinterpret_cast<::google::protobuf::MessageLite*>(released);
+    released = ::google::protobuf::internal::DuplicateIfNonNull(released);
+    if (GetArena() == nullptr) {
+      delete old;
+    }
+  } else {
+    if (GetArena() != nullptr) {
+      released = ::google::protobuf::internal::DuplicateIfNonNull(released);
+    }
+  }
+  return released;
+}
+inline ::palm::portal::v1::Pagination* PROTOBUF_NULLABLE EmailUserIndexResponse::unsafe_arena_release_pagination() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  // @@protoc_insertion_point(field_release:palm.portal.v1.EmailUserIndexResponse.pagination)
+
+  _impl_._has_bits_[0] &= ~0x00000001u;
+  ::palm::portal::v1::Pagination* temp = _impl_.pagination_;
+  _impl_.pagination_ = nullptr;
+  return temp;
+}
+inline ::palm::portal::v1::Pagination* PROTOBUF_NONNULL EmailUserIndexResponse::_internal_mutable_pagination() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (_impl_.pagination_ == nullptr) {
+    auto* p = ::google::protobuf::Message::DefaultConstruct<::palm::portal::v1::Pagination>(GetArena());
+    _impl_.pagination_ = reinterpret_cast<::palm::portal::v1::Pagination*>(p);
+  }
+  return _impl_.pagination_;
+}
+inline ::palm::portal::v1::Pagination* PROTOBUF_NONNULL EmailUserIndexResponse::mutable_pagination()
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  _impl_._has_bits_[0] |= 0x00000001u;
+  ::palm::portal::v1::Pagination* _msg = _internal_mutable_pagination();
+  // @@protoc_insertion_point(field_mutable:palm.portal.v1.EmailUserIndexResponse.pagination)
+  return _msg;
+}
+inline void EmailUserIndexResponse::set_allocated_pagination(::palm::portal::v1::Pagination* PROTOBUF_NULLABLE value) {
+  ::google::protobuf::Arena* message_arena = GetArena();
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (message_arena == nullptr) {
+    delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.pagination_);
+  }
+
+  if (value != nullptr) {
+    ::google::protobuf::Arena* submessage_arena = value->GetArena();
+    if (message_arena != submessage_arena) {
+      value = ::google::protobuf::internal::GetOwnedMessage(message_arena, value, submessage_arena);
+    }
+    _impl_._has_bits_[0] |= 0x00000001u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000001u;
+  }
+
+  _impl_.pagination_ = reinterpret_cast<::palm::portal::v1::Pagination*>(value);
+  // @@protoc_insertion_point(field_set_allocated:palm.portal.v1.EmailUserIndexResponse.pagination)
+}
+
+// -------------------------------------------------------------------
+
+// EmailUserSetPasswordRequest
+
+// int64 id = 1;
+inline void EmailUserSetPasswordRequest::clear_id() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.id_ = ::int64_t{0};
+  _impl_._has_bits_[0] &= ~0x00000002u;
+}
+inline ::int64_t EmailUserSetPasswordRequest::id() const {
+  // @@protoc_insertion_point(field_get:palm.portal.v1.EmailUserSetPasswordRequest.id)
+  return _internal_id();
+}
+inline void EmailUserSetPasswordRequest::set_id(::int64_t value) {
+  _internal_set_id(value);
+  _impl_._has_bits_[0] |= 0x00000002u;
+  // @@protoc_insertion_point(field_set:palm.portal.v1.EmailUserSetPasswordRequest.id)
+}
+inline ::int64_t EmailUserSetPasswordRequest::_internal_id() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.id_;
+}
+inline void EmailUserSetPasswordRequest::_internal_set_id(::int64_t value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.id_ = value;
+}
+
+// string password = 2;
+inline void EmailUserSetPasswordRequest::clear_password() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.password_.ClearToEmpty();
+  _impl_._has_bits_[0] &= ~0x00000001u;
+}
+inline const ::std::string& EmailUserSetPasswordRequest::password() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:palm.portal.v1.EmailUserSetPasswordRequest.password)
+  return _internal_password();
+}
+template <typename Arg_, typename... Args_>
+PROTOBUF_ALWAYS_INLINE void EmailUserSetPasswordRequest::set_password(Arg_&& arg, Args_... args) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_._has_bits_[0] |= 0x00000001u;
+  _impl_.password_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:palm.portal.v1.EmailUserSetPasswordRequest.password)
+}
+inline ::std::string* PROTOBUF_NONNULL EmailUserSetPasswordRequest::mutable_password()
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  ::std::string* _s = _internal_mutable_password();
+  // @@protoc_insertion_point(field_mutable:palm.portal.v1.EmailUserSetPasswordRequest.password)
+  return _s;
+}
+inline const ::std::string& EmailUserSetPasswordRequest::_internal_password() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.password_.Get();
+}
+inline void EmailUserSetPasswordRequest::_internal_set_password(const ::std::string& value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_._has_bits_[0] |= 0x00000001u;
+  _impl_.password_.Set(value, GetArena());
+}
+inline ::std::string* PROTOBUF_NONNULL EmailUserSetPasswordRequest::_internal_mutable_password() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_._has_bits_[0] |= 0x00000001u;
+  return _impl_.password_.Mutable( GetArena());
+}
+inline ::std::string* PROTOBUF_NULLABLE EmailUserSetPasswordRequest::release_password() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  // @@protoc_insertion_point(field_release:palm.portal.v1.EmailUserSetPasswordRequest.password)
+  if ((_impl_._has_bits_[0] & 0x00000001u) == 0) {
+    return nullptr;
+  }
+  _impl_._has_bits_[0] &= ~0x00000001u;
+  auto* released = _impl_.password_.Release();
+  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString()) {
+    _impl_.password_.Set("", GetArena());
+  }
+  return released;
+}
+inline void EmailUserSetPasswordRequest::set_allocated_password(::std::string* PROTOBUF_NULLABLE value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (value != nullptr) {
+    _impl_._has_bits_[0] |= 0x00000001u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000001u;
+  }
+  _impl_.password_.SetAllocated(value, GetArena());
+  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString() && _impl_.password_.IsDefault()) {
+    _impl_.password_.Set("", GetArena());
+  }
+  // @@protoc_insertion_point(field_set_allocated:palm.portal.v1.EmailUserSetPasswordRequest.password)
+}
+
+// -------------------------------------------------------------------
+
+// UserSetLangRequest
+
+// string lang = 1;
+inline void UserSetLangRequest::clear_lang() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.lang_.ClearToEmpty();
+  _impl_._has_bits_[0] &= ~0x00000001u;
+}
+inline const ::std::string& UserSetLangRequest::lang() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:palm.portal.v1.UserSetLangRequest.lang)
+  return _internal_lang();
+}
+template <typename Arg_, typename... Args_>
+PROTOBUF_ALWAYS_INLINE void UserSetLangRequest::set_lang(Arg_&& arg, Args_... args) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_._has_bits_[0] |= 0x00000001u;
+  _impl_.lang_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:palm.portal.v1.UserSetLangRequest.lang)
+}
+inline ::std::string* PROTOBUF_NONNULL UserSetLangRequest::mutable_lang()
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  ::std::string* _s = _internal_mutable_lang();
+  // @@protoc_insertion_point(field_mutable:palm.portal.v1.UserSetLangRequest.lang)
+  return _s;
+}
+inline const ::std::string& UserSetLangRequest::_internal_lang() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.lang_.Get();
+}
+inline void UserSetLangRequest::_internal_set_lang(const ::std::string& value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_._has_bits_[0] |= 0x00000001u;
+  _impl_.lang_.Set(value, GetArena());
+}
+inline ::std::string* PROTOBUF_NONNULL UserSetLangRequest::_internal_mutable_lang() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_._has_bits_[0] |= 0x00000001u;
+  return _impl_.lang_.Mutable( GetArena());
+}
+inline ::std::string* PROTOBUF_NULLABLE UserSetLangRequest::release_lang() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  // @@protoc_insertion_point(field_release:palm.portal.v1.UserSetLangRequest.lang)
+  if ((_impl_._has_bits_[0] & 0x00000001u) == 0) {
+    return nullptr;
+  }
+  _impl_._has_bits_[0] &= ~0x00000001u;
+  auto* released = _impl_.lang_.Release();
+  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString()) {
+    _impl_.lang_.Set("", GetArena());
+  }
+  return released;
+}
+inline void UserSetLangRequest::set_allocated_lang(::std::string* PROTOBUF_NULLABLE value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (value != nullptr) {
+    _impl_._has_bits_[0] |= 0x00000001u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000001u;
+  }
+  _impl_.lang_.SetAllocated(value, GetArena());
+  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString() && _impl_.lang_.IsDefault()) {
+    _impl_.lang_.Set("", GetArena());
+  }
+  // @@protoc_insertion_point(field_set_allocated:palm.portal.v1.UserSetLangRequest.lang)
+}
+
+// -------------------------------------------------------------------
+
+// UserSetTimezoneRequest
+
+// string timezone = 1;
+inline void UserSetTimezoneRequest::clear_timezone() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.timezone_.ClearToEmpty();
+  _impl_._has_bits_[0] &= ~0x00000001u;
+}
+inline const ::std::string& UserSetTimezoneRequest::timezone() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:palm.portal.v1.UserSetTimezoneRequest.timezone)
+  return _internal_timezone();
+}
+template <typename Arg_, typename... Args_>
+PROTOBUF_ALWAYS_INLINE void UserSetTimezoneRequest::set_timezone(Arg_&& arg, Args_... args) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_._has_bits_[0] |= 0x00000001u;
+  _impl_.timezone_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:palm.portal.v1.UserSetTimezoneRequest.timezone)
+}
+inline ::std::string* PROTOBUF_NONNULL UserSetTimezoneRequest::mutable_timezone()
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  ::std::string* _s = _internal_mutable_timezone();
+  // @@protoc_insertion_point(field_mutable:palm.portal.v1.UserSetTimezoneRequest.timezone)
+  return _s;
+}
+inline const ::std::string& UserSetTimezoneRequest::_internal_timezone() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.timezone_.Get();
+}
+inline void UserSetTimezoneRequest::_internal_set_timezone(const ::std::string& value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_._has_bits_[0] |= 0x00000001u;
+  _impl_.timezone_.Set(value, GetArena());
+}
+inline ::std::string* PROTOBUF_NONNULL UserSetTimezoneRequest::_internal_mutable_timezone() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_._has_bits_[0] |= 0x00000001u;
+  return _impl_.timezone_.Mutable( GetArena());
+}
+inline ::std::string* PROTOBUF_NULLABLE UserSetTimezoneRequest::release_timezone() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  // @@protoc_insertion_point(field_release:palm.portal.v1.UserSetTimezoneRequest.timezone)
+  if ((_impl_._has_bits_[0] & 0x00000001u) == 0) {
+    return nullptr;
+  }
+  _impl_._has_bits_[0] &= ~0x00000001u;
+  auto* released = _impl_.timezone_.Release();
+  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString()) {
+    _impl_.timezone_.Set("", GetArena());
+  }
+  return released;
+}
+inline void UserSetTimezoneRequest::set_allocated_timezone(::std::string* PROTOBUF_NULLABLE value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (value != nullptr) {
+    _impl_._has_bits_[0] |= 0x00000001u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000001u;
+  }
+  _impl_.timezone_.SetAllocated(value, GetArena());
+  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString() && _impl_.timezone_.IsDefault()) {
+    _impl_.timezone_.Set("", GetArena());
+  }
+  // @@protoc_insertion_point(field_set_allocated:palm.portal.v1.UserSetTimezoneRequest.timezone)
 }
 
 // -------------------------------------------------------------------
@@ -10184,7 +16870,495 @@ inline void UserIndexAttachmentResponse::set_allocated_pagination(::palm::portal
 
 // -------------------------------------------------------------------
 
-// Log
+// UserIndexLogResponse_Item
+
+// int64 id = 1;
+inline void UserIndexLogResponse_Item::clear_id() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.id_ = ::int64_t{0};
+  _impl_._has_bits_[0] &= ~0x00000010u;
+}
+inline ::int64_t UserIndexLogResponse_Item::id() const {
+  // @@protoc_insertion_point(field_get:palm.portal.v1.UserIndexLogResponse.Item.id)
+  return _internal_id();
+}
+inline void UserIndexLogResponse_Item::set_id(::int64_t value) {
+  _internal_set_id(value);
+  _impl_._has_bits_[0] |= 0x00000010u;
+  // @@protoc_insertion_point(field_set:palm.portal.v1.UserIndexLogResponse.Item.id)
+}
+inline ::int64_t UserIndexLogResponse_Item::_internal_id() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.id_;
+}
+inline void UserIndexLogResponse_Item::_internal_set_id(::int64_t value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.id_ = value;
+}
+
+// string plugin = 2;
+inline void UserIndexLogResponse_Item::clear_plugin() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.plugin_.ClearToEmpty();
+  _impl_._has_bits_[0] &= ~0x00000001u;
+}
+inline const ::std::string& UserIndexLogResponse_Item::plugin() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:palm.portal.v1.UserIndexLogResponse.Item.plugin)
+  return _internal_plugin();
+}
+template <typename Arg_, typename... Args_>
+PROTOBUF_ALWAYS_INLINE void UserIndexLogResponse_Item::set_plugin(Arg_&& arg, Args_... args) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_._has_bits_[0] |= 0x00000001u;
+  _impl_.plugin_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:palm.portal.v1.UserIndexLogResponse.Item.plugin)
+}
+inline ::std::string* PROTOBUF_NONNULL UserIndexLogResponse_Item::mutable_plugin()
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  ::std::string* _s = _internal_mutable_plugin();
+  // @@protoc_insertion_point(field_mutable:palm.portal.v1.UserIndexLogResponse.Item.plugin)
+  return _s;
+}
+inline const ::std::string& UserIndexLogResponse_Item::_internal_plugin() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.plugin_.Get();
+}
+inline void UserIndexLogResponse_Item::_internal_set_plugin(const ::std::string& value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_._has_bits_[0] |= 0x00000001u;
+  _impl_.plugin_.Set(value, GetArena());
+}
+inline ::std::string* PROTOBUF_NONNULL UserIndexLogResponse_Item::_internal_mutable_plugin() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_._has_bits_[0] |= 0x00000001u;
+  return _impl_.plugin_.Mutable( GetArena());
+}
+inline ::std::string* PROTOBUF_NULLABLE UserIndexLogResponse_Item::release_plugin() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  // @@protoc_insertion_point(field_release:palm.portal.v1.UserIndexLogResponse.Item.plugin)
+  if ((_impl_._has_bits_[0] & 0x00000001u) == 0) {
+    return nullptr;
+  }
+  _impl_._has_bits_[0] &= ~0x00000001u;
+  auto* released = _impl_.plugin_.Release();
+  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString()) {
+    _impl_.plugin_.Set("", GetArena());
+  }
+  return released;
+}
+inline void UserIndexLogResponse_Item::set_allocated_plugin(::std::string* PROTOBUF_NULLABLE value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (value != nullptr) {
+    _impl_._has_bits_[0] |= 0x00000001u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000001u;
+  }
+  _impl_.plugin_.SetAllocated(value, GetArena());
+  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString() && _impl_.plugin_.IsDefault()) {
+    _impl_.plugin_.Set("", GetArena());
+  }
+  // @@protoc_insertion_point(field_set_allocated:palm.portal.v1.UserIndexLogResponse.Item.plugin)
+}
+
+// string ip = 3;
+inline void UserIndexLogResponse_Item::clear_ip() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.ip_.ClearToEmpty();
+  _impl_._has_bits_[0] &= ~0x00000002u;
+}
+inline const ::std::string& UserIndexLogResponse_Item::ip() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:palm.portal.v1.UserIndexLogResponse.Item.ip)
+  return _internal_ip();
+}
+template <typename Arg_, typename... Args_>
+PROTOBUF_ALWAYS_INLINE void UserIndexLogResponse_Item::set_ip(Arg_&& arg, Args_... args) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_._has_bits_[0] |= 0x00000002u;
+  _impl_.ip_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:palm.portal.v1.UserIndexLogResponse.Item.ip)
+}
+inline ::std::string* PROTOBUF_NONNULL UserIndexLogResponse_Item::mutable_ip()
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  ::std::string* _s = _internal_mutable_ip();
+  // @@protoc_insertion_point(field_mutable:palm.portal.v1.UserIndexLogResponse.Item.ip)
+  return _s;
+}
+inline const ::std::string& UserIndexLogResponse_Item::_internal_ip() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.ip_.Get();
+}
+inline void UserIndexLogResponse_Item::_internal_set_ip(const ::std::string& value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_._has_bits_[0] |= 0x00000002u;
+  _impl_.ip_.Set(value, GetArena());
+}
+inline ::std::string* PROTOBUF_NONNULL UserIndexLogResponse_Item::_internal_mutable_ip() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_._has_bits_[0] |= 0x00000002u;
+  return _impl_.ip_.Mutable( GetArena());
+}
+inline ::std::string* PROTOBUF_NULLABLE UserIndexLogResponse_Item::release_ip() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  // @@protoc_insertion_point(field_release:palm.portal.v1.UserIndexLogResponse.Item.ip)
+  if ((_impl_._has_bits_[0] & 0x00000002u) == 0) {
+    return nullptr;
+  }
+  _impl_._has_bits_[0] &= ~0x00000002u;
+  auto* released = _impl_.ip_.Release();
+  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString()) {
+    _impl_.ip_.Set("", GetArena());
+  }
+  return released;
+}
+inline void UserIndexLogResponse_Item::set_allocated_ip(::std::string* PROTOBUF_NULLABLE value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (value != nullptr) {
+    _impl_._has_bits_[0] |= 0x00000002u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000002u;
+  }
+  _impl_.ip_.SetAllocated(value, GetArena());
+  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString() && _impl_.ip_.IsDefault()) {
+    _impl_.ip_.Set("", GetArena());
+  }
+  // @@protoc_insertion_point(field_set_allocated:palm.portal.v1.UserIndexLogResponse.Item.ip)
+}
+
+// .palm.portal.v1.UserIndexLogResponse.Item.Level level = 4;
+inline void UserIndexLogResponse_Item::clear_level() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.level_ = 0;
+  _impl_._has_bits_[0] &= ~0x00000020u;
+}
+inline ::palm::portal::v1::UserIndexLogResponse_Item_Level UserIndexLogResponse_Item::level() const {
+  // @@protoc_insertion_point(field_get:palm.portal.v1.UserIndexLogResponse.Item.level)
+  return _internal_level();
+}
+inline void UserIndexLogResponse_Item::set_level(::palm::portal::v1::UserIndexLogResponse_Item_Level value) {
+  _internal_set_level(value);
+  _impl_._has_bits_[0] |= 0x00000020u;
+  // @@protoc_insertion_point(field_set:palm.portal.v1.UserIndexLogResponse.Item.level)
+}
+inline ::palm::portal::v1::UserIndexLogResponse_Item_Level UserIndexLogResponse_Item::_internal_level() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return static_cast<::palm::portal::v1::UserIndexLogResponse_Item_Level>(_impl_.level_);
+}
+inline void UserIndexLogResponse_Item::_internal_set_level(::palm::portal::v1::UserIndexLogResponse_Item_Level value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.level_ = value;
+}
+
+// string message = 5;
+inline void UserIndexLogResponse_Item::clear_message() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.message_.ClearToEmpty();
+  _impl_._has_bits_[0] &= ~0x00000004u;
+}
+inline const ::std::string& UserIndexLogResponse_Item::message() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:palm.portal.v1.UserIndexLogResponse.Item.message)
+  return _internal_message();
+}
+template <typename Arg_, typename... Args_>
+PROTOBUF_ALWAYS_INLINE void UserIndexLogResponse_Item::set_message(Arg_&& arg, Args_... args) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_._has_bits_[0] |= 0x00000004u;
+  _impl_.message_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:palm.portal.v1.UserIndexLogResponse.Item.message)
+}
+inline ::std::string* PROTOBUF_NONNULL UserIndexLogResponse_Item::mutable_message()
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  ::std::string* _s = _internal_mutable_message();
+  // @@protoc_insertion_point(field_mutable:palm.portal.v1.UserIndexLogResponse.Item.message)
+  return _s;
+}
+inline const ::std::string& UserIndexLogResponse_Item::_internal_message() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.message_.Get();
+}
+inline void UserIndexLogResponse_Item::_internal_set_message(const ::std::string& value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_._has_bits_[0] |= 0x00000004u;
+  _impl_.message_.Set(value, GetArena());
+}
+inline ::std::string* PROTOBUF_NONNULL UserIndexLogResponse_Item::_internal_mutable_message() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_._has_bits_[0] |= 0x00000004u;
+  return _impl_.message_.Mutable( GetArena());
+}
+inline ::std::string* PROTOBUF_NULLABLE UserIndexLogResponse_Item::release_message() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  // @@protoc_insertion_point(field_release:palm.portal.v1.UserIndexLogResponse.Item.message)
+  if ((_impl_._has_bits_[0] & 0x00000004u) == 0) {
+    return nullptr;
+  }
+  _impl_._has_bits_[0] &= ~0x00000004u;
+  auto* released = _impl_.message_.Release();
+  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString()) {
+    _impl_.message_.Set("", GetArena());
+  }
+  return released;
+}
+inline void UserIndexLogResponse_Item::set_allocated_message(::std::string* PROTOBUF_NULLABLE value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (value != nullptr) {
+    _impl_._has_bits_[0] |= 0x00000004u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000004u;
+  }
+  _impl_.message_.SetAllocated(value, GetArena());
+  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString() && _impl_.message_.IsDefault()) {
+    _impl_.message_.Set("", GetArena());
+  }
+  // @@protoc_insertion_point(field_set_allocated:palm.portal.v1.UserIndexLogResponse.Item.message)
+}
+
+// .google.protobuf.Timestamp created_at = 9;
+inline bool UserIndexLogResponse_Item::has_created_at() const {
+  bool value = (_impl_._has_bits_[0] & 0x00000008u) != 0;
+  PROTOBUF_ASSUME(!value || _impl_.created_at_ != nullptr);
+  return value;
+}
+inline const ::google::protobuf::Timestamp& UserIndexLogResponse_Item::_internal_created_at() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  const ::google::protobuf::Timestamp* p = _impl_.created_at_;
+  return p != nullptr ? *p : reinterpret_cast<const ::google::protobuf::Timestamp&>(::google::protobuf::_Timestamp_default_instance_);
+}
+inline const ::google::protobuf::Timestamp& UserIndexLogResponse_Item::created_at() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:palm.portal.v1.UserIndexLogResponse.Item.created_at)
+  return _internal_created_at();
+}
+inline void UserIndexLogResponse_Item::unsafe_arena_set_allocated_created_at(
+    ::google::protobuf::Timestamp* PROTOBUF_NULLABLE value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (GetArena() == nullptr) {
+    delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.created_at_);
+  }
+  _impl_.created_at_ = reinterpret_cast<::google::protobuf::Timestamp*>(value);
+  if (value != nullptr) {
+    _impl_._has_bits_[0] |= 0x00000008u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000008u;
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:palm.portal.v1.UserIndexLogResponse.Item.created_at)
+}
+inline ::google::protobuf::Timestamp* PROTOBUF_NULLABLE UserIndexLogResponse_Item::release_created_at() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+
+  _impl_._has_bits_[0] &= ~0x00000008u;
+  ::google::protobuf::Timestamp* released = _impl_.created_at_;
+  _impl_.created_at_ = nullptr;
+  if (::google::protobuf::internal::DebugHardenForceCopyInRelease()) {
+    auto* old = reinterpret_cast<::google::protobuf::MessageLite*>(released);
+    released = ::google::protobuf::internal::DuplicateIfNonNull(released);
+    if (GetArena() == nullptr) {
+      delete old;
+    }
+  } else {
+    if (GetArena() != nullptr) {
+      released = ::google::protobuf::internal::DuplicateIfNonNull(released);
+    }
+  }
+  return released;
+}
+inline ::google::protobuf::Timestamp* PROTOBUF_NULLABLE UserIndexLogResponse_Item::unsafe_arena_release_created_at() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  // @@protoc_insertion_point(field_release:palm.portal.v1.UserIndexLogResponse.Item.created_at)
+
+  _impl_._has_bits_[0] &= ~0x00000008u;
+  ::google::protobuf::Timestamp* temp = _impl_.created_at_;
+  _impl_.created_at_ = nullptr;
+  return temp;
+}
+inline ::google::protobuf::Timestamp* PROTOBUF_NONNULL UserIndexLogResponse_Item::_internal_mutable_created_at() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (_impl_.created_at_ == nullptr) {
+    auto* p = ::google::protobuf::Message::DefaultConstruct<::google::protobuf::Timestamp>(GetArena());
+    _impl_.created_at_ = reinterpret_cast<::google::protobuf::Timestamp*>(p);
+  }
+  return _impl_.created_at_;
+}
+inline ::google::protobuf::Timestamp* PROTOBUF_NONNULL UserIndexLogResponse_Item::mutable_created_at()
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  _impl_._has_bits_[0] |= 0x00000008u;
+  ::google::protobuf::Timestamp* _msg = _internal_mutable_created_at();
+  // @@protoc_insertion_point(field_mutable:palm.portal.v1.UserIndexLogResponse.Item.created_at)
+  return _msg;
+}
+inline void UserIndexLogResponse_Item::set_allocated_created_at(::google::protobuf::Timestamp* PROTOBUF_NULLABLE value) {
+  ::google::protobuf::Arena* message_arena = GetArena();
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (message_arena == nullptr) {
+    delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.created_at_);
+  }
+
+  if (value != nullptr) {
+    ::google::protobuf::Arena* submessage_arena = reinterpret_cast<::google::protobuf::Message*>(value)->GetArena();
+    if (message_arena != submessage_arena) {
+      value = ::google::protobuf::internal::GetOwnedMessage(message_arena, value, submessage_arena);
+    }
+    _impl_._has_bits_[0] |= 0x00000008u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000008u;
+  }
+
+  _impl_.created_at_ = reinterpret_cast<::google::protobuf::Timestamp*>(value);
+  // @@protoc_insertion_point(field_set_allocated:palm.portal.v1.UserIndexLogResponse.Item.created_at)
+}
+
+// -------------------------------------------------------------------
+
+// UserIndexLogResponse
+
+// repeated .palm.portal.v1.UserIndexLogResponse.Item items = 1;
+inline int UserIndexLogResponse::_internal_items_size() const {
+  return _internal_items().size();
+}
+inline int UserIndexLogResponse::items_size() const {
+  return _internal_items_size();
+}
+inline void UserIndexLogResponse::clear_items() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.items_.Clear();
+}
+inline ::palm::portal::v1::UserIndexLogResponse_Item* PROTOBUF_NONNULL UserIndexLogResponse::mutable_items(int index)
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_mutable:palm.portal.v1.UserIndexLogResponse.items)
+  return _internal_mutable_items()->Mutable(index);
+}
+inline ::google::protobuf::RepeatedPtrField<::palm::portal::v1::UserIndexLogResponse_Item>* PROTOBUF_NONNULL UserIndexLogResponse::mutable_items()
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_mutable_list:palm.portal.v1.UserIndexLogResponse.items)
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  return _internal_mutable_items();
+}
+inline const ::palm::portal::v1::UserIndexLogResponse_Item& UserIndexLogResponse::items(int index) const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:palm.portal.v1.UserIndexLogResponse.items)
+  return _internal_items().Get(index);
+}
+inline ::palm::portal::v1::UserIndexLogResponse_Item* PROTOBUF_NONNULL UserIndexLogResponse::add_items()
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  ::palm::portal::v1::UserIndexLogResponse_Item* _add = _internal_mutable_items()->Add();
+  // @@protoc_insertion_point(field_add:palm.portal.v1.UserIndexLogResponse.items)
+  return _add;
+}
+inline const ::google::protobuf::RepeatedPtrField<::palm::portal::v1::UserIndexLogResponse_Item>& UserIndexLogResponse::items() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_list:palm.portal.v1.UserIndexLogResponse.items)
+  return _internal_items();
+}
+inline const ::google::protobuf::RepeatedPtrField<::palm::portal::v1::UserIndexLogResponse_Item>&
+UserIndexLogResponse::_internal_items() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.items_;
+}
+inline ::google::protobuf::RepeatedPtrField<::palm::portal::v1::UserIndexLogResponse_Item>* PROTOBUF_NONNULL
+UserIndexLogResponse::_internal_mutable_items() {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return &_impl_.items_;
+}
+
+// .palm.portal.v1.Pagination pagination = 9;
+inline bool UserIndexLogResponse::has_pagination() const {
+  bool value = (_impl_._has_bits_[0] & 0x00000001u) != 0;
+  PROTOBUF_ASSUME(!value || _impl_.pagination_ != nullptr);
+  return value;
+}
+inline void UserIndexLogResponse::clear_pagination() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (_impl_.pagination_ != nullptr) _impl_.pagination_->Clear();
+  _impl_._has_bits_[0] &= ~0x00000001u;
+}
+inline const ::palm::portal::v1::Pagination& UserIndexLogResponse::_internal_pagination() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  const ::palm::portal::v1::Pagination* p = _impl_.pagination_;
+  return p != nullptr ? *p : reinterpret_cast<const ::palm::portal::v1::Pagination&>(::palm::portal::v1::_Pagination_default_instance_);
+}
+inline const ::palm::portal::v1::Pagination& UserIndexLogResponse::pagination() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:palm.portal.v1.UserIndexLogResponse.pagination)
+  return _internal_pagination();
+}
+inline void UserIndexLogResponse::unsafe_arena_set_allocated_pagination(
+    ::palm::portal::v1::Pagination* PROTOBUF_NULLABLE value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (GetArena() == nullptr) {
+    delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.pagination_);
+  }
+  _impl_.pagination_ = reinterpret_cast<::palm::portal::v1::Pagination*>(value);
+  if (value != nullptr) {
+    _impl_._has_bits_[0] |= 0x00000001u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000001u;
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:palm.portal.v1.UserIndexLogResponse.pagination)
+}
+inline ::palm::portal::v1::Pagination* PROTOBUF_NULLABLE UserIndexLogResponse::release_pagination() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+
+  _impl_._has_bits_[0] &= ~0x00000001u;
+  ::palm::portal::v1::Pagination* released = _impl_.pagination_;
+  _impl_.pagination_ = nullptr;
+  if (::google::protobuf::internal::DebugHardenForceCopyInRelease()) {
+    auto* old = reinterpret_cast<::google::protobuf::MessageLite*>(released);
+    released = ::google::protobuf::internal::DuplicateIfNonNull(released);
+    if (GetArena() == nullptr) {
+      delete old;
+    }
+  } else {
+    if (GetArena() != nullptr) {
+      released = ::google::protobuf::internal::DuplicateIfNonNull(released);
+    }
+  }
+  return released;
+}
+inline ::palm::portal::v1::Pagination* PROTOBUF_NULLABLE UserIndexLogResponse::unsafe_arena_release_pagination() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  // @@protoc_insertion_point(field_release:palm.portal.v1.UserIndexLogResponse.pagination)
+
+  _impl_._has_bits_[0] &= ~0x00000001u;
+  ::palm::portal::v1::Pagination* temp = _impl_.pagination_;
+  _impl_.pagination_ = nullptr;
+  return temp;
+}
+inline ::palm::portal::v1::Pagination* PROTOBUF_NONNULL UserIndexLogResponse::_internal_mutable_pagination() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (_impl_.pagination_ == nullptr) {
+    auto* p = ::google::protobuf::Message::DefaultConstruct<::palm::portal::v1::Pagination>(GetArena());
+    _impl_.pagination_ = reinterpret_cast<::palm::portal::v1::Pagination*>(p);
+  }
+  return _impl_.pagination_;
+}
+inline ::palm::portal::v1::Pagination* PROTOBUF_NONNULL UserIndexLogResponse::mutable_pagination()
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  _impl_._has_bits_[0] |= 0x00000001u;
+  ::palm::portal::v1::Pagination* _msg = _internal_mutable_pagination();
+  // @@protoc_insertion_point(field_mutable:palm.portal.v1.UserIndexLogResponse.pagination)
+  return _msg;
+}
+inline void UserIndexLogResponse::set_allocated_pagination(::palm::portal::v1::Pagination* PROTOBUF_NULLABLE value) {
+  ::google::protobuf::Arena* message_arena = GetArena();
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (message_arena == nullptr) {
+    delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.pagination_);
+  }
+
+  if (value != nullptr) {
+    ::google::protobuf::Arena* submessage_arena = value->GetArena();
+    if (message_arena != submessage_arena) {
+      value = ::google::protobuf::internal::GetOwnedMessage(message_arena, value, submessage_arena);
+    }
+    _impl_._has_bits_[0] |= 0x00000001u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000001u;
+  }
+
+  _impl_.pagination_ = reinterpret_cast<::palm::portal::v1::Pagination*>(value);
+  // @@protoc_insertion_point(field_set_allocated:palm.portal.v1.UserIndexLogResponse.pagination)
+}
 
 // -------------------------------------------------------------------
 
@@ -10507,6 +17681,75 @@ inline void Session::set_allocated_client_ip(::std::string* PROTOBUF_NULLABLE va
   // @@protoc_insertion_point(field_set_allocated:palm.portal.v1.Session.client_ip)
 }
 
+// -------------------------------------------------------------------
+
+// UserSignInResponse
+
+// string token = 1;
+inline void UserSignInResponse::clear_token() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.token_.ClearToEmpty();
+  _impl_._has_bits_[0] &= ~0x00000001u;
+}
+inline const ::std::string& UserSignInResponse::token() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:palm.portal.v1.UserSignInResponse.token)
+  return _internal_token();
+}
+template <typename Arg_, typename... Args_>
+PROTOBUF_ALWAYS_INLINE void UserSignInResponse::set_token(Arg_&& arg, Args_... args) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_._has_bits_[0] |= 0x00000001u;
+  _impl_.token_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:palm.portal.v1.UserSignInResponse.token)
+}
+inline ::std::string* PROTOBUF_NONNULL UserSignInResponse::mutable_token()
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  ::std::string* _s = _internal_mutable_token();
+  // @@protoc_insertion_point(field_mutable:palm.portal.v1.UserSignInResponse.token)
+  return _s;
+}
+inline const ::std::string& UserSignInResponse::_internal_token() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.token_.Get();
+}
+inline void UserSignInResponse::_internal_set_token(const ::std::string& value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_._has_bits_[0] |= 0x00000001u;
+  _impl_.token_.Set(value, GetArena());
+}
+inline ::std::string* PROTOBUF_NONNULL UserSignInResponse::_internal_mutable_token() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_._has_bits_[0] |= 0x00000001u;
+  return _impl_.token_.Mutable( GetArena());
+}
+inline ::std::string* PROTOBUF_NULLABLE UserSignInResponse::release_token() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  // @@protoc_insertion_point(field_release:palm.portal.v1.UserSignInResponse.token)
+  if ((_impl_._has_bits_[0] & 0x00000001u) == 0) {
+    return nullptr;
+  }
+  _impl_._has_bits_[0] &= ~0x00000001u;
+  auto* released = _impl_.token_.Release();
+  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString()) {
+    _impl_.token_.Set("", GetArena());
+  }
+  return released;
+}
+inline void UserSignInResponse::set_allocated_token(::std::string* PROTOBUF_NULLABLE value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (value != nullptr) {
+    _impl_._has_bits_[0] |= 0x00000001u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000001u;
+  }
+  _impl_.token_.SetAllocated(value, GetArena());
+  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString() && _impl_.token_.IsDefault()) {
+    _impl_.token_.Set("", GetArena());
+  }
+  // @@protoc_insertion_point(field_set_allocated:palm.portal.v1.UserSignInResponse.token)
+}
+
 #ifdef __GNUC__
 #pragma GCC diagnostic pop
 #endif  // __GNUC__
@@ -10533,10 +17776,10 @@ inline const EnumDescriptor* PROTOBUF_NONNULL GetEnumDescriptor<::palm::portal::
   return ::palm::portal::v1::Location_Map_descriptor();
 }
 template <>
-struct is_proto_enum<::palm::portal::v1::Log_Level> : std::true_type {};
+struct is_proto_enum<::palm::portal::v1::UserIndexLogResponse_Item_Level> : std::true_type {};
 template <>
-inline const EnumDescriptor* PROTOBUF_NONNULL GetEnumDescriptor<::palm::portal::v1::Log_Level>() {
-  return ::palm::portal::v1::Log_Level_descriptor();
+inline const EnumDescriptor* PROTOBUF_NONNULL GetEnumDescriptor<::palm::portal::v1::UserIndexLogResponse_Item_Level>() {
+  return ::palm::portal::v1::UserIndexLogResponse_Item_Level_descriptor();
 }
 template <>
 struct is_proto_enum<::palm::portal::v1::Session_ProviderType> : std::true_type {};

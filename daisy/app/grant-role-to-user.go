@@ -75,7 +75,7 @@ func GrantRoleToUser(config_file string, user_sn string, role_code string, debug
 		if _, err = enforcer.AddRoleForUser(user_s, role_s); err != nil {
 			return err
 		}
-		if err := models.CreateLog(tx, user.ID, env.Plugin(), gl_localhost, auth_v2.Log_DEBUG, fmt.Sprintf("granted role %s by %s", role_code, admin.Username)); err != nil {
+		if err := models.CreateLog(tx, user.ID, env.Plugin(), gl_localhost, auth_v2.UserIndexLogResponse_Item_WARNING, fmt.Sprintf("granted role %s by %s", role_code, admin.Username)); err != nil {
 			return err
 		}
 		return nil

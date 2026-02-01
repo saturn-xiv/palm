@@ -207,9 +207,9 @@ private static final long serialVersionUID = 0L;
   }
 
   public static final int FAVICON_FIELD_NUMBER = 4;
-  private com.github.saturn_xiv.palm.plugins.portal.v1.Attachment favicon_;
+  private com.github.saturn_xiv.palm.plugins.portal.v1.File favicon_;
   /**
-   * <code>.palm.portal.v1.Attachment favicon = 4;</code>
+   * <code>.palm.portal.v1.File favicon = 4;</code>
    * @return Whether the favicon field is set.
    */
   @java.lang.Override
@@ -217,19 +217,19 @@ private static final long serialVersionUID = 0L;
     return ((bitField0_ & 0x00000001) != 0);
   }
   /**
-   * <code>.palm.portal.v1.Attachment favicon = 4;</code>
+   * <code>.palm.portal.v1.File favicon = 4;</code>
    * @return The favicon.
    */
   @java.lang.Override
-  public com.github.saturn_xiv.palm.plugins.portal.v1.Attachment getFavicon() {
-    return favicon_ == null ? com.github.saturn_xiv.palm.plugins.portal.v1.Attachment.getDefaultInstance() : favicon_;
+  public com.github.saturn_xiv.palm.plugins.portal.v1.File getFavicon() {
+    return favicon_ == null ? com.github.saturn_xiv.palm.plugins.portal.v1.File.getDefaultInstance() : favicon_;
   }
   /**
-   * <code>.palm.portal.v1.Attachment favicon = 4;</code>
+   * <code>.palm.portal.v1.File favicon = 4;</code>
    */
   @java.lang.Override
-  public com.github.saturn_xiv.palm.plugins.portal.v1.AttachmentOrBuilder getFaviconOrBuilder() {
-    return favicon_ == null ? com.github.saturn_xiv.palm.plugins.portal.v1.Attachment.getDefaultInstance() : favicon_;
+  public com.github.saturn_xiv.palm.plugins.portal.v1.FileOrBuilder getFaviconOrBuilder() {
+    return favicon_ == null ? com.github.saturn_xiv.palm.plugins.portal.v1.File.getDefaultInstance() : favicon_;
   }
 
   public static final int BOOTSTRAP5_FIELD_NUMBER = 91;
@@ -1000,31 +1000,31 @@ private static final long serialVersionUID = 0L;
       return this;
     }
 
-    private com.github.saturn_xiv.palm.plugins.portal.v1.Attachment favicon_;
+    private com.github.saturn_xiv.palm.plugins.portal.v1.File favicon_;
     private com.google.protobuf.SingleFieldBuilder<
-        com.github.saturn_xiv.palm.plugins.portal.v1.Attachment, com.github.saturn_xiv.palm.plugins.portal.v1.Attachment.Builder, com.github.saturn_xiv.palm.plugins.portal.v1.AttachmentOrBuilder> faviconBuilder_;
+        com.github.saturn_xiv.palm.plugins.portal.v1.File, com.github.saturn_xiv.palm.plugins.portal.v1.File.Builder, com.github.saturn_xiv.palm.plugins.portal.v1.FileOrBuilder> faviconBuilder_;
     /**
-     * <code>.palm.portal.v1.Attachment favicon = 4;</code>
+     * <code>.palm.portal.v1.File favicon = 4;</code>
      * @return Whether the favicon field is set.
      */
     public boolean hasFavicon() {
       return ((bitField0_ & 0x00000008) != 0);
     }
     /**
-     * <code>.palm.portal.v1.Attachment favicon = 4;</code>
+     * <code>.palm.portal.v1.File favicon = 4;</code>
      * @return The favicon.
      */
-    public com.github.saturn_xiv.palm.plugins.portal.v1.Attachment getFavicon() {
+    public com.github.saturn_xiv.palm.plugins.portal.v1.File getFavicon() {
       if (faviconBuilder_ == null) {
-        return favicon_ == null ? com.github.saturn_xiv.palm.plugins.portal.v1.Attachment.getDefaultInstance() : favicon_;
+        return favicon_ == null ? com.github.saturn_xiv.palm.plugins.portal.v1.File.getDefaultInstance() : favicon_;
       } else {
         return faviconBuilder_.getMessage();
       }
     }
     /**
-     * <code>.palm.portal.v1.Attachment favicon = 4;</code>
+     * <code>.palm.portal.v1.File favicon = 4;</code>
      */
-    public Builder setFavicon(com.github.saturn_xiv.palm.plugins.portal.v1.Attachment value) {
+    public Builder setFavicon(com.github.saturn_xiv.palm.plugins.portal.v1.File value) {
       if (faviconBuilder_ == null) {
         if (value == null) {
           throw new NullPointerException();
@@ -1038,10 +1038,10 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>.palm.portal.v1.Attachment favicon = 4;</code>
+     * <code>.palm.portal.v1.File favicon = 4;</code>
      */
     public Builder setFavicon(
-        com.github.saturn_xiv.palm.plugins.portal.v1.Attachment.Builder builderForValue) {
+        com.github.saturn_xiv.palm.plugins.portal.v1.File.Builder builderForValue) {
       if (faviconBuilder_ == null) {
         favicon_ = builderForValue.build();
       } else {
@@ -1052,13 +1052,13 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>.palm.portal.v1.Attachment favicon = 4;</code>
+     * <code>.palm.portal.v1.File favicon = 4;</code>
      */
-    public Builder mergeFavicon(com.github.saturn_xiv.palm.plugins.portal.v1.Attachment value) {
+    public Builder mergeFavicon(com.github.saturn_xiv.palm.plugins.portal.v1.File value) {
       if (faviconBuilder_ == null) {
         if (((bitField0_ & 0x00000008) != 0) &&
           favicon_ != null &&
-          favicon_ != com.github.saturn_xiv.palm.plugins.portal.v1.Attachment.getDefaultInstance()) {
+          favicon_ != com.github.saturn_xiv.palm.plugins.portal.v1.File.getDefaultInstance()) {
           getFaviconBuilder().mergeFrom(value);
         } else {
           favicon_ = value;
@@ -1073,7 +1073,7 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>.palm.portal.v1.Attachment favicon = 4;</code>
+     * <code>.palm.portal.v1.File favicon = 4;</code>
      */
     public Builder clearFavicon() {
       bitField0_ = (bitField0_ & ~0x00000008);
@@ -1086,33 +1086,33 @@ private static final long serialVersionUID = 0L;
       return this;
     }
     /**
-     * <code>.palm.portal.v1.Attachment favicon = 4;</code>
+     * <code>.palm.portal.v1.File favicon = 4;</code>
      */
-    public com.github.saturn_xiv.palm.plugins.portal.v1.Attachment.Builder getFaviconBuilder() {
+    public com.github.saturn_xiv.palm.plugins.portal.v1.File.Builder getFaviconBuilder() {
       bitField0_ |= 0x00000008;
       onChanged();
       return internalGetFaviconFieldBuilder().getBuilder();
     }
     /**
-     * <code>.palm.portal.v1.Attachment favicon = 4;</code>
+     * <code>.palm.portal.v1.File favicon = 4;</code>
      */
-    public com.github.saturn_xiv.palm.plugins.portal.v1.AttachmentOrBuilder getFaviconOrBuilder() {
+    public com.github.saturn_xiv.palm.plugins.portal.v1.FileOrBuilder getFaviconOrBuilder() {
       if (faviconBuilder_ != null) {
         return faviconBuilder_.getMessageOrBuilder();
       } else {
         return favicon_ == null ?
-            com.github.saturn_xiv.palm.plugins.portal.v1.Attachment.getDefaultInstance() : favicon_;
+            com.github.saturn_xiv.palm.plugins.portal.v1.File.getDefaultInstance() : favicon_;
       }
     }
     /**
-     * <code>.palm.portal.v1.Attachment favicon = 4;</code>
+     * <code>.palm.portal.v1.File favicon = 4;</code>
      */
     private com.google.protobuf.SingleFieldBuilder<
-        com.github.saturn_xiv.palm.plugins.portal.v1.Attachment, com.github.saturn_xiv.palm.plugins.portal.v1.Attachment.Builder, com.github.saturn_xiv.palm.plugins.portal.v1.AttachmentOrBuilder> 
+        com.github.saturn_xiv.palm.plugins.portal.v1.File, com.github.saturn_xiv.palm.plugins.portal.v1.File.Builder, com.github.saturn_xiv.palm.plugins.portal.v1.FileOrBuilder> 
         internalGetFaviconFieldBuilder() {
       if (faviconBuilder_ == null) {
         faviconBuilder_ = new com.google.protobuf.SingleFieldBuilder<
-            com.github.saturn_xiv.palm.plugins.portal.v1.Attachment, com.github.saturn_xiv.palm.plugins.portal.v1.Attachment.Builder, com.github.saturn_xiv.palm.plugins.portal.v1.AttachmentOrBuilder>(
+            com.github.saturn_xiv.palm.plugins.portal.v1.File, com.github.saturn_xiv.palm.plugins.portal.v1.File.Builder, com.github.saturn_xiv.palm.plugins.portal.v1.FileOrBuilder>(
                 getFavicon(),
                 getParentForChildren(),
                 isClean());

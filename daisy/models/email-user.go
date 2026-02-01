@@ -6,7 +6,6 @@ import (
 	"strings"
 	"time"
 
-	"github.com/google/uuid"
 	"golang.org/x/text/language"
 	"gorm.io/gorm"
 
@@ -17,7 +16,6 @@ type EmailUser struct {
 	Model
 
 	UserID      uint    `gorm:"not null"`
-	Sn          string  `gorm:"uniqueIndex;not null;size:36"`
 	Name        string  `gorm:"not null;size:63"`
 	Email       string  `gorm:"uniqueIndex;not null;size:31"`
 	Password    string  `gorm:"not null;size:255"`
@@ -116,7 +114,6 @@ func (p *createEmailByUserForm) Execute(db *gorm.DB, hmac *crypto.Hmac, lang *la
 	if err := db.Create(&EmailUser{
 		UserID:   user.ID,
 		Name:     p.Name,
-		Sn:       uuid.New().String(),
 		Email:    p.Email,
 		Password: password,
 	}).Error; err != nil {

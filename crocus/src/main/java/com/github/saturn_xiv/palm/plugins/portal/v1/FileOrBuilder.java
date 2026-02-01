@@ -6,8 +6,8 @@
 package com.github.saturn_xiv.palm.plugins.portal.v1;
 
 @com.google.protobuf.Generated
-public interface AttachmentOrBuilder extends
-    // @@protoc_insertion_point(interface_extends:palm.portal.v1.Attachment)
+public interface FileOrBuilder extends
+    // @@protoc_insertion_point(interface_extends:palm.portal.v1.File)
     com.google.protobuf.MessageOrBuilder {
 
   /**

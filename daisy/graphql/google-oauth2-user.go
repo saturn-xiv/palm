@@ -82,7 +82,7 @@ func (p *Mutation) SignInByGoogleOauth2(ctx context.Context, args struct {
 		if err = models.SignInUser(tx, it.User, ip); err != nil {
 			return err
 		}
-		if err = models.CreateLog(tx, it.UserID, env.Plugin(), ip, v2.Log_INFO, "sign in by google oauth2"); err != nil {
+		if err = models.CreateLog(tx, it.UserID, env.Plugin(), ip, v2.UserIndexLogResponse_Item_INFO, "sign in by google oauth2"); err != nil {
 			return err
 		}
 		return nil

@@ -42,8 +42,8 @@ export class Settings extends jspb.Message {
   getLanguage(): string;
   setLanguage(value: string): Settings;
 
-  getFavicon(): portal_pb.Attachment | undefined;
-  setFavicon(value?: portal_pb.Attachment): Settings;
+  getFavicon(): portal_pb.File | undefined;
+  setFavicon(value?: portal_pb.File): Settings;
   hasFavicon(): boolean;
   clearFavicon(): Settings;
 
@@ -72,7 +72,7 @@ export namespace Settings {
     title: string;
     description: string;
     language: string;
-    favicon?: portal_pb.Attachment.AsObject;
+    favicon?: portal_pb.File.AsObject;
     bootstrap5?: Bootstrap5Theme.AsObject;
     bulma?: BulmaTheme.AsObject;
   };
