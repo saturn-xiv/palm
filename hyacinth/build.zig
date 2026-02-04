@@ -83,7 +83,7 @@ pub fn build(b: *std.Build) void {
         }),
     });
 
-    const version = b.option([]const u8, "version", "application version string") orelse "0.0.0";
+    const version = b.option([]const u8, "version", "application version string") orelse "2026.2.4";
     const options = b.addOptions();
     options.addOption([]const u8, "version", version);
     exe.root_module.addOptions("config", options);
@@ -92,9 +92,18 @@ pub fn build(b: *std.Build) void {
     exe.addCSourceFile(.{ .file = b.path("src/third.c") });
 
     exe.addSystemIncludePath(.{ .cwd_relative = "/usr/include" });
-    exe.addSystemIncludePath(.{ .cwd_relative = "/usr/include/x86_64-linux-gnu" });
 
-    exe.addLibraryPath(.{ .cwd_relative = "/usr/lib/x86_64-linux-gnu" });
+    {
+        const cpu_arch = target.result.cpu.arch;
+        if (cpu_arch == .x86_64) {
+            exe.addSystemIncludePath(.{ .cwd_relative = "/usr/include/x86_64-linux-gnu" });
+            exe.addLibraryPath(.{ .cwd_relative = "/usr/lib/x86_64-linux-gnu" });
+        } else if (cpu_arch.isAARCH64()) {
+            exe.addSystemIncludePath(.{ .cwd_relative = "/usr/include/aarch64-linux-gnu" });
+            exe.addLibraryPath(.{ .cwd_relative = "/usr/lib/aarch64-linux-gnu" });
+        }
+    }
+
     exe.linkSystemLibrary("log4c");
     exe.linkSystemLibrary("mysqlclient");
     exe.linkSystemLibrary("pq");
