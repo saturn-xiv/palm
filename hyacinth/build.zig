@@ -83,6 +83,25 @@ pub fn build(b: *std.Build) void {
         }),
     });
 
+    const version = b.option([]const u8, "version", "application version string") orelse "0.0.0";
+    const options = b.addOptions();
+    options.addOption([]const u8, "version", version);
+    exe.root_module.addOptions("config", options);
+
+    exe.addIncludePath(b.path("src"));
+    exe.addCSourceFile(.{ .file = b.path("src/third.c") });
+
+    exe.addSystemIncludePath(.{ .cwd_relative = "/usr/include" });
+    exe.addSystemIncludePath(.{ .cwd_relative = "/usr/include/x86_64-linux-gnu" });
+
+    exe.addLibraryPath(.{ .cwd_relative = "/usr/lib/x86_64-linux-gnu" });
+    exe.linkSystemLibrary("log4c");
+    exe.linkSystemLibrary("mysqlclient");
+    exe.linkSystemLibrary("pq");
+    exe.linkSystemLibrary("hiredis");
+    exe.linkSystemLibrary("rabbitmq");
+    exe.linkLibC();
+
     // This declares intent for the executable to be installed into the
     // install prefix when running `zig build` (i.e. when executing the default
     // step). By default the install prefix is `zig-out/` but can be overridden

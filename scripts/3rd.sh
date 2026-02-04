@@ -1,0 +1,3 @@
+#!/bin/bash
+
+sudo apt install -y libc6-dev liblog4c-dev libssl-dev libmysqlclient-dev libpq-dev libhiredis-dev librabbitmq-dev

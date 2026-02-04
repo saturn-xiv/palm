@@ -1,10 +1,23 @@
 const std = @import("std");
+const config = @import("config");
 const hyacinth = @import("hyacinth");
 
+const third = @cImport({
+    @cInclude("third.h");
+});
+
 pub fn main() !void {
-    // Prints to stderr, ignoring potential errors.
-    std.debug.print("All your {s} are belong to us.\n", .{"codebase"});
-    try hyacinth.bufferedPrint();
+    _ = third.log4c_init();
+    const logger = third.log4c_category_get("root");
+
+    third.log(logger, third.LOG4C_PRIORITY_DEBUG, "log4c(v%s)", third.log4c_version());
+
+    third.log(logger, third.LOG4C_PRIORITY_DEBUG, "debug");
+    third.log(logger, third.LOG4C_PRIORITY_INFO, "info");
+    third.log(logger, third.LOG4C_PRIORITY_ERROR, "error");
+
+    std.debug.print("version: {s}\n", .{config.version});
+    _ = third.log4c_fini();
 }
 
 test "simple test" {
