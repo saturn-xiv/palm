@@ -88,27 +88,11 @@ pub fn build(b: *std.Build) void {
     options.addOption([]const u8, "version", version);
     exe.root_module.addOptions("config", options);
 
-    exe.addIncludePath(b.path("src"));
-    exe.addCSourceFile(.{ .file = b.path("src/third.c") });
-
-    exe.addSystemIncludePath(.{ .cwd_relative = "/usr/include" });
-
-    {
-        const cpu_arch = target.result.cpu.arch;
-        if (cpu_arch == .x86_64) {
-            exe.addSystemIncludePath(.{ .cwd_relative = "/usr/include/x86_64-linux-gnu" });
-            exe.addLibraryPath(.{ .cwd_relative = "/usr/lib/x86_64-linux-gnu" });
-        } else if (cpu_arch.isAARCH64()) {
-            exe.addSystemIncludePath(.{ .cwd_relative = "/usr/include/aarch64-linux-gnu" });
-            exe.addLibraryPath(.{ .cwd_relative = "/usr/lib/aarch64-linux-gnu" });
-        }
-    }
-
-    exe.linkSystemLibrary("log4c");
-    exe.linkSystemLibrary("mysqlclient");
-    exe.linkSystemLibrary("pq");
-    exe.linkSystemLibrary("hiredis");
-    exe.linkSystemLibrary("rabbitmq");
+    const begonia = b.dependency("begonia", .{
+        .target = target,
+        .optimize = optimize,
+    });
+    exe.root_module.addImport("begonia", begonia.module("begonia"));
     exe.linkLibC();
 
     // This declares intent for the executable to be installed into the
