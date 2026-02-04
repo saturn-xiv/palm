@@ -1224,14 +1224,16 @@ export namespace UserIndexLogResponse {
 }
 
 export class Session extends jspb.Message {
-  getType(): Session.ProviderType;
-  setType(value: Session.ProviderType): Session;
-
-  getSn(): string;
-  setSn(value: string): Session;
+  getSubject(): Session.Subject | undefined;
+  setSubject(value?: Session.Subject): Session;
+  hasSubject(): boolean;
+  clearSubject(): Session;
 
   getName(): string;
   setName(value: string): Session;
+
+  getAvatar(): string;
+  setAvatar(value: string): Session;
 
   getUser(): UserIndexResponse.Item | undefined;
   setUser(value?: UserIndexResponse.Item): Session;
@@ -1251,12 +1253,35 @@ export class Session extends jspb.Message {
 
 export namespace Session {
   export type AsObject = {
-    type: Session.ProviderType;
-    sn: string;
+    subject?: Session.Subject.AsObject;
     name: string;
+    avatar: string;
     user?: UserIndexResponse.Item.AsObject;
     clientIp: string;
   };
+
+  export class Subject extends jspb.Message {
+    getType(): Session.ProviderType;
+    setType(value: Session.ProviderType): Subject;
+
+    getSn(): string;
+    setSn(value: string): Subject;
+
+    serializeBinary(): Uint8Array;
+    toObject(includeInstance?: boolean): Subject.AsObject;
+    static toObject(includeInstance: boolean, msg: Subject): Subject.AsObject;
+    static serializeBinaryToWriter(message: Subject, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): Subject;
+    static deserializeBinaryFromReader(message: Subject, reader: jspb.BinaryReader): Subject;
+  }
+
+  export namespace Subject {
+    export type AsObject = {
+      type: Session.ProviderType;
+      sn: string;
+    };
+  }
+
 
   export enum ProviderType {
     EMAIL = 0,

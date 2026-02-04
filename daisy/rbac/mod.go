@@ -96,31 +96,34 @@ func NewCurrentUserByAuthorization(auth string, db *gorm.DB, jwt *crypto.Jwt) (*
 		return nil, nil, err
 	}
 
-	ss, err := portal_v2.NewSession(sub)
+	var ss portal_v2.Session
+	ss.Subject, err = portal_v2.NewSubject(sub)
 	if err != nil {
 		return nil, nil, err
 	}
-	user, err := current_user(db, ss)
+	user, err := current_user(db, &ss)
 	if err != nil {
 		return nil, nil, err
 	}
-	return user, ss, nil
+	return user, &ss, nil
 }
 
 func current_user(db *gorm.DB, ss *portal_v2.Session) (*models.User, error) {
-	switch ss.Type {
+	switch ss.Subject.Type {
 	case portal_v2.Session_GOOGLE_OAUTH2:
 		var it models.GoogleOauth2User
-		if err := db.Where("sn = ?", ss.Sn).Preload("User").First(&it).Error; err != nil {
+		if err := db.Where("sn = ?", ss.Subject.Sn).Preload("User").First(&it).Error; err != nil {
 			return nil, err
 		}
 		if it.User.LockedAt != nil {
 			return nil, fmt.Errorf("user %s is locked", it.Name)
 		}
+
+		ss.Avatar = it.Picture
 		return it.User, nil
 	case portal_v2.Session_EMAIL:
 		var it models.EmailUser
-		if err := db.Where("email = ?", ss.Sn).Preload("User").First(&it).Error; err != nil {
+		if err := db.Where("email = ?", ss.Subject.Sn).Preload("User").First(&it).Error; err != nil {
 			return nil, err
 		}
 		if it.ConfirmedAt == nil {
@@ -129,9 +132,13 @@ func current_user(db *gorm.DB, ss *portal_v2.Session) (*models.User, error) {
 		if it.User.LockedAt != nil {
 			return nil, fmt.Errorf("user %s is locked", it.Name)
 		}
+
+		if it.Avatar != nil {
+			ss.Avatar = *it.Avatar
+		}
 		return it.User, nil
 	default:
-		return nil, fmt.Errorf("unsupported %s yet", ss.Type.String())
+		return nil, fmt.Errorf("unsupported %s yet", ss.Subject.Type.String())
 	}
 
 }

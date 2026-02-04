@@ -179,6 +179,10 @@ class Session;
 struct SessionDefaultTypeInternal;
 extern SessionDefaultTypeInternal _Session_default_instance_;
 extern const ::google::protobuf::internal::ClassDataFull Session_class_data_;
+class Session_Subject;
+struct Session_SubjectDefaultTypeInternal;
+extern Session_SubjectDefaultTypeInternal _Session_Subject_default_instance_;
+extern const ::google::protobuf::internal::ClassDataFull Session_Subject_class_data_;
 class UserCreateAttachmentRequest;
 struct UserCreateAttachmentRequestDefaultTypeInternal;
 extern UserCreateAttachmentRequestDefaultTypeInternal _UserCreateAttachmentRequest_default_instance_;
@@ -466,7 +470,7 @@ class UserSignInResponse final : public ::google::protobuf::Message
     return *reinterpret_cast<const UserSignInResponse*>(
         &_UserSignInResponse_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 41;
+  static constexpr int kIndexInFileMessages = 42;
   friend void swap(UserSignInResponse& a, UserSignInResponse& b) { a.Swap(&b); }
   inline void Swap(UserSignInResponse* PROTOBUF_NONNULL other) {
     if (other == this) return;
@@ -1401,6 +1405,214 @@ class UserSetAttachmentTitleRequest final : public ::google::protobuf::Message
 };
 
 extern const ::google::protobuf::internal::ClassDataFull UserSetAttachmentTitleRequest_class_data_;
+// -------------------------------------------------------------------
+
+class Session_Subject final : public ::google::protobuf::Message
+/* @@protoc_insertion_point(class_definition:palm.portal.v1.Session.Subject) */ {
+ public:
+  inline Session_Subject() : Session_Subject(nullptr) {}
+  ~Session_Subject() PROTOBUF_FINAL;
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+  void operator delete(Session_Subject* PROTOBUF_NONNULL msg, std::destroying_delete_t) {
+    SharedDtor(*msg);
+    ::google::protobuf::internal::SizedDelete(msg, sizeof(Session_Subject));
+  }
+#endif
+
+  template <typename = void>
+  explicit PROTOBUF_CONSTEXPR Session_Subject(::google::protobuf::internal::ConstantInitialized);
+
+  inline Session_Subject(const Session_Subject& from) : Session_Subject(nullptr, from) {}
+  inline Session_Subject(Session_Subject&& from) noexcept
+      : Session_Subject(nullptr, ::std::move(from)) {}
+  inline Session_Subject& operator=(const Session_Subject& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline Session_Subject& operator=(Session_Subject&& from) noexcept {
+    if (this == &from) return *this;
+    if (::google::protobuf::internal::CanMoveWithInternalSwap(GetArena(), from.GetArena())) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* PROTOBUF_NONNULL mutable_unknown_fields()
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* PROTOBUF_NONNULL descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* PROTOBUF_NONNULL GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* PROTOBUF_NONNULL GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const Session_Subject& default_instance() {
+    return *reinterpret_cast<const Session_Subject*>(
+        &_Session_Subject_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages = 40;
+  friend void swap(Session_Subject& a, Session_Subject& b) { a.Swap(&b); }
+  inline void Swap(Session_Subject* PROTOBUF_NONNULL other) {
+    if (other == this) return;
+    if (::google::protobuf::internal::CanUseInternalSwap(GetArena(), other->GetArena())) {
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(Session_Subject* PROTOBUF_NONNULL other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  Session_Subject* PROTOBUF_NONNULL New(::google::protobuf::Arena* PROTOBUF_NULLABLE arena = nullptr) const {
+    return ::google::protobuf::Message::DefaultConstruct<Session_Subject>(arena);
+  }
+  using ::google::protobuf::Message::CopyFrom;
+  void CopyFrom(const Session_Subject& from);
+  using ::google::protobuf::Message::MergeFrom;
+  void MergeFrom(const Session_Subject& from) { Session_Subject::MergeImpl(*this, from); }
+
+  private:
+  static void MergeImpl(::google::protobuf::MessageLite& to_msg,
+                        const ::google::protobuf::MessageLite& from_msg);
+
+  public:
+  bool IsInitialized() const {
+    return true;
+  }
+  ABSL_ATTRIBUTE_REINITIALIZES void Clear() PROTOBUF_FINAL;
+  #if defined(PROTOBUF_CUSTOM_VTABLE)
+  private:
+  static ::size_t ByteSizeLong(const ::google::protobuf::MessageLite& msg);
+  static ::uint8_t* PROTOBUF_NONNULL _InternalSerialize(
+      const ::google::protobuf::MessageLite& msg, ::uint8_t* PROTOBUF_NONNULL target,
+      ::google::protobuf::io::EpsCopyOutputStream* PROTOBUF_NONNULL stream);
+
+  public:
+  ::size_t ByteSizeLong() const { return ByteSizeLong(*this); }
+  ::uint8_t* PROTOBUF_NONNULL _InternalSerialize(
+      ::uint8_t* PROTOBUF_NONNULL target,
+      ::google::protobuf::io::EpsCopyOutputStream* PROTOBUF_NONNULL stream) const {
+    return _InternalSerialize(*this, target, stream);
+  }
+  #else   // PROTOBUF_CUSTOM_VTABLE
+  ::size_t ByteSizeLong() const final;
+  ::uint8_t* PROTOBUF_NONNULL _InternalSerialize(
+      ::uint8_t* PROTOBUF_NONNULL target,
+      ::google::protobuf::io::EpsCopyOutputStream* PROTOBUF_NONNULL stream) const final;
+  #endif  // PROTOBUF_CUSTOM_VTABLE
+  int GetCachedSize() const { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::google::protobuf::Arena* PROTOBUF_NULLABLE arena);
+  static void SharedDtor(MessageLite& self);
+  void InternalSwap(Session_Subject* PROTOBUF_NONNULL other);
+ private:
+  template <typename T>
+  friend ::absl::string_view(::google::protobuf::internal::GetAnyMessageName)();
+  static ::absl::string_view FullMessageName() { return "palm.portal.v1.Session.Subject"; }
+
+ protected:
+  explicit Session_Subject(::google::protobuf::Arena* PROTOBUF_NULLABLE arena);
+  Session_Subject(::google::protobuf::Arena* PROTOBUF_NULLABLE arena, const Session_Subject& from);
+  Session_Subject(
+      ::google::protobuf::Arena* PROTOBUF_NULLABLE arena, Session_Subject&& from) noexcept
+      : Session_Subject(arena) {
+    *this = ::std::move(from);
+  }
+  const ::google::protobuf::internal::ClassData* PROTOBUF_NONNULL GetClassData() const PROTOBUF_FINAL;
+  static void* PROTOBUF_NONNULL PlacementNew_(
+      const void* PROTOBUF_NONNULL, void* PROTOBUF_NONNULL mem,
+      ::google::protobuf::Arena* PROTOBUF_NULLABLE arena);
+  static constexpr auto InternalNewImpl_();
+
+ public:
+  static constexpr auto InternalGenerateClassData_();
+
+  ::google::protobuf::Metadata GetMetadata() const;
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+  enum : int {
+    kSnFieldNumber = 2,
+    kTypeFieldNumber = 1,
+  };
+  // string sn = 2;
+  void clear_sn() ;
+  const ::std::string& sn() const;
+  template <typename Arg_ = const ::std::string&, typename... Args_>
+  void set_sn(Arg_&& arg, Args_... args);
+  ::std::string* PROTOBUF_NONNULL mutable_sn();
+  [[nodiscard]] ::std::string* PROTOBUF_NULLABLE release_sn();
+  void set_allocated_sn(::std::string* PROTOBUF_NULLABLE value);
+
+  private:
+  const ::std::string& _internal_sn() const;
+  PROTOBUF_ALWAYS_INLINE void _internal_set_sn(const ::std::string& value);
+  ::std::string* PROTOBUF_NONNULL _internal_mutable_sn();
+
+  public:
+  // .palm.portal.v1.Session.ProviderType type = 1;
+  void clear_type() ;
+  ::palm::portal::v1::Session_ProviderType type() const;
+  void set_type(::palm::portal::v1::Session_ProviderType value);
+
+  private:
+  ::palm::portal::v1::Session_ProviderType _internal_type() const;
+  void _internal_set_type(::palm::portal::v1::Session_ProviderType value);
+
+  public:
+  // @@protoc_insertion_point(class_scope:palm.portal.v1.Session.Subject)
+ private:
+  class _Internal;
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<1, 2,
+                                   0, 41,
+                                   2>
+      _table_;
+
+  friend class ::google::protobuf::MessageLite;
+  friend class ::google::protobuf::Arena;
+  template <typename T>
+  friend class ::google::protobuf::Arena::InternalHelper;
+  using InternalArenaConstructable_ = void;
+  using DestructorSkippable_ = void;
+  struct Impl_ {
+    inline explicit constexpr Impl_(::google::protobuf::internal::ConstantInitialized) noexcept;
+    inline explicit Impl_(
+        ::google::protobuf::internal::InternalVisibility visibility,
+        ::google::protobuf::Arena* PROTOBUF_NULLABLE arena);
+    inline explicit Impl_(
+        ::google::protobuf::internal::InternalVisibility visibility,
+        ::google::protobuf::Arena* PROTOBUF_NULLABLE arena, const Impl_& from,
+        const Session_Subject& from_msg);
+    ::google::protobuf::internal::HasBits<1> _has_bits_;
+    ::google::protobuf::internal::CachedSize _cached_size_;
+    ::google::protobuf::internal::ArenaStringPtr sn_;
+    int type_;
+    PROTOBUF_TSAN_DECLARE_MEMBER
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_portal_2eproto;
+};
+
+extern const ::google::protobuf::internal::ClassDataFull Session_Subject_class_data_;
 // -------------------------------------------------------------------
 
 class Page final : public ::google::protobuf::Message
@@ -8867,7 +9079,7 @@ class Session final : public ::google::protobuf::Message
     return *reinterpret_cast<const Session*>(
         &_Session_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 40;
+  static constexpr int kIndexInFileMessages = 41;
   friend void swap(Session& a, Session& b) { a.Swap(&b); }
   inline void Swap(Session* PROTOBUF_NONNULL other) {
     if (other == this) return;
@@ -8952,6 +9164,7 @@ class Session final : public ::google::protobuf::Message
 
   ::google::protobuf::Metadata GetMetadata() const;
   // nested types ----------------------------------------------------
+  using Subject = Session_Subject;
   using ProviderType = Session_ProviderType;
   static constexpr ProviderType EMAIL = Session_ProviderType_EMAIL;
   static constexpr ProviderType PHONE = Session_ProviderType_PHONE;
@@ -8978,28 +9191,13 @@ class Session final : public ::google::protobuf::Message
 
   // accessors -------------------------------------------------------
   enum : int {
-    kSnFieldNumber = 2,
-    kNameFieldNumber = 3,
+    kNameFieldNumber = 2,
+    kAvatarFieldNumber = 3,
     kClientIpFieldNumber = 9,
+    kSubjectFieldNumber = 1,
     kUserFieldNumber = 8,
-    kTypeFieldNumber = 1,
   };
-  // string sn = 2;
-  void clear_sn() ;
-  const ::std::string& sn() const;
-  template <typename Arg_ = const ::std::string&, typename... Args_>
-  void set_sn(Arg_&& arg, Args_... args);
-  ::std::string* PROTOBUF_NONNULL mutable_sn();
-  [[nodiscard]] ::std::string* PROTOBUF_NULLABLE release_sn();
-  void set_allocated_sn(::std::string* PROTOBUF_NULLABLE value);
-
-  private:
-  const ::std::string& _internal_sn() const;
-  PROTOBUF_ALWAYS_INLINE void _internal_set_sn(const ::std::string& value);
-  ::std::string* PROTOBUF_NONNULL _internal_mutable_sn();
-
-  public:
-  // string name = 3;
+  // string name = 2;
   void clear_name() ;
   const ::std::string& name() const;
   template <typename Arg_ = const ::std::string&, typename... Args_>
@@ -9012,6 +9210,21 @@ class Session final : public ::google::protobuf::Message
   const ::std::string& _internal_name() const;
   PROTOBUF_ALWAYS_INLINE void _internal_set_name(const ::std::string& value);
   ::std::string* PROTOBUF_NONNULL _internal_mutable_name();
+
+  public:
+  // string avatar = 3;
+  void clear_avatar() ;
+  const ::std::string& avatar() const;
+  template <typename Arg_ = const ::std::string&, typename... Args_>
+  void set_avatar(Arg_&& arg, Args_... args);
+  ::std::string* PROTOBUF_NONNULL mutable_avatar();
+  [[nodiscard]] ::std::string* PROTOBUF_NULLABLE release_avatar();
+  void set_allocated_avatar(::std::string* PROTOBUF_NULLABLE value);
+
+  private:
+  const ::std::string& _internal_avatar() const;
+  PROTOBUF_ALWAYS_INLINE void _internal_set_avatar(const ::std::string& value);
+  ::std::string* PROTOBUF_NONNULL _internal_mutable_avatar();
 
   public:
   // string client_ip = 9;
@@ -9029,6 +9242,21 @@ class Session final : public ::google::protobuf::Message
   ::std::string* PROTOBUF_NONNULL _internal_mutable_client_ip();
 
   public:
+  // .palm.portal.v1.Session.Subject subject = 1;
+  bool has_subject() const;
+  void clear_subject() ;
+  const ::palm::portal::v1::Session_Subject& subject() const;
+  [[nodiscard]] ::palm::portal::v1::Session_Subject* PROTOBUF_NULLABLE release_subject();
+  ::palm::portal::v1::Session_Subject* PROTOBUF_NONNULL mutable_subject();
+  void set_allocated_subject(::palm::portal::v1::Session_Subject* PROTOBUF_NULLABLE value);
+  void unsafe_arena_set_allocated_subject(::palm::portal::v1::Session_Subject* PROTOBUF_NULLABLE value);
+  ::palm::portal::v1::Session_Subject* PROTOBUF_NULLABLE unsafe_arena_release_subject();
+
+  private:
+  const ::palm::portal::v1::Session_Subject& _internal_subject() const;
+  ::palm::portal::v1::Session_Subject* PROTOBUF_NONNULL _internal_mutable_subject();
+
+  public:
   // .palm.portal.v1.UserIndexResponse.Item user = 8;
   bool has_user() const;
   void clear_user() ;
@@ -9044,22 +9272,12 @@ class Session final : public ::google::protobuf::Message
   ::palm::portal::v1::UserIndexResponse_Item* PROTOBUF_NONNULL _internal_mutable_user();
 
   public:
-  // .palm.portal.v1.Session.ProviderType type = 1;
-  void clear_type() ;
-  ::palm::portal::v1::Session_ProviderType type() const;
-  void set_type(::palm::portal::v1::Session_ProviderType value);
-
-  private:
-  ::palm::portal::v1::Session_ProviderType _internal_type() const;
-  void _internal_set_type(::palm::portal::v1::Session_ProviderType value);
-
-  public:
   // @@protoc_insertion_point(class_scope:palm.portal.v1.Session)
  private:
   class _Internal;
   friend class ::google::protobuf::internal::TcParser;
   static const ::google::protobuf::internal::TcParseTable<2, 5,
-                                   1, 46,
+                                   2, 50,
                                    2>
       _table_;
 
@@ -9080,11 +9298,11 @@ class Session final : public ::google::protobuf::Message
         const Session& from_msg);
     ::google::protobuf::internal::HasBits<1> _has_bits_;
     ::google::protobuf::internal::CachedSize _cached_size_;
-    ::google::protobuf::internal::ArenaStringPtr sn_;
     ::google::protobuf::internal::ArenaStringPtr name_;
+    ::google::protobuf::internal::ArenaStringPtr avatar_;
     ::google::protobuf::internal::ArenaStringPtr client_ip_;
+    ::palm::portal::v1::Session_Subject* PROTOBUF_NULLABLE subject_;
     ::palm::portal::v1::UserIndexResponse_Item* PROTOBUF_NULLABLE user_;
-    int type_;
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
   union { Impl_ _impl_; };
@@ -17362,73 +17580,73 @@ inline void UserIndexLogResponse::set_allocated_pagination(::palm::portal::v1::P
 
 // -------------------------------------------------------------------
 
-// Session
+// Session_Subject
 
 // .palm.portal.v1.Session.ProviderType type = 1;
-inline void Session::clear_type() {
+inline void Session_Subject::clear_type() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_.type_ = 0;
-  _impl_._has_bits_[0] &= ~0x00000010u;
+  _impl_._has_bits_[0] &= ~0x00000002u;
 }
-inline ::palm::portal::v1::Session_ProviderType Session::type() const {
-  // @@protoc_insertion_point(field_get:palm.portal.v1.Session.type)
+inline ::palm::portal::v1::Session_ProviderType Session_Subject::type() const {
+  // @@protoc_insertion_point(field_get:palm.portal.v1.Session.Subject.type)
   return _internal_type();
 }
-inline void Session::set_type(::palm::portal::v1::Session_ProviderType value) {
+inline void Session_Subject::set_type(::palm::portal::v1::Session_ProviderType value) {
   _internal_set_type(value);
-  _impl_._has_bits_[0] |= 0x00000010u;
-  // @@protoc_insertion_point(field_set:palm.portal.v1.Session.type)
+  _impl_._has_bits_[0] |= 0x00000002u;
+  // @@protoc_insertion_point(field_set:palm.portal.v1.Session.Subject.type)
 }
-inline ::palm::portal::v1::Session_ProviderType Session::_internal_type() const {
+inline ::palm::portal::v1::Session_ProviderType Session_Subject::_internal_type() const {
   ::google::protobuf::internal::TSanRead(&_impl_);
   return static_cast<::palm::portal::v1::Session_ProviderType>(_impl_.type_);
 }
-inline void Session::_internal_set_type(::palm::portal::v1::Session_ProviderType value) {
+inline void Session_Subject::_internal_set_type(::palm::portal::v1::Session_ProviderType value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_.type_ = value;
 }
 
 // string sn = 2;
-inline void Session::clear_sn() {
+inline void Session_Subject::clear_sn() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_.sn_.ClearToEmpty();
   _impl_._has_bits_[0] &= ~0x00000001u;
 }
-inline const ::std::string& Session::sn() const
+inline const ::std::string& Session_Subject::sn() const
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:palm.portal.v1.Session.sn)
+  // @@protoc_insertion_point(field_get:palm.portal.v1.Session.Subject.sn)
   return _internal_sn();
 }
 template <typename Arg_, typename... Args_>
-PROTOBUF_ALWAYS_INLINE void Session::set_sn(Arg_&& arg, Args_... args) {
+PROTOBUF_ALWAYS_INLINE void Session_Subject::set_sn(Arg_&& arg, Args_... args) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_._has_bits_[0] |= 0x00000001u;
   _impl_.sn_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
-  // @@protoc_insertion_point(field_set:palm.portal.v1.Session.sn)
+  // @@protoc_insertion_point(field_set:palm.portal.v1.Session.Subject.sn)
 }
-inline ::std::string* PROTOBUF_NONNULL Session::mutable_sn()
+inline ::std::string* PROTOBUF_NONNULL Session_Subject::mutable_sn()
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
   ::std::string* _s = _internal_mutable_sn();
-  // @@protoc_insertion_point(field_mutable:palm.portal.v1.Session.sn)
+  // @@protoc_insertion_point(field_mutable:palm.portal.v1.Session.Subject.sn)
   return _s;
 }
-inline const ::std::string& Session::_internal_sn() const {
+inline const ::std::string& Session_Subject::_internal_sn() const {
   ::google::protobuf::internal::TSanRead(&_impl_);
   return _impl_.sn_.Get();
 }
-inline void Session::_internal_set_sn(const ::std::string& value) {
+inline void Session_Subject::_internal_set_sn(const ::std::string& value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_._has_bits_[0] |= 0x00000001u;
   _impl_.sn_.Set(value, GetArena());
 }
-inline ::std::string* PROTOBUF_NONNULL Session::_internal_mutable_sn() {
+inline ::std::string* PROTOBUF_NONNULL Session_Subject::_internal_mutable_sn() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_._has_bits_[0] |= 0x00000001u;
   return _impl_.sn_.Mutable( GetArena());
 }
-inline ::std::string* PROTOBUF_NULLABLE Session::release_sn() {
+inline ::std::string* PROTOBUF_NULLABLE Session_Subject::release_sn() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  // @@protoc_insertion_point(field_release:palm.portal.v1.Session.sn)
+  // @@protoc_insertion_point(field_release:palm.portal.v1.Session.Subject.sn)
   if ((_impl_._has_bits_[0] & 0x00000001u) == 0) {
     return nullptr;
   }
@@ -17439,7 +17657,7 @@ inline ::std::string* PROTOBUF_NULLABLE Session::release_sn() {
   }
   return released;
 }
-inline void Session::set_allocated_sn(::std::string* PROTOBUF_NULLABLE value) {
+inline void Session_Subject::set_allocated_sn(::std::string* PROTOBUF_NULLABLE value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   if (value != nullptr) {
     _impl_._has_bits_[0] |= 0x00000001u;
@@ -17450,14 +17668,116 @@ inline void Session::set_allocated_sn(::std::string* PROTOBUF_NULLABLE value) {
   if (::google::protobuf::internal::DebugHardenForceCopyDefaultString() && _impl_.sn_.IsDefault()) {
     _impl_.sn_.Set("", GetArena());
   }
-  // @@protoc_insertion_point(field_set_allocated:palm.portal.v1.Session.sn)
+  // @@protoc_insertion_point(field_set_allocated:palm.portal.v1.Session.Subject.sn)
 }
 
-// string name = 3;
+// -------------------------------------------------------------------
+
+// Session
+
+// .palm.portal.v1.Session.Subject subject = 1;
+inline bool Session::has_subject() const {
+  bool value = (_impl_._has_bits_[0] & 0x00000008u) != 0;
+  PROTOBUF_ASSUME(!value || _impl_.subject_ != nullptr);
+  return value;
+}
+inline void Session::clear_subject() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (_impl_.subject_ != nullptr) _impl_.subject_->Clear();
+  _impl_._has_bits_[0] &= ~0x00000008u;
+}
+inline const ::palm::portal::v1::Session_Subject& Session::_internal_subject() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  const ::palm::portal::v1::Session_Subject* p = _impl_.subject_;
+  return p != nullptr ? *p : reinterpret_cast<const ::palm::portal::v1::Session_Subject&>(::palm::portal::v1::_Session_Subject_default_instance_);
+}
+inline const ::palm::portal::v1::Session_Subject& Session::subject() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:palm.portal.v1.Session.subject)
+  return _internal_subject();
+}
+inline void Session::unsafe_arena_set_allocated_subject(
+    ::palm::portal::v1::Session_Subject* PROTOBUF_NULLABLE value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (GetArena() == nullptr) {
+    delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.subject_);
+  }
+  _impl_.subject_ = reinterpret_cast<::palm::portal::v1::Session_Subject*>(value);
+  if (value != nullptr) {
+    _impl_._has_bits_[0] |= 0x00000008u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000008u;
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:palm.portal.v1.Session.subject)
+}
+inline ::palm::portal::v1::Session_Subject* PROTOBUF_NULLABLE Session::release_subject() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+
+  _impl_._has_bits_[0] &= ~0x00000008u;
+  ::palm::portal::v1::Session_Subject* released = _impl_.subject_;
+  _impl_.subject_ = nullptr;
+  if (::google::protobuf::internal::DebugHardenForceCopyInRelease()) {
+    auto* old = reinterpret_cast<::google::protobuf::MessageLite*>(released);
+    released = ::google::protobuf::internal::DuplicateIfNonNull(released);
+    if (GetArena() == nullptr) {
+      delete old;
+    }
+  } else {
+    if (GetArena() != nullptr) {
+      released = ::google::protobuf::internal::DuplicateIfNonNull(released);
+    }
+  }
+  return released;
+}
+inline ::palm::portal::v1::Session_Subject* PROTOBUF_NULLABLE Session::unsafe_arena_release_subject() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  // @@protoc_insertion_point(field_release:palm.portal.v1.Session.subject)
+
+  _impl_._has_bits_[0] &= ~0x00000008u;
+  ::palm::portal::v1::Session_Subject* temp = _impl_.subject_;
+  _impl_.subject_ = nullptr;
+  return temp;
+}
+inline ::palm::portal::v1::Session_Subject* PROTOBUF_NONNULL Session::_internal_mutable_subject() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (_impl_.subject_ == nullptr) {
+    auto* p = ::google::protobuf::Message::DefaultConstruct<::palm::portal::v1::Session_Subject>(GetArena());
+    _impl_.subject_ = reinterpret_cast<::palm::portal::v1::Session_Subject*>(p);
+  }
+  return _impl_.subject_;
+}
+inline ::palm::portal::v1::Session_Subject* PROTOBUF_NONNULL Session::mutable_subject()
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  _impl_._has_bits_[0] |= 0x00000008u;
+  ::palm::portal::v1::Session_Subject* _msg = _internal_mutable_subject();
+  // @@protoc_insertion_point(field_mutable:palm.portal.v1.Session.subject)
+  return _msg;
+}
+inline void Session::set_allocated_subject(::palm::portal::v1::Session_Subject* PROTOBUF_NULLABLE value) {
+  ::google::protobuf::Arena* message_arena = GetArena();
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (message_arena == nullptr) {
+    delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.subject_);
+  }
+
+  if (value != nullptr) {
+    ::google::protobuf::Arena* submessage_arena = value->GetArena();
+    if (message_arena != submessage_arena) {
+      value = ::google::protobuf::internal::GetOwnedMessage(message_arena, value, submessage_arena);
+    }
+    _impl_._has_bits_[0] |= 0x00000008u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000008u;
+  }
+
+  _impl_.subject_ = reinterpret_cast<::palm::portal::v1::Session_Subject*>(value);
+  // @@protoc_insertion_point(field_set_allocated:palm.portal.v1.Session.subject)
+}
+
+// string name = 2;
 inline void Session::clear_name() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_.name_.ClearToEmpty();
-  _impl_._has_bits_[0] &= ~0x00000002u;
+  _impl_._has_bits_[0] &= ~0x00000001u;
 }
 inline const ::std::string& Session::name() const
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
@@ -17467,7 +17787,7 @@ inline const ::std::string& Session::name() const
 template <typename Arg_, typename... Args_>
 PROTOBUF_ALWAYS_INLINE void Session::set_name(Arg_&& arg, Args_... args) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_._has_bits_[0] |= 0x00000002u;
+  _impl_._has_bits_[0] |= 0x00000001u;
   _impl_.name_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
   // @@protoc_insertion_point(field_set:palm.portal.v1.Session.name)
 }
@@ -17483,21 +17803,21 @@ inline const ::std::string& Session::_internal_name() const {
 }
 inline void Session::_internal_set_name(const ::std::string& value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_._has_bits_[0] |= 0x00000002u;
+  _impl_._has_bits_[0] |= 0x00000001u;
   _impl_.name_.Set(value, GetArena());
 }
 inline ::std::string* PROTOBUF_NONNULL Session::_internal_mutable_name() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_._has_bits_[0] |= 0x00000002u;
+  _impl_._has_bits_[0] |= 0x00000001u;
   return _impl_.name_.Mutable( GetArena());
 }
 inline ::std::string* PROTOBUF_NULLABLE Session::release_name() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   // @@protoc_insertion_point(field_release:palm.portal.v1.Session.name)
-  if ((_impl_._has_bits_[0] & 0x00000002u) == 0) {
+  if ((_impl_._has_bits_[0] & 0x00000001u) == 0) {
     return nullptr;
   }
-  _impl_._has_bits_[0] &= ~0x00000002u;
+  _impl_._has_bits_[0] &= ~0x00000001u;
   auto* released = _impl_.name_.Release();
   if (::google::protobuf::internal::DebugHardenForceCopyDefaultString()) {
     _impl_.name_.Set("", GetArena());
@@ -17507,9 +17827,9 @@ inline ::std::string* PROTOBUF_NULLABLE Session::release_name() {
 inline void Session::set_allocated_name(::std::string* PROTOBUF_NULLABLE value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   if (value != nullptr) {
-    _impl_._has_bits_[0] |= 0x00000002u;
+    _impl_._has_bits_[0] |= 0x00000001u;
   } else {
-    _impl_._has_bits_[0] &= ~0x00000002u;
+    _impl_._has_bits_[0] &= ~0x00000001u;
   }
   _impl_.name_.SetAllocated(value, GetArena());
   if (::google::protobuf::internal::DebugHardenForceCopyDefaultString() && _impl_.name_.IsDefault()) {
@@ -17518,16 +17838,81 @@ inline void Session::set_allocated_name(::std::string* PROTOBUF_NULLABLE value) 
   // @@protoc_insertion_point(field_set_allocated:palm.portal.v1.Session.name)
 }
 
+// string avatar = 3;
+inline void Session::clear_avatar() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.avatar_.ClearToEmpty();
+  _impl_._has_bits_[0] &= ~0x00000002u;
+}
+inline const ::std::string& Session::avatar() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:palm.portal.v1.Session.avatar)
+  return _internal_avatar();
+}
+template <typename Arg_, typename... Args_>
+PROTOBUF_ALWAYS_INLINE void Session::set_avatar(Arg_&& arg, Args_... args) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_._has_bits_[0] |= 0x00000002u;
+  _impl_.avatar_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:palm.portal.v1.Session.avatar)
+}
+inline ::std::string* PROTOBUF_NONNULL Session::mutable_avatar()
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  ::std::string* _s = _internal_mutable_avatar();
+  // @@protoc_insertion_point(field_mutable:palm.portal.v1.Session.avatar)
+  return _s;
+}
+inline const ::std::string& Session::_internal_avatar() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.avatar_.Get();
+}
+inline void Session::_internal_set_avatar(const ::std::string& value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_._has_bits_[0] |= 0x00000002u;
+  _impl_.avatar_.Set(value, GetArena());
+}
+inline ::std::string* PROTOBUF_NONNULL Session::_internal_mutable_avatar() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_._has_bits_[0] |= 0x00000002u;
+  return _impl_.avatar_.Mutable( GetArena());
+}
+inline ::std::string* PROTOBUF_NULLABLE Session::release_avatar() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  // @@protoc_insertion_point(field_release:palm.portal.v1.Session.avatar)
+  if ((_impl_._has_bits_[0] & 0x00000002u) == 0) {
+    return nullptr;
+  }
+  _impl_._has_bits_[0] &= ~0x00000002u;
+  auto* released = _impl_.avatar_.Release();
+  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString()) {
+    _impl_.avatar_.Set("", GetArena());
+  }
+  return released;
+}
+inline void Session::set_allocated_avatar(::std::string* PROTOBUF_NULLABLE value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (value != nullptr) {
+    _impl_._has_bits_[0] |= 0x00000002u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000002u;
+  }
+  _impl_.avatar_.SetAllocated(value, GetArena());
+  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString() && _impl_.avatar_.IsDefault()) {
+    _impl_.avatar_.Set("", GetArena());
+  }
+  // @@protoc_insertion_point(field_set_allocated:palm.portal.v1.Session.avatar)
+}
+
 // .palm.portal.v1.UserIndexResponse.Item user = 8;
 inline bool Session::has_user() const {
-  bool value = (_impl_._has_bits_[0] & 0x00000008u) != 0;
+  bool value = (_impl_._has_bits_[0] & 0x00000010u) != 0;
   PROTOBUF_ASSUME(!value || _impl_.user_ != nullptr);
   return value;
 }
 inline void Session::clear_user() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   if (_impl_.user_ != nullptr) _impl_.user_->Clear();
-  _impl_._has_bits_[0] &= ~0x00000008u;
+  _impl_._has_bits_[0] &= ~0x00000010u;
 }
 inline const ::palm::portal::v1::UserIndexResponse_Item& Session::_internal_user() const {
   ::google::protobuf::internal::TSanRead(&_impl_);
@@ -17546,16 +17931,16 @@ inline void Session::unsafe_arena_set_allocated_user(
   }
   _impl_.user_ = reinterpret_cast<::palm::portal::v1::UserIndexResponse_Item*>(value);
   if (value != nullptr) {
-    _impl_._has_bits_[0] |= 0x00000008u;
+    _impl_._has_bits_[0] |= 0x00000010u;
   } else {
-    _impl_._has_bits_[0] &= ~0x00000008u;
+    _impl_._has_bits_[0] &= ~0x00000010u;
   }
   // @@protoc_insertion_point(field_unsafe_arena_set_allocated:palm.portal.v1.Session.user)
 }
 inline ::palm::portal::v1::UserIndexResponse_Item* PROTOBUF_NULLABLE Session::release_user() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
 
-  _impl_._has_bits_[0] &= ~0x00000008u;
+  _impl_._has_bits_[0] &= ~0x00000010u;
   ::palm::portal::v1::UserIndexResponse_Item* released = _impl_.user_;
   _impl_.user_ = nullptr;
   if (::google::protobuf::internal::DebugHardenForceCopyInRelease()) {
@@ -17575,7 +17960,7 @@ inline ::palm::portal::v1::UserIndexResponse_Item* PROTOBUF_NULLABLE Session::un
   ::google::protobuf::internal::TSanWrite(&_impl_);
   // @@protoc_insertion_point(field_release:palm.portal.v1.Session.user)
 
-  _impl_._has_bits_[0] &= ~0x00000008u;
+  _impl_._has_bits_[0] &= ~0x00000010u;
   ::palm::portal::v1::UserIndexResponse_Item* temp = _impl_.user_;
   _impl_.user_ = nullptr;
   return temp;
@@ -17590,7 +17975,7 @@ inline ::palm::portal::v1::UserIndexResponse_Item* PROTOBUF_NONNULL Session::_in
 }
 inline ::palm::portal::v1::UserIndexResponse_Item* PROTOBUF_NONNULL Session::mutable_user()
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  _impl_._has_bits_[0] |= 0x00000008u;
+  _impl_._has_bits_[0] |= 0x00000010u;
   ::palm::portal::v1::UserIndexResponse_Item* _msg = _internal_mutable_user();
   // @@protoc_insertion_point(field_mutable:palm.portal.v1.Session.user)
   return _msg;
@@ -17607,9 +17992,9 @@ inline void Session::set_allocated_user(::palm::portal::v1::UserIndexResponse_It
     if (message_arena != submessage_arena) {
       value = ::google::protobuf::internal::GetOwnedMessage(message_arena, value, submessage_arena);
     }
-    _impl_._has_bits_[0] |= 0x00000008u;
+    _impl_._has_bits_[0] |= 0x00000010u;
   } else {
-    _impl_._has_bits_[0] &= ~0x00000008u;
+    _impl_._has_bits_[0] &= ~0x00000010u;
   }
 
   _impl_.user_ = reinterpret_cast<::palm::portal::v1::UserIndexResponse_Item*>(value);

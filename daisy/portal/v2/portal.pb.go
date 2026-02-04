@@ -2049,9 +2049,9 @@ func (x *UserIndexLogResponse) GetPagination() *Pagination {
 
 type Session struct {
 	state         protoimpl.MessageState  `protogen:"open.v1"`
-	Type          Session_ProviderType    `protobuf:"varint,1,opt,name=type,proto3,enum=palm.portal.v1.Session_ProviderType" json:"type,omitempty"`
-	Sn            string                  `protobuf:"bytes,2,opt,name=sn,proto3" json:"sn,omitempty"`
-	Name          string                  `protobuf:"bytes,3,opt,name=name,proto3" json:"name,omitempty"`
+	Subject       *Session_Subject        `protobuf:"bytes,1,opt,name=subject,proto3" json:"subject,omitempty"`
+	Name          string                  `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
+	Avatar        string                  `protobuf:"bytes,3,opt,name=avatar,proto3" json:"avatar,omitempty"`
 	User          *UserIndexResponse_Item `protobuf:"bytes,8,opt,name=user,proto3" json:"user,omitempty"`
 	ClientIp      string                  `protobuf:"bytes,9,opt,name=client_ip,json=clientIp,proto3" json:"client_ip,omitempty"`
 	unknownFields protoimpl.UnknownFields
@@ -2088,23 +2088,23 @@ func (*Session) Descriptor() ([]byte, []int) {
 	return file_proto_portal_proto_rawDescGZIP(), []int{34}
 }
 
-func (x *Session) GetType() Session_ProviderType {
+func (x *Session) GetSubject() *Session_Subject {
 	if x != nil {
-		return x.Type
+		return x.Subject
 	}
-	return Session_EMAIL
-}
-
-func (x *Session) GetSn() string {
-	if x != nil {
-		return x.Sn
-	}
-	return ""
+	return nil
 }
 
 func (x *Session) GetName() string {
 	if x != nil {
 		return x.Name
+	}
+	return ""
+}
+
+func (x *Session) GetAvatar() string {
+	if x != nil {
+		return x.Avatar
 	}
 	return ""
 }
@@ -2759,6 +2759,58 @@ func (x *UserIndexLogResponse_Item) GetCreatedAt() *timestamppb.Timestamp {
 	return nil
 }
 
+type Session_Subject struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Type          Session_ProviderType   `protobuf:"varint,1,opt,name=type,proto3,enum=palm.portal.v1.Session_ProviderType" json:"type,omitempty"`
+	Sn            string                 `protobuf:"bytes,2,opt,name=sn,proto3" json:"sn,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *Session_Subject) Reset() {
+	*x = Session_Subject{}
+	mi := &file_proto_portal_proto_msgTypes[42]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *Session_Subject) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*Session_Subject) ProtoMessage() {}
+
+func (x *Session_Subject) ProtoReflect() protoreflect.Message {
+	mi := &file_proto_portal_proto_msgTypes[42]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use Session_Subject.ProtoReflect.Descriptor instead.
+func (*Session_Subject) Descriptor() ([]byte, []int) {
+	return file_proto_portal_proto_rawDescGZIP(), []int{34, 0}
+}
+
+func (x *Session_Subject) GetType() Session_ProviderType {
+	if x != nil {
+		return x.Type
+	}
+	return Session_EMAIL
+}
+
+func (x *Session_Subject) GetSn() string {
+	if x != nil {
+		return x.Sn
+	}
+	return ""
+}
+
 var File_proto_portal_proto protoreflect.FileDescriptor
 
 const file_proto_portal_proto_rawDesc = "" +
@@ -2969,13 +3021,16 @@ const file_proto_portal_proto_rawDesc = "" +
 	"\x05DEBUG\x10\x00\x12\b\n" +
 	"\x04INFO\x10\x01\x12\v\n" +
 	"\aWARNING\x10\x02\x12\t\n" +
-	"\x05ERROR\x10\x03\"\xa5\x02\n" +
-	"\aSession\x128\n" +
-	"\x04type\x18\x01 \x01(\x0e2$.palm.portal.v1.Session.ProviderTypeR\x04type\x12\x0e\n" +
-	"\x02sn\x18\x02 \x01(\tR\x02sn\x12\x12\n" +
-	"\x04name\x18\x03 \x01(\tR\x04name\x12:\n" +
+	"\x05ERROR\x10\x03\"\x83\x03\n" +
+	"\aSession\x129\n" +
+	"\asubject\x18\x01 \x01(\v2\x1f.palm.portal.v1.Session.SubjectR\asubject\x12\x12\n" +
+	"\x04name\x18\x02 \x01(\tR\x04name\x12\x16\n" +
+	"\x06avatar\x18\x03 \x01(\tR\x06avatar\x12:\n" +
 	"\x04user\x18\b \x01(\v2&.palm.portal.v1.UserIndexResponse.ItemR\x04user\x12\x1b\n" +
-	"\tclient_ip\x18\t \x01(\tR\bclientIp\"c\n" +
+	"\tclient_ip\x18\t \x01(\tR\bclientIp\x1aS\n" +
+	"\aSubject\x128\n" +
+	"\x04type\x18\x01 \x01(\x0e2$.palm.portal.v1.Session.ProviderTypeR\x04type\x12\x0e\n" +
+	"\x02sn\x18\x02 \x01(\tR\x02sn\"c\n" +
 	"\fProviderType\x12\t\n" +
 	"\x05EMAIL\x10\x00\x12\t\n" +
 	"\x05PHONE\x10\x01\x12\x11\n" +
@@ -3037,7 +3092,7 @@ func file_proto_portal_proto_rawDescGZIP() []byte {
 }
 
 var file_proto_portal_proto_enumTypes = make([]protoimpl.EnumInfo, 4)
-var file_proto_portal_proto_msgTypes = make([]protoimpl.MessageInfo, 42)
+var file_proto_portal_proto_msgTypes = make([]protoimpl.MessageInfo, 43)
 var file_proto_portal_proto_goTypes = []any{
 	(RichText_Editor)(0),                       // 0: palm.portal.v1.RichText.Editor
 	(Location_Map)(0),                          // 1: palm.portal.v1.Location.Map
@@ -3085,9 +3140,10 @@ var file_proto_portal_proto_goTypes = []any{
 	(*UserIndexResponse_Item)(nil),             // 43: palm.portal.v1.UserIndexResponse.Item
 	(*UserIndexAttachmentResponse_Item)(nil),   // 44: palm.portal.v1.UserIndexAttachmentResponse.Item
 	(*UserIndexLogResponse_Item)(nil),          // 45: palm.portal.v1.UserIndexLogResponse.Item
-	(*durationpb.Duration)(nil),                // 46: google.protobuf.Duration
-	(*timestamppb.Timestamp)(nil),              // 47: google.protobuf.Timestamp
-	(*emptypb.Empty)(nil),                      // 48: google.protobuf.Empty
+	(*Session_Subject)(nil),                    // 46: palm.portal.v1.Session.Subject
+	(*durationpb.Duration)(nil),                // 47: google.protobuf.Duration
+	(*timestamppb.Timestamp)(nil),              // 48: google.protobuf.Timestamp
+	(*emptypb.Empty)(nil),                      // 49: google.protobuf.Empty
 }
 var file_proto_portal_proto_depIdxs = []int32{
 	5,  // 0: palm.portal.v1.Pagination.current:type_name -> palm.portal.v1.Page
@@ -3103,100 +3159,101 @@ var file_proto_portal_proto_depIdxs = []int32{
 	6,  // 10: palm.portal.v1.EmailUserIndexResponse.pagination:type_name -> palm.portal.v1.Pagination
 	43, // 11: palm.portal.v1.UserIndexResponse.items:type_name -> palm.portal.v1.UserIndexResponse.Item
 	6,  // 12: palm.portal.v1.UserIndexResponse.pagination:type_name -> palm.portal.v1.Pagination
-	46, // 13: palm.portal.v1.UserShowAttachmentRequest.ttl:type_name -> google.protobuf.Duration
-	46, // 14: palm.portal.v1.UserCreateAttachmentRequest.ttl:type_name -> google.protobuf.Duration
+	47, // 13: palm.portal.v1.UserShowAttachmentRequest.ttl:type_name -> google.protobuf.Duration
+	47, // 14: palm.portal.v1.UserCreateAttachmentRequest.ttl:type_name -> google.protobuf.Duration
 	44, // 15: palm.portal.v1.UserCreateAttachmentUploadResponse.item:type_name -> palm.portal.v1.UserIndexAttachmentResponse.Item
 	44, // 16: palm.portal.v1.UserIndexAttachmentResponse.items:type_name -> palm.portal.v1.UserIndexAttachmentResponse.Item
 	6,  // 17: palm.portal.v1.UserIndexAttachmentResponse.pagination:type_name -> palm.portal.v1.Pagination
 	45, // 18: palm.portal.v1.UserIndexLogResponse.items:type_name -> palm.portal.v1.UserIndexLogResponse.Item
 	6,  // 19: palm.portal.v1.UserIndexLogResponse.pagination:type_name -> palm.portal.v1.Pagination
-	3,  // 20: palm.portal.v1.Session.type:type_name -> palm.portal.v1.Session.ProviderType
+	46, // 20: palm.portal.v1.Session.subject:type_name -> palm.portal.v1.Session.Subject
 	43, // 21: palm.portal.v1.Session.user:type_name -> palm.portal.v1.UserIndexResponse.Item
-	47, // 22: palm.portal.v1.LocaleIndexResponse.Item.updated_at:type_name -> google.protobuf.Timestamp
-	47, // 23: palm.portal.v1.EmailUserIndexResponse.Item.confirmed_at:type_name -> google.protobuf.Timestamp
-	47, // 24: palm.portal.v1.EmailUserIndexResponse.Item.deleted_at:type_name -> google.protobuf.Timestamp
-	47, // 25: palm.portal.v1.EmailUserIndexResponse.Item.updated_at:type_name -> google.protobuf.Timestamp
+	48, // 22: palm.portal.v1.LocaleIndexResponse.Item.updated_at:type_name -> google.protobuf.Timestamp
+	48, // 23: palm.portal.v1.EmailUserIndexResponse.Item.confirmed_at:type_name -> google.protobuf.Timestamp
+	48, // 24: palm.portal.v1.EmailUserIndexResponse.Item.deleted_at:type_name -> google.protobuf.Timestamp
+	48, // 25: palm.portal.v1.EmailUserIndexResponse.Item.updated_at:type_name -> google.protobuf.Timestamp
 	43, // 26: palm.portal.v1.EmailUserIndexResponse.Item.user:type_name -> palm.portal.v1.UserIndexResponse.Item
-	47, // 27: palm.portal.v1.UserIndexResponse.Item.current_signed_in_at:type_name -> google.protobuf.Timestamp
-	47, // 28: palm.portal.v1.UserIndexResponse.Item.last_signed_in_at:type_name -> google.protobuf.Timestamp
-	47, // 29: palm.portal.v1.UserIndexResponse.Item.locked_at:type_name -> google.protobuf.Timestamp
-	47, // 30: palm.portal.v1.UserIndexResponse.Item.deleted_at:type_name -> google.protobuf.Timestamp
-	47, // 31: palm.portal.v1.UserIndexResponse.Item.updated_at:type_name -> google.protobuf.Timestamp
-	47, // 32: palm.portal.v1.UserIndexAttachmentResponse.Item.uploaded_at:type_name -> google.protobuf.Timestamp
-	47, // 33: palm.portal.v1.UserIndexAttachmentResponse.Item.updated_at:type_name -> google.protobuf.Timestamp
+	48, // 27: palm.portal.v1.UserIndexResponse.Item.current_signed_in_at:type_name -> google.protobuf.Timestamp
+	48, // 28: palm.portal.v1.UserIndexResponse.Item.last_signed_in_at:type_name -> google.protobuf.Timestamp
+	48, // 29: palm.portal.v1.UserIndexResponse.Item.locked_at:type_name -> google.protobuf.Timestamp
+	48, // 30: palm.portal.v1.UserIndexResponse.Item.deleted_at:type_name -> google.protobuf.Timestamp
+	48, // 31: palm.portal.v1.UserIndexResponse.Item.updated_at:type_name -> google.protobuf.Timestamp
+	48, // 32: palm.portal.v1.UserIndexAttachmentResponse.Item.uploaded_at:type_name -> google.protobuf.Timestamp
+	48, // 33: palm.portal.v1.UserIndexAttachmentResponse.Item.updated_at:type_name -> google.protobuf.Timestamp
 	2,  // 34: palm.portal.v1.UserIndexLogResponse.Item.level:type_name -> palm.portal.v1.UserIndexLogResponse.Item.Level
-	47, // 35: palm.portal.v1.UserIndexLogResponse.Item.created_at:type_name -> google.protobuf.Timestamp
-	5,  // 36: palm.portal.v1.Locale.Index:input_type -> palm.portal.v1.Page
-	10, // 37: palm.portal.v1.Locale.Set:input_type -> palm.portal.v1.LocaleSetRequest
-	11, // 38: palm.portal.v1.Locale.ByLang:input_type -> palm.portal.v1.LocaleByLangRequest
-	4,  // 39: palm.portal.v1.Locale.Destroy:input_type -> palm.portal.v1.IdRequest
-	48, // 40: palm.portal.v1.Site.Currencies:input_type -> google.protobuf.Empty
-	5,  // 41: palm.portal.v1.EmailUser.Index:input_type -> palm.portal.v1.Page
-	4,  // 42: palm.portal.v1.EmailUser.Destroy:input_type -> palm.portal.v1.IdRequest
-	4,  // 43: palm.portal.v1.EmailUser.Confirm:input_type -> palm.portal.v1.IdRequest
-	27, // 44: palm.portal.v1.EmailUser.SetPassword:input_type -> palm.portal.v1.EmailUserSetPasswordRequest
-	16, // 45: palm.portal.v1.EmailUser.SignUp:input_type -> palm.portal.v1.EmailUserSignUpRequest
-	15, // 46: palm.portal.v1.EmailUser.SignIn:input_type -> palm.portal.v1.EmailUserSignInRequest
-	17, // 47: palm.portal.v1.EmailUser.UnlockByEmail:input_type -> palm.portal.v1.EmailUserUnlockByEmailRequest
-	18, // 48: palm.portal.v1.EmailUser.UnlockByToken:input_type -> palm.portal.v1.EmailUserUnlockByTokenRequest
-	19, // 49: palm.portal.v1.EmailUser.ConfirmByEmail:input_type -> palm.portal.v1.EmailUserConfirmByEmailRequest
-	20, // 50: palm.portal.v1.EmailUser.ConfirmByToken:input_type -> palm.portal.v1.EmailUserConfirmByTokenRequest
-	21, // 51: palm.portal.v1.EmailUser.ForgotPassword:input_type -> palm.portal.v1.EmailUserForgotPasswordRequest
-	22, // 52: palm.portal.v1.EmailUser.ResetPassword:input_type -> palm.portal.v1.EmailUserResetPasswordRequest
-	23, // 53: palm.portal.v1.EmailUser.SetName:input_type -> palm.portal.v1.EmailUserSetNameRequest
-	24, // 54: palm.portal.v1.EmailUser.SetAvatar:input_type -> palm.portal.v1.EmailUserSetAvatarRequest
-	25, // 55: palm.portal.v1.EmailUser.ChangePassword:input_type -> palm.portal.v1.EmailUserChangePasswordRequest
-	5,  // 56: palm.portal.v1.User.Index:input_type -> palm.portal.v1.Page
-	4,  // 57: palm.portal.v1.User.Destroy:input_type -> palm.portal.v1.IdRequest
-	4,  // 58: palm.portal.v1.User.Lock:input_type -> palm.portal.v1.IdRequest
-	4,  // 59: palm.portal.v1.User.Unlock:input_type -> palm.portal.v1.IdRequest
-	5,  // 60: palm.portal.v1.User.IndexAttachment:input_type -> palm.portal.v1.Page
-	34, // 61: palm.portal.v1.User.CreateAttachment:input_type -> palm.portal.v1.UserCreateAttachmentRequest
-	32, // 62: palm.portal.v1.User.ShowAttachment:input_type -> palm.portal.v1.UserShowAttachmentRequest
-	4,  // 63: palm.portal.v1.User.SetAttachmentUploaded:input_type -> palm.portal.v1.IdRequest
-	31, // 64: palm.portal.v1.User.SetAttachmentTitle:input_type -> palm.portal.v1.UserSetAttachmentTitleRequest
-	4,  // 65: palm.portal.v1.User.DestroyAttachment:input_type -> palm.portal.v1.IdRequest
-	5,  // 66: palm.portal.v1.User.IndexLog:input_type -> palm.portal.v1.Page
-	28, // 67: palm.portal.v1.User.SetLang:input_type -> palm.portal.v1.UserSetLangRequest
-	29, // 68: palm.portal.v1.User.SetTimezone:input_type -> palm.portal.v1.UserSetTimezoneRequest
-	13, // 69: palm.portal.v1.Locale.Index:output_type -> palm.portal.v1.LocaleIndexResponse
-	48, // 70: palm.portal.v1.Locale.Set:output_type -> google.protobuf.Empty
-	12, // 71: palm.portal.v1.Locale.ByLang:output_type -> palm.portal.v1.LocaleByLangResponse
-	48, // 72: palm.portal.v1.Locale.Destroy:output_type -> google.protobuf.Empty
-	14, // 73: palm.portal.v1.Site.Currencies:output_type -> palm.portal.v1.CurrenciesResponse
-	26, // 74: palm.portal.v1.EmailUser.Index:output_type -> palm.portal.v1.EmailUserIndexResponse
-	48, // 75: palm.portal.v1.EmailUser.Destroy:output_type -> google.protobuf.Empty
-	48, // 76: palm.portal.v1.EmailUser.Confirm:output_type -> google.protobuf.Empty
-	48, // 77: palm.portal.v1.EmailUser.SetPassword:output_type -> google.protobuf.Empty
-	48, // 78: palm.portal.v1.EmailUser.SignUp:output_type -> google.protobuf.Empty
-	39, // 79: palm.portal.v1.EmailUser.SignIn:output_type -> palm.portal.v1.UserSignInResponse
-	48, // 80: palm.portal.v1.EmailUser.UnlockByEmail:output_type -> google.protobuf.Empty
-	48, // 81: palm.portal.v1.EmailUser.UnlockByToken:output_type -> google.protobuf.Empty
-	48, // 82: palm.portal.v1.EmailUser.ConfirmByEmail:output_type -> google.protobuf.Empty
-	48, // 83: palm.portal.v1.EmailUser.ConfirmByToken:output_type -> google.protobuf.Empty
-	48, // 84: palm.portal.v1.EmailUser.ForgotPassword:output_type -> google.protobuf.Empty
-	48, // 85: palm.portal.v1.EmailUser.ResetPassword:output_type -> google.protobuf.Empty
-	48, // 86: palm.portal.v1.EmailUser.SetName:output_type -> google.protobuf.Empty
-	48, // 87: palm.portal.v1.EmailUser.SetAvatar:output_type -> google.protobuf.Empty
-	48, // 88: palm.portal.v1.EmailUser.ChangePassword:output_type -> google.protobuf.Empty
-	30, // 89: palm.portal.v1.User.Index:output_type -> palm.portal.v1.UserIndexResponse
-	48, // 90: palm.portal.v1.User.Destroy:output_type -> google.protobuf.Empty
-	48, // 91: palm.portal.v1.User.Lock:output_type -> google.protobuf.Empty
-	48, // 92: palm.portal.v1.User.Unlock:output_type -> google.protobuf.Empty
-	36, // 93: palm.portal.v1.User.IndexAttachment:output_type -> palm.portal.v1.UserIndexAttachmentResponse
-	35, // 94: palm.portal.v1.User.CreateAttachment:output_type -> palm.portal.v1.UserCreateAttachmentUploadResponse
-	33, // 95: palm.portal.v1.User.ShowAttachment:output_type -> palm.portal.v1.UserShowAttachmentResponse
-	48, // 96: palm.portal.v1.User.SetAttachmentUploaded:output_type -> google.protobuf.Empty
-	48, // 97: palm.portal.v1.User.SetAttachmentTitle:output_type -> google.protobuf.Empty
-	48, // 98: palm.portal.v1.User.DestroyAttachment:output_type -> google.protobuf.Empty
-	37, // 99: palm.portal.v1.User.IndexLog:output_type -> palm.portal.v1.UserIndexLogResponse
-	48, // 100: palm.portal.v1.User.SetLang:output_type -> google.protobuf.Empty
-	48, // 101: palm.portal.v1.User.SetTimezone:output_type -> google.protobuf.Empty
-	69, // [69:102] is the sub-list for method output_type
-	36, // [36:69] is the sub-list for method input_type
-	36, // [36:36] is the sub-list for extension type_name
-	36, // [36:36] is the sub-list for extension extendee
-	0,  // [0:36] is the sub-list for field type_name
+	48, // 35: palm.portal.v1.UserIndexLogResponse.Item.created_at:type_name -> google.protobuf.Timestamp
+	3,  // 36: palm.portal.v1.Session.Subject.type:type_name -> palm.portal.v1.Session.ProviderType
+	5,  // 37: palm.portal.v1.Locale.Index:input_type -> palm.portal.v1.Page
+	10, // 38: palm.portal.v1.Locale.Set:input_type -> palm.portal.v1.LocaleSetRequest
+	11, // 39: palm.portal.v1.Locale.ByLang:input_type -> palm.portal.v1.LocaleByLangRequest
+	4,  // 40: palm.portal.v1.Locale.Destroy:input_type -> palm.portal.v1.IdRequest
+	49, // 41: palm.portal.v1.Site.Currencies:input_type -> google.protobuf.Empty
+	5,  // 42: palm.portal.v1.EmailUser.Index:input_type -> palm.portal.v1.Page
+	4,  // 43: palm.portal.v1.EmailUser.Destroy:input_type -> palm.portal.v1.IdRequest
+	4,  // 44: palm.portal.v1.EmailUser.Confirm:input_type -> palm.portal.v1.IdRequest
+	27, // 45: palm.portal.v1.EmailUser.SetPassword:input_type -> palm.portal.v1.EmailUserSetPasswordRequest
+	16, // 46: palm.portal.v1.EmailUser.SignUp:input_type -> palm.portal.v1.EmailUserSignUpRequest
+	15, // 47: palm.portal.v1.EmailUser.SignIn:input_type -> palm.portal.v1.EmailUserSignInRequest
+	17, // 48: palm.portal.v1.EmailUser.UnlockByEmail:input_type -> palm.portal.v1.EmailUserUnlockByEmailRequest
+	18, // 49: palm.portal.v1.EmailUser.UnlockByToken:input_type -> palm.portal.v1.EmailUserUnlockByTokenRequest
+	19, // 50: palm.portal.v1.EmailUser.ConfirmByEmail:input_type -> palm.portal.v1.EmailUserConfirmByEmailRequest
+	20, // 51: palm.portal.v1.EmailUser.ConfirmByToken:input_type -> palm.portal.v1.EmailUserConfirmByTokenRequest
+	21, // 52: palm.portal.v1.EmailUser.ForgotPassword:input_type -> palm.portal.v1.EmailUserForgotPasswordRequest
+	22, // 53: palm.portal.v1.EmailUser.ResetPassword:input_type -> palm.portal.v1.EmailUserResetPasswordRequest
+	23, // 54: palm.portal.v1.EmailUser.SetName:input_type -> palm.portal.v1.EmailUserSetNameRequest
+	24, // 55: palm.portal.v1.EmailUser.SetAvatar:input_type -> palm.portal.v1.EmailUserSetAvatarRequest
+	25, // 56: palm.portal.v1.EmailUser.ChangePassword:input_type -> palm.portal.v1.EmailUserChangePasswordRequest
+	5,  // 57: palm.portal.v1.User.Index:input_type -> palm.portal.v1.Page
+	4,  // 58: palm.portal.v1.User.Destroy:input_type -> palm.portal.v1.IdRequest
+	4,  // 59: palm.portal.v1.User.Lock:input_type -> palm.portal.v1.IdRequest
+	4,  // 60: palm.portal.v1.User.Unlock:input_type -> palm.portal.v1.IdRequest
+	5,  // 61: palm.portal.v1.User.IndexAttachment:input_type -> palm.portal.v1.Page
+	34, // 62: palm.portal.v1.User.CreateAttachment:input_type -> palm.portal.v1.UserCreateAttachmentRequest
+	32, // 63: palm.portal.v1.User.ShowAttachment:input_type -> palm.portal.v1.UserShowAttachmentRequest
+	4,  // 64: palm.portal.v1.User.SetAttachmentUploaded:input_type -> palm.portal.v1.IdRequest
+	31, // 65: palm.portal.v1.User.SetAttachmentTitle:input_type -> palm.portal.v1.UserSetAttachmentTitleRequest
+	4,  // 66: palm.portal.v1.User.DestroyAttachment:input_type -> palm.portal.v1.IdRequest
+	5,  // 67: palm.portal.v1.User.IndexLog:input_type -> palm.portal.v1.Page
+	28, // 68: palm.portal.v1.User.SetLang:input_type -> palm.portal.v1.UserSetLangRequest
+	29, // 69: palm.portal.v1.User.SetTimezone:input_type -> palm.portal.v1.UserSetTimezoneRequest
+	13, // 70: palm.portal.v1.Locale.Index:output_type -> palm.portal.v1.LocaleIndexResponse
+	49, // 71: palm.portal.v1.Locale.Set:output_type -> google.protobuf.Empty
+	12, // 72: palm.portal.v1.Locale.ByLang:output_type -> palm.portal.v1.LocaleByLangResponse
+	49, // 73: palm.portal.v1.Locale.Destroy:output_type -> google.protobuf.Empty
+	14, // 74: palm.portal.v1.Site.Currencies:output_type -> palm.portal.v1.CurrenciesResponse
+	26, // 75: palm.portal.v1.EmailUser.Index:output_type -> palm.portal.v1.EmailUserIndexResponse
+	49, // 76: palm.portal.v1.EmailUser.Destroy:output_type -> google.protobuf.Empty
+	49, // 77: palm.portal.v1.EmailUser.Confirm:output_type -> google.protobuf.Empty
+	49, // 78: palm.portal.v1.EmailUser.SetPassword:output_type -> google.protobuf.Empty
+	49, // 79: palm.portal.v1.EmailUser.SignUp:output_type -> google.protobuf.Empty
+	39, // 80: palm.portal.v1.EmailUser.SignIn:output_type -> palm.portal.v1.UserSignInResponse
+	49, // 81: palm.portal.v1.EmailUser.UnlockByEmail:output_type -> google.protobuf.Empty
+	49, // 82: palm.portal.v1.EmailUser.UnlockByToken:output_type -> google.protobuf.Empty
+	49, // 83: palm.portal.v1.EmailUser.ConfirmByEmail:output_type -> google.protobuf.Empty
+	49, // 84: palm.portal.v1.EmailUser.ConfirmByToken:output_type -> google.protobuf.Empty
+	49, // 85: palm.portal.v1.EmailUser.ForgotPassword:output_type -> google.protobuf.Empty
+	49, // 86: palm.portal.v1.EmailUser.ResetPassword:output_type -> google.protobuf.Empty
+	49, // 87: palm.portal.v1.EmailUser.SetName:output_type -> google.protobuf.Empty
+	49, // 88: palm.portal.v1.EmailUser.SetAvatar:output_type -> google.protobuf.Empty
+	49, // 89: palm.portal.v1.EmailUser.ChangePassword:output_type -> google.protobuf.Empty
+	30, // 90: palm.portal.v1.User.Index:output_type -> palm.portal.v1.UserIndexResponse
+	49, // 91: palm.portal.v1.User.Destroy:output_type -> google.protobuf.Empty
+	49, // 92: palm.portal.v1.User.Lock:output_type -> google.protobuf.Empty
+	49, // 93: palm.portal.v1.User.Unlock:output_type -> google.protobuf.Empty
+	36, // 94: palm.portal.v1.User.IndexAttachment:output_type -> palm.portal.v1.UserIndexAttachmentResponse
+	35, // 95: palm.portal.v1.User.CreateAttachment:output_type -> palm.portal.v1.UserCreateAttachmentUploadResponse
+	33, // 96: palm.portal.v1.User.ShowAttachment:output_type -> palm.portal.v1.UserShowAttachmentResponse
+	49, // 97: palm.portal.v1.User.SetAttachmentUploaded:output_type -> google.protobuf.Empty
+	49, // 98: palm.portal.v1.User.SetAttachmentTitle:output_type -> google.protobuf.Empty
+	49, // 99: palm.portal.v1.User.DestroyAttachment:output_type -> google.protobuf.Empty
+	37, // 100: palm.portal.v1.User.IndexLog:output_type -> palm.portal.v1.UserIndexLogResponse
+	49, // 101: palm.portal.v1.User.SetLang:output_type -> google.protobuf.Empty
+	49, // 102: palm.portal.v1.User.SetTimezone:output_type -> google.protobuf.Empty
+	70, // [70:103] is the sub-list for method output_type
+	37, // [37:70] is the sub-list for method input_type
+	37, // [37:37] is the sub-list for extension type_name
+	37, // [37:37] is the sub-list for extension extendee
+	0,  // [0:37] is the sub-list for field type_name
 }
 
 func init() { file_proto_portal_proto_init() }
@@ -3220,7 +3277,7 @@ func file_proto_portal_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_proto_portal_proto_rawDesc), len(file_proto_portal_proto_rawDesc)),
 			NumEnums:      4,
-			NumMessages:   42,
+			NumMessages:   43,
 			NumExtensions: 0,
 			NumServices:   4,
 		},

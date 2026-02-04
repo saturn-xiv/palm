@@ -11,39 +11,43 @@ public interface SessionOrBuilder extends
     com.google.protobuf.MessageOrBuilder {
 
   /**
-   * <code>.palm.portal.v1.Session.ProviderType type = 1;</code>
-   * @return The enum numeric value on the wire for type.
+   * <code>.palm.portal.v1.Session.Subject subject = 1;</code>
+   * @return Whether the subject field is set.
    */
-  int getTypeValue();
+  boolean hasSubject();
   /**
-   * <code>.palm.portal.v1.Session.ProviderType type = 1;</code>
-   * @return The type.
+   * <code>.palm.portal.v1.Session.Subject subject = 1;</code>
+   * @return The subject.
    */
-  com.github.saturn_xiv.palm.plugins.portal.v1.Session.ProviderType getType();
+  com.github.saturn_xiv.palm.plugins.portal.v1.Session.Subject getSubject();
+  /**
+   * <code>.palm.portal.v1.Session.Subject subject = 1;</code>
+   */
+  com.github.saturn_xiv.palm.plugins.portal.v1.Session.SubjectOrBuilder getSubjectOrBuilder();
 
   /**
-   * <code>string sn = 2;</code>
-   * @return The sn.
-   */
-  java.lang.String getSn();
-  /**
-   * <code>string sn = 2;</code>
-   * @return The bytes for sn.
-   */
-  com.google.protobuf.ByteString
-      getSnBytes();
-
-  /**
-   * <code>string name = 3;</code>
+   * <code>string name = 2;</code>
    * @return The name.
    */
   java.lang.String getName();
   /**
-   * <code>string name = 3;</code>
+   * <code>string name = 2;</code>
    * @return The bytes for name.
    */
   com.google.protobuf.ByteString
       getNameBytes();
+
+  /**
+   * <code>string avatar = 3;</code>
+   * @return The avatar.
+   */
+  java.lang.String getAvatar();
+  /**
+   * <code>string avatar = 3;</code>
+   * @return The bytes for avatar.
+   */
+  com.google.protobuf.ByteString
+      getAvatarBytes();
 
   /**
    * <code>.palm.portal.v1.UserIndexResponse.Item user = 8;</code>

@@ -320,9 +320,13 @@ message Session {
     WECHAT_OAUTH2       = 3;
     WECHAT_MINI_PROGRAM = 4;
   }
-  ProviderType           type      = 1;
-  string                 sn        = 2;
-  string                 name      = 3;
+  message Subject{
+    ProviderType type = 1;
+    string       sn   = 2;
+  }
+  Subject                subject   = 1;
+  string                 name      = 2;
+  string                 avatar    = 3;
   UserIndexResponse.Item user      = 8;
   string                 client_ip = 9;
 }

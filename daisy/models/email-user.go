@@ -38,6 +38,35 @@ func (p *EmailUser) VerifyPassword(hmac *crypto.Hmac, password string) error {
 	return hmac.Verify(tmp, []byte(password))
 }
 
+type setPasswordForEmailUserForm struct {
+	Password string `validate:"required,gte=6,lte=31"`
+}
+
+func NewSetPasswordForEmailUserForm(password string) *setPasswordForEmailUserForm {
+	return &setPasswordForEmailUserForm{
+		Password: password,
+	}
+}
+
+func (p *setPasswordForEmailUserForm) Execute(db *gorm.DB, user *EmailUser, hmac *crypto.Hmac) error {
+	if err := gl_validate.Struct(p); err != nil {
+		return err
+	}
+	password, err := compute_password(hmac, p.Password)
+	if err != nil {
+		return err
+	}
+
+	if err = db.Model(&user).Updates(map[string]interface{}{
+		"password": password,
+		"version":  user.Version + 1,
+	}).Error; err != nil {
+		return err
+	}
+
+	return nil
+}
+
 type resetPasswordForEmailUserForm struct {
 	Email    string `validate:"required,gte=5,lte=31,email"`
 	Password string `validate:"required,gte=6,lte=31"`

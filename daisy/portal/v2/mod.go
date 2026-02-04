@@ -19,20 +19,20 @@ func Plugin() string {
 	return reflect.TypeOf((*Session)(nil)).Elem().PkgPath()
 }
 
-func (p *Session) ToString() (string, error) {
+func (p *Session_Subject) ToString() (string, error) {
 	buf, err := proto.Marshal(p)
 	if err != nil {
 		return "", err
 	}
-	return base64.URLEncoding.EncodeToString(buf), nil
+	return base64.RawURLEncoding.EncodeToString(buf), nil
 }
 
-func NewSession(s string) (*Session, error) {
-	tmp, err := base64.URLEncoding.DecodeString(s)
+func NewSubject(s string) (*Session_Subject, error) {
+	tmp, err := base64.RawURLEncoding.DecodeString(s)
 	if err != nil {
 		return nil, err
 	}
-	var it Session
+	var it Session_Subject
 	if err := proto.Unmarshal(tmp, &it); err != nil {
 		return nil, err
 	}

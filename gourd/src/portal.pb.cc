@@ -164,6 +164,34 @@ struct UserSetAttachmentTitleRequestDefaultTypeInternal {
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
     PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 UserSetAttachmentTitleRequestDefaultTypeInternal _UserSetAttachmentTitleRequest_default_instance_;
 
+inline constexpr Session_Subject::Impl_::Impl_(
+    ::_pbi::ConstantInitialized) noexcept
+      : _cached_size_{0},
+        sn_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        type_{static_cast< ::palm::portal::v1::Session_ProviderType >(0)} {}
+
+template <typename>
+PROTOBUF_CONSTEXPR Session_Subject::Session_Subject(::_pbi::ConstantInitialized)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::Message(Session_Subject_class_data_.base()),
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::Message(),
+#endif  // PROTOBUF_CUSTOM_VTABLE
+      _impl_(::_pbi::ConstantInitialized()) {
+}
+struct Session_SubjectDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR Session_SubjectDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~Session_SubjectDefaultTypeInternal() {}
+  union {
+    Session_Subject _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 Session_SubjectDefaultTypeInternal _Session_Subject_default_instance_;
+
 inline constexpr Page::Impl_::Impl_(
     ::_pbi::ConstantInitialized) noexcept
       : _cached_size_{0},
@@ -1138,17 +1166,17 @@ PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
 inline constexpr Session::Impl_::Impl_(
     ::_pbi::ConstantInitialized) noexcept
       : _cached_size_{0},
-        sn_(
+        name_(
             &::google::protobuf::internal::fixed_address_empty_string,
             ::_pbi::ConstantInitialized()),
-        name_(
+        avatar_(
             &::google::protobuf::internal::fixed_address_empty_string,
             ::_pbi::ConstantInitialized()),
         client_ip_(
             &::google::protobuf::internal::fixed_address_empty_string,
             ::_pbi::ConstantInitialized()),
-        user_{nullptr},
-        type_{static_cast< ::palm::portal::v1::Session_ProviderType >(0)} {}
+        subject_{nullptr},
+        user_{nullptr} {}
 
 template <typename>
 PROTOBUF_CONSTEXPR Session::Session(::_pbi::ConstantInitialized)
@@ -1645,17 +1673,24 @@ const ::uint32_t
         ~0u,
         0,
         0x081, // bitmap
+        PROTOBUF_FIELD_OFFSET(::palm::portal::v1::Session_Subject, _impl_._has_bits_),
+        5, // hasbit index offset
+        PROTOBUF_FIELD_OFFSET(::palm::portal::v1::Session_Subject, _impl_.type_),
+        PROTOBUF_FIELD_OFFSET(::palm::portal::v1::Session_Subject, _impl_.sn_),
+        1,
+        0,
+        0x081, // bitmap
         PROTOBUF_FIELD_OFFSET(::palm::portal::v1::Session, _impl_._has_bits_),
         8, // hasbit index offset
-        PROTOBUF_FIELD_OFFSET(::palm::portal::v1::Session, _impl_.type_),
-        PROTOBUF_FIELD_OFFSET(::palm::portal::v1::Session, _impl_.sn_),
+        PROTOBUF_FIELD_OFFSET(::palm::portal::v1::Session, _impl_.subject_),
         PROTOBUF_FIELD_OFFSET(::palm::portal::v1::Session, _impl_.name_),
+        PROTOBUF_FIELD_OFFSET(::palm::portal::v1::Session, _impl_.avatar_),
         PROTOBUF_FIELD_OFFSET(::palm::portal::v1::Session, _impl_.user_),
         PROTOBUF_FIELD_OFFSET(::palm::portal::v1::Session, _impl_.client_ip_),
-        4,
+        3,
         0,
         1,
-        3,
+        4,
         2,
         0x081, // bitmap
         PROTOBUF_FIELD_OFFSET(::palm::portal::v1::UserSignInResponse, _impl_._has_bits_),
@@ -1706,8 +1741,9 @@ static const ::_pbi::MigrationSchema
         {321, sizeof(::palm::portal::v1::UserIndexAttachmentResponse)},
         {328, sizeof(::palm::portal::v1::UserIndexLogResponse_Item)},
         {343, sizeof(::palm::portal::v1::UserIndexLogResponse)},
-        {350, sizeof(::palm::portal::v1::Session)},
-        {363, sizeof(::palm::portal::v1::UserSignInResponse)},
+        {350, sizeof(::palm::portal::v1::Session_Subject)},
+        {357, sizeof(::palm::portal::v1::Session)},
+        {370, sizeof(::palm::portal::v1::UserSignInResponse)},
 };
 static const ::_pb::Message* PROTOBUF_NONNULL const file_default_instances[] = {
     &::palm::portal::v1::_IdRequest_default_instance_._instance,
@@ -1750,6 +1786,7 @@ static const ::_pb::Message* PROTOBUF_NONNULL const file_default_instances[] = {
     &::palm::portal::v1::_UserIndexAttachmentResponse_default_instance_._instance,
     &::palm::portal::v1::_UserIndexLogResponse_Item_default_instance_._instance,
     &::palm::portal::v1::_UserIndexLogResponse_default_instance_._instance,
+    &::palm::portal::v1::_Session_Subject_default_instance_._instance,
     &::palm::portal::v1::_Session_default_instance_._instance,
     &::palm::portal::v1::_UserSignInResponse_default_instance_._instance,
 };
@@ -1869,84 +1906,86 @@ const char descriptor_table_protodef_portal_2eproto[] ABSL_ATTRIBUTE_SECTION_VAR
     "m.Level\022\017\n\007message\030\005 \001(\t\022.\n\ncreated_at\030\t"
     " \001(\0132\032.google.protobuf.Timestamp\"4\n\005Leve"
     "l\022\t\n\005DEBUG\020\000\022\010\n\004INFO\020\001\022\013\n\007WARNING\020\002\022\t\n\005E"
-    "RROR\020\003\"\205\002\n\007Session\0222\n\004type\030\001 \001(\0162$.palm."
-    "portal.v1.Session.ProviderType\022\n\n\002sn\030\002 \001"
-    "(\t\022\014\n\004name\030\003 \001(\t\0224\n\004user\030\010 \001(\0132&.palm.po"
-    "rtal.v1.UserIndexResponse.Item\022\021\n\tclient"
-    "_ip\030\t \001(\t\"c\n\014ProviderType\022\t\n\005EMAIL\020\000\022\t\n\005"
-    "PHONE\020\001\022\021\n\rGOOGLE_OAUTH2\020\002\022\021\n\rWECHAT_OAU"
-    "TH2\020\003\022\027\n\023WECHAT_MINI_PROGRAM\020\004\"#\n\022UserSi"
-    "gnInResponse\022\r\n\005token\030\001 \001(\t2\250\002\n\006Locale\022D"
-    "\n\005Index\022\024.palm.portal.v1.Page\032#.palm.por"
-    "tal.v1.LocaleIndexResponse\"\000\022A\n\003Set\022 .pa"
-    "lm.portal.v1.LocaleSetRequest\032\026.google.p"
-    "rotobuf.Empty\"\000\022U\n\006ByLang\022#.palm.portal."
-    "v1.LocaleByLangRequest\032$.palm.portal.v1."
-    "LocaleByLangResponse\"\000\022>\n\007Destroy\022\031.palm"
-    ".portal.v1.IdRequest\032\026.google.protobuf.E"
-    "mpty\"\0002R\n\004Site\022J\n\nCurrencies\022\026.google.pr"
-    "otobuf.Empty\032\".palm.portal.v1.Currencies"
-    "Response\"\0002\354\t\n\tEmailUser\022G\n\005Index\022\024.palm"
-    ".portal.v1.Page\032&.palm.portal.v1.EmailUs"
-    "erIndexResponse\"\000\022>\n\007Destroy\022\031.palm.port"
-    "al.v1.IdRequest\032\026.google.protobuf.Empty\""
-    "\000\022>\n\007Confirm\022\031.palm.portal.v1.IdRequest\032"
-    "\026.google.protobuf.Empty\"\000\022T\n\013SetPassword"
-    "\022+.palm.portal.v1.EmailUserSetPasswordRe"
-    "quest\032\026.google.protobuf.Empty\"\000\022J\n\006SignU"
-    "p\022&.palm.portal.v1.EmailUserSignUpReques"
-    "t\032\026.google.protobuf.Empty\"\000\022V\n\006SignIn\022&."
-    "palm.portal.v1.EmailUserSignInRequest\032\"."
-    "palm.portal.v1.UserSignInResponse\"\000\022X\n\rU"
-    "nlockByEmail\022-.palm.portal.v1.EmailUserU"
-    "nlockByEmailRequest\032\026.google.protobuf.Em"
-    "pty\"\000\022X\n\rUnlockByToken\022-.palm.portal.v1."
-    "EmailUserUnlockByTokenRequest\032\026.google.p"
-    "rotobuf.Empty\"\000\022Z\n\016ConfirmByEmail\022..palm"
-    ".portal.v1.EmailUserConfirmByEmailReques"
-    "t\032\026.google.protobuf.Empty\"\000\022Z\n\016ConfirmBy"
-    "Token\022..palm.portal.v1.EmailUserConfirmB"
-    "yTokenRequest\032\026.google.protobuf.Empty\"\000\022"
-    "Z\n\016ForgotPassword\022..palm.portal.v1.Email"
-    "UserForgotPasswordRequest\032\026.google.proto"
-    "buf.Empty\"\000\022X\n\rResetPassword\022-.palm.port"
-    "al.v1.EmailUserResetPasswordRequest\032\026.go"
-    "ogle.protobuf.Empty\"\000\022L\n\007SetName\022\'.palm."
-    "portal.v1.EmailUserSetNameRequest\032\026.goog"
-    "le.protobuf.Empty\"\000\022P\n\tSetAvatar\022).palm."
-    "portal.v1.EmailUserSetAvatarRequest\032\026.go"
-    "ogle.protobuf.Empty\"\000\022Z\n\016ChangePassword\022"
-    "..palm.portal.v1.EmailUserChangePassword"
-    "Request\032\026.google.protobuf.Empty\"\0002\233\010\n\004Us"
-    "er\022B\n\005Index\022\024.palm.portal.v1.Page\032!.palm"
-    ".portal.v1.UserIndexResponse\"\000\022>\n\007Destro"
-    "y\022\031.palm.portal.v1.IdRequest\032\026.google.pr"
-    "otobuf.Empty\"\000\022;\n\004Lock\022\031.palm.portal.v1."
-    "IdRequest\032\026.google.protobuf.Empty\"\000\022=\n\006U"
-    "nlock\022\031.palm.portal.v1.IdRequest\032\026.googl"
-    "e.protobuf.Empty\"\000\022V\n\017IndexAttachment\022\024."
-    "palm.portal.v1.Page\032+.palm.portal.v1.Use"
-    "rIndexAttachmentResponse\"\000\022u\n\020CreateAtta"
-    "chment\022+.palm.portal.v1.UserCreateAttach"
-    "mentRequest\0322.palm.portal.v1.UserCreateA"
-    "ttachmentUploadResponse\"\000\022i\n\016ShowAttachm"
-    "ent\022).palm.portal.v1.UserShowAttachmentR"
-    "equest\032*.palm.portal.v1.UserShowAttachme"
-    "ntResponse\"\000\022L\n\025SetAttachmentUploaded\022\031."
-    "palm.portal.v1.IdRequest\032\026.google.protob"
-    "uf.Empty\"\000\022]\n\022SetAttachmentTitle\022-.palm."
-    "portal.v1.UserSetAttachmentTitleRequest\032"
-    "\026.google.protobuf.Empty\"\000\022H\n\021DestroyAtta"
-    "chment\022\031.palm.portal.v1.IdRequest\032\026.goog"
-    "le.protobuf.Empty\"\000\022H\n\010IndexLog\022\024.palm.p"
-    "ortal.v1.Page\032$.palm.portal.v1.UserIndex"
-    "LogResponse\"\000\022G\n\007SetLang\022\".palm.portal.v"
-    "1.UserSetLangRequest\032\026.google.protobuf.E"
-    "mpty\"\000\022O\n\013SetTimezone\022&.palm.portal.v1.U"
-    "serSetTimezoneRequest\032\026.google.protobuf."
-    "Empty\"\000B_\n,com.github.saturn_xiv.palm.pl"
-    "ugins.portal.v1B\013PortalProtoP\001Z\005./;v2\252\002\030"
-    "Palm.Plugins.Portal.Grpcb\006proto3"
+    "RROR\020\003\"\322\002\n\007Session\0220\n\007subject\030\001 \001(\0132\037.pa"
+    "lm.portal.v1.Session.Subject\022\014\n\004name\030\002 \001"
+    "(\t\022\016\n\006avatar\030\003 \001(\t\0224\n\004user\030\010 \001(\0132&.palm."
+    "portal.v1.UserIndexResponse.Item\022\021\n\tclie"
+    "nt_ip\030\t \001(\t\032I\n\007Subject\0222\n\004type\030\001 \001(\0162$.p"
+    "alm.portal.v1.Session.ProviderType\022\n\n\002sn"
+    "\030\002 \001(\t\"c\n\014ProviderType\022\t\n\005EMAIL\020\000\022\t\n\005PHO"
+    "NE\020\001\022\021\n\rGOOGLE_OAUTH2\020\002\022\021\n\rWECHAT_OAUTH2"
+    "\020\003\022\027\n\023WECHAT_MINI_PROGRAM\020\004\"#\n\022UserSignI"
+    "nResponse\022\r\n\005token\030\001 \001(\t2\250\002\n\006Locale\022D\n\005I"
+    "ndex\022\024.palm.portal.v1.Page\032#.palm.portal"
+    ".v1.LocaleIndexResponse\"\000\022A\n\003Set\022 .palm."
+    "portal.v1.LocaleSetRequest\032\026.google.prot"
+    "obuf.Empty\"\000\022U\n\006ByLang\022#.palm.portal.v1."
+    "LocaleByLangRequest\032$.palm.portal.v1.Loc"
+    "aleByLangResponse\"\000\022>\n\007Destroy\022\031.palm.po"
+    "rtal.v1.IdRequest\032\026.google.protobuf.Empt"
+    "y\"\0002R\n\004Site\022J\n\nCurrencies\022\026.google.proto"
+    "buf.Empty\032\".palm.portal.v1.CurrenciesRes"
+    "ponse\"\0002\354\t\n\tEmailUser\022G\n\005Index\022\024.palm.po"
+    "rtal.v1.Page\032&.palm.portal.v1.EmailUserI"
+    "ndexResponse\"\000\022>\n\007Destroy\022\031.palm.portal."
+    "v1.IdRequest\032\026.google.protobuf.Empty\"\000\022>"
+    "\n\007Confirm\022\031.palm.portal.v1.IdRequest\032\026.g"
+    "oogle.protobuf.Empty\"\000\022T\n\013SetPassword\022+."
+    "palm.portal.v1.EmailUserSetPasswordReque"
+    "st\032\026.google.protobuf.Empty\"\000\022J\n\006SignUp\022&"
+    ".palm.portal.v1.EmailUserSignUpRequest\032\026"
+    ".google.protobuf.Empty\"\000\022V\n\006SignIn\022&.pal"
+    "m.portal.v1.EmailUserSignInRequest\032\".pal"
+    "m.portal.v1.UserSignInResponse\"\000\022X\n\rUnlo"
+    "ckByEmail\022-.palm.portal.v1.EmailUserUnlo"
+    "ckByEmailRequest\032\026.google.protobuf.Empty"
+    "\"\000\022X\n\rUnlockByToken\022-.palm.portal.v1.Ema"
+    "ilUserUnlockByTokenRequest\032\026.google.prot"
+    "obuf.Empty\"\000\022Z\n\016ConfirmByEmail\022..palm.po"
+    "rtal.v1.EmailUserConfirmByEmailRequest\032\026"
+    ".google.protobuf.Empty\"\000\022Z\n\016ConfirmByTok"
+    "en\022..palm.portal.v1.EmailUserConfirmByTo"
+    "kenRequest\032\026.google.protobuf.Empty\"\000\022Z\n\016"
+    "ForgotPassword\022..palm.portal.v1.EmailUse"
+    "rForgotPasswordRequest\032\026.google.protobuf"
+    ".Empty\"\000\022X\n\rResetPassword\022-.palm.portal."
+    "v1.EmailUserResetPasswordRequest\032\026.googl"
+    "e.protobuf.Empty\"\000\022L\n\007SetName\022\'.palm.por"
+    "tal.v1.EmailUserSetNameRequest\032\026.google."
+    "protobuf.Empty\"\000\022P\n\tSetAvatar\022).palm.por"
+    "tal.v1.EmailUserSetAvatarRequest\032\026.googl"
+    "e.protobuf.Empty\"\000\022Z\n\016ChangePassword\022..p"
+    "alm.portal.v1.EmailUserChangePasswordReq"
+    "uest\032\026.google.protobuf.Empty\"\0002\233\010\n\004User\022"
+    "B\n\005Index\022\024.palm.portal.v1.Page\032!.palm.po"
+    "rtal.v1.UserIndexResponse\"\000\022>\n\007Destroy\022\031"
+    ".palm.portal.v1.IdRequest\032\026.google.proto"
+    "buf.Empty\"\000\022;\n\004Lock\022\031.palm.portal.v1.IdR"
+    "equest\032\026.google.protobuf.Empty\"\000\022=\n\006Unlo"
+    "ck\022\031.palm.portal.v1.IdRequest\032\026.google.p"
+    "rotobuf.Empty\"\000\022V\n\017IndexAttachment\022\024.pal"
+    "m.portal.v1.Page\032+.palm.portal.v1.UserIn"
+    "dexAttachmentResponse\"\000\022u\n\020CreateAttachm"
+    "ent\022+.palm.portal.v1.UserCreateAttachmen"
+    "tRequest\0322.palm.portal.v1.UserCreateAtta"
+    "chmentUploadResponse\"\000\022i\n\016ShowAttachment"
+    "\022).palm.portal.v1.UserShowAttachmentRequ"
+    "est\032*.palm.portal.v1.UserShowAttachmentR"
+    "esponse\"\000\022L\n\025SetAttachmentUploaded\022\031.pal"
+    "m.portal.v1.IdRequest\032\026.google.protobuf."
+    "Empty\"\000\022]\n\022SetAttachmentTitle\022-.palm.por"
+    "tal.v1.UserSetAttachmentTitleRequest\032\026.g"
+    "oogle.protobuf.Empty\"\000\022H\n\021DestroyAttachm"
+    "ent\022\031.palm.portal.v1.IdRequest\032\026.google."
+    "protobuf.Empty\"\000\022H\n\010IndexLog\022\024.palm.port"
+    "al.v1.Page\032$.palm.portal.v1.UserIndexLog"
+    "Response\"\000\022G\n\007SetLang\022\".palm.portal.v1.U"
+    "serSetLangRequest\032\026.google.protobuf.Empt"
+    "y\"\000\022O\n\013SetTimezone\022&.palm.portal.v1.User"
+    "SetTimezoneRequest\032\026.google.protobuf.Emp"
+    "ty\"\000B_\n,com.github.saturn_xiv.palm.plugi"
+    "ns.portal.v1B\013PortalProtoP\001Z\005./;v2\252\002\030Pal"
+    "m.Plugins.Portal.Grpcb\006proto3"
 };
 static const ::_pbi::DescriptorTable* PROTOBUF_NONNULL const
     descriptor_table_portal_2eproto_deps[3] = {
@@ -1958,13 +1997,13 @@ static ::absl::once_flag descriptor_table_portal_2eproto_once;
 PROTOBUF_CONSTINIT const ::_pbi::DescriptorTable descriptor_table_portal_2eproto = {
     false,
     false,
-    7672,
+    7749,
     descriptor_table_protodef_portal_2eproto,
     "portal.proto",
     &descriptor_table_portal_2eproto_once,
     descriptor_table_portal_2eproto_deps,
     3,
-    42,
+    43,
     schemas,
     file_default_instances,
     TableStruct_portal_2eproto::offsets,
@@ -15565,6 +15604,302 @@ void UserIndexLogResponse::InternalSwap(UserIndexLogResponse* PROTOBUF_RESTRICT 
 }
 // ===================================================================
 
+class Session_Subject::_Internal {
+ public:
+  using HasBits =
+      decltype(::std::declval<Session_Subject>()._impl_._has_bits_);
+  static constexpr ::int32_t kHasBitsOffset =
+      8 * PROTOBUF_FIELD_OFFSET(Session_Subject, _impl_._has_bits_);
+};
+
+Session_Subject::Session_Subject(::google::protobuf::Arena* PROTOBUF_NULLABLE arena)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::Message(arena, Session_Subject_class_data_.base()) {
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::Message(arena) {
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  SharedCtor(arena);
+  // @@protoc_insertion_point(arena_constructor:palm.portal.v1.Session.Subject)
+}
+PROTOBUF_NDEBUG_INLINE Session_Subject::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility,
+    ::google::protobuf::Arena* PROTOBUF_NULLABLE arena, const Impl_& from,
+    const ::palm::portal::v1::Session_Subject& from_msg)
+      : _has_bits_{from._has_bits_},
+        _cached_size_{0},
+        sn_(arena, from.sn_) {}
+
+Session_Subject::Session_Subject(
+    ::google::protobuf::Arena* PROTOBUF_NULLABLE arena,
+    const Session_Subject& from)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::Message(arena, Session_Subject_class_data_.base()) {
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::Message(arena) {
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  Session_Subject* const _this = this;
+  (void)_this;
+  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
+      from._internal_metadata_);
+  new (&_impl_) Impl_(internal_visibility(), arena, from._impl_, from);
+  _impl_.type_ = from._impl_.type_;
+
+  // @@protoc_insertion_point(copy_constructor:palm.portal.v1.Session.Subject)
+}
+PROTOBUF_NDEBUG_INLINE Session_Subject::Impl_::Impl_(
+    ::google::protobuf::internal::InternalVisibility visibility,
+    ::google::protobuf::Arena* PROTOBUF_NULLABLE arena)
+      : _cached_size_{0},
+        sn_(arena) {}
+
+inline void Session_Subject::SharedCtor(::_pb::Arena* PROTOBUF_NULLABLE arena) {
+  new (&_impl_) Impl_(internal_visibility(), arena);
+  _impl_.type_ = {};
+}
+Session_Subject::~Session_Subject() {
+  // @@protoc_insertion_point(destructor:palm.portal.v1.Session.Subject)
+  SharedDtor(*this);
+}
+inline void Session_Subject::SharedDtor(MessageLite& self) {
+  Session_Subject& this_ = static_cast<Session_Subject&>(self);
+  this_._internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
+  ABSL_DCHECK(this_.GetArena() == nullptr);
+  this_._impl_.sn_.Destroy();
+  this_._impl_.~Impl_();
+}
+
+inline void* PROTOBUF_NONNULL Session_Subject::PlacementNew_(
+    const void* PROTOBUF_NONNULL, void* PROTOBUF_NONNULL mem,
+    ::google::protobuf::Arena* PROTOBUF_NULLABLE arena) {
+  return ::new (mem) Session_Subject(arena);
+}
+constexpr auto Session_Subject::InternalNewImpl_() {
+  return ::google::protobuf::internal::MessageCreator::CopyInit(sizeof(Session_Subject),
+                                            alignof(Session_Subject));
+}
+constexpr auto Session_Subject::InternalGenerateClassData_() {
+  return ::google::protobuf::internal::ClassDataFull{
+      ::google::protobuf::internal::ClassData{
+          &_Session_Subject_default_instance_._instance,
+          &_table_.header,
+          nullptr,  // OnDemandRegisterArenaDtor
+          nullptr,  // IsInitialized
+          &Session_Subject::MergeImpl,
+          ::google::protobuf::Message::GetNewImpl<Session_Subject>(),
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+          &Session_Subject::SharedDtor,
+          ::google::protobuf::Message::GetClearImpl<Session_Subject>(), &Session_Subject::ByteSizeLong,
+              &Session_Subject::_InternalSerialize,
+#endif  // PROTOBUF_CUSTOM_VTABLE
+          PROTOBUF_FIELD_OFFSET(Session_Subject, _impl_._cached_size_),
+          false,
+      },
+      &Session_Subject::kDescriptorMethods,
+      &descriptor_table_portal_2eproto,
+      nullptr,  // tracker
+  };
+}
+
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 const
+    ::google::protobuf::internal::ClassDataFull Session_Subject_class_data_ =
+        Session_Subject::InternalGenerateClassData_();
+
+PROTOBUF_ATTRIBUTE_WEAK const ::google::protobuf::internal::ClassData* PROTOBUF_NONNULL
+Session_Subject::GetClassData() const {
+  ::google::protobuf::internal::PrefetchToLocalCache(&Session_Subject_class_data_);
+  ::google::protobuf::internal::PrefetchToLocalCache(Session_Subject_class_data_.tc_table);
+  return Session_Subject_class_data_.base();
+}
+PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
+const ::_pbi::TcParseTable<1, 2, 0, 41, 2>
+Session_Subject::_table_ = {
+  {
+    PROTOBUF_FIELD_OFFSET(Session_Subject, _impl_._has_bits_),
+    0, // no _extensions_
+    2, 8,  // max_field_number, fast_idx_mask
+    offsetof(decltype(_table_), field_lookup_table),
+    4294967292,  // skipmap
+    offsetof(decltype(_table_), field_entries),
+    2,  // num_field_entries
+    0,  // num_aux_entries
+    offsetof(decltype(_table_), field_names),  // no aux_entries
+    Session_Subject_class_data_.base(),
+    nullptr,  // post_loop_handler
+    ::_pbi::TcParser::GenericFallback,  // fallback
+    #ifdef PROTOBUF_PREFETCH_PARSE_TABLE
+    ::_pbi::TcParser::GetTable<::palm::portal::v1::Session_Subject>(),  // to_prefetch
+    #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
+  }, {{
+    // string sn = 2;
+    {::_pbi::TcParser::FastUS1,
+     {18, 0, 0, PROTOBUF_FIELD_OFFSET(Session_Subject, _impl_.sn_)}},
+    // .palm.portal.v1.Session.ProviderType type = 1;
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(Session_Subject, _impl_.type_), 1>(),
+     {8, 1, 0, PROTOBUF_FIELD_OFFSET(Session_Subject, _impl_.type_)}},
+  }}, {{
+    65535, 65535
+  }}, {{
+    // .palm.portal.v1.Session.ProviderType type = 1;
+    {PROTOBUF_FIELD_OFFSET(Session_Subject, _impl_.type_), _Internal::kHasBitsOffset + 1, 0,
+    (0 | ::_fl::kFcOptional | ::_fl::kOpenEnum)},
+    // string sn = 2;
+    {PROTOBUF_FIELD_OFFSET(Session_Subject, _impl_.sn_), _Internal::kHasBitsOffset + 0, 0,
+    (0 | ::_fl::kFcOptional | ::_fl::kUtf8String | ::_fl::kRepAString)},
+  }},
+  // no aux_entries
+  {{
+    "\36\0\2\0\0\0\0\0"
+    "palm.portal.v1.Session.Subject"
+    "sn"
+  }},
+};
+PROTOBUF_NOINLINE void Session_Subject::Clear() {
+// @@protoc_insertion_point(message_clear_start:palm.portal.v1.Session.Subject)
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void) cached_has_bits;
+
+  cached_has_bits = _impl_._has_bits_[0];
+  if ((cached_has_bits & 0x00000001u) != 0) {
+    _impl_.sn_.ClearNonDefaultToEmpty();
+  }
+  _impl_.type_ = 0;
+  _impl_._has_bits_.Clear();
+  _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
+}
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+::uint8_t* PROTOBUF_NONNULL Session_Subject::_InternalSerialize(
+    const ::google::protobuf::MessageLite& base, ::uint8_t* PROTOBUF_NONNULL target,
+    ::google::protobuf::io::EpsCopyOutputStream* PROTOBUF_NONNULL stream) {
+  const Session_Subject& this_ = static_cast<const Session_Subject&>(base);
+#else   // PROTOBUF_CUSTOM_VTABLE
+::uint8_t* PROTOBUF_NONNULL Session_Subject::_InternalSerialize(
+    ::uint8_t* PROTOBUF_NONNULL target,
+    ::google::protobuf::io::EpsCopyOutputStream* PROTOBUF_NONNULL stream) const {
+  const Session_Subject& this_ = *this;
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  // @@protoc_insertion_point(serialize_to_array_start:palm.portal.v1.Session.Subject)
+  ::uint32_t cached_has_bits = 0;
+  (void)cached_has_bits;
+
+  // .palm.portal.v1.Session.ProviderType type = 1;
+  if ((this_._impl_._has_bits_[0] & 0x00000002u) != 0) {
+    if (this_._internal_type() != 0) {
+      target = stream->EnsureSpace(target);
+      target = ::_pbi::WireFormatLite::WriteEnumToArray(
+          1, this_._internal_type(), target);
+    }
+  }
+
+  // string sn = 2;
+  if ((this_._impl_._has_bits_[0] & 0x00000001u) != 0) {
+    if (!this_._internal_sn().empty()) {
+      const ::std::string& _s = this_._internal_sn();
+      ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+          _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "palm.portal.v1.Session.Subject.sn");
+      target = stream->WriteStringMaybeAliased(2, _s, target);
+    }
+  }
+
+  if (ABSL_PREDICT_FALSE(this_._internal_metadata_.have_unknown_fields())) {
+    target =
+        ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
+            this_._internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
+  }
+  // @@protoc_insertion_point(serialize_to_array_end:palm.portal.v1.Session.Subject)
+  return target;
+}
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+::size_t Session_Subject::ByteSizeLong(const MessageLite& base) {
+  const Session_Subject& this_ = static_cast<const Session_Subject&>(base);
+#else   // PROTOBUF_CUSTOM_VTABLE
+::size_t Session_Subject::ByteSizeLong() const {
+  const Session_Subject& this_ = *this;
+#endif  // PROTOBUF_CUSTOM_VTABLE
+  // @@protoc_insertion_point(message_byte_size_start:palm.portal.v1.Session.Subject)
+  ::size_t total_size = 0;
+
+  ::uint32_t cached_has_bits = 0;
+  // Prevent compiler warnings about cached_has_bits being unused
+  (void)cached_has_bits;
+
+  ::_pbi::Prefetch5LinesFrom7Lines(&this_);
+  cached_has_bits = this_._impl_._has_bits_[0];
+  if ((cached_has_bits & 0x00000003u) != 0) {
+    // string sn = 2;
+    if ((cached_has_bits & 0x00000001u) != 0) {
+      if (!this_._internal_sn().empty()) {
+        total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                        this_._internal_sn());
+      }
+    }
+    // .palm.portal.v1.Session.ProviderType type = 1;
+    if ((cached_has_bits & 0x00000002u) != 0) {
+      if (this_._internal_type() != 0) {
+        total_size += 1 +
+                      ::_pbi::WireFormatLite::EnumSize(this_._internal_type());
+      }
+    }
+  }
+  return this_.MaybeComputeUnknownFieldsSize(total_size,
+                                             &this_._impl_._cached_size_);
+}
+
+void Session_Subject::MergeImpl(::google::protobuf::MessageLite& to_msg, const ::google::protobuf::MessageLite& from_msg) {
+  auto* const _this = static_cast<Session_Subject*>(&to_msg);
+  auto& from = static_cast<const Session_Subject&>(from_msg);
+  // @@protoc_insertion_point(class_specific_merge_from_start:palm.portal.v1.Session.Subject)
+  ABSL_DCHECK_NE(&from, _this);
+  ::uint32_t cached_has_bits = 0;
+  (void) cached_has_bits;
+
+  cached_has_bits = from._impl_._has_bits_[0];
+  if ((cached_has_bits & 0x00000003u) != 0) {
+    if ((cached_has_bits & 0x00000001u) != 0) {
+      if (!from._internal_sn().empty()) {
+        _this->_internal_set_sn(from._internal_sn());
+      } else {
+        if (_this->_impl_.sn_.IsDefault()) {
+          _this->_internal_set_sn("");
+        }
+      }
+    }
+    if ((cached_has_bits & 0x00000002u) != 0) {
+      if (from._internal_type() != 0) {
+        _this->_impl_.type_ = from._impl_.type_;
+      }
+    }
+  }
+  _this->_impl_._has_bits_[0] |= cached_has_bits;
+  _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
+}
+
+void Session_Subject::CopyFrom(const Session_Subject& from) {
+// @@protoc_insertion_point(class_specific_copy_from_start:palm.portal.v1.Session.Subject)
+  if (&from == this) return;
+  Clear();
+  MergeFrom(from);
+}
+
+
+void Session_Subject::InternalSwap(Session_Subject* PROTOBUF_RESTRICT PROTOBUF_NONNULL other) {
+  using ::std::swap;
+  auto* arena = GetArena();
+  ABSL_DCHECK_EQ(arena, other->GetArena());
+  _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  swap(_impl_._has_bits_[0], other->_impl_._has_bits_[0]);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.sn_, &other->_impl_.sn_, arena);
+  swap(_impl_.type_, other->_impl_.type_);
+}
+
+::google::protobuf::Metadata Session_Subject::GetMetadata() const {
+  return ::google::protobuf::Message::GetMetadataImpl(GetClassData()->full());
+}
+// ===================================================================
+
 class Session::_Internal {
  public:
   using HasBits =
@@ -15588,8 +15923,8 @@ PROTOBUF_NDEBUG_INLINE Session::Impl_::Impl_(
     const ::palm::portal::v1::Session& from_msg)
       : _has_bits_{from._has_bits_},
         _cached_size_{0},
-        sn_(arena, from.sn_),
         name_(arena, from.name_),
+        avatar_(arena, from.avatar_),
         client_ip_(arena, from.client_ip_) {}
 
 Session::Session(
@@ -15606,10 +15941,12 @@ Session::Session(
       from._internal_metadata_);
   new (&_impl_) Impl_(internal_visibility(), arena, from._impl_, from);
   ::uint32_t cached_has_bits = _impl_._has_bits_[0];
-  _impl_.user_ = ((cached_has_bits & 0x00000008u) != 0)
+  _impl_.subject_ = ((cached_has_bits & 0x00000008u) != 0)
+                ? ::google::protobuf::Message::CopyConstruct(arena, *from._impl_.subject_)
+                : nullptr;
+  _impl_.user_ = ((cached_has_bits & 0x00000010u) != 0)
                 ? ::google::protobuf::Message::CopyConstruct(arena, *from._impl_.user_)
                 : nullptr;
-  _impl_.type_ = from._impl_.type_;
 
   // @@protoc_insertion_point(copy_constructor:palm.portal.v1.Session)
 }
@@ -15617,18 +15954,18 @@ PROTOBUF_NDEBUG_INLINE Session::Impl_::Impl_(
     ::google::protobuf::internal::InternalVisibility visibility,
     ::google::protobuf::Arena* PROTOBUF_NULLABLE arena)
       : _cached_size_{0},
-        sn_(arena),
         name_(arena),
+        avatar_(arena),
         client_ip_(arena) {}
 
 inline void Session::SharedCtor(::_pb::Arena* PROTOBUF_NULLABLE arena) {
   new (&_impl_) Impl_(internal_visibility(), arena);
   ::memset(reinterpret_cast<char *>(&_impl_) +
-               offsetof(Impl_, user_),
+               offsetof(Impl_, subject_),
            0,
-           offsetof(Impl_, type_) -
-               offsetof(Impl_, user_) +
-               sizeof(Impl_::type_));
+           offsetof(Impl_, user_) -
+               offsetof(Impl_, subject_) +
+               sizeof(Impl_::user_));
 }
 Session::~Session() {
   // @@protoc_insertion_point(destructor:palm.portal.v1.Session)
@@ -15638,9 +15975,10 @@ inline void Session::SharedDtor(MessageLite& self) {
   Session& this_ = static_cast<Session&>(self);
   this_._internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
   ABSL_DCHECK(this_.GetArena() == nullptr);
-  this_._impl_.sn_.Destroy();
   this_._impl_.name_.Destroy();
+  this_._impl_.avatar_.Destroy();
   this_._impl_.client_ip_.Destroy();
+  delete this_._impl_.subject_;
   delete this_._impl_.user_;
   this_._impl_.~Impl_();
 }
@@ -15688,7 +16026,7 @@ Session::GetClassData() const {
   return Session_class_data_.base();
 }
 PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::_pbi::TcParseTable<2, 5, 1, 46, 2>
+const ::_pbi::TcParseTable<2, 5, 2, 50, 2>
 Session::_table_ = {
   {
     PROTOBUF_FIELD_OFFSET(Session, _impl_._has_bits_),
@@ -15698,7 +16036,7 @@ Session::_table_ = {
     4294966904,  // skipmap
     offsetof(decltype(_table_), field_entries),
     5,  // num_field_entries
-    1,  // num_aux_entries
+    2,  // num_aux_entries
     offsetof(decltype(_table_), aux_entries),
     Session_class_data_.base(),
     nullptr,  // post_loop_handler
@@ -15709,43 +16047,44 @@ Session::_table_ = {
   }, {{
     // .palm.portal.v1.UserIndexResponse.Item user = 8;
     {::_pbi::TcParser::FastMtS1,
-     {66, 3, 0, PROTOBUF_FIELD_OFFSET(Session, _impl_.user_)}},
-    // .palm.portal.v1.Session.ProviderType type = 1;
-    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(Session, _impl_.type_), 4>(),
-     {8, 4, 0, PROTOBUF_FIELD_OFFSET(Session, _impl_.type_)}},
-    // string sn = 2;
+     {66, 4, 1, PROTOBUF_FIELD_OFFSET(Session, _impl_.user_)}},
+    // .palm.portal.v1.Session.Subject subject = 1;
+    {::_pbi::TcParser::FastMtS1,
+     {10, 3, 0, PROTOBUF_FIELD_OFFSET(Session, _impl_.subject_)}},
+    // string name = 2;
     {::_pbi::TcParser::FastUS1,
-     {18, 0, 0, PROTOBUF_FIELD_OFFSET(Session, _impl_.sn_)}},
-    // string name = 3;
+     {18, 0, 0, PROTOBUF_FIELD_OFFSET(Session, _impl_.name_)}},
+    // string avatar = 3;
     {::_pbi::TcParser::FastUS1,
-     {26, 1, 0, PROTOBUF_FIELD_OFFSET(Session, _impl_.name_)}},
+     {26, 1, 0, PROTOBUF_FIELD_OFFSET(Session, _impl_.avatar_)}},
   }}, {{
     65535, 65535
   }}, {{
-    // .palm.portal.v1.Session.ProviderType type = 1;
-    {PROTOBUF_FIELD_OFFSET(Session, _impl_.type_), _Internal::kHasBitsOffset + 4, 0,
-    (0 | ::_fl::kFcOptional | ::_fl::kOpenEnum)},
-    // string sn = 2;
-    {PROTOBUF_FIELD_OFFSET(Session, _impl_.sn_), _Internal::kHasBitsOffset + 0, 0,
+    // .palm.portal.v1.Session.Subject subject = 1;
+    {PROTOBUF_FIELD_OFFSET(Session, _impl_.subject_), _Internal::kHasBitsOffset + 3, 0,
+    (0 | ::_fl::kFcOptional | ::_fl::kMessage | ::_fl::kTvTable)},
+    // string name = 2;
+    {PROTOBUF_FIELD_OFFSET(Session, _impl_.name_), _Internal::kHasBitsOffset + 0, 0,
     (0 | ::_fl::kFcOptional | ::_fl::kUtf8String | ::_fl::kRepAString)},
-    // string name = 3;
-    {PROTOBUF_FIELD_OFFSET(Session, _impl_.name_), _Internal::kHasBitsOffset + 1, 0,
+    // string avatar = 3;
+    {PROTOBUF_FIELD_OFFSET(Session, _impl_.avatar_), _Internal::kHasBitsOffset + 1, 0,
     (0 | ::_fl::kFcOptional | ::_fl::kUtf8String | ::_fl::kRepAString)},
     // .palm.portal.v1.UserIndexResponse.Item user = 8;
-    {PROTOBUF_FIELD_OFFSET(Session, _impl_.user_), _Internal::kHasBitsOffset + 3, 0,
+    {PROTOBUF_FIELD_OFFSET(Session, _impl_.user_), _Internal::kHasBitsOffset + 4, 1,
     (0 | ::_fl::kFcOptional | ::_fl::kMessage | ::_fl::kTvTable)},
     // string client_ip = 9;
     {PROTOBUF_FIELD_OFFSET(Session, _impl_.client_ip_), _Internal::kHasBitsOffset + 2, 0,
     (0 | ::_fl::kFcOptional | ::_fl::kUtf8String | ::_fl::kRepAString)},
   }},
   {{
+      {::_pbi::TcParser::GetTable<::palm::portal::v1::Session_Subject>()},
       {::_pbi::TcParser::GetTable<::palm::portal::v1::UserIndexResponse_Item>()},
   }},
   {{
-    "\26\0\2\4\0\11\0\0"
+    "\26\0\4\6\0\11\0\0"
     "palm.portal.v1.Session"
-    "sn"
     "name"
+    "avatar"
     "client_ip"
   }},
 };
@@ -15757,22 +16096,25 @@ PROTOBUF_NOINLINE void Session::Clear() {
   (void) cached_has_bits;
 
   cached_has_bits = _impl_._has_bits_[0];
-  if ((cached_has_bits & 0x0000000fu) != 0) {
+  if ((cached_has_bits & 0x0000001fu) != 0) {
     if ((cached_has_bits & 0x00000001u) != 0) {
-      _impl_.sn_.ClearNonDefaultToEmpty();
+      _impl_.name_.ClearNonDefaultToEmpty();
     }
     if ((cached_has_bits & 0x00000002u) != 0) {
-      _impl_.name_.ClearNonDefaultToEmpty();
+      _impl_.avatar_.ClearNonDefaultToEmpty();
     }
     if ((cached_has_bits & 0x00000004u) != 0) {
       _impl_.client_ip_.ClearNonDefaultToEmpty();
     }
     if ((cached_has_bits & 0x00000008u) != 0) {
+      ABSL_DCHECK(_impl_.subject_ != nullptr);
+      _impl_.subject_->Clear();
+    }
+    if ((cached_has_bits & 0x00000010u) != 0) {
       ABSL_DCHECK(_impl_.user_ != nullptr);
       _impl_.user_->Clear();
     }
   }
-  _impl_.type_ = 0;
   _impl_._has_bits_.Clear();
   _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
 }
@@ -15792,38 +16134,36 @@ PROTOBUF_NOINLINE void Session::Clear() {
   ::uint32_t cached_has_bits = 0;
   (void)cached_has_bits;
 
-  // .palm.portal.v1.Session.ProviderType type = 1;
-  if ((this_._impl_._has_bits_[0] & 0x00000010u) != 0) {
-    if (this_._internal_type() != 0) {
-      target = stream->EnsureSpace(target);
-      target = ::_pbi::WireFormatLite::WriteEnumToArray(
-          1, this_._internal_type(), target);
-    }
+  cached_has_bits = this_._impl_._has_bits_[0];
+  // .palm.portal.v1.Session.Subject subject = 1;
+  if ((cached_has_bits & 0x00000008u) != 0) {
+    target = ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
+        1, *this_._impl_.subject_, this_._impl_.subject_->GetCachedSize(), target,
+        stream);
   }
 
-  // string sn = 2;
-  if ((this_._impl_._has_bits_[0] & 0x00000001u) != 0) {
-    if (!this_._internal_sn().empty()) {
-      const ::std::string& _s = this_._internal_sn();
-      ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-          _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "palm.portal.v1.Session.sn");
-      target = stream->WriteStringMaybeAliased(2, _s, target);
-    }
-  }
-
-  // string name = 3;
-  if ((this_._impl_._has_bits_[0] & 0x00000002u) != 0) {
+  // string name = 2;
+  if ((cached_has_bits & 0x00000001u) != 0) {
     if (!this_._internal_name().empty()) {
       const ::std::string& _s = this_._internal_name();
       ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
           _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "palm.portal.v1.Session.name");
+      target = stream->WriteStringMaybeAliased(2, _s, target);
+    }
+  }
+
+  // string avatar = 3;
+  if ((cached_has_bits & 0x00000002u) != 0) {
+    if (!this_._internal_avatar().empty()) {
+      const ::std::string& _s = this_._internal_avatar();
+      ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+          _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "palm.portal.v1.Session.avatar");
       target = stream->WriteStringMaybeAliased(3, _s, target);
     }
   }
 
-  cached_has_bits = this_._impl_._has_bits_[0];
   // .palm.portal.v1.UserIndexResponse.Item user = 8;
-  if ((cached_has_bits & 0x00000008u) != 0) {
+  if ((cached_has_bits & 0x00000010u) != 0) {
     target = ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
         8, *this_._impl_.user_, this_._impl_.user_->GetCachedSize(), target,
         stream);
@@ -15865,18 +16205,18 @@ PROTOBUF_NOINLINE void Session::Clear() {
   ::_pbi::Prefetch5LinesFrom7Lines(&this_);
   cached_has_bits = this_._impl_._has_bits_[0];
   if ((cached_has_bits & 0x0000001fu) != 0) {
-    // string sn = 2;
+    // string name = 2;
     if ((cached_has_bits & 0x00000001u) != 0) {
-      if (!this_._internal_sn().empty()) {
-        total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
-                                        this_._internal_sn());
-      }
-    }
-    // string name = 3;
-    if ((cached_has_bits & 0x00000002u) != 0) {
       if (!this_._internal_name().empty()) {
         total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
                                         this_._internal_name());
+      }
+    }
+    // string avatar = 3;
+    if ((cached_has_bits & 0x00000002u) != 0) {
+      if (!this_._internal_avatar().empty()) {
+        total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                        this_._internal_avatar());
       }
     }
     // string client_ip = 9;
@@ -15886,17 +16226,15 @@ PROTOBUF_NOINLINE void Session::Clear() {
                                         this_._internal_client_ip());
       }
     }
-    // .palm.portal.v1.UserIndexResponse.Item user = 8;
+    // .palm.portal.v1.Session.Subject subject = 1;
     if ((cached_has_bits & 0x00000008u) != 0) {
       total_size += 1 +
-                    ::google::protobuf::internal::WireFormatLite::MessageSize(*this_._impl_.user_);
+                    ::google::protobuf::internal::WireFormatLite::MessageSize(*this_._impl_.subject_);
     }
-    // .palm.portal.v1.Session.ProviderType type = 1;
+    // .palm.portal.v1.UserIndexResponse.Item user = 8;
     if ((cached_has_bits & 0x00000010u) != 0) {
-      if (this_._internal_type() != 0) {
-        total_size += 1 +
-                      ::_pbi::WireFormatLite::EnumSize(this_._internal_type());
-      }
+      total_size += 1 +
+                    ::google::protobuf::internal::WireFormatLite::MessageSize(*this_._impl_.user_);
     }
   }
   return this_.MaybeComputeUnknownFieldsSize(total_size,
@@ -15915,20 +16253,20 @@ void Session::MergeImpl(::google::protobuf::MessageLite& to_msg, const ::google:
   cached_has_bits = from._impl_._has_bits_[0];
   if ((cached_has_bits & 0x0000001fu) != 0) {
     if ((cached_has_bits & 0x00000001u) != 0) {
-      if (!from._internal_sn().empty()) {
-        _this->_internal_set_sn(from._internal_sn());
-      } else {
-        if (_this->_impl_.sn_.IsDefault()) {
-          _this->_internal_set_sn("");
-        }
-      }
-    }
-    if ((cached_has_bits & 0x00000002u) != 0) {
       if (!from._internal_name().empty()) {
         _this->_internal_set_name(from._internal_name());
       } else {
         if (_this->_impl_.name_.IsDefault()) {
           _this->_internal_set_name("");
+        }
+      }
+    }
+    if ((cached_has_bits & 0x00000002u) != 0) {
+      if (!from._internal_avatar().empty()) {
+        _this->_internal_set_avatar(from._internal_avatar());
+      } else {
+        if (_this->_impl_.avatar_.IsDefault()) {
+          _this->_internal_set_avatar("");
         }
       }
     }
@@ -15942,16 +16280,19 @@ void Session::MergeImpl(::google::protobuf::MessageLite& to_msg, const ::google:
       }
     }
     if ((cached_has_bits & 0x00000008u) != 0) {
+      ABSL_DCHECK(from._impl_.subject_ != nullptr);
+      if (_this->_impl_.subject_ == nullptr) {
+        _this->_impl_.subject_ = ::google::protobuf::Message::CopyConstruct(arena, *from._impl_.subject_);
+      } else {
+        _this->_impl_.subject_->MergeFrom(*from._impl_.subject_);
+      }
+    }
+    if ((cached_has_bits & 0x00000010u) != 0) {
       ABSL_DCHECK(from._impl_.user_ != nullptr);
       if (_this->_impl_.user_ == nullptr) {
         _this->_impl_.user_ = ::google::protobuf::Message::CopyConstruct(arena, *from._impl_.user_);
       } else {
         _this->_impl_.user_->MergeFrom(*from._impl_.user_);
-      }
-    }
-    if ((cached_has_bits & 0x00000010u) != 0) {
-      if (from._internal_type() != 0) {
-        _this->_impl_.type_ = from._impl_.type_;
       }
     }
   }
@@ -15973,15 +16314,15 @@ void Session::InternalSwap(Session* PROTOBUF_RESTRICT PROTOBUF_NONNULL other) {
   ABSL_DCHECK_EQ(arena, other->GetArena());
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
   swap(_impl_._has_bits_[0], other->_impl_._has_bits_[0]);
-  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.sn_, &other->_impl_.sn_, arena);
   ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.name_, &other->_impl_.name_, arena);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.avatar_, &other->_impl_.avatar_, arena);
   ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.client_ip_, &other->_impl_.client_ip_, arena);
   ::google::protobuf::internal::memswap<
-      PROTOBUF_FIELD_OFFSET(Session, _impl_.type_)
-      + sizeof(Session::_impl_.type_)
-      - PROTOBUF_FIELD_OFFSET(Session, _impl_.user_)>(
-          reinterpret_cast<char*>(&_impl_.user_),
-          reinterpret_cast<char*>(&other->_impl_.user_));
+      PROTOBUF_FIELD_OFFSET(Session, _impl_.user_)
+      + sizeof(Session::_impl_.user_)
+      - PROTOBUF_FIELD_OFFSET(Session, _impl_.subject_)>(
+          reinterpret_cast<char*>(&_impl_.subject_),
+          reinterpret_cast<char*>(&other->_impl_.subject_));
 }
 
 ::google::protobuf::Metadata Session::GetMetadata() const {

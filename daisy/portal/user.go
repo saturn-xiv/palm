@@ -27,13 +27,11 @@ type UserServer struct {
 	db       *gorm.DB
 	enforcer *casbin.Enforcer
 	jwt      *crypto.Jwt
-	hmac     *crypto.Hmac
-	aead     *crypto.Aead
 	s3       *minio.Client
 }
 
-func NewUserServer(db *gorm.DB, jwt *crypto.Jwt, enforcer *casbin.Enforcer, s3 *minio.Client, hmac *crypto.Hmac, aead *crypto.Aead) *UserServer {
-	return &UserServer{db: db, s3: s3, enforcer: enforcer, jwt: jwt, hmac: hmac, aead: aead}
+func NewUserServer(db *gorm.DB, jwt *crypto.Jwt, enforcer *casbin.Enforcer, s3 *minio.Client) *UserServer {
+	return &UserServer{db: db, s3: s3, enforcer: enforcer, jwt: jwt}
 }
 
 func (p *UserServer) IndexAttachment(ctx context.Context, req *v2.Page) (*v2.UserIndexAttachmentResponse, error) {
@@ -173,7 +171,14 @@ func (p *UserServer) DestroyAttachment(ctx context.Context, req *v2.IdRequest) (
 	return &emptypb.Empty{}, nil
 }
 
+type setAttachmentTitleForm struct {
+	Title string `validate:"required,min=2,max=63"`
+}
+
 func (p *UserServer) SetAttachmentTitle(ctx context.Context, req *v2.UserSetAttachmentTitleRequest) (*emptypb.Empty, error) {
+	if err := gl_validate.Struct(&setAttachmentTitleForm{Title: req.Title}); err != nil {
+		return nil, err
+	}
 	ss, err := rbac.CurrentUser(ctx, p.db, p.jwt)
 	if err != nil {
 		return nil, err
