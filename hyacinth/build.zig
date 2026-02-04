@@ -92,6 +92,7 @@ pub fn build(b: *std.Build) void {
         .target = target,
         .optimize = optimize,
     });
+    mod.addImport("begonia", begonia.module("begonia"));
     exe.root_module.addImport("begonia", begonia.module("begonia"));
     exe.linkLibC();
 
