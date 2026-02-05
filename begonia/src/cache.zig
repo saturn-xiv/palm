@@ -27,8 +27,6 @@ pub fn set(client: *third.redisContext, key: []const u8, value: []const u8, ttl:
 }
 
 pub fn get(allocator: std.mem.Allocator, client: *third.redisContext, key: []const u8, buffer_len: usize) ![]const u8 {
-    // var buf: std.ArrayList(u8) = .empty;
-    // try buf.ensureTotalCapacity(allocator, buffer_len);
     var buf = try std.ArrayList(u8).initCapacity(allocator, buffer_len);
     const len = third.redis_get(client, key.ptr, buf.items.ptr, buffer_len);
     if (len < 0) {
