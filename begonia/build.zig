@@ -35,6 +35,7 @@ pub fn build(b: *std.Build) void {
     mod.linkSystemLibrary("pq", .{ .preferred_link_mode = .static });
     mod.linkSystemLibrary("hiredis", .{ .preferred_link_mode = .static });
     mod.linkSystemLibrary("rabbitmq", .{ .preferred_link_mode = .static });
+    mod.linkSystemLibrary("sodium", .{ .preferred_link_mode = .static });
 
     const mod_tests = b.addTest(.{
         .root_module = mod,

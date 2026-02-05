@@ -4,6 +4,13 @@ pub const cache = @import("cache.zig");
 pub const orm = @import("orm.zig");
 pub const queue = @import("queue.zig");
 pub const http = @import("http.zig");
+pub const crypto = @import("crypto.zig");
+pub const portal = @import("plugins-portal.zig");
+pub const cms = @import("plugins-cms.zig");
+pub const blog = @import("plugins-blog.zig");
+pub const forum = @import("plugins-forum.zig");
+pub const babel = @import("plugins-babel.zig");
+pub const accounting = @import("plugins-accounting.zig");
 
 pub const third = @cImport({
     @cInclude("third.h");
