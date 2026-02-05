@@ -180,15 +180,11 @@ pub fn launch(version: []const u8, args: [][:0]u8) !void {
             return;
         }
         if (std.mem.eql(u8, cmd, "create-user-by-email")) {
-            const email_ = try begonia.validator.email(email.items);
-            if (username.items.len == 0) {
-                begonia.third.error_(logger, "empty username");
-                return begonia.Error.BadRequest;
-            }
-            if (password.items.len == 0) {
-                begonia.third.error_(logger, "not a valid password");
-                return begonia.Error.BadRequest;
-            }
+            const email_ = try begonia.validator.email(allocator, email.items);
+            defer allocator.free(email_);
+            const name_ = begonia.validator.trim(username.items);
+            try begonia.validator.range(name_, 2, 31);
+            try begonia.validator.password(password.items);
             // TODO
             begonia.third.info(logger, "create an user(%s<%s>)", username.items.ptr, email_.ptr);
             return;

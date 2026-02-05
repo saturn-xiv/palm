@@ -27,6 +27,17 @@ pub fn alphanumeric(str: []const u8) !void {
     return Error.RegexNotMatch;
 }
 
+pub fn password(str: []const u8) !void {
+    // FIXME usging regex
+    // if (third.match(str.ptr, "^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*()_+\\-=\\[\\]{};':\"\\\\|,.<>\\/?]).{8,16}$") == 0) {
+    //     return;
+    // }
+    if (str.len >= 8 and str.len <= 31) {
+        return;
+    }
+    return Error.RegexNotMatch;
+}
+
 pub fn code(allocator: std.mem.Allocator, original: []const u8) ![]const u8 {
     const it = try std.ascii.allocLowerString(allocator, trim(original));
     errdefer allocator.free(it);
@@ -88,6 +99,26 @@ test "validate alphanumeric" {
         const items = [_][]const u8{ "a☰", " 1ac", "a2b ", "ab c" };
         for (items) |it| {
             alphanumeric(it) catch {
+                try std.testing.expect(true);
+            };
+        }
+    }
+}
+
+test "validate password" {
+    {
+        const items = [_][]const u8{ "StrongP@ss1", "-Secr3t.", "A1we&*eder.23", "1&*()%$#_=+/[]{}ac", "!@#$%^&*()_+{}\\|\"';:/?.>,<`~ " };
+        for (items) |it| {
+            std.debug.print("test password '{s}'\n", .{it});
+            try password(it);
+        }
+    }
+
+    {
+        const items = [_][]const u8{ "a☰23234sd2fsf", " 1ac" };
+        for (items) |it| {
+            password(it) catch {
+                std.debug.print("test password '{s}'\n", .{it});
                 try std.testing.expect(true);
             };
         }

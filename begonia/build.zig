@@ -10,7 +10,11 @@ pub fn build(b: *std.Build) void {
     });
 
     mod.addIncludePath(b.path("src"));
-    mod.addCSourceFile(.{ .file = b.path("src/validator.c") });
+    mod.addCSourceFiles(.{ .files = &.{
+        "src/validator.c",
+        "src/redis.c",
+        "src/logger.c",
+    } });
 
     mod.addSystemIncludePath(.{ .cwd_relative = "/usr/include" });
 

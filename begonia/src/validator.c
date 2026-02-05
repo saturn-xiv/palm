@@ -12,15 +12,16 @@ int match(const char* original, const char* pattern) {
   }
 
   int status = regexec(&regex, original, 0, NULL, 0);
-  if (!status) {
+  regfree(&regex);
+  if (status == 0) {
     return EXIT_SUCCESS;
   }
+
   if (status != REG_NOMATCH) {
     char buf[255];
     regerror(status, &regex, buf, sizeof(buf));
     error_(logger, "regex match failed: %s\n", buf);
   }
 
-  regfree(&regex);
   return EXIT_FAILURE;
 }
