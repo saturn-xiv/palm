@@ -2,7 +2,13 @@ const std = @import("std");
 pub const third = @cImport({
     @cInclude("third.h");
 });
-pub const Error = error{ ConnectFailed, NotSingleRowResult, NotSingleColumnResult };
+
+pub const Timestamp = struct {
+    time: third.tm = .{},
+    microseconds: i64 = 0,
+};
+
+pub const Error = error{ ConnectFailed, BadTimestampField };
 
 // https://www.postgresql.org/docs/current/libpq-connect.html#LIBPQ-CONNSTRING
 pub fn open(allocator: std.mem.Allocator, host: []const u8, port: u16, user: []const u8, password: []const u8, db_name: []const u8) !?*third.PGconn {
@@ -29,18 +35,18 @@ pub fn version(allocator: std.mem.Allocator, db: ?*third.PGconn) !?[]const u8 {
     if (third.PQresultStatus(res) != third.PGRES_TUPLES_OK) {
         third.error_(logger, "%s", third.PQerrorMessage(db));
     }
-    {
-        const len = third.PQntuples(res);
-        if (len != 1) {
-            return Error.NotSingleRowResult;
-        }
-    }
-    {
-        const len = third.PQnfields(res);
-        if (len != 1) {
-            return Error.NotSingleRowResult;
-        }
-    }
+    // {
+    //     const len = third.PQntuples(res);
+    //     if (len != 1) {
+    //         return Error.NotSingleRowResult;
+    //     }
+    // }
+    // {
+    //     const len = third.PQnfields(res);
+    //     if (len != 1) {
+    //         return Error.NotSingleRowResult;
+    //     }
+    // }
     return string(allocator, res, 0, 0);
 }
 
@@ -52,21 +58,28 @@ pub fn string(allocator: std.mem.Allocator, result: ?*third.PGresult, tup_num: c
     const buf = try allocator.alloc(u8, tmp.len);
     @memcpy(buf, tmp);
     return buf;
-
-    // const len = @as(usize, @intCast(third.PQgetlength(result, tup_num, field_num)));
-    // const buf = try allocator.alloc(u8, len);
-    // const tmp = third.PQgetvalue(result, tup_num, field_num);
-    // if (tmp[0] == '\0') {
-    //     return null;
-    // }
-    // @memcpy(buf, tmp[0..len]);
-    // return buf;
 }
 
-// pub fn is_null(result: *third.PGresult, tup_num: c_int, field_num: c_int) bool {
-//     const tmp = third.PQgetvalue(result, tup_num, field_num);
-//     return tmp[0] == '\0';
-// }
+pub fn int64(result: ?*third.PGresult, tup_num: c_int, field_num: c_int) !?i64 {
+    const tmp = std.mem.span(third.PQgetvalue(result, tup_num, field_num));
+    if (tmp.len == 0) {
+        return null;
+    }
+    const it: i64 = try std.fmt.parseInt(i64, tmp, 10);
+    return it;
+}
+
+pub fn timestamp(result: ?*third.PGresult, tup_num: c_int, field_num: c_int) !?Timestamp {
+    const tmp = std.mem.span(third.PQgetvalue(result, tup_num, field_num));
+    if (tmp.len == 0) {
+        return null;
+    }
+    var it: Timestamp = .{};
+    if (third.postgresql_timestamp(tmp.ptr, &it.time, &it.microseconds) != 0) {
+        return Error.BadTimestampField;
+    }
+    return it;
+}
 
 // CREATE USER www WITH PASSWORD 'change-me';
 // CREATE DATABASE begonia_testing WITH OWNER www;
@@ -78,5 +91,28 @@ test "postgresql" {
         const it = try version(allocator, db);
         defer allocator.free(it.?);
         std.debug.print("PostgreSql: {s}\n", .{it.?});
+    }
+    {
+        const res = third.PQexec(db.?, "SELECT 1");
+        defer third.PQclear(res);
+        try std.testing.expectEqual(third.PQresultStatus(res), third.PGRES_TUPLES_OK);
+        const it = try int64(res, 0, 0);
+        try std.testing.expectEqual(it.?, 1);
+    }
+    {
+        std.debug.print("Timestamp(second): {d}\n", .{std.time.timestamp()});
+        std.debug.print("Timestamp(microsecond): {d}\n", .{std.time.microTimestamp()});
+    }
+    {
+        // 2026-02-06 03:35:18.599259+00
+        const res = third.PQexec(db.?, "SELECT CURRENT_TIMESTAMP");
+        defer third.PQclear(res);
+        const it = try timestamp(res, 0, 0);
+        std.debug.print("Current Timestamp: ({d}, {d}, {d}) {d}\n", .{
+            it.?.time.tm_year + 1900,
+            it.?.time.tm_mon + 1,
+            it.?.time.tm_mday,
+            it.?.microseconds,
+        });
     }
 }

@@ -4,11 +4,7 @@ const getopt = @cImport({
     @cInclude("getopt.h");
 });
 
-pub fn launch(version: []const u8, args: [][:0]u8) !void {
-    var gpa = std.heap.GeneralPurposeAllocator(.{}){};
-    defer _ = gpa.deinit();
-    const allocator = gpa.allocator();
-
+pub fn launch(allocator: std.mem.Allocator, version: []const u8, args: [][:0]u8) !void {
     var config_file: std.ArrayList(u8) = .empty;
     defer config_file.deinit(allocator);
     {
@@ -185,7 +181,8 @@ pub fn launch(version: []const u8, args: [][:0]u8) !void {
             const name_ = begonia.validator.trim(username.items);
             try begonia.validator.range(name_, 2, 31);
             try begonia.validator.password(password.items);
-            _ = try begonia.plugins.portal.models.user.password(password.items);
+            const password_ = try begonia.crypto.hash(allocator, password.items);
+            defer allocator.free(password_);
             // TODO
             begonia.third.info(logger, "create an user(%s<%s>)", username.items.ptr, email_.ptr);
             return;
