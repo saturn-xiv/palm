@@ -4,6 +4,7 @@ pub const cache = @import("cache.zig");
 pub const orm = @import("orm.zig");
 pub const queue = @import("queue.zig");
 pub const http = @import("http.zig");
+pub const crypto = @import("crypto.zig");
 pub const ssha512 = @import("ssha512.zig");
 pub const jwt = @import("jwt.zig");
 pub const portal = @import("plugins-portal.zig");
@@ -17,7 +18,7 @@ pub const third = @cImport({
     @cInclude("third.h");
 });
 
-pub const Error = error{ InvalidArguments, BadRequest };
+pub const Error = error{ InvalidArguments, BadRequest, SodiumInitFailed };
 
 pub fn start_http_server(port: u16) !void {
     const logger = third.log4c_category_get("http");
@@ -28,6 +29,9 @@ pub fn init() !void {
     _ = third.log4c_init();
     const logger = third.log4c_category_get("root");
     third.debug(logger, "log4c(v%s)", third.log4c_version());
+    if (third.sodium_init() < 0) {
+        return Error.SodiumInitFailed;
+    }
 }
 
 pub fn destroy() !void {
