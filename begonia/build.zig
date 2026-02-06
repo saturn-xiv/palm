@@ -12,8 +12,13 @@ pub fn build(b: *std.Build) void {
     mod.addIncludePath(b.path("src"));
     mod.addCSourceFiles(.{ .files = &.{
         "src/validator.c",
-        "src/redis.c",
         "src/logger.c",
+        "src/iso4217.c",
+        "src/http.c",
+        "src/postgresql.c",
+        "src/mysql.c",
+        "src/redis.c",
+        "src/rabbitmq.c",
     } });
 
     mod.addSystemIncludePath(.{ .cwd_relative = "/usr/include" });
@@ -31,11 +36,11 @@ pub fn build(b: *std.Build) void {
 
     mod.linkSystemLibrary("expat", .{ .preferred_link_mode = .static });
     mod.linkSystemLibrary("log4c", .{ .preferred_link_mode = .static });
-    mod.linkSystemLibrary("mysqlclient", .{ .preferred_link_mode = .static });
-    mod.linkSystemLibrary("pq", .{ .preferred_link_mode = .static });
     mod.linkSystemLibrary("hiredis", .{ .preferred_link_mode = .static });
     mod.linkSystemLibrary("rabbitmq", .{ .preferred_link_mode = .static });
     mod.linkSystemLibrary("sodium", .{ .preferred_link_mode = .static });
+    mod.linkSystemLibrary("mysqlclient", .{});
+    mod.linkSystemLibrary("pq", .{});
 
     const mod_tests = b.addTest(.{
         .root_module = mod,

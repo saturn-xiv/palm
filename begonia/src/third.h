@@ -4,6 +4,7 @@
 #include <hiredis/hiredis.h>
 #include <log4c.h>
 #include <sodium.h>
+#include <postgresql/libpq-fe.h>
 
 void debug(const log4c_category_t* a_category, const char* a_format, ...);
 void info(const log4c_category_t* a_category, const char* a_format, ...);

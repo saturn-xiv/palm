@@ -5,6 +5,6 @@ const third = @cImport({
 
 pub fn open() !void {
     //
-    // third.log(logger, third.LOG4C_PRIORITY_ERROR, "error");
+    //
     // return logger;
 }
