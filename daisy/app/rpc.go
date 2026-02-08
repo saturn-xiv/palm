@@ -75,7 +75,7 @@ func LaunchRpcServer(config_file string, port uint16, debug bool) error {
 	portal_v2.RegisterLocaleServer(server, portal.NewLocaleServer(db, jwt, enforcer))
 	portal_v2.RegisterUserServer(server, portal.NewUserServer(db, jwt, enforcer, s3_client))
 	portal_v2.RegisterEmailUserServer(server, portal.NewEmailUserServer(db, jwt, enforcer, s3_client, hmac))
-	s3_v2.RegisterS3Server(server, s3.NewServer(db, jwt, enforcer, s3_client))
+	s3_v2.RegisterS3Server(server, s3.NewServer(s3_client))
 	rbac_v2.RegisterEnforcerServer(server, rbac.NewServer(db, jwt, enforcer))
 
 	signal_chan := make(chan os.Signal, 1)

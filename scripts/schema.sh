@@ -94,8 +94,8 @@ function generate_marigold() {
 
 generate_daisy
 generate_loquat
-generate_gourd
-generate_crocus
+# generate_gourd
+# generate_crocus
 generate_marigold
 
 echo "format cargo projects"

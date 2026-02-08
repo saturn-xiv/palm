@@ -14,7 +14,7 @@ service S3 {
   rpc MakeBucket(MakeBucketRequest) returns (google.protobuf.Empty) {}
   rpc BucketExists(BucketExistsRequest) returns (BucketExistsResponse) {}
   rpc ListBucket(google.protobuf.Empty) returns (ListBucketResponse) {}
-  rpc PutObject(PutObjectRequest) returns (PutObjectResponse) {}
+  rpc PresignedPutObject(PresignedPutObjectRequest) returns (PresignedPutObjectResponse) {}
   rpc RemoveObject(RemoveObjectRequest) returns (google.protobuf.Empty) {}
   rpc PresignedGetObject(PresignedGetObjectRequest) returns (PresignedGetObjectResponse) {}
   rpc GetObject(GetObjectRequest) returns (GetObjectResponse) {}
@@ -59,15 +59,13 @@ message BucketExistsResponse {
   bool exists = 1;
 }
 
-message PutObjectRequest {
-  string bucket = 1;
-  string object = 2;
-  // string                   title        = 3;
-  // string                   content_type = 4;
-  google.protobuf.Duration ttl = 9;
+message PresignedPutObjectRequest {
+  string                   bucket = 1;
+  string                   object = 2;
+  google.protobuf.Duration ttl    = 9;
 }
 
-message PutObjectResponse {
+message PresignedPutObjectResponse {
   string url = 1;
 }
 

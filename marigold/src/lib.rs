@@ -1,5 +1,8 @@
+pub mod app;
+pub mod graphql;
 #[allow(clippy::match_single_binding)]
 pub mod palm;
+pub mod plugins;
 pub mod schema;
 
 pub const NAME: &str = env!("CARGO_PKG_NAME");
