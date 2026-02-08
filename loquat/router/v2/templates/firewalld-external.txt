@@ -1,3 +1,0 @@
-{{ range .items }}
-firewall-cmd --permanent --zone=external --add-interface={{ . }}
-{{ end }}
