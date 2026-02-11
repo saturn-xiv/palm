@@ -81,5 +81,8 @@
   "cmake.ignoreCMakeListsMissing": true,
   "gopls": {
     "ui.semanticTokens": true
-  }
+  },
+  "zig.zls.enabled": "on",
+  "zig.buildOnSaveProvider": "zls",
+  "zig.path": "${userHome}/local/zig-x86_64-linux-0.15.2/zig"
 }
