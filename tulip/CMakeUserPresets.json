@@ -1,0 +1,21 @@
+{
+  "version": 2,
+  "configurePresets": [
+    {
+      "name": "x86_64",
+      "inherits": "vcpkg",
+      "environment": {
+        "VCPKG_ROOT": "${sourceDir}/vcpkg",
+        "VCPKG_TARGET_TRIPLET": "x64-linux-release"
+      }
+    },
+    {
+      "name": "aarch64",
+      "inherits": "vcpkg",
+      "environment": {
+        "VCPKG_ROOT": "${sourceDir}/vcpkg",
+        "VCPKG_TARGET_TRIPLET": "arm64-linux-release"
+      }
+    }
+  ]
+}

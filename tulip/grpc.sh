@@ -43,13 +43,12 @@ function build_grpc() {
     cmake --install $BUILD_ROOT
 }
 
-if [ "$#" -ne 1 ]; then
-    echo "USAGE: $0 GRPC_VERSION"
-    exit 1
-fi
+# if [ "$#" -ne 2 ]; then
+#     echo "USAGE: $0 GRPC_VERSION"
+#     exit 1
+# fi
 
-
-build_grpc "v1.69.0" "v33.5"
+build_grpc "v1.71.0" "v5.29.5"
 echo "done."
 
 exit 0
