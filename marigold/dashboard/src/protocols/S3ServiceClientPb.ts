@@ -169,47 +169,47 @@ export class S3Client {
     this.methodDescriptorListBucket);
   }
 
-  methodDescriptorPutObject = new grpcWeb.MethodDescriptor(
-    '/palm.s3.v1.S3/PutObject',
+  methodDescriptorPresignedPutObject = new grpcWeb.MethodDescriptor(
+    '/palm.s3.v1.S3/PresignedPutObject',
     grpcWeb.MethodType.UNARY,
-    s3_pb.PutObjectRequest,
-    s3_pb.PutObjectResponse,
-    (request: s3_pb.PutObjectRequest) => {
+    s3_pb.PresignedPutObjectRequest,
+    s3_pb.PresignedPutObjectResponse,
+    (request: s3_pb.PresignedPutObjectRequest) => {
       return request.serializeBinary();
     },
-    s3_pb.PutObjectResponse.deserializeBinary
+    s3_pb.PresignedPutObjectResponse.deserializeBinary
   );
 
-  putObject(
-    request: s3_pb.PutObjectRequest,
-    metadata?: grpcWeb.Metadata | null): Promise<s3_pb.PutObjectResponse>;
+  presignedPutObject(
+    request: s3_pb.PresignedPutObjectRequest,
+    metadata?: grpcWeb.Metadata | null): Promise<s3_pb.PresignedPutObjectResponse>;
 
-  putObject(
-    request: s3_pb.PutObjectRequest,
+  presignedPutObject(
+    request: s3_pb.PresignedPutObjectRequest,
     metadata: grpcWeb.Metadata | null,
     callback: (err: grpcWeb.RpcError,
-               response: s3_pb.PutObjectResponse) => void): grpcWeb.ClientReadableStream<s3_pb.PutObjectResponse>;
+               response: s3_pb.PresignedPutObjectResponse) => void): grpcWeb.ClientReadableStream<s3_pb.PresignedPutObjectResponse>;
 
-  putObject(
-    request: s3_pb.PutObjectRequest,
+  presignedPutObject(
+    request: s3_pb.PresignedPutObjectRequest,
     metadata?: grpcWeb.Metadata | null,
     callback?: (err: grpcWeb.RpcError,
-               response: s3_pb.PutObjectResponse) => void) {
+               response: s3_pb.PresignedPutObjectResponse) => void) {
     if (callback !== undefined) {
       return this.client_.rpcCall(
         this.hostname_ +
-          '/palm.s3.v1.S3/PutObject',
+          '/palm.s3.v1.S3/PresignedPutObject',
         request,
         metadata || {},
-        this.methodDescriptorPutObject,
+        this.methodDescriptorPresignedPutObject,
         callback);
     }
     return this.client_.unaryCall(
     this.hostname_ +
-      '/palm.s3.v1.S3/PutObject',
+      '/palm.s3.v1.S3/PresignedPutObject',
     request,
     metadata || {},
-    this.methodDescriptorPutObject);
+    this.methodDescriptorPresignedPutObject);
   }
 
   methodDescriptorRemoveObject = new grpcWeb.MethodDescriptor(

@@ -431,31 +431,29 @@ func (x *BucketExistsResponse) GetExists() bool {
 	return false
 }
 
-type PutObjectRequest struct {
-	state  protoimpl.MessageState `protogen:"open.v1"`
-	Bucket string                 `protobuf:"bytes,1,opt,name=bucket,proto3" json:"bucket,omitempty"`
-	Object string                 `protobuf:"bytes,2,opt,name=object,proto3" json:"object,omitempty"`
-	// string                   title        = 3;
-	// string                   content_type = 4;
-	Ttl           *durationpb.Duration `protobuf:"bytes,9,opt,name=ttl,proto3" json:"ttl,omitempty"`
+type PresignedPutObjectRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Bucket        string                 `protobuf:"bytes,1,opt,name=bucket,proto3" json:"bucket,omitempty"`
+	Object        string                 `protobuf:"bytes,2,opt,name=object,proto3" json:"object,omitempty"`
+	Ttl           *durationpb.Duration   `protobuf:"bytes,9,opt,name=ttl,proto3" json:"ttl,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *PutObjectRequest) Reset() {
-	*x = PutObjectRequest{}
+func (x *PresignedPutObjectRequest) Reset() {
+	*x = PresignedPutObjectRequest{}
 	mi := &file_proto_s3_proto_msgTypes[8]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *PutObjectRequest) String() string {
+func (x *PresignedPutObjectRequest) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*PutObjectRequest) ProtoMessage() {}
+func (*PresignedPutObjectRequest) ProtoMessage() {}
 
-func (x *PutObjectRequest) ProtoReflect() protoreflect.Message {
+func (x *PresignedPutObjectRequest) ProtoReflect() protoreflect.Message {
 	mi := &file_proto_s3_proto_msgTypes[8]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -467,53 +465,53 @@ func (x *PutObjectRequest) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use PutObjectRequest.ProtoReflect.Descriptor instead.
-func (*PutObjectRequest) Descriptor() ([]byte, []int) {
+// Deprecated: Use PresignedPutObjectRequest.ProtoReflect.Descriptor instead.
+func (*PresignedPutObjectRequest) Descriptor() ([]byte, []int) {
 	return file_proto_s3_proto_rawDescGZIP(), []int{8}
 }
 
-func (x *PutObjectRequest) GetBucket() string {
+func (x *PresignedPutObjectRequest) GetBucket() string {
 	if x != nil {
 		return x.Bucket
 	}
 	return ""
 }
 
-func (x *PutObjectRequest) GetObject() string {
+func (x *PresignedPutObjectRequest) GetObject() string {
 	if x != nil {
 		return x.Object
 	}
 	return ""
 }
 
-func (x *PutObjectRequest) GetTtl() *durationpb.Duration {
+func (x *PresignedPutObjectRequest) GetTtl() *durationpb.Duration {
 	if x != nil {
 		return x.Ttl
 	}
 	return nil
 }
 
-type PutObjectResponse struct {
+type PresignedPutObjectResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Url           string                 `protobuf:"bytes,1,opt,name=url,proto3" json:"url,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *PutObjectResponse) Reset() {
-	*x = PutObjectResponse{}
+func (x *PresignedPutObjectResponse) Reset() {
+	*x = PresignedPutObjectResponse{}
 	mi := &file_proto_s3_proto_msgTypes[9]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *PutObjectResponse) String() string {
+func (x *PresignedPutObjectResponse) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*PutObjectResponse) ProtoMessage() {}
+func (*PresignedPutObjectResponse) ProtoMessage() {}
 
-func (x *PutObjectResponse) ProtoReflect() protoreflect.Message {
+func (x *PresignedPutObjectResponse) ProtoReflect() protoreflect.Message {
 	mi := &file_proto_s3_proto_msgTypes[9]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -525,12 +523,12 @@ func (x *PutObjectResponse) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use PutObjectResponse.ProtoReflect.Descriptor instead.
-func (*PutObjectResponse) Descriptor() ([]byte, []int) {
+// Deprecated: Use PresignedPutObjectResponse.ProtoReflect.Descriptor instead.
+func (*PresignedPutObjectResponse) Descriptor() ([]byte, []int) {
 	return file_proto_s3_proto_rawDescGZIP(), []int{9}
 }
 
-func (x *PutObjectResponse) GetUrl() string {
+func (x *PresignedPutObjectResponse) GetUrl() string {
 	if x != nil {
 		return x.Url
 	}
@@ -655,24 +653,24 @@ const file_proto_s3_proto_rawDesc = "" +
 	"\x13BucketExistsRequest\x12\x12\n" +
 	"\x04name\x18\x01 \x01(\tR\x04name\".\n" +
 	"\x14BucketExistsResponse\x12\x16\n" +
-	"\x06exists\x18\x01 \x01(\bR\x06exists\"o\n" +
-	"\x10PutObjectRequest\x12\x16\n" +
+	"\x06exists\x18\x01 \x01(\bR\x06exists\"x\n" +
+	"\x19PresignedPutObjectRequest\x12\x16\n" +
 	"\x06bucket\x18\x01 \x01(\tR\x06bucket\x12\x16\n" +
 	"\x06object\x18\x02 \x01(\tR\x06object\x12+\n" +
-	"\x03ttl\x18\t \x01(\v2\x19.google.protobuf.DurationR\x03ttl\"%\n" +
-	"\x11PutObjectResponse\x12\x10\n" +
+	"\x03ttl\x18\t \x01(\v2\x19.google.protobuf.DurationR\x03ttl\".\n" +
+	"\x1aPresignedPutObjectResponse\x12\x10\n" +
 	"\x03url\x18\x01 \x01(\tR\x03url\"k\n" +
 	"\x12ListBucketResponse\x129\n" +
 	"\x05items\x18\x01 \x03(\v2#.palm.s3.v1.ListBucketResponse.ItemR\x05items\x1a\x1a\n" +
 	"\x04Item\x12\x12\n" +
-	"\x04name\x18\x01 \x01(\tR\x04name2\xb2\x04\n" +
+	"\x04name\x18\x01 \x01(\tR\x04name2\xcd\x04\n" +
 	"\x02S3\x12E\n" +
 	"\n" +
 	"MakeBucket\x12\x1d.palm.s3.v1.MakeBucketRequest\x1a\x16.google.protobuf.Empty\"\x00\x12S\n" +
 	"\fBucketExists\x12\x1f.palm.s3.v1.BucketExistsRequest\x1a .palm.s3.v1.BucketExistsResponse\"\x00\x12F\n" +
 	"\n" +
-	"ListBucket\x12\x16.google.protobuf.Empty\x1a\x1e.palm.s3.v1.ListBucketResponse\"\x00\x12J\n" +
-	"\tPutObject\x12\x1c.palm.s3.v1.PutObjectRequest\x1a\x1d.palm.s3.v1.PutObjectResponse\"\x00\x12I\n" +
+	"ListBucket\x12\x16.google.protobuf.Empty\x1a\x1e.palm.s3.v1.ListBucketResponse\"\x00\x12e\n" +
+	"\x12PresignedPutObject\x12%.palm.s3.v1.PresignedPutObjectRequest\x1a&.palm.s3.v1.PresignedPutObjectResponse\"\x00\x12I\n" +
 	"\fRemoveObject\x12\x1f.palm.s3.v1.RemoveObjectRequest\x1a\x16.google.protobuf.Empty\"\x00\x12e\n" +
 	"\x12PresignedGetObject\x12%.palm.s3.v1.PresignedGetObjectRequest\x1a&.palm.s3.v1.PresignedGetObjectResponse\"\x00\x12J\n" +
 	"\tGetObject\x12\x1c.palm.s3.v1.GetObjectRequest\x1a\x1d.palm.s3.v1.GetObjectResponse\"\x00BS\n" +
@@ -700,8 +698,8 @@ var file_proto_s3_proto_goTypes = []any{
 	(*MakeBucketRequest)(nil),          // 5: palm.s3.v1.MakeBucketRequest
 	(*BucketExistsRequest)(nil),        // 6: palm.s3.v1.BucketExistsRequest
 	(*BucketExistsResponse)(nil),       // 7: palm.s3.v1.BucketExistsResponse
-	(*PutObjectRequest)(nil),           // 8: palm.s3.v1.PutObjectRequest
-	(*PutObjectResponse)(nil),          // 9: palm.s3.v1.PutObjectResponse
+	(*PresignedPutObjectRequest)(nil),  // 8: palm.s3.v1.PresignedPutObjectRequest
+	(*PresignedPutObjectResponse)(nil), // 9: palm.s3.v1.PresignedPutObjectResponse
 	(*ListBucketResponse)(nil),         // 10: palm.s3.v1.ListBucketResponse
 	(*ListBucketResponse_Item)(nil),    // 11: palm.s3.v1.ListBucketResponse.Item
 	(*durationpb.Duration)(nil),        // 12: google.protobuf.Duration
@@ -709,19 +707,19 @@ var file_proto_s3_proto_goTypes = []any{
 }
 var file_proto_s3_proto_depIdxs = []int32{
 	12, // 0: palm.s3.v1.PresignedGetObjectRequest.ttl:type_name -> google.protobuf.Duration
-	12, // 1: palm.s3.v1.PutObjectRequest.ttl:type_name -> google.protobuf.Duration
+	12, // 1: palm.s3.v1.PresignedPutObjectRequest.ttl:type_name -> google.protobuf.Duration
 	11, // 2: palm.s3.v1.ListBucketResponse.items:type_name -> palm.s3.v1.ListBucketResponse.Item
 	5,  // 3: palm.s3.v1.S3.MakeBucket:input_type -> palm.s3.v1.MakeBucketRequest
 	6,  // 4: palm.s3.v1.S3.BucketExists:input_type -> palm.s3.v1.BucketExistsRequest
 	13, // 5: palm.s3.v1.S3.ListBucket:input_type -> google.protobuf.Empty
-	8,  // 6: palm.s3.v1.S3.PutObject:input_type -> palm.s3.v1.PutObjectRequest
+	8,  // 6: palm.s3.v1.S3.PresignedPutObject:input_type -> palm.s3.v1.PresignedPutObjectRequest
 	4,  // 7: palm.s3.v1.S3.RemoveObject:input_type -> palm.s3.v1.RemoveObjectRequest
 	2,  // 8: palm.s3.v1.S3.PresignedGetObject:input_type -> palm.s3.v1.PresignedGetObjectRequest
 	0,  // 9: palm.s3.v1.S3.GetObject:input_type -> palm.s3.v1.GetObjectRequest
 	13, // 10: palm.s3.v1.S3.MakeBucket:output_type -> google.protobuf.Empty
 	7,  // 11: palm.s3.v1.S3.BucketExists:output_type -> palm.s3.v1.BucketExistsResponse
 	10, // 12: palm.s3.v1.S3.ListBucket:output_type -> palm.s3.v1.ListBucketResponse
-	9,  // 13: palm.s3.v1.S3.PutObject:output_type -> palm.s3.v1.PutObjectResponse
+	9,  // 13: palm.s3.v1.S3.PresignedPutObject:output_type -> palm.s3.v1.PresignedPutObjectResponse
 	13, // 14: palm.s3.v1.S3.RemoveObject:output_type -> google.protobuf.Empty
 	3,  // 15: palm.s3.v1.S3.PresignedGetObject:output_type -> palm.s3.v1.PresignedGetObjectResponse
 	1,  // 16: palm.s3.v1.S3.GetObject:output_type -> palm.s3.v1.GetObjectResponse

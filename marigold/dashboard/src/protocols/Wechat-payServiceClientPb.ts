@@ -8,7 +8,7 @@
 // versions:
 // 	protoc-gen-grpc-web v2.0.2
 // 	protoc              v6.31.1
-// source: wehat-pay.proto
+// source: wechat-pay.proto
 
 
 /* eslint-disable */

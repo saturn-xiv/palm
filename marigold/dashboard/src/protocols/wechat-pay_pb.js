@@ -1,4 +1,4 @@
-// source: wehat-pay.proto
+// source: wechat-pay.proto
 /**
  * @fileoverview
  * @enhanceable

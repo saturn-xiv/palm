@@ -192,27 +192,27 @@ export namespace BucketExistsResponse {
   };
 }
 
-export class PutObjectRequest extends jspb.Message {
+export class PresignedPutObjectRequest extends jspb.Message {
   getBucket(): string;
-  setBucket(value: string): PutObjectRequest;
+  setBucket(value: string): PresignedPutObjectRequest;
 
   getObject(): string;
-  setObject(value: string): PutObjectRequest;
+  setObject(value: string): PresignedPutObjectRequest;
 
   getTtl(): google_protobuf_duration_pb.Duration | undefined;
-  setTtl(value?: google_protobuf_duration_pb.Duration): PutObjectRequest;
+  setTtl(value?: google_protobuf_duration_pb.Duration): PresignedPutObjectRequest;
   hasTtl(): boolean;
-  clearTtl(): PutObjectRequest;
+  clearTtl(): PresignedPutObjectRequest;
 
   serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): PutObjectRequest.AsObject;
-  static toObject(includeInstance: boolean, msg: PutObjectRequest): PutObjectRequest.AsObject;
-  static serializeBinaryToWriter(message: PutObjectRequest, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): PutObjectRequest;
-  static deserializeBinaryFromReader(message: PutObjectRequest, reader: jspb.BinaryReader): PutObjectRequest;
+  toObject(includeInstance?: boolean): PresignedPutObjectRequest.AsObject;
+  static toObject(includeInstance: boolean, msg: PresignedPutObjectRequest): PresignedPutObjectRequest.AsObject;
+  static serializeBinaryToWriter(message: PresignedPutObjectRequest, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): PresignedPutObjectRequest;
+  static deserializeBinaryFromReader(message: PresignedPutObjectRequest, reader: jspb.BinaryReader): PresignedPutObjectRequest;
 }
 
-export namespace PutObjectRequest {
+export namespace PresignedPutObjectRequest {
   export type AsObject = {
     bucket: string;
     object: string;
@@ -220,19 +220,19 @@ export namespace PutObjectRequest {
   };
 }
 
-export class PutObjectResponse extends jspb.Message {
+export class PresignedPutObjectResponse extends jspb.Message {
   getUrl(): string;
-  setUrl(value: string): PutObjectResponse;
+  setUrl(value: string): PresignedPutObjectResponse;
 
   serializeBinary(): Uint8Array;
-  toObject(includeInstance?: boolean): PutObjectResponse.AsObject;
-  static toObject(includeInstance: boolean, msg: PutObjectResponse): PutObjectResponse.AsObject;
-  static serializeBinaryToWriter(message: PutObjectResponse, writer: jspb.BinaryWriter): void;
-  static deserializeBinary(bytes: Uint8Array): PutObjectResponse;
-  static deserializeBinaryFromReader(message: PutObjectResponse, reader: jspb.BinaryReader): PutObjectResponse;
+  toObject(includeInstance?: boolean): PresignedPutObjectResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: PresignedPutObjectResponse): PresignedPutObjectResponse.AsObject;
+  static serializeBinaryToWriter(message: PresignedPutObjectResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): PresignedPutObjectResponse;
+  static deserializeBinaryFromReader(message: PresignedPutObjectResponse, reader: jspb.BinaryReader): PresignedPutObjectResponse;
 }
 
-export namespace PutObjectResponse {
+export namespace PresignedPutObjectResponse {
   export type AsObject = {
     url: string;
   };
