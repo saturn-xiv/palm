@@ -3,8 +3,13 @@
 ## Usage
 
 ```bash
-sudo apt install libssl-dev libmariadb-dev libmariadb-dev-compat libpq-dev python3-dev libboost-all-dev
-xmake f --toolchain=clang -m release
-xmake f --toolchain=gcc -m release
-xmake -v
+$ ./tulip/docker/start.sh
+> cd /workspace/tulip/
+> xmake f --toolchain=clang --runtimes=stdc++_static -m release
+> xmake f --toolchain=gcc --runtimes=stdc++_static -m release
+> xmake -y
 ```
+
+## Documents
+
+- [Version Support](https://protobuf.dev/support/version-support/)
