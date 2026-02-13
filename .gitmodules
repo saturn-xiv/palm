@@ -1,0 +1,3 @@
+[submodule "tulip/vcpkg"]
+	path = tulip/vcpkg
+	url = https://github.com/microsoft/vcpkg.git
