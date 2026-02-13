@@ -4,8 +4,5 @@
 
 void tulip::init(bool debug) {
   // logger.debug("run on debug mode");
-  if (sodium_init() < 0) {
-    // logger.error("libsodium couldn't be initialized");
-    std::exit(EXIT_FAILURE);
-  }
+  // std::exit(EXIT_FAILURE);
 }

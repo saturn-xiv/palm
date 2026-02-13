@@ -38,7 +38,6 @@ find_package(redis++ CONFIG REQUIRED)
 find_package(SOCI CONFIG REQUIRED)
 find_package(spdlog CONFIG REQUIRED)
 find_package(tomlplusplus CONFIG REQUIRED)
-find_package(unofficial-sodium CONFIG REQUIRED)
 
 find_path(CPPCODEC_INCLUDE_DIRS "cppcodec/base32_crockford.hpp")
 
@@ -50,7 +49,7 @@ file(GLOB TULIP_SOURCES ${CMAKE_CURRENT_SOURCE_DIR}/src/*.cpp)
 add_executable(tulip ${PROTOCOLS_SOURCES} ${TULIP_SOURCES})
 target_link_libraries(tulip PRIVATE m dl anl pthread
   Boost::uuid Boost::date_time
-  argparse::argparse spdlog::spdlog_header_only unofficial-sodium::sodium cpr::cpr
+  argparse::argparse spdlog::spdlog_header_only cpr::cpr
   rabbitmq::rabbitmq-static redis++::redis++_static
   SOCI::soci_core_static SOCI::soci_postgresql_static
   nlohmann_json::nlohmann_json pantor::inja httplib::httplib tomlplusplus::tomlplusplus

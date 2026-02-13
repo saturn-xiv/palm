@@ -2,7 +2,6 @@
   "dependencies": [
     "argparse",
     "spdlog",
-    "libsodium",
     "cpp-httplib",
     "inja",
     "nlohmann-json",
