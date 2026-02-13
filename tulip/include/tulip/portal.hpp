@@ -1,7 +1,7 @@
 #pragma once
 
-#include <amqp.h>
-#include <amqp_tcp_socket.h>
+#include <rabbitmq-c/amqp.h>
+#include <rabbitmq-c/tcp_socket.h>
 #include <sodium.h>
 
 #include "email.grpc.pb.h"

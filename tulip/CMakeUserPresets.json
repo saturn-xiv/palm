@@ -6,6 +6,9 @@
       "inherits": "vcpkg",
       "environment": {
         "VCPKG_ROOT": "${sourceDir}/vcpkg",
+        "CMAKE_BUILD_TYPE": "Release"
+      },
+      "cacheVariables": {
         "VCPKG_TARGET_TRIPLET": "x64-linux-release"
       }
     },
@@ -14,6 +17,9 @@
       "inherits": "vcpkg",
       "environment": {
         "VCPKG_ROOT": "${sourceDir}/vcpkg",
+        "CMAKE_BUILD_TYPE": "Release"
+      },
+      "cacheVariables": {
         "VCPKG_TARGET_TRIPLET": "arm64-linux-release"
       }
     }
