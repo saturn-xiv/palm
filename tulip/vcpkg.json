@@ -1,17 +1,18 @@
 {
-    "dependencies": [
-        "argparse",
-        "spdlog",        
-        "cpp-httplib",
-        "inja",
-        "nlohmann-json",
-        "cppcodec",
-        "tomlplusplus",
-        "boost-uuid",
-        "cpr",
-        {"name": "soci", "features": ["boost", "mysql", "postgresql"]},
-        "redis-plus-plus",
-        "librabbitmq",
-        "grpc"
-    ]
+  "dependencies": [
+    "argparse",
+    "spdlog",
+    "libsodium",
+    "cpp-httplib",
+    "inja",
+    "nlohmann-json",
+    "cppcodec",
+    "tomlplusplus",
+    "boost-uuid",
+    "cpr",
+    { "name": "soci", "features": ["boost", "postgresql"] },
+    "redis-plus-plus",
+    "librabbitmq",
+    "grpc"
+  ]
 }

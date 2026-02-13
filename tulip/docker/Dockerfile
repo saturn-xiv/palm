@@ -12,10 +12,7 @@ RUN apt -y install curl locales locales-all tzdata vim zip unzip \
 RUN apt -y autoremove
 RUN apt -y clean
 
-RUN echo "en_US.UTF-8 UTF-8" > /etc/locale.gen
-RUN locale-gen
-RUN update-locale LANG=en_US.UTF-8
-RUN update-alternatives --set editor /usr/bin/vim.basic
+
 
 # https://learn.microsoft.com/en-us/vcpkg/get_started/get-started?pivots=shell-bash
 RUN echo 'export VCPKG_DISABLE_METRICS=1' >> $HOME/.profile
