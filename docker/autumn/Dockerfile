@@ -34,6 +34,12 @@ RUN apt install -y php-fpm php-mbstring php-xml php-bcmath php-curl php-zip php-
 RUN echo "en_US.UTF-8 UTF-8" > /etc/locale.gen && locale-gen && update-locale LANG=en_US.UTF-8
 RUN update-alternatives --set editor /usr/bin/vim.basic
 
+RUN git config --global core.quotepath false \
+    && git config --global http.version HTTP/1.1 \
+    && git config --global pull.rebase false \
+    && git config --global url."https://".insteadOf git://
+RUN echo 'set-option -g history-limit 102400' > $HOME/.tmux.conf && echo 'set-option -g default-shell "/bin/bash"' >> $HOME/.tmux.conf
+
 # https://min.io/download#/linux
 RUN wget -q -P $HOME/downloads/ https://dl.min.io/aistor/minio/release/linux-${TARGETARCH}/minio \
     && chmod +x $HOME/downloads/minio \
@@ -47,11 +53,8 @@ RUN curl -fsSL -o $HOME/downloads/dbmate https://github.com/amacneil/dbmate/rele
     && cp $HOME/downloads/dbmate /usr/local/bin/ \
     && chmod +x /usr/local/bin/dbmate
 
-RUN git config --global core.quotepath false \
-    && git config --global http.version HTTP/1.1 \
-    && git config --global pull.rebase false \
-    && git config --global url."https://".insteadOf git://
-RUN echo 'set-option -g history-limit 102400' > $HOME/.tmux.conf && echo 'set-option -g default-shell "/bin/bash"' >> $HOME/.tmux.conf
+
+RUN python3 -m venv $HOME/local/python3 && echo 'source $HOME/local/python3/bin/activate' >> $HOME/.profile
 
 # https://github.com/nvm-sh/nvm
 ENV NVM_VERSION="v0.40.4"
