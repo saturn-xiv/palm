@@ -6,7 +6,9 @@ ENV DEBIAN_FRONTEND=noninteractive
 RUN apt update
 RUN apt -y upgrade && apt -y clean && apt -y autoremove
 
-RUN apt -y install curl wget rsync pwgen git locales locales-all vim tzdata zip unzip tree tmux screen openssh-client sshpass \
+RUN apt -y install pwgen git locales locales-all vim tzdata zip unzip tree tmux screen \
+    curl wget rsync telnet iputils-ping \
+    openssh-client sshpass \
     python3-full \
     cmake pkg-config libtool automake autoconf autoconf-archive cpio mold bison flex ninja-build debhelper \
     clang clangd clang-tools clang-format clang-tidy lldb lld \
@@ -56,10 +58,10 @@ RUN curl -fsSL -o $HOME/downloads/dbmate https://github.com/amacneil/dbmate/rele
     && chmod +x /usr/local/bin/dbmate
 
 # https://getcomposer.org/doc/00-intro.md#installation-linux-unix-macos
-RUN wget -q -O $HOME/downloads/composer https://getcomposer.org/installer \
+RUN wget -q -O $HOME/downloads/composer-setup.php https://getcomposer.org/installer \
     && cd $HOME/downloads \
-    && php composer \
-    && mv composer.phar /usr/local/bin/composer
+    && php $HOME/downloads/composer-setup.php --install-dir=/usr/local/bin --filename=composer \
+    && rm $HOME/downloads/composer-setup.php
 
 # https://github.com/nvm-sh/nvm
 ENV NVM_VERSION="v0.40.4"
@@ -161,6 +163,7 @@ RUN sed -i 's/memory_limit =.*/memory_limit = 1G/' /etc/php/${PHP_VERSION}/fpm/p
 
 RUN echo "$(date -u +%4Y%m%d%H%M%S)" | tee /VERSION
 
+EXPOSE 80/tcp 443/tcp 8080/tcp 9000/tcp 5432/tcp 6379/tcp 16379/tcp 5672/tcp 9200/tcp 9300/tcp 9600/tcp
 VOLUME /srv
 WORKDIR /srv
 
