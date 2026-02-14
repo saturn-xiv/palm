@@ -41,7 +41,7 @@
   become: true
   copy:
     src: /etc/php/{{ app_php_version }}/fpm/pool.d/www.conf
-    dest: "{{ ansible_env.HOME }}/backups/etc_php_{{ app_php_version }}_fpm_pool.d_www.conf"
+    dest: "{{ ansible_facts.user_dir }}/backups/etc_php_{{ app_php_version }}_fpm_pool.d_www.conf"
     remote_src: yes
     backup: yes
 
