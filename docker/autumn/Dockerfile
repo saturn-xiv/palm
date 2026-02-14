@@ -1,7 +1,7 @@
 FROM ubuntu:latest
 LABEL maintainer="Jeremy Zheng"
 
-ENV DEBIAN_FRONTEND noninteractive
+ENV DEBIAN_FRONTEND=noninteractive
 
 RUN apt update
 RUN apt -y upgrade && apt -y clean && apt -y autoremove
@@ -28,7 +28,7 @@ RUN apt install -y postgresql redis rabbitmq-server nginx \
     && apt -y clean
 RUN apt install -y php-fpm php-mbstring php-xml php-bcmath php-curl php-zip php-zmq php-imagick php-gd php-intl php-soap \
     php-mysql php-pgsql php-sqlite3 php-redis php-mongodb php-amqp \
-    php-grpc php-protobuf \
+    php-net-imap php-net-smtp \
     && apt -y clean
 
 RUN echo "en_US.UTF-8 UTF-8" > /etc/locale.gen && locale-gen && update-locale LANG=en_US.UTF-8
@@ -53,8 +53,11 @@ RUN curl -fsSL -o $HOME/downloads/dbmate https://github.com/amacneil/dbmate/rele
     && cp $HOME/downloads/dbmate /usr/local/bin/ \
     && chmod +x /usr/local/bin/dbmate
 
-
-RUN python3 -m venv $HOME/local/python3 && echo 'source $HOME/local/python3/bin/activate' >> $HOME/.profile
+# https://getcomposer.org/doc/00-intro.md#installation-linux-unix-macos
+RUN wget -q -O $HOME/downloads/composer https://getcomposer.org/installer \
+    && cd $HOME/downloads \
+    && php composer \
+    && cp composer.phar /usr/local/bin/composer
 
 # https://github.com/nvm-sh/nvm
 ENV NVM_VERSION="v0.40.4"
@@ -62,7 +65,6 @@ RUN git clone -b ${NVM_VERSION} https://github.com/nvm-sh/nvm.git $HOME/.nvm
 RUN echo 'export NVM_DIR="$HOME/.nvm"' >> $HOME/.profile \
     && echo '[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"' >> $HOME/.profile \
     && echo '[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"' >> $HOME/.profile
-# https://stackoverflow.com/questions/37324519/node-sass-does-not-yet-support-your-current-environment-linux-64-bit-with-false
 RUN bash -c "source $HOME/.bashrc && nvm install --lts && nvm use --lts"
 
 # https://github.com/sdkman/sdkman-cli
@@ -92,12 +94,12 @@ RUN tar xf $HOME/downloads/opensearch-${OPENSEARCH_VERSION}-linux-${TARGETARCH}.
     && bin/opensearch-plugin install https://github.com/aparo/opensearch-analysis-stconvert/releases/download/${OPENSEARCH_VERSION}/opensearch-analysis-stconvert.zip \
     && bin/opensearch-plugin install https://github.com/aparo/opensearch-analysis-pinyin/releases/download/${OPENSEARCH_VERSION}/opensearch-analysis-pinyin.zip
 
-# https://learn.microsoft.com/en-us/vcpkg/get_started/get-started?pivots=shell-bash
-RUN echo 'export VCPKG_DISABLE_METRICS=1' >> $HOME/.profile
-
 # https://xmake.io/guide/quick-start.html
 RUN curl -fsSL https://xmake.io/shget.text | bash
 RUN echo 'export XMAKE_ROOT=y' >> $HOME/.profile
+
+# https://learn.microsoft.com/en-us/vcpkg/get_started/get-started?pivots=shell-bash
+RUN echo 'export VCPKG_DISABLE_METRICS=1' >> $HOME/.profile
 
 # https://opensearch.org/docs/latest/opensearch/install/tar/
 RUN echo "network.host: 0.0.0.0" >> /opt/opensearch/config/opensearch.yml \
@@ -105,6 +107,8 @@ RUN echo "network.host: 0.0.0.0" >> /opt/opensearch/config/opensearch.yml \
     && echo "plugins.security.disabled: true" >> /opt/opensearch/config/opensearch.yml
 # https://github.com/infinilabs/analysis-stconvert
 RUN cd /opt/opensearch/ && bin/opensearch-plugin install https://get.infini.cloud/opensearch/analysis-stconvert/${OPENSEARCH_VERSION}
+
+RUN python3 -m venv $HOME/local/python3 && echo 'source $HOME/local/python3/bin/activate' >> $HOME/.profile
 
 RUN mkdir -p /var/lib/minio/data && chown -R nobody:nobody /var/lib/minio
 

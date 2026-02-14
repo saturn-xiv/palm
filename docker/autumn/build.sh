@@ -2,7 +2,6 @@
 
 set -e
 
-export VERSION=$(date "+%4Y%m%d%H%M%S")
 export CODE="palm-autumn"
 
 ARCH=$(uname -m)
@@ -18,9 +17,6 @@ else
     exit 1
 fi
 
-docker save -o $CODE-$VERSION.tar $CODE
-md5sum $CODE-$VERSION.tar* >>$CODE-$VERSION.md5
-
-echo "done($CODE-$VERSION.tar)."
+echo "done."
 
 exit 0
