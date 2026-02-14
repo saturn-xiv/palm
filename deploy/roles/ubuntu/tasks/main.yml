@@ -1,12 +1,12 @@
-- name: add PPA for Ubuntu Toolchain
+- name: Add PPA for Ubuntu Toolchain
   become: true
   ansible.builtin.apt_repository:
     repo: ppa:ubuntu-toolchain-r/test
-  when: ansible_distribution == 'Ubuntu'
+  when: ansible_facts.distribution == 'Ubuntu'
 
 - name: Install dependicy packages
   become: true
-  apt:
+  ansible.builtin.apt:
     pkg:
       - apt-transport-https
       - software-properties-common
@@ -104,10 +104,10 @@
   when: app_os_armbian.stat.islnk is defined and app_os_armbian.stat.isreg
 
 - include_tasks: raspbian.yml
-  when: ansible_distribution == 'Raspbian'
+  when: ansible_facts.distribution == 'Raspbian'
 
 - include_tasks: pi.yml
-  when: ansible_distribution == 'Raspbian' or (app_os_armbian.stat.islnk is defined and app_os_armbian.stat.isreg) or (app_os_friendlyelec.stat.islnk is defined and app_os_friendlyelec.stat.isreg)
+  when: ansible_facts.distribution == 'Raspbian' or (app_os_armbian.stat.islnk is defined and app_os_armbian.stat.isreg) or (app_os_friendlyelec.stat.islnk is defined and app_os_friendlyelec.stat.isreg)
 
 # ---------------------------------------------------
 

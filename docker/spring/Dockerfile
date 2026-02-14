@@ -140,7 +140,6 @@ RUN zsh -c ". $HOME/.zshrc \
     && pip install ansible paramiko conan cmake \
     && pip install grpcio-tools grpcio-health-checking"
 RUN echo 'source $HOME/local/python3/bin/activate' >> $HOME/.zshrc
-RUN zsh -c ". $HOME/.zshrc && ansible-galaxy collection install ansible.posix community.general"
 RUN echo 'export ANSIBLE_HOST_KEY_CHECKING=False' >> $HOME/.zshrc \
     && echo 'alias peony="ANSIBLE_LOG_PATH=$HOME/tmp/$(date +%Y%m%d%H%M%S).log ansible-playbook"' >> $HOME/.zshrc
 

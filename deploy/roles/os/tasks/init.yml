@@ -1,14 +1,14 @@
 - name: Create downloads folder
   ansible.builtin.file:
-    path: "{{ ansible_env.HOME }}/downloads/"
+    path: "{{ ansible_facts.user_dir }}/downloads/"
     state: directory
 
 - name: Create backup folder
   ansible.builtin.file:
-    path: "{{ ansible_env.HOME }}/backups/"
+    path: "{{ ansible_facts.user_dir }}/backups/"
     state: directory
 
 - name: Create local folder
   ansible.builtin.file:
-    path: "{{ ansible_env.HOME }}/local/"
+    path: "{{ ansible_facts.user_dir }}/local/"
     state: directory

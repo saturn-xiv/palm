@@ -7,16 +7,16 @@
   ansible.builtin.apt:
     update_cache: true
     cache_valid_time: 3600
-  when: ansible_distribution == 'Ubuntu' or ansible_distribution == 'Kylin'
+  when: ansible_facts.distribution == 'Ubuntu' or ansible_facts.distribution == 'Kylin'
 
 - name: Update all packages to their latest version
   become: true
   ansible.builtin.apt:
     name: "*"
     state: latest
-  when: ansible_distribution == 'Ubuntu' or ansible_distribution == 'Kylin'
+  when: ansible_facts.distribution == 'Ubuntu' or ansible_facts.distribution == 'Kylin'
 
-- name: Install dependicy packages
+- name: Install dependency packages
   become: true
   ansible.builtin.apt:
     pkg:
@@ -24,7 +24,7 @@
       - zsh
       - git
       - tmux
-  when: ansible_distribution == 'Ubuntu' or ansible_distribution == 'Kylin'
+  when: ansible_facts.distribution == 'Ubuntu' or ansible_facts.distribution == 'Kylin'
 
 - name: Set timezone
   become: true
