@@ -67,7 +67,6 @@
     line: 'root = "/srv/.containerd"'
     backup: true
 
-
 # https://kubernetes.io/docs/setup/production-environment/container-runtimes/#prerequisite-ipv4-forwarding-optional
 - name: Enable IPv4 packet forwarding
   become: true
@@ -79,6 +78,13 @@
 
 - name: Setup kubernetes
   ansible.builtin.import_tasks: kubernetes.yml
+
+- name: Restart containerd service
+  become: true
+  ansible.builtin.systemd_service:
+    name: containerd.service
+    state: restarted
+    daemon_reload: true
 
 - name: Restart docker service
   become: true

@@ -1,6 +1,6 @@
 - name: Enable en-US locale
   become: true
-  lineinfile:
+  ansible.builtin.lineinfile:
     path: /etc/locale.gen
     state: present
     line: en_US.UTF-8 UTF-8
@@ -8,7 +8,7 @@
 
 - name: Enable zh-CN locale
   become: true
-  lineinfile:
+  ansible.builtin.lineinfile:
     path: /etc/locale.gen
     state: present
     line: zh_CN.UTF-8 UTF-8
@@ -16,7 +16,7 @@
 
 - name: Enable zh-TW locale
   become: true
-  lineinfile:
+  ansible.builtin.lineinfile:
     path: /etc/locale.gen
     state: present
     line: zh_TW.UTF-8 UTF-8
@@ -24,8 +24,8 @@
 
 - name: Generate locales
   become: true
-  shell: locale-gen
+  ansible.builtin.shell: locale-gen
 
 - name: Use en_US as default locale
   become: true
-  shell: update-locale LANG=en_US.UTF-8
+  ansible.builtin.shell: update-locale LANG=en_US.UTF-8
