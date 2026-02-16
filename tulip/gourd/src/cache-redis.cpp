@@ -1,6 +1,7 @@
 #include <palm/cache.hpp>
 
 std::shared_ptr<sw::redis::RedisCluster> palm::Redis::open() const {
+  spdlog::debug("open redis cluster tcp://{}:{}", this->_host, this->_port);
   sw::redis::ConnectionOptions options;
   options.host = this->_host;
   options.port = this->_port;

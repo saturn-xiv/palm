@@ -9,7 +9,7 @@ string(STRIP "${GIT_REV}" GIT_REV)
 string(TIMESTAMP BUILD_TIME UTC)
 configure_file(include/palm/version.h.in ${CMAKE_CURRENT_SOURCE_DIR}/include/palm/version.hpp)
 # -----------------------------------------------------------------------------
-find_package(Boost REQUIRED COMPONENTS uuid date_time)
+find_package(Boost REQUIRED COMPONENTS uuid date_time exception)
 find_package(argparse CONFIG REQUIRED)
 find_package(httplib CONFIG REQUIRED)
 find_package(cpr CONFIG REQUIRED)
@@ -27,7 +27,7 @@ find_path(CPPCODEC_INCLUDE_DIRS "cppcodec/base32_crockford.hpp")
 add_library(gourd STATIC ${PROTOCOLS_SOURCES} ${GOURD_SOURCE_LIST}) 
 
 target_link_libraries(gourd PUBLIC  m dl anl pthread
-  Boost::uuid Boost::date_time
+  Boost::uuid Boost::date_time Boost::exception
   argparse::argparse spdlog::spdlog_header_only cpr::cpr
   rabbitmq::rabbitmq-static redis++::redis++_static
   SOCI::soci_core_static SOCI::soci_postgresql_static

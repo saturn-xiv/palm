@@ -1,6 +1,7 @@
 #include "palm/utils.hpp"
 
 #include <climits>
+#include <filesystem>
 #include <iomanip>
 #include <random>
 
@@ -48,4 +49,13 @@ std::string palm::random::alphanumeric(size_t len) {
   }
 
   return it;
+}
+
+bool palm::is_stopped() {
+  static const std::string file = ".stop";
+  const auto ok = std::filesystem::exists(file);
+  if (ok) {
+    spdlog::warn("file {} exists, will be exited...", file);
+  }
+  return ok;
 }

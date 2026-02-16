@@ -1,5 +1,7 @@
 {
   "dependencies": [
+    "boost-uuid",
+    "boost-exception",
     "argparse",
     "spdlog",
     "cpp-httplib",
@@ -7,7 +9,6 @@
     "nlohmann-json",
     "cppcodec",
     "tomlplusplus",
-    "boost-uuid",
     "cpr",
     { "name": "soci", "features": ["boost", "postgresql"] },
     { "name": "redis-plus-plus", "features": ["cxx17"] },

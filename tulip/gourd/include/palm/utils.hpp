@@ -5,6 +5,7 @@
 
 namespace palm {
 std::string uuid();
+bool is_stopped();
 
 namespace base64 {
 std::vector<uint8_t> from(const std::string& str);
