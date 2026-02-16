@@ -8,6 +8,9 @@
 #include "tex.grpc.pb.h"
 #include "wechat-pay.grpc.pb.h"
 
+#include <google/protobuf/util/json_util.h>
+#include <google/protobuf/util/time_util.h>
+
 namespace tulip {
 void init(bool debug = false);
 }

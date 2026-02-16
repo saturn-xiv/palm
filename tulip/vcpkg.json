@@ -10,7 +10,7 @@
     "boost-uuid",
     "cpr",
     { "name": "soci", "features": ["boost", "postgresql"] },
-    "redis-plus-plus",
+    { "name": "redis-plus-plus", "features": ["cxx17"] },
     "librabbitmq",
     "grpc",
 
