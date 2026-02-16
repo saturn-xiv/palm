@@ -27,27 +27,6 @@ function generate_daisy() {
     done    
 }
 
-
-function generate_gourd() {
-    echo "generate protocols(cpp) for gourd"    
-    local target=$WORKSPACE/gourd
-    if [ -d $target ]
-    then
-        rm -r $target
-    fi
-    mkdir -p $target/include $target/src
-
-    $PROTOBUF_HOME/bin/protoc \
-        -I $WORKSPACE/daisy/proto -I $WORKSPACE/tulip/proto -I $WORKSPACE/camellia/src/main/proto \
-        -I $PROTOBUF_HOME/include/google/protobuf \
-        --cpp_out=$target --grpc_out=$target \
-        --plugin=protoc-gen-grpc=$PROTOBUF_HOME/bin/grpc_cpp_plugin \
-        $WORKSPACE/daisy/proto/*.proto $WORKSPACE/tulip/proto/*.proto $WORKSPACE/camellia/src/main/proto/*.proto
-    mv $target/*.h $target/include/
-    mv $target/*.cc $target/src/
-}
-
-
 function generate_crocus() {
     echo "generate grpc protocols(java) for crocus"
     local target=$WORKSPACE/crocus/src/main/java/
@@ -88,10 +67,10 @@ function generate_marigold() {
 
 function generate_tulip() {
     echo "generate protocols(cpp) for tulip"
-    local target=$WORKSPACE/tulip/protocols
+    local target=$WORKSPACE/tulip/gourd
     if [ -d $target ]
     then
-        rm -r $target
+        rm $target/include/*.h $target/src/*.cc
     fi
     mkdir -p $target/include $target/src
 
@@ -108,7 +87,6 @@ function generate_tulip() {
 # -----------------------------------------------------------------------------
 
 generate_daisy
-# generate_gourd
 # generate_crocus
 generate_marigold
 generate_tulip
