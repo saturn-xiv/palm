@@ -158,7 +158,7 @@ RUN zsh -c "source $HOME/.zshrc \
     && gem install bundler"
 
 # https://go.dev/doc/install
-ENV GO_VERSION="1.25.6"
+ENV GO_VERSION="1.26.0"
 RUN wget -q -P $HOME/downloads https://go.dev/dl/go${GO_VERSION}.linux-amd64.tar.gz
 RUN tar xf $HOME/downloads/go${GO_VERSION}.linux-amd64.tar.gz -C $HOME/local
 RUN echo 'export PATH=$HOME/local/go/bin:$PATH' >> $HOME/.zshrc \
@@ -228,7 +228,6 @@ RUN zsh -c "source $HOME/.cargo/env \
     && rustup target add aarch64-unknown-linux-musl \
     && rustup target add loongarch64-unknown-linux-gnu"
 RUN zsh -c "source $HOME/.zshrc \
-    && cargo install --locked cargo-outdated \
     && cargo install diesel_cli \
     && cargo install mdbook \
     && cargo install cross"

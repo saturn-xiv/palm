@@ -7,7 +7,7 @@ RUN apt update
 RUN apt -y upgrade && apt -y clean && apt -y autoremove
 
 RUN apt -y install pwgen git locales locales-all vim tzdata zip unzip tree tmux screen \
-    curl wget rsync telnet iputils-ping \
+    curl wget rsync telnet iputils-ping lftp \
     openssh-client sshpass \
     python3-full \
     cmake pkg-config libtool automake autoconf autoconf-archive cpio mold bison flex ninja-build debhelper \
@@ -26,7 +26,7 @@ RUN apt-get install -y fonts-dejavu-extra fonts-opensymbol fonts-lxgw-wenkai fon
     fonts-mikachan \
     fonts-tibetan-machine fonts-ddc-uchen fonts-monlam fonts-sambhota-tsugring fonts-sambhota-yigchung \
     && apt -y clean
-RUN apt install -y postgresql redis rabbitmq-server nginx \
+RUN apt install -y postgresql redis rabbitmq-server vsftpd nginx \
     && apt -y clean
 RUN apt install -y php-fpm php-mbstring php-xml php-bcmath php-curl php-zip php-zmq php-imagick php-gd php-intl php-soap \
     php-mysql php-pgsql php-sqlite3 php-redis php-mongodb php-amqp \
@@ -76,7 +76,37 @@ RUN bash -c "source $HOME/.nvm/nvm.sh && nvm install --lts && nvm use --lts"
 ENV JDK_VERSION="25.0.2-amzn"
 RUN curl -s "https://get.sdkman.io" | bash
 RUN sed -i -e 's/sdkman_auto_answer=false/sdkman_auto_answer=true/g' $HOME/.sdkman/etc/config
-RUN bash -c "source $HOME/.sdkman/bin/sdkman-init.sh && sdk install java ${JDK_VERSION} && sdk default java ${JDK_VERSION}"
+RUN bash -c "source $HOME/.sdkman/bin/sdkman-init.sh \
+    && sdk install java ${JDK_VERSION} \
+    && sdk default java ${JDK_VERSION} \
+    && sdk install gradle \
+    && sdk install maven"
+
+# https://www.rust-lang.org/tools/install
+RUN curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
+RUN bash -c "source $HOME/.cargo/env && cargo install diesel_cli && cargo install mdbook"
+
+# https://github.com/rbenv/rbenv
+# https://github.com/rbenv/ruby-build/tree/master/share/ruby-build
+ENV RUBY_VERSION="4.0.1"
+RUN git clone https://github.com/rbenv/rbenv.git $HOME/.rbenv \
+    && git clone https://github.com/rbenv/ruby-build.git $HOME/.rbenv/plugins/ruby-build \
+    && git clone https://github.com/rbenv/rbenv-vars.git $HOME/.rbenv/plugins/rbenv-vars 
+RUN echo 'eval "$(~/.rbenv/bin/rbenv init - --no-rehash bash)"' >> ~/.profile
+# https://github.com/rbenv/ruby-build
+RUN bash -c "$HOME/.rbenv/bin/rbenv init \
+    && rbenv install ${RUBY_VERSION} \
+    && rbenv global ${RUBY_VERSION} \
+    && gem install bundler"
+
+# https://go.dev/doc/install
+ENV GO_VERSION="1.26.0"
+RUN wget -q -P $HOME/downloads https://go.dev/dl/go${GO_VERSION}.linux-${TARGETARCH}.tar.gz
+RUN tar xf $HOME/downloads/go${GO_VERSION}.linux-${TARGETARCH}.tar.gz -C $HOME/local \
+    && rm $HOME/downloads/go${GO_VERSION}.linux-${TARGETARCH}.tar.gz
+RUN echo 'export PATH=$HOME/local/go/bin:$PATH' >> $HOME/.profile \
+    && echo 'export GOPATH=$HOME/go' >> $HOME/.profile \
+    && echo 'export PATH=$(go env GOPATH)/bin:$PATH' >> $HOME/.profile
 
 # https://opensearch.org/downloads.html#opensearch
 # https://github.com/aparo/opensearch-analysis-ik?tab=readme-ov-file#install
