@@ -76,7 +76,7 @@ class Config {
       : _host(config["host"].value_or<std::string>("127.0.0.1")),
         _port(config["port"].value_or<uint16_t>(5672)),
         _user(config["user"].value_or<std::string>("guest")),
-        _password(config["upassword"].value_or<std::string>("guest")),
+        _password(config["password"].value_or<std::string>("guest")),
         _virtual_host(config["virtual-host"].value_or<std::string>("/")) {}
   Config(const std::string& host = "127.0.0.1", uint16_t port = 5672,
          const std::string& user = "guest",
