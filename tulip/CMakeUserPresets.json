@@ -9,7 +9,8 @@
         "CMAKE_BUILD_TYPE": "Release"
       },
       "cacheVariables": {
-        "VCPKG_TARGET_TRIPLET": "x64-linux-release"
+        "VCPKG_TARGET_TRIPLET": "x64-linux-release",
+        "VCPKG_CHAINLOAD_TOOLCHAIN_FILE": "${sourceDir}/toolchains/x86_64.cmake"
       }
     },
     {
@@ -21,7 +22,7 @@
       },
       "cacheVariables": {
         "VCPKG_TARGET_TRIPLET": "arm64-linux-release",
-        "VCPKG_CHAINLOAD_TOOLCHAIN_FILE": "${sourceDir}/aarch64.cmake"
+        "VCPKG_CHAINLOAD_TOOLCHAIN_FILE": "${sourceDir}/toolchains/aarch64.cmake"
       }
     },
     {
@@ -33,7 +34,7 @@
       },
       "cacheVariables": {
         "VCPKG_TARGET_TRIPLET": "riscv64-linux-release",
-        "VCPKG_CHAINLOAD_TOOLCHAIN_FILE": "${sourceDir}/riscv64.cmake"
+        "VCPKG_CHAINLOAD_TOOLCHAIN_FILE": "${sourceDir}/toolchains/riscv64.cmake"
       }
     }
   ]
