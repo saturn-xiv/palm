@@ -8,9 +8,6 @@
 #include "tex.grpc.pb.h"
 #include "wechat-pay.grpc.pb.h"
 
-#include <rabbitmq-c/amqp.h>
-#include <rabbitmq-c/tcp_socket.h>
-
 namespace tulip {
 void init(bool debug = false);
 }

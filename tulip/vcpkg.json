@@ -12,6 +12,8 @@
     { "name": "soci", "features": ["boost", "postgresql"] },
     "redis-plus-plus",
     "librabbitmq",
-    "grpc"
+    "grpc",
+
+    "catch2"
   ]
 }
