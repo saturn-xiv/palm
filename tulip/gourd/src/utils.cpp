@@ -1,14 +1,23 @@
 #include "palm/utils.hpp"
+#include "palm/cache.hpp"
+#include "palm/orm.hpp"
+#include "palm/queue.hpp"
+#include "palm/version.hpp"
 
 #include <climits>
 #include <filesystem>
 #include <iomanip>
 #include <random>
 
+#include <curl/curl.h>
+#include <google/protobuf/stubs/common.h>
+#include <grpcpp/grpcpp.h>
+#include <openssl/opensslv.h>
 #include <boost/uuid/random_generator.hpp>
 #include <boost/uuid/string_generator.hpp>
 #include <boost/uuid/uuid.hpp>
 #include <boost/uuid/uuid_io.hpp>
+#include <boost/version.hpp>
 #include <cppcodec/base64_url_unpadded.hpp>
 
 std::vector<uint8_t> palm::base64::from(const std::string& str) {
@@ -58,4 +67,27 @@ bool palm::is_stopped() {
     spdlog::warn("file {} exists, will be exited...", file);
   }
   return ok;
+}
+
+void palm::init(bool debug) {
+  GOOGLE_PROTOBUF_VERIFY_VERSION;
+
+  spdlog::set_level(debug ? spdlog::level::debug : spdlog::level::info);
+  spdlog::debug("run on debug mode({})", palm::GIT_VERSION);
+
+  spdlog::debug("boost v{}", BOOST_LIB_VERSION);
+  spdlog::debug("{}", OPENSSL_VERSION_TEXT);
+  {
+    const auto v = PQlibVersion();
+    spdlog::debug("PostgreSQL v{}.{}.{}", v / (100 * 100), (v / 100) % 100,
+                  v % (100 * 100));
+  }
+
+  spdlog::debug("{}", curl_version());
+  spdlog::debug("rabbitmq-c v{}", AMQ_VERSION_STRING);
+  spdlog::debug("hiredis v{}.{}.{}", HIREDIS_MAJOR, HIREDIS_MINOR,
+                HIREDIS_PATCH);
+  spdlog::debug("protobuf v{}", google::protobuf::internal::VersionString(
+                                    GOOGLE_PROTOBUF_VERSION));
+  spdlog::debug("gRPC v{}", grpc::Version());
 }

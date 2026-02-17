@@ -4,6 +4,7 @@
 #include <toml++/toml.hpp>
 
 namespace palm {
+void init(bool debug = false);
 std::string uuid();
 bool is_stopped();
 

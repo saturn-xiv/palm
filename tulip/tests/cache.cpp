@@ -8,18 +8,18 @@
 #include <google/protobuf/util/time_util.h>
 
 TEST_CASE("redis client", "[cache]") {
-  palm::Redis config("127.0.0.1", 6371);
+  palm::redis::Config config("127.0.0.1", 6371);
   auto client = config.open();
 
   SECTION("raw string message") {
     const std::string key = "hi.raw-string";
     const std::string value = "Hello, Palm!";
 
-    REQUIRE(palm::cache::set(client, key, value,
-                             std::chrono::duration_cast<std::chrono::seconds>(
-                                 std::chrono::hours(2))));
+    REQUIRE(client->set(key, value,
+                        std::chrono::duration_cast<std::chrono::seconds>(
+                            std::chrono::hours(2))));
     {
-      const auto tmp = palm::cache::get(client, key);
+      const auto tmp = client->get(key);
       REQUIRE(tmp.has_value());
       REQUIRE(tmp.value() == value);
     }
@@ -47,12 +47,12 @@ TEST_CASE("redis client", "[cache]") {
       it->MergeFrom(updated_at);
     }
 
-    REQUIRE(palm::cache::set(client, key, &value,
-                             std::chrono::duration_cast<std::chrono::seconds>(
-                                 std::chrono::hours(2))));
+    REQUIRE(client->set(key, &value,
+                        std::chrono::duration_cast<std::chrono::seconds>(
+                            std::chrono::hours(2))));
     {
       palm::portal::v1::LocaleIndexResponse_Item tmp;
-      REQUIRE(palm::cache::get(client, key, &tmp));
+      REQUIRE(client->get(key, &tmp));
       REQUIRE(id == tmp.id());
       REQUIRE(lang == tmp.lang());
       REQUIRE(code == tmp.code());
