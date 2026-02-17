@@ -200,8 +200,8 @@ std::shared_ptr<palm::rabbitmq::Client> palm::rabbitmq::Config::open(
     return nullptr;
   }
 
-  spdlog::debug("open {}@{}:{}/{}", this->_user, this->_host, this->_port,
-                this->_virtual_host);
+  spdlog::debug("open rabbitmq {}@{}:{}/{}", this->_user, this->_host,
+                this->_port, this->_virtual_host);
   if (amqp_socket_open(it->_socket, this->_host.c_str(), this->_port) !=
       AMQP_STATUS_OK) {
     spdlog::error("opening TCP socket");

@@ -75,7 +75,8 @@ void palm::init(bool debug) {
   spdlog::set_level(debug ? spdlog::level::debug : spdlog::level::info);
   spdlog::debug("run on debug mode({})", palm::GIT_VERSION);
 
-  spdlog::debug("boost v{}", BOOST_LIB_VERSION);
+  spdlog::debug("boost v{}.{}.{}", BOOST_VERSION / 100000,
+                BOOST_VERSION / 100 % 1000, BOOST_VERSION % 100);
   spdlog::debug("{}", OPENSSL_VERSION_TEXT);
   {
     const auto v = PQlibVersion();

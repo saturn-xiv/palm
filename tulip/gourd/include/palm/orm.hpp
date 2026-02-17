@@ -20,7 +20,7 @@ class PostgreSql {
  public:
   PostgreSql(const toml::table& config)
       : _host(config["host"].value_or<std::string>("127.0.0.1")),
-        _port(config["port"].value_or<uint16_t>(5672)),
+        _port(config["port"].value_or<uint16_t>(5432)),
         _user(config["user"].value_or<std::string>("postgres")),
         _password(config["password"].value<std::string>()),
         _db_name(config["db-name"].value_or<std::string>("/")),
