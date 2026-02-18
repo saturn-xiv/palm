@@ -15,10 +15,10 @@ import (
 type Setting struct {
 	Model
 
-	Key     string `gorm:"uniqueIndex;not null;size:255"`
-	Value   []byte `gorm:"not null;type:bytes"`
-	Salt    []byte `gorm:"type:bytes"`
-	Version uint   `gorm:"not null;default:0"`
+	UserID *uint
+	Key    string `gorm:"index;not null;size:255"`
+	Value  []byte `gorm:"not null;type:bytes"`
+	Salt   []byte `gorm:"type:bytes"`
 }
 
 func (Setting) TableName() string {

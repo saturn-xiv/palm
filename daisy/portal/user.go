@@ -64,7 +64,7 @@ func (p *UserServer) CreateAttachment(ctx context.Context, req *v2.UserCreateAtt
 	}
 	bucket := req.Bucket()
 	object := req.Object()
-	req_ := s3_v2.PutObjectRequest{Bucket: bucket, Object: object, Ttl: req.Ttl}
+	req_ := s3_v2.PresignedPutObjectRequest{Bucket: bucket, Object: object, Ttl: req.Ttl}
 	url, err := req_.Execute(ctx, p.s3)
 	if err != nil {
 		return nil, err

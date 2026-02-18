@@ -9,14 +9,13 @@ type Attachment struct {
 
 	UserID          uint   `gorm:"not null"`
 	Title           string `gorm:"index;not null;size:127"`
-	Bucket          string `gorm:"uniqueIndex:idx_bucket_object;not null;size:63"`
-	Object          string `gorm:"uniqueIndex:idx_bucket_object;not null;size:63"`
-	ContentType     string `gorm:"index;not null;size:63"`
+	Bucket          string `gorm:"uniqueIndex:idx_attachments_bucket_object;not null;size:63"`
+	Object          string `gorm:"uniqueIndex:idx_attachments_bucket_object;not null;size:63"`
+	ContentType     string `gorm:"index;not null;size:127"`
 	Size            uint   `gorm:"not null"`
 	Public          bool   `gorm:"not null;default:false"`
 	UploadedAt      *time.Time
 	ExpireAfterDays *uint
-	Version         uint `gorm:"not null;default:0"`
 
 	Resources []*AttachmentResource
 	User      *User

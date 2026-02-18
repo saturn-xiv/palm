@@ -2,9 +2,12 @@ package v2
 
 import (
 	"encoding/base64"
+	"errors"
 	"fmt"
+	"slices"
 	"strings"
 
+	"github.com/casbin/casbin/v3"
 	"google.golang.org/protobuf/proto"
 )
 
@@ -12,6 +15,56 @@ var (
 	ROLE_ADMINISTRATOR = "administrator"
 	ROLE_ROOT          = "root"
 )
+
+func Can(enforcer *casbin.Enforcer, subject *Subject, action *Action, object *Object) error {
+	subject_s, err := subject.ToString()
+	if err != nil {
+		return err
+	}
+	object_s, err := object.ToString()
+	if err != nil {
+		return err
+	}
+	action_s, err := action.ToString()
+	if err != nil {
+		return err
+	}
+	items, err := enforcer.GetImplicitPermissionsForUser(subject_s)
+	if err != nil {
+		return err
+	}
+	for _, it := range items {
+		if len(it) == 4 {
+			if it[0] == "p" && it[1] == subject_s && it[2] == object_s && it[3] == action_s {
+				return nil
+			}
+		}
+	}
+	return errors.New("deny")
+}
+
+func Has(enforcer *casbin.Enforcer, user *Subject_User, role *Subject_Role) error {
+	role_ := Subject{By: &Subject_Role_{Role: role}}
+	role_s, err := role_.ToString()
+	if err != nil {
+		return err
+	}
+
+	user_ := Subject{By: &Subject_User_{User: user}}
+	user_s, err := user_.ToString()
+	if err != nil {
+		return err
+	}
+
+	items, err := enforcer.GetImplicitRolesForUser(user_s)
+	if err != nil {
+		return err
+	}
+	if slices.Contains(items, role_s) {
+		return nil
+	}
+	return errors.New("deny")
+}
 
 func UserByCode(code string) *Subject {
 	return &Subject{

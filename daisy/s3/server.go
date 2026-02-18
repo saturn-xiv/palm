@@ -57,13 +57,13 @@ func (p *Server) RemoveObject(ctx context.Context, req *v2.RemoveObjectRequest) 
 
 	return &emptypb.Empty{}, nil
 }
-func (p *Server) PutObject(ctx context.Context, req *v2.PutObjectRequest) (*v2.PutObjectResponse, error) {
+func (p *Server) PutObject(ctx context.Context, req *v2.PresignedPutObjectRequest) (*v2.PresignedPutObjectResponse, error) {
 	url, err := req.Execute(ctx, p.client)
 	if err != nil {
 		return nil, err
 	}
 
-	return &v2.PutObjectResponse{
+	return &v2.PresignedPutObjectResponse{
 		Url: url.String(),
 	}, nil
 }

@@ -1,9 +1,12 @@
 package models
 
-import "time"
+import (
+	"time"
+)
 
 // https://en.wikipedia.org/wiki/Left-child_right-sibling_binary_tree
 // https://falsinsoft.blogspot.com/2013/01/tree-in-sql-database-nested-set-model.html
+// https://gist.github.com/tmilos/f2f999b5839e2d42d751
 type Category struct {
 	ID        uint      `gorm:"primarykey"`
 	Name      string    `gorm:"uniqueIndex;not null;size:255"`

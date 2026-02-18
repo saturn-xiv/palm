@@ -2,10 +2,8 @@ package v2
 
 import (
 	"encoding/base64"
-	"errors"
 	"path/filepath"
 	"reflect"
-	"slices"
 	"time"
 
 	"github.com/casbin/casbin/v3"
@@ -103,7 +101,7 @@ func (p *Session) IsRoot(enforcer *casbin.Enforcer) error {
 }
 
 func (p *Session) Has(enforcer *casbin.Enforcer, role *rbac_v2.Subject_Role) error {
-	return has_role(enforcer,
+	return rbac_v2.Has(enforcer,
 		&rbac_v2.Subject_User{
 			By: &rbac_v2.Subject_User_Id{
 				Id: p.User.Id,
@@ -111,56 +109,6 @@ func (p *Session) Has(enforcer *casbin.Enforcer, role *rbac_v2.Subject_Role) err
 		}, role)
 }
 
-func has_role(enforcer *casbin.Enforcer, user *rbac_v2.Subject_User, role *rbac_v2.Subject_Role) error {
-	role_ := rbac_v2.Subject{By: &rbac_v2.Subject_Role_{Role: role}}
-	role_s, err := role_.ToString()
-	if err != nil {
-		return err
-	}
-
-	user_ := rbac_v2.Subject{By: &rbac_v2.Subject_User_{User: user}}
-	user_s, err := user_.ToString()
-	if err != nil {
-		return err
-	}
-
-	items, err := enforcer.GetImplicitRolesForUser(user_s)
-	if err != nil {
-		return err
-	}
-	if slices.Contains(items, role_s) {
-		return nil
-	}
-	return errors.New("deny")
-}
-
 func (p *Session) Can(enforcer *casbin.Enforcer, action *rbac_v2.Action, object *rbac_v2.Object) error {
-	return can(enforcer, &rbac_v2.Subject{By: &rbac_v2.Subject_User_{User: &rbac_v2.Subject_User{By: &rbac_v2.Subject_User_Id{Id: p.User.Id}}}}, action, object)
-}
-
-func can(enforcer *casbin.Enforcer, subject *rbac_v2.Subject, action *rbac_v2.Action, object *rbac_v2.Object) error {
-	subject_s, err := subject.ToString()
-	if err != nil {
-		return err
-	}
-	object_s, err := object.ToString()
-	if err != nil {
-		return err
-	}
-	action_s, err := action.ToString()
-	if err != nil {
-		return err
-	}
-	items, err := enforcer.GetImplicitPermissionsForUser(subject_s)
-	if err != nil {
-		return err
-	}
-	for _, it := range items {
-		if len(it) == 4 {
-			if it[0] == "p" && it[1] == subject_s && it[2] == object_s && it[3] == action_s {
-				return nil
-			}
-		}
-	}
-	return errors.New("deny")
+	return rbac_v2.Can(enforcer, &rbac_v2.Subject{By: &rbac_v2.Subject_User_{User: &rbac_v2.Subject_User{By: &rbac_v2.Subject_User_Id{Id: p.User.Id}}}}, action, object)
 }

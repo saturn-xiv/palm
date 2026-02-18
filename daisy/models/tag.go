@@ -7,8 +7,7 @@ import (
 type Tag struct {
 	Model
 
-	Name    string `gorm:"uniqueIndex;not null;size:255"`
-	Version uint   `gorm:"not null;default:0"`
+	Name string `gorm:"uniqueIndex;not null;size:63"`
 
 	Resources []*TagResource
 }

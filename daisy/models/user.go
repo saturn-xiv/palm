@@ -20,7 +20,6 @@ type User struct {
 	LastSignedInAt    *time.Time
 	LastSignedInIp    *string `gorm:"size:45"`
 	LockedAt          *time.Time
-	Version           uint `gorm:"not null;default:0"`
 
 	Logs        []*Log
 	Attachments []*Attachment

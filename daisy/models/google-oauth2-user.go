@@ -4,7 +4,6 @@ import (
 	"errors"
 	"time"
 
-	"github.com/google/uuid"
 	"golang.org/x/text/language"
 	google_oauth2 "google.golang.org/api/oauth2/v2"
 	"gorm.io/gorm"
@@ -14,16 +13,14 @@ type GoogleOauth2User struct {
 	Model
 
 	UserID        uint   `gorm:"not null"`
-	Sn            string `gorm:"uniqueIndex;not null;size:36"`
 	Code          string `gorm:"uniqueIndex;not null;size:127"`
-	Name          string `gorm:"not null;size:63"`
-	Email         string `gorm:"not null;size:63"`
+	Name          string `gorm:"index;not null;size:63"`
+	Email         string `gorm:"uniqueIndex;not null;size:63"`
 	EmailVerified *bool
 	Picture       string `gorm:"not null;size:127"`
-	Gender        string `gorm:"not null;size:15"`
+	Gender        string `gorm:"index;not null;size:15"`
 	Link          string `gorm:"not null;size:127"`
-	Locale        string `gorm:"not null;size:15"`
-	Version       uint   `gorm:"not null;default:0"`
+	Locale        string `gorm:"index;not null;size:15"`
 
 	User *User
 }
@@ -58,7 +55,6 @@ func UserSignInByGoogleOauth2(db *gorm.DB, info *google_oauth2.Userinfo, lang *l
 		return err
 	}
 	it.Code = info.Id
-	it.Sn = uuid.New().String()
 	it.UserID = user.ID
 	it.Name = info.Name
 	it.Email = info.Email

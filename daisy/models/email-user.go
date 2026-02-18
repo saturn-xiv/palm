@@ -16,12 +16,11 @@ type EmailUser struct {
 	Model
 
 	UserID      uint    `gorm:"not null"`
-	Name        string  `gorm:"not null;size:63"`
+	Name        string  `gorm:"index;not null;size:63"`
 	Email       string  `gorm:"uniqueIndex;not null;size:31"`
 	Password    string  `gorm:"not null;size:255"`
 	Avatar      *string `gorm:"size:127"`
 	ConfirmedAt *time.Time
-	Version     uint `gorm:"not null;default:0"`
 
 	User *User
 }

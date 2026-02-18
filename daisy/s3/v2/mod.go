@@ -62,7 +62,7 @@ func (p *RemoveObjectRequest) Execute(ctx context.Context, client *minio.Client)
 	return client.RemoveObject(ctx, p.Bucket, p.Object, minio.RemoveObjectOptions{ForceDelete: true})
 }
 
-func (p *PutObjectRequest) Execute(ctx context.Context, client *minio.Client) (*url.URL, error) {
+func (p *PresignedPutObjectRequest) Execute(ctx context.Context, client *minio.Client) (*url.URL, error) {
 	return client.PresignedPutObject(ctx, p.Bucket, p.Object, p.Ttl.AsDuration())
 }
 

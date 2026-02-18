@@ -15,8 +15,9 @@ func ToCode(s string) string {
 }
 
 type Model struct {
-	ID        uint      `gorm:"primarykey"`
-	CreatedAt time.Time `gorm:"not null"`
-	UpdatedAt time.Time `gorm:"not null"`
+	ID        uint `gorm:"primarykey"`
 	DeletedAt gorm.DeletedAt
+	Version   uint      `gorm:"not null;default:0"`
+	UpdatedAt time.Time `gorm:"not null"`
+	CreatedAt time.Time `gorm:"not null"`
 }
