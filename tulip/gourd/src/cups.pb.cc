@@ -30,13 +30,23 @@ namespace v1 {
 
 inline constexpr Task::Impl_::Impl_(
     ::_pbi::ConstantInitialized) noexcept
-      : printer_(
+      : number_up_{},
+        _number_up_cached_byte_size_{0},
+        printer_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        name_(
             &::google::protobuf::internal::fixed_address_empty_string,
             ::_pbi::ConstantInitialized()),
         document_(
             &::google::protobuf::internal::fixed_address_empty_string,
             ::_pbi::ConstantInitialized()),
-        paper_{static_cast< ::palm::cups::v1::Task_Paper >(0)},
+        copies_{0u},
+        paper_{static_cast< ::palm::cups::v1::Task_Media >(0)},
+        job_sheet_{static_cast< ::palm::cups::v1::Task_JobSheet >(0)},
+        quality_{static_cast< ::palm::cups::v1::Task_Quality >(0)},
+        sides_{static_cast< ::palm::cups::v1::Task_Sides >(0)},
+        orientation_{static_cast< ::palm::cups::v1::Task_Orientation >(0)},
         _cached_size_{0} {}
 
 template <typename>
@@ -62,6 +72,12 @@ PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
 inline constexpr CupsPrintersResponse_Item::Impl_::Impl_(
     ::_pbi::ConstantInitialized) noexcept
       : name_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        status_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        details_(
             &::google::protobuf::internal::fixed_address_empty_string,
             ::_pbi::ConstantInitialized()),
         _cached_size_{0} {}
@@ -113,7 +129,7 @@ PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
 }  // namespace v1
 }  // namespace cups
 }  // namespace palm
-static const ::_pb::EnumDescriptor* file_level_enum_descriptors_cups_2eproto[1];
+static const ::_pb::EnumDescriptor* file_level_enum_descriptors_cups_2eproto[5];
 static constexpr const ::_pb::ServiceDescriptor**
     file_level_service_descriptors_cups_2eproto = nullptr;
 const ::uint32_t
@@ -128,8 +144,15 @@ const ::uint32_t
         ~0u,  // no _split_
         ~0u,  // no sizeof(Split)
         PROTOBUF_FIELD_OFFSET(::palm::cups::v1::Task, _impl_.printer_),
-        PROTOBUF_FIELD_OFFSET(::palm::cups::v1::Task, _impl_.paper_),
+        PROTOBUF_FIELD_OFFSET(::palm::cups::v1::Task, _impl_.name_),
+        PROTOBUF_FIELD_OFFSET(::palm::cups::v1::Task, _impl_.number_up_),
+        PROTOBUF_FIELD_OFFSET(::palm::cups::v1::Task, _impl_.copies_),
         PROTOBUF_FIELD_OFFSET(::palm::cups::v1::Task, _impl_.document_),
+        PROTOBUF_FIELD_OFFSET(::palm::cups::v1::Task, _impl_.paper_),
+        PROTOBUF_FIELD_OFFSET(::palm::cups::v1::Task, _impl_.job_sheet_),
+        PROTOBUF_FIELD_OFFSET(::palm::cups::v1::Task, _impl_.quality_),
+        PROTOBUF_FIELD_OFFSET(::palm::cups::v1::Task, _impl_.sides_),
+        PROTOBUF_FIELD_OFFSET(::palm::cups::v1::Task, _impl_.orientation_),
         ~0u,  // no _has_bits_
         PROTOBUF_FIELD_OFFSET(::palm::cups::v1::CupsPrintersResponse_Item, _internal_metadata_),
         ~0u,  // no _extensions_
@@ -139,6 +162,8 @@ const ::uint32_t
         ~0u,  // no _split_
         ~0u,  // no sizeof(Split)
         PROTOBUF_FIELD_OFFSET(::palm::cups::v1::CupsPrintersResponse_Item, _impl_.name_),
+        PROTOBUF_FIELD_OFFSET(::palm::cups::v1::CupsPrintersResponse_Item, _impl_.status_),
+        PROTOBUF_FIELD_OFFSET(::palm::cups::v1::CupsPrintersResponse_Item, _impl_.details_),
         ~0u,  // no _has_bits_
         PROTOBUF_FIELD_OFFSET(::palm::cups::v1::CupsPrintersResponse, _internal_metadata_),
         ~0u,  // no _extensions_
@@ -153,8 +178,8 @@ const ::uint32_t
 static const ::_pbi::MigrationSchema
     schemas[] ABSL_ATTRIBUTE_SECTION_VARIABLE(protodesc_cold) = {
         {0, -1, -1, sizeof(::palm::cups::v1::Task)},
-        {11, -1, -1, sizeof(::palm::cups::v1::CupsPrintersResponse_Item)},
-        {20, -1, -1, sizeof(::palm::cups::v1::CupsPrintersResponse)},
+        {18, -1, -1, sizeof(::palm::cups::v1::CupsPrintersResponse_Item)},
+        {29, -1, -1, sizeof(::palm::cups::v1::CupsPrintersResponse)},
 };
 static const ::_pb::Message* const file_default_instances[] = {
     &::palm::cups::v1::_Task_default_instance_._instance,
@@ -164,17 +189,31 @@ static const ::_pb::Message* const file_default_instances[] = {
 const char descriptor_table_protodef_cups_2eproto[] ABSL_ATTRIBUTE_SECTION_VARIABLE(
     protodesc_cold) = {
     "\n\ncups.proto\022\014palm.cups.v1\032\033google/proto"
-    "buf/empty.proto\"o\n\004Task\022\017\n\007printer\030\001 \001(\t"
-    "\022\'\n\005paper\030\002 \001(\0162\030.palm.cups.v1.Task.Pape"
-    "r\022\020\n\010document\030\t \001(\014\"\033\n\005Paper\022\006\n\002A4\020\000\022\n\n\006"
-    "LETTER\020\001\"d\n\024CupsPrintersResponse\0226\n\005item"
-    "s\030\002 \003(\0132\'.palm.cups.v1.CupsPrintersRespo"
-    "nse.Item\032\024\n\004Item\022\014\n\004name\030\001 \001(\t2P\n\004Cups\022H"
-    "\n\010Printers\022\026.google.protobuf.Empty\032\".pal"
-    "m.cups.v1.CupsPrintersResponse\"\000BY\n*com."
-    "github.saturn_xiv.palm.plugins.cups.v1B\t"
-    "CupsProtoP\001Z\005./;v2\252\002\026Palm.Plugins.Cups.G"
-    "rpcb\006proto3"
+    "buf/empty.proto\"\213\005\n\004Task\022\017\n\007printer\030\001 \001("
+    "\t\022\014\n\004name\030\002 \001(\t\022\021\n\tnumber_up\030\007 \003(\r\022\016\n\006co"
+    "pies\030\010 \001(\r\022\020\n\010document\030\t \001(\014\022\'\n\005paper\030\013 "
+    "\001(\0162\030.palm.cups.v1.Task.Media\022.\n\tjob_she"
+    "et\030\014 \001(\0162\033.palm.cups.v1.Task.JobSheet\022+\n"
+    "\007quality\030\r \001(\0162\032.palm.cups.v1.Task.Quali"
+    "ty\022\'\n\005sides\030\016 \001(\0162\030.palm.cups.v1.Task.Si"
+    "des\0223\n\013orientation\030\017 \001(\0162\036.palm.cups.v1."
+    "Task.Orientation\"#\n\005Media\022\006\n\002A4\020\000\022\n\n\006LET"
+    "TER\020\001\022\006\n\002A3\020\002\"h\n\010JobSheet\022\014\n\010STANDARD\020\000\022"
+    "\n\n\006SECRET\020\001\022\016\n\nTOP_SECRET\020\002\022\016\n\nCLASSIFIE"
+    "D\020\003\022\020\n\014CONFIDENTIAL\020\004\022\020\n\014UNCLASSIFIED\020\t\""
+    "*\n\007Quality\022\t\n\005DRAFT\020\000\022\n\n\006NORMAL\020\001\022\010\n\004BES"
+    "T\020\002\"-\n\005Sides\022\007\n\003ONE\020\000\022\014\n\010TWO_LONG\020\001\022\r\n\tT"
+    "WO_SHORT\020\002\"a\n\013Orientation\022!\n\035LANDSCAPE_C"
+    "OUNTER_CLOCKWISE90\020\000\022\031\n\025LANDSCAPE_CLOCKW"
+    "ISE90\020\001\022\024\n\020REVERSE_PORTRAIT\020\002\"\205\001\n\024CupsPr"
+    "intersResponse\0226\n\005items\030\002 \003(\0132\'.palm.cup"
+    "s.v1.CupsPrintersResponse.Item\0325\n\004Item\022\014"
+    "\n\004name\030\001 \001(\t\022\016\n\006status\030\002 \001(\t\022\017\n\007details\030"
+    "\t \001(\t2P\n\004Cups\022H\n\010Printers\022\026.google.proto"
+    "buf.Empty\032\".palm.cups.v1.CupsPrintersRes"
+    "ponse\"\000BY\n*com.github.saturn_xiv.palm.pl"
+    "ugins.cups.v1B\tCupsProtoP\001Z\005./;v2\252\002\026Palm"
+    ".Plugins.Cups.Grpcb\006proto3"
 };
 static const ::_pbi::DescriptorTable* const descriptor_table_cups_2eproto_deps[1] =
     {
@@ -184,7 +223,7 @@ static ::absl::once_flag descriptor_table_cups_2eproto_once;
 PROTOBUF_CONSTINIT const ::_pbi::DescriptorTable descriptor_table_cups_2eproto = {
     false,
     false,
-    451,
+    1026,
     descriptor_table_protodef_cups_2eproto,
     "cups.proto",
     &descriptor_table_cups_2eproto_once,
@@ -200,23 +239,111 @@ PROTOBUF_CONSTINIT const ::_pbi::DescriptorTable descriptor_table_cups_2eproto =
 namespace palm {
 namespace cups {
 namespace v1 {
-const ::google::protobuf::EnumDescriptor* Task_Paper_descriptor() {
+const ::google::protobuf::EnumDescriptor* Task_Media_descriptor() {
   ::google::protobuf::internal::AssignDescriptors(&descriptor_table_cups_2eproto);
   return file_level_enum_descriptors_cups_2eproto[0];
 }
-PROTOBUF_CONSTINIT const uint32_t Task_Paper_internal_data_[] = {
-    131072u, 0u, };
-bool Task_Paper_IsValid(int value) {
-  return 0 <= value && value <= 1;
+PROTOBUF_CONSTINIT const uint32_t Task_Media_internal_data_[] = {
+    196608u, 0u, };
+bool Task_Media_IsValid(int value) {
+  return 0 <= value && value <= 2;
 }
 #if (__cplusplus < 201703) && \
   (!defined(_MSC_VER) || (_MSC_VER >= 1900 && _MSC_VER < 1912))
 
-constexpr Task_Paper Task::A4;
-constexpr Task_Paper Task::LETTER;
-constexpr Task_Paper Task::Paper_MIN;
-constexpr Task_Paper Task::Paper_MAX;
-constexpr int Task::Paper_ARRAYSIZE;
+constexpr Task_Media Task::A4;
+constexpr Task_Media Task::LETTER;
+constexpr Task_Media Task::A3;
+constexpr Task_Media Task::Media_MIN;
+constexpr Task_Media Task::Media_MAX;
+constexpr int Task::Media_ARRAYSIZE;
+
+#endif  // (__cplusplus < 201703) &&
+        // (!defined(_MSC_VER) || (_MSC_VER >= 1900 && _MSC_VER < 1912))
+const ::google::protobuf::EnumDescriptor* Task_JobSheet_descriptor() {
+  ::google::protobuf::internal::AssignDescriptors(&descriptor_table_cups_2eproto);
+  return file_level_enum_descriptors_cups_2eproto[1];
+}
+PROTOBUF_CONSTINIT const uint32_t Task_JobSheet_internal_data_[] = {
+    327680u, 32u, 16u, };
+bool Task_JobSheet_IsValid(int value) {
+  return 0 <= value && value <= 9 && ((543u >> value) & 1) != 0;
+}
+#if (__cplusplus < 201703) && \
+  (!defined(_MSC_VER) || (_MSC_VER >= 1900 && _MSC_VER < 1912))
+
+constexpr Task_JobSheet Task::STANDARD;
+constexpr Task_JobSheet Task::SECRET;
+constexpr Task_JobSheet Task::TOP_SECRET;
+constexpr Task_JobSheet Task::CLASSIFIED;
+constexpr Task_JobSheet Task::CONFIDENTIAL;
+constexpr Task_JobSheet Task::UNCLASSIFIED;
+constexpr Task_JobSheet Task::JobSheet_MIN;
+constexpr Task_JobSheet Task::JobSheet_MAX;
+constexpr int Task::JobSheet_ARRAYSIZE;
+
+#endif  // (__cplusplus < 201703) &&
+        // (!defined(_MSC_VER) || (_MSC_VER >= 1900 && _MSC_VER < 1912))
+const ::google::protobuf::EnumDescriptor* Task_Quality_descriptor() {
+  ::google::protobuf::internal::AssignDescriptors(&descriptor_table_cups_2eproto);
+  return file_level_enum_descriptors_cups_2eproto[2];
+}
+PROTOBUF_CONSTINIT const uint32_t Task_Quality_internal_data_[] = {
+    196608u, 0u, };
+bool Task_Quality_IsValid(int value) {
+  return 0 <= value && value <= 2;
+}
+#if (__cplusplus < 201703) && \
+  (!defined(_MSC_VER) || (_MSC_VER >= 1900 && _MSC_VER < 1912))
+
+constexpr Task_Quality Task::DRAFT;
+constexpr Task_Quality Task::NORMAL;
+constexpr Task_Quality Task::BEST;
+constexpr Task_Quality Task::Quality_MIN;
+constexpr Task_Quality Task::Quality_MAX;
+constexpr int Task::Quality_ARRAYSIZE;
+
+#endif  // (__cplusplus < 201703) &&
+        // (!defined(_MSC_VER) || (_MSC_VER >= 1900 && _MSC_VER < 1912))
+const ::google::protobuf::EnumDescriptor* Task_Sides_descriptor() {
+  ::google::protobuf::internal::AssignDescriptors(&descriptor_table_cups_2eproto);
+  return file_level_enum_descriptors_cups_2eproto[3];
+}
+PROTOBUF_CONSTINIT const uint32_t Task_Sides_internal_data_[] = {
+    196608u, 0u, };
+bool Task_Sides_IsValid(int value) {
+  return 0 <= value && value <= 2;
+}
+#if (__cplusplus < 201703) && \
+  (!defined(_MSC_VER) || (_MSC_VER >= 1900 && _MSC_VER < 1912))
+
+constexpr Task_Sides Task::ONE;
+constexpr Task_Sides Task::TWO_LONG;
+constexpr Task_Sides Task::TWO_SHORT;
+constexpr Task_Sides Task::Sides_MIN;
+constexpr Task_Sides Task::Sides_MAX;
+constexpr int Task::Sides_ARRAYSIZE;
+
+#endif  // (__cplusplus < 201703) &&
+        // (!defined(_MSC_VER) || (_MSC_VER >= 1900 && _MSC_VER < 1912))
+const ::google::protobuf::EnumDescriptor* Task_Orientation_descriptor() {
+  ::google::protobuf::internal::AssignDescriptors(&descriptor_table_cups_2eproto);
+  return file_level_enum_descriptors_cups_2eproto[4];
+}
+PROTOBUF_CONSTINIT const uint32_t Task_Orientation_internal_data_[] = {
+    196608u, 0u, };
+bool Task_Orientation_IsValid(int value) {
+  return 0 <= value && value <= 2;
+}
+#if (__cplusplus < 201703) && \
+  (!defined(_MSC_VER) || (_MSC_VER >= 1900 && _MSC_VER < 1912))
+
+constexpr Task_Orientation Task::LANDSCAPE_COUNTER_CLOCKWISE90;
+constexpr Task_Orientation Task::LANDSCAPE_CLOCKWISE90;
+constexpr Task_Orientation Task::REVERSE_PORTRAIT;
+constexpr Task_Orientation Task::Orientation_MIN;
+constexpr Task_Orientation Task::Orientation_MAX;
+constexpr int Task::Orientation_ARRAYSIZE;
 
 #endif  // (__cplusplus < 201703) &&
         // (!defined(_MSC_VER) || (_MSC_VER >= 1900 && _MSC_VER < 1912))
@@ -238,7 +365,10 @@ Task::Task(::google::protobuf::Arena* arena)
 inline PROTOBUF_NDEBUG_INLINE Task::Impl_::Impl_(
     ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
     const Impl_& from, const ::palm::cups::v1::Task& from_msg)
-      : printer_(arena, from.printer_),
+      : number_up_{visibility, arena, from.number_up_},
+        _number_up_cached_byte_size_{0},
+        printer_(arena, from.printer_),
+        name_(arena, from.name_),
         document_(arena, from.document_),
         _cached_size_{0} {}
 
@@ -255,20 +385,34 @@ Task::Task(
   _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
       from._internal_metadata_);
   new (&_impl_) Impl_(internal_visibility(), arena, from._impl_, from);
-  _impl_.paper_ = from._impl_.paper_;
+  ::memcpy(reinterpret_cast<char *>(&_impl_) +
+               offsetof(Impl_, copies_),
+           reinterpret_cast<const char *>(&from._impl_) +
+               offsetof(Impl_, copies_),
+           offsetof(Impl_, orientation_) -
+               offsetof(Impl_, copies_) +
+               sizeof(Impl_::orientation_));
 
   // @@protoc_insertion_point(copy_constructor:palm.cups.v1.Task)
 }
 inline PROTOBUF_NDEBUG_INLINE Task::Impl_::Impl_(
     ::google::protobuf::internal::InternalVisibility visibility,
     ::google::protobuf::Arena* arena)
-      : printer_(arena),
+      : number_up_{visibility, arena},
+        _number_up_cached_byte_size_{0},
+        printer_(arena),
+        name_(arena),
         document_(arena),
         _cached_size_{0} {}
 
 inline void Task::SharedCtor(::_pb::Arena* arena) {
   new (&_impl_) Impl_(internal_visibility(), arena);
-  _impl_.paper_ = {};
+  ::memset(reinterpret_cast<char *>(&_impl_) +
+               offsetof(Impl_, copies_),
+           0,
+           offsetof(Impl_, orientation_) -
+               offsetof(Impl_, copies_) +
+               sizeof(Impl_::orientation_));
 }
 Task::~Task() {
   // @@protoc_insertion_point(destructor:palm.cups.v1.Task)
@@ -279,6 +423,7 @@ inline void Task::SharedDtor(MessageLite& self) {
   this_._internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
   ABSL_DCHECK(this_.GetArena() == nullptr);
   this_._impl_.printer_.Destroy();
+  this_._impl_.name_.Destroy();
   this_._impl_.document_.Destroy();
   this_._impl_.~Impl_();
 }
@@ -288,8 +433,20 @@ inline void* Task::PlacementNew_(const void*, void* mem,
   return ::new (mem) Task(arena);
 }
 constexpr auto Task::InternalNewImpl_() {
-  return ::google::protobuf::internal::MessageCreator::CopyInit(sizeof(Task),
-                                            alignof(Task));
+  constexpr auto arena_bits = ::google::protobuf::internal::EncodePlacementArenaOffsets({
+      PROTOBUF_FIELD_OFFSET(Task, _impl_.number_up_) +
+          decltype(Task::_impl_.number_up_)::
+              InternalGetArenaOffset(
+                  ::google::protobuf::Message::internal_visibility()),
+  });
+  if (arena_bits.has_value()) {
+    return ::google::protobuf::internal::MessageCreator::CopyInit(
+        sizeof(Task), alignof(Task), *arena_bits);
+  } else {
+    return ::google::protobuf::internal::MessageCreator(&Task::PlacementNew_,
+                                 sizeof(Task),
+                                 alignof(Task));
+  }
 }
 PROTOBUF_CONSTINIT
 PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
@@ -319,15 +476,15 @@ const ::google::protobuf::internal::ClassData* Task::GetClassData() const {
   return _class_data_.base();
 }
 PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::_pbi::TcParseTable<1, 3, 0, 33, 2> Task::_table_ = {
+const ::_pbi::TcParseTable<4, 10, 0, 45, 2> Task::_table_ = {
   {
     0,  // no _has_bits_
     0, // no _extensions_
-    9, 8,  // max_field_number, fast_idx_mask
+    15, 120,  // max_field_number, fast_idx_mask
     offsetof(decltype(_table_), field_lookup_table),
-    4294967036,  // skipmap
+    4294935100,  // skipmap
     offsetof(decltype(_table_), field_entries),
-    3,  // num_field_entries
+    10,  // num_field_entries
     0,  // num_aux_entries
     offsetof(decltype(_table_), field_names),  // no aux_entries
     _class_data_.base(),
@@ -337,30 +494,82 @@ const ::_pbi::TcParseTable<1, 3, 0, 33, 2> Task::_table_ = {
     ::_pbi::TcParser::GetTable<::palm::cups::v1::Task>(),  // to_prefetch
     #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
   }, {{
-    // .palm.cups.v1.Task.Paper paper = 2;
-    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(Task, _impl_.paper_), 63>(),
-     {16, 63, 0, PROTOBUF_FIELD_OFFSET(Task, _impl_.paper_)}},
+    {::_pbi::TcParser::MiniParse, {}},
     // string printer = 1;
     {::_pbi::TcParser::FastUS1,
      {10, 63, 0, PROTOBUF_FIELD_OFFSET(Task, _impl_.printer_)}},
+    // string name = 2;
+    {::_pbi::TcParser::FastUS1,
+     {18, 63, 0, PROTOBUF_FIELD_OFFSET(Task, _impl_.name_)}},
+    {::_pbi::TcParser::MiniParse, {}},
+    {::_pbi::TcParser::MiniParse, {}},
+    {::_pbi::TcParser::MiniParse, {}},
+    {::_pbi::TcParser::MiniParse, {}},
+    // repeated uint32 number_up = 7;
+    {::_pbi::TcParser::FastV32P1,
+     {58, 63, 0, PROTOBUF_FIELD_OFFSET(Task, _impl_.number_up_)}},
+    // uint32 copies = 8;
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(Task, _impl_.copies_), 63>(),
+     {64, 63, 0, PROTOBUF_FIELD_OFFSET(Task, _impl_.copies_)}},
+    // bytes document = 9;
+    {::_pbi::TcParser::FastBS1,
+     {74, 63, 0, PROTOBUF_FIELD_OFFSET(Task, _impl_.document_)}},
+    {::_pbi::TcParser::MiniParse, {}},
+    // .palm.cups.v1.Task.Media paper = 11;
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(Task, _impl_.paper_), 63>(),
+     {88, 63, 0, PROTOBUF_FIELD_OFFSET(Task, _impl_.paper_)}},
+    // .palm.cups.v1.Task.JobSheet job_sheet = 12;
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(Task, _impl_.job_sheet_), 63>(),
+     {96, 63, 0, PROTOBUF_FIELD_OFFSET(Task, _impl_.job_sheet_)}},
+    // .palm.cups.v1.Task.Quality quality = 13;
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(Task, _impl_.quality_), 63>(),
+     {104, 63, 0, PROTOBUF_FIELD_OFFSET(Task, _impl_.quality_)}},
+    // .palm.cups.v1.Task.Sides sides = 14;
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(Task, _impl_.sides_), 63>(),
+     {112, 63, 0, PROTOBUF_FIELD_OFFSET(Task, _impl_.sides_)}},
+    // .palm.cups.v1.Task.Orientation orientation = 15;
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(Task, _impl_.orientation_), 63>(),
+     {120, 63, 0, PROTOBUF_FIELD_OFFSET(Task, _impl_.orientation_)}},
   }}, {{
     65535, 65535
   }}, {{
     // string printer = 1;
     {PROTOBUF_FIELD_OFFSET(Task, _impl_.printer_), 0, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
-    // .palm.cups.v1.Task.Paper paper = 2;
-    {PROTOBUF_FIELD_OFFSET(Task, _impl_.paper_), 0, 0,
-    (0 | ::_fl::kFcSingular | ::_fl::kOpenEnum)},
+    // string name = 2;
+    {PROTOBUF_FIELD_OFFSET(Task, _impl_.name_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
+    // repeated uint32 number_up = 7;
+    {PROTOBUF_FIELD_OFFSET(Task, _impl_.number_up_), 0, 0,
+    (0 | ::_fl::kFcRepeated | ::_fl::kPackedUInt32)},
+    // uint32 copies = 8;
+    {PROTOBUF_FIELD_OFFSET(Task, _impl_.copies_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUInt32)},
     // bytes document = 9;
     {PROTOBUF_FIELD_OFFSET(Task, _impl_.document_), 0, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kBytes | ::_fl::kRepAString)},
+    // .palm.cups.v1.Task.Media paper = 11;
+    {PROTOBUF_FIELD_OFFSET(Task, _impl_.paper_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kOpenEnum)},
+    // .palm.cups.v1.Task.JobSheet job_sheet = 12;
+    {PROTOBUF_FIELD_OFFSET(Task, _impl_.job_sheet_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kOpenEnum)},
+    // .palm.cups.v1.Task.Quality quality = 13;
+    {PROTOBUF_FIELD_OFFSET(Task, _impl_.quality_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kOpenEnum)},
+    // .palm.cups.v1.Task.Sides sides = 14;
+    {PROTOBUF_FIELD_OFFSET(Task, _impl_.sides_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kOpenEnum)},
+    // .palm.cups.v1.Task.Orientation orientation = 15;
+    {PROTOBUF_FIELD_OFFSET(Task, _impl_.orientation_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kOpenEnum)},
   }},
   // no aux_entries
   {{
-    "\21\7\0\0\0\0\0\0"
+    "\21\7\4\0\0\0\0\0\0\0\0\0\0\0\0\0"
     "palm.cups.v1.Task"
     "printer"
+    "name"
   }},
 };
 
@@ -371,9 +580,13 @@ PROTOBUF_NOINLINE void Task::Clear() {
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
 
+  _impl_.number_up_.Clear();
   _impl_.printer_.ClearToEmpty();
+  _impl_.name_.ClearToEmpty();
   _impl_.document_.ClearToEmpty();
-  _impl_.paper_ = 0;
+  ::memset(&_impl_.copies_, 0, static_cast<::size_t>(
+      reinterpret_cast<char*>(&_impl_.orientation_) -
+      reinterpret_cast<char*>(&_impl_.copies_)) + sizeof(_impl_.orientation_));
   _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
 }
 
@@ -400,17 +613,69 @@ PROTOBUF_NOINLINE void Task::Clear() {
             target = stream->WriteStringMaybeAliased(1, _s, target);
           }
 
-          // .palm.cups.v1.Task.Paper paper = 2;
-          if (this_._internal_paper() != 0) {
+          // string name = 2;
+          if (!this_._internal_name().empty()) {
+            const std::string& _s = this_._internal_name();
+            ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+                _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "palm.cups.v1.Task.name");
+            target = stream->WriteStringMaybeAliased(2, _s, target);
+          }
+
+          // repeated uint32 number_up = 7;
+          {
+            int byte_size = this_._impl_._number_up_cached_byte_size_.Get();
+            if (byte_size > 0) {
+              target = stream->WriteUInt32Packed(
+                  7, this_._internal_number_up(), byte_size, target);
+            }
+          }
+
+          // uint32 copies = 8;
+          if (this_._internal_copies() != 0) {
             target = stream->EnsureSpace(target);
-            target = ::_pbi::WireFormatLite::WriteEnumToArray(
-                2, this_._internal_paper(), target);
+            target = ::_pbi::WireFormatLite::WriteUInt32ToArray(
+                8, this_._internal_copies(), target);
           }
 
           // bytes document = 9;
           if (!this_._internal_document().empty()) {
             const std::string& _s = this_._internal_document();
             target = stream->WriteBytesMaybeAliased(9, _s, target);
+          }
+
+          // .palm.cups.v1.Task.Media paper = 11;
+          if (this_._internal_paper() != 0) {
+            target = stream->EnsureSpace(target);
+            target = ::_pbi::WireFormatLite::WriteEnumToArray(
+                11, this_._internal_paper(), target);
+          }
+
+          // .palm.cups.v1.Task.JobSheet job_sheet = 12;
+          if (this_._internal_job_sheet() != 0) {
+            target = stream->EnsureSpace(target);
+            target = ::_pbi::WireFormatLite::WriteEnumToArray(
+                12, this_._internal_job_sheet(), target);
+          }
+
+          // .palm.cups.v1.Task.Quality quality = 13;
+          if (this_._internal_quality() != 0) {
+            target = stream->EnsureSpace(target);
+            target = ::_pbi::WireFormatLite::WriteEnumToArray(
+                13, this_._internal_quality(), target);
+          }
+
+          // .palm.cups.v1.Task.Sides sides = 14;
+          if (this_._internal_sides() != 0) {
+            target = stream->EnsureSpace(target);
+            target = ::_pbi::WireFormatLite::WriteEnumToArray(
+                14, this_._internal_sides(), target);
+          }
+
+          // .palm.cups.v1.Task.Orientation orientation = 15;
+          if (this_._internal_orientation() != 0) {
+            target = stream->EnsureSpace(target);
+            target = ::_pbi::WireFormatLite::WriteEnumToArray(
+                15, this_._internal_orientation(), target);
           }
 
           if (PROTOBUF_PREDICT_FALSE(this_._internal_metadata_.have_unknown_fields())) {
@@ -438,20 +703,59 @@ PROTOBUF_NOINLINE void Task::Clear() {
 
           ::_pbi::Prefetch5LinesFrom7Lines(&this_);
            {
+            // repeated uint32 number_up = 7;
+            {
+              total_size +=
+                  ::_pbi::WireFormatLite::UInt32SizeWithPackedTagSize(
+                      this_._internal_number_up(), 1,
+                      this_._impl_._number_up_cached_byte_size_);
+            }
+          }
+           {
             // string printer = 1;
             if (!this_._internal_printer().empty()) {
               total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
                                               this_._internal_printer());
+            }
+            // string name = 2;
+            if (!this_._internal_name().empty()) {
+              total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                              this_._internal_name());
             }
             // bytes document = 9;
             if (!this_._internal_document().empty()) {
               total_size += 1 + ::google::protobuf::internal::WireFormatLite::BytesSize(
                                               this_._internal_document());
             }
-            // .palm.cups.v1.Task.Paper paper = 2;
+            // uint32 copies = 8;
+            if (this_._internal_copies() != 0) {
+              total_size += ::_pbi::WireFormatLite::UInt32SizePlusOne(
+                  this_._internal_copies());
+            }
+            // .palm.cups.v1.Task.Media paper = 11;
             if (this_._internal_paper() != 0) {
               total_size += 1 +
                             ::_pbi::WireFormatLite::EnumSize(this_._internal_paper());
+            }
+            // .palm.cups.v1.Task.JobSheet job_sheet = 12;
+            if (this_._internal_job_sheet() != 0) {
+              total_size += 1 +
+                            ::_pbi::WireFormatLite::EnumSize(this_._internal_job_sheet());
+            }
+            // .palm.cups.v1.Task.Quality quality = 13;
+            if (this_._internal_quality() != 0) {
+              total_size += 1 +
+                            ::_pbi::WireFormatLite::EnumSize(this_._internal_quality());
+            }
+            // .palm.cups.v1.Task.Sides sides = 14;
+            if (this_._internal_sides() != 0) {
+              total_size += 1 +
+                            ::_pbi::WireFormatLite::EnumSize(this_._internal_sides());
+            }
+            // .palm.cups.v1.Task.Orientation orientation = 15;
+            if (this_._internal_orientation() != 0) {
+              total_size += 1 +
+                            ::_pbi::WireFormatLite::EnumSize(this_._internal_orientation());
             }
           }
           return this_.MaybeComputeUnknownFieldsSize(total_size,
@@ -466,14 +770,33 @@ void Task::MergeImpl(::google::protobuf::MessageLite& to_msg, const ::google::pr
   ::uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
+  _this->_internal_mutable_number_up()->MergeFrom(from._internal_number_up());
   if (!from._internal_printer().empty()) {
     _this->_internal_set_printer(from._internal_printer());
+  }
+  if (!from._internal_name().empty()) {
+    _this->_internal_set_name(from._internal_name());
   }
   if (!from._internal_document().empty()) {
     _this->_internal_set_document(from._internal_document());
   }
+  if (from._internal_copies() != 0) {
+    _this->_impl_.copies_ = from._impl_.copies_;
+  }
   if (from._internal_paper() != 0) {
     _this->_impl_.paper_ = from._impl_.paper_;
+  }
+  if (from._internal_job_sheet() != 0) {
+    _this->_impl_.job_sheet_ = from._impl_.job_sheet_;
+  }
+  if (from._internal_quality() != 0) {
+    _this->_impl_.quality_ = from._impl_.quality_;
+  }
+  if (from._internal_sides() != 0) {
+    _this->_impl_.sides_ = from._impl_.sides_;
+  }
+  if (from._internal_orientation() != 0) {
+    _this->_impl_.orientation_ = from._impl_.orientation_;
   }
   _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
 }
@@ -491,9 +814,16 @@ void Task::InternalSwap(Task* PROTOBUF_RESTRICT other) {
   auto* arena = GetArena();
   ABSL_DCHECK_EQ(arena, other->GetArena());
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
+  _impl_.number_up_.InternalSwap(&other->_impl_.number_up_);
   ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.printer_, &other->_impl_.printer_, arena);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.name_, &other->_impl_.name_, arena);
   ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.document_, &other->_impl_.document_, arena);
-  swap(_impl_.paper_, other->_impl_.paper_);
+  ::google::protobuf::internal::memswap<
+      PROTOBUF_FIELD_OFFSET(Task, _impl_.orientation_)
+      + sizeof(Task::_impl_.orientation_)
+      - PROTOBUF_FIELD_OFFSET(Task, _impl_.copies_)>(
+          reinterpret_cast<char*>(&_impl_.copies_),
+          reinterpret_cast<char*>(&other->_impl_.copies_));
 }
 
 ::google::protobuf::Metadata Task::GetMetadata() const {
@@ -518,6 +848,8 @@ inline PROTOBUF_NDEBUG_INLINE CupsPrintersResponse_Item::Impl_::Impl_(
     ::google::protobuf::internal::InternalVisibility visibility, ::google::protobuf::Arena* arena,
     const Impl_& from, const ::palm::cups::v1::CupsPrintersResponse_Item& from_msg)
       : name_(arena, from.name_),
+        status_(arena, from.status_),
+        details_(arena, from.details_),
         _cached_size_{0} {}
 
 CupsPrintersResponse_Item::CupsPrintersResponse_Item(
@@ -540,6 +872,8 @@ inline PROTOBUF_NDEBUG_INLINE CupsPrintersResponse_Item::Impl_::Impl_(
     ::google::protobuf::internal::InternalVisibility visibility,
     ::google::protobuf::Arena* arena)
       : name_(arena),
+        status_(arena),
+        details_(arena),
         _cached_size_{0} {}
 
 inline void CupsPrintersResponse_Item::SharedCtor(::_pb::Arena* arena) {
@@ -554,6 +888,8 @@ inline void CupsPrintersResponse_Item::SharedDtor(MessageLite& self) {
   this_._internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
   ABSL_DCHECK(this_.GetArena() == nullptr);
   this_._impl_.name_.Destroy();
+  this_._impl_.status_.Destroy();
+  this_._impl_.details_.Destroy();
   this_._impl_.~Impl_();
 }
 
@@ -593,15 +929,15 @@ const ::google::protobuf::internal::ClassData* CupsPrintersResponse_Item::GetCla
   return _class_data_.base();
 }
 PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::_pbi::TcParseTable<0, 1, 0, 51, 2> CupsPrintersResponse_Item::_table_ = {
+const ::_pbi::TcParseTable<1, 3, 0, 64, 2> CupsPrintersResponse_Item::_table_ = {
   {
     0,  // no _has_bits_
     0, // no _extensions_
-    1, 0,  // max_field_number, fast_idx_mask
+    9, 8,  // max_field_number, fast_idx_mask
     offsetof(decltype(_table_), field_lookup_table),
-    4294967294,  // skipmap
+    4294967036,  // skipmap
     offsetof(decltype(_table_), field_entries),
-    1,  // num_field_entries
+    3,  // num_field_entries
     0,  // num_aux_entries
     offsetof(decltype(_table_), field_names),  // no aux_entries
     _class_data_.base(),
@@ -611,6 +947,9 @@ const ::_pbi::TcParseTable<0, 1, 0, 51, 2> CupsPrintersResponse_Item::_table_ = 
     ::_pbi::TcParser::GetTable<::palm::cups::v1::CupsPrintersResponse_Item>(),  // to_prefetch
     #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
   }, {{
+    // string status = 2;
+    {::_pbi::TcParser::FastUS1,
+     {18, 63, 0, PROTOBUF_FIELD_OFFSET(CupsPrintersResponse_Item, _impl_.status_)}},
     // string name = 1;
     {::_pbi::TcParser::FastUS1,
      {10, 63, 0, PROTOBUF_FIELD_OFFSET(CupsPrintersResponse_Item, _impl_.name_)}},
@@ -620,12 +959,20 @@ const ::_pbi::TcParseTable<0, 1, 0, 51, 2> CupsPrintersResponse_Item::_table_ = 
     // string name = 1;
     {PROTOBUF_FIELD_OFFSET(CupsPrintersResponse_Item, _impl_.name_), 0, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
+    // string status = 2;
+    {PROTOBUF_FIELD_OFFSET(CupsPrintersResponse_Item, _impl_.status_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
+    // string details = 9;
+    {PROTOBUF_FIELD_OFFSET(CupsPrintersResponse_Item, _impl_.details_), 0, 0,
+    (0 | ::_fl::kFcSingular | ::_fl::kUtf8String | ::_fl::kRepAString)},
   }},
   // no aux_entries
   {{
-    "\46\4\0\0\0\0\0\0"
+    "\46\4\6\7\0\0\0\0"
     "palm.cups.v1.CupsPrintersResponse.Item"
     "name"
+    "status"
+    "details"
   }},
 };
 
@@ -637,6 +984,8 @@ PROTOBUF_NOINLINE void CupsPrintersResponse_Item::Clear() {
   (void) cached_has_bits;
 
   _impl_.name_.ClearToEmpty();
+  _impl_.status_.ClearToEmpty();
+  _impl_.details_.ClearToEmpty();
   _internal_metadata_.Clear<::google::protobuf::UnknownFieldSet>();
 }
 
@@ -663,6 +1012,22 @@ PROTOBUF_NOINLINE void CupsPrintersResponse_Item::Clear() {
             target = stream->WriteStringMaybeAliased(1, _s, target);
           }
 
+          // string status = 2;
+          if (!this_._internal_status().empty()) {
+            const std::string& _s = this_._internal_status();
+            ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+                _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "palm.cups.v1.CupsPrintersResponse.Item.status");
+            target = stream->WriteStringMaybeAliased(2, _s, target);
+          }
+
+          // string details = 9;
+          if (!this_._internal_details().empty()) {
+            const std::string& _s = this_._internal_details();
+            ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+                _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "palm.cups.v1.CupsPrintersResponse.Item.details");
+            target = stream->WriteStringMaybeAliased(9, _s, target);
+          }
+
           if (PROTOBUF_PREDICT_FALSE(this_._internal_metadata_.have_unknown_fields())) {
             target =
                 ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
@@ -686,11 +1051,22 @@ PROTOBUF_NOINLINE void CupsPrintersResponse_Item::Clear() {
           // Prevent compiler warnings about cached_has_bits being unused
           (void)cached_has_bits;
 
+          ::_pbi::Prefetch5LinesFrom7Lines(&this_);
            {
             // string name = 1;
             if (!this_._internal_name().empty()) {
               total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
                                               this_._internal_name());
+            }
+            // string status = 2;
+            if (!this_._internal_status().empty()) {
+              total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                              this_._internal_status());
+            }
+            // string details = 9;
+            if (!this_._internal_details().empty()) {
+              total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                              this_._internal_details());
             }
           }
           return this_.MaybeComputeUnknownFieldsSize(total_size,
@@ -707,6 +1083,12 @@ void CupsPrintersResponse_Item::MergeImpl(::google::protobuf::MessageLite& to_ms
 
   if (!from._internal_name().empty()) {
     _this->_internal_set_name(from._internal_name());
+  }
+  if (!from._internal_status().empty()) {
+    _this->_internal_set_status(from._internal_status());
+  }
+  if (!from._internal_details().empty()) {
+    _this->_internal_set_details(from._internal_details());
   }
   _this->_internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(from._internal_metadata_);
 }
@@ -725,6 +1107,8 @@ void CupsPrintersResponse_Item::InternalSwap(CupsPrintersResponse_Item* PROTOBUF
   ABSL_DCHECK_EQ(arena, other->GetArena());
   _internal_metadata_.InternalSwap(&other->_internal_metadata_);
   ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.name_, &other->_impl_.name_, arena);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.status_, &other->_impl_.status_, arena);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.details_, &other->_impl_.details_, arena);
 }
 
 ::google::protobuf::Metadata CupsPrintersResponse_Item::GetMetadata() const {

@@ -6,9 +6,7 @@ import (
 
 	"github.com/casbin/casbin/v3"
 	"google.golang.org/protobuf/types/known/emptypb"
-	"gorm.io/gorm"
 
-	"github.com/saturn-xiv/palm/daisy/crypto"
 	v2 "github.com/saturn-xiv/palm/daisy/rbac/v2"
 )
 
@@ -16,12 +14,10 @@ type Server struct {
 	v2.UnimplementedEnforcerServer
 
 	enforcer *casbin.Enforcer
-	db       *gorm.DB
-	jwt      *crypto.Jwt
 }
 
-func NewServer(db *gorm.DB, jwt *crypto.Jwt, enforcer *casbin.Enforcer) *Server {
-	return &Server{enforcer: enforcer, db: db, jwt: jwt}
+func NewServer(enforcer *casbin.Enforcer) *Server {
+	return &Server{enforcer: enforcer}
 }
 
 func (p *Server) GetAllSubjects(ctx context.Context, req *emptypb.Empty) (*v2.SubjectsResponse, error) {

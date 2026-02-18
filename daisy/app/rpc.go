@@ -16,6 +16,8 @@ import (
 
 	"github.com/saturn-xiv/palm/daisy/cache"
 	"github.com/saturn-xiv/palm/daisy/crypto"
+	"github.com/saturn-xiv/palm/daisy/cups"
+	cups_v2 "github.com/saturn-xiv/palm/daisy/cups/v2"
 	"github.com/saturn-xiv/palm/daisy/portal"
 	portal_v2 "github.com/saturn-xiv/palm/daisy/portal/v2"
 	"github.com/saturn-xiv/palm/daisy/queue"
@@ -75,8 +77,9 @@ func LaunchRpcServer(config_file string, port uint16, debug bool) error {
 	portal_v2.RegisterLocaleServer(server, portal.NewLocaleServer(db, jwt, enforcer))
 	portal_v2.RegisterUserServer(server, portal.NewUserServer(db, jwt, enforcer, s3_client))
 	portal_v2.RegisterEmailUserServer(server, portal.NewEmailUserServer(db, jwt, enforcer, s3_client, hmac))
+	cups_v2.RegisterCupsServer(server, cups.NewServer())
 	s3_v2.RegisterS3Server(server, s3.NewServer(s3_client))
-	rbac_v2.RegisterEnforcerServer(server, rbac.NewServer(db, jwt, enforcer))
+	rbac_v2.RegisterEnforcerServer(server, rbac.NewServer(enforcer))
 
 	signal_chan := make(chan os.Signal, 1)
 	signal.Notify(signal_chan, os.Interrupt, syscall.SIGTERM, syscall.SIGINT)

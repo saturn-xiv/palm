@@ -22,10 +22,8 @@ type User struct {
 }
 
 func (p *Config) Open() (*mail.Client, error) {
-
 	return mail.NewClient(p.Host, mail.WithSMTPAuth(mail.SMTPAuthAutoDiscover),
 		mail.WithUsername(p.User.Email), mail.WithPassword(p.Password))
-
 }
 
 type EmailSendProtobufConsumer struct {

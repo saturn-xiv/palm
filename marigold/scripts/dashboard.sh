@@ -4,8 +4,10 @@ set -e
 
 # https://vite.dev/guide/#scaffolding-your-first-vite-project
 npm install --save \
-    @mui/joy @emotion/react @emotion/styled @fontsource/inter \
+    @mui/material @emotion/react @emotion/styled @fontsource/inter \
     react-router react-intl \
+    remark-gfm react-markdown @mdxeditor/editor \
+    slate slate-history slate-react \
     @graphiql/react \
     formik yup usehooks-ts \
     jose dayjs \

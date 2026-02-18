@@ -76,38 +76,178 @@ namespace protobuf {
 namespace palm {
 namespace cups {
 namespace v1 {
-enum Task_Paper : int {
-  Task_Paper_A4 = 0,
-  Task_Paper_LETTER = 1,
-  Task_Paper_Task_Paper_INT_MIN_SENTINEL_DO_NOT_USE_ =
+enum Task_Media : int {
+  Task_Media_A4 = 0,
+  Task_Media_LETTER = 1,
+  Task_Media_A3 = 2,
+  Task_Media_Task_Media_INT_MIN_SENTINEL_DO_NOT_USE_ =
       std::numeric_limits<::int32_t>::min(),
-  Task_Paper_Task_Paper_INT_MAX_SENTINEL_DO_NOT_USE_ =
+  Task_Media_Task_Media_INT_MAX_SENTINEL_DO_NOT_USE_ =
       std::numeric_limits<::int32_t>::max(),
 };
 
-bool Task_Paper_IsValid(int value);
-extern const uint32_t Task_Paper_internal_data_[];
-constexpr Task_Paper Task_Paper_Paper_MIN = static_cast<Task_Paper>(0);
-constexpr Task_Paper Task_Paper_Paper_MAX = static_cast<Task_Paper>(1);
-constexpr int Task_Paper_Paper_ARRAYSIZE = 1 + 1;
+bool Task_Media_IsValid(int value);
+extern const uint32_t Task_Media_internal_data_[];
+constexpr Task_Media Task_Media_Media_MIN = static_cast<Task_Media>(0);
+constexpr Task_Media Task_Media_Media_MAX = static_cast<Task_Media>(2);
+constexpr int Task_Media_Media_ARRAYSIZE = 2 + 1;
 const ::google::protobuf::EnumDescriptor*
-Task_Paper_descriptor();
+Task_Media_descriptor();
 template <typename T>
-const std::string& Task_Paper_Name(T value) {
-  static_assert(std::is_same<T, Task_Paper>::value ||
+const std::string& Task_Media_Name(T value) {
+  static_assert(std::is_same<T, Task_Media>::value ||
                     std::is_integral<T>::value,
-                "Incorrect type passed to Paper_Name().");
-  return Task_Paper_Name(static_cast<Task_Paper>(value));
+                "Incorrect type passed to Media_Name().");
+  return Task_Media_Name(static_cast<Task_Media>(value));
 }
 template <>
-inline const std::string& Task_Paper_Name(Task_Paper value) {
-  return ::google::protobuf::internal::NameOfDenseEnum<Task_Paper_descriptor,
-                                                 0, 1>(
+inline const std::string& Task_Media_Name(Task_Media value) {
+  return ::google::protobuf::internal::NameOfDenseEnum<Task_Media_descriptor,
+                                                 0, 2>(
       static_cast<int>(value));
 }
-inline bool Task_Paper_Parse(absl::string_view name, Task_Paper* value) {
-  return ::google::protobuf::internal::ParseNamedEnum<Task_Paper>(
-      Task_Paper_descriptor(), name, value);
+inline bool Task_Media_Parse(absl::string_view name, Task_Media* value) {
+  return ::google::protobuf::internal::ParseNamedEnum<Task_Media>(
+      Task_Media_descriptor(), name, value);
+}
+enum Task_JobSheet : int {
+  Task_JobSheet_STANDARD = 0,
+  Task_JobSheet_SECRET = 1,
+  Task_JobSheet_TOP_SECRET = 2,
+  Task_JobSheet_CLASSIFIED = 3,
+  Task_JobSheet_CONFIDENTIAL = 4,
+  Task_JobSheet_UNCLASSIFIED = 9,
+  Task_JobSheet_Task_JobSheet_INT_MIN_SENTINEL_DO_NOT_USE_ =
+      std::numeric_limits<::int32_t>::min(),
+  Task_JobSheet_Task_JobSheet_INT_MAX_SENTINEL_DO_NOT_USE_ =
+      std::numeric_limits<::int32_t>::max(),
+};
+
+bool Task_JobSheet_IsValid(int value);
+extern const uint32_t Task_JobSheet_internal_data_[];
+constexpr Task_JobSheet Task_JobSheet_JobSheet_MIN = static_cast<Task_JobSheet>(0);
+constexpr Task_JobSheet Task_JobSheet_JobSheet_MAX = static_cast<Task_JobSheet>(9);
+constexpr int Task_JobSheet_JobSheet_ARRAYSIZE = 9 + 1;
+const ::google::protobuf::EnumDescriptor*
+Task_JobSheet_descriptor();
+template <typename T>
+const std::string& Task_JobSheet_Name(T value) {
+  static_assert(std::is_same<T, Task_JobSheet>::value ||
+                    std::is_integral<T>::value,
+                "Incorrect type passed to JobSheet_Name().");
+  return Task_JobSheet_Name(static_cast<Task_JobSheet>(value));
+}
+template <>
+inline const std::string& Task_JobSheet_Name(Task_JobSheet value) {
+  return ::google::protobuf::internal::NameOfDenseEnum<Task_JobSheet_descriptor,
+                                                 0, 9>(
+      static_cast<int>(value));
+}
+inline bool Task_JobSheet_Parse(absl::string_view name, Task_JobSheet* value) {
+  return ::google::protobuf::internal::ParseNamedEnum<Task_JobSheet>(
+      Task_JobSheet_descriptor(), name, value);
+}
+enum Task_Quality : int {
+  Task_Quality_DRAFT = 0,
+  Task_Quality_NORMAL = 1,
+  Task_Quality_BEST = 2,
+  Task_Quality_Task_Quality_INT_MIN_SENTINEL_DO_NOT_USE_ =
+      std::numeric_limits<::int32_t>::min(),
+  Task_Quality_Task_Quality_INT_MAX_SENTINEL_DO_NOT_USE_ =
+      std::numeric_limits<::int32_t>::max(),
+};
+
+bool Task_Quality_IsValid(int value);
+extern const uint32_t Task_Quality_internal_data_[];
+constexpr Task_Quality Task_Quality_Quality_MIN = static_cast<Task_Quality>(0);
+constexpr Task_Quality Task_Quality_Quality_MAX = static_cast<Task_Quality>(2);
+constexpr int Task_Quality_Quality_ARRAYSIZE = 2 + 1;
+const ::google::protobuf::EnumDescriptor*
+Task_Quality_descriptor();
+template <typename T>
+const std::string& Task_Quality_Name(T value) {
+  static_assert(std::is_same<T, Task_Quality>::value ||
+                    std::is_integral<T>::value,
+                "Incorrect type passed to Quality_Name().");
+  return Task_Quality_Name(static_cast<Task_Quality>(value));
+}
+template <>
+inline const std::string& Task_Quality_Name(Task_Quality value) {
+  return ::google::protobuf::internal::NameOfDenseEnum<Task_Quality_descriptor,
+                                                 0, 2>(
+      static_cast<int>(value));
+}
+inline bool Task_Quality_Parse(absl::string_view name, Task_Quality* value) {
+  return ::google::protobuf::internal::ParseNamedEnum<Task_Quality>(
+      Task_Quality_descriptor(), name, value);
+}
+enum Task_Sides : int {
+  Task_Sides_ONE = 0,
+  Task_Sides_TWO_LONG = 1,
+  Task_Sides_TWO_SHORT = 2,
+  Task_Sides_Task_Sides_INT_MIN_SENTINEL_DO_NOT_USE_ =
+      std::numeric_limits<::int32_t>::min(),
+  Task_Sides_Task_Sides_INT_MAX_SENTINEL_DO_NOT_USE_ =
+      std::numeric_limits<::int32_t>::max(),
+};
+
+bool Task_Sides_IsValid(int value);
+extern const uint32_t Task_Sides_internal_data_[];
+constexpr Task_Sides Task_Sides_Sides_MIN = static_cast<Task_Sides>(0);
+constexpr Task_Sides Task_Sides_Sides_MAX = static_cast<Task_Sides>(2);
+constexpr int Task_Sides_Sides_ARRAYSIZE = 2 + 1;
+const ::google::protobuf::EnumDescriptor*
+Task_Sides_descriptor();
+template <typename T>
+const std::string& Task_Sides_Name(T value) {
+  static_assert(std::is_same<T, Task_Sides>::value ||
+                    std::is_integral<T>::value,
+                "Incorrect type passed to Sides_Name().");
+  return Task_Sides_Name(static_cast<Task_Sides>(value));
+}
+template <>
+inline const std::string& Task_Sides_Name(Task_Sides value) {
+  return ::google::protobuf::internal::NameOfDenseEnum<Task_Sides_descriptor,
+                                                 0, 2>(
+      static_cast<int>(value));
+}
+inline bool Task_Sides_Parse(absl::string_view name, Task_Sides* value) {
+  return ::google::protobuf::internal::ParseNamedEnum<Task_Sides>(
+      Task_Sides_descriptor(), name, value);
+}
+enum Task_Orientation : int {
+  Task_Orientation_LANDSCAPE_COUNTER_CLOCKWISE90 = 0,
+  Task_Orientation_LANDSCAPE_CLOCKWISE90 = 1,
+  Task_Orientation_REVERSE_PORTRAIT = 2,
+  Task_Orientation_Task_Orientation_INT_MIN_SENTINEL_DO_NOT_USE_ =
+      std::numeric_limits<::int32_t>::min(),
+  Task_Orientation_Task_Orientation_INT_MAX_SENTINEL_DO_NOT_USE_ =
+      std::numeric_limits<::int32_t>::max(),
+};
+
+bool Task_Orientation_IsValid(int value);
+extern const uint32_t Task_Orientation_internal_data_[];
+constexpr Task_Orientation Task_Orientation_Orientation_MIN = static_cast<Task_Orientation>(0);
+constexpr Task_Orientation Task_Orientation_Orientation_MAX = static_cast<Task_Orientation>(2);
+constexpr int Task_Orientation_Orientation_ARRAYSIZE = 2 + 1;
+const ::google::protobuf::EnumDescriptor*
+Task_Orientation_descriptor();
+template <typename T>
+const std::string& Task_Orientation_Name(T value) {
+  static_assert(std::is_same<T, Task_Orientation>::value ||
+                    std::is_integral<T>::value,
+                "Incorrect type passed to Orientation_Name().");
+  return Task_Orientation_Name(static_cast<Task_Orientation>(value));
+}
+template <>
+inline const std::string& Task_Orientation_Name(Task_Orientation value) {
+  return ::google::protobuf::internal::NameOfDenseEnum<Task_Orientation_descriptor,
+                                                 0, 2>(
+      static_cast<int>(value));
+}
+inline bool Task_Orientation_Parse(absl::string_view name, Task_Orientation* value) {
+  return ::google::protobuf::internal::ParseNamedEnum<Task_Orientation>(
+      Task_Orientation_descriptor(), name, value);
 }
 
 // ===================================================================
@@ -258,32 +398,141 @@ class Task final : public ::google::protobuf::Message
  public:
   ::google::protobuf::Metadata GetMetadata() const;
   // nested types ----------------------------------------------------
-  using Paper = Task_Paper;
-  static constexpr Paper A4 = Task_Paper_A4;
-  static constexpr Paper LETTER = Task_Paper_LETTER;
-  static inline bool Paper_IsValid(int value) {
-    return Task_Paper_IsValid(value);
+  using Media = Task_Media;
+  static constexpr Media A4 = Task_Media_A4;
+  static constexpr Media LETTER = Task_Media_LETTER;
+  static constexpr Media A3 = Task_Media_A3;
+  static inline bool Media_IsValid(int value) {
+    return Task_Media_IsValid(value);
   }
-  static constexpr Paper Paper_MIN = Task_Paper_Paper_MIN;
-  static constexpr Paper Paper_MAX = Task_Paper_Paper_MAX;
-  static constexpr int Paper_ARRAYSIZE = Task_Paper_Paper_ARRAYSIZE;
-  static inline const ::google::protobuf::EnumDescriptor* Paper_descriptor() {
-    return Task_Paper_descriptor();
+  static constexpr Media Media_MIN = Task_Media_Media_MIN;
+  static constexpr Media Media_MAX = Task_Media_Media_MAX;
+  static constexpr int Media_ARRAYSIZE = Task_Media_Media_ARRAYSIZE;
+  static inline const ::google::protobuf::EnumDescriptor* Media_descriptor() {
+    return Task_Media_descriptor();
   }
   template <typename T>
-  static inline const std::string& Paper_Name(T value) {
-    return Task_Paper_Name(value);
+  static inline const std::string& Media_Name(T value) {
+    return Task_Media_Name(value);
   }
-  static inline bool Paper_Parse(absl::string_view name, Paper* value) {
-    return Task_Paper_Parse(name, value);
+  static inline bool Media_Parse(absl::string_view name, Media* value) {
+    return Task_Media_Parse(name, value);
+  }
+  using JobSheet = Task_JobSheet;
+  static constexpr JobSheet STANDARD = Task_JobSheet_STANDARD;
+  static constexpr JobSheet SECRET = Task_JobSheet_SECRET;
+  static constexpr JobSheet TOP_SECRET = Task_JobSheet_TOP_SECRET;
+  static constexpr JobSheet CLASSIFIED = Task_JobSheet_CLASSIFIED;
+  static constexpr JobSheet CONFIDENTIAL = Task_JobSheet_CONFIDENTIAL;
+  static constexpr JobSheet UNCLASSIFIED = Task_JobSheet_UNCLASSIFIED;
+  static inline bool JobSheet_IsValid(int value) {
+    return Task_JobSheet_IsValid(value);
+  }
+  static constexpr JobSheet JobSheet_MIN = Task_JobSheet_JobSheet_MIN;
+  static constexpr JobSheet JobSheet_MAX = Task_JobSheet_JobSheet_MAX;
+  static constexpr int JobSheet_ARRAYSIZE = Task_JobSheet_JobSheet_ARRAYSIZE;
+  static inline const ::google::protobuf::EnumDescriptor* JobSheet_descriptor() {
+    return Task_JobSheet_descriptor();
+  }
+  template <typename T>
+  static inline const std::string& JobSheet_Name(T value) {
+    return Task_JobSheet_Name(value);
+  }
+  static inline bool JobSheet_Parse(absl::string_view name, JobSheet* value) {
+    return Task_JobSheet_Parse(name, value);
+  }
+  using Quality = Task_Quality;
+  static constexpr Quality DRAFT = Task_Quality_DRAFT;
+  static constexpr Quality NORMAL = Task_Quality_NORMAL;
+  static constexpr Quality BEST = Task_Quality_BEST;
+  static inline bool Quality_IsValid(int value) {
+    return Task_Quality_IsValid(value);
+  }
+  static constexpr Quality Quality_MIN = Task_Quality_Quality_MIN;
+  static constexpr Quality Quality_MAX = Task_Quality_Quality_MAX;
+  static constexpr int Quality_ARRAYSIZE = Task_Quality_Quality_ARRAYSIZE;
+  static inline const ::google::protobuf::EnumDescriptor* Quality_descriptor() {
+    return Task_Quality_descriptor();
+  }
+  template <typename T>
+  static inline const std::string& Quality_Name(T value) {
+    return Task_Quality_Name(value);
+  }
+  static inline bool Quality_Parse(absl::string_view name, Quality* value) {
+    return Task_Quality_Parse(name, value);
+  }
+  using Sides = Task_Sides;
+  static constexpr Sides ONE = Task_Sides_ONE;
+  static constexpr Sides TWO_LONG = Task_Sides_TWO_LONG;
+  static constexpr Sides TWO_SHORT = Task_Sides_TWO_SHORT;
+  static inline bool Sides_IsValid(int value) {
+    return Task_Sides_IsValid(value);
+  }
+  static constexpr Sides Sides_MIN = Task_Sides_Sides_MIN;
+  static constexpr Sides Sides_MAX = Task_Sides_Sides_MAX;
+  static constexpr int Sides_ARRAYSIZE = Task_Sides_Sides_ARRAYSIZE;
+  static inline const ::google::protobuf::EnumDescriptor* Sides_descriptor() {
+    return Task_Sides_descriptor();
+  }
+  template <typename T>
+  static inline const std::string& Sides_Name(T value) {
+    return Task_Sides_Name(value);
+  }
+  static inline bool Sides_Parse(absl::string_view name, Sides* value) {
+    return Task_Sides_Parse(name, value);
+  }
+  using Orientation = Task_Orientation;
+  static constexpr Orientation LANDSCAPE_COUNTER_CLOCKWISE90 = Task_Orientation_LANDSCAPE_COUNTER_CLOCKWISE90;
+  static constexpr Orientation LANDSCAPE_CLOCKWISE90 = Task_Orientation_LANDSCAPE_CLOCKWISE90;
+  static constexpr Orientation REVERSE_PORTRAIT = Task_Orientation_REVERSE_PORTRAIT;
+  static inline bool Orientation_IsValid(int value) {
+    return Task_Orientation_IsValid(value);
+  }
+  static constexpr Orientation Orientation_MIN = Task_Orientation_Orientation_MIN;
+  static constexpr Orientation Orientation_MAX = Task_Orientation_Orientation_MAX;
+  static constexpr int Orientation_ARRAYSIZE = Task_Orientation_Orientation_ARRAYSIZE;
+  static inline const ::google::protobuf::EnumDescriptor* Orientation_descriptor() {
+    return Task_Orientation_descriptor();
+  }
+  template <typename T>
+  static inline const std::string& Orientation_Name(T value) {
+    return Task_Orientation_Name(value);
+  }
+  static inline bool Orientation_Parse(absl::string_view name, Orientation* value) {
+    return Task_Orientation_Parse(name, value);
   }
 
   // accessors -------------------------------------------------------
   enum : int {
+    kNumberUpFieldNumber = 7,
     kPrinterFieldNumber = 1,
+    kNameFieldNumber = 2,
     kDocumentFieldNumber = 9,
-    kPaperFieldNumber = 2,
+    kCopiesFieldNumber = 8,
+    kPaperFieldNumber = 11,
+    kJobSheetFieldNumber = 12,
+    kQualityFieldNumber = 13,
+    kSidesFieldNumber = 14,
+    kOrientationFieldNumber = 15,
   };
+  // repeated uint32 number_up = 7;
+  int number_up_size() const;
+  private:
+  int _internal_number_up_size() const;
+
+  public:
+  void clear_number_up() ;
+  ::uint32_t number_up(int index) const;
+  void set_number_up(int index, ::uint32_t value);
+  void add_number_up(::uint32_t value);
+  const ::google::protobuf::RepeatedField<::uint32_t>& number_up() const;
+  ::google::protobuf::RepeatedField<::uint32_t>* mutable_number_up();
+
+  private:
+  const ::google::protobuf::RepeatedField<::uint32_t>& _internal_number_up() const;
+  ::google::protobuf::RepeatedField<::uint32_t>* _internal_mutable_number_up();
+
+  public:
   // string printer = 1;
   void clear_printer() ;
   const std::string& printer() const;
@@ -298,6 +547,22 @@ class Task final : public ::google::protobuf::Message
   inline PROTOBUF_ALWAYS_INLINE void _internal_set_printer(
       const std::string& value);
   std::string* _internal_mutable_printer();
+
+  public:
+  // string name = 2;
+  void clear_name() ;
+  const std::string& name() const;
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_name(Arg_&& arg, Args_... args);
+  std::string* mutable_name();
+  PROTOBUF_NODISCARD std::string* release_name();
+  void set_allocated_name(std::string* value);
+
+  private:
+  const std::string& _internal_name() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_name(
+      const std::string& value);
+  std::string* _internal_mutable_name();
 
   public:
   // bytes document = 9;
@@ -316,14 +581,64 @@ class Task final : public ::google::protobuf::Message
   std::string* _internal_mutable_document();
 
   public:
-  // .palm.cups.v1.Task.Paper paper = 2;
-  void clear_paper() ;
-  ::palm::cups::v1::Task_Paper paper() const;
-  void set_paper(::palm::cups::v1::Task_Paper value);
+  // uint32 copies = 8;
+  void clear_copies() ;
+  ::uint32_t copies() const;
+  void set_copies(::uint32_t value);
 
   private:
-  ::palm::cups::v1::Task_Paper _internal_paper() const;
-  void _internal_set_paper(::palm::cups::v1::Task_Paper value);
+  ::uint32_t _internal_copies() const;
+  void _internal_set_copies(::uint32_t value);
+
+  public:
+  // .palm.cups.v1.Task.Media paper = 11;
+  void clear_paper() ;
+  ::palm::cups::v1::Task_Media paper() const;
+  void set_paper(::palm::cups::v1::Task_Media value);
+
+  private:
+  ::palm::cups::v1::Task_Media _internal_paper() const;
+  void _internal_set_paper(::palm::cups::v1::Task_Media value);
+
+  public:
+  // .palm.cups.v1.Task.JobSheet job_sheet = 12;
+  void clear_job_sheet() ;
+  ::palm::cups::v1::Task_JobSheet job_sheet() const;
+  void set_job_sheet(::palm::cups::v1::Task_JobSheet value);
+
+  private:
+  ::palm::cups::v1::Task_JobSheet _internal_job_sheet() const;
+  void _internal_set_job_sheet(::palm::cups::v1::Task_JobSheet value);
+
+  public:
+  // .palm.cups.v1.Task.Quality quality = 13;
+  void clear_quality() ;
+  ::palm::cups::v1::Task_Quality quality() const;
+  void set_quality(::palm::cups::v1::Task_Quality value);
+
+  private:
+  ::palm::cups::v1::Task_Quality _internal_quality() const;
+  void _internal_set_quality(::palm::cups::v1::Task_Quality value);
+
+  public:
+  // .palm.cups.v1.Task.Sides sides = 14;
+  void clear_sides() ;
+  ::palm::cups::v1::Task_Sides sides() const;
+  void set_sides(::palm::cups::v1::Task_Sides value);
+
+  private:
+  ::palm::cups::v1::Task_Sides _internal_sides() const;
+  void _internal_set_sides(::palm::cups::v1::Task_Sides value);
+
+  public:
+  // .palm.cups.v1.Task.Orientation orientation = 15;
+  void clear_orientation() ;
+  ::palm::cups::v1::Task_Orientation orientation() const;
+  void set_orientation(::palm::cups::v1::Task_Orientation value);
+
+  private:
+  ::palm::cups::v1::Task_Orientation _internal_orientation() const;
+  void _internal_set_orientation(::palm::cups::v1::Task_Orientation value);
 
   public:
   // @@protoc_insertion_point(class_scope:palm.cups.v1.Task)
@@ -331,8 +646,8 @@ class Task final : public ::google::protobuf::Message
   class _Internal;
   friend class ::google::protobuf::internal::TcParser;
   static const ::google::protobuf::internal::TcParseTable<
-      1, 3, 0,
-      33, 2>
+      4, 10, 0,
+      45, 2>
       _table_;
 
   friend class ::google::protobuf::MessageLite;
@@ -349,9 +664,17 @@ class Task final : public ::google::protobuf::Message
     inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
                           ::google::protobuf::Arena* arena, const Impl_& from,
                           const Task& from_msg);
+    ::google::protobuf::RepeatedField<::uint32_t> number_up_;
+    ::google::protobuf::internal::CachedSize _number_up_cached_byte_size_;
     ::google::protobuf::internal::ArenaStringPtr printer_;
+    ::google::protobuf::internal::ArenaStringPtr name_;
     ::google::protobuf::internal::ArenaStringPtr document_;
+    ::uint32_t copies_;
     int paper_;
+    int job_sheet_;
+    int quality_;
+    int sides_;
+    int orientation_;
     ::google::protobuf::internal::CachedSize _cached_size_;
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
@@ -507,6 +830,8 @@ class CupsPrintersResponse_Item final : public ::google::protobuf::Message
   // accessors -------------------------------------------------------
   enum : int {
     kNameFieldNumber = 1,
+    kStatusFieldNumber = 2,
+    kDetailsFieldNumber = 9,
   };
   // string name = 1;
   void clear_name() ;
@@ -524,13 +849,45 @@ class CupsPrintersResponse_Item final : public ::google::protobuf::Message
   std::string* _internal_mutable_name();
 
   public:
+  // string status = 2;
+  void clear_status() ;
+  const std::string& status() const;
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_status(Arg_&& arg, Args_... args);
+  std::string* mutable_status();
+  PROTOBUF_NODISCARD std::string* release_status();
+  void set_allocated_status(std::string* value);
+
+  private:
+  const std::string& _internal_status() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_status(
+      const std::string& value);
+  std::string* _internal_mutable_status();
+
+  public:
+  // string details = 9;
+  void clear_details() ;
+  const std::string& details() const;
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_details(Arg_&& arg, Args_... args);
+  std::string* mutable_details();
+  PROTOBUF_NODISCARD std::string* release_details();
+  void set_allocated_details(std::string* value);
+
+  private:
+  const std::string& _internal_details() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_details(
+      const std::string& value);
+  std::string* _internal_mutable_details();
+
+  public:
   // @@protoc_insertion_point(class_scope:palm.cups.v1.CupsPrintersResponse.Item)
  private:
   class _Internal;
   friend class ::google::protobuf::internal::TcParser;
   static const ::google::protobuf::internal::TcParseTable<
-      0, 1, 0,
-      51, 2>
+      1, 3, 0,
+      64, 2>
       _table_;
 
   friend class ::google::protobuf::MessageLite;
@@ -548,6 +905,8 @@ class CupsPrintersResponse_Item final : public ::google::protobuf::Message
                           ::google::protobuf::Arena* arena, const Impl_& from,
                           const CupsPrintersResponse_Item& from_msg);
     ::google::protobuf::internal::ArenaStringPtr name_;
+    ::google::protobuf::internal::ArenaStringPtr status_;
+    ::google::protobuf::internal::ArenaStringPtr details_;
     ::google::protobuf::internal::CachedSize _cached_size_;
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
@@ -817,26 +1176,119 @@ inline void Task::set_allocated_printer(std::string* value) {
   // @@protoc_insertion_point(field_set_allocated:palm.cups.v1.Task.printer)
 }
 
-// .palm.cups.v1.Task.Paper paper = 2;
-inline void Task::clear_paper() {
+// string name = 2;
+inline void Task::clear_name() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.paper_ = 0;
+  _impl_.name_.ClearToEmpty();
 }
-inline ::palm::cups::v1::Task_Paper Task::paper() const {
-  // @@protoc_insertion_point(field_get:palm.cups.v1.Task.paper)
-  return _internal_paper();
+inline const std::string& Task::name() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:palm.cups.v1.Task.name)
+  return _internal_name();
 }
-inline void Task::set_paper(::palm::cups::v1::Task_Paper value) {
-  _internal_set_paper(value);
-  // @@protoc_insertion_point(field_set:palm.cups.v1.Task.paper)
+template <typename Arg_, typename... Args_>
+inline PROTOBUF_ALWAYS_INLINE void Task::set_name(Arg_&& arg,
+                                                     Args_... args) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.name_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:palm.cups.v1.Task.name)
 }
-inline ::palm::cups::v1::Task_Paper Task::_internal_paper() const {
+inline std::string* Task::mutable_name() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  std::string* _s = _internal_mutable_name();
+  // @@protoc_insertion_point(field_mutable:palm.cups.v1.Task.name)
+  return _s;
+}
+inline const std::string& Task::_internal_name() const {
   ::google::protobuf::internal::TSanRead(&_impl_);
-  return static_cast<::palm::cups::v1::Task_Paper>(_impl_.paper_);
+  return _impl_.name_.Get();
 }
-inline void Task::_internal_set_paper(::palm::cups::v1::Task_Paper value) {
+inline void Task::_internal_set_name(const std::string& value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.paper_ = value;
+  _impl_.name_.Set(value, GetArena());
+}
+inline std::string* Task::_internal_mutable_name() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  return _impl_.name_.Mutable( GetArena());
+}
+inline std::string* Task::release_name() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  // @@protoc_insertion_point(field_release:palm.cups.v1.Task.name)
+  return _impl_.name_.Release();
+}
+inline void Task::set_allocated_name(std::string* value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.name_.SetAllocated(value, GetArena());
+  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString() && _impl_.name_.IsDefault()) {
+    _impl_.name_.Set("", GetArena());
+  }
+  // @@protoc_insertion_point(field_set_allocated:palm.cups.v1.Task.name)
+}
+
+// repeated uint32 number_up = 7;
+inline int Task::_internal_number_up_size() const {
+  return _internal_number_up().size();
+}
+inline int Task::number_up_size() const {
+  return _internal_number_up_size();
+}
+inline void Task::clear_number_up() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.number_up_.Clear();
+}
+inline ::uint32_t Task::number_up(int index) const {
+  // @@protoc_insertion_point(field_get:palm.cups.v1.Task.number_up)
+  return _internal_number_up().Get(index);
+}
+inline void Task::set_number_up(int index, ::uint32_t value) {
+  _internal_mutable_number_up()->Set(index, value);
+  // @@protoc_insertion_point(field_set:palm.cups.v1.Task.number_up)
+}
+inline void Task::add_number_up(::uint32_t value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _internal_mutable_number_up()->Add(value);
+  // @@protoc_insertion_point(field_add:palm.cups.v1.Task.number_up)
+}
+inline const ::google::protobuf::RepeatedField<::uint32_t>& Task::number_up() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_list:palm.cups.v1.Task.number_up)
+  return _internal_number_up();
+}
+inline ::google::protobuf::RepeatedField<::uint32_t>* Task::mutable_number_up()
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_mutable_list:palm.cups.v1.Task.number_up)
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  return _internal_mutable_number_up();
+}
+inline const ::google::protobuf::RepeatedField<::uint32_t>&
+Task::_internal_number_up() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.number_up_;
+}
+inline ::google::protobuf::RepeatedField<::uint32_t>* Task::_internal_mutable_number_up() {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return &_impl_.number_up_;
+}
+
+// uint32 copies = 8;
+inline void Task::clear_copies() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.copies_ = 0u;
+}
+inline ::uint32_t Task::copies() const {
+  // @@protoc_insertion_point(field_get:palm.cups.v1.Task.copies)
+  return _internal_copies();
+}
+inline void Task::set_copies(::uint32_t value) {
+  _internal_set_copies(value);
+  // @@protoc_insertion_point(field_set:palm.cups.v1.Task.copies)
+}
+inline ::uint32_t Task::_internal_copies() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.copies_;
+}
+inline void Task::_internal_set_copies(::uint32_t value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.copies_ = value;
 }
 
 // bytes document = 9;
@@ -885,6 +1337,116 @@ inline void Task::set_allocated_document(std::string* value) {
     _impl_.document_.Set("", GetArena());
   }
   // @@protoc_insertion_point(field_set_allocated:palm.cups.v1.Task.document)
+}
+
+// .palm.cups.v1.Task.Media paper = 11;
+inline void Task::clear_paper() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.paper_ = 0;
+}
+inline ::palm::cups::v1::Task_Media Task::paper() const {
+  // @@protoc_insertion_point(field_get:palm.cups.v1.Task.paper)
+  return _internal_paper();
+}
+inline void Task::set_paper(::palm::cups::v1::Task_Media value) {
+  _internal_set_paper(value);
+  // @@protoc_insertion_point(field_set:palm.cups.v1.Task.paper)
+}
+inline ::palm::cups::v1::Task_Media Task::_internal_paper() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return static_cast<::palm::cups::v1::Task_Media>(_impl_.paper_);
+}
+inline void Task::_internal_set_paper(::palm::cups::v1::Task_Media value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.paper_ = value;
+}
+
+// .palm.cups.v1.Task.JobSheet job_sheet = 12;
+inline void Task::clear_job_sheet() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.job_sheet_ = 0;
+}
+inline ::palm::cups::v1::Task_JobSheet Task::job_sheet() const {
+  // @@protoc_insertion_point(field_get:palm.cups.v1.Task.job_sheet)
+  return _internal_job_sheet();
+}
+inline void Task::set_job_sheet(::palm::cups::v1::Task_JobSheet value) {
+  _internal_set_job_sheet(value);
+  // @@protoc_insertion_point(field_set:palm.cups.v1.Task.job_sheet)
+}
+inline ::palm::cups::v1::Task_JobSheet Task::_internal_job_sheet() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return static_cast<::palm::cups::v1::Task_JobSheet>(_impl_.job_sheet_);
+}
+inline void Task::_internal_set_job_sheet(::palm::cups::v1::Task_JobSheet value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.job_sheet_ = value;
+}
+
+// .palm.cups.v1.Task.Quality quality = 13;
+inline void Task::clear_quality() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.quality_ = 0;
+}
+inline ::palm::cups::v1::Task_Quality Task::quality() const {
+  // @@protoc_insertion_point(field_get:palm.cups.v1.Task.quality)
+  return _internal_quality();
+}
+inline void Task::set_quality(::palm::cups::v1::Task_Quality value) {
+  _internal_set_quality(value);
+  // @@protoc_insertion_point(field_set:palm.cups.v1.Task.quality)
+}
+inline ::palm::cups::v1::Task_Quality Task::_internal_quality() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return static_cast<::palm::cups::v1::Task_Quality>(_impl_.quality_);
+}
+inline void Task::_internal_set_quality(::palm::cups::v1::Task_Quality value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.quality_ = value;
+}
+
+// .palm.cups.v1.Task.Sides sides = 14;
+inline void Task::clear_sides() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.sides_ = 0;
+}
+inline ::palm::cups::v1::Task_Sides Task::sides() const {
+  // @@protoc_insertion_point(field_get:palm.cups.v1.Task.sides)
+  return _internal_sides();
+}
+inline void Task::set_sides(::palm::cups::v1::Task_Sides value) {
+  _internal_set_sides(value);
+  // @@protoc_insertion_point(field_set:palm.cups.v1.Task.sides)
+}
+inline ::palm::cups::v1::Task_Sides Task::_internal_sides() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return static_cast<::palm::cups::v1::Task_Sides>(_impl_.sides_);
+}
+inline void Task::_internal_set_sides(::palm::cups::v1::Task_Sides value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.sides_ = value;
+}
+
+// .palm.cups.v1.Task.Orientation orientation = 15;
+inline void Task::clear_orientation() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.orientation_ = 0;
+}
+inline ::palm::cups::v1::Task_Orientation Task::orientation() const {
+  // @@protoc_insertion_point(field_get:palm.cups.v1.Task.orientation)
+  return _internal_orientation();
+}
+inline void Task::set_orientation(::palm::cups::v1::Task_Orientation value) {
+  _internal_set_orientation(value);
+  // @@protoc_insertion_point(field_set:palm.cups.v1.Task.orientation)
+}
+inline ::palm::cups::v1::Task_Orientation Task::_internal_orientation() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return static_cast<::palm::cups::v1::Task_Orientation>(_impl_.orientation_);
+}
+inline void Task::_internal_set_orientation(::palm::cups::v1::Task_Orientation value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.orientation_ = value;
 }
 
 // -------------------------------------------------------------------
@@ -937,6 +1499,102 @@ inline void CupsPrintersResponse_Item::set_allocated_name(std::string* value) {
     _impl_.name_.Set("", GetArena());
   }
   // @@protoc_insertion_point(field_set_allocated:palm.cups.v1.CupsPrintersResponse.Item.name)
+}
+
+// string status = 2;
+inline void CupsPrintersResponse_Item::clear_status() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.status_.ClearToEmpty();
+}
+inline const std::string& CupsPrintersResponse_Item::status() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:palm.cups.v1.CupsPrintersResponse.Item.status)
+  return _internal_status();
+}
+template <typename Arg_, typename... Args_>
+inline PROTOBUF_ALWAYS_INLINE void CupsPrintersResponse_Item::set_status(Arg_&& arg,
+                                                     Args_... args) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.status_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:palm.cups.v1.CupsPrintersResponse.Item.status)
+}
+inline std::string* CupsPrintersResponse_Item::mutable_status() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  std::string* _s = _internal_mutable_status();
+  // @@protoc_insertion_point(field_mutable:palm.cups.v1.CupsPrintersResponse.Item.status)
+  return _s;
+}
+inline const std::string& CupsPrintersResponse_Item::_internal_status() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.status_.Get();
+}
+inline void CupsPrintersResponse_Item::_internal_set_status(const std::string& value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.status_.Set(value, GetArena());
+}
+inline std::string* CupsPrintersResponse_Item::_internal_mutable_status() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  return _impl_.status_.Mutable( GetArena());
+}
+inline std::string* CupsPrintersResponse_Item::release_status() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  // @@protoc_insertion_point(field_release:palm.cups.v1.CupsPrintersResponse.Item.status)
+  return _impl_.status_.Release();
+}
+inline void CupsPrintersResponse_Item::set_allocated_status(std::string* value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.status_.SetAllocated(value, GetArena());
+  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString() && _impl_.status_.IsDefault()) {
+    _impl_.status_.Set("", GetArena());
+  }
+  // @@protoc_insertion_point(field_set_allocated:palm.cups.v1.CupsPrintersResponse.Item.status)
+}
+
+// string details = 9;
+inline void CupsPrintersResponse_Item::clear_details() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.details_.ClearToEmpty();
+}
+inline const std::string& CupsPrintersResponse_Item::details() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:palm.cups.v1.CupsPrintersResponse.Item.details)
+  return _internal_details();
+}
+template <typename Arg_, typename... Args_>
+inline PROTOBUF_ALWAYS_INLINE void CupsPrintersResponse_Item::set_details(Arg_&& arg,
+                                                     Args_... args) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.details_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:palm.cups.v1.CupsPrintersResponse.Item.details)
+}
+inline std::string* CupsPrintersResponse_Item::mutable_details() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  std::string* _s = _internal_mutable_details();
+  // @@protoc_insertion_point(field_mutable:palm.cups.v1.CupsPrintersResponse.Item.details)
+  return _s;
+}
+inline const std::string& CupsPrintersResponse_Item::_internal_details() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.details_.Get();
+}
+inline void CupsPrintersResponse_Item::_internal_set_details(const std::string& value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.details_.Set(value, GetArena());
+}
+inline std::string* CupsPrintersResponse_Item::_internal_mutable_details() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  return _impl_.details_.Mutable( GetArena());
+}
+inline std::string* CupsPrintersResponse_Item::release_details() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  // @@protoc_insertion_point(field_release:palm.cups.v1.CupsPrintersResponse.Item.details)
+  return _impl_.details_.Release();
+}
+inline void CupsPrintersResponse_Item::set_allocated_details(std::string* value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.details_.SetAllocated(value, GetArena());
+  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString() && _impl_.details_.IsDefault()) {
+    _impl_.details_.Set("", GetArena());
+  }
+  // @@protoc_insertion_point(field_set_allocated:palm.cups.v1.CupsPrintersResponse.Item.details)
 }
 
 // -------------------------------------------------------------------
@@ -1006,10 +1664,34 @@ namespace google {
 namespace protobuf {
 
 template <>
-struct is_proto_enum<::palm::cups::v1::Task_Paper> : std::true_type {};
+struct is_proto_enum<::palm::cups::v1::Task_Media> : std::true_type {};
 template <>
-inline const EnumDescriptor* GetEnumDescriptor<::palm::cups::v1::Task_Paper>() {
-  return ::palm::cups::v1::Task_Paper_descriptor();
+inline const EnumDescriptor* GetEnumDescriptor<::palm::cups::v1::Task_Media>() {
+  return ::palm::cups::v1::Task_Media_descriptor();
+}
+template <>
+struct is_proto_enum<::palm::cups::v1::Task_JobSheet> : std::true_type {};
+template <>
+inline const EnumDescriptor* GetEnumDescriptor<::palm::cups::v1::Task_JobSheet>() {
+  return ::palm::cups::v1::Task_JobSheet_descriptor();
+}
+template <>
+struct is_proto_enum<::palm::cups::v1::Task_Quality> : std::true_type {};
+template <>
+inline const EnumDescriptor* GetEnumDescriptor<::palm::cups::v1::Task_Quality>() {
+  return ::palm::cups::v1::Task_Quality_descriptor();
+}
+template <>
+struct is_proto_enum<::palm::cups::v1::Task_Sides> : std::true_type {};
+template <>
+inline const EnumDescriptor* GetEnumDescriptor<::palm::cups::v1::Task_Sides>() {
+  return ::palm::cups::v1::Task_Sides_descriptor();
+}
+template <>
+struct is_proto_enum<::palm::cups::v1::Task_Orientation> : std::true_type {};
+template <>
+inline const EnumDescriptor* GetEnumDescriptor<::palm::cups::v1::Task_Orientation>() {
+  return ::palm::cups::v1::Task_Orientation_descriptor();
 }
 
 }  // namespace protobuf

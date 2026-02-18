@@ -10,13 +10,46 @@ package palm.cups.v1;
 import "google/protobuf/empty.proto";
 
 message Task {
-  enum Paper{
+  enum Media{
     A4     = 0;
     LETTER = 1;
+    A3     = 2;
   }
-  string printer  = 1;
-  Paper  paper    = 2;
-  bytes  document = 9;
+  enum JobSheet{
+    STANDARD     = 0;
+    SECRET       = 1;
+    TOP_SECRET   = 2;
+    CLASSIFIED   = 3;
+    CONFIDENTIAL = 4;
+    UNCLASSIFIED = 9;
+  }
+  enum Quality{
+    DRAFT  = 0;
+    NORMAL = 1;
+    BEST   = 2;
+  }
+  enum Sides{
+    ONE       = 0;
+    TWO_LONG  = 1;
+    TWO_SHORT = 2;
+  }
+  enum Orientation{
+    LANDSCAPE_COUNTER_CLOCKWISE90 = 0;
+    LANDSCAPE_CLOCKWISE90         = 1;
+    REVERSE_PORTRAIT              = 2;
+  }
+  string          printer   = 1;
+  string          name      = 2;
+  repeated uint32 number_up = 7;
+  uint32          copies    = 8;
+  bytes           document  = 9;
+
+  Media       paper       = 11;
+  JobSheet    job_sheet   = 12;
+  Quality     quality     = 13;
+  Sides       sides       = 14;
+  Orientation orientation = 15;
+
 }
 
 service Cups {
@@ -25,7 +58,9 @@ service Cups {
 
 message CupsPrintersResponse{
   message Item{
-    string name = 1;
+    string name    = 1;
+    string status  = 2;
+    string details = 9;
   }
   repeated Item items = 2;
 }

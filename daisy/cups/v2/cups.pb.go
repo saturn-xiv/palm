@@ -22,57 +22,272 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
-type Task_Paper int32
+type Task_Media int32
 
 const (
-	Task_A4     Task_Paper = 0
-	Task_LETTER Task_Paper = 1
+	Task_A4     Task_Media = 0
+	Task_LETTER Task_Media = 1
+	Task_A3     Task_Media = 2
 )
 
-// Enum value maps for Task_Paper.
+// Enum value maps for Task_Media.
 var (
-	Task_Paper_name = map[int32]string{
+	Task_Media_name = map[int32]string{
 		0: "A4",
 		1: "LETTER",
+		2: "A3",
 	}
-	Task_Paper_value = map[string]int32{
+	Task_Media_value = map[string]int32{
 		"A4":     0,
 		"LETTER": 1,
+		"A3":     2,
 	}
 )
 
-func (x Task_Paper) Enum() *Task_Paper {
-	p := new(Task_Paper)
+func (x Task_Media) Enum() *Task_Media {
+	p := new(Task_Media)
 	*p = x
 	return p
 }
 
-func (x Task_Paper) String() string {
+func (x Task_Media) String() string {
 	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
 }
 
-func (Task_Paper) Descriptor() protoreflect.EnumDescriptor {
+func (Task_Media) Descriptor() protoreflect.EnumDescriptor {
 	return file_proto_cups_proto_enumTypes[0].Descriptor()
 }
 
-func (Task_Paper) Type() protoreflect.EnumType {
+func (Task_Media) Type() protoreflect.EnumType {
 	return &file_proto_cups_proto_enumTypes[0]
 }
 
-func (x Task_Paper) Number() protoreflect.EnumNumber {
+func (x Task_Media) Number() protoreflect.EnumNumber {
 	return protoreflect.EnumNumber(x)
 }
 
-// Deprecated: Use Task_Paper.Descriptor instead.
-func (Task_Paper) EnumDescriptor() ([]byte, []int) {
+// Deprecated: Use Task_Media.Descriptor instead.
+func (Task_Media) EnumDescriptor() ([]byte, []int) {
 	return file_proto_cups_proto_rawDescGZIP(), []int{0, 0}
+}
+
+type Task_JobSheet int32
+
+const (
+	Task_STANDARD     Task_JobSheet = 0
+	Task_SECRET       Task_JobSheet = 1
+	Task_TOP_SECRET   Task_JobSheet = 2
+	Task_CLASSIFIED   Task_JobSheet = 3
+	Task_CONFIDENTIAL Task_JobSheet = 4
+	Task_UNCLASSIFIED Task_JobSheet = 9
+)
+
+// Enum value maps for Task_JobSheet.
+var (
+	Task_JobSheet_name = map[int32]string{
+		0: "STANDARD",
+		1: "SECRET",
+		2: "TOP_SECRET",
+		3: "CLASSIFIED",
+		4: "CONFIDENTIAL",
+		9: "UNCLASSIFIED",
+	}
+	Task_JobSheet_value = map[string]int32{
+		"STANDARD":     0,
+		"SECRET":       1,
+		"TOP_SECRET":   2,
+		"CLASSIFIED":   3,
+		"CONFIDENTIAL": 4,
+		"UNCLASSIFIED": 9,
+	}
+)
+
+func (x Task_JobSheet) Enum() *Task_JobSheet {
+	p := new(Task_JobSheet)
+	*p = x
+	return p
+}
+
+func (x Task_JobSheet) String() string {
+	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
+}
+
+func (Task_JobSheet) Descriptor() protoreflect.EnumDescriptor {
+	return file_proto_cups_proto_enumTypes[1].Descriptor()
+}
+
+func (Task_JobSheet) Type() protoreflect.EnumType {
+	return &file_proto_cups_proto_enumTypes[1]
+}
+
+func (x Task_JobSheet) Number() protoreflect.EnumNumber {
+	return protoreflect.EnumNumber(x)
+}
+
+// Deprecated: Use Task_JobSheet.Descriptor instead.
+func (Task_JobSheet) EnumDescriptor() ([]byte, []int) {
+	return file_proto_cups_proto_rawDescGZIP(), []int{0, 1}
+}
+
+type Task_Quality int32
+
+const (
+	Task_DRAFT  Task_Quality = 0
+	Task_NORMAL Task_Quality = 1
+	Task_BEST   Task_Quality = 2
+)
+
+// Enum value maps for Task_Quality.
+var (
+	Task_Quality_name = map[int32]string{
+		0: "DRAFT",
+		1: "NORMAL",
+		2: "BEST",
+	}
+	Task_Quality_value = map[string]int32{
+		"DRAFT":  0,
+		"NORMAL": 1,
+		"BEST":   2,
+	}
+)
+
+func (x Task_Quality) Enum() *Task_Quality {
+	p := new(Task_Quality)
+	*p = x
+	return p
+}
+
+func (x Task_Quality) String() string {
+	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
+}
+
+func (Task_Quality) Descriptor() protoreflect.EnumDescriptor {
+	return file_proto_cups_proto_enumTypes[2].Descriptor()
+}
+
+func (Task_Quality) Type() protoreflect.EnumType {
+	return &file_proto_cups_proto_enumTypes[2]
+}
+
+func (x Task_Quality) Number() protoreflect.EnumNumber {
+	return protoreflect.EnumNumber(x)
+}
+
+// Deprecated: Use Task_Quality.Descriptor instead.
+func (Task_Quality) EnumDescriptor() ([]byte, []int) {
+	return file_proto_cups_proto_rawDescGZIP(), []int{0, 2}
+}
+
+type Task_Sides int32
+
+const (
+	Task_ONE       Task_Sides = 0
+	Task_TWO_LONG  Task_Sides = 1
+	Task_TWO_SHORT Task_Sides = 2
+)
+
+// Enum value maps for Task_Sides.
+var (
+	Task_Sides_name = map[int32]string{
+		0: "ONE",
+		1: "TWO_LONG",
+		2: "TWO_SHORT",
+	}
+	Task_Sides_value = map[string]int32{
+		"ONE":       0,
+		"TWO_LONG":  1,
+		"TWO_SHORT": 2,
+	}
+)
+
+func (x Task_Sides) Enum() *Task_Sides {
+	p := new(Task_Sides)
+	*p = x
+	return p
+}
+
+func (x Task_Sides) String() string {
+	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
+}
+
+func (Task_Sides) Descriptor() protoreflect.EnumDescriptor {
+	return file_proto_cups_proto_enumTypes[3].Descriptor()
+}
+
+func (Task_Sides) Type() protoreflect.EnumType {
+	return &file_proto_cups_proto_enumTypes[3]
+}
+
+func (x Task_Sides) Number() protoreflect.EnumNumber {
+	return protoreflect.EnumNumber(x)
+}
+
+// Deprecated: Use Task_Sides.Descriptor instead.
+func (Task_Sides) EnumDescriptor() ([]byte, []int) {
+	return file_proto_cups_proto_rawDescGZIP(), []int{0, 3}
+}
+
+type Task_Orientation int32
+
+const (
+	Task_LANDSCAPE_COUNTER_CLOCKWISE90 Task_Orientation = 0
+	Task_LANDSCAPE_CLOCKWISE90         Task_Orientation = 1
+	Task_REVERSE_PORTRAIT              Task_Orientation = 2
+)
+
+// Enum value maps for Task_Orientation.
+var (
+	Task_Orientation_name = map[int32]string{
+		0: "LANDSCAPE_COUNTER_CLOCKWISE90",
+		1: "LANDSCAPE_CLOCKWISE90",
+		2: "REVERSE_PORTRAIT",
+	}
+	Task_Orientation_value = map[string]int32{
+		"LANDSCAPE_COUNTER_CLOCKWISE90": 0,
+		"LANDSCAPE_CLOCKWISE90":         1,
+		"REVERSE_PORTRAIT":              2,
+	}
+)
+
+func (x Task_Orientation) Enum() *Task_Orientation {
+	p := new(Task_Orientation)
+	*p = x
+	return p
+}
+
+func (x Task_Orientation) String() string {
+	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
+}
+
+func (Task_Orientation) Descriptor() protoreflect.EnumDescriptor {
+	return file_proto_cups_proto_enumTypes[4].Descriptor()
+}
+
+func (Task_Orientation) Type() protoreflect.EnumType {
+	return &file_proto_cups_proto_enumTypes[4]
+}
+
+func (x Task_Orientation) Number() protoreflect.EnumNumber {
+	return protoreflect.EnumNumber(x)
+}
+
+// Deprecated: Use Task_Orientation.Descriptor instead.
+func (Task_Orientation) EnumDescriptor() ([]byte, []int) {
+	return file_proto_cups_proto_rawDescGZIP(), []int{0, 4}
 }
 
 type Task struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Printer       string                 `protobuf:"bytes,1,opt,name=printer,proto3" json:"printer,omitempty"`
-	Paper         Task_Paper             `protobuf:"varint,2,opt,name=paper,proto3,enum=palm.cups.v1.Task_Paper" json:"paper,omitempty"`
+	Name          string                 `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
+	NumberUp      []uint32               `protobuf:"varint,7,rep,packed,name=number_up,json=numberUp,proto3" json:"number_up,omitempty"`
+	Copies        uint32                 `protobuf:"varint,8,opt,name=copies,proto3" json:"copies,omitempty"`
 	Document      []byte                 `protobuf:"bytes,9,opt,name=document,proto3" json:"document,omitempty"`
+	Paper         Task_Media             `protobuf:"varint,11,opt,name=paper,proto3,enum=palm.cups.v1.Task_Media" json:"paper,omitempty"`
+	JobSheet      Task_JobSheet          `protobuf:"varint,12,opt,name=job_sheet,json=jobSheet,proto3,enum=palm.cups.v1.Task_JobSheet" json:"job_sheet,omitempty"`
+	Quality       Task_Quality           `protobuf:"varint,13,opt,name=quality,proto3,enum=palm.cups.v1.Task_Quality" json:"quality,omitempty"`
+	Sides         Task_Sides             `protobuf:"varint,14,opt,name=sides,proto3,enum=palm.cups.v1.Task_Sides" json:"sides,omitempty"`
+	Orientation   Task_Orientation       `protobuf:"varint,15,opt,name=orientation,proto3,enum=palm.cups.v1.Task_Orientation" json:"orientation,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -114,11 +329,25 @@ func (x *Task) GetPrinter() string {
 	return ""
 }
 
-func (x *Task) GetPaper() Task_Paper {
+func (x *Task) GetName() string {
 	if x != nil {
-		return x.Paper
+		return x.Name
 	}
-	return Task_A4
+	return ""
+}
+
+func (x *Task) GetNumberUp() []uint32 {
+	if x != nil {
+		return x.NumberUp
+	}
+	return nil
+}
+
+func (x *Task) GetCopies() uint32 {
+	if x != nil {
+		return x.Copies
+	}
+	return 0
 }
 
 func (x *Task) GetDocument() []byte {
@@ -126,6 +355,41 @@ func (x *Task) GetDocument() []byte {
 		return x.Document
 	}
 	return nil
+}
+
+func (x *Task) GetPaper() Task_Media {
+	if x != nil {
+		return x.Paper
+	}
+	return Task_A4
+}
+
+func (x *Task) GetJobSheet() Task_JobSheet {
+	if x != nil {
+		return x.JobSheet
+	}
+	return Task_STANDARD
+}
+
+func (x *Task) GetQuality() Task_Quality {
+	if x != nil {
+		return x.Quality
+	}
+	return Task_DRAFT
+}
+
+func (x *Task) GetSides() Task_Sides {
+	if x != nil {
+		return x.Sides
+	}
+	return Task_ONE
+}
+
+func (x *Task) GetOrientation() Task_Orientation {
+	if x != nil {
+		return x.Orientation
+	}
+	return Task_LANDSCAPE_COUNTER_CLOCKWISE90
 }
 
 type CupsPrintersResponse struct {
@@ -175,6 +439,8 @@ func (x *CupsPrintersResponse) GetItems() []*CupsPrintersResponse_Item {
 type CupsPrintersResponse_Item struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Name          string                 `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
+	Status        string                 `protobuf:"bytes,2,opt,name=status,proto3" json:"status,omitempty"`
+	Details       string                 `protobuf:"bytes,9,opt,name=details,proto3" json:"details,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -216,23 +482,70 @@ func (x *CupsPrintersResponse_Item) GetName() string {
 	return ""
 }
 
+func (x *CupsPrintersResponse_Item) GetStatus() string {
+	if x != nil {
+		return x.Status
+	}
+	return ""
+}
+
+func (x *CupsPrintersResponse_Item) GetDetails() string {
+	if x != nil {
+		return x.Details
+	}
+	return ""
+}
+
 var File_proto_cups_proto protoreflect.FileDescriptor
 
 const file_proto_cups_proto_rawDesc = "" +
 	"\n" +
-	"\x10proto/cups.proto\x12\fpalm.cups.v1\x1a\x1bgoogle/protobuf/empty.proto\"\x89\x01\n" +
+	"\x10proto/cups.proto\x12\fpalm.cups.v1\x1a\x1bgoogle/protobuf/empty.proto\"\xe4\x05\n" +
 	"\x04Task\x12\x18\n" +
-	"\aprinter\x18\x01 \x01(\tR\aprinter\x12.\n" +
-	"\x05paper\x18\x02 \x01(\x0e2\x18.palm.cups.v1.Task.PaperR\x05paper\x12\x1a\n" +
-	"\bdocument\x18\t \x01(\fR\bdocument\"\x1b\n" +
-	"\x05Paper\x12\x06\n" +
+	"\aprinter\x18\x01 \x01(\tR\aprinter\x12\x12\n" +
+	"\x04name\x18\x02 \x01(\tR\x04name\x12\x1b\n" +
+	"\tnumber_up\x18\a \x03(\rR\bnumberUp\x12\x16\n" +
+	"\x06copies\x18\b \x01(\rR\x06copies\x12\x1a\n" +
+	"\bdocument\x18\t \x01(\fR\bdocument\x12.\n" +
+	"\x05paper\x18\v \x01(\x0e2\x18.palm.cups.v1.Task.MediaR\x05paper\x128\n" +
+	"\tjob_sheet\x18\f \x01(\x0e2\x1b.palm.cups.v1.Task.JobSheetR\bjobSheet\x124\n" +
+	"\aquality\x18\r \x01(\x0e2\x1a.palm.cups.v1.Task.QualityR\aquality\x12.\n" +
+	"\x05sides\x18\x0e \x01(\x0e2\x18.palm.cups.v1.Task.SidesR\x05sides\x12@\n" +
+	"\vorientation\x18\x0f \x01(\x0e2\x1e.palm.cups.v1.Task.OrientationR\vorientation\"#\n" +
+	"\x05Media\x12\x06\n" +
 	"\x02A4\x10\x00\x12\n" +
 	"\n" +
-	"\x06LETTER\x10\x01\"q\n" +
+	"\x06LETTER\x10\x01\x12\x06\n" +
+	"\x02A3\x10\x02\"h\n" +
+	"\bJobSheet\x12\f\n" +
+	"\bSTANDARD\x10\x00\x12\n" +
+	"\n" +
+	"\x06SECRET\x10\x01\x12\x0e\n" +
+	"\n" +
+	"TOP_SECRET\x10\x02\x12\x0e\n" +
+	"\n" +
+	"CLASSIFIED\x10\x03\x12\x10\n" +
+	"\fCONFIDENTIAL\x10\x04\x12\x10\n" +
+	"\fUNCLASSIFIED\x10\t\"*\n" +
+	"\aQuality\x12\t\n" +
+	"\x05DRAFT\x10\x00\x12\n" +
+	"\n" +
+	"\x06NORMAL\x10\x01\x12\b\n" +
+	"\x04BEST\x10\x02\"-\n" +
+	"\x05Sides\x12\a\n" +
+	"\x03ONE\x10\x00\x12\f\n" +
+	"\bTWO_LONG\x10\x01\x12\r\n" +
+	"\tTWO_SHORT\x10\x02\"a\n" +
+	"\vOrientation\x12!\n" +
+	"\x1dLANDSCAPE_COUNTER_CLOCKWISE90\x10\x00\x12\x19\n" +
+	"\x15LANDSCAPE_CLOCKWISE90\x10\x01\x12\x14\n" +
+	"\x10REVERSE_PORTRAIT\x10\x02\"\xa3\x01\n" +
 	"\x14CupsPrintersResponse\x12=\n" +
-	"\x05items\x18\x02 \x03(\v2'.palm.cups.v1.CupsPrintersResponse.ItemR\x05items\x1a\x1a\n" +
+	"\x05items\x18\x02 \x03(\v2'.palm.cups.v1.CupsPrintersResponse.ItemR\x05items\x1aL\n" +
 	"\x04Item\x12\x12\n" +
-	"\x04name\x18\x01 \x01(\tR\x04name2P\n" +
+	"\x04name\x18\x01 \x01(\tR\x04name\x12\x16\n" +
+	"\x06status\x18\x02 \x01(\tR\x06status\x12\x18\n" +
+	"\adetails\x18\t \x01(\tR\adetails2P\n" +
 	"\x04Cups\x12H\n" +
 	"\bPrinters\x12\x16.google.protobuf.Empty\x1a\".palm.cups.v1.CupsPrintersResponse\"\x00BY\n" +
 	"*com.github.saturn_xiv.palm.plugins.cups.v1B\tCupsProtoP\x01Z\x05./;v2\xaa\x02\x16Palm.Plugins.Cups.Grpcb\x06proto3"
@@ -249,25 +562,33 @@ func file_proto_cups_proto_rawDescGZIP() []byte {
 	return file_proto_cups_proto_rawDescData
 }
 
-var file_proto_cups_proto_enumTypes = make([]protoimpl.EnumInfo, 1)
+var file_proto_cups_proto_enumTypes = make([]protoimpl.EnumInfo, 5)
 var file_proto_cups_proto_msgTypes = make([]protoimpl.MessageInfo, 3)
 var file_proto_cups_proto_goTypes = []any{
-	(Task_Paper)(0),                   // 0: palm.cups.v1.Task.Paper
-	(*Task)(nil),                      // 1: palm.cups.v1.Task
-	(*CupsPrintersResponse)(nil),      // 2: palm.cups.v1.CupsPrintersResponse
-	(*CupsPrintersResponse_Item)(nil), // 3: palm.cups.v1.CupsPrintersResponse.Item
-	(*emptypb.Empty)(nil),             // 4: google.protobuf.Empty
+	(Task_Media)(0),                   // 0: palm.cups.v1.Task.Media
+	(Task_JobSheet)(0),                // 1: palm.cups.v1.Task.JobSheet
+	(Task_Quality)(0),                 // 2: palm.cups.v1.Task.Quality
+	(Task_Sides)(0),                   // 3: palm.cups.v1.Task.Sides
+	(Task_Orientation)(0),             // 4: palm.cups.v1.Task.Orientation
+	(*Task)(nil),                      // 5: palm.cups.v1.Task
+	(*CupsPrintersResponse)(nil),      // 6: palm.cups.v1.CupsPrintersResponse
+	(*CupsPrintersResponse_Item)(nil), // 7: palm.cups.v1.CupsPrintersResponse.Item
+	(*emptypb.Empty)(nil),             // 8: google.protobuf.Empty
 }
 var file_proto_cups_proto_depIdxs = []int32{
-	0, // 0: palm.cups.v1.Task.paper:type_name -> palm.cups.v1.Task.Paper
-	3, // 1: palm.cups.v1.CupsPrintersResponse.items:type_name -> palm.cups.v1.CupsPrintersResponse.Item
-	4, // 2: palm.cups.v1.Cups.Printers:input_type -> google.protobuf.Empty
-	2, // 3: palm.cups.v1.Cups.Printers:output_type -> palm.cups.v1.CupsPrintersResponse
-	3, // [3:4] is the sub-list for method output_type
-	2, // [2:3] is the sub-list for method input_type
-	2, // [2:2] is the sub-list for extension type_name
-	2, // [2:2] is the sub-list for extension extendee
-	0, // [0:2] is the sub-list for field type_name
+	0, // 0: palm.cups.v1.Task.paper:type_name -> palm.cups.v1.Task.Media
+	1, // 1: palm.cups.v1.Task.job_sheet:type_name -> palm.cups.v1.Task.JobSheet
+	2, // 2: palm.cups.v1.Task.quality:type_name -> palm.cups.v1.Task.Quality
+	3, // 3: palm.cups.v1.Task.sides:type_name -> palm.cups.v1.Task.Sides
+	4, // 4: palm.cups.v1.Task.orientation:type_name -> palm.cups.v1.Task.Orientation
+	7, // 5: palm.cups.v1.CupsPrintersResponse.items:type_name -> palm.cups.v1.CupsPrintersResponse.Item
+	8, // 6: palm.cups.v1.Cups.Printers:input_type -> google.protobuf.Empty
+	6, // 7: palm.cups.v1.Cups.Printers:output_type -> palm.cups.v1.CupsPrintersResponse
+	7, // [7:8] is the sub-list for method output_type
+	6, // [6:7] is the sub-list for method input_type
+	6, // [6:6] is the sub-list for extension type_name
+	6, // [6:6] is the sub-list for extension extendee
+	0, // [0:6] is the sub-list for field type_name
 }
 
 func init() { file_proto_cups_proto_init() }
@@ -280,7 +601,7 @@ func file_proto_cups_proto_init() {
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_proto_cups_proto_rawDesc), len(file_proto_cups_proto_rawDesc)),
-			NumEnums:      1,
+			NumEnums:      5,
 			NumMessages:   3,
 			NumExtensions: 0,
 			NumServices:   1,
