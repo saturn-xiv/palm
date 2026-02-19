@@ -283,7 +283,7 @@ type Task struct {
 	NumberUp      []uint32               `protobuf:"varint,7,rep,packed,name=number_up,json=numberUp,proto3" json:"number_up,omitempty"`
 	Copies        uint32                 `protobuf:"varint,8,opt,name=copies,proto3" json:"copies,omitempty"`
 	Document      []byte                 `protobuf:"bytes,9,opt,name=document,proto3" json:"document,omitempty"`
-	Paper         Task_Media             `protobuf:"varint,11,opt,name=paper,proto3,enum=palm.cups.v1.Task_Media" json:"paper,omitempty"`
+	Media         Task_Media             `protobuf:"varint,11,opt,name=media,proto3,enum=palm.cups.v1.Task_Media" json:"media,omitempty"`
 	JobSheet      Task_JobSheet          `protobuf:"varint,12,opt,name=job_sheet,json=jobSheet,proto3,enum=palm.cups.v1.Task_JobSheet" json:"job_sheet,omitempty"`
 	Quality       Task_Quality           `protobuf:"varint,13,opt,name=quality,proto3,enum=palm.cups.v1.Task_Quality" json:"quality,omitempty"`
 	Sides         Task_Sides             `protobuf:"varint,14,opt,name=sides,proto3,enum=palm.cups.v1.Task_Sides" json:"sides,omitempty"`
@@ -357,9 +357,9 @@ func (x *Task) GetDocument() []byte {
 	return nil
 }
 
-func (x *Task) GetPaper() Task_Media {
+func (x *Task) GetMedia() Task_Media {
 	if x != nil {
-		return x.Paper
+		return x.Media
 	}
 	return Task_A4
 }
@@ -507,7 +507,7 @@ const file_proto_cups_proto_rawDesc = "" +
 	"\tnumber_up\x18\a \x03(\rR\bnumberUp\x12\x16\n" +
 	"\x06copies\x18\b \x01(\rR\x06copies\x12\x1a\n" +
 	"\bdocument\x18\t \x01(\fR\bdocument\x12.\n" +
-	"\x05paper\x18\v \x01(\x0e2\x18.palm.cups.v1.Task.MediaR\x05paper\x128\n" +
+	"\x05media\x18\v \x01(\x0e2\x18.palm.cups.v1.Task.MediaR\x05media\x128\n" +
 	"\tjob_sheet\x18\f \x01(\x0e2\x1b.palm.cups.v1.Task.JobSheetR\bjobSheet\x124\n" +
 	"\aquality\x18\r \x01(\x0e2\x1a.palm.cups.v1.Task.QualityR\aquality\x12.\n" +
 	"\x05sides\x18\x0e \x01(\x0e2\x18.palm.cups.v1.Task.SidesR\x05sides\x12@\n" +
@@ -576,7 +576,7 @@ var file_proto_cups_proto_goTypes = []any{
 	(*emptypb.Empty)(nil),             // 8: google.protobuf.Empty
 }
 var file_proto_cups_proto_depIdxs = []int32{
-	0, // 0: palm.cups.v1.Task.paper:type_name -> palm.cups.v1.Task.Media
+	0, // 0: palm.cups.v1.Task.media:type_name -> palm.cups.v1.Task.Media
 	1, // 1: palm.cups.v1.Task.job_sheet:type_name -> palm.cups.v1.Task.JobSheet
 	2, // 2: palm.cups.v1.Task.quality:type_name -> palm.cups.v1.Task.Quality
 	3, // 3: palm.cups.v1.Task.sides:type_name -> palm.cups.v1.Task.Sides

@@ -44,7 +44,7 @@ message Task {
   uint32          copies    = 8;
   bytes           document  = 9;
 
-  Media       paper       = 11;
+  Media       media       = 11;
   JobSheet    job_sheet   = 12;
   Quality     quality     = 13;
   Sides       sides       = 14;

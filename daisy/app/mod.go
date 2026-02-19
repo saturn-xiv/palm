@@ -18,6 +18,7 @@ var (
 	gl_http_port                              uint16
 	gl_sms_send_worker_queue                  string
 	gl_email_send_worker_queue                string
+	gl_cups_worker_queue                      string
 	gl_tex_worker_queue                       string
 	gl_db_seeds_locales                       []string
 	gl_create_user_by_email_email             string
@@ -67,7 +68,16 @@ var (
 		Use:   "tex-worker",
 		Short: "Start a TexLive worker",
 		Run: func(cmd *cobra.Command, args []string) {
-			if err := TexWorker(gl_config_file, gl_tex_worker_queue, gl_debug); err != nil {
+			if err := LaunchTexWorker(gl_config_file, gl_tex_worker_queue, gl_debug); err != nil {
+				log.Fatal(err)
+			}
+		},
+	}
+	gl_cups_worker_cmd = &cobra.Command{
+		Use:   "cups-worker",
+		Short: "Start a Cups worker",
+		Run: func(cmd *cobra.Command, args []string) {
+			if err := LaunchCupsWorker(gl_config_file, gl_tex_worker_queue, gl_debug); err != nil {
 				log.Fatal(err)
 			}
 		},
@@ -156,6 +166,7 @@ func init() {
 	gl_sms_send_worker_cmd.PersistentFlags().StringVarP(&gl_sms_send_worker_queue, "queue", "q", "sms", "queue name")
 
 	gl_tex_worker_cmd.PersistentFlags().StringVarP(&gl_tex_worker_queue, "queue", "q", "sms", "queue name")
+	gl_cups_worker_cmd.PersistentFlags().StringVarP(&gl_cups_worker_queue, "queue", "q", "sms", "queue name")
 
 	gl_db_seeds_cmd.PersistentFlags().StringSliceVarP(&gl_db_seeds_locales, "locales", "l", []string{}, "locales folder path")
 
@@ -174,7 +185,7 @@ func init() {
 
 	gl_root_cmd.AddCommand(
 		gl_http_cmd, gl_rpc_cmd,
-		gl_email_send_worker_cmd, gl_sms_send_worker_cmd, gl_tex_worker_cmd,
+		gl_email_send_worker_cmd, gl_sms_send_worker_cmd, gl_tex_worker_cmd, gl_cups_worker_cmd,
 		gl_db_seeds_cmd,
 		gl_list_users_cmd, gl_create_user_by_email_cmd, gl_reset_password_for_email_user_cmd, gl_grant_role_to_user_cmd, gl_revoke_role_from_user_cmd,
 	)

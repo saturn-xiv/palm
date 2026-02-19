@@ -509,7 +509,7 @@ class Task final : public ::google::protobuf::Message
     kNameFieldNumber = 2,
     kDocumentFieldNumber = 9,
     kCopiesFieldNumber = 8,
-    kPaperFieldNumber = 11,
+    kMediaFieldNumber = 11,
     kJobSheetFieldNumber = 12,
     kQualityFieldNumber = 13,
     kSidesFieldNumber = 14,
@@ -591,14 +591,14 @@ class Task final : public ::google::protobuf::Message
   void _internal_set_copies(::uint32_t value);
 
   public:
-  // .palm.cups.v1.Task.Media paper = 11;
-  void clear_paper() ;
-  ::palm::cups::v1::Task_Media paper() const;
-  void set_paper(::palm::cups::v1::Task_Media value);
+  // .palm.cups.v1.Task.Media media = 11;
+  void clear_media() ;
+  ::palm::cups::v1::Task_Media media() const;
+  void set_media(::palm::cups::v1::Task_Media value);
 
   private:
-  ::palm::cups::v1::Task_Media _internal_paper() const;
-  void _internal_set_paper(::palm::cups::v1::Task_Media value);
+  ::palm::cups::v1::Task_Media _internal_media() const;
+  void _internal_set_media(::palm::cups::v1::Task_Media value);
 
   public:
   // .palm.cups.v1.Task.JobSheet job_sheet = 12;
@@ -670,7 +670,7 @@ class Task final : public ::google::protobuf::Message
     ::google::protobuf::internal::ArenaStringPtr name_;
     ::google::protobuf::internal::ArenaStringPtr document_;
     ::uint32_t copies_;
-    int paper_;
+    int media_;
     int job_sheet_;
     int quality_;
     int sides_;
@@ -1339,26 +1339,26 @@ inline void Task::set_allocated_document(std::string* value) {
   // @@protoc_insertion_point(field_set_allocated:palm.cups.v1.Task.document)
 }
 
-// .palm.cups.v1.Task.Media paper = 11;
-inline void Task::clear_paper() {
+// .palm.cups.v1.Task.Media media = 11;
+inline void Task::clear_media() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.paper_ = 0;
+  _impl_.media_ = 0;
 }
-inline ::palm::cups::v1::Task_Media Task::paper() const {
-  // @@protoc_insertion_point(field_get:palm.cups.v1.Task.paper)
-  return _internal_paper();
+inline ::palm::cups::v1::Task_Media Task::media() const {
+  // @@protoc_insertion_point(field_get:palm.cups.v1.Task.media)
+  return _internal_media();
 }
-inline void Task::set_paper(::palm::cups::v1::Task_Media value) {
-  _internal_set_paper(value);
-  // @@protoc_insertion_point(field_set:palm.cups.v1.Task.paper)
+inline void Task::set_media(::palm::cups::v1::Task_Media value) {
+  _internal_set_media(value);
+  // @@protoc_insertion_point(field_set:palm.cups.v1.Task.media)
 }
-inline ::palm::cups::v1::Task_Media Task::_internal_paper() const {
+inline ::palm::cups::v1::Task_Media Task::_internal_media() const {
   ::google::protobuf::internal::TSanRead(&_impl_);
-  return static_cast<::palm::cups::v1::Task_Media>(_impl_.paper_);
+  return static_cast<::palm::cups::v1::Task_Media>(_impl_.media_);
 }
-inline void Task::_internal_set_paper(::palm::cups::v1::Task_Media value) {
+inline void Task::_internal_set_media(::palm::cups::v1::Task_Media value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.paper_ = value;
+  _impl_.media_ = value;
 }
 
 // .palm.cups.v1.Task.JobSheet job_sheet = 12;

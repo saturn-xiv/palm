@@ -42,7 +42,7 @@ inline constexpr Task::Impl_::Impl_(
             &::google::protobuf::internal::fixed_address_empty_string,
             ::_pbi::ConstantInitialized()),
         copies_{0u},
-        paper_{static_cast< ::palm::cups::v1::Task_Media >(0)},
+        media_{static_cast< ::palm::cups::v1::Task_Media >(0)},
         job_sheet_{static_cast< ::palm::cups::v1::Task_JobSheet >(0)},
         quality_{static_cast< ::palm::cups::v1::Task_Quality >(0)},
         sides_{static_cast< ::palm::cups::v1::Task_Sides >(0)},
@@ -148,7 +148,7 @@ const ::uint32_t
         PROTOBUF_FIELD_OFFSET(::palm::cups::v1::Task, _impl_.number_up_),
         PROTOBUF_FIELD_OFFSET(::palm::cups::v1::Task, _impl_.copies_),
         PROTOBUF_FIELD_OFFSET(::palm::cups::v1::Task, _impl_.document_),
-        PROTOBUF_FIELD_OFFSET(::palm::cups::v1::Task, _impl_.paper_),
+        PROTOBUF_FIELD_OFFSET(::palm::cups::v1::Task, _impl_.media_),
         PROTOBUF_FIELD_OFFSET(::palm::cups::v1::Task, _impl_.job_sheet_),
         PROTOBUF_FIELD_OFFSET(::palm::cups::v1::Task, _impl_.quality_),
         PROTOBUF_FIELD_OFFSET(::palm::cups::v1::Task, _impl_.sides_),
@@ -191,7 +191,7 @@ const char descriptor_table_protodef_cups_2eproto[] ABSL_ATTRIBUTE_SECTION_VARIA
     "\n\ncups.proto\022\014palm.cups.v1\032\033google/proto"
     "buf/empty.proto\"\213\005\n\004Task\022\017\n\007printer\030\001 \001("
     "\t\022\014\n\004name\030\002 \001(\t\022\021\n\tnumber_up\030\007 \003(\r\022\016\n\006co"
-    "pies\030\010 \001(\r\022\020\n\010document\030\t \001(\014\022\'\n\005paper\030\013 "
+    "pies\030\010 \001(\r\022\020\n\010document\030\t \001(\014\022\'\n\005media\030\013 "
     "\001(\0162\030.palm.cups.v1.Task.Media\022.\n\tjob_she"
     "et\030\014 \001(\0162\033.palm.cups.v1.Task.JobSheet\022+\n"
     "\007quality\030\r \001(\0162\032.palm.cups.v1.Task.Quali"
@@ -515,9 +515,9 @@ const ::_pbi::TcParseTable<4, 10, 0, 45, 2> Task::_table_ = {
     {::_pbi::TcParser::FastBS1,
      {74, 63, 0, PROTOBUF_FIELD_OFFSET(Task, _impl_.document_)}},
     {::_pbi::TcParser::MiniParse, {}},
-    // .palm.cups.v1.Task.Media paper = 11;
-    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(Task, _impl_.paper_), 63>(),
-     {88, 63, 0, PROTOBUF_FIELD_OFFSET(Task, _impl_.paper_)}},
+    // .palm.cups.v1.Task.Media media = 11;
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(Task, _impl_.media_), 63>(),
+     {88, 63, 0, PROTOBUF_FIELD_OFFSET(Task, _impl_.media_)}},
     // .palm.cups.v1.Task.JobSheet job_sheet = 12;
     {::_pbi::TcParser::SingularVarintNoZag1<::uint32_t, offsetof(Task, _impl_.job_sheet_), 63>(),
      {96, 63, 0, PROTOBUF_FIELD_OFFSET(Task, _impl_.job_sheet_)}},
@@ -548,8 +548,8 @@ const ::_pbi::TcParseTable<4, 10, 0, 45, 2> Task::_table_ = {
     // bytes document = 9;
     {PROTOBUF_FIELD_OFFSET(Task, _impl_.document_), 0, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kBytes | ::_fl::kRepAString)},
-    // .palm.cups.v1.Task.Media paper = 11;
-    {PROTOBUF_FIELD_OFFSET(Task, _impl_.paper_), 0, 0,
+    // .palm.cups.v1.Task.Media media = 11;
+    {PROTOBUF_FIELD_OFFSET(Task, _impl_.media_), 0, 0,
     (0 | ::_fl::kFcSingular | ::_fl::kOpenEnum)},
     // .palm.cups.v1.Task.JobSheet job_sheet = 12;
     {PROTOBUF_FIELD_OFFSET(Task, _impl_.job_sheet_), 0, 0,
@@ -643,11 +643,11 @@ PROTOBUF_NOINLINE void Task::Clear() {
             target = stream->WriteBytesMaybeAliased(9, _s, target);
           }
 
-          // .palm.cups.v1.Task.Media paper = 11;
-          if (this_._internal_paper() != 0) {
+          // .palm.cups.v1.Task.Media media = 11;
+          if (this_._internal_media() != 0) {
             target = stream->EnsureSpace(target);
             target = ::_pbi::WireFormatLite::WriteEnumToArray(
-                11, this_._internal_paper(), target);
+                11, this_._internal_media(), target);
           }
 
           // .palm.cups.v1.Task.JobSheet job_sheet = 12;
@@ -732,10 +732,10 @@ PROTOBUF_NOINLINE void Task::Clear() {
               total_size += ::_pbi::WireFormatLite::UInt32SizePlusOne(
                   this_._internal_copies());
             }
-            // .palm.cups.v1.Task.Media paper = 11;
-            if (this_._internal_paper() != 0) {
+            // .palm.cups.v1.Task.Media media = 11;
+            if (this_._internal_media() != 0) {
               total_size += 1 +
-                            ::_pbi::WireFormatLite::EnumSize(this_._internal_paper());
+                            ::_pbi::WireFormatLite::EnumSize(this_._internal_media());
             }
             // .palm.cups.v1.Task.JobSheet job_sheet = 12;
             if (this_._internal_job_sheet() != 0) {
@@ -783,8 +783,8 @@ void Task::MergeImpl(::google::protobuf::MessageLite& to_msg, const ::google::pr
   if (from._internal_copies() != 0) {
     _this->_impl_.copies_ = from._impl_.copies_;
   }
-  if (from._internal_paper() != 0) {
-    _this->_impl_.paper_ = from._impl_.paper_;
+  if (from._internal_media() != 0) {
+    _this->_impl_.media_ = from._impl_.media_;
   }
   if (from._internal_job_sheet() != 0) {
     _this->_impl_.job_sheet_ = from._impl_.job_sheet_;

@@ -6,27 +6,22 @@ import (
 
 	"github.com/BurntSushi/toml"
 
+	"github.com/saturn-xiv/palm/daisy/cups"
 	"github.com/saturn-xiv/palm/daisy/queue"
-	"github.com/saturn-xiv/palm/daisy/s3"
-	"github.com/saturn-xiv/palm/daisy/tex"
 )
 
-type TexWorkerConfig struct {
+type CupsWorkerConfig struct {
 	RabbitMQ *queue.RabbitMQ `toml:"rabbitmq"`
-	Minio    *s3.Config      `toml:"minio"`
 }
 
-func LaunchTexWorker(config_file string, queue string, debug bool) error {
+func LaunchCupsWorker(config_file string, queue string, debug bool) error {
 	slog.Debug("load configuration from", "file", config_file)
-	var config TexWorkerConfig
+	var config CupsWorkerConfig
 	if _, err := toml.DecodeFile(config_file, &config); err != nil {
 		return err
 	}
-	s3, err := config.Minio.Open()
-	if err != nil {
-		return err
-	}
-	consumer := tex.NewTexProtobufConsumer(s3)
+
+	consumer := cups.NewCupsProtobufConsumer()
 	ctx := context.Background()
 	return config.RabbitMQ.Consume(ctx, queue, consumer)
 }
