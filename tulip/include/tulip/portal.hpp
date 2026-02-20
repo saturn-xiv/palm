@@ -24,6 +24,7 @@ struct Context {
   std::shared_ptr<palm::redis::Client> cache;
   std::shared_ptr<soci::connection_pool> db;
   std::shared_ptr<palm::rabbitmq::Client> queue;
+  std::shared_ptr<palm::opensearch::Config> search;
   std::shared_ptr<inja::Environment> env;
   std::shared_ptr<::grpc::Channel> daisy;
 };

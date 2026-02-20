@@ -21,11 +21,13 @@ int tulip::Application::http(const std::string& config_file, uint16_t port,
     Config(const toml::table& config)
         : postgresql(*(config["postgresql"].as_table())),
           redis(*(config["redis"].as_table())),
-          rabbitmq(*(config["rabbitmq"].as_table())) {}
+          rabbitmq(*(config["rabbitmq"].as_table())),
+          opensearch(*(config["opensearch"].as_table())) {}
 
     palm::PostgreSql postgresql;
     palm::redis::Config redis;
     palm::rabbitmq::Config rabbitmq;
+    palm::opensearch::Config opensearch;
     palm::grpc::Config daisy;
   };
 
@@ -44,6 +46,36 @@ int tulip::Application::http(const std::string& config_file, uint16_t port,
     spdlog::debug("load theme {}", theme);
     ctx.env = std::make_shared<inja::Environment>(
         std::filesystem::path("./views") / theme);
+  }
+  {
+    spdlog::debug("open opensearch {}", config.opensearch.url(""));
+    ctx.search = std::make_shared<palm::opensearch::Config>(config.opensearch);
+
+    {
+      const auto info = ctx.search->info();
+      spdlog::debug("{} {} v{}", info->name, info->cluster_uuid,
+                    info->version.number);
+    }
+
+    if (!ctx.search->index_exists<palm::cms::v1::IndexPageResponse_Item>()) {
+      ctx.search->create_index<palm::cms::v1::IndexPageResponse_Item>(
+          R"(
+{
+  "title": {
+    "type": "string"
+  }, 
+  "title": {
+    "summary": "string"
+  }, 
+  "body": {
+    "type": "string"
+  }, 
+  "author": {
+    "type": "string"
+  }
+}
+)"_json);
+    }
   }
 
   const std::string host = "0.0.0.0";

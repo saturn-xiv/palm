@@ -3,7 +3,7 @@ include(FetchContent)
 
 project(
   tulip
-  VERSION 2026.2.16
+  VERSION 2026.2.20
   DESCRIPTION "An open source online education & transaction solution."
   LANGUAGES CXX
 )

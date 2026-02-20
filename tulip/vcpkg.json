@@ -1,6 +1,9 @@
 {
   "dependencies": [
+    "boost-algorithm",
     "boost-uuid",
+    "boost-date-time",
+    "boost-typeof",
     "boost-exception",
     "argparse",
     "spdlog",
