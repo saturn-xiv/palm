@@ -12,11 +12,16 @@ import (
 	"github.com/saturn-xiv/palm/daisy/rbac"
 )
 
-type SignInResponse struct{}
+type UserSignInResponse struct{}
 
-func newSignInResponse(db *gorm.DB, provider_type v2.Session_ProviderType, provider_sn string) (*SignInResponse, error) {
+func newUserSignInResponse(db *gorm.DB, provider_type v2.Session_ProviderType, provider_sn string) (*UserSignInResponse, error) {
 	// TODO
-	return &SignInResponse{}, nil
+	return &UserSignInResponse{}, nil
+}
+
+func (p *UserSignInResponse) Token() (string, error) {
+	// TODO
+	return "", errors.New("todo")
 }
 
 func CurrentUser(ctx context.Context, db *gorm.DB, jwt *crypto.Jwt) (*models.User, *v2.Session, error) {

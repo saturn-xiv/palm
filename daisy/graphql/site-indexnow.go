@@ -1,3 +1,3 @@
-package portal
+package graphql
 
 // https://www.indexnow.org/documentation

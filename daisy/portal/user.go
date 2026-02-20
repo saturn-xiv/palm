@@ -22,8 +22,6 @@ import (
 )
 
 type UserServer struct {
-	v2.UnimplementedUserServer
-
 	db       *gorm.DB
 	enforcer *casbin.Enforcer
 	jwt      *crypto.Jwt

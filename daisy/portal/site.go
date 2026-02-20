@@ -15,8 +15,6 @@ import (
 )
 
 type SiteServer struct {
-	v2.UnimplementedSiteServer
-
 	db       *gorm.DB
 	enforcer *casbin.Enforcer
 	jwt      *crypto.Jwt

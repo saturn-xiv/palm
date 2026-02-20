@@ -17,8 +17,6 @@ import (
 )
 
 type EmailUserServer struct {
-	v2.UnimplementedEmailUserServer
-
 	db       *gorm.DB
 	enforcer *casbin.Enforcer
 	jwt      *crypto.Jwt

@@ -18,6 +18,8 @@ import (
 
 const (
 	emailUserResetPasswordAudience = "email-user.reset-password"
+	emailUserConfirmAudience       = "email-user.confirm"
+	emailUserUnlockAudience        = "email-user.unlock"
 )
 
 func (p *Query) ForgotEmailUserPassword(ctx context.Context, args struct {
@@ -52,6 +54,64 @@ func (p *Query) ForgotEmailUserPassword(ctx context.Context, args struct {
 type emailUserForm struct {
 	Home  string `validate:"required,gte=12,lte=31,https_url"`
 	Email string `validate:"required,gte=5,lte=31,email"`
+}
+
+func (p *Query) ConfirmEmailUser(ctx context.Context, args struct {
+	Home  string
+	Email string
+}) (*Ok, error) {
+	home := strings.TrimSpace(strings.ToLower(args.Home))
+	email := strings.TrimSpace(strings.ToLower(args.Email))
+	{
+		if err := gl_validate.Struct(&emailUserForm{Home: home, Email: email}); err != nil {
+			return nil, err
+		}
+	}
+
+	var user models.EmailUser
+	if err := p.db.Where("email = ?", email).Preload("User").First(&user).Error; err != nil {
+		return nil, err
+	}
+	if user.ConfirmedAt != nil {
+		return nil, fmt.Errorf("user %s already confirmed", email)
+	}
+	if user.User.LockedAt != nil {
+		return nil, fmt.Errorf("user %s is locked", email)
+	}
+
+	if err := send_email(ctx, p.db, p.rabbitmq, p.jwt, home, &user, emailUserConfirmAudience); err != nil {
+		return nil, err
+	}
+	return &Ok{}, nil
+}
+
+func (p *Query) UnlockEmailUser(ctx context.Context, args struct {
+	Home  string
+	Email string
+}) (*Ok, error) {
+	home := strings.TrimSpace(strings.ToLower(args.Home))
+	email := strings.TrimSpace(strings.ToLower(args.Email))
+	{
+		if err := gl_validate.Struct(&emailUserForm{Home: home, Email: email}); err != nil {
+			return nil, err
+		}
+	}
+
+	var user models.EmailUser
+	if err := p.db.Where("email = ?", email).Preload("User").First(&user).Error; err != nil {
+		return nil, err
+	}
+	if user.ConfirmedAt == nil {
+		return nil, fmt.Errorf("user %s isn't confirmed yet", email)
+	}
+	if user.User.LockedAt == nil {
+		return nil, fmt.Errorf("user %s isn't locked", email)
+	}
+
+	if err := send_email(ctx, p.db, p.rabbitmq, p.jwt, home, &user, emailUserUnlockAudience); err != nil {
+		return nil, err
+	}
+	return &Ok{}, nil
 }
 
 func send_email(ctx context.Context, db *gorm.DB, queue *queue.RabbitMQ, jwt *crypto.Jwt, home string, user *models.EmailUser, audience string) error {

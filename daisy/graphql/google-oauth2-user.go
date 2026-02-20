@@ -20,12 +20,12 @@ import (
 
 func (p *Mutation) SignInByGoogleOauth2(ctx context.Context, args struct {
 	Home      string
-	Code      string
 	SessionId string
+	Code      string
 	State     string
 	Lang      string
 	Timezone  string
-}) (*SignInResponse, error) {
+}) (*UserSignInResponse, error) {
 	ip := ClientIp(ctx)
 	timezone, err := time.LoadLocation(args.Timezone)
 	if err != nil {
@@ -42,11 +42,11 @@ func (p *Mutation) SignInByGoogleOauth2(ctx context.Context, args struct {
 		}
 	}
 	{
-		var state string
-		if err := p.redis.GetB(ctx, google_oauth2_session_key(args.SessionId), &state); err != nil {
+		var it string
+		if err := p.redis.GetB(ctx, google_oauth2_session_key(args.SessionId), &it); err != nil {
 			return nil, err
 		}
-		if args.State != state {
+		if args.State != it {
 			return nil, errors.New("invalid state")
 		}
 	}
@@ -89,7 +89,7 @@ func (p *Mutation) SignInByGoogleOauth2(ctx context.Context, args struct {
 	}); err != nil {
 		return nil, err
 	}
-	return newSignInResponse(p.db, v2.Session_GOOGLE_OAUTH2, user_info.Id)
+	return newUserSignInResponse(p.db, v2.Session_GOOGLE_OAUTH2, user_info.Id)
 }
 
 func (p *Query) GetGoogleOauth2Url(ctx context.Context, args struct {

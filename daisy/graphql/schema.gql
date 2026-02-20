@@ -9,75 +9,78 @@ type Query {
   version: String!
 
   forgotEmailUserPassword(home: String!, email: String!): Ok!
-  confirmUserByEmail(home: String!, email: String!): Ok!
-  confirmUserByPhone(phone: String!): Ok!
-  unlockUserByEmail(home: String!, email: String!): Ok!
-  unlockUserByPhone(home: String!, email: String!): Ok!
+  confirmEmailUser(home: String!, email: String!): Ok!
+  unlockEmailUser(home: String!, email: String!): Ok!
+
+  # confirmUserByPhone(phone: String!): Ok!
+  # unlockUserByPhone(home: String!, email: String!): Ok!
 
   getGoogleOauth2Url(home: String!, sessionId: String!): String!
 
-  indexUser(page: Page!): IndexUserResponse!
-  indexLog(page: Page!): IndexLogResponse!
-  refresh: RefreshResponse!
+  # indexUser(page: Page!): IndexUserResponse!
+  # indexLog(page: Page!): IndexLogResponse!
+  # refresh: RefreshResponse!
 
-  indexAttachments(page: Page!): IndexAttachmentResponse!
-  showAttachment(id: ID): Attachment!
+  # indexAttachments(page: Page!): IndexAttachmentResponse!
+  # showAttachment(id: ID): Attachment!
+
+  # indexLocale(page: Page!): IndexLocaleResponse!
 }
 
 type Mutation {
-  signInByEmail(email: String!, password: String!, ttl: Int!): String!
-  signInByPhone(phone: String!, password: String!, ttl: Int!): SignInResponse!
+  # signInByEmail(email: String!, password: String!, ttl: Int!): String!
+  # signInByPhone(phone: String!, password: String!, ttl: Int!): SignInResponse!
   signInByGoogleOauth2(
     home: String!
     sessionId: String!
     code: String!
     state: String!
-    time: String!
+    lang: String!
     timezone: String!
-  ): SignInResponse!
-  signInByWechatOauth2(token: String!): SignInResponse!
-  signInByWechatMiniProgram(token: String!): SignInResponse!
-  changeAccountPassword(currentPassword: String!, newPassword: String!): Ok!
-  resetAccountPassword(token: String!, password: String!): Ok!
+  ): UserSignInResponse!
+  # signInByWechatOauth2(token: String!): SignInResponse!
+  # signInByWechatMiniProgram(token: String!): SignInResponse!
+  # changeAccountPassword(currentPassword: String!, newPassword: String!): Ok!
+  # resetAccountPassword(token: String!, password: String!): Ok!
 
-  signOut: Ok!
-  setAccountProfile(name: String!, avatar: String!, memo: String): Ok!
-  setAccountLocation(lang: String!, timezone: String!): Ok!
-  confirmAccount(token: String!): Ok!
-  unlockAccount(token: String!): Ok!
+  # signOut: Ok!
+  # setAccountProfile(name: String!, avatar: String!, memo: String): Ok!
+  # setAccountLocation(lang: String!, timezone: String!): Ok!
+  # confirmAccount(token: String!): Ok!
+  # unlockAccount(token: String!): Ok!
 
-  lockUser(id: ID!, reason: String!): Ok!
-  unlockUser(id: ID!, reason: String!): Ok!
-  setEmailUserPassword(id: ID!, password: String!, reason: String!): Ok!
-  setPhoneUserPassword(id: ID!, password: String!, reason: String!): Ok!
+  # lockUser(id: ID!, reason: String!): Ok!
+  # unlockUser(id: ID!, reason: String!): Ok!
+  # setEmailUserPassword(id: ID!, password: String!, reason: String!): Ok!
+  # setPhoneUserPassword(id: ID!, password: String!, reason: String!): Ok!
 
-  createAttachment(
-    title: String!
-    bucket: String!
-    object: String!
-    contentType: String!
-    size: String!
-  ): Ok!
-  updateAttachment(id: ID!, title: String!): Ok!
-  associateAttachment(
-    attachmentId: ID!
-    resourceType: String!
-    resourceId: ID
-  ): Ok!
-  dissociateAttachment(
-    attachmentId: ID!
-    resourceType: String!
-    resourceId: ID
-  ): Ok!
-  destroyAttachment(id: ID!): Ok!
+  # createAttachment(
+  #   title: String!
+  #   bucket: String!
+  #   object: String!
+  #   contentType: String!
+  #   size: String!
+  # ): Ok!
+  # updateAttachment(id: ID!, title: String!): Ok!
+  # associateAttachment(
+  #   attachmentId: ID!
+  #   resourceType: String!
+  #   resourceId: ID
+  # ): Ok!
+  # dissociateAttachment(
+  #   attachmentId: ID!
+  #   resourceType: String!
+  #   resourceId: ID
+  # ): Ok!
+  # destroyAttachment(id: ID!): Ok!
 
-  siteSetFavicon(url: String!): Ok!
-  siteSetMaintenanceMode(ok: Boolean!, reason: String!): Ok!
-  siteSetDetails(lang: String!, form: SiteDetailsForm!): Ok!
-  siteSetReCaptcha(siteKey: String!, enable: Boolean!): Ok!
-  siteSetGoogleSiteVerify(siteId: String!, enable: Boolean!): Ok!
-  siteSetBaiduSiteVerify(siteId: String, enable: Boolean!): Ok!
-  siteSetIndexNow(key: String, enable: Boolean): Ok!
+  # siteSetFavicon(url: String!): Ok!
+  # siteSetMaintenanceMode(ok: Boolean!, reason: String!): Ok!
+  # siteSetDetails(lang: String!, form: SiteDetailsForm!): Ok!
+  # siteSetReCaptcha(siteKey: String!, enable: Boolean!): Ok!
+  # siteSetGoogleSiteVerify(siteId: String!, enable: Boolean!): Ok!
+  # siteSetBaiduSiteVerify(siteId: String, enable: Boolean!): Ok!
+  # siteSetIndexNow(key: String, enable: Boolean): Ok!
 }
 
 type Member {
@@ -120,11 +123,23 @@ type Log {
   id: ID!
   ip: String!
   level: String!
-  message: String
+  message: String!
   createdAt: Time!
 }
 type IndexLogResponse {
   items: [Log!]!
+  pagination: Pagination!
+}
+
+type Locale {
+  id: ID!
+  lang: String!
+  code: String!
+  message: String!
+  updatedAt: Time!
+}
+type IndexLocaleResponse {
+  items: [Locale!]!
   pagination: Pagination!
 }
 
@@ -169,9 +184,9 @@ type RefreshResponse {
   roles: [String!]!
   permissions: [Permission!]!
 }
-type SignInResponse {
+type UserSignInResponse {
   token: String!
-  layout: RefreshResponse!
+  # layout: RefreshResponse!
 }
 type User {
   id: ID!
@@ -225,7 +240,7 @@ type WechatMiniProgramUser {
   createdAt: Time!
 }
 union Account =
-    EmailUser
+  | EmailUser
   | SmsUser
   | GoogleOauth2User
   | WechatOauth2User

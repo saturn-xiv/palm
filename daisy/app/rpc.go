@@ -15,11 +15,8 @@ import (
 	healthgrpc "google.golang.org/grpc/health/grpc_health_v1"
 
 	"github.com/saturn-xiv/palm/daisy/cache"
-	"github.com/saturn-xiv/palm/daisy/crypto"
 	"github.com/saturn-xiv/palm/daisy/cups"
 	cups_v2 "github.com/saturn-xiv/palm/daisy/cups/v2"
-	"github.com/saturn-xiv/palm/daisy/portal"
-	portal_v2 "github.com/saturn-xiv/palm/daisy/portal/v2"
 	"github.com/saturn-xiv/palm/daisy/queue"
 	"github.com/saturn-xiv/palm/daisy/rbac"
 	rbac_v2 "github.com/saturn-xiv/palm/daisy/rbac/v2"
@@ -40,17 +37,7 @@ func LaunchRpcServer(config_file string, port uint16, debug bool) error {
 	if _, err := toml.DecodeFile(config_file, &config); err != nil {
 		return err
 	}
-
-	aead, err := crypto.NewAead("aead.bin")
-	if err != nil {
-		return err
-	}
-	hmac, err := crypto.NewHmac("hmac.bin")
-	if err != nil {
-		return err
-	}
-	jwt, err := crypto.NewJwt("jwt.bin")
-	if err != nil {
+	if _, _, _, err := open_secrets(); err != nil {
 		return err
 	}
 	db, err := config.Database.Open(debug)
@@ -73,10 +60,7 @@ func LaunchRpcServer(config_file string, port uint16, debug bool) error {
 	server := grpc.NewServer()
 	health_server := health.NewServer()
 	healthgrpc.RegisterHealthServer(server, health_server)
-	portal_v2.RegisterSiteServer(server, portal.NewSiteServer(db, jwt, enforcer, hmac, aead))
-	portal_v2.RegisterLocaleServer(server, portal.NewLocaleServer(db, jwt, enforcer))
-	portal_v2.RegisterUserServer(server, portal.NewUserServer(db, jwt, enforcer, s3_client))
-	portal_v2.RegisterEmailUserServer(server, portal.NewEmailUserServer(db, jwt, enforcer, s3_client, hmac))
+
 	cups_v2.RegisterCupsServer(server, cups.NewServer())
 	s3_v2.RegisterS3Server(server, s3.NewServer(s3_client))
 	rbac_v2.RegisterEnforcerServer(server, rbac.NewServer(enforcer))

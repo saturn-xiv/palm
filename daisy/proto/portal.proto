@@ -7,7 +7,6 @@ option go_package = "./;v2";
 option csharp_namespace = "Palm.Plugins.Portal.Grpc";
 package palm.portal.v1;
 
-import "google/protobuf/empty.proto";
 import "google/protobuf/timestamp.proto";
 import "google/protobuf/duration.proto";
 
@@ -51,44 +50,8 @@ message Location {
 }
 
 // ----------------------------------------------------------------------------
-service Locale{
-  rpc Index(Page) returns (LocaleIndexResponse){}
-  rpc Set(LocaleSetRequest) returns (google.protobuf.Empty) {}
-  rpc ByLang(LocaleByLangRequest) returns (LocaleByLangResponse) {}
-  rpc Destroy(IdRequest) returns (google.protobuf.Empty){}
-}
-
-message LocaleSetRequest {
-  string lang    = 1;
-  string code    = 2;
-  string message = 3;
-}
-
-message LocaleByLangRequest {
-  string lang = 1;
-}
-
-message LocaleByLangResponse {
-  repeated LocaleIndexResponse.Item items = 1;
-}
-
-message LocaleIndexResponse{
-  message Item {
-    int64                     id         = 1;
-    string                    lang       = 2;
-    string                    code       = 3;
-    string                    message    = 4;
-    google.protobuf.Timestamp updated_at = 9;
-  }
-  repeated Item items      = 1;
-  Pagination    pagination = 9;
-}
 
 // ----------------------------------------------------------------------------
-
-service Site {
-  rpc Currencies(google.protobuf.Empty) returns (CurrenciesResponse) {}
-}
 
 message CurrenciesResponse {
   message Item {
@@ -103,25 +66,6 @@ message CurrenciesResponse {
 }
 
 // ----------------------------------------------------------------------------
-service EmailUser{
-  rpc Index(Page) returns (EmailUserIndexResponse) {}
-  rpc Destroy(IdRequest) returns (google.protobuf.Empty){}
-  rpc Confirm(IdRequest) returns (google.protobuf.Empty){}
-  rpc SetPassword(EmailUserSetPasswordRequest) returns (google.protobuf.Empty){}
-
-  rpc SignUp(EmailUserSignUpRequest) returns (google.protobuf.Empty){}
-  rpc SignIn(EmailUserSignInRequest) returns (UserSignInResponse){}
-  rpc UnlockByEmail(EmailUserUnlockByEmailRequest) returns (google.protobuf.Empty){}
-  rpc UnlockByToken(EmailUserUnlockByTokenRequest) returns (google.protobuf.Empty){}
-  rpc ConfirmByEmail(EmailUserConfirmByEmailRequest) returns (google.protobuf.Empty){}
-  rpc ConfirmByToken(EmailUserConfirmByTokenRequest) returns (google.protobuf.Empty){}
-  rpc ForgotPassword(EmailUserForgotPasswordRequest) returns (google.protobuf.Empty){}
-  rpc ResetPassword(EmailUserResetPasswordRequest) returns (google.protobuf.Empty){}
-
-  rpc SetName(EmailUserSetNameRequest) returns (google.protobuf.Empty){}
-  rpc SetAvatar(EmailUserSetAvatarRequest) returns (google.protobuf.Empty){}
-  rpc ChangePassword(EmailUserChangePasswordRequest) returns (google.protobuf.Empty){}
-}
 
 message EmailUserSignInRequest {
   string email    = 1;
@@ -201,24 +145,6 @@ message EmailUserSetPasswordRequest{
   string password = 2;
 }
 // ----------------------------------------------------------------------------
-
-service User {
-  rpc Index(Page) returns (UserIndexResponse){}
-  rpc Destroy(IdRequest) returns (google.protobuf.Empty){}
-  rpc Lock(IdRequest) returns (google.protobuf.Empty){}
-  rpc Unlock(IdRequest) returns (google.protobuf.Empty){}
-
-  rpc IndexAttachment(Page) returns (UserIndexAttachmentResponse){}
-  rpc CreateAttachment(UserCreateAttachmentRequest)returns (UserCreateAttachmentUploadResponse){}
-  rpc ShowAttachment(UserShowAttachmentRequest) returns (UserShowAttachmentResponse){}
-  rpc SetAttachmentUploaded(IdRequest) returns (google.protobuf.Empty){}
-  rpc SetAttachmentTitle(UserSetAttachmentTitleRequest) returns (google.protobuf.Empty){}
-  rpc DestroyAttachment(IdRequest) returns (google.protobuf.Empty){}
-
-  rpc IndexLog(Page) returns (UserIndexLogResponse) {}
-  rpc SetLang(UserSetLangRequest) returns (google.protobuf.Empty){}
-  rpc SetTimezone(UserSetTimezoneRequest) returns (google.protobuf.Empty){}
-}
 
 message UserSetLangRequest {
   string lang = 1;
