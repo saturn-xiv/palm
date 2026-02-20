@@ -9,6 +9,26 @@ package palm.cms.v1;
 
 import "google/protobuf/empty.proto";
 
+import "portal.proto";
+
 service PageService {
   rpc Index(google.protobuf.Empty) returns (google.protobuf.Empty) {}
+}
+
+message IndexPageResponse {
+  message Item{
+    int64  id    = 1;
+    string title = 2;
+  }
+  repeated Item             items      = 1;
+  palm.portal.v1.Pagination pagination = 9;
+}
+
+message ShowPageHtml{
+  IndexPageResponse.Item item = 1;
+}
+
+message IndexPageHtml{
+  repeated IndexPageResponse.Item items      = 1;
+  palm.portal.v1.Pagination       pagination = 99;
 }

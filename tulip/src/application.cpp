@@ -15,8 +15,8 @@ static std::function<void(int)> shutdown_handler;
 
 static void signal_handler(int signal) { shutdown_handler(signal); }
 
-int tulip::Application::http(const std::string& config_file,
-                             uint16_t port) const {
+int tulip::Application::http(const std::string& config_file, uint16_t port,
+                             const std::string& theme) const {
   struct Config {
     Config(const toml::table& config)
         : postgresql(*(config["postgresql"].as_table())),
@@ -40,10 +40,80 @@ int tulip::Application::http(const std::string& config_file,
   ctx.db = config.postgresql.open();
   ctx.cache = config.redis.open();
   ctx.queue = config.rabbitmq.open();
+  {
+    spdlog::debug("load theme {}", theme);
+    ctx.env = std::make_shared<inja::Environment>(
+        std::filesystem::path("./views") / theme);
+  }
 
   const std::string host = "0.0.0.0";
   spdlog::info("start to listening on http://{}:{}", host, port);
   httplib::Server server;
+
+  server.Get("/cms/pages", [&ctx](const httplib::Request& req,
+                                  httplib::Response& res) {
+    auto ss = tulip::portal::session(req);
+    auto page = tulip::portal::page(req);
+    const auto data = tulip::cms::controllers::pages::index(ctx, ss, page);
+    palm::http::html(res, ctx.env, "cms/pages/index.html", *data);
+  });
+  server.Get("/cms/pages/:permalink",
+             [&ctx](const httplib::Request& req, httplib::Response& res) {
+               auto ss = tulip::portal::session(req);
+               const auto data = tulip::cms::controllers::pages::show(
+                   ctx, ss, req.path_params.at("permalink"));
+               palm::http::html(res, ctx.env, "cms/pages/show.html", *data);
+             });
+  server.Get("/api/cms/pages", [&ctx](const httplib::Request& req,
+                                      httplib::Response& res) {
+    auto ss = tulip::portal::session(req);
+    palm::portal::v1::Page page;
+    if (!palm::http::body(req, res, &page)) {
+      return;
+    }
+    const auto body = tulip::cms::controllers::pages::index(ctx, ss, page);
+    palm::http::json(res, *body);
+  });
+  server.Get("/api/cms/pages/:id", [&ctx](const httplib::Request& req,
+                                          httplib::Response& res) {
+    auto ss = tulip::portal::session(req);
+    palm::portal::v1::IdRequest req_;
+    if (!palm::http::body(req, res, &req_)) {
+      return;
+    }
+    const auto body = tulip::cms::controllers::pages::show(ctx, ss, req_);
+    palm::http::json(res, *body);
+  });
+
+  {
+    std::map<std::string, std::string> items = {{"/statics", "./assets"},
+                                                {"/3rd", "./node_modules"}};
+    for (auto const& [key, val] : items) {
+      spdlog::debug("mount assets folder {}=>{}", val, key);
+      auto ret = server.set_mount_point(key, val);
+      if (!ret) {
+        spdlog::error("couldn't mount {}", key);
+      }
+    }
+  }
+
+  server.set_payload_max_length(1024 * 1024 * 5);
+  server.set_logger(
+      [](const httplib::Request& req, const httplib::Response& res) {
+        spdlog::info("{} {} {}", req.method, req.path, res.status);
+      });
+  server.set_exception_handler(
+      [](const auto& req, auto& res, std::exception_ptr err) {
+        try {
+          std::rethrow_exception(err);
+        } catch (std::exception& e) {
+          palm::http::text(res, httplib::StatusCode::InternalServerError_500,
+                           e.what());
+        } catch (...) {
+          palm::http::text(res, httplib::StatusCode::InternalServerError_500,
+                           "Unknown exception");
+        }
+      });
 
   shutdown_handler = [&](int signal) {
     if (signal == SIGINT) {
@@ -79,6 +149,10 @@ int tulip::Application::launch(int argc, char** argv) const {
       .default_value(8080)
       .scan<'i', int>()
       .required();
+  http_command.add_argument("-t", "--theme")
+      .help("theme name(bootstrap,bulma)")
+      .default_value("bootstrap")
+      .required();
 
   program.add_subparser(http_command);
 
@@ -99,7 +173,8 @@ int tulip::Application::launch(int argc, char** argv) const {
   spdlog::debug("load configuration from {}", config_file);
   if (program.is_subcommand_used(http_command)) {
     const int port = http_command.get<int>("--port");
-    return this->http(config_file, port);
+    const std::string theme = http_command.get<std::string>("--theme");
+    return this->http(config_file, port, theme);
   }
 
   std::cout << program.help().str() << std::endl;

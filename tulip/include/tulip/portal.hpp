@@ -16,16 +16,15 @@
 #include "tex.grpc.pb.h"
 #include "wechat-pay.grpc.pb.h"
 
-#include <google/protobuf/util/json_util.h>
-#include <google/protobuf/util/time_util.h>
-#include <httplib.h>
-
 namespace tulip {
 namespace portal {
+std::shared_ptr<palm::portal::v1::Session> session(const httplib::Request& req);
+std::shared_ptr<palm::portal::v1::Page> page(const httplib::Request& req);
 struct Context {
   std::shared_ptr<palm::redis::Client> cache;
   std::shared_ptr<soci::connection_pool> db;
   std::shared_ptr<palm::rabbitmq::Client> queue;
+  std::shared_ptr<inja::Environment> env;
   std::shared_ptr<::grpc::Channel> daisy;
 };
 }  // namespace portal
