@@ -43,9 +43,8 @@ int tulip::Application::http(const std::string& config_file, uint16_t port,
   ctx.cache = config.redis.open();
   ctx.queue = config.rabbitmq.open();
   {
-    spdlog::debug("load theme {}", theme);
-    ctx.env = std::make_shared<inja::Environment>(
-        std::filesystem::path("./views") / theme);
+    spdlog::debug("load theme from {}", theme);
+    ctx.env = std::make_shared<inja::Environment>(theme);
   }
   {
     spdlog::debug("open opensearch {}", config.opensearch.url(""));
@@ -182,8 +181,8 @@ int tulip::Application::launch(int argc, char** argv) const {
       .scan<'i', int>()
       .required();
   http_command.add_argument("-t", "--theme")
-      .help("theme name(bootstrap,bulma)")
-      .default_value("bootstrap")
+      .help("theme folder(bootstrap,bulma)")
+      .default_value("views/bootstrap")
       .required();
 
   program.add_subparser(http_command);

@@ -50,6 +50,9 @@ function build_go() {
 }
 
 function build_tulip_assets() {
+    local target=$TARGET/$1/usr/share/palm/tulip
+    mkdir -p $target
+
     cd $WORKSPACE/tulip/    
     if [ ! -d node_modules ]
     then
@@ -73,10 +76,12 @@ function build_tulip_assets() {
     )
     for it in "${items[@]}"
     do
-        local d=$(dirname $TARGET/$1/usr/share/palm/tulip/node_modules/$it)
+        local d=$(dirname $target/node_modules/$it)
         mkdir -p $d
         cp -r node_modules/$it $d/
     done
+
+    cp -r db views assets $target/
 }
 
 # -----------------------------------------------------------------------------
@@ -142,10 +147,8 @@ for a in "${architectures[@]}"
 do
     build_tulip_assets $a
 
-    cd $WORKSPACE/
-    
-    cp -r README.md LICENSE $TARGET/$a/usr/share/palm/
-    cp -r tulip/db $TARGET/$a/usr/share/palm/tulip/
+    cd $WORKSPACE/    
+    cp -r README.md LICENSE $TARGET/$a/usr/share/palm/    
     cp -r .debian $TARGET/$a/DEBIAN
 
     mkdir -p $TARGET/$a/var/lib/palm $TARGET/$a/etc/palm
