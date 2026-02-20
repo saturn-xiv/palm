@@ -1,0 +1,8 @@
+Package: palm
+Version: 2026.2.20
+Maintainer: Jeremy Zheng
+Section: net
+Priority: optional
+Homepage: https://github.com/saturn-xiv/palm
+Architecture: all
+Description: A total free education & translation solution.

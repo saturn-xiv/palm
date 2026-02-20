@@ -24,7 +24,8 @@ type Query {
   # indexAttachments(page: Page!): IndexAttachmentResponse!
   # showAttachment(id: ID): Attachment!
 
-  # indexLocale(page: Page!): IndexLocaleResponse!
+  indexLocale(page: Page!): IndexLocaleResponse!
+  getLocaleByLang(lang: String!): [Locale!]!
 }
 
 type Mutation {
