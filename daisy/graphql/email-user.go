@@ -13,6 +13,7 @@ import (
 	email_v2 "github.com/saturn-xiv/palm/daisy/email/v2"
 	"github.com/saturn-xiv/palm/daisy/env"
 	"github.com/saturn-xiv/palm/daisy/models"
+	v2 "github.com/saturn-xiv/palm/daisy/portal/v2"
 	"github.com/saturn-xiv/palm/daisy/queue"
 )
 
@@ -21,6 +22,21 @@ const (
 	emailUserConfirmAudience       = "email-user.confirm"
 	emailUserUnlockAudience        = "email-user.unlock"
 )
+
+func (p *Mutation) SignInByEmail(ctx context.Context, args struct {
+	Email    string
+	Password string
+	Ttl      uint
+}) (*UserSignInResponse, error) {
+	ip := ClientIp(ctx)
+	form := models.NewEmailUserSignInForm(args.Email, args.Password)
+	if err := p.db.Transaction(func(tx *gorm.DB) error {
+		return form.Execute(tx, p.hmac, ip)
+	}); err != nil {
+		return nil, err
+	}
+	return newUserSignInResponse(p.db, v2.Session_EMAIL, form.Email, args.Ttl)
+}
 
 func (p *Query) ForgotEmailUserPassword(ctx context.Context, args struct {
 	Home  string

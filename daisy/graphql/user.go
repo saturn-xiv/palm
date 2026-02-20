@@ -3,6 +3,7 @@ package graphql
 import (
 	"context"
 	"errors"
+	"fmt"
 
 	"gorm.io/gorm"
 
@@ -14,7 +15,10 @@ import (
 
 type UserSignInResponse struct{}
 
-func newUserSignInResponse(db *gorm.DB, provider_type v2.Session_ProviderType, provider_sn string) (*UserSignInResponse, error) {
+func newUserSignInResponse(db *gorm.DB, provider_type v2.Session_ProviderType, provider_sn string, ttl uint) (*UserSignInResponse, error) {
+	if ttl < 60 {
+		return nil, fmt.Errorf("ttl shouldn't least than %d seconds", ttl)
+	}
 	// TODO
 	return &UserSignInResponse{}, nil
 }

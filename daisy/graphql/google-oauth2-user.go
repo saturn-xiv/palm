@@ -13,7 +13,6 @@ import (
 	"google.golang.org/api/option"
 	"gorm.io/gorm"
 
-	"github.com/saturn-xiv/palm/daisy/env"
 	"github.com/saturn-xiv/palm/daisy/models"
 	v2 "github.com/saturn-xiv/palm/daisy/portal/v2"
 )
@@ -25,6 +24,7 @@ func (p *Mutation) SignInByGoogleOauth2(ctx context.Context, args struct {
 	State     string
 	Lang      string
 	Timezone  string
+	Ttl       uint
 }) (*UserSignInResponse, error) {
 	ip := ClientIp(ctx)
 	timezone, err := time.LoadLocation(args.Timezone)
@@ -68,28 +68,11 @@ func (p *Mutation) SignInByGoogleOauth2(ctx context.Context, args struct {
 	}
 
 	if err = p.db.Transaction(func(tx *gorm.DB) error {
-		err := models.UserSignInByGoogleOauth2(tx, user_info, &lang, timezone)
-		if err != nil {
-			return err
-		}
-		var it models.GoogleOauth2User
-		if err := tx.Where("code = ?", user_info.Id).Preload("User").First(&it).Error; err != nil {
-			return err
-		}
-		if it.User.LockedAt != nil {
-			return fmt.Errorf("user %s is locked", user_info.Name)
-		}
-		if err = models.SignInUser(tx, it.User, ip); err != nil {
-			return err
-		}
-		if err = models.CreateLog(tx, it.UserID, env.Plugin(), ip, v2.UserIndexLogResponse_Item_INFO, "sign in by google oauth2"); err != nil {
-			return err
-		}
-		return nil
+		return models.UserSignInByGoogleOauth2(tx, user_info, ip, &lang, timezone)
 	}); err != nil {
 		return nil, err
 	}
-	return newUserSignInResponse(p.db, v2.Session_GOOGLE_OAUTH2, user_info.Id)
+	return newUserSignInResponse(p.db, v2.Session_GOOGLE_OAUTH2, user_info.Id, args.Ttl)
 }
 
 func (p *Query) GetGoogleOauth2Url(ctx context.Context, args struct {

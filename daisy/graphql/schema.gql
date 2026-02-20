@@ -28,8 +28,12 @@ type Query {
 }
 
 type Mutation {
-  # signInByEmail(email: String!, password: String!, ttl: Int!): String!
-  # signInByPhone(phone: String!, password: String!, ttl: Int!): SignInResponse!
+  signInByEmail(
+    email: String!
+    password: String!
+    ttl: Int!
+  ): UserSignInResponse!
+  # signInByPhone(phone: String!, password: String!, ttl: Int!): UserSignInResponse!
   signInByGoogleOauth2(
     home: String!
     sessionId: String!
@@ -37,6 +41,7 @@ type Mutation {
     state: String!
     lang: String!
     timezone: String!
+    ttl: Int!
   ): UserSignInResponse!
   # signInByWechatOauth2(token: String!): SignInResponse!
   # signInByWechatMiniProgram(token: String!): SignInResponse!

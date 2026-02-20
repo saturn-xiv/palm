@@ -10,6 +10,8 @@ import (
 	"gorm.io/gorm"
 
 	"github.com/saturn-xiv/palm/daisy/crypto"
+	"github.com/saturn-xiv/palm/daisy/env"
+	v2 "github.com/saturn-xiv/palm/daisy/portal/v2"
 )
 
 type EmailUser struct {
@@ -35,6 +37,46 @@ func (p *EmailUser) VerifyPassword(hmac *crypto.Hmac, password string) error {
 		return err
 	}
 	return hmac.Verify(tmp, []byte(password))
+}
+
+type emailUserSignInForm struct {
+	Email    string `validate:"required,gte=5,lte=31,email"`
+	Password string `validate:"required,gte=6,lte=31"`
+}
+
+func NewEmailUserSignInForm(email string, password string) *emailUserSignInForm {
+	return &emailUserSignInForm{
+		Email:    strings.TrimSpace(strings.ToLower(email)),
+		Password: password,
+	}
+}
+
+func (p *emailUserSignInForm) Execute(db *gorm.DB, mac *crypto.Hmac, ip string) error {
+	var it EmailUser
+	if err := db.Where("email = ?", p.Email).Preload("User").First(&it).Error; err != nil {
+		return err
+	}
+	if it.ConfirmedAt == nil {
+		return fmt.Errorf("user %s isn't confirmed yet", p.Email)
+	}
+	if it.User.LockedAt != nil {
+		return fmt.Errorf("user %s is locked", p.Email)
+	}
+	if err := it.VerifyPassword(mac, p.Password); err != nil {
+		if err := CreateLog(db, it.UserID, env.Plugin(), ip, v2.UserIndexLogResponse_Item_WARNING, "sign in by email failed"); err != nil {
+			return err
+		}
+		return err
+	}
+
+	if err := SignInUser(db, it.User, ip); err != nil {
+		return err
+	}
+	if err := CreateLog(db, it.UserID, env.Plugin(), ip, v2.UserIndexLogResponse_Item_INFO, "sign in by email"); err != nil {
+		return err
+	}
+
+	return nil
 }
 
 type setPasswordForEmailUserForm struct {
