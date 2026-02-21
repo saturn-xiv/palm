@@ -1,9 +1,13 @@
 #pragma once
 
+#include <format>
+
 #include <google/protobuf/message.h>
 #include <google/protobuf/util/json_util.h>
 #include <google/protobuf/util/time_util.h>
 #include <httplib.h>
+#include <boost/algorithm/string.hpp>
+#include <boost/type_index.hpp>
 #include <inja/inja.hpp>
 
 namespace palm {

@@ -1,12 +1,9 @@
 #pragma once
 
-#include <format>
+#include "palm/http.hpp"
 
 #include <cpr/cpr.h>
 #include <spdlog/spdlog.h>
-#include <boost/algorithm/string.hpp>
-#include <boost/type_index.hpp>
-#include <nlohmann/json.hpp>
 #include <toml++/toml.hpp>
 
 namespace palm {
@@ -62,6 +59,84 @@ class Config {
 
   std::shared_ptr<responses::info::Item> info() const;
 
+  // https://docs.opensearch.org/latest/getting-started/communicate/#indexing-documents
+  template <typename T>
+  bool index_document(const T& object) const {
+    const auto name = this->index<T>();
+    spdlog::debug("index document {}", name);
+    nlohmann::json body;
+    nlohmann::to_json(body, object);
+
+    cpr::Response res = cpr::Put(
+        cpr::Url{this->url(name) + "/_doc/"}, cpr::Body{body.dump()},
+        cpr::Header{{palm::http::headers::CONTENT_TYPE,
+                     palm::http::content_type::APPLICATION_JSON_UTF8}});
+    spdlog::debug("{} {}", res.status_code, res.text);
+    return res.status_code == 200;
+  }
+  template <typename T>
+  bool index_document(const std::string& id, const T& object) const {
+    const auto name = this->index<T>();
+    spdlog::debug("index document {}@{}", id, name);
+    nlohmann::json body;
+    nlohmann::to_json(body, object);
+
+    cpr::Response res = cpr::Put(
+        cpr::Url{this->url(name) + "/_doc/" + id}, cpr::Body{body.dump()},
+        cpr::Header{{palm::http::headers::CONTENT_TYPE,
+                     palm::http::content_type::APPLICATION_JSON_UTF8}});
+    spdlog::debug("{} {}", res.status_code, res.text);
+    return res.status_code == 200;
+  }
+  // https://docs.opensearch.org/latest/getting-started/communicate/#updating-documents
+  template <typename T>
+  bool update_document(const std::string& id,
+                       const nlohmann::json& parts) const {
+    const auto name = this->index<T>();
+    spdlog::debug("update document {}@{}", id, name);
+    cpr::Response res = cpr::Post(
+        cpr::Url{this->url(name) + "/_update/" + id + "/"},
+        cpr::Body{parts.dump()},
+        cpr::Header{{palm::http::headers::CONTENT_TYPE,
+                     palm::http::content_type::APPLICATION_JSON_UTF8}});
+    spdlog::debug("{} {}", res.status_code, res.text);
+    return res.status_code == 200;
+  }
+  // https://docs.opensearch.org/latest/getting-started/communicate/#deleting-a-document
+  template <typename T>
+  bool delete_document(const std::string& id) const {
+    const auto name = this->index<T>();
+    spdlog::warn("delete document {}@{}", id, name);
+    cpr::Response res = cpr::Delete(cpr::Url{this->url(name) + "/_doc/" + id});
+    spdlog::info("{} {}", res.status_code, res.text);
+    return res.status_code == 200;
+  }
+
+  template <typename T>
+  bool close_index() const {
+    const auto name = this->index<T>();
+    spdlog::warn("close index {}", name);
+    cpr::Response res = cpr::Put(cpr::Url{this->url(name) + "/_close"});
+    spdlog::info("{} {}", res.status_code, res.text);
+    return res.status_code == 200;
+  }
+  template <typename T>
+  bool open_index() const {
+    const auto name = this->index<T>();
+    spdlog::warn("open index {}", name);
+    cpr::Response res = cpr::Post(cpr::Url{this->url(name) + "/_open"});
+    spdlog::info("{} {}", res.status_code, res.text);
+    return res.status_code == 200;
+  }
+  // https://docs.opensearch.org/latest/getting-started/communicate/#deleting-an-index
+  template <typename T>
+  bool delete_index() const {
+    const auto name = this->index<T>();
+    spdlog::warn("open index {}", name);
+    cpr::Response res = cpr::Delete(cpr::Url{this->url(name)});
+    spdlog::info("{} {}", res.status_code, res.text);
+    return res.status_code == 200;
+  }
   template <typename T>
   bool index_exists() const {
     const auto name = this->index<T>();
@@ -79,9 +154,12 @@ class Config {
     nlohmann::json config;
     config["mappings"] = mappings;
 
-    const std::string cfg = config.dump();
-    spdlog::warn("create index {}: {}", name, cfg);
-    cpr::Response res = cpr::Put(cpr::Url{this->url(name)});
+    const std::string body = config.dump();
+    spdlog::warn("create index {}: {}", name, body);
+    cpr::Response res = cpr::Put(
+        cpr::Url{this->url(name)}, cpr::Body{body},
+        cpr::Header{{palm::http::headers::CONTENT_TYPE,
+                     palm::http::content_type::APPLICATION_JSON_UTF8}});
     if (res.status_code != 200) {
       spdlog::error("{} {}", res.status_code, res.text);
       return false;
