@@ -138,11 +138,13 @@ RUN echo 'export XMAKE_ROOT=y' >> $HOME/.profile
 RUN echo 'export VCPKG_DISABLE_METRICS=1' >> $HOME/.profile
 
 # https://opensearch.org/docs/latest/opensearch/install/tar/
-RUN echo "network.host: 0.0.0.0" >> /opt/opensearch/config/opensearch.yml \
-    && echo "discovery.type: single-node" >> /opt/opensearch/config/opensearch.yml \
-    && echo "plugins.security.disabled: true" >> /opt/opensearch/config/opensearch.yml
-# https://github.com/infinilabs/analysis-stconvert
-RUN cd /opt/opensearch/ && bin/opensearch-plugin install https://get.infini.cloud/opensearch/analysis-stconvert/${OPENSEARCH_VERSION}
+RUN cd /opt/opensearch/ \
+    && echo "network.host: 0.0.0.0" >> config/opensearch.yml \
+    && echo "discovery.type: single-node" >> config/opensearch.yml \
+    && echo "plugins.security.disabled: true" >> config/opensearch.yml \
+    && mkdir -p config/opensearch-performance-analyzer \
+    && touch config/opensearch-performance-analyzer/plugin-stats-metadata \
+    && cp config/opensearch-analysis-ik plugins/opensearch-analysis-ik/config
 
 RUN python3 -m venv $HOME/local/python3 && echo 'source $HOME/local/python3/bin/activate' >> $HOME/.profile
 

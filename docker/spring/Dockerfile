@@ -328,11 +328,14 @@ RUN zsh -c "source $HOME/.zshrc \
     && rm -r $HOME/build/flatbuffers"
 
 # https://opensearch.org/docs/latest/opensearch/install/tar/
-RUN echo "network.host: 0.0.0.0" >> /opt/opensearch/config/opensearch.yml \
-    && echo "discovery.type: single-node" >> /opt/opensearch/config/opensearch.yml \
-    && echo "plugins.security.disabled: true" >> /opt/opensearch/config/opensearch.yml
-# https://github.com/infinilabs/analysis-stconvert
-RUN cd /opt/opensearch/ && bin/opensearch-plugin install https://get.infini.cloud/opensearch/analysis-stconvert/${OPENSEARCH_VERSION}
+# https://docs.opensearch.org/latest/install-and-configure/plugins/#list
+RUN cd /opt/opensearch/ \
+    && echo "network.host: 0.0.0.0" >> config/opensearch.yml \
+    && echo "discovery.type: single-node" >> config/opensearch.yml \
+    && echo "plugins.security.disabled: true" >> config/opensearch.yml \
+    && mkdir -p config/opensearch-performance-analyzer \
+    && touch config/opensearch-performance-analyzer/plugin-stats-metadata \
+    && cp config/opensearch-analysis-ik plugins/opensearch-analysis-ik/config
 
 RUN sudo mkdir -p /var/lib/minio/data && sudo chown -R nobody:nobody /var/lib/minio
 
