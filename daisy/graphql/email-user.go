@@ -2,6 +2,7 @@ package graphql
 
 import (
 	"context"
+	"errors"
 	"fmt"
 	"reflect"
 	"strings"
@@ -13,7 +14,7 @@ import (
 	email_v2 "github.com/saturn-xiv/palm/daisy/email/v2"
 	"github.com/saturn-xiv/palm/daisy/env"
 	"github.com/saturn-xiv/palm/daisy/models"
-	v2 "github.com/saturn-xiv/palm/daisy/portal/v2"
+	portal_v2 "github.com/saturn-xiv/palm/daisy/portal/v2"
 	"github.com/saturn-xiv/palm/daisy/queue"
 )
 
@@ -22,6 +23,112 @@ const (
 	emailUserConfirmAudience       = "email-user.confirm"
 	emailUserUnlockAudience        = "email-user.unlock"
 )
+
+func (p *Mutation) ChangeEmailUserPassword(ctx context.Context, args struct {
+	CurrentPassword string
+	NewPassword     string
+}) (*Ok, error) {
+	ss, err := CurrentUser(ctx, p.db, p.jwt)
+	if err != nil {
+		return nil, err
+	}
+	if ss.Subject.Type != portal_v2.Session_EMAIL {
+		return nil, errors.New("not an email user")
+	}
+
+	if err := p.db.Transaction(func(tx *gorm.DB) error {
+		var it models.EmailUser
+		if err := tx.Where("email = ?", ss.Subject.Sn).First(&it).Error; err != nil {
+			return err
+		}
+		if err := it.VerifyPassword(p.hmac, args.CurrentPassword); err != nil {
+			return err
+		}
+		form := models.NewSetPasswordForEmailUserForm(args.NewPassword)
+		if err := form.Execute(p.db, &it, p.hmac); err != nil {
+			return err
+		}
+		return models.CreateLog(tx, uint(ss.User.Id), portal_v2.Plugin(), ss.ClientIp, portal_v2.UserIndexLogResponse_Item_WARNING, "change password")
+	}); err != nil {
+		return nil, err
+	}
+	return &Ok{}, nil
+}
+func (p *Mutation) SetEmailUserAvatar(ctx context.Context, args struct {
+	Avatar string
+}) (*Ok, error) {
+	ss, err := CurrentUser(ctx, p.db, p.jwt)
+	if err != nil {
+		return nil, err
+	}
+	if ss.Subject.Type != portal_v2.Session_EMAIL {
+		return nil, errors.New("not an email user")
+	}
+
+	form := setEmailUserAvatarForm{Avatar: strings.TrimSpace(args.Avatar)}
+	if err := gl_validate.Struct(&form); err != nil {
+		return nil, err
+	}
+
+	if err := p.db.Transaction(func(tx *gorm.DB) error {
+		var it models.EmailUser
+		if err := tx.Where("email = ?", ss.Subject.Sn).First(&it).Error; err != nil {
+			return err
+		}
+		if err = tx.Model(&it).Updates(map[string]interface{}{
+			"avatar": form.Avatar,
+		}).Error; err != nil {
+			return err
+		}
+
+		return models.CreateLog(tx, uint(ss.User.Id), portal_v2.Plugin(), ss.ClientIp, portal_v2.UserIndexLogResponse_Item_INFO, "update avatar")
+	}); err != nil {
+		return nil, err
+	}
+	return &Ok{}, nil
+}
+
+type setEmailUserAvatarForm struct {
+	Avatar string `validate:"required,min=5,max=127,url"`
+}
+
+func (p *Mutation) SetEmailUserName(ctx context.Context, args struct {
+	Name string
+}) (*Ok, error) {
+	ss, err := CurrentUser(ctx, p.db, p.jwt)
+	if err != nil {
+		return nil, err
+	}
+	if ss.Subject.Type != portal_v2.Session_EMAIL {
+		return nil, errors.New("not an email user")
+	}
+
+	form := setEmailUserNameForm{Name: strings.TrimSpace(args.Name)}
+	if err := gl_validate.Struct(&form); err != nil {
+		return nil, err
+	}
+
+	if err := p.db.Transaction(func(tx *gorm.DB) error {
+		var it models.EmailUser
+		if err := tx.Where("email = ?", ss.Subject.Sn).First(&it).Error; err != nil {
+			return err
+		}
+		if err = tx.Model(&it).Updates(map[string]interface{}{
+			"name": form.Name,
+		}).Error; err != nil {
+			return err
+		}
+
+		return models.CreateLog(tx, uint(ss.User.Id), portal_v2.Plugin(), ss.ClientIp, portal_v2.UserIndexLogResponse_Item_INFO, "update name")
+	}); err != nil {
+		return nil, err
+	}
+	return &Ok{}, nil
+}
+
+type setEmailUserNameForm struct {
+	Name string `validate:"required,min=2,max=31"`
+}
 
 func (p *Mutation) SignInByEmail(ctx context.Context, args struct {
 	Email    string
@@ -35,7 +142,7 @@ func (p *Mutation) SignInByEmail(ctx context.Context, args struct {
 	}); err != nil {
 		return nil, err
 	}
-	return newUserSignInResponse(p.db, v2.Session_EMAIL, form.Email, args.Ttl)
+	return newUserSignInResponse(p.db, portal_v2.Session_EMAIL, form.Email, args.Ttl)
 }
 
 func (p *Query) ForgotEmailUserPassword(ctx context.Context, args struct {

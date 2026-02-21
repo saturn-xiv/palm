@@ -38,8 +38,7 @@ func CurrentUser(ctx context.Context, db *gorm.DB, jwt *crypto.Jwt) (*portal_v2.
 
 	if auth, ok := md[strings.ToLower(Authorization)]; ok {
 		for _, it := range auth {
-			if user, ss, err := NewCurrentUserByAuthorization(it, db, jwt); err == nil {
-				ss.User = NewUser(user)
+			if ss, err := NewSessionByAuthorization(it, db, jwt); err == nil {
 				ss.ClientIp = client_ip(ctx)
 				return ss, nil
 			}
@@ -86,26 +85,27 @@ func NewUser(it *models.User) *portal_v2.UserIndexResponse_Item {
 	return &v
 }
 
-func NewCurrentUserByAuthorization(auth string, db *gorm.DB, jwt *crypto.Jwt) (*models.User, *portal_v2.Session, error) {
+func NewSessionByAuthorization(auth string, db *gorm.DB, jwt *crypto.Jwt) (*portal_v2.Session, error) {
 	if !strings.HasPrefix(auth, Bearer) {
-		return nil, nil, errors.New("not a jwt bearer token")
+		return nil, errors.New("not a jwt bearer token")
 	}
 	token := strings.TrimPrefix(auth, Bearer)
 	_, sub, err := jwt.Verify(token, env.Plugin(), UserSignInAudience)
 	if err != nil {
-		return nil, nil, err
+		return nil, err
 	}
 
 	var ss portal_v2.Session
 	ss.Subject, err = portal_v2.NewSubject(sub)
 	if err != nil {
-		return nil, nil, err
+		return nil, err
 	}
 	user, err := current_user(db, &ss)
 	if err != nil {
-		return nil, nil, err
+		return nil, err
 	}
-	return user, &ss, nil
+	ss.User = NewUser(user)
+	return &ss, nil
 }
 
 func current_user(db *gorm.DB, ss *portal_v2.Session) (*models.User, error) {

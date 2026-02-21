@@ -3,9 +3,12 @@ package models
 import (
 	"time"
 
+	"github.com/casbin/casbin/v3"
 	"github.com/google/uuid"
 	"golang.org/x/text/language"
 	"gorm.io/gorm"
+
+	rbac_v2 "github.com/saturn-xiv/palm/daisy/rbac/v2"
 )
 
 type User struct {
@@ -27,6 +30,31 @@ type User struct {
 
 func (User) TableName() string {
 	return "users"
+}
+
+func (p *User) IsAdministrator(enforcer *casbin.Enforcer) error {
+	return p.Has(enforcer, &rbac_v2.Subject_Role{
+		By: &rbac_v2.Subject_Role_Administrator_{
+			Administrator: &rbac_v2.Subject_Role_Administrator{},
+		},
+	})
+}
+
+func (p *User) IsRoot(enforcer *casbin.Enforcer) error {
+	return p.Has(enforcer, &rbac_v2.Subject_Role{
+		By: &rbac_v2.Subject_Role_Root_{
+			Root: &rbac_v2.Subject_Role_Root{},
+		},
+	})
+}
+
+func (p *User) Has(enforcer *casbin.Enforcer, role *rbac_v2.Subject_Role) error {
+	return rbac_v2.Has(enforcer,
+		&rbac_v2.Subject_User{
+			By: &rbac_v2.Subject_User_Id{
+				Id: int64(p.ID),
+			},
+		}, role)
 }
 
 func CreateUser(db *gorm.DB, lang *language.Tag, timezone *time.Location) (*User, error) {

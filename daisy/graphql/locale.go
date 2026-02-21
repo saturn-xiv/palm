@@ -2,11 +2,75 @@ package graphql
 
 import (
 	"context"
+	"strings"
 
 	"github.com/graph-gophers/graphql-go"
+	"golang.org/x/text/language"
+	"gorm.io/gorm"
 
 	"github.com/saturn-xiv/palm/daisy/models"
 )
+
+func (p *Mutation) SetLocale(ctx context.Context, args struct {
+	Lang    string
+	Code    string
+	Message string
+}) (*Ok, error) {
+	ss, err := CurrentUser(ctx, p.db, p.jwt)
+	if err != nil {
+		return nil, err
+	}
+	if err = ss.User.IsAdministrator(p.enforcer); err != nil {
+		return nil, err
+	}
+	lang, err := language.Parse(args.Lang)
+	if err != nil {
+		return nil, err
+	}
+
+	form := setLocaleForm{Lang: lang.String(), Code: strings.ToLower(strings.TrimSpace(args.Code)), Message: args.Message}
+	if err := gl_validate.Struct(&form); err != nil {
+		return nil, err
+	}
+
+	if err := p.db.Transaction(func(tx *gorm.DB) error {
+		return models.SetLocale(tx, form.Lang, form.Code, form.Message)
+	}); err != nil {
+		return nil, err
+	}
+	return &Ok{}, nil
+}
+
+type setLocaleForm struct {
+	Lang    string `validate:"required,gte=1,lte=15"`
+	Code    string `validate:"required,gte=2,lte=255"`
+	Message string `validate:"required,gte=1"`
+}
+
+func (p *Mutation) DestroyLocale(ctx context.Context, args struct {
+	Id graphql.ID
+}) (*Ok, error) {
+	ss, err := CurrentUser(ctx, p.db, p.jwt)
+	if err != nil {
+		return nil, err
+	}
+	if err := ss.User.IsAdministrator(p.enforcer); err != nil {
+		return nil, err
+	}
+	id, err := FromId(args.Id)
+	if err != nil {
+		return nil, err
+	}
+	if err := p.db.Transaction(func(tx *gorm.DB) error {
+		if err := tx.Where("id = ?", id).Delete(&models.Locale{}).Error; err != nil {
+			return err
+		}
+		return nil
+	}); err != nil {
+		return nil, err
+	}
+	return &Ok{}, nil
+}
 
 func (p *Query) IndexLocale(ctx context.Context, args struct {
 	Page Page

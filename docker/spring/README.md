@@ -55,17 +55,16 @@
 
   ```bash
   # show info
-  curl -X GET "http://localhost:9200"
-  curl -X GET "http://localhost:9200/info"
-  curl -X GET "http://localhost:9200/_cat/plugins?v"
-  curl -X GET "http://localhost:9200/_cat/allocation?v"
+  curl "http://localhost:9200"
+  curl "http://localhost:9200/_cat/plugins"
+  curl "http://localhost:9200/_cat/allocation"
   ```
 
   - flood-stage watermark
 
     ```bash
-    curl -X GET "http://localhost:9200/_cluster/health/"
-    curl -X GET "http://localhost:9200/_cluster/settings"
+    curl "http://localhost:9200/_cluster/health/"
+    curl "http://localhost:9200/_cluster/settings"
     ```
 
 - Vcpkg

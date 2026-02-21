@@ -46,17 +46,20 @@ type Mutation {
   ): UserSignInResponse!
   # signInByWechatOauth2(token: String!): SignInResponse!
   # signInByWechatMiniProgram(token: String!): SignInResponse!
-  # changeAccountPassword(currentPassword: String!, newPassword: String!): Ok!
-  # resetAccountPassword(token: String!, password: String!): Ok!
+  # changeEmailUserPassword(currentPassword: String!, newPassword: String!): Ok!
+  # resetEmailUserPassword(token: String!, password: String!): Ok!
 
   # signOut: Ok!
-  # setAccountProfile(name: String!, avatar: String!, memo: String): Ok!
-  # setAccountLocation(lang: String!, timezone: String!): Ok!
-  # confirmAccount(token: String!): Ok!
-  # unlockAccount(token: String!): Ok!
+  setEmailUserName(name: String!): Ok!
+  setEmailUserAvatar(avatar: String!): Ok!
+  changeEmailUserPassword(currentPassword: String!, newPassword: String!): Ok!
+  setUserLocation(lang: String!, timezone: String!): Ok!
+  # confirmEmailUser(token: String!): Ok!
+  # unlockEmailUser(token: String!): Ok!
 
-  # lockUser(id: ID!, reason: String!): Ok!
-  # unlockUser(id: ID!, reason: String!): Ok!
+  lockUser(id: ID!, reason: String!): Ok!
+  unlockUser(id: ID!, reason: String!): Ok!
+  destroyUser(id: ID!, reason: String!): Ok!
   # setEmailUserPassword(id: ID!, password: String!, reason: String!): Ok!
   # setPhoneUserPassword(id: ID!, password: String!, reason: String!): Ok!
 
@@ -87,6 +90,9 @@ type Mutation {
   # siteSetGoogleSiteVerify(siteId: String!, enable: Boolean!): Ok!
   # siteSetBaiduSiteVerify(siteId: String, enable: Boolean!): Ok!
   # siteSetIndexNow(key: String, enable: Boolean): Ok!
+
+  setLocale(lang: String!, code: String!, message: String!): Ok!
+  destroyLocale(id: ID!): Ok!
 }
 
 type Member {
@@ -121,12 +127,13 @@ input SiteDetailsForm {
 }
 
 type IndexUserResponse {
-  items: [Account!]!
+  items: [User!]!
   pagination: Pagination!
 }
 
 type Log {
   id: ID!
+  plugin: String!
   ip: String!
   level: String!
   message: String!
@@ -194,7 +201,7 @@ type UserSignInResponse {
   token: String!
   # layout: RefreshResponse!
 }
-type User {
+type UserDetail {
   id: ID!
   sn: String!
   lang: String!
@@ -206,7 +213,7 @@ type User {
 }
 type EmailUser {
   id: ID!
-  user: User!
+  user: UserDetail!
   name: String!
   email: String!
   confirmedAt: Time
@@ -216,7 +223,7 @@ type EmailUser {
 }
 type SmsUser {
   id: ID!
-  user: User!
+  user: UserDetail!
   name: String!
   phone: String!
   confirmedAt: Time
@@ -226,26 +233,26 @@ type SmsUser {
 }
 type GoogleOauth2User {
   id: ID!
-  user: User!
+  user: UserDetail!
   deletedAt: Time
   updatedAt: Time!
   createdAt: Time!
 }
 type WechatOauth2User {
   id: ID!
-  user: User!
+  user: UserDetail!
   deletedAt: Time
   updatedAt: Time!
   createdAt: Time!
 }
 type WechatMiniProgramUser {
   id: ID!
-  user: User!
+  user: UserDetail!
   deletedAt: Time
   updatedAt: Time!
   createdAt: Time!
 }
-union Account =
+union User =
   | EmailUser
   | SmsUser
   | GoogleOauth2User

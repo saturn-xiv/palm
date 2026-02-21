@@ -9,6 +9,7 @@ import (
 	"strconv"
 	"time"
 
+	"github.com/casbin/casbin/v3"
 	"github.com/go-playground/validator/v10"
 	graphql "github.com/graph-gophers/graphql-go"
 	"github.com/graph-gophers/graphql-go/relay"
@@ -27,8 +28,8 @@ var gl_schema_txt string
 
 type headerKey string
 
-func Handler(db *gorm.DB, redis *cache.RedisClient, rabbitmq *queue.RabbitMQ, aead *crypto.Aead, hmac *crypto.Hmac, jwt *crypto.Jwt, google_oauth2 GoogleOauth2Config) (http.Handler, error) {
-	schema, err := graphql.ParseSchema(gl_schema_txt, &Root{db, redis, rabbitmq, aead, hmac, jwt, google_oauth2})
+func Handler(db *gorm.DB, redis *cache.RedisClient, rabbitmq *queue.RabbitMQ, aead *crypto.Aead, hmac *crypto.Hmac, jwt *crypto.Jwt, enforcer *casbin.Enforcer, google_oauth2 GoogleOauth2Config) (http.Handler, error) {
+	schema, err := graphql.ParseSchema(gl_schema_txt, &Root{db, redis, rabbitmq, aead, hmac, jwt, enforcer, google_oauth2})
 	if err != nil {
 		return nil, err
 	}

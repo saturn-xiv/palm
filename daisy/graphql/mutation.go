@@ -3,6 +3,8 @@ package graphql
 import (
 	"gorm.io/gorm"
 
+	"github.com/casbin/casbin/v3"
+
 	"github.com/saturn-xiv/palm/daisy/cache"
 	"github.com/saturn-xiv/palm/daisy/crypto"
 	"github.com/saturn-xiv/palm/daisy/queue"
@@ -15,5 +17,6 @@ type Mutation struct {
 	aead          *crypto.Aead
 	hmac          *crypto.Hmac
 	jwt           *crypto.Jwt
+	enforcer      *casbin.Enforcer
 	google_oauth2 GoogleOauth2Config
 }

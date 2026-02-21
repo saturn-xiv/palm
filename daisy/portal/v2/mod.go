@@ -76,7 +76,7 @@ func (p *UserCreateAttachmentRequest) Object() string {
 	return uuid.New().String() + filepath.Ext(p.Title)
 }
 
-func (p *Session) HasRole(enforcer *casbin.Enforcer, role string) error {
+func (p *UserIndexResponse_Item) HasRole(enforcer *casbin.Enforcer, role string) error {
 	return p.Has(enforcer, &rbac_v2.Subject_Role{
 		By: &rbac_v2.Subject_Role_Code{
 			Code: role,
@@ -84,7 +84,7 @@ func (p *Session) HasRole(enforcer *casbin.Enforcer, role string) error {
 	})
 }
 
-func (p *Session) IsAdministrator(enforcer *casbin.Enforcer) error {
+func (p *UserIndexResponse_Item) IsAdministrator(enforcer *casbin.Enforcer) error {
 	return p.Has(enforcer, &rbac_v2.Subject_Role{
 		By: &rbac_v2.Subject_Role_Administrator_{
 			Administrator: &rbac_v2.Subject_Role_Administrator{},
@@ -92,7 +92,7 @@ func (p *Session) IsAdministrator(enforcer *casbin.Enforcer) error {
 	})
 }
 
-func (p *Session) IsRoot(enforcer *casbin.Enforcer) error {
+func (p *UserIndexResponse_Item) IsRoot(enforcer *casbin.Enforcer) error {
 	return p.Has(enforcer, &rbac_v2.Subject_Role{
 		By: &rbac_v2.Subject_Role_Root_{
 			Root: &rbac_v2.Subject_Role_Root{},
@@ -100,15 +100,15 @@ func (p *Session) IsRoot(enforcer *casbin.Enforcer) error {
 	})
 }
 
-func (p *Session) Has(enforcer *casbin.Enforcer, role *rbac_v2.Subject_Role) error {
+func (p *UserIndexResponse_Item) Has(enforcer *casbin.Enforcer, role *rbac_v2.Subject_Role) error {
 	return rbac_v2.Has(enforcer,
 		&rbac_v2.Subject_User{
 			By: &rbac_v2.Subject_User_Id{
-				Id: p.User.Id,
+				Id: p.Id,
 			},
 		}, role)
 }
 
-func (p *Session) Can(enforcer *casbin.Enforcer, action *rbac_v2.Action, object *rbac_v2.Object) error {
-	return rbac_v2.Can(enforcer, &rbac_v2.Subject{By: &rbac_v2.Subject_User_{User: &rbac_v2.Subject_User{By: &rbac_v2.Subject_User_Id{Id: p.User.Id}}}}, action, object)
+func (p *UserIndexResponse_Item) Can(enforcer *casbin.Enforcer, action *rbac_v2.Action, object *rbac_v2.Object) error {
+	return rbac_v2.Can(enforcer, &rbac_v2.Subject{By: &rbac_v2.Subject_User_{User: &rbac_v2.Subject_User{By: &rbac_v2.Subject_User_Id{Id: p.Id}}}}, action, object)
 }
