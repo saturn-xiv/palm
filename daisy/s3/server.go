@@ -80,3 +80,7 @@ func (p *Server) GetObject(ctx context.Context, req *v2.GetObjectRequest) (*v2.G
 	url := req.Execute(p.client)
 	return &v2.GetObjectResponse{Url: url.String()}, nil
 }
+
+func (p *Server) StatObject(ctx context.Context, req *v2.StatObjectRequest) (*v2.StatObjectResponse, error) {
+	return req.Execute(ctx, p.client)
+}

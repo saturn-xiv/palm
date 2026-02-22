@@ -31,6 +31,7 @@
 #include "google/protobuf/unknown_field_set.h"
 #include "google/protobuf/empty.pb.h"
 #include "google/protobuf/duration.pb.h"
+#include "google/protobuf/timestamp.pb.h"
 // @@protoc_insertion_point(includes)
 
 // Must be included last.
@@ -92,6 +93,12 @@ extern PresignedPutObjectResponseDefaultTypeInternal _PresignedPutObjectResponse
 class RemoveObjectRequest;
 struct RemoveObjectRequestDefaultTypeInternal;
 extern RemoveObjectRequestDefaultTypeInternal _RemoveObjectRequest_default_instance_;
+class StatObjectRequest;
+struct StatObjectRequestDefaultTypeInternal;
+extern StatObjectRequestDefaultTypeInternal _StatObjectRequest_default_instance_;
+class StatObjectResponse;
+struct StatObjectResponseDefaultTypeInternal;
+extern StatObjectResponseDefaultTypeInternal _StatObjectResponse_default_instance_;
 }  // namespace v1
 }  // namespace s3
 }  // namespace palm
@@ -107,6 +114,220 @@ namespace v1 {
 // ===================================================================
 
 
+// -------------------------------------------------------------------
+
+class StatObjectRequest final : public ::google::protobuf::Message
+/* @@protoc_insertion_point(class_definition:palm.s3.v1.StatObjectRequest) */ {
+ public:
+  inline StatObjectRequest() : StatObjectRequest(nullptr) {}
+  ~StatObjectRequest() PROTOBUF_FINAL;
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+  void operator delete(StatObjectRequest* msg, std::destroying_delete_t) {
+    SharedDtor(*msg);
+    ::google::protobuf::internal::SizedDelete(msg, sizeof(StatObjectRequest));
+  }
+#endif
+
+  template <typename = void>
+  explicit PROTOBUF_CONSTEXPR StatObjectRequest(
+      ::google::protobuf::internal::ConstantInitialized);
+
+  inline StatObjectRequest(const StatObjectRequest& from) : StatObjectRequest(nullptr, from) {}
+  inline StatObjectRequest(StatObjectRequest&& from) noexcept
+      : StatObjectRequest(nullptr, std::move(from)) {}
+  inline StatObjectRequest& operator=(const StatObjectRequest& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline StatObjectRequest& operator=(StatObjectRequest&& from) noexcept {
+    if (this == &from) return *this;
+    if (::google::protobuf::internal::CanMoveWithInternalSwap(GetArena(), from.GetArena())) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields()
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const StatObjectRequest& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const StatObjectRequest* internal_default_instance() {
+    return reinterpret_cast<const StatObjectRequest*>(
+        &_StatObjectRequest_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages = 0;
+  friend void swap(StatObjectRequest& a, StatObjectRequest& b) { a.Swap(&b); }
+  inline void Swap(StatObjectRequest* other) {
+    if (other == this) return;
+    if (::google::protobuf::internal::CanUseInternalSwap(GetArena(), other->GetArena())) {
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(StatObjectRequest* other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  StatObjectRequest* New(::google::protobuf::Arena* arena = nullptr) const {
+    return ::google::protobuf::Message::DefaultConstruct<StatObjectRequest>(arena);
+  }
+  using ::google::protobuf::Message::CopyFrom;
+  void CopyFrom(const StatObjectRequest& from);
+  using ::google::protobuf::Message::MergeFrom;
+  void MergeFrom(const StatObjectRequest& from) { StatObjectRequest::MergeImpl(*this, from); }
+
+  private:
+  static void MergeImpl(
+      ::google::protobuf::MessageLite& to_msg,
+      const ::google::protobuf::MessageLite& from_msg);
+
+  public:
+  bool IsInitialized() const {
+    return true;
+  }
+  ABSL_ATTRIBUTE_REINITIALIZES void Clear() PROTOBUF_FINAL;
+  #if defined(PROTOBUF_CUSTOM_VTABLE)
+  private:
+  static ::size_t ByteSizeLong(const ::google::protobuf::MessageLite& msg);
+  static ::uint8_t* _InternalSerialize(
+      const MessageLite& msg, ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream);
+
+  public:
+  ::size_t ByteSizeLong() const { return ByteSizeLong(*this); }
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+    return _InternalSerialize(*this, target, stream);
+  }
+  #else   // PROTOBUF_CUSTOM_VTABLE
+  ::size_t ByteSizeLong() const final;
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
+  #endif  // PROTOBUF_CUSTOM_VTABLE
+  int GetCachedSize() const { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::google::protobuf::Arena* arena);
+  static void SharedDtor(MessageLite& self);
+  void InternalSwap(StatObjectRequest* other);
+ private:
+  template <typename T>
+  friend ::absl::string_view(
+      ::google::protobuf::internal::GetAnyMessageName)();
+  static ::absl::string_view FullMessageName() { return "palm.s3.v1.StatObjectRequest"; }
+
+ protected:
+  explicit StatObjectRequest(::google::protobuf::Arena* arena);
+  StatObjectRequest(::google::protobuf::Arena* arena, const StatObjectRequest& from);
+  StatObjectRequest(::google::protobuf::Arena* arena, StatObjectRequest&& from) noexcept
+      : StatObjectRequest(arena) {
+    *this = ::std::move(from);
+  }
+  const ::google::protobuf::internal::ClassData* GetClassData() const PROTOBUF_FINAL;
+  static void* PlacementNew_(const void*, void* mem,
+                             ::google::protobuf::Arena* arena);
+  static constexpr auto InternalNewImpl_();
+  static const ::google::protobuf::internal::ClassDataFull _class_data_;
+
+ public:
+  ::google::protobuf::Metadata GetMetadata() const;
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+  enum : int {
+    kBucketFieldNumber = 1,
+    kObjectFieldNumber = 2,
+  };
+  // string bucket = 1;
+  void clear_bucket() ;
+  const std::string& bucket() const;
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_bucket(Arg_&& arg, Args_... args);
+  std::string* mutable_bucket();
+  PROTOBUF_NODISCARD std::string* release_bucket();
+  void set_allocated_bucket(std::string* value);
+
+  private:
+  const std::string& _internal_bucket() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_bucket(
+      const std::string& value);
+  std::string* _internal_mutable_bucket();
+
+  public:
+  // string object = 2;
+  void clear_object() ;
+  const std::string& object() const;
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_object(Arg_&& arg, Args_... args);
+  std::string* mutable_object();
+  PROTOBUF_NODISCARD std::string* release_object();
+  void set_allocated_object(std::string* value);
+
+  private:
+  const std::string& _internal_object() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_object(
+      const std::string& value);
+  std::string* _internal_mutable_object();
+
+  public:
+  // @@protoc_insertion_point(class_scope:palm.s3.v1.StatObjectRequest)
+ private:
+  class _Internal;
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<
+      1, 2, 0,
+      49, 2>
+      _table_;
+
+  friend class ::google::protobuf::MessageLite;
+  friend class ::google::protobuf::Arena;
+  template <typename T>
+  friend class ::google::protobuf::Arena::InternalHelper;
+  using InternalArenaConstructable_ = void;
+  using DestructorSkippable_ = void;
+  struct Impl_ {
+    inline explicit constexpr Impl_(
+        ::google::protobuf::internal::ConstantInitialized) noexcept;
+    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                          ::google::protobuf::Arena* arena);
+    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                          ::google::protobuf::Arena* arena, const Impl_& from,
+                          const StatObjectRequest& from_msg);
+    ::google::protobuf::internal::ArenaStringPtr bucket_;
+    ::google::protobuf::internal::ArenaStringPtr object_;
+    ::google::protobuf::internal::CachedSize _cached_size_;
+    PROTOBUF_TSAN_DECLARE_MEMBER
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_s3_2eproto;
+};
 // -------------------------------------------------------------------
 
 class RemoveObjectRequest final : public ::google::protobuf::Message
@@ -168,7 +389,7 @@ class RemoveObjectRequest final : public ::google::protobuf::Message
     return reinterpret_cast<const RemoveObjectRequest*>(
         &_RemoveObjectRequest_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 4;
+  static constexpr int kIndexInFileMessages = 6;
   friend void swap(RemoveObjectRequest& a, RemoveObjectRequest& b) { a.Swap(&b); }
   inline void Swap(RemoveObjectRequest* other) {
     if (other == this) return;
@@ -382,7 +603,7 @@ class PresignedPutObjectResponse final : public ::google::protobuf::Message
     return reinterpret_cast<const PresignedPutObjectResponse*>(
         &_PresignedPutObjectResponse_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 9;
+  static constexpr int kIndexInFileMessages = 11;
   friend void swap(PresignedPutObjectResponse& a, PresignedPutObjectResponse& b) { a.Swap(&b); }
   inline void Swap(PresignedPutObjectResponse* other) {
     if (other == this) return;
@@ -578,7 +799,7 @@ class PresignedGetObjectResponse final : public ::google::protobuf::Message
     return reinterpret_cast<const PresignedGetObjectResponse*>(
         &_PresignedGetObjectResponse_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 3;
+  static constexpr int kIndexInFileMessages = 5;
   friend void swap(PresignedGetObjectResponse& a, PresignedGetObjectResponse& b) { a.Swap(&b); }
   inline void Swap(PresignedGetObjectResponse* other) {
     if (other == this) return;
@@ -774,7 +995,7 @@ class MakeBucketRequest final : public ::google::protobuf::Message
     return reinterpret_cast<const MakeBucketRequest*>(
         &_MakeBucketRequest_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 5;
+  static constexpr int kIndexInFileMessages = 7;
   friend void swap(MakeBucketRequest& a, MakeBucketRequest& b) { a.Swap(&b); }
   inline void Swap(MakeBucketRequest* other) {
     if (other == this) return;
@@ -996,7 +1217,7 @@ class ListBucketResponse_Item final : public ::google::protobuf::Message
     return reinterpret_cast<const ListBucketResponse_Item*>(
         &_ListBucketResponse_Item_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 10;
+  static constexpr int kIndexInFileMessages = 12;
   friend void swap(ListBucketResponse_Item& a, ListBucketResponse_Item& b) { a.Swap(&b); }
   inline void Swap(ListBucketResponse_Item* other) {
     if (other == this) return;
@@ -1192,7 +1413,7 @@ class GetObjectResponse final : public ::google::protobuf::Message
     return reinterpret_cast<const GetObjectResponse*>(
         &_GetObjectResponse_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 1;
+  static constexpr int kIndexInFileMessages = 3;
   friend void swap(GetObjectResponse& a, GetObjectResponse& b) { a.Swap(&b); }
   inline void Swap(GetObjectResponse* other) {
     if (other == this) return;
@@ -1388,7 +1609,7 @@ class GetObjectRequest final : public ::google::protobuf::Message
     return reinterpret_cast<const GetObjectRequest*>(
         &_GetObjectRequest_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 0;
+  static constexpr int kIndexInFileMessages = 2;
   friend void swap(GetObjectRequest& a, GetObjectRequest& b) { a.Swap(&b); }
   inline void Swap(GetObjectRequest* other) {
     if (other == this) return;
@@ -1602,7 +1823,7 @@ class BucketExistsResponse final : public ::google::protobuf::Message
     return reinterpret_cast<const BucketExistsResponse*>(
         &_BucketExistsResponse_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 7;
+  static constexpr int kIndexInFileMessages = 9;
   friend void swap(BucketExistsResponse& a, BucketExistsResponse& b) { a.Swap(&b); }
   inline void Swap(BucketExistsResponse* other) {
     if (other == this) return;
@@ -1792,7 +2013,7 @@ class BucketExistsRequest final : public ::google::protobuf::Message
     return reinterpret_cast<const BucketExistsRequest*>(
         &_BucketExistsRequest_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 6;
+  static constexpr int kIndexInFileMessages = 8;
   friend void swap(BucketExistsRequest& a, BucketExistsRequest& b) { a.Swap(&b); }
   inline void Swap(BucketExistsRequest* other) {
     if (other == this) return;
@@ -1929,6 +2150,267 @@ class BucketExistsRequest final : public ::google::protobuf::Message
 };
 // -------------------------------------------------------------------
 
+class StatObjectResponse final : public ::google::protobuf::Message
+/* @@protoc_insertion_point(class_definition:palm.s3.v1.StatObjectResponse) */ {
+ public:
+  inline StatObjectResponse() : StatObjectResponse(nullptr) {}
+  ~StatObjectResponse() PROTOBUF_FINAL;
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+  void operator delete(StatObjectResponse* msg, std::destroying_delete_t) {
+    SharedDtor(*msg);
+    ::google::protobuf::internal::SizedDelete(msg, sizeof(StatObjectResponse));
+  }
+#endif
+
+  template <typename = void>
+  explicit PROTOBUF_CONSTEXPR StatObjectResponse(
+      ::google::protobuf::internal::ConstantInitialized);
+
+  inline StatObjectResponse(const StatObjectResponse& from) : StatObjectResponse(nullptr, from) {}
+  inline StatObjectResponse(StatObjectResponse&& from) noexcept
+      : StatObjectResponse(nullptr, std::move(from)) {}
+  inline StatObjectResponse& operator=(const StatObjectResponse& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline StatObjectResponse& operator=(StatObjectResponse&& from) noexcept {
+    if (this == &from) return *this;
+    if (::google::protobuf::internal::CanMoveWithInternalSwap(GetArena(), from.GetArena())) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* mutable_unknown_fields()
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const StatObjectResponse& default_instance() {
+    return *internal_default_instance();
+  }
+  static inline const StatObjectResponse* internal_default_instance() {
+    return reinterpret_cast<const StatObjectResponse*>(
+        &_StatObjectResponse_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages = 1;
+  friend void swap(StatObjectResponse& a, StatObjectResponse& b) { a.Swap(&b); }
+  inline void Swap(StatObjectResponse* other) {
+    if (other == this) return;
+    if (::google::protobuf::internal::CanUseInternalSwap(GetArena(), other->GetArena())) {
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(StatObjectResponse* other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  StatObjectResponse* New(::google::protobuf::Arena* arena = nullptr) const {
+    return ::google::protobuf::Message::DefaultConstruct<StatObjectResponse>(arena);
+  }
+  using ::google::protobuf::Message::CopyFrom;
+  void CopyFrom(const StatObjectResponse& from);
+  using ::google::protobuf::Message::MergeFrom;
+  void MergeFrom(const StatObjectResponse& from) { StatObjectResponse::MergeImpl(*this, from); }
+
+  private:
+  static void MergeImpl(
+      ::google::protobuf::MessageLite& to_msg,
+      const ::google::protobuf::MessageLite& from_msg);
+
+  public:
+  bool IsInitialized() const {
+    return true;
+  }
+  ABSL_ATTRIBUTE_REINITIALIZES void Clear() PROTOBUF_FINAL;
+  #if defined(PROTOBUF_CUSTOM_VTABLE)
+  private:
+  static ::size_t ByteSizeLong(const ::google::protobuf::MessageLite& msg);
+  static ::uint8_t* _InternalSerialize(
+      const MessageLite& msg, ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream);
+
+  public:
+  ::size_t ByteSizeLong() const { return ByteSizeLong(*this); }
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream) const {
+    return _InternalSerialize(*this, target, stream);
+  }
+  #else   // PROTOBUF_CUSTOM_VTABLE
+  ::size_t ByteSizeLong() const final;
+  ::uint8_t* _InternalSerialize(
+      ::uint8_t* target,
+      ::google::protobuf::io::EpsCopyOutputStream* stream) const final;
+  #endif  // PROTOBUF_CUSTOM_VTABLE
+  int GetCachedSize() const { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::google::protobuf::Arena* arena);
+  static void SharedDtor(MessageLite& self);
+  void InternalSwap(StatObjectResponse* other);
+ private:
+  template <typename T>
+  friend ::absl::string_view(
+      ::google::protobuf::internal::GetAnyMessageName)();
+  static ::absl::string_view FullMessageName() { return "palm.s3.v1.StatObjectResponse"; }
+
+ protected:
+  explicit StatObjectResponse(::google::protobuf::Arena* arena);
+  StatObjectResponse(::google::protobuf::Arena* arena, const StatObjectResponse& from);
+  StatObjectResponse(::google::protobuf::Arena* arena, StatObjectResponse&& from) noexcept
+      : StatObjectResponse(arena) {
+    *this = ::std::move(from);
+  }
+  const ::google::protobuf::internal::ClassData* GetClassData() const PROTOBUF_FINAL;
+  static void* PlacementNew_(const void*, void* mem,
+                             ::google::protobuf::Arena* arena);
+  static constexpr auto InternalNewImpl_();
+  static const ::google::protobuf::internal::ClassDataFull _class_data_;
+
+ public:
+  ::google::protobuf::Metadata GetMetadata() const;
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+  enum : int {
+    kContentTypeFieldNumber = 2,
+    kVersionIdFieldNumber = 3,
+    kLastModifiedFieldNumber = 4,
+    kExpiresFieldNumber = 5,
+    kSizeFieldNumber = 1,
+  };
+  // string content_type = 2;
+  void clear_content_type() ;
+  const std::string& content_type() const;
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_content_type(Arg_&& arg, Args_... args);
+  std::string* mutable_content_type();
+  PROTOBUF_NODISCARD std::string* release_content_type();
+  void set_allocated_content_type(std::string* value);
+
+  private:
+  const std::string& _internal_content_type() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_content_type(
+      const std::string& value);
+  std::string* _internal_mutable_content_type();
+
+  public:
+  // string version_id = 3;
+  void clear_version_id() ;
+  const std::string& version_id() const;
+  template <typename Arg_ = const std::string&, typename... Args_>
+  void set_version_id(Arg_&& arg, Args_... args);
+  std::string* mutable_version_id();
+  PROTOBUF_NODISCARD std::string* release_version_id();
+  void set_allocated_version_id(std::string* value);
+
+  private:
+  const std::string& _internal_version_id() const;
+  inline PROTOBUF_ALWAYS_INLINE void _internal_set_version_id(
+      const std::string& value);
+  std::string* _internal_mutable_version_id();
+
+  public:
+  // .google.protobuf.Timestamp last_modified = 4;
+  bool has_last_modified() const;
+  void clear_last_modified() ;
+  const ::google::protobuf::Timestamp& last_modified() const;
+  PROTOBUF_NODISCARD ::google::protobuf::Timestamp* release_last_modified();
+  ::google::protobuf::Timestamp* mutable_last_modified();
+  void set_allocated_last_modified(::google::protobuf::Timestamp* value);
+  void unsafe_arena_set_allocated_last_modified(::google::protobuf::Timestamp* value);
+  ::google::protobuf::Timestamp* unsafe_arena_release_last_modified();
+
+  private:
+  const ::google::protobuf::Timestamp& _internal_last_modified() const;
+  ::google::protobuf::Timestamp* _internal_mutable_last_modified();
+
+  public:
+  // .google.protobuf.Timestamp expires = 5;
+  bool has_expires() const;
+  void clear_expires() ;
+  const ::google::protobuf::Timestamp& expires() const;
+  PROTOBUF_NODISCARD ::google::protobuf::Timestamp* release_expires();
+  ::google::protobuf::Timestamp* mutable_expires();
+  void set_allocated_expires(::google::protobuf::Timestamp* value);
+  void unsafe_arena_set_allocated_expires(::google::protobuf::Timestamp* value);
+  ::google::protobuf::Timestamp* unsafe_arena_release_expires();
+
+  private:
+  const ::google::protobuf::Timestamp& _internal_expires() const;
+  ::google::protobuf::Timestamp* _internal_mutable_expires();
+
+  public:
+  // int64 size = 1;
+  void clear_size() ;
+  ::int64_t size() const;
+  void set_size(::int64_t value);
+
+  private:
+  ::int64_t _internal_size() const;
+  void _internal_set_size(::int64_t value);
+
+  public:
+  // @@protoc_insertion_point(class_scope:palm.s3.v1.StatObjectResponse)
+ private:
+  class _Internal;
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<
+      3, 5, 2,
+      60, 2>
+      _table_;
+
+  friend class ::google::protobuf::MessageLite;
+  friend class ::google::protobuf::Arena;
+  template <typename T>
+  friend class ::google::protobuf::Arena::InternalHelper;
+  using InternalArenaConstructable_ = void;
+  using DestructorSkippable_ = void;
+  struct Impl_ {
+    inline explicit constexpr Impl_(
+        ::google::protobuf::internal::ConstantInitialized) noexcept;
+    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                          ::google::protobuf::Arena* arena);
+    inline explicit Impl_(::google::protobuf::internal::InternalVisibility visibility,
+                          ::google::protobuf::Arena* arena, const Impl_& from,
+                          const StatObjectResponse& from_msg);
+    ::google::protobuf::internal::HasBits<1> _has_bits_;
+    ::google::protobuf::internal::CachedSize _cached_size_;
+    ::google::protobuf::internal::ArenaStringPtr content_type_;
+    ::google::protobuf::internal::ArenaStringPtr version_id_;
+    ::google::protobuf::Timestamp* last_modified_;
+    ::google::protobuf::Timestamp* expires_;
+    ::int64_t size_;
+    PROTOBUF_TSAN_DECLARE_MEMBER
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_s3_2eproto;
+};
+// -------------------------------------------------------------------
+
 class PresignedPutObjectRequest final : public ::google::protobuf::Message
 /* @@protoc_insertion_point(class_definition:palm.s3.v1.PresignedPutObjectRequest) */ {
  public:
@@ -1988,7 +2470,7 @@ class PresignedPutObjectRequest final : public ::google::protobuf::Message
     return reinterpret_cast<const PresignedPutObjectRequest*>(
         &_PresignedPutObjectRequest_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 8;
+  static constexpr int kIndexInFileMessages = 10;
   friend void swap(PresignedPutObjectRequest& a, PresignedPutObjectRequest& b) { a.Swap(&b); }
   inline void Swap(PresignedPutObjectRequest* other) {
     if (other == this) return;
@@ -2220,7 +2702,7 @@ class PresignedGetObjectRequest final : public ::google::protobuf::Message
     return reinterpret_cast<const PresignedGetObjectRequest*>(
         &_PresignedGetObjectRequest_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 2;
+  static constexpr int kIndexInFileMessages = 4;
   friend void swap(PresignedGetObjectRequest& a, PresignedGetObjectRequest& b) { a.Swap(&b); }
   inline void Swap(PresignedGetObjectRequest* other) {
     if (other == this) return;
@@ -2471,7 +2953,7 @@ class ListBucketResponse final : public ::google::protobuf::Message
     return reinterpret_cast<const ListBucketResponse*>(
         &_ListBucketResponse_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 11;
+  static constexpr int kIndexInFileMessages = 13;
   friend void swap(ListBucketResponse& a, ListBucketResponse& b) { a.Swap(&b); }
   inline void Swap(ListBucketResponse* other) {
     if (other == this) return;
@@ -2621,6 +3103,410 @@ class ListBucketResponse final : public ::google::protobuf::Message
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wstrict-aliasing"
 #endif  // __GNUC__
+// -------------------------------------------------------------------
+
+// StatObjectRequest
+
+// string bucket = 1;
+inline void StatObjectRequest::clear_bucket() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.bucket_.ClearToEmpty();
+}
+inline const std::string& StatObjectRequest::bucket() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:palm.s3.v1.StatObjectRequest.bucket)
+  return _internal_bucket();
+}
+template <typename Arg_, typename... Args_>
+inline PROTOBUF_ALWAYS_INLINE void StatObjectRequest::set_bucket(Arg_&& arg,
+                                                     Args_... args) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.bucket_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:palm.s3.v1.StatObjectRequest.bucket)
+}
+inline std::string* StatObjectRequest::mutable_bucket() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  std::string* _s = _internal_mutable_bucket();
+  // @@protoc_insertion_point(field_mutable:palm.s3.v1.StatObjectRequest.bucket)
+  return _s;
+}
+inline const std::string& StatObjectRequest::_internal_bucket() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.bucket_.Get();
+}
+inline void StatObjectRequest::_internal_set_bucket(const std::string& value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.bucket_.Set(value, GetArena());
+}
+inline std::string* StatObjectRequest::_internal_mutable_bucket() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  return _impl_.bucket_.Mutable( GetArena());
+}
+inline std::string* StatObjectRequest::release_bucket() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  // @@protoc_insertion_point(field_release:palm.s3.v1.StatObjectRequest.bucket)
+  return _impl_.bucket_.Release();
+}
+inline void StatObjectRequest::set_allocated_bucket(std::string* value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.bucket_.SetAllocated(value, GetArena());
+  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString() && _impl_.bucket_.IsDefault()) {
+    _impl_.bucket_.Set("", GetArena());
+  }
+  // @@protoc_insertion_point(field_set_allocated:palm.s3.v1.StatObjectRequest.bucket)
+}
+
+// string object = 2;
+inline void StatObjectRequest::clear_object() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.object_.ClearToEmpty();
+}
+inline const std::string& StatObjectRequest::object() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:palm.s3.v1.StatObjectRequest.object)
+  return _internal_object();
+}
+template <typename Arg_, typename... Args_>
+inline PROTOBUF_ALWAYS_INLINE void StatObjectRequest::set_object(Arg_&& arg,
+                                                     Args_... args) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.object_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:palm.s3.v1.StatObjectRequest.object)
+}
+inline std::string* StatObjectRequest::mutable_object() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  std::string* _s = _internal_mutable_object();
+  // @@protoc_insertion_point(field_mutable:palm.s3.v1.StatObjectRequest.object)
+  return _s;
+}
+inline const std::string& StatObjectRequest::_internal_object() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.object_.Get();
+}
+inline void StatObjectRequest::_internal_set_object(const std::string& value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.object_.Set(value, GetArena());
+}
+inline std::string* StatObjectRequest::_internal_mutable_object() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  return _impl_.object_.Mutable( GetArena());
+}
+inline std::string* StatObjectRequest::release_object() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  // @@protoc_insertion_point(field_release:palm.s3.v1.StatObjectRequest.object)
+  return _impl_.object_.Release();
+}
+inline void StatObjectRequest::set_allocated_object(std::string* value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.object_.SetAllocated(value, GetArena());
+  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString() && _impl_.object_.IsDefault()) {
+    _impl_.object_.Set("", GetArena());
+  }
+  // @@protoc_insertion_point(field_set_allocated:palm.s3.v1.StatObjectRequest.object)
+}
+
+// -------------------------------------------------------------------
+
+// StatObjectResponse
+
+// int64 size = 1;
+inline void StatObjectResponse::clear_size() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.size_ = ::int64_t{0};
+}
+inline ::int64_t StatObjectResponse::size() const {
+  // @@protoc_insertion_point(field_get:palm.s3.v1.StatObjectResponse.size)
+  return _internal_size();
+}
+inline void StatObjectResponse::set_size(::int64_t value) {
+  _internal_set_size(value);
+  // @@protoc_insertion_point(field_set:palm.s3.v1.StatObjectResponse.size)
+}
+inline ::int64_t StatObjectResponse::_internal_size() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.size_;
+}
+inline void StatObjectResponse::_internal_set_size(::int64_t value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.size_ = value;
+}
+
+// string content_type = 2;
+inline void StatObjectResponse::clear_content_type() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.content_type_.ClearToEmpty();
+}
+inline const std::string& StatObjectResponse::content_type() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:palm.s3.v1.StatObjectResponse.content_type)
+  return _internal_content_type();
+}
+template <typename Arg_, typename... Args_>
+inline PROTOBUF_ALWAYS_INLINE void StatObjectResponse::set_content_type(Arg_&& arg,
+                                                     Args_... args) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.content_type_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:palm.s3.v1.StatObjectResponse.content_type)
+}
+inline std::string* StatObjectResponse::mutable_content_type() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  std::string* _s = _internal_mutable_content_type();
+  // @@protoc_insertion_point(field_mutable:palm.s3.v1.StatObjectResponse.content_type)
+  return _s;
+}
+inline const std::string& StatObjectResponse::_internal_content_type() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.content_type_.Get();
+}
+inline void StatObjectResponse::_internal_set_content_type(const std::string& value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.content_type_.Set(value, GetArena());
+}
+inline std::string* StatObjectResponse::_internal_mutable_content_type() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  return _impl_.content_type_.Mutable( GetArena());
+}
+inline std::string* StatObjectResponse::release_content_type() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  // @@protoc_insertion_point(field_release:palm.s3.v1.StatObjectResponse.content_type)
+  return _impl_.content_type_.Release();
+}
+inline void StatObjectResponse::set_allocated_content_type(std::string* value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.content_type_.SetAllocated(value, GetArena());
+  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString() && _impl_.content_type_.IsDefault()) {
+    _impl_.content_type_.Set("", GetArena());
+  }
+  // @@protoc_insertion_point(field_set_allocated:palm.s3.v1.StatObjectResponse.content_type)
+}
+
+// string version_id = 3;
+inline void StatObjectResponse::clear_version_id() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.version_id_.ClearToEmpty();
+}
+inline const std::string& StatObjectResponse::version_id() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:palm.s3.v1.StatObjectResponse.version_id)
+  return _internal_version_id();
+}
+template <typename Arg_, typename... Args_>
+inline PROTOBUF_ALWAYS_INLINE void StatObjectResponse::set_version_id(Arg_&& arg,
+                                                     Args_... args) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.version_id_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:palm.s3.v1.StatObjectResponse.version_id)
+}
+inline std::string* StatObjectResponse::mutable_version_id() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  std::string* _s = _internal_mutable_version_id();
+  // @@protoc_insertion_point(field_mutable:palm.s3.v1.StatObjectResponse.version_id)
+  return _s;
+}
+inline const std::string& StatObjectResponse::_internal_version_id() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.version_id_.Get();
+}
+inline void StatObjectResponse::_internal_set_version_id(const std::string& value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.version_id_.Set(value, GetArena());
+}
+inline std::string* StatObjectResponse::_internal_mutable_version_id() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  return _impl_.version_id_.Mutable( GetArena());
+}
+inline std::string* StatObjectResponse::release_version_id() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  // @@protoc_insertion_point(field_release:palm.s3.v1.StatObjectResponse.version_id)
+  return _impl_.version_id_.Release();
+}
+inline void StatObjectResponse::set_allocated_version_id(std::string* value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.version_id_.SetAllocated(value, GetArena());
+  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString() && _impl_.version_id_.IsDefault()) {
+    _impl_.version_id_.Set("", GetArena());
+  }
+  // @@protoc_insertion_point(field_set_allocated:palm.s3.v1.StatObjectResponse.version_id)
+}
+
+// .google.protobuf.Timestamp last_modified = 4;
+inline bool StatObjectResponse::has_last_modified() const {
+  bool value = (_impl_._has_bits_[0] & 0x00000001u) != 0;
+  PROTOBUF_ASSUME(!value || _impl_.last_modified_ != nullptr);
+  return value;
+}
+inline const ::google::protobuf::Timestamp& StatObjectResponse::_internal_last_modified() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  const ::google::protobuf::Timestamp* p = _impl_.last_modified_;
+  return p != nullptr ? *p : reinterpret_cast<const ::google::protobuf::Timestamp&>(::google::protobuf::_Timestamp_default_instance_);
+}
+inline const ::google::protobuf::Timestamp& StatObjectResponse::last_modified() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:palm.s3.v1.StatObjectResponse.last_modified)
+  return _internal_last_modified();
+}
+inline void StatObjectResponse::unsafe_arena_set_allocated_last_modified(::google::protobuf::Timestamp* value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (GetArena() == nullptr) {
+    delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.last_modified_);
+  }
+  _impl_.last_modified_ = reinterpret_cast<::google::protobuf::Timestamp*>(value);
+  if (value != nullptr) {
+    _impl_._has_bits_[0] |= 0x00000001u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000001u;
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:palm.s3.v1.StatObjectResponse.last_modified)
+}
+inline ::google::protobuf::Timestamp* StatObjectResponse::release_last_modified() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+
+  _impl_._has_bits_[0] &= ~0x00000001u;
+  ::google::protobuf::Timestamp* released = _impl_.last_modified_;
+  _impl_.last_modified_ = nullptr;
+  if (::google::protobuf::internal::DebugHardenForceCopyInRelease()) {
+    auto* old = reinterpret_cast<::google::protobuf::MessageLite*>(released);
+    released = ::google::protobuf::internal::DuplicateIfNonNull(released);
+    if (GetArena() == nullptr) {
+      delete old;
+    }
+  } else {
+    if (GetArena() != nullptr) {
+      released = ::google::protobuf::internal::DuplicateIfNonNull(released);
+    }
+  }
+  return released;
+}
+inline ::google::protobuf::Timestamp* StatObjectResponse::unsafe_arena_release_last_modified() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  // @@protoc_insertion_point(field_release:palm.s3.v1.StatObjectResponse.last_modified)
+
+  _impl_._has_bits_[0] &= ~0x00000001u;
+  ::google::protobuf::Timestamp* temp = _impl_.last_modified_;
+  _impl_.last_modified_ = nullptr;
+  return temp;
+}
+inline ::google::protobuf::Timestamp* StatObjectResponse::_internal_mutable_last_modified() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (_impl_.last_modified_ == nullptr) {
+    auto* p = ::google::protobuf::Message::DefaultConstruct<::google::protobuf::Timestamp>(GetArena());
+    _impl_.last_modified_ = reinterpret_cast<::google::protobuf::Timestamp*>(p);
+  }
+  return _impl_.last_modified_;
+}
+inline ::google::protobuf::Timestamp* StatObjectResponse::mutable_last_modified() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  _impl_._has_bits_[0] |= 0x00000001u;
+  ::google::protobuf::Timestamp* _msg = _internal_mutable_last_modified();
+  // @@protoc_insertion_point(field_mutable:palm.s3.v1.StatObjectResponse.last_modified)
+  return _msg;
+}
+inline void StatObjectResponse::set_allocated_last_modified(::google::protobuf::Timestamp* value) {
+  ::google::protobuf::Arena* message_arena = GetArena();
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (message_arena == nullptr) {
+    delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.last_modified_);
+  }
+
+  if (value != nullptr) {
+    ::google::protobuf::Arena* submessage_arena = reinterpret_cast<::google::protobuf::MessageLite*>(value)->GetArena();
+    if (message_arena != submessage_arena) {
+      value = ::google::protobuf::internal::GetOwnedMessage(message_arena, value, submessage_arena);
+    }
+    _impl_._has_bits_[0] |= 0x00000001u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000001u;
+  }
+
+  _impl_.last_modified_ = reinterpret_cast<::google::protobuf::Timestamp*>(value);
+  // @@protoc_insertion_point(field_set_allocated:palm.s3.v1.StatObjectResponse.last_modified)
+}
+
+// .google.protobuf.Timestamp expires = 5;
+inline bool StatObjectResponse::has_expires() const {
+  bool value = (_impl_._has_bits_[0] & 0x00000002u) != 0;
+  PROTOBUF_ASSUME(!value || _impl_.expires_ != nullptr);
+  return value;
+}
+inline const ::google::protobuf::Timestamp& StatObjectResponse::_internal_expires() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  const ::google::protobuf::Timestamp* p = _impl_.expires_;
+  return p != nullptr ? *p : reinterpret_cast<const ::google::protobuf::Timestamp&>(::google::protobuf::_Timestamp_default_instance_);
+}
+inline const ::google::protobuf::Timestamp& StatObjectResponse::expires() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:palm.s3.v1.StatObjectResponse.expires)
+  return _internal_expires();
+}
+inline void StatObjectResponse::unsafe_arena_set_allocated_expires(::google::protobuf::Timestamp* value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (GetArena() == nullptr) {
+    delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.expires_);
+  }
+  _impl_.expires_ = reinterpret_cast<::google::protobuf::Timestamp*>(value);
+  if (value != nullptr) {
+    _impl_._has_bits_[0] |= 0x00000002u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000002u;
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:palm.s3.v1.StatObjectResponse.expires)
+}
+inline ::google::protobuf::Timestamp* StatObjectResponse::release_expires() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+
+  _impl_._has_bits_[0] &= ~0x00000002u;
+  ::google::protobuf::Timestamp* released = _impl_.expires_;
+  _impl_.expires_ = nullptr;
+  if (::google::protobuf::internal::DebugHardenForceCopyInRelease()) {
+    auto* old = reinterpret_cast<::google::protobuf::MessageLite*>(released);
+    released = ::google::protobuf::internal::DuplicateIfNonNull(released);
+    if (GetArena() == nullptr) {
+      delete old;
+    }
+  } else {
+    if (GetArena() != nullptr) {
+      released = ::google::protobuf::internal::DuplicateIfNonNull(released);
+    }
+  }
+  return released;
+}
+inline ::google::protobuf::Timestamp* StatObjectResponse::unsafe_arena_release_expires() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  // @@protoc_insertion_point(field_release:palm.s3.v1.StatObjectResponse.expires)
+
+  _impl_._has_bits_[0] &= ~0x00000002u;
+  ::google::protobuf::Timestamp* temp = _impl_.expires_;
+  _impl_.expires_ = nullptr;
+  return temp;
+}
+inline ::google::protobuf::Timestamp* StatObjectResponse::_internal_mutable_expires() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (_impl_.expires_ == nullptr) {
+    auto* p = ::google::protobuf::Message::DefaultConstruct<::google::protobuf::Timestamp>(GetArena());
+    _impl_.expires_ = reinterpret_cast<::google::protobuf::Timestamp*>(p);
+  }
+  return _impl_.expires_;
+}
+inline ::google::protobuf::Timestamp* StatObjectResponse::mutable_expires() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  _impl_._has_bits_[0] |= 0x00000002u;
+  ::google::protobuf::Timestamp* _msg = _internal_mutable_expires();
+  // @@protoc_insertion_point(field_mutable:palm.s3.v1.StatObjectResponse.expires)
+  return _msg;
+}
+inline void StatObjectResponse::set_allocated_expires(::google::protobuf::Timestamp* value) {
+  ::google::protobuf::Arena* message_arena = GetArena();
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (message_arena == nullptr) {
+    delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.expires_);
+  }
+
+  if (value != nullptr) {
+    ::google::protobuf::Arena* submessage_arena = reinterpret_cast<::google::protobuf::MessageLite*>(value)->GetArena();
+    if (message_arena != submessage_arena) {
+      value = ::google::protobuf::internal::GetOwnedMessage(message_arena, value, submessage_arena);
+    }
+    _impl_._has_bits_[0] |= 0x00000002u;
+  } else {
+    _impl_._has_bits_[0] &= ~0x00000002u;
+  }
+
+  _impl_.expires_ = reinterpret_cast<::google::protobuf::Timestamp*>(value);
+  // @@protoc_insertion_point(field_set_allocated:palm.s3.v1.StatObjectResponse.expires)
+}
+
 // -------------------------------------------------------------------
 
 // GetObjectRequest

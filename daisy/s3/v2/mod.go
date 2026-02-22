@@ -7,14 +7,57 @@ import (
 	"fmt"
 	"log/slog"
 	"net/url"
+	"path/filepath"
+	"strings"
 	"text/template"
+	"time"
 
+	"github.com/google/uuid"
 	"github.com/minio/minio-go/v7"
 	"github.com/minio/minio-go/v7/pkg/lifecycle"
+	timestamppb "google.golang.org/protobuf/types/known/timestamppb"
 )
 
 //go:embed anonymous-read.json
 var anonymous_read_json string
+
+func (p *StatObjectRequest) Execute(ctx context.Context, client *minio.Client) (*StatObjectResponse, error) {
+	slog.Debug("stat", "bucket", p.Bucket, "object", p.Object)
+	stat, err := client.StatObject(ctx, p.Bucket, p.Object, minio.StatObjectOptions{})
+	if err != nil {
+		return nil, err
+	}
+	return &StatObjectResponse{
+		ContentType:  stat.ContentType,
+		Size:         stat.Size,
+		Expires:      timestamppb.New(stat.Expires),
+		LastModified: timestamppb.New(stat.LastModified),
+		VersionId:    stat.VersionID,
+	}, nil
+}
+
+// https://docs.aws.amazon.com/AmazonS3/latest/userguide/object-keys.html
+func ObjectName(title string) string {
+	return uuid.New().String() + filepath.Ext(title)
+}
+
+// https://docs.aws.amazon.com/AmazonS3/latest/userguide/bucketnamingrules.html
+func BucketName(namespace string, public bool, expire_after_days *uint32) string {
+	var days uint32
+	if expire_after_days != nil {
+		days = *expire_after_days
+	} else {
+		days = 0
+	}
+	var pub string
+	if public {
+		pub = "t"
+	} else {
+		pub = "f"
+	}
+	now := time.Now()
+	return fmt.Sprintf("%s.%s%s%d", strings.ToLower(strings.TrimSpace(namespace)), now.Format("200601"), pub, days)
+}
 
 func (p *MakeBucketRequest) Execute(ctx context.Context, client *minio.Client) error {
 	slog.Info("create bucket", "name", p.Name)

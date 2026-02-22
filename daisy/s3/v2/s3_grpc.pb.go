@@ -27,6 +27,7 @@ const (
 	S3_RemoveObject_FullMethodName       = "/palm.s3.v1.S3/RemoveObject"
 	S3_PresignedGetObject_FullMethodName = "/palm.s3.v1.S3/PresignedGetObject"
 	S3_GetObject_FullMethodName          = "/palm.s3.v1.S3/GetObject"
+	S3_StatObject_FullMethodName         = "/palm.s3.v1.S3/StatObject"
 )
 
 // S3Client is the client API for S3 service.
@@ -40,6 +41,7 @@ type S3Client interface {
 	RemoveObject(ctx context.Context, in *RemoveObjectRequest, opts ...grpc.CallOption) (*emptypb.Empty, error)
 	PresignedGetObject(ctx context.Context, in *PresignedGetObjectRequest, opts ...grpc.CallOption) (*PresignedGetObjectResponse, error)
 	GetObject(ctx context.Context, in *GetObjectRequest, opts ...grpc.CallOption) (*GetObjectResponse, error)
+	StatObject(ctx context.Context, in *StatObjectRequest, opts ...grpc.CallOption) (*StatObjectResponse, error)
 }
 
 type s3Client struct {
@@ -120,6 +122,16 @@ func (c *s3Client) GetObject(ctx context.Context, in *GetObjectRequest, opts ...
 	return out, nil
 }
 
+func (c *s3Client) StatObject(ctx context.Context, in *StatObjectRequest, opts ...grpc.CallOption) (*StatObjectResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(StatObjectResponse)
+	err := c.cc.Invoke(ctx, S3_StatObject_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // S3Server is the server API for S3 service.
 // All implementations must embed UnimplementedS3Server
 // for forward compatibility.
@@ -131,6 +143,7 @@ type S3Server interface {
 	RemoveObject(context.Context, *RemoveObjectRequest) (*emptypb.Empty, error)
 	PresignedGetObject(context.Context, *PresignedGetObjectRequest) (*PresignedGetObjectResponse, error)
 	GetObject(context.Context, *GetObjectRequest) (*GetObjectResponse, error)
+	StatObject(context.Context, *StatObjectRequest) (*StatObjectResponse, error)
 	mustEmbedUnimplementedS3Server()
 }
 
@@ -161,6 +174,9 @@ func (UnimplementedS3Server) PresignedGetObject(context.Context, *PresignedGetOb
 }
 func (UnimplementedS3Server) GetObject(context.Context, *GetObjectRequest) (*GetObjectResponse, error) {
 	return nil, status.Error(codes.Unimplemented, "method GetObject not implemented")
+}
+func (UnimplementedS3Server) StatObject(context.Context, *StatObjectRequest) (*StatObjectResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method StatObject not implemented")
 }
 func (UnimplementedS3Server) mustEmbedUnimplementedS3Server() {}
 func (UnimplementedS3Server) testEmbeddedByValue()            {}
@@ -309,6 +325,24 @@ func _S3_GetObject_Handler(srv interface{}, ctx context.Context, dec func(interf
 	return interceptor(ctx, in, info, handler)
 }
 
+func _S3_StatObject_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(StatObjectRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(S3Server).StatObject(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: S3_StatObject_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(S3Server).StatObject(ctx, req.(*StatObjectRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // S3_ServiceDesc is the grpc.ServiceDesc for S3 service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -343,6 +377,10 @@ var S3_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetObject",
 			Handler:    _S3_GetObject_Handler,
+		},
+		{
+			MethodName: "StatObject",
+			Handler:    _S3_StatObject_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

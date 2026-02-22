@@ -31,6 +31,7 @@ static const char* S3_method_names[] = {
   "/palm.s3.v1.S3/RemoveObject",
   "/palm.s3.v1.S3/PresignedGetObject",
   "/palm.s3.v1.S3/GetObject",
+  "/palm.s3.v1.S3/StatObject",
 };
 
 std::unique_ptr< S3::Stub> S3::NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options) {
@@ -47,6 +48,7 @@ S3::Stub::Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const 
   , rpcmethod_RemoveObject_(S3_method_names[4], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   , rpcmethod_PresignedGetObject_(S3_method_names[5], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   , rpcmethod_GetObject_(S3_method_names[6], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  , rpcmethod_StatObject_(S3_method_names[7], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
   {}
 
 ::grpc::Status S3::Stub::MakeBucket(::grpc::ClientContext* context, const ::palm::s3::v1::MakeBucketRequest& request, ::google::protobuf::Empty* response) {
@@ -210,6 +212,29 @@ void S3::Stub::async::GetObject(::grpc::ClientContext* context, const ::palm::s3
   return result;
 }
 
+::grpc::Status S3::Stub::StatObject(::grpc::ClientContext* context, const ::palm::s3::v1::StatObjectRequest& request, ::palm::s3::v1::StatObjectResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::palm::s3::v1::StatObjectRequest, ::palm::s3::v1::StatObjectResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_StatObject_, context, request, response);
+}
+
+void S3::Stub::async::StatObject(::grpc::ClientContext* context, const ::palm::s3::v1::StatObjectRequest* request, ::palm::s3::v1::StatObjectResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::palm::s3::v1::StatObjectRequest, ::palm::s3::v1::StatObjectResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_StatObject_, context, request, response, std::move(f));
+}
+
+void S3::Stub::async::StatObject(::grpc::ClientContext* context, const ::palm::s3::v1::StatObjectRequest* request, ::palm::s3::v1::StatObjectResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_StatObject_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::palm::s3::v1::StatObjectResponse>* S3::Stub::PrepareAsyncStatObjectRaw(::grpc::ClientContext* context, const ::palm::s3::v1::StatObjectRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::palm::s3::v1::StatObjectResponse, ::palm::s3::v1::StatObjectRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_StatObject_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::palm::s3::v1::StatObjectResponse>* S3::Stub::AsyncStatObjectRaw(::grpc::ClientContext* context, const ::palm::s3::v1::StatObjectRequest& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncStatObjectRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
+
 S3::Service::Service() {
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       S3_method_names[0],
@@ -281,6 +306,16 @@ S3::Service::Service() {
              ::palm::s3::v1::GetObjectResponse* resp) {
                return service->GetObject(ctx, req, resp);
              }, this)));
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      S3_method_names[7],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< S3::Service, ::palm::s3::v1::StatObjectRequest, ::palm::s3::v1::StatObjectResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](S3::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::palm::s3::v1::StatObjectRequest* req,
+             ::palm::s3::v1::StatObjectResponse* resp) {
+               return service->StatObject(ctx, req, resp);
+             }, this)));
 }
 
 S3::Service::~Service() {
@@ -329,6 +364,13 @@ S3::Service::~Service() {
 }
 
 ::grpc::Status S3::Service::GetObject(::grpc::ServerContext* context, const ::palm::s3::v1::GetObjectRequest* request, ::palm::s3::v1::GetObjectResponse* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+}
+
+::grpc::Status S3::Service::StatObject(::grpc::ServerContext* context, const ::palm::s3::v1::StatObjectRequest* request, ::palm::s3::v1::StatObjectResponse* response) {
   (void) context;
   (void) request;
   (void) response;

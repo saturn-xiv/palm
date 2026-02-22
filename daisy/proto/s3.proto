@@ -9,6 +9,7 @@ package palm.s3.v1;
 
 import "google/protobuf/empty.proto";
 import "google/protobuf/duration.proto";
+import "google/protobuf/timestamp.proto";
 
 service S3 {
   rpc MakeBucket(MakeBucketRequest) returns (google.protobuf.Empty) {}
@@ -18,6 +19,20 @@ service S3 {
   rpc RemoveObject(RemoveObjectRequest) returns (google.protobuf.Empty) {}
   rpc PresignedGetObject(PresignedGetObjectRequest) returns (PresignedGetObjectResponse) {}
   rpc GetObject(GetObjectRequest) returns (GetObjectResponse) {}
+  rpc StatObject(StatObjectRequest) returns (StatObjectResponse) {}
+}
+
+message StatObjectRequest{
+  string bucket = 1;
+  string object = 2;
+}
+
+message StatObjectResponse {
+  int64                     size          = 1;
+  string                    content_type  = 2;
+  string                    version_id    = 3;
+  google.protobuf.Timestamp last_modified = 4;
+  google.protobuf.Timestamp expires       = 5;
 }
 
 message GetObjectRequest{

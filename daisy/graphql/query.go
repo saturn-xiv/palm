@@ -4,6 +4,7 @@ import (
 	"gorm.io/gorm"
 
 	"github.com/casbin/casbin/v3"
+	"github.com/minio/minio-go/v7"
 
 	"github.com/saturn-xiv/palm/daisy/cache"
 	"github.com/saturn-xiv/palm/daisy/crypto"
@@ -19,6 +20,7 @@ type Query struct {
 	hmac          *crypto.Hmac
 	jwt           *crypto.Jwt
 	enforcer      *casbin.Enforcer
+	minio         *minio.Client
 	google_oauth2 GoogleOauth2Config
 }
 

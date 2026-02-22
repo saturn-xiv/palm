@@ -13,6 +13,7 @@ import (
 	"github.com/go-playground/validator/v10"
 	graphql "github.com/graph-gophers/graphql-go"
 	"github.com/graph-gophers/graphql-go/relay"
+	"github.com/minio/minio-go/v7"
 	"gorm.io/gorm"
 
 	"github.com/saturn-xiv/palm/daisy/cache"
@@ -28,8 +29,9 @@ var gl_schema_txt string
 
 type headerKey string
 
-func Handler(db *gorm.DB, redis *cache.RedisClient, rabbitmq *queue.RabbitMQ, aead *crypto.Aead, hmac *crypto.Hmac, jwt *crypto.Jwt, enforcer *casbin.Enforcer, google_oauth2 GoogleOauth2Config) (http.Handler, error) {
-	schema, err := graphql.ParseSchema(gl_schema_txt, &Root{db, redis, rabbitmq, aead, hmac, jwt, enforcer, google_oauth2})
+func Handler(db *gorm.DB, redis *cache.RedisClient, rabbitmq *queue.RabbitMQ, aead *crypto.Aead, hmac *crypto.Hmac, jwt *crypto.Jwt, enforcer *casbin.Enforcer,
+	s3 *minio.Client, google_oauth2 GoogleOauth2Config) (http.Handler, error) {
+	schema, err := graphql.ParseSchema(gl_schema_txt, &Root{db, redis, rabbitmq, aead, hmac, jwt, enforcer, s3, google_oauth2})
 	if err != nil {
 		return nil, err
 	}
@@ -145,4 +147,20 @@ func random_alphanumeric(l int) (string, error) {
 		return "", err
 	}
 	return base64.URLEncoding.WithPadding(base64.NoPadding).EncodeToString(buf), nil
+}
+
+type Resource struct {
+	type_ string
+	id    *uint
+}
+
+func (p *Resource) Type() string {
+	return p.type_
+}
+func (p *Resource) Id() *graphql.ID {
+	if p.id == nil {
+		return nil
+	}
+	it := ToId(*p.id)
+	return &it
 }

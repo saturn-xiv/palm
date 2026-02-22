@@ -87,6 +87,13 @@ class S3 final {
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::palm::s3::v1::GetObjectResponse>> PrepareAsyncGetObject(::grpc::ClientContext* context, const ::palm::s3::v1::GetObjectRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::palm::s3::v1::GetObjectResponse>>(PrepareAsyncGetObjectRaw(context, request, cq));
     }
+    virtual ::grpc::Status StatObject(::grpc::ClientContext* context, const ::palm::s3::v1::StatObjectRequest& request, ::palm::s3::v1::StatObjectResponse* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::palm::s3::v1::StatObjectResponse>> AsyncStatObject(::grpc::ClientContext* context, const ::palm::s3::v1::StatObjectRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::palm::s3::v1::StatObjectResponse>>(AsyncStatObjectRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::palm::s3::v1::StatObjectResponse>> PrepareAsyncStatObject(::grpc::ClientContext* context, const ::palm::s3::v1::StatObjectRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::palm::s3::v1::StatObjectResponse>>(PrepareAsyncStatObjectRaw(context, request, cq));
+    }
     class async_interface {
      public:
       virtual ~async_interface() {}
@@ -104,6 +111,8 @@ class S3 final {
       virtual void PresignedGetObject(::grpc::ClientContext* context, const ::palm::s3::v1::PresignedGetObjectRequest* request, ::palm::s3::v1::PresignedGetObjectResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
       virtual void GetObject(::grpc::ClientContext* context, const ::palm::s3::v1::GetObjectRequest* request, ::palm::s3::v1::GetObjectResponse* response, std::function<void(::grpc::Status)>) = 0;
       virtual void GetObject(::grpc::ClientContext* context, const ::palm::s3::v1::GetObjectRequest* request, ::palm::s3::v1::GetObjectResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      virtual void StatObject(::grpc::ClientContext* context, const ::palm::s3::v1::StatObjectRequest* request, ::palm::s3::v1::StatObjectResponse* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void StatObject(::grpc::ClientContext* context, const ::palm::s3::v1::StatObjectRequest* request, ::palm::s3::v1::StatObjectResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
     };
     typedef class async_interface experimental_async_interface;
     virtual class async_interface* async() { return nullptr; }
@@ -123,6 +132,8 @@ class S3 final {
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::palm::s3::v1::PresignedGetObjectResponse>* PrepareAsyncPresignedGetObjectRaw(::grpc::ClientContext* context, const ::palm::s3::v1::PresignedGetObjectRequest& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::palm::s3::v1::GetObjectResponse>* AsyncGetObjectRaw(::grpc::ClientContext* context, const ::palm::s3::v1::GetObjectRequest& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::palm::s3::v1::GetObjectResponse>* PrepareAsyncGetObjectRaw(::grpc::ClientContext* context, const ::palm::s3::v1::GetObjectRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::palm::s3::v1::StatObjectResponse>* AsyncStatObjectRaw(::grpc::ClientContext* context, const ::palm::s3::v1::StatObjectRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::palm::s3::v1::StatObjectResponse>* PrepareAsyncStatObjectRaw(::grpc::ClientContext* context, const ::palm::s3::v1::StatObjectRequest& request, ::grpc::CompletionQueue* cq) = 0;
   };
   class Stub final : public StubInterface {
    public:
@@ -176,6 +187,13 @@ class S3 final {
     std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::palm::s3::v1::GetObjectResponse>> PrepareAsyncGetObject(::grpc::ClientContext* context, const ::palm::s3::v1::GetObjectRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::palm::s3::v1::GetObjectResponse>>(PrepareAsyncGetObjectRaw(context, request, cq));
     }
+    ::grpc::Status StatObject(::grpc::ClientContext* context, const ::palm::s3::v1::StatObjectRequest& request, ::palm::s3::v1::StatObjectResponse* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::palm::s3::v1::StatObjectResponse>> AsyncStatObject(::grpc::ClientContext* context, const ::palm::s3::v1::StatObjectRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::palm::s3::v1::StatObjectResponse>>(AsyncStatObjectRaw(context, request, cq));
+    }
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::palm::s3::v1::StatObjectResponse>> PrepareAsyncStatObject(::grpc::ClientContext* context, const ::palm::s3::v1::StatObjectRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::palm::s3::v1::StatObjectResponse>>(PrepareAsyncStatObjectRaw(context, request, cq));
+    }
     class async final :
       public StubInterface::async_interface {
      public:
@@ -193,6 +211,8 @@ class S3 final {
       void PresignedGetObject(::grpc::ClientContext* context, const ::palm::s3::v1::PresignedGetObjectRequest* request, ::palm::s3::v1::PresignedGetObjectResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
       void GetObject(::grpc::ClientContext* context, const ::palm::s3::v1::GetObjectRequest* request, ::palm::s3::v1::GetObjectResponse* response, std::function<void(::grpc::Status)>) override;
       void GetObject(::grpc::ClientContext* context, const ::palm::s3::v1::GetObjectRequest* request, ::palm::s3::v1::GetObjectResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      void StatObject(::grpc::ClientContext* context, const ::palm::s3::v1::StatObjectRequest* request, ::palm::s3::v1::StatObjectResponse* response, std::function<void(::grpc::Status)>) override;
+      void StatObject(::grpc::ClientContext* context, const ::palm::s3::v1::StatObjectRequest* request, ::palm::s3::v1::StatObjectResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
      private:
       friend class Stub;
       explicit async(Stub* stub): stub_(stub) { }
@@ -218,6 +238,8 @@ class S3 final {
     ::grpc::ClientAsyncResponseReader< ::palm::s3::v1::PresignedGetObjectResponse>* PrepareAsyncPresignedGetObjectRaw(::grpc::ClientContext* context, const ::palm::s3::v1::PresignedGetObjectRequest& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::palm::s3::v1::GetObjectResponse>* AsyncGetObjectRaw(::grpc::ClientContext* context, const ::palm::s3::v1::GetObjectRequest& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::palm::s3::v1::GetObjectResponse>* PrepareAsyncGetObjectRaw(::grpc::ClientContext* context, const ::palm::s3::v1::GetObjectRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::palm::s3::v1::StatObjectResponse>* AsyncStatObjectRaw(::grpc::ClientContext* context, const ::palm::s3::v1::StatObjectRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::palm::s3::v1::StatObjectResponse>* PrepareAsyncStatObjectRaw(::grpc::ClientContext* context, const ::palm::s3::v1::StatObjectRequest& request, ::grpc::CompletionQueue* cq) override;
     const ::grpc::internal::RpcMethod rpcmethod_MakeBucket_;
     const ::grpc::internal::RpcMethod rpcmethod_BucketExists_;
     const ::grpc::internal::RpcMethod rpcmethod_ListBucket_;
@@ -225,6 +247,7 @@ class S3 final {
     const ::grpc::internal::RpcMethod rpcmethod_RemoveObject_;
     const ::grpc::internal::RpcMethod rpcmethod_PresignedGetObject_;
     const ::grpc::internal::RpcMethod rpcmethod_GetObject_;
+    const ::grpc::internal::RpcMethod rpcmethod_StatObject_;
   };
   static std::unique_ptr<Stub> NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options = ::grpc::StubOptions());
 
@@ -239,6 +262,7 @@ class S3 final {
     virtual ::grpc::Status RemoveObject(::grpc::ServerContext* context, const ::palm::s3::v1::RemoveObjectRequest* request, ::google::protobuf::Empty* response);
     virtual ::grpc::Status PresignedGetObject(::grpc::ServerContext* context, const ::palm::s3::v1::PresignedGetObjectRequest* request, ::palm::s3::v1::PresignedGetObjectResponse* response);
     virtual ::grpc::Status GetObject(::grpc::ServerContext* context, const ::palm::s3::v1::GetObjectRequest* request, ::palm::s3::v1::GetObjectResponse* response);
+    virtual ::grpc::Status StatObject(::grpc::ServerContext* context, const ::palm::s3::v1::StatObjectRequest* request, ::palm::s3::v1::StatObjectResponse* response);
   };
   template <class BaseClass>
   class WithAsyncMethod_MakeBucket : public BaseClass {
@@ -380,7 +404,27 @@ class S3 final {
       ::grpc::Service::RequestAsyncUnary(6, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
-  typedef WithAsyncMethod_MakeBucket<WithAsyncMethod_BucketExists<WithAsyncMethod_ListBucket<WithAsyncMethod_PresignedPutObject<WithAsyncMethod_RemoveObject<WithAsyncMethod_PresignedGetObject<WithAsyncMethod_GetObject<Service > > > > > > > AsyncService;
+  template <class BaseClass>
+  class WithAsyncMethod_StatObject : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithAsyncMethod_StatObject() {
+      ::grpc::Service::MarkMethodAsync(7);
+    }
+    ~WithAsyncMethod_StatObject() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status StatObject(::grpc::ServerContext* /*context*/, const ::palm::s3::v1::StatObjectRequest* /*request*/, ::palm::s3::v1::StatObjectResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestStatObject(::grpc::ServerContext* context, ::palm::s3::v1::StatObjectRequest* request, ::grpc::ServerAsyncResponseWriter< ::palm::s3::v1::StatObjectResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(7, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  typedef WithAsyncMethod_MakeBucket<WithAsyncMethod_BucketExists<WithAsyncMethod_ListBucket<WithAsyncMethod_PresignedPutObject<WithAsyncMethod_RemoveObject<WithAsyncMethod_PresignedGetObject<WithAsyncMethod_GetObject<WithAsyncMethod_StatObject<Service > > > > > > > > AsyncService;
   template <class BaseClass>
   class WithCallbackMethod_MakeBucket : public BaseClass {
    private:
@@ -570,7 +614,34 @@ class S3 final {
     virtual ::grpc::ServerUnaryReactor* GetObject(
       ::grpc::CallbackServerContext* /*context*/, const ::palm::s3::v1::GetObjectRequest* /*request*/, ::palm::s3::v1::GetObjectResponse* /*response*/)  { return nullptr; }
   };
-  typedef WithCallbackMethod_MakeBucket<WithCallbackMethod_BucketExists<WithCallbackMethod_ListBucket<WithCallbackMethod_PresignedPutObject<WithCallbackMethod_RemoveObject<WithCallbackMethod_PresignedGetObject<WithCallbackMethod_GetObject<Service > > > > > > > CallbackService;
+  template <class BaseClass>
+  class WithCallbackMethod_StatObject : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithCallbackMethod_StatObject() {
+      ::grpc::Service::MarkMethodCallback(7,
+          new ::grpc::internal::CallbackUnaryHandler< ::palm::s3::v1::StatObjectRequest, ::palm::s3::v1::StatObjectResponse>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::palm::s3::v1::StatObjectRequest* request, ::palm::s3::v1::StatObjectResponse* response) { return this->StatObject(context, request, response); }));}
+    void SetMessageAllocatorFor_StatObject(
+        ::grpc::MessageAllocator< ::palm::s3::v1::StatObjectRequest, ::palm::s3::v1::StatObjectResponse>* allocator) {
+      ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(7);
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::palm::s3::v1::StatObjectRequest, ::palm::s3::v1::StatObjectResponse>*>(handler)
+              ->SetMessageAllocator(allocator);
+    }
+    ~WithCallbackMethod_StatObject() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status StatObject(::grpc::ServerContext* /*context*/, const ::palm::s3::v1::StatObjectRequest* /*request*/, ::palm::s3::v1::StatObjectResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* StatObject(
+      ::grpc::CallbackServerContext* /*context*/, const ::palm::s3::v1::StatObjectRequest* /*request*/, ::palm::s3::v1::StatObjectResponse* /*response*/)  { return nullptr; }
+  };
+  typedef WithCallbackMethod_MakeBucket<WithCallbackMethod_BucketExists<WithCallbackMethod_ListBucket<WithCallbackMethod_PresignedPutObject<WithCallbackMethod_RemoveObject<WithCallbackMethod_PresignedGetObject<WithCallbackMethod_GetObject<WithCallbackMethod_StatObject<Service > > > > > > > > CallbackService;
   typedef CallbackService ExperimentalCallbackService;
   template <class BaseClass>
   class WithGenericMethod_MakeBucket : public BaseClass {
@@ -687,6 +758,23 @@ class S3 final {
     }
     // disable synchronous version of this method
     ::grpc::Status GetObject(::grpc::ServerContext* /*context*/, const ::palm::s3::v1::GetObjectRequest* /*request*/, ::palm::s3::v1::GetObjectResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+  };
+  template <class BaseClass>
+  class WithGenericMethod_StatObject : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithGenericMethod_StatObject() {
+      ::grpc::Service::MarkMethodGeneric(7);
+    }
+    ~WithGenericMethod_StatObject() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status StatObject(::grpc::ServerContext* /*context*/, const ::palm::s3::v1::StatObjectRequest* /*request*/, ::palm::s3::v1::StatObjectResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
@@ -829,6 +917,26 @@ class S3 final {
     }
     void RequestGetObject(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
       ::grpc::Service::RequestAsyncUnary(6, context, request, response, new_call_cq, notification_cq, tag);
+    }
+  };
+  template <class BaseClass>
+  class WithRawMethod_StatObject : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawMethod_StatObject() {
+      ::grpc::Service::MarkMethodRaw(7);
+    }
+    ~WithRawMethod_StatObject() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status StatObject(::grpc::ServerContext* /*context*/, const ::palm::s3::v1::StatObjectRequest* /*request*/, ::palm::s3::v1::StatObjectResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    void RequestStatObject(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+      ::grpc::Service::RequestAsyncUnary(7, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
@@ -983,6 +1091,28 @@ class S3 final {
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     virtual ::grpc::ServerUnaryReactor* GetObject(
+      ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
+  };
+  template <class BaseClass>
+  class WithRawCallbackMethod_StatObject : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithRawCallbackMethod_StatObject() {
+      ::grpc::Service::MarkMethodRawCallback(7,
+          new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
+            [this](
+                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->StatObject(context, request, response); }));
+    }
+    ~WithRawCallbackMethod_StatObject() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable synchronous version of this method
+    ::grpc::Status StatObject(::grpc::ServerContext* /*context*/, const ::palm::s3::v1::StatObjectRequest* /*request*/, ::palm::s3::v1::StatObjectResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    virtual ::grpc::ServerUnaryReactor* StatObject(
       ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
   };
   template <class BaseClass>
@@ -1174,9 +1304,36 @@ class S3 final {
     // replace default version of method with streamed unary
     virtual ::grpc::Status StreamedGetObject(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::palm::s3::v1::GetObjectRequest,::palm::s3::v1::GetObjectResponse>* server_unary_streamer) = 0;
   };
-  typedef WithStreamedUnaryMethod_MakeBucket<WithStreamedUnaryMethod_BucketExists<WithStreamedUnaryMethod_ListBucket<WithStreamedUnaryMethod_PresignedPutObject<WithStreamedUnaryMethod_RemoveObject<WithStreamedUnaryMethod_PresignedGetObject<WithStreamedUnaryMethod_GetObject<Service > > > > > > > StreamedUnaryService;
+  template <class BaseClass>
+  class WithStreamedUnaryMethod_StatObject : public BaseClass {
+   private:
+    void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
+   public:
+    WithStreamedUnaryMethod_StatObject() {
+      ::grpc::Service::MarkMethodStreamed(7,
+        new ::grpc::internal::StreamedUnaryHandler<
+          ::palm::s3::v1::StatObjectRequest, ::palm::s3::v1::StatObjectResponse>(
+            [this](::grpc::ServerContext* context,
+                   ::grpc::ServerUnaryStreamer<
+                     ::palm::s3::v1::StatObjectRequest, ::palm::s3::v1::StatObjectResponse>* streamer) {
+                       return this->StreamedStatObject(context,
+                         streamer);
+                  }));
+    }
+    ~WithStreamedUnaryMethod_StatObject() override {
+      BaseClassMustBeDerivedFromService(this);
+    }
+    // disable regular version of this method
+    ::grpc::Status StatObject(::grpc::ServerContext* /*context*/, const ::palm::s3::v1::StatObjectRequest* /*request*/, ::palm::s3::v1::StatObjectResponse* /*response*/) override {
+      abort();
+      return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
+    }
+    // replace default version of method with streamed unary
+    virtual ::grpc::Status StreamedStatObject(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::palm::s3::v1::StatObjectRequest,::palm::s3::v1::StatObjectResponse>* server_unary_streamer) = 0;
+  };
+  typedef WithStreamedUnaryMethod_MakeBucket<WithStreamedUnaryMethod_BucketExists<WithStreamedUnaryMethod_ListBucket<WithStreamedUnaryMethod_PresignedPutObject<WithStreamedUnaryMethod_RemoveObject<WithStreamedUnaryMethod_PresignedGetObject<WithStreamedUnaryMethod_GetObject<WithStreamedUnaryMethod_StatObject<Service > > > > > > > > StreamedUnaryService;
   typedef Service SplitStreamedService;
-  typedef WithStreamedUnaryMethod_MakeBucket<WithStreamedUnaryMethod_BucketExists<WithStreamedUnaryMethod_ListBucket<WithStreamedUnaryMethod_PresignedPutObject<WithStreamedUnaryMethod_RemoveObject<WithStreamedUnaryMethod_PresignedGetObject<WithStreamedUnaryMethod_GetObject<Service > > > > > > > StreamedService;
+  typedef WithStreamedUnaryMethod_MakeBucket<WithStreamedUnaryMethod_BucketExists<WithStreamedUnaryMethod_ListBucket<WithStreamedUnaryMethod_PresignedPutObject<WithStreamedUnaryMethod_RemoveObject<WithStreamedUnaryMethod_PresignedGetObject<WithStreamedUnaryMethod_GetObject<WithStreamedUnaryMethod_StatObject<Service > > > > > > > > StreamedService;
 };
 
 }  // namespace v1

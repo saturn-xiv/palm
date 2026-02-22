@@ -18,14 +18,16 @@ type Query {
   getGoogleOauth2Url(home: String!, sessionId: String!): String!
 
   # indexUser(page: Page!): IndexUserResponse!
-  # indexLog(page: Page!): IndexLogResponse!
+  indexLog(page: Page!): IndexLogResponse!
   # refresh: RefreshResponse!
 
-  # indexAttachments(page: Page!): IndexAttachmentResponse!
-  # showAttachment(id: ID): Attachment!
+  indexAttachment(page: Page!): IndexAttachmentResponse!
+  showAttachment(id: ID!): Attachment!
 
   indexLocale(page: Page!): IndexLocaleResponse!
   getLocaleByLang(lang: String!): [Locale!]!
+
+  currencies: [Currency!]!
 }
 
 type Mutation {
@@ -63,14 +65,16 @@ type Mutation {
   # setEmailUserPassword(id: ID!, password: String!, reason: String!): Ok!
   # setPhoneUserPassword(id: ID!, password: String!, reason: String!): Ok!
 
-  # createAttachment(
-  #   title: String!
-  #   bucket: String!
-  #   object: String!
-  #   contentType: String!
-  #   size: String!
-  # ): Ok!
-  # updateAttachment(id: ID!, title: String!): Ok!
+  createAttachment(
+    title: String!
+    contentType: String!
+    size: Int!
+    public: Boolean!
+    expireAfterDays: Int
+    ttl: Int!
+  ): String!
+  setAttachmentUploaded(id: ID!): Ok!
+  setAttachmentTitle(id: ID!, title: String!): Ok!
   # associateAttachment(
   #   attachmentId: ID!
   #   resourceType: String!
@@ -81,7 +85,7 @@ type Mutation {
   #   resourceType: String!
   #   resourceId: ID
   # ): Ok!
-  # destroyAttachment(id: ID!): Ok!
+  destroyAttachment(id: ID!): Ok!
 
   # siteSetFavicon(url: String!): Ok!
   # siteSetMaintenanceMode(ok: Boolean!, reason: String!): Ok!
@@ -95,11 +99,6 @@ type Mutation {
   destroyLocale(id: ID!): Ok!
 }
 
-type Member {
-  sn: String!
-  name: String!
-}
-
 type Attachment {
   id: ID!
   title: String!
@@ -108,10 +107,8 @@ type Attachment {
   contentType: String!
   public: Boolean!
   size: Int!
-  uploadedAt: Time!
-  deletedAt: Time
+  uploadedAt: Time
   updatedAt: Time!
-  owner: Member!
   resources: [Resource!]!
 }
 type IndexAttachmentResponse {
@@ -135,7 +132,7 @@ type Log {
   id: ID!
   plugin: String!
   ip: String!
-  level: String!
+  level: Int!
   message: String!
   createdAt: Time!
 }
@@ -258,3 +255,10 @@ union User =
   | GoogleOauth2User
   | WechatOauth2User
   | WechatMiniProgramUser
+type Currency {
+  code: String!
+  name: String!
+  country: String!
+  isFund: Boolean
+  number: Int!
+}
