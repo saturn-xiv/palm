@@ -17,7 +17,11 @@ type Query {
 
   getGoogleOauth2Url(home: String!, sessionId: String!): String!
 
-  # indexUser(page: Page!): IndexUserResponse!
+  indexEmailUser(page: Page!): IndexEmailUserResponse!
+  indexSmsUser(page: Page!): IndexSmsUserResponse!
+  indexGoogleOauth2User(page: Page!): IndexGoogleOauth2UserResponse!
+  indexWechatOauth2User(page: Page!): IndexWechatOauth2UserResponse!
+  indexWechatMiniProgramUser(page: Page!): IndexWechatMiniProgramUserResponse!
   indexLog(page: Page!): IndexLogResponse!
   # refresh: RefreshResponse!
 
@@ -123,11 +127,6 @@ input SiteDetailsForm {
   copyright: String!
 }
 
-type IndexUserResponse {
-  items: [User!]!
-  pagination: Pagination!
-}
-
 type Log {
   id: ID!
   plugin: String!
@@ -198,15 +197,41 @@ type UserSignInResponse {
   token: String!
   # layout: RefreshResponse!
 }
+
+type IndexEmailUserResponse {
+  items: [EmailUser!]!
+  pagination: Pagination!
+}
+type IndexSmsUserResponse {
+  items: [SmsUser!]!
+  pagination: Pagination!
+}
+type IndexGoogleOauth2UserResponse {
+  items: [GoogleOauth2User!]!
+  pagination: Pagination!
+}
+type IndexWechatOauth2UserResponse {
+  items: [WechatOauth2User!]!
+  pagination: Pagination!
+}
+type IndexWechatMiniProgramUserResponse {
+  items: [WechatMiniProgramUser!]!
+  pagination: Pagination!
+}
 type UserDetail {
   id: ID!
   sn: String!
   lang: String!
   timezone: String!
   lockedAt: Time
-  deletedAt: Time
+  signInTotal: Int!
+  lastSignInAt: Time
+  lastSignInIp: String
+  currentSignInAt: Time
+  currentSignInIp: String
   updatedAt: Time!
   createdAt: Time!
+  deletedAt: Time
 }
 type EmailUser {
   id: ID!
@@ -214,7 +239,6 @@ type EmailUser {
   name: String!
   email: String!
   confirmedAt: Time
-  deletedAt: Time
   updatedAt: Time!
   createdAt: Time!
 }
@@ -223,38 +247,48 @@ type SmsUser {
   user: UserDetail!
   name: String!
   phone: String!
-  confirmedAt: Time
-  deletedAt: Time
   updatedAt: Time!
   createdAt: Time!
+  name: String!
+  phone: String!
+  avatar: String
 }
 type GoogleOauth2User {
   id: ID!
   user: UserDetail!
-  deletedAt: Time
   updatedAt: Time!
   createdAt: Time!
+  code: String!
+  name: String!
+  email: String!
+  emailVerified: Boolean
+  picture: String!
+  gender: String!
+  link: String!
+  locale: String!
 }
 type WechatOauth2User {
   id: ID!
   user: UserDetail!
-  deletedAt: Time
   updatedAt: Time!
   createdAt: Time!
+  nickname: String!
+  sex: Int!
+  city: String!
+  province: String!
+  country: String!
+  headImgUrl: String
+  lang: String!
 }
 type WechatMiniProgramUser {
   id: ID!
   user: UserDetail!
-  deletedAt: Time
   updatedAt: Time!
   createdAt: Time!
+  nickname: String
+  avatar_url: String
 }
-union User =
-  | EmailUser
-  | SmsUser
-  | GoogleOauth2User
-  | WechatOauth2User
-  | WechatMiniProgramUser
+
 type Currency {
   code: String!
   name: String!

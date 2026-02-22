@@ -10,6 +10,7 @@ import (
 
 	"gorm.io/gorm"
 
+	"github.com/graph-gophers/graphql-go"
 	"github.com/saturn-xiv/palm/daisy/crypto"
 	email_v2 "github.com/saturn-xiv/palm/daisy/email/v2"
 	"github.com/saturn-xiv/palm/daisy/env"
@@ -235,6 +236,79 @@ func (p *Query) UnlockEmailUser(ctx context.Context, args struct {
 		return nil, err
 	}
 	return &Ok{}, nil
+}
+
+func (p *Query) IndexEmailUser(ctx context.Context, args struct {
+	Page Page
+}) (*IndexEmailUserResponse, error) {
+	ss, err := CurrentUser(ctx, p.db, p.jwt)
+	if err != nil {
+		return nil, err
+	}
+	if err := ss.User.IsAdministrator(p.enforcer); err != nil {
+		return nil, err
+	}
+	var total int64
+	if err := p.db.Model(&models.EmailUser{}).Count(&total).Error; err != nil {
+		return nil, err
+	}
+	pagination := NewPagination(&args.Page, uint(total))
+	var items []models.EmailUser
+	if err := p.db.Offset(int(pagination.current.Offset())).Limit(int(pagination.current.Size)).Order("updated_at DESC").Find(&items).Error; err != nil {
+		return nil, err
+	}
+	return &IndexEmailUserResponse{db: p.db, items: items, pagination: pagination}, nil
+}
+
+type IndexEmailUserResponse struct {
+	db         *gorm.DB
+	items      []models.EmailUser
+	pagination *Pagination
+}
+
+func (p *IndexEmailUserResponse) Items() []*EmailUser {
+	var items []*EmailUser
+	for _, it := range p.items {
+		items = append(items, &EmailUser{item: &it, db: p.db})
+	}
+	return items
+}
+func (p *IndexEmailUserResponse) Pagination() *Pagination {
+	return p.pagination
+}
+
+type EmailUser struct {
+	item *models.EmailUser
+	db   *gorm.DB
+}
+
+func (p *EmailUser) Id() graphql.ID {
+	return ToId(p.item.ID)
+}
+func (p *EmailUser) CreatedAt() graphql.Time {
+	return graphql.Time{Time: p.item.CreatedAt}
+}
+func (p *EmailUser) UpdatedAt() graphql.Time {
+	return graphql.Time{Time: p.item.UpdatedAt}
+}
+func (p *EmailUser) User() (*UserDetails, error) {
+	var it models.User
+	if err := p.db.Unscoped().First(&it, p.item.UserID).Error; err != nil {
+		return nil, err
+	}
+	return &UserDetails{item: &it}, nil
+}
+func (p *EmailUser) ConfirmedAt() *graphql.Time {
+	if p.item.ConfirmedAt == nil {
+		return nil
+	}
+	return &graphql.Time{Time: *p.item.ConfirmedAt}
+}
+func (p *EmailUser) Email() string {
+	return p.item.Email
+}
+func (p *EmailUser) Name() string {
+	return p.item.Name
 }
 
 func send_email(ctx context.Context, db *gorm.DB, queue *queue.RabbitMQ, jwt *crypto.Jwt, home string, user *models.EmailUser, audience string) error {

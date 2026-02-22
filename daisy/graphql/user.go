@@ -162,62 +162,60 @@ func (p *Mutation) SetUserLocation(ctx context.Context, args struct {
 	return &Ok{}, nil
 }
 
-func (p *Query) IndexLog(ctx context.Context, args struct {
-	Page Page
-}) (*IndexLogResponse, error) {
-	ss, err := CurrentUser(ctx, p.db, p.jwt)
-	if err != nil {
-		return nil, err
-	}
-	var total int64
-	if err := p.db.Model(&models.Log{}).Where("user_id = ?", ss.User.Id).Count(&total).Error; err != nil {
-		return nil, err
-	}
-	pagination := NewPagination(&args.Page, uint(total))
-	var items []models.Log
-	if err := p.db.Where("user_id = ?", ss.User.Id).Offset(int(pagination.current.Offset())).Limit(int(pagination.current.Size)).Order("created_at DESC").Find(&items).Error; err != nil {
-		return nil, err
-	}
-	return &IndexLogResponse{items, pagination}, nil
+type UserDetails struct {
+	item *models.User
 }
 
-type Log struct {
-	item *models.Log
-}
-
-func (p *Log) Id() graphql.ID {
+func (p *UserDetails) Id() graphql.ID {
 	return ToId(p.item.ID)
 }
-func (p *Log) Level() int32 {
-	return p.item.Level
+func (p *UserDetails) Sn() string {
+	return p.item.Sn
 }
-func (p *Log) Ip() string {
-	return p.item.Ip
+func (p *UserDetails) Lang() string {
+	return p.item.Lang
 }
-func (p *Log) Plugin() string {
-	return p.item.Plugin
+func (p *UserDetails) Timezone() string {
+	return p.item.Timezone
 }
-func (p *Log) Message() string {
-	return p.item.Message
+func (p *UserDetails) LockedAt() *graphql.Time {
+	if p.item.LockedAt == nil {
+		return nil
+	}
+	return &graphql.Time{Time: *p.item.LockedAt}
 }
-func (p *Log) CreatedAt() graphql.Time {
+func (p *UserDetails) UpdatedAt() graphql.Time {
+	return graphql.Time{Time: p.item.UpdatedAt}
+}
+func (p *UserDetails) CreatedAt() graphql.Time {
 	return graphql.Time{Time: p.item.CreatedAt}
 }
-
-type IndexLogResponse struct {
-	items      []models.Log
-	pagination *Pagination
-}
-
-func (p *IndexLogResponse) Pagination() *Pagination {
-	return p.pagination
-}
-func (p *IndexLogResponse) Items() []*Log {
-	var items []*Log
-	for _, it := range p.items {
-		items = append(items, &Log{item: &it})
+func (p *UserDetails) DeletedAt() *graphql.Time {
+	if !p.item.DeletedAt.Valid {
+		return nil
 	}
-	return items
+	return &graphql.Time{Time: p.item.DeletedAt.Time}
+}
+func (p *UserDetails) SignInTotal() int32 {
+	return int32(p.item.SignedInTotal)
+}
+func (p *UserDetails) LastSignInAt() *graphql.Time {
+	if p.item.LastSignedInAt == nil {
+		return nil
+	}
+	return &graphql.Time{Time: *p.item.LastSignedInAt}
+}
+func (p *UserDetails) LastSignInIp() *string {
+	return p.item.LastSignedInIp
+}
+func (p *UserDetails) CurrentSignInAt() *graphql.Time {
+	if p.item.CurrentSignedInAt == nil {
+		return nil
+	}
+	return &graphql.Time{Time: *p.item.CurrentSignedInAt}
+}
+func (p *UserDetails) CurrentSignInIp() *string {
+	return p.item.CurrentSignedInIp
 }
 
 type UserSignInResponse struct{}

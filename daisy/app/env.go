@@ -36,7 +36,7 @@ func (p *Database) Open(debug bool) (*gorm.DB, error) {
 	}
 	slog.Debug(ver)
 	if err = db.AutoMigrate(
-		&models.User{}, &models.GoogleOauth2User{}, &models.EmailUser{}, &models.WechatOauth2User{}, &models.WechatMiniProgramUser{}, &models.Log{},
+		&models.User{}, &models.GoogleOauth2User{}, &models.SmsUser{}, &models.EmailUser{}, &models.WechatOauth2User{}, &models.WechatMiniProgramUser{}, &models.Log{},
 		&models.Locale{}, &models.Setting{}, &models.ShortenLink{}, &models.Comment{}, &models.Vote{},
 		&models.Attachment{}, &models.AttachmentResource{},
 		&models.Tag{}, &models.TagResource{},
