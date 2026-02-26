@@ -3,6 +3,8 @@
     "boost-algorithm",
     "boost-uuid",
     "boost-date-time",
+    "boost-filesystem",
+    "boost-beast",
     "boost-typeof",
     "boost-exception",
     "argparse",

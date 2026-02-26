@@ -12,6 +12,8 @@ configure_file(include/palm/version.h.in ${CMAKE_CURRENT_SOURCE_DIR}/include/pal
 find_package(boost_algorithm CONFIG REQUIRED)
 find_package(boost_uuid CONFIG REQUIRED)
 find_package(boost_date_time CONFIG REQUIRED)
+find_package(boost_filesystem CONFIG REQUIRED)
+find_package(boost_beast CONFIG REQUIRED)
 find_package(boost_typeof CONFIG REQUIRED)
 find_package(boost_exception CONFIG REQUIRED)
 
@@ -32,7 +34,7 @@ find_path(CPPCODEC_INCLUDE_DIRS "cppcodec/base32_crockford.hpp")
 add_library(gourd STATIC ${PROTOCOLS_SOURCES} ${GOURD_SOURCE_LIST}) 
 
 target_link_libraries(gourd PUBLIC  m dl anl pthread
-  Boost::algorithm Boost::uuid Boost::date_time Boost::typeof Boost::exception
+  Boost::algorithm Boost::uuid Boost::date_time Boost::filesystem Boost::beast Boost::typeof Boost::exception
   argparse::argparse spdlog::spdlog_header_only cpr::cpr
   rabbitmq::rabbitmq-static redis++::redis++_static
   SOCI::soci_core_static SOCI::soci_postgresql_static

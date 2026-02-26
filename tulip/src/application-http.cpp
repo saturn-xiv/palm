@@ -12,8 +12,8 @@ static std::function<void(int)> shutdown_handler;
 
 static void signal_handler(int signal) { shutdown_handler(signal); }
 
-int tulip::Application::http(const std::string& config_file, uint16_t port,
-                             const std::string& theme) const {
+static int launch_http_server(const std::string& config_file, uint16_t port,
+                              const std::string& theme) {
   struct Config {
     Config(const toml::table& config)
         : postgresql(*(config["postgresql"].as_table())),
@@ -132,4 +132,9 @@ int tulip::Application::http(const std::string& config_file, uint16_t port,
   std::signal(SIGINT, signal_handler);
   server.listen(host, port);
   return EXIT_SUCCESS;
+}
+
+int tulip::Application::http(const std::string& config_file, uint16_t port,
+                             const std::string& theme) const {
+  return launch_http_server(config_file, port, theme);
 }

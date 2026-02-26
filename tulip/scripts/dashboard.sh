@@ -10,7 +10,7 @@ npm install --save \
     slate slate-history slate-react \
     @graphiql/react \
     formik yup usehooks-ts \
-    jose dayjs \
+    jose dayjs video.js \
     @reduxjs/toolkit react-redux \
     js-cookie @types/js-cookie \
     google-protobuf @types/google-protobuf grpc-web
