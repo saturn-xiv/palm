@@ -4,6 +4,7 @@
     "boost-uuid",
     "boost-date-time",
     "boost-filesystem",
+    "boost-url",
     "boost-beast",
     "boost-typeof",
     "boost-exception",

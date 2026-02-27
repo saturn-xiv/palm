@@ -7,7 +7,7 @@ RUN apt update
 RUN apt -y upgrade
 RUN apt -y install lsb-release wget software-properties-common gnupg \
     curl locales locales-all tzdata vim zip unzip \
-    git cmake ninja-build pkg-config libtool automake autoconf autoconf-archive bison flex meson cpio \
+    git cmake ninja-build pkg-config libtool automake autoconf autoconf-archive bison flex meson cpio mold \
     build-essential crossbuild-essential-amd64 crossbuild-essential-arm64 crossbuild-essential-riscv64
 
 # https://apt.llvm.org/
