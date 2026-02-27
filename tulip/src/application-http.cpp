@@ -46,8 +46,9 @@ int tulip::Application::http(const std::string& config_file, uint16_t port,
   ctx.cache = config.redis.open();
   ctx.queue = config.rabbitmq.open();
   {
-    spdlog::debug("load theme from {}", theme.string());
-    ctx.env = std::make_shared<inja::Environment>(theme);
+    const auto root = document_root / theme;
+    spdlog::debug("load theme from {}", root.string());
+    ctx.env = std::make_shared<inja::Environment>(root);
   }
   {
     spdlog::debug("open opensearch {}", config.opensearch.url(""));
@@ -71,12 +72,20 @@ int tulip::Application::http(const std::string& config_file, uint16_t port,
   tulip::http::boost_beast::Server server(threads);
   server.mount(ctx, assets);
   gl_shutdown_handler = [&](int signal) {
-    if (signal == SIGINT) {
-      spdlog::warn("Ctrl+C caught, exiting...");
-      server.shutdown();
+    switch (signal) {
+      case SIGINT:
+        spdlog::warn("Ctrl+C caught, exiting...");
+        server.shutdown();
+        break;
+      case SIGTERM:
+        spdlog::warn("Terminated caught, exiting...");
+        server.shutdown();
+        break;
     }
   };
   std::signal(SIGINT, signal_handler);
+  std::signal(SIGTERM, signal_handler);
+
   server.startup(host, port);
   return EXIT_SUCCESS;
 }

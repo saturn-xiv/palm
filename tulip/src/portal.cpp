@@ -11,6 +11,14 @@ std::shared_ptr<palm::portal::v1::Session> tulip::portal::session(
   return it;
 }
 
+std::shared_ptr<palm::portal::v1::Session> tulip::portal::session(
+    const boost::beast::http::request<boost::beast::http::string_body>& req) {
+  auto it = std::make_shared<palm::portal::v1::Session>();
+  // TODO
+  it->set_client_ip("n/a");
+  return it;
+}
+
 std::shared_ptr<palm::portal::v1::Page> tulip::portal::page(
     const httplib::Request& req) {
   const std::string index = req.get_param_value("index");
