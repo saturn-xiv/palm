@@ -1,4 +1,4 @@
-FROM ubuntu:noble
+FROM ubuntu:latest
 LABEL maintainer="Jeremy Zheng"
 
 ENV DEBIAN_FRONTEND noninteractive
@@ -11,8 +11,6 @@ RUN apt -y install curl locales locales-all tzdata vim zip unzip \
 
 RUN apt -y autoremove
 RUN apt -y clean
-
-
 
 # https://learn.microsoft.com/en-us/vcpkg/get_started/get-started?pivots=shell-bash
 RUN echo 'export VCPKG_DISABLE_METRICS=1' >> $HOME/.profile
