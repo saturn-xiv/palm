@@ -5,9 +5,13 @@ ENV DEBIAN_FRONTEND noninteractive
 
 RUN apt update
 RUN apt -y upgrade
-RUN apt -y install curl locales locales-all tzdata vim zip unzip \
-    git clang cmake ninja-build pkg-config libtool automake autoconf autoconf-archive bison flex meson cpio \
+RUN apt -y install lsb-release wget software-properties-common gnupg \
+    curl locales locales-all tzdata vim zip unzip \
+    git cmake ninja-build pkg-config libtool automake autoconf autoconf-archive bison flex meson cpio \
     build-essential crossbuild-essential-amd64 crossbuild-essential-arm64 crossbuild-essential-riscv64
+
+# https://apt.llvm.org/
+RUN bash -c "$(wget -O - https://apt.llvm.org/llvm.sh)"
 
 RUN apt -y autoremove
 RUN apt -y clean
