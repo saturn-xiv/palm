@@ -75,12 +75,25 @@ class Session : public std::enable_shared_from_this<Session> {
       return;
     }
 
-    auto res = this->handle(std::move(_request));
-    bool keep_alive = res.keep_alive();
-    boost::beast::async_write(
-        this->_stream, std::move(res),
-        boost::beast::bind_front_handler(&Session::on_write, shared_from_this(),
-                                         keep_alive));
+    spdlog::info("HTTP({}) {} {}",
+                 std::hash<std::thread::id>()(std::this_thread::get_id()),
+                 this->_request.method_string(), this->_request.target());
+
+    const auto start = std::chrono::high_resolution_clock::now();
+    {
+      auto res = this->handle(std::move(_request));
+      bool keep_alive = res.keep_alive();
+      boost::beast::async_write(
+          this->_stream, std::move(res),
+          boost::beast::bind_front_handler(&Session::on_write,
+                                           shared_from_this(), keep_alive));
+    }
+    const auto stop = std::chrono::high_resolution_clock::now();
+
+    spdlog::debug(
+        "done({}) {}", std::hash<std::thread::id>()(std::this_thread::get_id()),
+        std::format("{}", std::chrono::duration_cast<std::chrono::microseconds>(
+                              stop - start)));
   }
 
   void on_write(bool keep_alive, boost::beast::error_code ec,
@@ -126,13 +139,13 @@ class Listener : public std::enable_shared_from_this<Listener> {
            boost::asio::ip::tcp::endpoint endpoint)
       : _io_context(ioc),
         _acceptor(boost::asio::make_strand(ioc))
-        // ,
-        // _context(context),
-        // _assets(assets) 
-        // ,
-        //    tulip::portal::Context context,
-        //    std::map<std::string, std::filesystem::path> assets
-        {
+  // ,
+  // _context(context),
+  // _assets(assets)
+  // ,
+  //    tulip::portal::Context context,
+  //    std::map<std::string, std::filesystem::path> assets
+  {
     boost::beast::error_code ec;
 
     this->_acceptor.open(endpoint.protocol(), ec);
@@ -195,12 +208,10 @@ class Listener : public std::enable_shared_from_this<Listener> {
 // https://beta.boost.org/doc/libs/1_85_0/libs/beast/example/http/server/async/http_server_async.cpp
 class Server : public tulip::http::Server {
  public:
-  Server(  size_t threads)
-      : _threads(threads),
-      _pool(),
-        _io_context(static_cast<int>(threads))  {
-          this->_pool.reserve(threads - 1);
-        }
+  Server(size_t threads)
+      : _threads(threads), _pool(), _io_context(static_cast<int>(threads)) {
+    this->_pool.reserve(threads - 1);
+  }
   virtual void mount(
       tulip::portal::Context& context,
       const std::map<std::string, std::filesystem::path>& assets) override;

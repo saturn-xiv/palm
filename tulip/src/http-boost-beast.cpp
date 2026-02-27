@@ -28,7 +28,6 @@
 
 boost::beast::http::message_generator tulip::http::boost_beast::Session::handle(
     boost::beast::http::request<boost::beast::http::string_body>&& req) {
-  spdlog::info("{} {}", req.method_string(), req.target());
   //   TODO
 
   return palm::http::not_found(req);

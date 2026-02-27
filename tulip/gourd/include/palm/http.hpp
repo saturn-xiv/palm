@@ -6,6 +6,7 @@
 #include <google/protobuf/util/json_util.h>
 #include <google/protobuf/util/time_util.h>
 #include <httplib.h>
+#include <spdlog/spdlog.h>
 #include <boost/algorithm/string.hpp>
 #include <boost/beast/http.hpp>
 #include <boost/beast/version.hpp>
@@ -116,6 +117,7 @@ inline boost::beast::http::message_generator response(
   res.keep_alive(req.keep_alive());
   res.body() = body;
   res.prepare_payload();
+  spdlog::info("{} {} bytes", res.result_int(), res.payload_size().value_or(0));
   return res;
 }
 
@@ -199,6 +201,7 @@ inline boost::beast::http::message_generator file(
   res.set(boost::beast::http::field::content_type, content_type::detect(path));
   res.body() = std::move(it);
   res.prepare_payload();
+  spdlog::info("{} {} bytes", res.result_int(), res.payload_size().value_or(0));
   return res;
 }
 
