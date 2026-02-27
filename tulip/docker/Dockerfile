@@ -7,7 +7,7 @@ RUN apt update
 RUN apt -y upgrade
 RUN apt -y install curl locales locales-all tzdata vim zip unzip \
     git clang cmake ninja-build pkg-config libtool automake autoconf autoconf-archive bison flex meson cpio \
-    build-essential crossbuild-essential-arm64
+    build-essential crossbuild-essential-amd64 crossbuild-essential-arm64 crossbuild-essential-riscv64
 
 RUN apt -y autoremove
 RUN apt -y clean
