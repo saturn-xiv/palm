@@ -13,6 +13,7 @@
 #include <google/protobuf/stubs/common.h>
 #include <grpcpp/grpcpp.h>
 #include <openssl/opensslv.h>
+#include <boost/beast/version.hpp>
 #include <boost/uuid/random_generator.hpp>
 #include <boost/uuid/string_generator.hpp>
 #include <boost/uuid/uuid.hpp>
@@ -75,8 +76,9 @@ void palm::init(bool debug) {
   spdlog::set_level(debug ? spdlog::level::debug : spdlog::level::info);
   spdlog::debug("run on debug mode({})", palm::GIT_VERSION);
 
-  spdlog::debug("boost v{}.{}.{}", BOOST_VERSION / 100000,
-                BOOST_VERSION / 100 % 1000, BOOST_VERSION % 100);
+  spdlog::debug("boost v{}.{}.{} {}", BOOST_VERSION / 100000,
+                BOOST_VERSION / 100 % 1000, BOOST_VERSION % 100,
+                BOOST_BEAST_VERSION_STRING);
   spdlog::debug("{}", OPENSSL_VERSION_TEXT);
   {
     const auto v = PQlibVersion();

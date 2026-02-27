@@ -1,6 +1,7 @@
 #pragma once
 
 #include <cstdint>
+#include <filesystem>
 #include <string>
 
 namespace tulip {
@@ -10,8 +11,9 @@ class Application {
   int launch(int argc, char** argv) const;
 
  private:
-  int http(const std::string& config_file, uint16_t port,
-           const std::string& theme) const;
+  int http(const std::string& config_file, uint16_t port, size_t threads,
+           const std::filesystem::path& document_root,
+           const std::filesystem::path& theme) const;
   int db_seeds(const std::string& config_file) const;
 };
 }  // namespace tulip

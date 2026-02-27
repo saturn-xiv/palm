@@ -24,12 +24,21 @@ int tulip::Application::launch(int argc, char** argv) const {
   http_command.add_description("start a HTTP server");
   http_command.add_argument("-p", "--port")
       .help("listening on")
-      .default_value(8080)
-      .scan<'i', int>()
+      .default_value(static_cast<uint16_t>(8080))
+      .scan<'i', uint16_t>()
       .required();
-  http_command.add_argument("-t", "--theme")
+  http_command.add_argument("-t", "--threads")
+      .help("run the I/O service on the requested number of threads")
+      .default_value(std::thread::hardware_concurrency())
+      .scan<'i', unsigned int>()
+      .required();
+  http_command.add_argument("-T", "--theme")
       .help("theme folder(bootstrap,bulma)")
       .default_value("views/bootstrap")
+      .required();
+  http_command.add_argument("-d", "--document-root")
+      .help("document root folder")
+      .default_value(std::filesystem::current_path().string())
       .required();
   program.add_subparser(http_command);
 
@@ -52,9 +61,28 @@ int tulip::Application::launch(int argc, char** argv) const {
   palm::init(program.get<bool>("--debug"));
   spdlog::debug("load configuration from {}", config_file);
   if (program.is_subcommand_used(http_command)) {
-    const int port = http_command.get<int>("--port");
+    const uint16_t port = http_command.get<uint16_t>("--port");
+    const unsigned int threads = http_command.get<unsigned int>("--threads");
     const std::string theme = http_command.get<std::string>("--theme");
-    return this->http(config_file, port, theme);
+    const std::string document_root =
+        http_command.get<std::string>("--document-root");
+    if (threads < 2) {
+      spdlog::error("threads must lager than 2");
+      return EXIT_FAILURE;
+    }
+    if (!std::filesystem::exists(document_root) ||
+        !std::filesystem::is_directory(document_root)) {
+      spdlog::error("document root {} didn't exists", document_root);
+      return EXIT_FAILURE;
+    }
+    if (!std::filesystem::exists(theme) ||
+        !std::filesystem::is_directory(theme)) {
+      spdlog::error("theme root {} didn't exists", theme);
+      return EXIT_FAILURE;
+    }
+
+    return this->http(config_file, port, static_cast<size_t>(threads),
+                      document_root, theme);
   }
   if (program.is_subcommand_used(db_seeds_command)) {
     return this->db_seeds(config_file);
