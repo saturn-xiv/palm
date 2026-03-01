@@ -246,9 +246,10 @@ RUN zsh -c "source $HOME/.zshrc \
 RUN curl -fsSL https://xmake.io/shget.text | bash
 
 # https://github.com/microsoft/vcpkg
-RUN git clone https://github.com/microsoft/vcpkg.git $HOME/local/vcpkg
-RUN $HOME/local/vcpkg/bootstrap-vcpkg.sh \
-    && echo 'export VCPKG_DISABLE_METRICS=1' >> $HOME/.zshrc
+# RUN git clone https://github.com/microsoft/vcpkg.git $HOME/local/vcpkg
+# RUN $HOME/local/vcpkg/bootstrap-vcpkg.sh \
+#     && echo 'export VCPKG_DISABLE_METRICS=1' >> $HOME/.zshrc
+RUN echo 'export VCPKG_DISABLE_METRICS=1' >> $HOME/.zshrc
 
 # https://opensearch.org/downloads.html#opensearch
 # https://github.com/aparo/opensearch-analysis-ik?tab=readme-ov-file#install
@@ -265,7 +266,7 @@ RUN tar xf $HOME/downloads/opensearch-${OPENSEARCH_VERSION}-linux-x64.tar.gz -C 
     && bin/opensearch-plugin install https://github.com/aparo/opensearch-analysis-pinyin/releases/download/${OPENSEARCH_VERSION}/opensearch-analysis-pinyin.zip
 
 # https://github.com/grpc/grpc
-ENV GRPC_VERSION="v1.76.0"
+ENV GRPC_VERSION="v1.78.1"
 RUN git clone -b $GRPC_VERSION https://github.com/grpc/grpc.git $HOME/downloads/grpc
 RUN cd $HOME/downloads/grpc/ && git submodule update --init --recursive
 # ENV PROTOBUF_VERSION "v3.21.8"
@@ -274,7 +275,7 @@ RUN cd $HOME/downloads/grpc/ && git submodule update --init --recursive
 #     && git submodule update --init --recursive
 RUN zsh -c "source $HOME/.zshrc \
     && mkdir -pv $HOME/build/grpc \
-    && CC=clang CXX=clang++ cmake -DCMAKE_BUILD_TYPE=Release -G Ninja \
+    && cmake -DCMAKE_BUILD_TYPE=Release -G Ninja \
         -DgRPC_INSTALL=ON -DgRPC_SSL_PROVIDER=package -DgRPC_BUILD_TESTS=OFF \
         -DCMAKE_INSTALL_PREFIX=$HOME/.local -B $HOME/build/grpc -S $HOME/downloads/grpc \
     && cmake --build $HOME/build/grpc \
@@ -288,7 +289,7 @@ RUN wget -q -O $HOME/.local/bin/protoc-gen-grpc-web \
 RUN chmod +x $HOME/.local/bin/protoc-gen-grpc-web
 
 # https://github.com/protocolbuffers/protobuf-javascript
-ENV GRPC_JS_PLUGIN_VERSION="4.0.1"
+ENV GRPC_JS_PLUGIN_VERSION="4.0.2"
 RUN wget -q -P $HOME/downloads \
     https://github.com/protocolbuffers/protobuf-javascript/releases/download/v${GRPC_JS_PLUGIN_VERSION}/protobuf-javascript-${GRPC_JS_PLUGIN_VERSION}-linux-x86_64.tar.gz
 RUN mkdir -p $HOME/build/protobuf-javascript \
@@ -297,7 +298,7 @@ RUN mkdir -p $HOME/build/protobuf-javascript \
 
 # https://repo1.maven.org/maven2/io/grpc/protoc-gen-grpc-java/
 # https://github.com/grpc/grpc-java
-ENV GRPC_JAVA_PLUGIN_VERSION="1.78.0"
+ENV GRPC_JAVA_PLUGIN_VERSION="1.79.0"
 RUN wget -q -O $HOME/.local/bin/grpc_java_plugin \
     https://repo1.maven.org/maven2/io/grpc/protoc-gen-grpc-java/${GRPC_JAVA_PLUGIN_VERSION}/protoc-gen-grpc-java-${GRPC_JAVA_PLUGIN_VERSION}-linux-x86_64.exe
 RUN chmod +x $HOME/.local/bin/grpc_java_plugin
@@ -335,7 +336,7 @@ RUN cd /opt/opensearch/ \
     && echo "plugins.security.disabled: true" >> config/opensearch.yml \
     && mkdir -p config/opensearch-performance-analyzer \
     && touch config/opensearch-performance-analyzer/plugin-stats-metadata \
-    && cp config/opensearch-analysis-ik plugins/opensearch-analysis-ik/config
+    && cp -r config/opensearch-analysis-ik plugins/opensearch-analysis-ik/config
 
 RUN sudo mkdir -p /var/lib/minio/data && sudo chown -R nobody:nobody /var/lib/minio
 
@@ -424,11 +425,11 @@ RUN mkdir -p $HOME/.ssh \
 ADD etc/envoy.yaml /etc/
 RUN sudo mkdir -p /var/log/envoy
 ADD etc/supervisor /etc/supervisor
-ADD opt/bin /etc/bin
+ADD opt/bin /opt/bin
 
 RUN echo "$(date -u +%4Y%m%d%H%M%S)" | sudo tee /VERSION
 
-VOLUME /workspace
-WORKDIR /workspace
+VOLUME /mnt
+WORKDIR /mnt
 
 CMD ["/bin/zsh", "-l"]

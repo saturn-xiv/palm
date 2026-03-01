@@ -32,7 +32,7 @@ RUN apt install -y php-fpm php-mbstring php-xml php-bcmath php-curl php-zip php-
     php-mysql php-pgsql php-sqlite3 php-redis php-mongodb php-amqp \
     php-net-imap php-net-smtp \
     && apt -y clean
-RUN apt install -y libpq-dev libmysqlclient-dev && apt -y clean
+RUN apt install -y libpq-dev libmysqlclient-dev libsqlite3-dev libssl-dev libyaml-dev libffi-dev zlib1g-dev && apt -y clean
 
 RUN echo "en_US.UTF-8 UTF-8" > /etc/locale.gen && locale-gen && update-locale LANG=en_US.UTF-8
 RUN update-alternatives --set editor /usr/bin/vim.basic
@@ -95,7 +95,7 @@ RUN git clone https://github.com/rbenv/rbenv.git $HOME/.rbenv \
     && git clone https://github.com/rbenv/rbenv-vars.git $HOME/.rbenv/plugins/rbenv-vars 
 RUN echo 'eval "$(~/.rbenv/bin/rbenv init - --no-rehash bash)"' >> ~/.profile
 # https://github.com/rbenv/ruby-build
-RUN bash -c "$HOME/.rbenv/bin/rbenv init \
+RUN bash -c "source $HOME/.profile \
     && rbenv install ${RUBY_VERSION} \
     && rbenv global ${RUBY_VERSION} \
     && gem install bundler"
@@ -103,7 +103,8 @@ RUN bash -c "$HOME/.rbenv/bin/rbenv init \
 # https://go.dev/doc/install
 ENV GO_VERSION="1.26.0"
 RUN wget -q -P $HOME/downloads https://go.dev/dl/go${GO_VERSION}.linux-${TARGETARCH}.tar.gz
-RUN tar xf $HOME/downloads/go${GO_VERSION}.linux-${TARGETARCH}.tar.gz -C $HOME/local \
+RUN mkdir -p $HOME/local \
+    && tar xf $HOME/downloads/go${GO_VERSION}.linux-${TARGETARCH}.tar.gz -C $HOME/local \
     && rm $HOME/downloads/go${GO_VERSION}.linux-${TARGETARCH}.tar.gz
 RUN echo 'export PATH=$HOME/local/go/bin:$PATH' >> $HOME/.profile \
     && echo 'export GOPATH=$HOME/go' >> $HOME/.profile \
@@ -145,7 +146,7 @@ RUN cd /opt/opensearch/ \
     && echo "plugins.security.disabled: true" >> config/opensearch.yml \
     && mkdir -p config/opensearch-performance-analyzer \
     && touch config/opensearch-performance-analyzer/plugin-stats-metadata \
-    && cp config/opensearch-analysis-ik plugins/opensearch-analysis-ik/config
+    && cp -r config/opensearch-analysis-ik plugins/opensearch-analysis-ik/config
 
 RUN python3 -m venv $HOME/local/python3 && echo 'source $HOME/local/python3/bin/activate' >> $HOME/.profile
 

@@ -10,8 +10,10 @@
 - start container [dashboard](http://localhost:10001)
 
   ```bash
-  $ cd ~/workspace
-  $ ./saturn-xiv/palm/docker/spring/start.sh
+  $ cd ~/mnt/
+  # start a spring container
+  $ ~/workspace/saturn-xiv/palm/docker/spring/start.sh
+  # start services
   > sudo supervisord -c /etc/supervisor/supervisord.conf
   # init redis cluster
   > /etc/redis/clusters-init.sh
@@ -68,7 +70,8 @@
     ```
 
 - Vcpkg
+  - Upgrade
 
-  ```bash
-  $HOME/local/vcpkg/vcpkg upgrade --no-dry-run
-  ```
+    ```bash
+    $HOME/local/vcpkg/vcpkg upgrade --no-dry-run
+    ```
