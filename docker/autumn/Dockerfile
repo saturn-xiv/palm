@@ -32,6 +32,7 @@ RUN apt install -y php-fpm php-mbstring php-xml php-bcmath php-curl php-zip php-
     php-mysql php-pgsql php-sqlite3 php-redis php-mongodb php-amqp \
     php-net-imap php-net-smtp \
     && apt -y clean
+RUN apt install -y libpq-dev libmysqlclient-dev && apt -y clean
 
 RUN echo "en_US.UTF-8 UTF-8" > /etc/locale.gen && locale-gen && update-locale LANG=en_US.UTF-8
 RUN update-alternatives --set editor /usr/bin/vim.basic

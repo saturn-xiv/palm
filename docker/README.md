@@ -16,7 +16,7 @@ cat palm-spring-TIMESTAMP.tar.0? > palm-spring-TIMESTAMP.tar
 ## Podman
 
 ```bash
-$ podman image prune -a # removes all dangling images
+podman image prune -a # removes all dangling images
 podman system reset # clean
 podman images # show images
 podman ps -a # show containers
