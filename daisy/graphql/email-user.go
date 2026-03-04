@@ -8,9 +8,9 @@ import (
 	"strings"
 	"time"
 
+	"github.com/graph-gophers/graphql-go"
 	"gorm.io/gorm"
 
-	"github.com/graph-gophers/graphql-go"
 	"github.com/saturn-xiv/palm/daisy/crypto"
 	email_v2 "github.com/saturn-xiv/palm/daisy/email/v2"
 	"github.com/saturn-xiv/palm/daisy/env"
@@ -25,6 +25,70 @@ const (
 	emailUserUnlockAudience        = "email-user.unlock"
 )
 
+func (p *Mutation) ConfirmEmailUserByToken(ctx context.Context, args struct {
+	Token string
+}) (*Ok, error) {
+	_, email, err := p.jwt.Verify(args.Token, "", emailUserConfirmAudience)
+	if err != nil {
+		return nil, err
+	}
+	ip := ClientIp(ctx)
+	if err := p.db.Transaction(func(tx *gorm.DB) error {
+		var it models.EmailUser
+		if err := tx.Where("email = ?", email).Preload("User").First(&it).Error; err != nil {
+			return err
+		}
+		if it.ConfirmedAt != nil {
+			return fmt.Errorf("%s is already confirmed", it.Email)
+		}
+		if err = tx.Model(&it).Updates(map[string]interface{}{
+			"confirmed_at": time.Now(),
+		}).Error; err != nil {
+			return err
+		}
+
+		return models.CreateLog(tx, it.UserID, portal_v2.Plugin(), ip, portal_v2.UserIndexLogResponse_Item_WARNING, "confirmed.")
+	}); err != nil {
+		return nil, err
+	}
+	return &Ok{}, nil
+}
+
+func (p *Mutation) SetEmailUserPassword(ctx context.Context, args struct {
+	Id       graphql.ID
+	Password string
+	Reason   string
+}) (*Ok, error) {
+	ss, err := CurrentUser(ctx, p.db, p.jwt)
+	if err != nil {
+		return nil, err
+	}
+	if err := ss.User.IsAdministrator(p.enforcer); err != nil {
+		return nil, err
+	}
+	id, err := FromId(args.Id)
+	if err != nil {
+		return nil, err
+	}
+	if err := p.db.Transaction(func(tx *gorm.DB) error {
+		var it models.EmailUser
+		if err := tx.Preload("User").First(&it, id).Error; err != nil {
+			return err
+		}
+		if err := it.User.IsRoot(p.enforcer); err == nil {
+			return fmt.Errorf("%s is an root user", it.Email)
+		}
+
+		form := models.NewSetPasswordForEmailUserForm(args.Password)
+		if err := form.Execute(p.db, &it, p.hmac); err != nil {
+			return err
+		}
+		return models.CreateLog(tx, it.UserID, portal_v2.Plugin(), ss.ClientIp, portal_v2.UserIndexLogResponse_Item_WARNING, fmt.Sprintf("reset password by %s, reason: %s", ss.Name, args.Reason))
+	}); err != nil {
+		return nil, err
+	}
+	return &Ok{}, nil
+}
 func (p *Mutation) ChangeEmailUserPassword(ctx context.Context, args struct {
 	CurrentPassword string
 	NewPassword     string

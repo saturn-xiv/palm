@@ -205,6 +205,23 @@ diesel::table! {
 }
 
 diesel::table! {
+    sms_users (id) {
+        id -> Int8,
+        deleted_at -> Nullable<Timestamptz>,
+        version -> Int8,
+        updated_at -> Timestamptz,
+        created_at -> Timestamptz,
+        user_id -> Int8,
+        #[max_length = 63]
+        name -> Varchar,
+        #[max_length = 15]
+        phone -> Varchar,
+        #[max_length = 127]
+        avatar -> Nullable<Varchar>,
+    }
+}
+
+diesel::table! {
     tags (id) {
         id -> Int8,
         version -> Int8,
@@ -329,6 +346,7 @@ diesel::joinable!(comments -> users (user_id));
 diesel::joinable!(email_users -> users (user_id));
 diesel::joinable!(google_oauth2_users -> users (user_id));
 diesel::joinable!(logs -> users (user_id));
+diesel::joinable!(sms_users -> users (user_id));
 diesel::joinable!(tags_resources -> tags (tag_id));
 diesel::joinable!(votes -> users (user_id));
 diesel::joinable!(wechat_mini_program_users -> users (user_id));
@@ -347,6 +365,7 @@ diesel::allow_tables_to_appear_in_same_query!(
     logs,
     settings,
     shorten_link,
+    sms_users,
     tags,
     tags_resources,
     users,

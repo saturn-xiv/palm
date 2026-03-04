@@ -11,4 +11,4 @@ $ ./tulip/docker/run.sh
 ## Documents
 
 - [Version Support](https://protobuf.dev/support/version-support/)
-- [Building Custom Root Filesystems](https://codepyre.com/2019/08/building-custom-root-filesystems/)
+- [Yocto Project Quick Build](https://docs.yoctoproject.org/brief-yoctoprojectqs/index.html)

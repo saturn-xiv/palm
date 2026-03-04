@@ -19,6 +19,7 @@
 #include <grpcpp/server_context.h>
 #include <grpcpp/impl/service_type.h>
 #include <grpcpp/support/sync_stream.h>
+#include <grpcpp/ports_def.inc>
 namespace palm {
 namespace accounting {
 namespace v1 {
@@ -42,4 +43,5 @@ Book::Service::~Service() {
 }  // namespace palm
 }  // namespace accounting
 }  // namespace v1
+#include <grpcpp/ports_undef.inc>
 

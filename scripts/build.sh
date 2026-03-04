@@ -119,6 +119,7 @@ do
     build_go $p amd64 x86_64
     build_go $p arm64 aarch64
     build_go $p riscv64 riscv64
+    # build_go $p loong64 loong64
 done
 
 

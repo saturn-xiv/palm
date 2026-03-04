@@ -59,15 +59,13 @@ type Mutation {
   setEmailUserName(name: String!): Ok!
   setEmailUserAvatar(avatar: String!): Ok!
   changeEmailUserPassword(currentPassword: String!, newPassword: String!): Ok!
+  confirmEmailUserByToken(token: String!): Ok!
   setUserLocation(lang: String!, timezone: String!): Ok!
-  # confirmEmailUser(token: String!): Ok!
-  # unlockEmailUser(token: String!): Ok!
 
   lockUser(id: ID!, reason: String!): Ok!
   unlockUser(id: ID!, reason: String!): Ok!
   destroyUser(id: ID!, reason: String!): Ok!
-  # setEmailUserPassword(id: ID!, password: String!, reason: String!): Ok!
-  # setPhoneUserPassword(id: ID!, password: String!, reason: String!): Ok!
+  setEmailUserPassword(id: ID!, password: String!, reason: String!): Ok!
 
   createAttachment(
     title: String!

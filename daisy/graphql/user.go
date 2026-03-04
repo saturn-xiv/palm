@@ -238,5 +238,10 @@ func CurrentUser(ctx context.Context, db *gorm.DB, jwt *crypto.Jwt) (*portal_v2.
 	if !ok {
 		return nil, errors.New("no authorization header")
 	}
-	return rbac.NewSessionByAuthorization(auth, db, jwt)
+	ss, err := rbac.NewSessionByAuthorization(auth, db, jwt)
+	if err != nil {
+		return nil, err
+	}
+	ss.ClientIp = ClientIp(ctx)
+	return ss, nil
 }
