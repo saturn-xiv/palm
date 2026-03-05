@@ -15,13 +15,11 @@ fi
 
 useradd -s /bin/zsh -m -d /mnt/$1 $1
 passwd -l $1
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" $1
 
-su - $1 <<EOF
-mkdir -pv $HOME/.ssh
-chmod 700 $HOME/.ssh
-touch $HOME/.ssh/authorized_keys
-EOF
+# sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+# mkdir -pv $HOME/.ssh
+# chmod 700 $HOME/.ssh
+# touch $HOME/.ssh/authorized_keys
 
-echo "Done(please append $1 into AllowUsers session of /etc/ssh/sshd_config)."
+echo "done."
 exit 0
