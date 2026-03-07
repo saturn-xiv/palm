@@ -158,7 +158,7 @@ func (x UserIndexLogResponse_Item_Level) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use UserIndexLogResponse_Item_Level.Descriptor instead.
 func (UserIndexLogResponse_Item_Level) EnumDescriptor() ([]byte, []int) {
-	return file_proto_portal_proto_rawDescGZIP(), []int{29, 0, 0}
+	return file_proto_portal_proto_rawDescGZIP(), []int{8, 0, 0}
 }
 
 type Session_ProviderType int32
@@ -213,7 +213,7 @@ func (x Session_ProviderType) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use Session_ProviderType.Descriptor instead.
 func (Session_ProviderType) EnumDescriptor() ([]byte, []int) {
-	return file_proto_portal_proto_rawDescGZIP(), []int{30, 0}
+	return file_proto_portal_proto_rawDescGZIP(), []int{9, 0}
 }
 
 type IdRequest struct {
@@ -552,852 +552,6 @@ func (x *Location) GetAddress() string {
 	return ""
 }
 
-type CurrenciesResponse struct {
-	state         protoimpl.MessageState     `protogen:"open.v1"`
-	Items         []*CurrenciesResponse_Item `protobuf:"bytes,1,rep,name=items,proto3" json:"items,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *CurrenciesResponse) Reset() {
-	*x = CurrenciesResponse{}
-	mi := &file_proto_portal_proto_msgTypes[6]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *CurrenciesResponse) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*CurrenciesResponse) ProtoMessage() {}
-
-func (x *CurrenciesResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_proto_portal_proto_msgTypes[6]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use CurrenciesResponse.ProtoReflect.Descriptor instead.
-func (*CurrenciesResponse) Descriptor() ([]byte, []int) {
-	return file_proto_portal_proto_rawDescGZIP(), []int{6}
-}
-
-func (x *CurrenciesResponse) GetItems() []*CurrenciesResponse_Item {
-	if x != nil {
-		return x.Items
-	}
-	return nil
-}
-
-type EmailUserSignInRequest struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Email         string                 `protobuf:"bytes,1,opt,name=email,proto3" json:"email,omitempty"`
-	Password      string                 `protobuf:"bytes,2,opt,name=password,proto3" json:"password,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *EmailUserSignInRequest) Reset() {
-	*x = EmailUserSignInRequest{}
-	mi := &file_proto_portal_proto_msgTypes[7]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *EmailUserSignInRequest) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*EmailUserSignInRequest) ProtoMessage() {}
-
-func (x *EmailUserSignInRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_proto_portal_proto_msgTypes[7]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use EmailUserSignInRequest.ProtoReflect.Descriptor instead.
-func (*EmailUserSignInRequest) Descriptor() ([]byte, []int) {
-	return file_proto_portal_proto_rawDescGZIP(), []int{7}
-}
-
-func (x *EmailUserSignInRequest) GetEmail() string {
-	if x != nil {
-		return x.Email
-	}
-	return ""
-}
-
-func (x *EmailUserSignInRequest) GetPassword() string {
-	if x != nil {
-		return x.Password
-	}
-	return ""
-}
-
-type EmailUserSignUpRequest struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Name          string                 `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
-	Email         string                 `protobuf:"bytes,2,opt,name=email,proto3" json:"email,omitempty"`
-	Password      string                 `protobuf:"bytes,3,opt,name=password,proto3" json:"password,omitempty"`
-	Lang          string                 `protobuf:"bytes,8,opt,name=lang,proto3" json:"lang,omitempty"`
-	Timezone      string                 `protobuf:"bytes,9,opt,name=timezone,proto3" json:"timezone,omitempty"`
-	Home          string                 `protobuf:"bytes,99,opt,name=home,proto3" json:"home,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *EmailUserSignUpRequest) Reset() {
-	*x = EmailUserSignUpRequest{}
-	mi := &file_proto_portal_proto_msgTypes[8]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *EmailUserSignUpRequest) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*EmailUserSignUpRequest) ProtoMessage() {}
-
-func (x *EmailUserSignUpRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_proto_portal_proto_msgTypes[8]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use EmailUserSignUpRequest.ProtoReflect.Descriptor instead.
-func (*EmailUserSignUpRequest) Descriptor() ([]byte, []int) {
-	return file_proto_portal_proto_rawDescGZIP(), []int{8}
-}
-
-func (x *EmailUserSignUpRequest) GetName() string {
-	if x != nil {
-		return x.Name
-	}
-	return ""
-}
-
-func (x *EmailUserSignUpRequest) GetEmail() string {
-	if x != nil {
-		return x.Email
-	}
-	return ""
-}
-
-func (x *EmailUserSignUpRequest) GetPassword() string {
-	if x != nil {
-		return x.Password
-	}
-	return ""
-}
-
-func (x *EmailUserSignUpRequest) GetLang() string {
-	if x != nil {
-		return x.Lang
-	}
-	return ""
-}
-
-func (x *EmailUserSignUpRequest) GetTimezone() string {
-	if x != nil {
-		return x.Timezone
-	}
-	return ""
-}
-
-func (x *EmailUserSignUpRequest) GetHome() string {
-	if x != nil {
-		return x.Home
-	}
-	return ""
-}
-
-type EmailUserUnlockByEmailRequest struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Email         string                 `protobuf:"bytes,1,opt,name=email,proto3" json:"email,omitempty"`
-	Home          string                 `protobuf:"bytes,99,opt,name=home,proto3" json:"home,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *EmailUserUnlockByEmailRequest) Reset() {
-	*x = EmailUserUnlockByEmailRequest{}
-	mi := &file_proto_portal_proto_msgTypes[9]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *EmailUserUnlockByEmailRequest) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*EmailUserUnlockByEmailRequest) ProtoMessage() {}
-
-func (x *EmailUserUnlockByEmailRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_proto_portal_proto_msgTypes[9]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use EmailUserUnlockByEmailRequest.ProtoReflect.Descriptor instead.
-func (*EmailUserUnlockByEmailRequest) Descriptor() ([]byte, []int) {
-	return file_proto_portal_proto_rawDescGZIP(), []int{9}
-}
-
-func (x *EmailUserUnlockByEmailRequest) GetEmail() string {
-	if x != nil {
-		return x.Email
-	}
-	return ""
-}
-
-func (x *EmailUserUnlockByEmailRequest) GetHome() string {
-	if x != nil {
-		return x.Home
-	}
-	return ""
-}
-
-type EmailUserUnlockByTokenRequest struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Token         string                 `protobuf:"bytes,1,opt,name=token,proto3" json:"token,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *EmailUserUnlockByTokenRequest) Reset() {
-	*x = EmailUserUnlockByTokenRequest{}
-	mi := &file_proto_portal_proto_msgTypes[10]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *EmailUserUnlockByTokenRequest) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*EmailUserUnlockByTokenRequest) ProtoMessage() {}
-
-func (x *EmailUserUnlockByTokenRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_proto_portal_proto_msgTypes[10]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use EmailUserUnlockByTokenRequest.ProtoReflect.Descriptor instead.
-func (*EmailUserUnlockByTokenRequest) Descriptor() ([]byte, []int) {
-	return file_proto_portal_proto_rawDescGZIP(), []int{10}
-}
-
-func (x *EmailUserUnlockByTokenRequest) GetToken() string {
-	if x != nil {
-		return x.Token
-	}
-	return ""
-}
-
-type EmailUserConfirmByEmailRequest struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Email         string                 `protobuf:"bytes,1,opt,name=email,proto3" json:"email,omitempty"`
-	Home          string                 `protobuf:"bytes,99,opt,name=home,proto3" json:"home,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *EmailUserConfirmByEmailRequest) Reset() {
-	*x = EmailUserConfirmByEmailRequest{}
-	mi := &file_proto_portal_proto_msgTypes[11]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *EmailUserConfirmByEmailRequest) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*EmailUserConfirmByEmailRequest) ProtoMessage() {}
-
-func (x *EmailUserConfirmByEmailRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_proto_portal_proto_msgTypes[11]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use EmailUserConfirmByEmailRequest.ProtoReflect.Descriptor instead.
-func (*EmailUserConfirmByEmailRequest) Descriptor() ([]byte, []int) {
-	return file_proto_portal_proto_rawDescGZIP(), []int{11}
-}
-
-func (x *EmailUserConfirmByEmailRequest) GetEmail() string {
-	if x != nil {
-		return x.Email
-	}
-	return ""
-}
-
-func (x *EmailUserConfirmByEmailRequest) GetHome() string {
-	if x != nil {
-		return x.Home
-	}
-	return ""
-}
-
-type EmailUserConfirmByTokenRequest struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Token         string                 `protobuf:"bytes,1,opt,name=token,proto3" json:"token,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *EmailUserConfirmByTokenRequest) Reset() {
-	*x = EmailUserConfirmByTokenRequest{}
-	mi := &file_proto_portal_proto_msgTypes[12]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *EmailUserConfirmByTokenRequest) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*EmailUserConfirmByTokenRequest) ProtoMessage() {}
-
-func (x *EmailUserConfirmByTokenRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_proto_portal_proto_msgTypes[12]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use EmailUserConfirmByTokenRequest.ProtoReflect.Descriptor instead.
-func (*EmailUserConfirmByTokenRequest) Descriptor() ([]byte, []int) {
-	return file_proto_portal_proto_rawDescGZIP(), []int{12}
-}
-
-func (x *EmailUserConfirmByTokenRequest) GetToken() string {
-	if x != nil {
-		return x.Token
-	}
-	return ""
-}
-
-type EmailUserForgotPasswordRequest struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Email         string                 `protobuf:"bytes,1,opt,name=email,proto3" json:"email,omitempty"`
-	Home          string                 `protobuf:"bytes,99,opt,name=home,proto3" json:"home,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *EmailUserForgotPasswordRequest) Reset() {
-	*x = EmailUserForgotPasswordRequest{}
-	mi := &file_proto_portal_proto_msgTypes[13]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *EmailUserForgotPasswordRequest) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*EmailUserForgotPasswordRequest) ProtoMessage() {}
-
-func (x *EmailUserForgotPasswordRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_proto_portal_proto_msgTypes[13]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use EmailUserForgotPasswordRequest.ProtoReflect.Descriptor instead.
-func (*EmailUserForgotPasswordRequest) Descriptor() ([]byte, []int) {
-	return file_proto_portal_proto_rawDescGZIP(), []int{13}
-}
-
-func (x *EmailUserForgotPasswordRequest) GetEmail() string {
-	if x != nil {
-		return x.Email
-	}
-	return ""
-}
-
-func (x *EmailUserForgotPasswordRequest) GetHome() string {
-	if x != nil {
-		return x.Home
-	}
-	return ""
-}
-
-type EmailUserResetPasswordRequest struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Token         string                 `protobuf:"bytes,1,opt,name=token,proto3" json:"token,omitempty"`
-	Password      string                 `protobuf:"bytes,2,opt,name=password,proto3" json:"password,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *EmailUserResetPasswordRequest) Reset() {
-	*x = EmailUserResetPasswordRequest{}
-	mi := &file_proto_portal_proto_msgTypes[14]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *EmailUserResetPasswordRequest) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*EmailUserResetPasswordRequest) ProtoMessage() {}
-
-func (x *EmailUserResetPasswordRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_proto_portal_proto_msgTypes[14]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use EmailUserResetPasswordRequest.ProtoReflect.Descriptor instead.
-func (*EmailUserResetPasswordRequest) Descriptor() ([]byte, []int) {
-	return file_proto_portal_proto_rawDescGZIP(), []int{14}
-}
-
-func (x *EmailUserResetPasswordRequest) GetToken() string {
-	if x != nil {
-		return x.Token
-	}
-	return ""
-}
-
-func (x *EmailUserResetPasswordRequest) GetPassword() string {
-	if x != nil {
-		return x.Password
-	}
-	return ""
-}
-
-type EmailUserSetNameRequest struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Name          string                 `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *EmailUserSetNameRequest) Reset() {
-	*x = EmailUserSetNameRequest{}
-	mi := &file_proto_portal_proto_msgTypes[15]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *EmailUserSetNameRequest) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*EmailUserSetNameRequest) ProtoMessage() {}
-
-func (x *EmailUserSetNameRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_proto_portal_proto_msgTypes[15]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use EmailUserSetNameRequest.ProtoReflect.Descriptor instead.
-func (*EmailUserSetNameRequest) Descriptor() ([]byte, []int) {
-	return file_proto_portal_proto_rawDescGZIP(), []int{15}
-}
-
-func (x *EmailUserSetNameRequest) GetName() string {
-	if x != nil {
-		return x.Name
-	}
-	return ""
-}
-
-type EmailUserSetAvatarRequest struct {
-	state protoimpl.MessageState `protogen:"open.v1"`
-	// Types that are valid to be assigned to By:
-	//
-	//	*EmailUserSetAvatarRequest_Url
-	//	*EmailUserSetAvatarRequest_File
-	By            isEmailUserSetAvatarRequest_By `protobuf_oneof:"by"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *EmailUserSetAvatarRequest) Reset() {
-	*x = EmailUserSetAvatarRequest{}
-	mi := &file_proto_portal_proto_msgTypes[16]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *EmailUserSetAvatarRequest) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*EmailUserSetAvatarRequest) ProtoMessage() {}
-
-func (x *EmailUserSetAvatarRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_proto_portal_proto_msgTypes[16]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use EmailUserSetAvatarRequest.ProtoReflect.Descriptor instead.
-func (*EmailUserSetAvatarRequest) Descriptor() ([]byte, []int) {
-	return file_proto_portal_proto_rawDescGZIP(), []int{16}
-}
-
-func (x *EmailUserSetAvatarRequest) GetBy() isEmailUserSetAvatarRequest_By {
-	if x != nil {
-		return x.By
-	}
-	return nil
-}
-
-func (x *EmailUserSetAvatarRequest) GetUrl() string {
-	if x != nil {
-		if x, ok := x.By.(*EmailUserSetAvatarRequest_Url); ok {
-			return x.Url
-		}
-	}
-	return ""
-}
-
-func (x *EmailUserSetAvatarRequest) GetFile() *File {
-	if x != nil {
-		if x, ok := x.By.(*EmailUserSetAvatarRequest_File); ok {
-			return x.File
-		}
-	}
-	return nil
-}
-
-type isEmailUserSetAvatarRequest_By interface {
-	isEmailUserSetAvatarRequest_By()
-}
-
-type EmailUserSetAvatarRequest_Url struct {
-	Url string `protobuf:"bytes,1,opt,name=url,proto3,oneof"`
-}
-
-type EmailUserSetAvatarRequest_File struct {
-	File *File `protobuf:"bytes,2,opt,name=file,proto3,oneof"`
-}
-
-func (*EmailUserSetAvatarRequest_Url) isEmailUserSetAvatarRequest_By() {}
-
-func (*EmailUserSetAvatarRequest_File) isEmailUserSetAvatarRequest_By() {}
-
-type EmailUserChangePasswordRequest struct {
-	state           protoimpl.MessageState `protogen:"open.v1"`
-	CurrentPassword string                 `protobuf:"bytes,1,opt,name=current_password,json=currentPassword,proto3" json:"current_password,omitempty"`
-	NewPassword     string                 `protobuf:"bytes,2,opt,name=new_password,json=newPassword,proto3" json:"new_password,omitempty"`
-	unknownFields   protoimpl.UnknownFields
-	sizeCache       protoimpl.SizeCache
-}
-
-func (x *EmailUserChangePasswordRequest) Reset() {
-	*x = EmailUserChangePasswordRequest{}
-	mi := &file_proto_portal_proto_msgTypes[17]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *EmailUserChangePasswordRequest) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*EmailUserChangePasswordRequest) ProtoMessage() {}
-
-func (x *EmailUserChangePasswordRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_proto_portal_proto_msgTypes[17]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use EmailUserChangePasswordRequest.ProtoReflect.Descriptor instead.
-func (*EmailUserChangePasswordRequest) Descriptor() ([]byte, []int) {
-	return file_proto_portal_proto_rawDescGZIP(), []int{17}
-}
-
-func (x *EmailUserChangePasswordRequest) GetCurrentPassword() string {
-	if x != nil {
-		return x.CurrentPassword
-	}
-	return ""
-}
-
-func (x *EmailUserChangePasswordRequest) GetNewPassword() string {
-	if x != nil {
-		return x.NewPassword
-	}
-	return ""
-}
-
-type EmailUserIndexResponse struct {
-	state         protoimpl.MessageState         `protogen:"open.v1"`
-	Items         []*EmailUserIndexResponse_Item `protobuf:"bytes,1,rep,name=items,proto3" json:"items,omitempty"`
-	Pagination    *Pagination                    `protobuf:"bytes,9,opt,name=pagination,proto3" json:"pagination,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *EmailUserIndexResponse) Reset() {
-	*x = EmailUserIndexResponse{}
-	mi := &file_proto_portal_proto_msgTypes[18]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *EmailUserIndexResponse) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*EmailUserIndexResponse) ProtoMessage() {}
-
-func (x *EmailUserIndexResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_proto_portal_proto_msgTypes[18]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use EmailUserIndexResponse.ProtoReflect.Descriptor instead.
-func (*EmailUserIndexResponse) Descriptor() ([]byte, []int) {
-	return file_proto_portal_proto_rawDescGZIP(), []int{18}
-}
-
-func (x *EmailUserIndexResponse) GetItems() []*EmailUserIndexResponse_Item {
-	if x != nil {
-		return x.Items
-	}
-	return nil
-}
-
-func (x *EmailUserIndexResponse) GetPagination() *Pagination {
-	if x != nil {
-		return x.Pagination
-	}
-	return nil
-}
-
-type EmailUserSetPasswordRequest struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Id            int64                  `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
-	Password      string                 `protobuf:"bytes,2,opt,name=password,proto3" json:"password,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *EmailUserSetPasswordRequest) Reset() {
-	*x = EmailUserSetPasswordRequest{}
-	mi := &file_proto_portal_proto_msgTypes[19]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *EmailUserSetPasswordRequest) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*EmailUserSetPasswordRequest) ProtoMessage() {}
-
-func (x *EmailUserSetPasswordRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_proto_portal_proto_msgTypes[19]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use EmailUserSetPasswordRequest.ProtoReflect.Descriptor instead.
-func (*EmailUserSetPasswordRequest) Descriptor() ([]byte, []int) {
-	return file_proto_portal_proto_rawDescGZIP(), []int{19}
-}
-
-func (x *EmailUserSetPasswordRequest) GetId() int64 {
-	if x != nil {
-		return x.Id
-	}
-	return 0
-}
-
-func (x *EmailUserSetPasswordRequest) GetPassword() string {
-	if x != nil {
-		return x.Password
-	}
-	return ""
-}
-
-type UserSetLangRequest struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Lang          string                 `protobuf:"bytes,1,opt,name=lang,proto3" json:"lang,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *UserSetLangRequest) Reset() {
-	*x = UserSetLangRequest{}
-	mi := &file_proto_portal_proto_msgTypes[20]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *UserSetLangRequest) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*UserSetLangRequest) ProtoMessage() {}
-
-func (x *UserSetLangRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_proto_portal_proto_msgTypes[20]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use UserSetLangRequest.ProtoReflect.Descriptor instead.
-func (*UserSetLangRequest) Descriptor() ([]byte, []int) {
-	return file_proto_portal_proto_rawDescGZIP(), []int{20}
-}
-
-func (x *UserSetLangRequest) GetLang() string {
-	if x != nil {
-		return x.Lang
-	}
-	return ""
-}
-
-type UserSetTimezoneRequest struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Timezone      string                 `protobuf:"bytes,1,opt,name=timezone,proto3" json:"timezone,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *UserSetTimezoneRequest) Reset() {
-	*x = UserSetTimezoneRequest{}
-	mi := &file_proto_portal_proto_msgTypes[21]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *UserSetTimezoneRequest) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*UserSetTimezoneRequest) ProtoMessage() {}
-
-func (x *UserSetTimezoneRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_proto_portal_proto_msgTypes[21]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use UserSetTimezoneRequest.ProtoReflect.Descriptor instead.
-func (*UserSetTimezoneRequest) Descriptor() ([]byte, []int) {
-	return file_proto_portal_proto_rawDescGZIP(), []int{21}
-}
-
-func (x *UserSetTimezoneRequest) GetTimezone() string {
-	if x != nil {
-		return x.Timezone
-	}
-	return ""
-}
-
 type UserIndexResponse struct {
 	state         protoimpl.MessageState    `protogen:"open.v1"`
 	Items         []*UserIndexResponse_Item `protobuf:"bytes,1,rep,name=items,proto3" json:"items,omitempty"`
@@ -1408,7 +562,7 @@ type UserIndexResponse struct {
 
 func (x *UserIndexResponse) Reset() {
 	*x = UserIndexResponse{}
-	mi := &file_proto_portal_proto_msgTypes[22]
+	mi := &file_proto_portal_proto_msgTypes[6]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1420,7 +574,7 @@ func (x *UserIndexResponse) String() string {
 func (*UserIndexResponse) ProtoMessage() {}
 
 func (x *UserIndexResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_proto_portal_proto_msgTypes[22]
+	mi := &file_proto_portal_proto_msgTypes[6]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1433,7 +587,7 @@ func (x *UserIndexResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UserIndexResponse.ProtoReflect.Descriptor instead.
 func (*UserIndexResponse) Descriptor() ([]byte, []int) {
-	return file_proto_portal_proto_rawDescGZIP(), []int{22}
+	return file_proto_portal_proto_rawDescGZIP(), []int{6}
 }
 
 func (x *UserIndexResponse) GetItems() []*UserIndexResponse_Item {
@@ -1450,162 +604,6 @@ func (x *UserIndexResponse) GetPagination() *Pagination {
 	return nil
 }
 
-type UserSetAttachmentTitleRequest struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Id            int64                  `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
-	Title         string                 `protobuf:"bytes,2,opt,name=title,proto3" json:"title,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *UserSetAttachmentTitleRequest) Reset() {
-	*x = UserSetAttachmentTitleRequest{}
-	mi := &file_proto_portal_proto_msgTypes[23]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *UserSetAttachmentTitleRequest) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*UserSetAttachmentTitleRequest) ProtoMessage() {}
-
-func (x *UserSetAttachmentTitleRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_proto_portal_proto_msgTypes[23]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use UserSetAttachmentTitleRequest.ProtoReflect.Descriptor instead.
-func (*UserSetAttachmentTitleRequest) Descriptor() ([]byte, []int) {
-	return file_proto_portal_proto_rawDescGZIP(), []int{23}
-}
-
-func (x *UserSetAttachmentTitleRequest) GetId() int64 {
-	if x != nil {
-		return x.Id
-	}
-	return 0
-}
-
-func (x *UserSetAttachmentTitleRequest) GetTitle() string {
-	if x != nil {
-		return x.Title
-	}
-	return ""
-}
-
-type UserShowAttachmentRequest struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Id            int64                  `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
-	Download      bool                   `protobuf:"varint,2,opt,name=download,proto3" json:"download,omitempty"`
-	Ttl           *durationpb.Duration   `protobuf:"bytes,9,opt,name=ttl,proto3,oneof" json:"ttl,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *UserShowAttachmentRequest) Reset() {
-	*x = UserShowAttachmentRequest{}
-	mi := &file_proto_portal_proto_msgTypes[24]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *UserShowAttachmentRequest) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*UserShowAttachmentRequest) ProtoMessage() {}
-
-func (x *UserShowAttachmentRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_proto_portal_proto_msgTypes[24]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use UserShowAttachmentRequest.ProtoReflect.Descriptor instead.
-func (*UserShowAttachmentRequest) Descriptor() ([]byte, []int) {
-	return file_proto_portal_proto_rawDescGZIP(), []int{24}
-}
-
-func (x *UserShowAttachmentRequest) GetId() int64 {
-	if x != nil {
-		return x.Id
-	}
-	return 0
-}
-
-func (x *UserShowAttachmentRequest) GetDownload() bool {
-	if x != nil {
-		return x.Download
-	}
-	return false
-}
-
-func (x *UserShowAttachmentRequest) GetTtl() *durationpb.Duration {
-	if x != nil {
-		return x.Ttl
-	}
-	return nil
-}
-
-type UserShowAttachmentResponse struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Url           string                 `protobuf:"bytes,1,opt,name=url,proto3" json:"url,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *UserShowAttachmentResponse) Reset() {
-	*x = UserShowAttachmentResponse{}
-	mi := &file_proto_portal_proto_msgTypes[25]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *UserShowAttachmentResponse) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*UserShowAttachmentResponse) ProtoMessage() {}
-
-func (x *UserShowAttachmentResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_proto_portal_proto_msgTypes[25]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use UserShowAttachmentResponse.ProtoReflect.Descriptor instead.
-func (*UserShowAttachmentResponse) Descriptor() ([]byte, []int) {
-	return file_proto_portal_proto_rawDescGZIP(), []int{25}
-}
-
-func (x *UserShowAttachmentResponse) GetUrl() string {
-	if x != nil {
-		return x.Url
-	}
-	return ""
-}
-
 type UserCreateAttachmentRequest struct {
 	state           protoimpl.MessageState `protogen:"open.v1"`
 	Title           string                 `protobuf:"bytes,1,opt,name=title,proto3" json:"title,omitempty"`
@@ -1620,7 +618,7 @@ type UserCreateAttachmentRequest struct {
 
 func (x *UserCreateAttachmentRequest) Reset() {
 	*x = UserCreateAttachmentRequest{}
-	mi := &file_proto_portal_proto_msgTypes[26]
+	mi := &file_proto_portal_proto_msgTypes[7]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1632,7 +630,7 @@ func (x *UserCreateAttachmentRequest) String() string {
 func (*UserCreateAttachmentRequest) ProtoMessage() {}
 
 func (x *UserCreateAttachmentRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_proto_portal_proto_msgTypes[26]
+	mi := &file_proto_portal_proto_msgTypes[7]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1645,7 +643,7 @@ func (x *UserCreateAttachmentRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UserCreateAttachmentRequest.ProtoReflect.Descriptor instead.
 func (*UserCreateAttachmentRequest) Descriptor() ([]byte, []int) {
-	return file_proto_portal_proto_rawDescGZIP(), []int{26}
+	return file_proto_portal_proto_rawDescGZIP(), []int{7}
 }
 
 func (x *UserCreateAttachmentRequest) GetTitle() string {
@@ -1690,110 +688,6 @@ func (x *UserCreateAttachmentRequest) GetTtl() *durationpb.Duration {
 	return nil
 }
 
-type UserCreateAttachmentUploadResponse struct {
-	state         protoimpl.MessageState            `protogen:"open.v1"`
-	Url           string                            `protobuf:"bytes,1,opt,name=url,proto3" json:"url,omitempty"`
-	Item          *UserIndexAttachmentResponse_Item `protobuf:"bytes,2,opt,name=item,proto3" json:"item,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *UserCreateAttachmentUploadResponse) Reset() {
-	*x = UserCreateAttachmentUploadResponse{}
-	mi := &file_proto_portal_proto_msgTypes[27]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *UserCreateAttachmentUploadResponse) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*UserCreateAttachmentUploadResponse) ProtoMessage() {}
-
-func (x *UserCreateAttachmentUploadResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_proto_portal_proto_msgTypes[27]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use UserCreateAttachmentUploadResponse.ProtoReflect.Descriptor instead.
-func (*UserCreateAttachmentUploadResponse) Descriptor() ([]byte, []int) {
-	return file_proto_portal_proto_rawDescGZIP(), []int{27}
-}
-
-func (x *UserCreateAttachmentUploadResponse) GetUrl() string {
-	if x != nil {
-		return x.Url
-	}
-	return ""
-}
-
-func (x *UserCreateAttachmentUploadResponse) GetItem() *UserIndexAttachmentResponse_Item {
-	if x != nil {
-		return x.Item
-	}
-	return nil
-}
-
-type UserIndexAttachmentResponse struct {
-	state         protoimpl.MessageState              `protogen:"open.v1"`
-	Items         []*UserIndexAttachmentResponse_Item `protobuf:"bytes,1,rep,name=items,proto3" json:"items,omitempty"`
-	Pagination    *Pagination                         `protobuf:"bytes,2,opt,name=pagination,proto3" json:"pagination,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *UserIndexAttachmentResponse) Reset() {
-	*x = UserIndexAttachmentResponse{}
-	mi := &file_proto_portal_proto_msgTypes[28]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *UserIndexAttachmentResponse) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*UserIndexAttachmentResponse) ProtoMessage() {}
-
-func (x *UserIndexAttachmentResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_proto_portal_proto_msgTypes[28]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use UserIndexAttachmentResponse.ProtoReflect.Descriptor instead.
-func (*UserIndexAttachmentResponse) Descriptor() ([]byte, []int) {
-	return file_proto_portal_proto_rawDescGZIP(), []int{28}
-}
-
-func (x *UserIndexAttachmentResponse) GetItems() []*UserIndexAttachmentResponse_Item {
-	if x != nil {
-		return x.Items
-	}
-	return nil
-}
-
-func (x *UserIndexAttachmentResponse) GetPagination() *Pagination {
-	if x != nil {
-		return x.Pagination
-	}
-	return nil
-}
-
 type UserIndexLogResponse struct {
 	state         protoimpl.MessageState       `protogen:"open.v1"`
 	Items         []*UserIndexLogResponse_Item `protobuf:"bytes,1,rep,name=items,proto3" json:"items,omitempty"`
@@ -1804,7 +698,7 @@ type UserIndexLogResponse struct {
 
 func (x *UserIndexLogResponse) Reset() {
 	*x = UserIndexLogResponse{}
-	mi := &file_proto_portal_proto_msgTypes[29]
+	mi := &file_proto_portal_proto_msgTypes[8]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1816,7 +710,7 @@ func (x *UserIndexLogResponse) String() string {
 func (*UserIndexLogResponse) ProtoMessage() {}
 
 func (x *UserIndexLogResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_proto_portal_proto_msgTypes[29]
+	mi := &file_proto_portal_proto_msgTypes[8]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1829,7 +723,7 @@ func (x *UserIndexLogResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UserIndexLogResponse.ProtoReflect.Descriptor instead.
 func (*UserIndexLogResponse) Descriptor() ([]byte, []int) {
-	return file_proto_portal_proto_rawDescGZIP(), []int{29}
+	return file_proto_portal_proto_rawDescGZIP(), []int{8}
 }
 
 func (x *UserIndexLogResponse) GetItems() []*UserIndexLogResponse_Item {
@@ -1859,7 +753,7 @@ type Session struct {
 
 func (x *Session) Reset() {
 	*x = Session{}
-	mi := &file_proto_portal_proto_msgTypes[30]
+	mi := &file_proto_portal_proto_msgTypes[9]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1871,7 +765,7 @@ func (x *Session) String() string {
 func (*Session) ProtoMessage() {}
 
 func (x *Session) ProtoReflect() protoreflect.Message {
-	mi := &file_proto_portal_proto_msgTypes[30]
+	mi := &file_proto_portal_proto_msgTypes[9]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1884,7 +778,7 @@ func (x *Session) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Session.ProtoReflect.Descriptor instead.
 func (*Session) Descriptor() ([]byte, []int) {
-	return file_proto_portal_proto_rawDescGZIP(), []int{30}
+	return file_proto_portal_proto_rawDescGZIP(), []int{9}
 }
 
 func (x *Session) GetSubject() *Session_Subject {
@@ -1922,234 +816,6 @@ func (x *Session) GetClientIp() string {
 	return ""
 }
 
-type UserSignInResponse struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Token         string                 `protobuf:"bytes,1,opt,name=token,proto3" json:"token,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *UserSignInResponse) Reset() {
-	*x = UserSignInResponse{}
-	mi := &file_proto_portal_proto_msgTypes[31]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *UserSignInResponse) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*UserSignInResponse) ProtoMessage() {}
-
-func (x *UserSignInResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_proto_portal_proto_msgTypes[31]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use UserSignInResponse.ProtoReflect.Descriptor instead.
-func (*UserSignInResponse) Descriptor() ([]byte, []int) {
-	return file_proto_portal_proto_rawDescGZIP(), []int{31}
-}
-
-func (x *UserSignInResponse) GetToken() string {
-	if x != nil {
-		return x.Token
-	}
-	return ""
-}
-
-type CurrenciesResponse_Item struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Code          string                 `protobuf:"bytes,1,opt,name=code,proto3" json:"code,omitempty"`
-	Name          string                 `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
-	Country       string                 `protobuf:"bytes,3,opt,name=country,proto3" json:"country,omitempty"`
-	Number        uint32                 `protobuf:"varint,4,opt,name=number,proto3" json:"number,omitempty"`
-	Units         *uint32                `protobuf:"varint,5,opt,name=units,proto3,oneof" json:"units,omitempty"`
-	IsFund        *bool                  `protobuf:"varint,6,opt,name=is_fund,json=isFund,proto3,oneof" json:"is_fund,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *CurrenciesResponse_Item) Reset() {
-	*x = CurrenciesResponse_Item{}
-	mi := &file_proto_portal_proto_msgTypes[32]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *CurrenciesResponse_Item) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*CurrenciesResponse_Item) ProtoMessage() {}
-
-func (x *CurrenciesResponse_Item) ProtoReflect() protoreflect.Message {
-	mi := &file_proto_portal_proto_msgTypes[32]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use CurrenciesResponse_Item.ProtoReflect.Descriptor instead.
-func (*CurrenciesResponse_Item) Descriptor() ([]byte, []int) {
-	return file_proto_portal_proto_rawDescGZIP(), []int{6, 0}
-}
-
-func (x *CurrenciesResponse_Item) GetCode() string {
-	if x != nil {
-		return x.Code
-	}
-	return ""
-}
-
-func (x *CurrenciesResponse_Item) GetName() string {
-	if x != nil {
-		return x.Name
-	}
-	return ""
-}
-
-func (x *CurrenciesResponse_Item) GetCountry() string {
-	if x != nil {
-		return x.Country
-	}
-	return ""
-}
-
-func (x *CurrenciesResponse_Item) GetNumber() uint32 {
-	if x != nil {
-		return x.Number
-	}
-	return 0
-}
-
-func (x *CurrenciesResponse_Item) GetUnits() uint32 {
-	if x != nil && x.Units != nil {
-		return *x.Units
-	}
-	return 0
-}
-
-func (x *CurrenciesResponse_Item) GetIsFund() bool {
-	if x != nil && x.IsFund != nil {
-		return *x.IsFund
-	}
-	return false
-}
-
-type EmailUserIndexResponse_Item struct {
-	state         protoimpl.MessageState  `protogen:"open.v1"`
-	Id            int64                   `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
-	Email         string                  `protobuf:"bytes,2,opt,name=email,proto3" json:"email,omitempty"`
-	Name          string                  `protobuf:"bytes,3,opt,name=name,proto3" json:"name,omitempty"`
-	Avatar        *string                 `protobuf:"bytes,16,opt,name=avatar,proto3,oneof" json:"avatar,omitempty"`
-	ConfirmedAt   *timestamppb.Timestamp  `protobuf:"bytes,17,opt,name=confirmed_at,json=confirmedAt,proto3,oneof" json:"confirmed_at,omitempty"`
-	DeletedAt     *timestamppb.Timestamp  `protobuf:"bytes,18,opt,name=deleted_at,json=deletedAt,proto3,oneof" json:"deleted_at,omitempty"`
-	UpdatedAt     *timestamppb.Timestamp  `protobuf:"bytes,19,opt,name=updated_at,json=updatedAt,proto3" json:"updated_at,omitempty"`
-	User          *UserIndexResponse_Item `protobuf:"bytes,99,opt,name=user,proto3" json:"user,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *EmailUserIndexResponse_Item) Reset() {
-	*x = EmailUserIndexResponse_Item{}
-	mi := &file_proto_portal_proto_msgTypes[33]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *EmailUserIndexResponse_Item) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*EmailUserIndexResponse_Item) ProtoMessage() {}
-
-func (x *EmailUserIndexResponse_Item) ProtoReflect() protoreflect.Message {
-	mi := &file_proto_portal_proto_msgTypes[33]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use EmailUserIndexResponse_Item.ProtoReflect.Descriptor instead.
-func (*EmailUserIndexResponse_Item) Descriptor() ([]byte, []int) {
-	return file_proto_portal_proto_rawDescGZIP(), []int{18, 0}
-}
-
-func (x *EmailUserIndexResponse_Item) GetId() int64 {
-	if x != nil {
-		return x.Id
-	}
-	return 0
-}
-
-func (x *EmailUserIndexResponse_Item) GetEmail() string {
-	if x != nil {
-		return x.Email
-	}
-	return ""
-}
-
-func (x *EmailUserIndexResponse_Item) GetName() string {
-	if x != nil {
-		return x.Name
-	}
-	return ""
-}
-
-func (x *EmailUserIndexResponse_Item) GetAvatar() string {
-	if x != nil && x.Avatar != nil {
-		return *x.Avatar
-	}
-	return ""
-}
-
-func (x *EmailUserIndexResponse_Item) GetConfirmedAt() *timestamppb.Timestamp {
-	if x != nil {
-		return x.ConfirmedAt
-	}
-	return nil
-}
-
-func (x *EmailUserIndexResponse_Item) GetDeletedAt() *timestamppb.Timestamp {
-	if x != nil {
-		return x.DeletedAt
-	}
-	return nil
-}
-
-func (x *EmailUserIndexResponse_Item) GetUpdatedAt() *timestamppb.Timestamp {
-	if x != nil {
-		return x.UpdatedAt
-	}
-	return nil
-}
-
-func (x *EmailUserIndexResponse_Item) GetUser() *UserIndexResponse_Item {
-	if x != nil {
-		return x.User
-	}
-	return nil
-}
-
 type UserIndexResponse_Item struct {
 	state             protoimpl.MessageState `protogen:"open.v1"`
 	Id                int64                  `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
@@ -2170,7 +836,7 @@ type UserIndexResponse_Item struct {
 
 func (x *UserIndexResponse_Item) Reset() {
 	*x = UserIndexResponse_Item{}
-	mi := &file_proto_portal_proto_msgTypes[34]
+	mi := &file_proto_portal_proto_msgTypes[10]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2182,7 +848,7 @@ func (x *UserIndexResponse_Item) String() string {
 func (*UserIndexResponse_Item) ProtoMessage() {}
 
 func (x *UserIndexResponse_Item) ProtoReflect() protoreflect.Message {
-	mi := &file_proto_portal_proto_msgTypes[34]
+	mi := &file_proto_portal_proto_msgTypes[10]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2195,7 +861,7 @@ func (x *UserIndexResponse_Item) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UserIndexResponse_Item.ProtoReflect.Descriptor instead.
 func (*UserIndexResponse_Item) Descriptor() ([]byte, []int) {
-	return file_proto_portal_proto_rawDescGZIP(), []int{22, 0}
+	return file_proto_portal_proto_rawDescGZIP(), []int{6, 0}
 }
 
 func (x *UserIndexResponse_Item) GetId() int64 {
@@ -2282,122 +948,6 @@ func (x *UserIndexResponse_Item) GetUpdatedAt() *timestamppb.Timestamp {
 	return nil
 }
 
-type UserIndexAttachmentResponse_Item struct {
-	state           protoimpl.MessageState `protogen:"open.v1"`
-	Id              int64                  `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
-	Bucket          string                 `protobuf:"bytes,2,opt,name=bucket,proto3" json:"bucket,omitempty"`
-	Object          string                 `protobuf:"bytes,3,opt,name=object,proto3" json:"object,omitempty"`
-	Title           string                 `protobuf:"bytes,4,opt,name=title,proto3" json:"title,omitempty"`
-	ContentType     string                 `protobuf:"bytes,5,opt,name=content_type,json=contentType,proto3" json:"content_type,omitempty"`
-	Size            uint64                 `protobuf:"varint,6,opt,name=size,proto3" json:"size,omitempty"`
-	UploadedAt      *timestamppb.Timestamp `protobuf:"bytes,7,opt,name=uploaded_at,json=uploadedAt,proto3,oneof" json:"uploaded_at,omitempty"`
-	ExpireAfterDays *uint32                `protobuf:"varint,8,opt,name=expire_after_days,json=expireAfterDays,proto3,oneof" json:"expire_after_days,omitempty"`
-	Public          bool                   `protobuf:"varint,9,opt,name=public,proto3" json:"public,omitempty"`
-	UpdatedAt       *timestamppb.Timestamp `protobuf:"bytes,19,opt,name=updated_at,json=updatedAt,proto3" json:"updated_at,omitempty"`
-	unknownFields   protoimpl.UnknownFields
-	sizeCache       protoimpl.SizeCache
-}
-
-func (x *UserIndexAttachmentResponse_Item) Reset() {
-	*x = UserIndexAttachmentResponse_Item{}
-	mi := &file_proto_portal_proto_msgTypes[35]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *UserIndexAttachmentResponse_Item) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*UserIndexAttachmentResponse_Item) ProtoMessage() {}
-
-func (x *UserIndexAttachmentResponse_Item) ProtoReflect() protoreflect.Message {
-	mi := &file_proto_portal_proto_msgTypes[35]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use UserIndexAttachmentResponse_Item.ProtoReflect.Descriptor instead.
-func (*UserIndexAttachmentResponse_Item) Descriptor() ([]byte, []int) {
-	return file_proto_portal_proto_rawDescGZIP(), []int{28, 0}
-}
-
-func (x *UserIndexAttachmentResponse_Item) GetId() int64 {
-	if x != nil {
-		return x.Id
-	}
-	return 0
-}
-
-func (x *UserIndexAttachmentResponse_Item) GetBucket() string {
-	if x != nil {
-		return x.Bucket
-	}
-	return ""
-}
-
-func (x *UserIndexAttachmentResponse_Item) GetObject() string {
-	if x != nil {
-		return x.Object
-	}
-	return ""
-}
-
-func (x *UserIndexAttachmentResponse_Item) GetTitle() string {
-	if x != nil {
-		return x.Title
-	}
-	return ""
-}
-
-func (x *UserIndexAttachmentResponse_Item) GetContentType() string {
-	if x != nil {
-		return x.ContentType
-	}
-	return ""
-}
-
-func (x *UserIndexAttachmentResponse_Item) GetSize() uint64 {
-	if x != nil {
-		return x.Size
-	}
-	return 0
-}
-
-func (x *UserIndexAttachmentResponse_Item) GetUploadedAt() *timestamppb.Timestamp {
-	if x != nil {
-		return x.UploadedAt
-	}
-	return nil
-}
-
-func (x *UserIndexAttachmentResponse_Item) GetExpireAfterDays() uint32 {
-	if x != nil && x.ExpireAfterDays != nil {
-		return *x.ExpireAfterDays
-	}
-	return 0
-}
-
-func (x *UserIndexAttachmentResponse_Item) GetPublic() bool {
-	if x != nil {
-		return x.Public
-	}
-	return false
-}
-
-func (x *UserIndexAttachmentResponse_Item) GetUpdatedAt() *timestamppb.Timestamp {
-	if x != nil {
-		return x.UpdatedAt
-	}
-	return nil
-}
-
 type UserIndexLogResponse_Item struct {
 	state         protoimpl.MessageState          `protogen:"open.v1"`
 	Id            int64                           `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
@@ -2412,7 +962,7 @@ type UserIndexLogResponse_Item struct {
 
 func (x *UserIndexLogResponse_Item) Reset() {
 	*x = UserIndexLogResponse_Item{}
-	mi := &file_proto_portal_proto_msgTypes[36]
+	mi := &file_proto_portal_proto_msgTypes[11]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2424,7 +974,7 @@ func (x *UserIndexLogResponse_Item) String() string {
 func (*UserIndexLogResponse_Item) ProtoMessage() {}
 
 func (x *UserIndexLogResponse_Item) ProtoReflect() protoreflect.Message {
-	mi := &file_proto_portal_proto_msgTypes[36]
+	mi := &file_proto_portal_proto_msgTypes[11]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2437,7 +987,7 @@ func (x *UserIndexLogResponse_Item) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use UserIndexLogResponse_Item.ProtoReflect.Descriptor instead.
 func (*UserIndexLogResponse_Item) Descriptor() ([]byte, []int) {
-	return file_proto_portal_proto_rawDescGZIP(), []int{29, 0}
+	return file_proto_portal_proto_rawDescGZIP(), []int{8, 0}
 }
 
 func (x *UserIndexLogResponse_Item) GetId() int64 {
@@ -2492,7 +1042,7 @@ type Session_Subject struct {
 
 func (x *Session_Subject) Reset() {
 	*x = Session_Subject{}
-	mi := &file_proto_portal_proto_msgTypes[37]
+	mi := &file_proto_portal_proto_msgTypes[12]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -2504,7 +1054,7 @@ func (x *Session_Subject) String() string {
 func (*Session_Subject) ProtoMessage() {}
 
 func (x *Session_Subject) ProtoReflect() protoreflect.Message {
-	mi := &file_proto_portal_proto_msgTypes[37]
+	mi := &file_proto_portal_proto_msgTypes[12]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -2517,7 +1067,7 @@ func (x *Session_Subject) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Session_Subject.ProtoReflect.Descriptor instead.
 func (*Session_Subject) Descriptor() ([]byte, []int) {
-	return file_proto_portal_proto_rawDescGZIP(), []int{30, 0}
+	return file_proto_portal_proto_rawDescGZIP(), []int{9, 0}
 }
 
 func (x *Session_Subject) GetType() Session_ProviderType {
@@ -2565,80 +1115,7 @@ const file_proto_portal_proto_rawDesc = "" +
 	"\aaddress\x18\x02 \x01(\tR\aaddress\"\x11\n" +
 	"\x03Map\x12\n" +
 	"\n" +
-	"\x06GOOGLE\x10\x00\"\x85\x02\n" +
-	"\x12CurrenciesResponse\x12=\n" +
-	"\x05items\x18\x01 \x03(\v2'.palm.portal.v1.CurrenciesResponse.ItemR\x05items\x1a\xaf\x01\n" +
-	"\x04Item\x12\x12\n" +
-	"\x04code\x18\x01 \x01(\tR\x04code\x12\x12\n" +
-	"\x04name\x18\x02 \x01(\tR\x04name\x12\x18\n" +
-	"\acountry\x18\x03 \x01(\tR\acountry\x12\x16\n" +
-	"\x06number\x18\x04 \x01(\rR\x06number\x12\x19\n" +
-	"\x05units\x18\x05 \x01(\rH\x00R\x05units\x88\x01\x01\x12\x1c\n" +
-	"\ais_fund\x18\x06 \x01(\bH\x01R\x06isFund\x88\x01\x01B\b\n" +
-	"\x06_unitsB\n" +
-	"\n" +
-	"\b_is_fund\"J\n" +
-	"\x16EmailUserSignInRequest\x12\x14\n" +
-	"\x05email\x18\x01 \x01(\tR\x05email\x12\x1a\n" +
-	"\bpassword\x18\x02 \x01(\tR\bpassword\"\xa2\x01\n" +
-	"\x16EmailUserSignUpRequest\x12\x12\n" +
-	"\x04name\x18\x01 \x01(\tR\x04name\x12\x14\n" +
-	"\x05email\x18\x02 \x01(\tR\x05email\x12\x1a\n" +
-	"\bpassword\x18\x03 \x01(\tR\bpassword\x12\x12\n" +
-	"\x04lang\x18\b \x01(\tR\x04lang\x12\x1a\n" +
-	"\btimezone\x18\t \x01(\tR\btimezone\x12\x12\n" +
-	"\x04home\x18c \x01(\tR\x04home\"I\n" +
-	"\x1dEmailUserUnlockByEmailRequest\x12\x14\n" +
-	"\x05email\x18\x01 \x01(\tR\x05email\x12\x12\n" +
-	"\x04home\x18c \x01(\tR\x04home\"5\n" +
-	"\x1dEmailUserUnlockByTokenRequest\x12\x14\n" +
-	"\x05token\x18\x01 \x01(\tR\x05token\"J\n" +
-	"\x1eEmailUserConfirmByEmailRequest\x12\x14\n" +
-	"\x05email\x18\x01 \x01(\tR\x05email\x12\x12\n" +
-	"\x04home\x18c \x01(\tR\x04home\"6\n" +
-	"\x1eEmailUserConfirmByTokenRequest\x12\x14\n" +
-	"\x05token\x18\x01 \x01(\tR\x05token\"J\n" +
-	"\x1eEmailUserForgotPasswordRequest\x12\x14\n" +
-	"\x05email\x18\x01 \x01(\tR\x05email\x12\x12\n" +
-	"\x04home\x18c \x01(\tR\x04home\"Q\n" +
-	"\x1dEmailUserResetPasswordRequest\x12\x14\n" +
-	"\x05token\x18\x01 \x01(\tR\x05token\x12\x1a\n" +
-	"\bpassword\x18\x02 \x01(\tR\bpassword\"-\n" +
-	"\x17EmailUserSetNameRequest\x12\x12\n" +
-	"\x04name\x18\x01 \x01(\tR\x04name\"a\n" +
-	"\x19EmailUserSetAvatarRequest\x12\x12\n" +
-	"\x03url\x18\x01 \x01(\tH\x00R\x03url\x12*\n" +
-	"\x04file\x18\x02 \x01(\v2\x14.palm.portal.v1.FileH\x00R\x04fileB\x04\n" +
-	"\x02by\"n\n" +
-	"\x1eEmailUserChangePasswordRequest\x12)\n" +
-	"\x10current_password\x18\x01 \x01(\tR\x0fcurrentPassword\x12!\n" +
-	"\fnew_password\x18\x02 \x01(\tR\vnewPassword\"\x9d\x04\n" +
-	"\x16EmailUserIndexResponse\x12A\n" +
-	"\x05items\x18\x01 \x03(\v2+.palm.portal.v1.EmailUserIndexResponse.ItemR\x05items\x12:\n" +
-	"\n" +
-	"pagination\x18\t \x01(\v2\x1a.palm.portal.v1.PaginationR\n" +
-	"pagination\x1a\x83\x03\n" +
-	"\x04Item\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\x03R\x02id\x12\x14\n" +
-	"\x05email\x18\x02 \x01(\tR\x05email\x12\x12\n" +
-	"\x04name\x18\x03 \x01(\tR\x04name\x12\x1b\n" +
-	"\x06avatar\x18\x10 \x01(\tH\x00R\x06avatar\x88\x01\x01\x12B\n" +
-	"\fconfirmed_at\x18\x11 \x01(\v2\x1a.google.protobuf.TimestampH\x01R\vconfirmedAt\x88\x01\x01\x12>\n" +
-	"\n" +
-	"deleted_at\x18\x12 \x01(\v2\x1a.google.protobuf.TimestampH\x02R\tdeletedAt\x88\x01\x01\x129\n" +
-	"\n" +
-	"updated_at\x18\x13 \x01(\v2\x1a.google.protobuf.TimestampR\tupdatedAt\x12:\n" +
-	"\x04user\x18c \x01(\v2&.palm.portal.v1.UserIndexResponse.ItemR\x04userB\t\n" +
-	"\a_avatarB\x0f\n" +
-	"\r_confirmed_atB\r\n" +
-	"\v_deleted_at\"I\n" +
-	"\x1bEmailUserSetPasswordRequest\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\x03R\x02id\x12\x1a\n" +
-	"\bpassword\x18\x02 \x01(\tR\bpassword\"(\n" +
-	"\x12UserSetLangRequest\x12\x12\n" +
-	"\x04lang\x18\x01 \x01(\tR\x04lang\"4\n" +
-	"\x16UserSetTimezoneRequest\x12\x1a\n" +
-	"\btimezone\x18\x01 \x01(\tR\btimezone\"\xc6\x06\n" +
+	"\x06GOOGLE\x10\x00\"\xc6\x06\n" +
 	"\x11UserIndexResponse\x12<\n" +
 	"\x05items\x18\x01 \x03(\v2&.palm.portal.v1.UserIndexResponse.ItemR\x05items\x12:\n" +
 	"\n" +
@@ -2665,17 +1142,7 @@ const file_proto_portal_proto_rawDesc = "" +
 	"\x12_last_signed_in_ipB\f\n" +
 	"\n" +
 	"_locked_atB\r\n" +
-	"\v_deleted_at\"E\n" +
-	"\x1dUserSetAttachmentTitleRequest\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\x03R\x02id\x12\x14\n" +
-	"\x05title\x18\x02 \x01(\tR\x05title\"\x81\x01\n" +
-	"\x19UserShowAttachmentRequest\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\x03R\x02id\x12\x1a\n" +
-	"\bdownload\x18\x02 \x01(\bR\bdownload\x120\n" +
-	"\x03ttl\x18\t \x01(\v2\x19.google.protobuf.DurationH\x00R\x03ttl\x88\x01\x01B\x06\n" +
-	"\x04_ttl\".\n" +
-	"\x1aUserShowAttachmentResponse\x12\x10\n" +
-	"\x03url\x18\x01 \x01(\tR\x03url\"\xf6\x01\n" +
+	"\v_deleted_at\"\xf6\x01\n" +
 	"\x1bUserCreateAttachmentRequest\x12\x14\n" +
 	"\x05title\x18\x01 \x01(\tR\x05title\x12!\n" +
 	"\fcontent_type\x18\x02 \x01(\tR\vcontentType\x12\x12\n" +
@@ -2683,29 +1150,6 @@ const file_proto_portal_proto_rawDesc = "" +
 	"\x11expire_after_days\x18\x04 \x01(\rH\x00R\x0fexpireAfterDays\x88\x01\x01\x12\x16\n" +
 	"\x06public\x18\x05 \x01(\bR\x06public\x12+\n" +
 	"\x03ttl\x18\t \x01(\v2\x19.google.protobuf.DurationR\x03ttlB\x14\n" +
-	"\x12_expire_after_days\"|\n" +
-	"\"UserCreateAttachmentUploadResponse\x12\x10\n" +
-	"\x03url\x18\x01 \x01(\tR\x03url\x12D\n" +
-	"\x04item\x18\x02 \x01(\v20.palm.portal.v1.UserIndexAttachmentResponse.ItemR\x04item\"\xa3\x04\n" +
-	"\x1bUserIndexAttachmentResponse\x12F\n" +
-	"\x05items\x18\x01 \x03(\v20.palm.portal.v1.UserIndexAttachmentResponse.ItemR\x05items\x12:\n" +
-	"\n" +
-	"pagination\x18\x02 \x01(\v2\x1a.palm.portal.v1.PaginationR\n" +
-	"pagination\x1a\xff\x02\n" +
-	"\x04Item\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\x03R\x02id\x12\x16\n" +
-	"\x06bucket\x18\x02 \x01(\tR\x06bucket\x12\x16\n" +
-	"\x06object\x18\x03 \x01(\tR\x06object\x12\x14\n" +
-	"\x05title\x18\x04 \x01(\tR\x05title\x12!\n" +
-	"\fcontent_type\x18\x05 \x01(\tR\vcontentType\x12\x12\n" +
-	"\x04size\x18\x06 \x01(\x04R\x04size\x12@\n" +
-	"\vuploaded_at\x18\a \x01(\v2\x1a.google.protobuf.TimestampH\x00R\n" +
-	"uploadedAt\x88\x01\x01\x12/\n" +
-	"\x11expire_after_days\x18\b \x01(\rH\x01R\x0fexpireAfterDays\x88\x01\x01\x12\x16\n" +
-	"\x06public\x18\t \x01(\bR\x06public\x129\n" +
-	"\n" +
-	"updated_at\x18\x13 \x01(\v2\x1a.google.protobuf.TimestampR\tupdatedAtB\x0e\n" +
-	"\f_uploaded_atB\x14\n" +
 	"\x12_expire_after_days\"\xa6\x03\n" +
 	"\x14UserIndexLogResponse\x12?\n" +
 	"\x05items\x18\x01 \x03(\v2).palm.portal.v1.UserIndexLogResponse.ItemR\x05items\x12:\n" +
@@ -2739,9 +1183,7 @@ const file_proto_portal_proto_rawDesc = "" +
 	"\x05PHONE\x10\x01\x12\x11\n" +
 	"\rGOOGLE_OAUTH2\x10\x02\x12\x11\n" +
 	"\rWECHAT_OAUTH2\x10\x03\x12\x17\n" +
-	"\x13WECHAT_MINI_PROGRAM\x10\x04\"*\n" +
-	"\x12UserSignInResponse\x12\x14\n" +
-	"\x05token\x18\x01 \x01(\tR\x05tokenB_\n" +
+	"\x13WECHAT_MINI_PROGRAM\x10\x04B_\n" +
 	",com.github.saturn_xiv.palm.plugins.portal.v1B\vPortalProtoP\x01Z\x05./;v2\xaa\x02\x18Palm.Plugins.Portal.Grpcb\x06proto3"
 
 var (
@@ -2757,92 +1199,53 @@ func file_proto_portal_proto_rawDescGZIP() []byte {
 }
 
 var file_proto_portal_proto_enumTypes = make([]protoimpl.EnumInfo, 4)
-var file_proto_portal_proto_msgTypes = make([]protoimpl.MessageInfo, 38)
+var file_proto_portal_proto_msgTypes = make([]protoimpl.MessageInfo, 13)
 var file_proto_portal_proto_goTypes = []any{
-	(RichText_Editor)(0),                       // 0: palm.portal.v1.RichText.Editor
-	(Location_Map)(0),                          // 1: palm.portal.v1.Location.Map
-	(UserIndexLogResponse_Item_Level)(0),       // 2: palm.portal.v1.UserIndexLogResponse.Item.Level
-	(Session_ProviderType)(0),                  // 3: palm.portal.v1.Session.ProviderType
-	(*IdRequest)(nil),                          // 4: palm.portal.v1.IdRequest
-	(*Page)(nil),                               // 5: palm.portal.v1.Page
-	(*Pagination)(nil),                         // 6: palm.portal.v1.Pagination
-	(*File)(nil),                               // 7: palm.portal.v1.File
-	(*RichText)(nil),                           // 8: palm.portal.v1.RichText
-	(*Location)(nil),                           // 9: palm.portal.v1.Location
-	(*CurrenciesResponse)(nil),                 // 10: palm.portal.v1.CurrenciesResponse
-	(*EmailUserSignInRequest)(nil),             // 11: palm.portal.v1.EmailUserSignInRequest
-	(*EmailUserSignUpRequest)(nil),             // 12: palm.portal.v1.EmailUserSignUpRequest
-	(*EmailUserUnlockByEmailRequest)(nil),      // 13: palm.portal.v1.EmailUserUnlockByEmailRequest
-	(*EmailUserUnlockByTokenRequest)(nil),      // 14: palm.portal.v1.EmailUserUnlockByTokenRequest
-	(*EmailUserConfirmByEmailRequest)(nil),     // 15: palm.portal.v1.EmailUserConfirmByEmailRequest
-	(*EmailUserConfirmByTokenRequest)(nil),     // 16: palm.portal.v1.EmailUserConfirmByTokenRequest
-	(*EmailUserForgotPasswordRequest)(nil),     // 17: palm.portal.v1.EmailUserForgotPasswordRequest
-	(*EmailUserResetPasswordRequest)(nil),      // 18: palm.portal.v1.EmailUserResetPasswordRequest
-	(*EmailUserSetNameRequest)(nil),            // 19: palm.portal.v1.EmailUserSetNameRequest
-	(*EmailUserSetAvatarRequest)(nil),          // 20: palm.portal.v1.EmailUserSetAvatarRequest
-	(*EmailUserChangePasswordRequest)(nil),     // 21: palm.portal.v1.EmailUserChangePasswordRequest
-	(*EmailUserIndexResponse)(nil),             // 22: palm.portal.v1.EmailUserIndexResponse
-	(*EmailUserSetPasswordRequest)(nil),        // 23: palm.portal.v1.EmailUserSetPasswordRequest
-	(*UserSetLangRequest)(nil),                 // 24: palm.portal.v1.UserSetLangRequest
-	(*UserSetTimezoneRequest)(nil),             // 25: palm.portal.v1.UserSetTimezoneRequest
-	(*UserIndexResponse)(nil),                  // 26: palm.portal.v1.UserIndexResponse
-	(*UserSetAttachmentTitleRequest)(nil),      // 27: palm.portal.v1.UserSetAttachmentTitleRequest
-	(*UserShowAttachmentRequest)(nil),          // 28: palm.portal.v1.UserShowAttachmentRequest
-	(*UserShowAttachmentResponse)(nil),         // 29: palm.portal.v1.UserShowAttachmentResponse
-	(*UserCreateAttachmentRequest)(nil),        // 30: palm.portal.v1.UserCreateAttachmentRequest
-	(*UserCreateAttachmentUploadResponse)(nil), // 31: palm.portal.v1.UserCreateAttachmentUploadResponse
-	(*UserIndexAttachmentResponse)(nil),        // 32: palm.portal.v1.UserIndexAttachmentResponse
-	(*UserIndexLogResponse)(nil),               // 33: palm.portal.v1.UserIndexLogResponse
-	(*Session)(nil),                            // 34: palm.portal.v1.Session
-	(*UserSignInResponse)(nil),                 // 35: palm.portal.v1.UserSignInResponse
-	(*CurrenciesResponse_Item)(nil),            // 36: palm.portal.v1.CurrenciesResponse.Item
-	(*EmailUserIndexResponse_Item)(nil),        // 37: palm.portal.v1.EmailUserIndexResponse.Item
-	(*UserIndexResponse_Item)(nil),             // 38: palm.portal.v1.UserIndexResponse.Item
-	(*UserIndexAttachmentResponse_Item)(nil),   // 39: palm.portal.v1.UserIndexAttachmentResponse.Item
-	(*UserIndexLogResponse_Item)(nil),          // 40: palm.portal.v1.UserIndexLogResponse.Item
-	(*Session_Subject)(nil),                    // 41: palm.portal.v1.Session.Subject
-	(*durationpb.Duration)(nil),                // 42: google.protobuf.Duration
-	(*timestamppb.Timestamp)(nil),              // 43: google.protobuf.Timestamp
+	(RichText_Editor)(0),                 // 0: palm.portal.v1.RichText.Editor
+	(Location_Map)(0),                    // 1: palm.portal.v1.Location.Map
+	(UserIndexLogResponse_Item_Level)(0), // 2: palm.portal.v1.UserIndexLogResponse.Item.Level
+	(Session_ProviderType)(0),            // 3: palm.portal.v1.Session.ProviderType
+	(*IdRequest)(nil),                    // 4: palm.portal.v1.IdRequest
+	(*Page)(nil),                         // 5: palm.portal.v1.Page
+	(*Pagination)(nil),                   // 6: palm.portal.v1.Pagination
+	(*File)(nil),                         // 7: palm.portal.v1.File
+	(*RichText)(nil),                     // 8: palm.portal.v1.RichText
+	(*Location)(nil),                     // 9: palm.portal.v1.Location
+	(*UserIndexResponse)(nil),            // 10: palm.portal.v1.UserIndexResponse
+	(*UserCreateAttachmentRequest)(nil),  // 11: palm.portal.v1.UserCreateAttachmentRequest
+	(*UserIndexLogResponse)(nil),         // 12: palm.portal.v1.UserIndexLogResponse
+	(*Session)(nil),                      // 13: palm.portal.v1.Session
+	(*UserIndexResponse_Item)(nil),       // 14: palm.portal.v1.UserIndexResponse.Item
+	(*UserIndexLogResponse_Item)(nil),    // 15: palm.portal.v1.UserIndexLogResponse.Item
+	(*Session_Subject)(nil),              // 16: palm.portal.v1.Session.Subject
+	(*durationpb.Duration)(nil),          // 17: google.protobuf.Duration
+	(*timestamppb.Timestamp)(nil),        // 18: google.protobuf.Timestamp
 }
 var file_proto_portal_proto_depIdxs = []int32{
 	5,  // 0: palm.portal.v1.Pagination.current:type_name -> palm.portal.v1.Page
 	0,  // 1: palm.portal.v1.RichText.editor:type_name -> palm.portal.v1.RichText.Editor
 	7,  // 2: palm.portal.v1.RichText.attachments:type_name -> palm.portal.v1.File
 	1,  // 3: palm.portal.v1.Location.map:type_name -> palm.portal.v1.Location.Map
-	36, // 4: palm.portal.v1.CurrenciesResponse.items:type_name -> palm.portal.v1.CurrenciesResponse.Item
-	7,  // 5: palm.portal.v1.EmailUserSetAvatarRequest.file:type_name -> palm.portal.v1.File
-	37, // 6: palm.portal.v1.EmailUserIndexResponse.items:type_name -> palm.portal.v1.EmailUserIndexResponse.Item
-	6,  // 7: palm.portal.v1.EmailUserIndexResponse.pagination:type_name -> palm.portal.v1.Pagination
-	38, // 8: palm.portal.v1.UserIndexResponse.items:type_name -> palm.portal.v1.UserIndexResponse.Item
-	6,  // 9: palm.portal.v1.UserIndexResponse.pagination:type_name -> palm.portal.v1.Pagination
-	42, // 10: palm.portal.v1.UserShowAttachmentRequest.ttl:type_name -> google.protobuf.Duration
-	42, // 11: palm.portal.v1.UserCreateAttachmentRequest.ttl:type_name -> google.protobuf.Duration
-	39, // 12: palm.portal.v1.UserCreateAttachmentUploadResponse.item:type_name -> palm.portal.v1.UserIndexAttachmentResponse.Item
-	39, // 13: palm.portal.v1.UserIndexAttachmentResponse.items:type_name -> palm.portal.v1.UserIndexAttachmentResponse.Item
-	6,  // 14: palm.portal.v1.UserIndexAttachmentResponse.pagination:type_name -> palm.portal.v1.Pagination
-	40, // 15: palm.portal.v1.UserIndexLogResponse.items:type_name -> palm.portal.v1.UserIndexLogResponse.Item
-	6,  // 16: palm.portal.v1.UserIndexLogResponse.pagination:type_name -> palm.portal.v1.Pagination
-	41, // 17: palm.portal.v1.Session.subject:type_name -> palm.portal.v1.Session.Subject
-	38, // 18: palm.portal.v1.Session.user:type_name -> palm.portal.v1.UserIndexResponse.Item
-	43, // 19: palm.portal.v1.EmailUserIndexResponse.Item.confirmed_at:type_name -> google.protobuf.Timestamp
-	43, // 20: palm.portal.v1.EmailUserIndexResponse.Item.deleted_at:type_name -> google.protobuf.Timestamp
-	43, // 21: palm.portal.v1.EmailUserIndexResponse.Item.updated_at:type_name -> google.protobuf.Timestamp
-	38, // 22: palm.portal.v1.EmailUserIndexResponse.Item.user:type_name -> palm.portal.v1.UserIndexResponse.Item
-	43, // 23: palm.portal.v1.UserIndexResponse.Item.current_signed_in_at:type_name -> google.protobuf.Timestamp
-	43, // 24: palm.portal.v1.UserIndexResponse.Item.last_signed_in_at:type_name -> google.protobuf.Timestamp
-	43, // 25: palm.portal.v1.UserIndexResponse.Item.locked_at:type_name -> google.protobuf.Timestamp
-	43, // 26: palm.portal.v1.UserIndexResponse.Item.deleted_at:type_name -> google.protobuf.Timestamp
-	43, // 27: palm.portal.v1.UserIndexResponse.Item.updated_at:type_name -> google.protobuf.Timestamp
-	43, // 28: palm.portal.v1.UserIndexAttachmentResponse.Item.uploaded_at:type_name -> google.protobuf.Timestamp
-	43, // 29: palm.portal.v1.UserIndexAttachmentResponse.Item.updated_at:type_name -> google.protobuf.Timestamp
-	2,  // 30: palm.portal.v1.UserIndexLogResponse.Item.level:type_name -> palm.portal.v1.UserIndexLogResponse.Item.Level
-	43, // 31: palm.portal.v1.UserIndexLogResponse.Item.created_at:type_name -> google.protobuf.Timestamp
-	3,  // 32: palm.portal.v1.Session.Subject.type:type_name -> palm.portal.v1.Session.ProviderType
-	33, // [33:33] is the sub-list for method output_type
-	33, // [33:33] is the sub-list for method input_type
-	33, // [33:33] is the sub-list for extension type_name
-	33, // [33:33] is the sub-list for extension extendee
-	0,  // [0:33] is the sub-list for field type_name
+	14, // 4: palm.portal.v1.UserIndexResponse.items:type_name -> palm.portal.v1.UserIndexResponse.Item
+	6,  // 5: palm.portal.v1.UserIndexResponse.pagination:type_name -> palm.portal.v1.Pagination
+	17, // 6: palm.portal.v1.UserCreateAttachmentRequest.ttl:type_name -> google.protobuf.Duration
+	15, // 7: palm.portal.v1.UserIndexLogResponse.items:type_name -> palm.portal.v1.UserIndexLogResponse.Item
+	6,  // 8: palm.portal.v1.UserIndexLogResponse.pagination:type_name -> palm.portal.v1.Pagination
+	16, // 9: palm.portal.v1.Session.subject:type_name -> palm.portal.v1.Session.Subject
+	14, // 10: palm.portal.v1.Session.user:type_name -> palm.portal.v1.UserIndexResponse.Item
+	18, // 11: palm.portal.v1.UserIndexResponse.Item.current_signed_in_at:type_name -> google.protobuf.Timestamp
+	18, // 12: palm.portal.v1.UserIndexResponse.Item.last_signed_in_at:type_name -> google.protobuf.Timestamp
+	18, // 13: palm.portal.v1.UserIndexResponse.Item.locked_at:type_name -> google.protobuf.Timestamp
+	18, // 14: palm.portal.v1.UserIndexResponse.Item.deleted_at:type_name -> google.protobuf.Timestamp
+	18, // 15: palm.portal.v1.UserIndexResponse.Item.updated_at:type_name -> google.protobuf.Timestamp
+	2,  // 16: palm.portal.v1.UserIndexLogResponse.Item.level:type_name -> palm.portal.v1.UserIndexLogResponse.Item.Level
+	18, // 17: palm.portal.v1.UserIndexLogResponse.Item.created_at:type_name -> google.protobuf.Timestamp
+	3,  // 18: palm.portal.v1.Session.Subject.type:type_name -> palm.portal.v1.Session.ProviderType
+	19, // [19:19] is the sub-list for method output_type
+	19, // [19:19] is the sub-list for method input_type
+	19, // [19:19] is the sub-list for extension type_name
+	19, // [19:19] is the sub-list for extension extendee
+	0,  // [0:19] is the sub-list for field type_name
 }
 
 func init() { file_proto_portal_proto_init() }
@@ -2850,23 +1253,15 @@ func file_proto_portal_proto_init() {
 	if File_proto_portal_proto != nil {
 		return
 	}
-	file_proto_portal_proto_msgTypes[16].OneofWrappers = []any{
-		(*EmailUserSetAvatarRequest_Url)(nil),
-		(*EmailUserSetAvatarRequest_File)(nil),
-	}
-	file_proto_portal_proto_msgTypes[24].OneofWrappers = []any{}
-	file_proto_portal_proto_msgTypes[26].OneofWrappers = []any{}
-	file_proto_portal_proto_msgTypes[32].OneofWrappers = []any{}
-	file_proto_portal_proto_msgTypes[33].OneofWrappers = []any{}
-	file_proto_portal_proto_msgTypes[34].OneofWrappers = []any{}
-	file_proto_portal_proto_msgTypes[35].OneofWrappers = []any{}
+	file_proto_portal_proto_msgTypes[7].OneofWrappers = []any{}
+	file_proto_portal_proto_msgTypes[10].OneofWrappers = []any{}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_proto_portal_proto_rawDesc), len(file_proto_portal_proto_rawDesc)),
 			NumEnums:      4,
-			NumMessages:   38,
+			NumMessages:   13,
 			NumExtensions: 0,
 			NumServices:   0,
 		},

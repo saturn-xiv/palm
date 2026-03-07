@@ -52,14 +52,13 @@ type Mutation {
   ): UserSignInResponse!
   # signInByWechatOauth2(token: String!): SignInResponse!
   # signInByWechatMiniProgram(token: String!): SignInResponse!
-  # changeEmailUserPassword(currentPassword: String!, newPassword: String!): Ok!
-  # resetEmailUserPassword(token: String!, password: String!): Ok!
+  resetEmailUserPassword(token: String!, password: String!): Ok!
+  confirmEmailUserByToken(token: String!): Ok!
 
   # signOut: Ok!
   setEmailUserName(name: String!): Ok!
   setEmailUserAvatar(avatar: String!): Ok!
   changeEmailUserPassword(currentPassword: String!, newPassword: String!): Ok!
-  confirmEmailUserByToken(token: String!): Ok!
   setUserLocation(lang: String!, timezone: String!): Ok!
 
   lockUser(id: ID!, reason: String!): Ok!
@@ -77,25 +76,22 @@ type Mutation {
   ): String!
   setAttachmentUploaded(id: ID!): Ok!
   setAttachmentTitle(id: ID!, title: String!): Ok!
-  # associateAttachment(
-  #   attachmentId: ID!
-  #   resourceType: String!
-  #   resourceId: ID
-  # ): Ok!
-  # dissociateAttachment(
-  #   attachmentId: ID!
-  #   resourceType: String!
-  #   resourceId: ID
-  # ): Ok!
   destroyAttachment(id: ID!): Ok!
 
-  # siteSetFavicon(url: String!): Ok!
-  # siteSetMaintenanceMode(ok: Boolean!, reason: String!): Ok!
-  # siteSetDetails(lang: String!, form: SiteDetailsForm!): Ok!
-  # siteSetReCaptcha(siteKey: String!, enable: Boolean!): Ok!
-  # siteSetGoogleSiteVerify(siteId: String!, enable: Boolean!): Ok!
-  # siteSetBaiduSiteVerify(siteId: String, enable: Boolean!): Ok!
-  # siteSetIndexNow(key: String, enable: Boolean): Ok!
+  setSiteFavicon(url: String!): Ok!
+  setSiteMaintenanceMode(ok: Boolean!, reason: String!): Ok!
+  setSiteInfo(
+    lang: String!
+    title: String!
+    subhead: String!
+    description: String!
+    copyright: String!
+  ): Ok!
+  setSiteKeywords(items: [String!]!): Ok!
+  setReCaptcha(key: String!, secret: String!, enable: Boolean!): Ok!
+  setGoogleSiteVerify(id: String!, enable: Boolean!): Ok!
+  setBaiduSiteVerify(id: String!, enable: Boolean!): Ok!
+  setIndexNow(key: String!, enable: Boolean!): Ok!
 
   setLocale(lang: String!, code: String!, message: String!): Ok!
   destroyLocale(id: ID!): Ok!
@@ -116,13 +112,6 @@ type Attachment {
 type IndexAttachmentResponse {
   items: [Attachment!]!
   pagination: Pagination!
-}
-input SiteDetailsForm {
-  title: String!
-  subhead: String!
-  keywords: [String!]!
-  description: String!
-  copyright: String!
 }
 
 type Log {

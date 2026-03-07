@@ -49,110 +49,110 @@ message Location {
   string address = 2;
 }
 
-// ----------------------------------------------------------------------------
+// // ----------------------------------------------------------------------------
 
-// ----------------------------------------------------------------------------
+// // ----------------------------------------------------------------------------
 
-message CurrenciesResponse {
-  message Item {
-    string          code    = 1;
-    string          name    = 2;
-    string          country = 3;
-    uint32          number  = 4;
-    optional uint32 units   = 5;
-    optional bool   is_fund = 6;
-  }
-  repeated Item items = 1;
-}
+// message CurrenciesResponse {
+//   message Item {
+//     string          code    = 1;
+//     string          name    = 2;
+//     string          country = 3;
+//     uint32          number  = 4;
+//     optional uint32 units   = 5;
+//     optional bool   is_fund = 6;
+//   }
+//   repeated Item items = 1;
+// }
 
-// ----------------------------------------------------------------------------
+// // ----------------------------------------------------------------------------
 
-message EmailUserSignInRequest {
-  string email    = 1;
-  string password = 2;
-}
+// message EmailUserSignInRequest {
+//   string email    = 1;
+//   string password = 2;
+// }
 
-message EmailUserSignUpRequest {
-  string name     = 1;
-  string email    = 2;
-  string password = 3;
-  string lang     = 8;
-  string timezone = 9;
-  string home     = 99;
-}
+// message EmailUserSignUpRequest {
+//   string name     = 1;
+//   string email    = 2;
+//   string password = 3;
+//   string lang     = 8;
+//   string timezone = 9;
+//   string home     = 99;
+// }
 
-message EmailUserUnlockByEmailRequest {
-  string email = 1;
-  string home  = 99;
-}
+// message EmailUserUnlockByEmailRequest {
+//   string email = 1;
+//   string home  = 99;
+// }
 
-message EmailUserUnlockByTokenRequest {
-  string token = 1;
-}
+// message EmailUserUnlockByTokenRequest {
+//   string token = 1;
+// }
 
-message EmailUserConfirmByEmailRequest {
-  string email = 1;
-  string home  = 99;
-}
+// message EmailUserConfirmByEmailRequest {
+//   string email = 1;
+//   string home  = 99;
+// }
 
-message EmailUserConfirmByTokenRequest {
-  string token = 1;
-}
+// message EmailUserConfirmByTokenRequest {
+//   string token = 1;
+// }
 
-message EmailUserForgotPasswordRequest {
-  string email = 1;
-  string home  = 99;
-}
+// message EmailUserForgotPasswordRequest {
+//   string email = 1;
+//   string home  = 99;
+// }
 
-message EmailUserResetPasswordRequest {
-  string token    = 1;
-  string password = 2;
-}
+// message EmailUserResetPasswordRequest {
+//   string token    = 1;
+//   string password = 2;
+// }
 
-message EmailUserSetNameRequest {
-  string name = 1;
-}
+// message EmailUserSetNameRequest {
+//   string name = 1;
+// }
 
-message EmailUserSetAvatarRequest {
-  oneof by  {
-    string url  = 1;
-    File   file = 2;
-  }
-}
+// message EmailUserSetAvatarRequest {
+//   oneof by  {
+//     string url  = 1;
+//     File   file = 2;
+//   }
+// }
 
-message EmailUserChangePasswordRequest {
-  string current_password = 1;
-  string new_password     = 2;
-}
+// message EmailUserChangePasswordRequest {
+//   string current_password = 1;
+//   string new_password     = 2;
+// }
 
-message EmailUserIndexResponse{
-  message Item {
-    int64                              id           = 1;
-    string                             email        = 2;
-    string                             name         = 3;
-    optional string                    avatar       = 16;
-    optional google.protobuf.Timestamp confirmed_at = 17;
-    optional google.protobuf.Timestamp deleted_at   = 18;
-    google.protobuf.Timestamp          updated_at   = 19;
-    UserIndexResponse.Item             user         = 99;
-  }
-  repeated Item items      = 1;
-  Pagination    pagination = 9;
-}
+// message EmailUserIndexResponse{
+//   message Item {
+//     int64                              id           = 1;
+//     string                             email        = 2;
+//     string                             name         = 3;
+//     optional string                    avatar       = 16;
+//     optional google.protobuf.Timestamp confirmed_at = 17;
+//     optional google.protobuf.Timestamp deleted_at   = 18;
+//     google.protobuf.Timestamp          updated_at   = 19;
+//     UserIndexResponse.Item             user         = 99;
+//   }
+//   repeated Item items      = 1;
+//   Pagination    pagination = 9;
+// }
 
-message EmailUserSetPasswordRequest{
-  int64  id       = 1;
-  string password = 2;
-}
-// ----------------------------------------------------------------------------
+// message EmailUserSetPasswordRequest{
+//   int64  id       = 1;
+//   string password = 2;
+// }
+// // ----------------------------------------------------------------------------
 
-message UserSetLangRequest {
-  string lang = 1;
-}
+// message UserSetLangRequest {
+//   string lang = 1;
+// }
 
-message UserSetTimezoneRequest {
-  string timezone = 1;
-}
+// message UserSetTimezoneRequest {
+//   string timezone = 1;
+// }
 
 message UserIndexResponse {
   message Item {
@@ -173,20 +173,20 @@ message UserIndexResponse {
   Pagination    pagination = 9;
 }
 
-message UserSetAttachmentTitleRequest {
-  int64  id    = 1;
-  string title = 2;
-}
+// message UserSetAttachmentTitleRequest {
+//   int64  id    = 1;
+//   string title = 2;
+// }
 
-message UserShowAttachmentRequest {
-  int64                             id       = 1;
-  bool                              download = 2;
-  optional google.protobuf.Duration ttl      = 9;
-}
+// message UserShowAttachmentRequest {
+//   int64                             id       = 1;
+//   bool                              download = 2;
+//   optional google.protobuf.Duration ttl      = 9;
+// }
 
-message UserShowAttachmentResponse{
-  string url = 1;
-}
+// message UserShowAttachmentResponse{
+//   string url = 1;
+// }
 
 message UserCreateAttachmentRequest {
   string                   title             = 1;
@@ -197,27 +197,27 @@ message UserCreateAttachmentRequest {
   google.protobuf.Duration ttl               = 9;
 }
 
-message UserCreateAttachmentUploadResponse {
-  string                           url  = 1;
-  UserIndexAttachmentResponse.Item item = 2;
-}
+// message UserCreateAttachmentUploadResponse {
+//   string                           url  = 1;
+//   UserIndexAttachmentResponse.Item item = 2;
+// }
 
-message UserIndexAttachmentResponse{
-  message Item{
-    int64                              id                = 1;
-    string                             bucket            = 2;
-    string                             object            = 3;
-    string                             title             = 4;
-    string                             content_type      = 5;
-    uint64                             size              = 6;
-    optional google.protobuf.Timestamp uploaded_at       = 7;
-    optional uint32                    expire_after_days = 8;
-    bool                               public            = 9;
-    google.protobuf.Timestamp          updated_at        = 19;
-  }
-  repeated Item items      = 1;
-  Pagination    pagination = 2;
-}
+// message UserIndexAttachmentResponse{
+//   message Item{
+//     int64                              id                = 1;
+//     string                             bucket            = 2;
+//     string                             object            = 3;
+//     string                             title             = 4;
+//     string                             content_type      = 5;
+//     uint64                             size              = 6;
+//     optional google.protobuf.Timestamp uploaded_at       = 7;
+//     optional uint32                    expire_after_days = 8;
+//     bool                               public            = 9;
+//     google.protobuf.Timestamp          updated_at        = 19;
+//   }
+//   repeated Item items      = 1;
+//   Pagination    pagination = 2;
+// }
 
 message UserIndexLogResponse {
   message Item{
@@ -257,7 +257,7 @@ message Session {
   string                 client_ip = 9;
 }
 
-message UserSignInResponse {
-  string token = 1;
-}
-// ----------------------------------------------------------------------------
+// message UserSignInResponse {
+//   string token = 1;
+// }
+// // ----------------------------------------------------------------------------

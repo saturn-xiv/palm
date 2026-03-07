@@ -3,10 +3,14 @@ package app
 import (
 	"context"
 	"encoding/base64"
+	"errors"
 	"fmt"
+	"log"
 	"log/slog"
 	"net/http"
 	"os"
+	"os/signal"
+	"syscall"
 	"time"
 
 	"github.com/BurntSushi/toml"
@@ -105,5 +109,29 @@ func LaunchHttpServer(config_file string, port uint16, debug bool) error {
 		WriteTimeout: 15 * time.Second,
 		ReadTimeout:  15 * time.Second,
 	}
-	return server.ListenAndServe()
+
+	sig_chan := make(chan os.Signal, 1)
+	signal.Notify(sig_chan, syscall.SIGINT, syscall.SIGTERM, syscall.SIGABRT)
+	server_errors := make(chan error, 1)
+
+	go func() {
+		if err := server.ListenAndServe(); !errors.Is(err, http.ErrServerClosed) {
+			server_errors <- err
+		}
+		close(server_errors)
+	}()
+
+	select {
+	case err := <-server_errors:
+		log.Fatalf("server error: %v", err)
+	case <-sig_chan:
+		slog.Warn("shutdown signal received, shutdown...")
+		ctx, release := context.WithTimeout(context.Background(), 10*time.Second)
+		defer release()
+
+		if err := server.Shutdown(ctx); err != nil {
+			return err
+		}
+	}
+	return nil
 }

@@ -33,7 +33,7 @@ var (
 
 	gl_root_cmd = &cobra.Command{
 		Use:     "daisy",
-		Short:   "A total free education & translation solution",
+		Short:   "A portal website platform.",
 		Version: env.Version(),
 	}
 

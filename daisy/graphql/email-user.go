@@ -25,6 +25,38 @@ const (
 	emailUserUnlockAudience        = "email-user.unlock"
 )
 
+func (p *Mutation) ResetEmailUserPassword(ctx context.Context, args struct {
+	Token    string
+	Password string
+}) (*Ok, error) {
+	_, email, err := p.jwt.Verify(args.Token, "", emailUserResetPasswordAudience)
+	if err != nil {
+		return nil, err
+	}
+	ip := ClientIp(ctx)
+	if err := p.db.Transaction(func(tx *gorm.DB) error {
+		var it models.EmailUser
+		if err := tx.Where("email = ?", email).Preload("User").First(&it).Error; err != nil {
+			return err
+		}
+		if it.ConfirmedAt == nil {
+			return fmt.Errorf("%s isn't confirmed", it.Email)
+		}
+		if it.User.LockedAt != nil {
+			return fmt.Errorf("%s is locked", it.Email)
+		}
+		form := models.NewSetPasswordForEmailUserForm(args.Password)
+		if err := form.Execute(p.db, &it, p.hmac); err != nil {
+			return err
+		}
+
+		return models.CreateLog(tx, it.UserID, portal_v2.Plugin(), ip, portal_v2.UserIndexLogResponse_Item_WARNING, "reset password by email.")
+	}); err != nil {
+		return nil, err
+	}
+	return &Ok{}, nil
+}
+
 func (p *Mutation) ConfirmEmailUserByToken(ctx context.Context, args struct {
 	Token string
 }) (*Ok, error) {
@@ -40,6 +72,9 @@ func (p *Mutation) ConfirmEmailUserByToken(ctx context.Context, args struct {
 		}
 		if it.ConfirmedAt != nil {
 			return fmt.Errorf("%s is already confirmed", it.Email)
+		}
+		if it.User.LockedAt != nil {
+			return fmt.Errorf("%s is locked", it.Email)
 		}
 		if err = tx.Model(&it).Updates(map[string]interface{}{
 			"confirmed_at": time.Now(),
