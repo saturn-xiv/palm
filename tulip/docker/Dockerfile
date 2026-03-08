@@ -10,8 +10,13 @@ RUN apt -y install lsb-release wget software-properties-common gnupg \
     git cmake ninja-build pkg-config libtool automake autoconf autoconf-archive bison flex meson cpio mold \
     build-essential crossbuild-essential-amd64 crossbuild-essential-arm64 crossbuild-essential-riscv64
 
+RUN mkdir -p $HOME/tmp $HOME/downloads $HOME/build
+
 # https://apt.llvm.org/
-RUN bash -c "$(wget -O - https://apt.llvm.org/llvm.sh)"
+#RUN bash -c "$(wget -O - https://apt.llvm.org/llvm.sh)"
+RUN wget -q -O $HOME/downloads/llvm.sh https://apt.llvm.org/llvm.sh
+RUN chmod +x $HOME/downloads/llvm.sh
+RUN $HOME/downloads/llvm.sh 21
 
 RUN apt -y autoremove
 RUN apt -y clean

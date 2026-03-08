@@ -88,7 +88,7 @@ function generate_tulip() {
 
 generate_daisy
 # generate_crocus
-generate_marigold
+#generate_marigold
 generate_tulip
 
 echo "format cargo projects"
