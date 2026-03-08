@@ -13,10 +13,12 @@ RUN apt -y install lsb-release wget software-properties-common gnupg \
 RUN mkdir -p $HOME/tmp $HOME/downloads $HOME/build
 
 # https://apt.llvm.org/
-#RUN bash -c "$(wget -O - https://apt.llvm.org/llvm.sh)"
+ENV CLANG_VERSION 21
 RUN wget -q -O $HOME/downloads/llvm.sh https://apt.llvm.org/llvm.sh
 RUN chmod +x $HOME/downloads/llvm.sh
-RUN $HOME/downloads/llvm.sh 21
+RUN $HOME/downloads/llvm.sh ${CLANG_VERSION}
+RUN update-alternatives --install /usr/bin/clang clang /usr/bin/clang-${CLANG_VERSION} 100
+RUN update-alternatives --install /usr/bin/clang++ clang++ /usr/bin/clang++-${CLANG_VERSION} 100
 
 RUN apt -y autoremove
 RUN apt -y clean
