@@ -1,20 +1,23 @@
 FROM ubuntu:latest
 LABEL maintainer="Jeremy Zheng"
 
-ENV DEBIAN_FRONTEND=noninteractive
+ENV DEBIAN_FRONTEND "noninteractive"
 
-RUN apt update
-RUN apt -y upgrade && apt -y clean && apt -y autoremove
+RUN apt update && apt -y upgrade && apt -y clean
+RUN apt -y install lsb-release apt-utils debian-keyring debian-archive-keyring apt-transport-https software-properties-common curl wget gnupg \
+    && apt -y clean
+# https://launchpad.net/~ondrej/+archive/ubuntu/php
+RUN add-apt-repository -y ppa:ondrej/php
 
 RUN apt -y install pwgen git locales locales-all vim tzdata zip unzip tree tmux screen \
     curl wget rsync telnet iputils-ping lftp \
     openssh-client sshpass \
     python3-full \
-    cmake pkg-config libtool automake autoconf autoconf-archive cpio mold bison flex ninja-build debhelper \
-    clang clangd clang-tools clang-format clang-tidy lldb lld \
-    build-essential crossbuild-essential-arm64 crossbuild-essential-armhf crossbuild-essential-riscv64 \
     && apt -y clean
-RUN apt install -y  dialog asciidoc doxygen imagemagick ffmpeg graphviz pandoc texlive-full \
+RUN apt -y install cmake pkg-config libtool automake autoconf autoconf-archive cpio mold bison flex meson ninja-build debhelper \
+    build-essential crossbuild-essential-amd64 crossbuild-essential-arm64 crossbuild-essential-armhf crossbuild-essential-riscv64 \
+    && apt -y clean
+RUN apt install -y dialog asciidoc doxygen imagemagick ffmpeg graphviz pandoc texlive-full \
     && apt -y clean
 RUN apt-get install -y fonts-dejavu-extra fonts-opensymbol fonts-lxgw-wenkai fonts-smiley-sans \
     fonts-noto-extra fonts-noto-cjk-extra fonts-noto-color-emoji \
@@ -28,11 +31,25 @@ RUN apt-get install -y fonts-dejavu-extra fonts-opensymbol fonts-lxgw-wenkai fon
     && apt -y clean
 RUN apt install -y postgresql redis rabbitmq-server vsftpd nginx \
     && apt -y clean
-RUN apt install -y php-fpm php-mbstring php-xml php-bcmath php-curl php-zip php-zmq php-imagick php-gd php-intl php-soap \
-    php-mysql php-pgsql php-sqlite3 php-redis php-mongodb php-amqp \
-    php-net-imap php-net-smtp \
+ENV PHP_VERSION "8.5"
+# php${PHP_VERSION}-net-imap php${PHP_VERSION}-net-smtp 
+RUN apt install -y php${PHP_VERSION}-fpm php${PHP_VERSION}-mbstring php${PHP_VERSION}-xml php${PHP_VERSION}-bcmath php${PHP_VERSION}-curl php${PHP_VERSION}-zip php${PHP_VERSION}-zmq php${PHP_VERSION}-imagick php${PHP_VERSION}-gd php${PHP_VERSION}-intl php${PHP_VERSION}-soap \
+    php${PHP_VERSION}-mysql php${PHP_VERSION}-pgsql php${PHP_VERSION}-sqlite3 php${PHP_VERSION}-redis php${PHP_VERSION}-mongodb php${PHP_VERSION}-amqp \
+    php${PHP_VERSION}-snmp \
     && apt -y clean
 RUN apt install -y libpq-dev libmysqlclient-dev libsqlite3-dev libssl-dev libyaml-dev libffi-dev zlib1g-dev && apt -y clean
+
+RUN mkdir -p $HOME/local $HOME/tmp $HOME/downloads $HOME/build
+
+# https://apt.llvm.org/
+ENV CLANG_VERSION "21"
+RUN wget -q -O $HOME/downloads/llvm.sh https://apt.llvm.org/llvm.sh \
+    && bash $HOME/downloads/llvm.sh ${CLANG_VERSION} \
+    && rm $HOME/downloads/llvm.sh
+RUN update-alternatives --install /usr/bin/clang clang /usr/bin/clang-${CLANG_VERSION} 100 \
+    && update-alternatives --install /usr/bin/clang++ clang++ /usr/bin/clang++-${CLANG_VERSION} 100
+
+RUN apt -y clean && apt -y autoremove
 
 RUN echo "en_US.UTF-8 UTF-8" > /etc/locale.gen && locale-gen && update-locale LANG=en_US.UTF-8
 RUN update-alternatives --set editor /usr/bin/vim.basic
@@ -61,20 +78,20 @@ RUN curl -fsSL -o $HOME/downloads/dbmate https://github.com/amacneil/dbmate/rele
 # https://getcomposer.org/doc/00-intro.md#installation-linux-unix-macos
 RUN wget -q -O $HOME/downloads/composer-setup.php https://getcomposer.org/installer \
     && cd $HOME/downloads \
-    && php $HOME/downloads/composer-setup.php --install-dir=/usr/local/bin --filename=composer \
+    && php${PHP_VERSION} $HOME/downloads/composer-setup.php --install-dir=/usr/local/bin --filename=composer${PHP_VERSION} \
     && rm $HOME/downloads/composer-setup.php
 
 # https://github.com/nvm-sh/nvm
-ENV NVM_VERSION="v0.40.4"
+ENV NVM_VERSION "v0.40.4"
 RUN git clone -b ${NVM_VERSION} https://github.com/nvm-sh/nvm.git $HOME/.nvm
 RUN echo 'export NVM_DIR="$HOME/.nvm"' >> $HOME/.profile \
     && echo '[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"' >> $HOME/.profile \
     && echo '[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"' >> $HOME/.profile
-RUN bash -c "source $HOME/.nvm/nvm.sh && nvm install --lts && nvm use --lts"
+RUN bash -c "source $HOME/.nvm/nvm.sh && nvm install --lts && npm install -g yarn"
 
 # https://github.com/sdkman/sdkman-cli
 # https://docs.gradle.org/current/userguide/compatibility.html
-ENV JDK_VERSION="25.0.2-amzn"
+ENV JDK_VERSION "25.0.2-amzn"
 RUN curl -s "https://get.sdkman.io" | bash
 RUN sed -i -e 's/sdkman_auto_answer=false/sdkman_auto_answer=true/g' $HOME/.sdkman/etc/config
 RUN bash -c "source $HOME/.sdkman/bin/sdkman-init.sh \
@@ -89,7 +106,7 @@ RUN bash -c "source $HOME/.cargo/env && cargo install diesel_cli && cargo instal
 
 # https://github.com/rbenv/rbenv
 # https://github.com/rbenv/ruby-build/tree/master/share/ruby-build
-ENV RUBY_VERSION="4.0.1"
+ENV RUBY_VERSION "4.0.1"
 RUN git clone https://github.com/rbenv/rbenv.git $HOME/.rbenv \
     && git clone https://github.com/rbenv/ruby-build.git $HOME/.rbenv/plugins/ruby-build \
     && git clone https://github.com/rbenv/rbenv-vars.git $HOME/.rbenv/plugins/rbenv-vars 
@@ -101,10 +118,9 @@ RUN bash -c "source $HOME/.profile \
     && gem install bundler"
 
 # https://go.dev/doc/install
-ENV GO_VERSION="1.26.0"
+ENV GO_VERSION "1.26.1"
 RUN wget -q -P $HOME/downloads https://go.dev/dl/go${GO_VERSION}.linux-${TARGETARCH}.tar.gz
-RUN mkdir -p $HOME/local \
-    && tar xf $HOME/downloads/go${GO_VERSION}.linux-${TARGETARCH}.tar.gz -C $HOME/local \
+RUN tar xf $HOME/downloads/go${GO_VERSION}.linux-${TARGETARCH}.tar.gz -C $HOME/local \
     && rm $HOME/downloads/go${GO_VERSION}.linux-${TARGETARCH}.tar.gz
 RUN echo 'export PATH=$HOME/local/go/bin:$PATH' >> $HOME/.profile \
     && echo 'export GOPATH=$HOME/go' >> $HOME/.profile \
@@ -114,7 +130,7 @@ RUN echo 'export PATH=$HOME/local/go/bin:$PATH' >> $HOME/.profile \
 # https://github.com/aparo/opensearch-analysis-ik?tab=readme-ov-file#install
 # https://github.com/aparo/opensearch-analysis-stconvert?tab=readme-ov-file#installation
 # https://github.com/aparo/opensearch-analysis-pinyin?tab=readme-ov-file#installation
-ENV OPENSEARCH_VERSION="3.0.0"
+ENV OPENSEARCH_VERSION "3.0.0"
 RUN if [ "$TARGETARCH" = "amd64" ]; then \
         wget -q -O $HOME/downloads/opensearch-${OPENSEARCH_VERSION}-linux-${TARGETARCH}.tar.gz https://artifacts.opensearch.org/releases/bundle/opensearch/${OPENSEARCH_VERSION}/opensearch-${OPENSEARCH_VERSION}-linux-x64.tar.gz; \
     elif [ "$TARGETARCH" = "arm64" ]; then \
@@ -123,7 +139,6 @@ RUN if [ "$TARGETARCH" = "amd64" ]; then \
         exit 1; \
     fi
 
-RUN mkdir -p $HOME/tmp
 RUN tar xf $HOME/downloads/opensearch-${OPENSEARCH_VERSION}-linux-${TARGETARCH}.tar.gz -C $HOME/tmp \
     && rm $HOME/downloads/opensearch-${OPENSEARCH_VERSION}-linux-${TARGETARCH}.tar.gz \
     && mv $HOME/tmp/opensearch-${OPENSEARCH_VERSION} /opt/opensearch \
@@ -168,7 +183,6 @@ RUN mkdir -p /var/lib/postgres \
 # php -i
 # <?php php_info(); ?>
 # <?php xdebug_info(); ?>
-ENV PHP_VERSION="8.3"
 RUN sed -i 's/memory_limit =.*/memory_limit = 1G/' /etc/php/${PHP_VERSION}/fpm/php.ini \
     && sed -i 's/;extension=bz2/extension=bz2/' /etc/php/${PHP_VERSION}/fpm/php.ini \
     && sed -i 's/;extension=enchant/extension=enchant/' /etc/php/${PHP_VERSION}/fpm/php.ini \
@@ -197,7 +211,7 @@ RUN sed -i 's/memory_limit =.*/memory_limit = 1G/' /etc/php/${PHP_VERSION}/fpm/p
 
 RUN echo "$(date -u +%4Y%m%d%H%M%S)" | tee /VERSION
 
-EXPOSE 80/tcp 443/tcp 8080/tcp 9000/tcp 5432/tcp 6379/tcp 16379/tcp 5672/tcp 9200/tcp 9300/tcp 9600/tcp
+EXPOSE 80/tcp 8080/tcp 9000/tcp 5432/tcp 6379/tcp 16379/tcp 5672/tcp 9200/tcp 9300/tcp 9600/tcp
 VOLUME /srv
 WORKDIR /srv
 

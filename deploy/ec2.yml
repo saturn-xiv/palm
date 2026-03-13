@@ -1,4 +1,4 @@
-- name: Testing ssh connections
+- name: Setup ec2 hosts
   hosts:
     - all
   roles:
