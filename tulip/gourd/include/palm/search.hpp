@@ -182,6 +182,7 @@ class Config {
     boost::algorithm::to_lower(it);
     return it;
   }
+
   std::string _host;
   uint16_t _port;
   bool _ssl;

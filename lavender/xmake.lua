@@ -1,7 +1,7 @@
 add_rules("mode.debug", "mode.release")
 set_version("2026.3.13")
 
-add_requires("toml++", "cpr", "nlohmann_json")
+add_requires("cpr", "nlohmann_json")
 add_requires("boost", {system = false, configs = {cmake = false, program_options=true, log=true, log_setup=true, exception=true}})
 
 target("lavender")
@@ -12,5 +12,5 @@ target("lavender")
     add_configfiles("include/lavender/version.h.in", {filename = "include/lavender/version.hpp"})
     add_files("src/*.cpp")
     add_includedirs("include", "$(builddir)/$(plat)/$(arch)/$(mode)/include")    
-    add_packages("toml++", "boost", "cpr", "nlohmann_json")
+    add_packages("boost", "cpr", "nlohmann_json")
     
