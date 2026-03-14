@@ -11,7 +11,7 @@ int main(int argc, char** argv) {
     return app.launch(argc, argv);
   } catch (...) {
     BOOST_LOG_TRIVIAL(error)
-        << "aaa";// boost::current_exception_diagnostic_information();
+        << boost::current_exception_diagnostic_information();
   }
   return EXIT_FAILURE;
 }
