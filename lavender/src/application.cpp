@@ -45,7 +45,7 @@ int lavender::Application::launch(int argc, char** argv) const {
     return EXIT_SUCCESS;
   }
   if (vm.count("version")) {
-    std::cout << lavender::VERSION << std::endl;
+    std::cout << lavender::VERSION << "(" << __TIMESTAMP__ << ")" << std::endl;
     return EXIT_SUCCESS;
   }
 

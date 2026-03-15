@@ -98,7 +98,7 @@ void lavender::logging::filesystem::Watcher::sync(
   }
   lavender::logging::filesystem::Message it;
   it.line = msg;
-  it.file = file.string();
+  it.file = std::filesystem::absolute(file).string();
   it.host = boost::asio::ip::host_name();
   it.created_at = std::chrono::high_resolution_clock::now();
   this->_search->index_document(it);

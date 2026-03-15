@@ -214,23 +214,16 @@ template <typename Clock, typename Duration>
 struct adl_serializer<std::chrono::time_point<Clock, Duration>> {
   static void to_json(nlohmann::json& j,
                       const std::chrono::time_point<Clock, Duration>& o) {
-    // j = std::chrono::duration_cast<std::chrono::nanoseconds>(
-    //         o.time_since_epoch())
-    //         .count();
-    // "2022-06-15T10:12:52.382719622Z"
     j = std::format("{:%FT%T%z}", o);
   }
 
   static void from_json(const nlohmann::json& j,
                         std::chrono::time_point<Clock, Duration>& o) {
-    // std::chrono::nanoseconds dur(j.get<int64_t>());
-    // o = dur;
-
     const std::string s = j.get<std::string>();
     std::istringstream in{s};
     in >> std::chrono::parse("%FT%T%z", o);
     if (in.fail()) {
-      BOOST_LOG_TRIVIAL(error) << "failed to parse " << s;
+      spdlog::error("failed to parse {}", s);
     }
   }
 };

@@ -34,7 +34,7 @@ class OpenSearch {
     nlohmann::json body;
     nlohmann::to_json(body, object);
 
-    BOOST_LOG_TRIVIAL(debug) << body.dump();
+    // BOOST_LOG_TRIVIAL(debug) << body.dump();
 
     cpr::Response res = cpr::Post(
         cpr::Url{this->url(name) + "/_doc/"}, cpr::Body{body.dump()},
