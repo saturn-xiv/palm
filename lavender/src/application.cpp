@@ -3,12 +3,17 @@
 #include "lavender/open-search.hpp"
 #include "lavender/version.hpp"
 
+#include <condition_variable>
 #include <cstdlib>
+#include <functional>
 #include <iostream>
+#include <mutex>
+#include <queue>
+#include <thread>
 
+#include <boost/exception/diagnostic_information.hpp>
 #include <boost/log/core.hpp>
 #include <boost/log/expressions.hpp>
-#include <boost/log/trivial.hpp>
 #include <boost/program_options.hpp>
 #include <boost/property_tree/ini_parser.hpp>
 #include <boost/property_tree/ptree.hpp>
@@ -80,9 +85,26 @@ int lavender::Application::launch(int argc, char** argv) const {
 )"_json);
   }
 
-  if (folders.empty()) {
-    BOOST_LOG_TRIVIAL(warning) << "watching folders are empty";
+  std::vector<std::thread> pool;
+
+  for (const auto& folder : folders) {
+    pool.emplace_back([search, &folder] {
+      try {
+        lavender::logging::filesystem::Watcher it(search, folder);
+        for (;;) {
+          it.watch();
+        }
+      } catch (...) {
+        BOOST_LOG_TRIVIAL(error)
+            << boost::current_exception_diagnostic_information();
+      }
+    });
   }
+
+  for (auto& it : pool) {
+    it.join();
+  }
+  BOOST_LOG_TRIVIAL(info) << "done.";
 
   return EXIT_SUCCESS;
 }

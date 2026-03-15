@@ -1,5 +1,5 @@
 add_rules("mode.debug", "mode.release")
-set_version("2026.3.13")
+set_version("2026.3.15")
 
 add_requires("cpr", "nlohmann_json")
 add_requires("boost", {system = false, configs = {cmake = false, program_options=true, log=true, log_setup=true, exception=true}})
@@ -7,7 +7,7 @@ add_requires("boost", {system = false, configs = {cmake = false, program_options
 target("lavender")
     set_languages("c++23")
     set_kind("binary")
-    add_ldflags("-static -static-libgcc -static-libstdc++")
+    add_ldflags("-static-libgcc -static-libstdc++")
     set_configdir("$(builddir)/$(plat)/$(arch)/$(mode)")
     add_configfiles("include/lavender/version.h.in", {filename = "include/lavender/version.hpp"})
     add_files("src/*.cpp")
