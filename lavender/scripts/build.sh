@@ -2,6 +2,8 @@
 
 set -e
 
+# xmake show -l toolchains
+
 xmake f -p cross -a arm64 --cross=aarch64-linux-gnu- -m release
 xmake
 

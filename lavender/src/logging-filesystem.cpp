@@ -3,24 +3,50 @@
 #include <sys/inotify.h>
 #include <sys/types.h>
 
-lavender::logging::filesystem::File::File(const std::filesystem::path& name) {
-  this->_file = fopen(name.c_str(), "r");
-  if (this->_file == nullptr) {
-    throw std::runtime_error(std::strerror(errno));
+#include <boost/algorithm/string.hpp>
+#include <boost/asio.hpp>
+
+lavender::logging::filesystem::File::File(const std::filesystem::path& file)
+    : _file(file) {
+  BOOST_LOG_TRIVIAL(debug) << "found file " << this->_file.string();
+  {
+    auto fd = fopen(this->_file.c_str(), "r");
+    if (fd == nullptr) {
+      BOOST_LOG_TRIVIAL(error) << std::strerror(errno);
+      return;
+    }
+    fseek(fd, 0, SEEK_END);
+    this->_pos = ftell(fd);
+    fclose(fd);
   }
-  fseek(this->_file, 0, SEEK_END);
 }
-lavender::logging::filesystem::File::~File() { fclose(this->_file); }
+lavender::logging::filesystem::File::~File() {}
 
 std::string lavender::logging::filesystem::File::read() {
   std::lock_guard<std::mutex> lock(this->_mutex);
 
   std::stringstream ss;
   {
+    auto fd = fopen(this->_file.c_str(), "r");
+    if (fd == nullptr) {
+      BOOST_LOG_TRIVIAL(error) << std::strerror(errno);
+      return "";
+    }
+    if (fseek(fd, this->_pos, SEEK_SET) != 0) {
+      BOOST_LOG_TRIVIAL(error) << "invalid postion " << this->_pos;
+      fclose(fd);
+      return "";
+    }
+
     char buf[256];
-    while (fgets(buf, sizeof(buf), this->_file) != nullptr) {
+    memset(buf, 0, sizeof(buf));
+
+    while (fgets(buf, sizeof(buf), fd) != nullptr) {
+      this->_pos = ftell(fd);
       ss << buf;
     }
+
+    fclose(fd);
   }
   return ss.str();
 }
@@ -30,14 +56,12 @@ lavender::logging::filesystem::Watcher::Watcher(
     const std::filesystem::path& path)
     : _search(search), _root(path), _items({}) {
   if (std::filesystem::is_regular_file(path)) {
-    BOOST_LOG_TRIVIAL(debug) << "found file " << path.string();
     auto file = std::make_shared<lavender::logging::filesystem::File>(path);
     this->_items[path] = file;
   } else if (std::filesystem::is_directory(path)) {
     for (const auto& entry : std::filesystem::directory_iterator(path)) {
       if (std::filesystem::is_regular_file(entry)) {
         const auto it = entry.path();
-        BOOST_LOG_TRIVIAL(debug) << "found file " << it.string();
         auto file = std::make_shared<lavender::logging::filesystem::File>(it);
         this->_items[it] = file;
       }
@@ -62,6 +86,22 @@ lavender::logging::filesystem::Watcher::Watcher(
 lavender::logging::filesystem::Watcher::~Watcher() {
   inotify_rm_watch(this->_file, this->_watcher);
   close(this->_file);
+}
+
+void lavender::logging::filesystem::Watcher::sync(
+    const std::filesystem::path& file) {
+  auto msg = this->_items[file]->read();
+  boost::algorithm::trim(msg);
+  BOOST_LOG_TRIVIAL(debug) << msg;
+  if (msg.empty()) {
+    return;
+  }
+  lavender::logging::filesystem::Message it;
+  it.line = msg;
+  it.file = file.string();
+  it.host = boost::asio::ip::host_name();
+  it.created_at = std::chrono::high_resolution_clock::now();
+  this->_search->index_document(it);
 }
 
 #define EVENT_SIZE (sizeof(struct inotify_event))
@@ -96,8 +136,7 @@ void lavender::logging::filesystem::Watcher::watch() {
         } else {
           const auto file = this->_root / event->name;
           BOOST_LOG_TRIVIAL(info) << "file " << file.string() << " was created";
-          auto it = std::make_shared<lavender::logging::filesystem::File>(
-              event->name);
+          auto it = std::make_shared<lavender::logging::filesystem::File>(file);
           this->_items[file] = it;
         }
       } else if (event->mask & IN_DELETE) {
@@ -114,14 +153,17 @@ void lavender::logging::filesystem::Watcher::watch() {
           BOOST_LOG_TRIVIAL(info)
               << "directory " << event->name << " was modified";
         } else {
-          const auto file = std::filesystem::is_regular_file(this->_root)
-                                ? event->name
-                                : (this->_root / event->name);
+          const auto file = this->_root / event->name;
           BOOST_LOG_TRIVIAL(info)
               << "file " << file.string() << " was modified";
-          auto message = this->_items[file]->read();
-          BOOST_LOG_TRIVIAL(debug) << file.string() << ": " << message;
+          this->sync(file);
         }
+      }
+    } else {
+      if (event->mask & IN_MODIFY) {
+        BOOST_LOG_TRIVIAL(info)
+            << "file " << this->_root.string() << " was modified";
+        this->sync(this->_root);
       }
     }
     i += EVENT_SIZE + event->len;

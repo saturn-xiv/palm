@@ -28,11 +28,30 @@ class OpenSearch {
   }
 
   template <typename T>
+  bool index_document(const T& object) const {
+    const auto name = this->index<T>();
+    BOOST_LOG_TRIVIAL(debug) << "index document " << name;
+    nlohmann::json body;
+    nlohmann::to_json(body, object);
+
+    BOOST_LOG_TRIVIAL(debug) << body.dump();
+
+    cpr::Response res = cpr::Post(
+        cpr::Url{this->url(name) + "/_doc/"}, cpr::Body{body.dump()},
+        cpr::Header{{lavender::http::headers::CONTENT_TYPE,
+                     lavender::http::content_types::APPLICATION_JSON_UTF8}});
+    BOOST_LOG_TRIVIAL(debug) << res.status_code << " " << res.text;
+    return res.status_code == 200;
+  }
+
+  template <typename T>
   bool index_document(const std::string& id, const T& object) const {
     const auto name = this->index<T>();
     BOOST_LOG_TRIVIAL(debug) << "index document " << id << " " << name;
     nlohmann::json body;
     nlohmann::to_json(body, object);
+
+    // BOOST_LOG_TRIVIAL(debug) << body.dump();
 
     cpr::Response res = cpr::Put(
         cpr::Url{this->url(name) + "/_doc/" + id}, cpr::Body{body.dump()},

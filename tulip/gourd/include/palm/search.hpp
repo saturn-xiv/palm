@@ -67,7 +67,7 @@ class Config {
     nlohmann::json body;
     nlohmann::to_json(body, object);
 
-    cpr::Response res = cpr::Put(
+    cpr::Response res = cpr::Post(
         cpr::Url{this->url(name) + "/_doc/"}, cpr::Body{body.dump()},
         cpr::Header{{palm::http::headers::CONTENT_TYPE,
                      palm::http::content_type::APPLICATION_JSON_UTF8}});
