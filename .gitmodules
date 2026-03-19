@@ -1,3 +1,15 @@
 [submodule "tulip/vcpkg"]
 	path = tulip/vcpkg
 	url = https://github.com/microsoft/vcpkg.git
+[submodule "tulip/vendors/tipitaka.org"]
+	path = tulip/vendors/tipitaka.org
+	url = https://github.com/VipassanaTech/tipitaka-xml.git
+[submodule "tulip/vendors/hugo-docsy"]
+	path = tulip/vendors/hugo-docsy
+	url = https://github.com/google/docsy.git
+[submodule "tulip/vendors/hugo-even"]
+	path = tulip/vendors/hugo-even
+	url = https://github.com/olOwOlo/hugo-theme-even.git
+[submodule "tulip/vendors/cbeta.org/xml-p5"]
+	path = tulip/vendors/cbeta.org/xml-p5
+	url = https://github.com/cbeta-org/xml-p5.git
