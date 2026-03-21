@@ -3,11 +3,14 @@ LABEL maintainer="Jeremy Zheng"
 
 ENV DEBIAN_FRONTEND "noninteractive"
 
-RUN apt update && apt -y upgrade && apt -y clean
+RUN apt update
 RUN apt -y install lsb-release apt-utils debian-keyring debian-archive-keyring apt-transport-https software-properties-common curl wget gnupg \
     && apt -y clean
 # https://launchpad.net/~ondrej/+archive/ubuntu/php
 RUN add-apt-repository -y ppa:ondrej/php
+# https://launchpad.net/~ubuntu-toolchain-r/+archive/ubuntu/ppa
+RUN add-apt-repository -y ppa:ubuntu-toolchain-r/ppa
+RUN apt update && apt -y upgrade && apt -y clean
 
 RUN apt -y install pwgen git locales locales-all vim tzdata zip unzip tree tmux screen \
     curl wget rsync telnet iputils-ping lftp \
