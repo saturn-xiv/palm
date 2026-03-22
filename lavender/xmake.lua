@@ -1,5 +1,5 @@
 add_rules("mode.debug", "mode.release")
-set_version("2026.3.15")
+set_version("2026.3.15", {build = "%a %b %d %I:%M:%S %p %Z %Y"})  
 
 add_requires("cpr", "nlohmann_json")
 add_requires("boost", {system = false, configs = {cmake = false, asio=true, program_options=true, log=true, log_setup=true, exception=true}})

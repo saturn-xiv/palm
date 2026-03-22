@@ -6,6 +6,8 @@
 namespace lavender {
 
 inline static const std::string VERSION = "v${VERSION_MAJOR}.${VERSION_MINOR}.${VERSION_ALTER}";
+inline static const std::string GIT_VERSION = "${GIT_COMMIT}";
+inline static const std::string BUILD_TIME = "${VERSION_BUILD}";
 
 inline static const std::string PROJECT_NAME = "Lavender";
 inline static const std::string PROJECT_DESCRIPTION = "A logging crawler";
