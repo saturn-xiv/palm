@@ -20,7 +20,7 @@ RUN apt -y install pwgen git locales locales-all vim tzdata zip unzip tree tmux 
 ENV GCC_VERSION 14
 RUN apt -y install cmake pkg-config libtool automake autoconf autoconf-archive cpio mold bison flex meson ninja-build debhelper \
     build-essential crossbuild-essential-amd64 crossbuild-essential-arm64 crossbuild-essential-armhf crossbuild-essential-riscv64 \
-    g++-${GCC_VERSION} g++-${GCC_VERSION}-aarch64-linux-gnu g++-${GCC_VERSION}-riscv64-linux-gnu \
+    g++-${GCC_VERSION} g++-${GCC_VERSION}-x86-64-linux-gnu g++-${GCC_VERSION}-aarch64-linux-gnu g++-${GCC_VERSION}-riscv64-linux-gnu \
     && apt -y clean
 RUN apt install -y dialog asciidoc doxygen imagemagick ffmpeg graphviz pandoc texlive-full \
     && apt -y clean
@@ -115,6 +115,12 @@ RUN bash -c "source $HOME/.sdkman/bin/sdkman-init.sh \
 
 # https://www.rust-lang.org/tools/install
 RUN curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
+RUN bash -c "source $HOME/.cargo/env \
+    && rustup target add armv7-unknown-linux-gnueabihf \
+    && rustup target add aarch64-unknown-linux-gnu \
+    && rustup target add x86_64-unknown-linux-musl \
+    && rustup target add aarch64-unknown-linux-musl \
+    && rustup target add loongarch64-unknown-linux-gnu"
 RUN bash -c "source $HOME/.cargo/env && cargo install diesel_cli && cargo install mdbook"
 
 # https://github.com/rbenv/rbenv
