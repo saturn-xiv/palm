@@ -144,6 +144,7 @@ RUN tar xf $HOME/downloads/go${GO_VERSION}.linux-${TARGETARCH}.tar.gz -C $HOME/l
 RUN echo 'export PATH=$HOME/local/go/bin:$PATH' >> $HOME/.profile \
     && echo 'export GOPATH=$HOME/go' >> $HOME/.profile \
     && echo 'export PATH=$(go env GOPATH)/bin:$PATH' >> $HOME/.profile
+RUN bash -c "source $HOME/.profile && CGO_ENABLED=1 go install -tags extended github.com/gohugoio/hugo@latest"
 
 # https://xmake.io/guide/quick-start.html
 RUN curl -fsSL https://xmake.io/shget.text | bash
