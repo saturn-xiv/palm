@@ -1,11 +1,5 @@
 # https://docs.docker.com/engine/install/ubuntu/
-
-- name: Install dependency packages
-  become: true
-  ansible.builtin.apt:
-    pkg:
-      - ca-certificates
-      - curl
+# https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/install-kubeadm/
 
 - name: Create apt keys folder
   become: true
@@ -28,6 +22,18 @@
     dest: /etc/apt/sources.list.d/docker.list
     mode: "0644"
 
+- name: Download kubernetes-apt-keyring.gpg
+  become: true
+  ansible.builtin.shell:
+    cmd: curl -fsSL https://pkgs.k8s.io/core:/stable:/{{ app_kubernetes_version }}/deb/Release.key | gpg --dearmor --yes -o /etc/apt/keyrings/kubernetes-apt-keyring.gpg
+
+- name: Upload kubernetes.list
+  become: true
+  ansible.builtin.template:
+    src: kubernetes.list.j2
+    dest: /etc/apt/sources.list.d/kubernetes.list
+    mode: "0644"
+
 - name: Update apt cache
   become: true
   ansible.builtin.apt:
@@ -43,6 +49,9 @@
       - containerd.io
       - docker-buildx-plugin
       - docker-compose-plugin
+      - kubelet
+      - kubeadm
+      - kubectl
 
 - name: Add user to docker group
   become: true
@@ -76,9 +85,6 @@
     create: true
     mode: "0644"
 
-- name: Setup kubernetes
-  ansible.builtin.import_tasks: kubernetes.yml
-
 - name: Restart containerd service
   become: true
   ansible.builtin.systemd_service:
@@ -90,5 +96,12 @@
   become: true
   ansible.builtin.systemd_service:
     name: docker.service
+    state: restarted
+    daemon_reload: true
+
+- name: Restart kubelet service
+  become: true
+  ansible.builtin.systemd_service:
+    name: kubelet
     state: restarted
     daemon_reload: true

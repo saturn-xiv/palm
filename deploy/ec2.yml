@@ -6,3 +6,6 @@
     - ubuntu
     - random-passwords
     - docker
+  environment:
+    # http_proxy: http://172.26.176.216:8000
+    # https_proxy: http://172.26.176.216:8000

@@ -1,14 +1,17 @@
-# - name: Add PPA for Ubuntu Toolchain
-#   become: true
-#   ansible.builtin.apt_repository:
-#     repo: ppa:ubuntu-toolchain-r/test
-#   when: ansible_facts.distribution == 'Ubuntu'
+- name: Add PPA for Ubuntu Toolchain
+  become: true
+  ansible.builtin.apt_repository:
+    repo: ppa:ubuntu-toolchain-r/ppa
+  when: ansible_facts.distribution == 'Ubuntu'
 
 - name: Install dependicy packages
   become: true
   ansible.builtin.apt:
     pkg:
       - apt-transport-https
+      - ca-certificates
+      - curl
+      - gpg
       - software-properties-common
       - gnupg
       - sshpass
@@ -45,7 +48,6 @@
       - pulseaudio
       - zsh
       - wget
-      - curl
       - zip
       - unzip
       - systemd-cron
@@ -82,7 +84,7 @@
   become: true
   ansible.builtin.shell: git config --global pull.rebase false
 
-- name: setup git to use http v1.1
+- name: Setup git to use http v1.1
   ansible.builtin.shell: git config --global http.version HTTP/1.1
 
 # ---------------------------------------------------

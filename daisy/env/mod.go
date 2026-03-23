@@ -1,6 +1,9 @@
 package env
 
-import "fmt"
+import (
+	"fmt"
+	"os"
+)
 
 var (
 	git_version string
@@ -13,4 +16,12 @@ func Version() string {
 
 func Plugin() string {
 	return "daisy"
+}
+
+func Id() (string, error) {
+	buf, err := os.ReadFile("/sys/class/dmi/id/product_uuid")
+	if err != nil {
+		return "", err
+	}
+	return string(buf), nil
 }

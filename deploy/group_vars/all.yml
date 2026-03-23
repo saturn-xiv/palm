@@ -30,3 +30,5 @@ app_kylin_intellij_idea_version_code: "241.18034.62"
 app_kylin_sql_developer_version: "23.1.1.345.2114"
 app_kylin_sql_developer_jdk_version: "11.0.22"
 app_kylin_dbeaver_version: "24.1.1"
+
+app_kubernetes_version: "v1.35"
