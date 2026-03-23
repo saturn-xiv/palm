@@ -1,9 +1,9 @@
-cmake_minimum_required(VERSION 3.28)
+cmake_minimum_required(VERSION 3.29)
 include(FetchContent)
 
 project(
   tulip
-  VERSION 2026.2.26
+  VERSION 2026.3.23
   DESCRIPTION "An open source online education & transaction solution."
   LANGUAGES CXX
 )
@@ -12,7 +12,7 @@ set(CMAKE_CXX_STANDARD 23)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
 
-set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} -fuse-ld=mold")
+set(CMAKE_LINKER_TYPE MOLD)
 # -----------------------------------------------------------------------------
 add_subdirectory(gourd)
 add_subdirectory(tests)

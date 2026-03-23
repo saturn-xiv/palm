@@ -139,6 +139,18 @@ RUN echo 'export PATH=$HOME/local/go/bin:$PATH' >> $HOME/.profile \
     && echo 'export GOPATH=$HOME/go' >> $HOME/.profile \
     && echo 'export PATH=$(go env GOPATH)/bin:$PATH' >> $HOME/.profile
 
+# https://xmake.io/guide/quick-start.html
+RUN curl -fsSL https://xmake.io/shget.text | bash
+RUN echo 'export XMAKE_ROOT=y' >> $HOME/.profile
+
+# https://learn.microsoft.com/en-us/vcpkg/get_started/get-started?pivots=shell-bash
+RUN echo 'export VCPKG_DISABLE_METRICS=1' >> $HOME/.profile
+
+RUN python3 -m venv $HOME/local/python3
+RUN bash -c "source $HOME/local/python3/bin/activate \
+    && pip install cmake ninja"
+RUN echo 'source $HOME/local/python3/bin/activate' >> $HOME/.profile
+
 # https://opensearch.org/downloads.html#opensearch
 # https://github.com/aparo/opensearch-analysis-ik?tab=readme-ov-file#install
 # https://github.com/aparo/opensearch-analysis-stconvert?tab=readme-ov-file#installation
@@ -160,13 +172,6 @@ RUN tar xf $HOME/downloads/opensearch-${OPENSEARCH_VERSION}-linux-${TARGETARCH}.
     && bin/opensearch-plugin install https://github.com/aparo/opensearch-analysis-stconvert/releases/download/${OPENSEARCH_VERSION}/opensearch-analysis-stconvert.zip \
     && bin/opensearch-plugin install https://github.com/aparo/opensearch-analysis-pinyin/releases/download/${OPENSEARCH_VERSION}/opensearch-analysis-pinyin.zip
 
-# https://xmake.io/guide/quick-start.html
-RUN curl -fsSL https://xmake.io/shget.text | bash
-RUN echo 'export XMAKE_ROOT=y' >> $HOME/.profile
-
-# https://learn.microsoft.com/en-us/vcpkg/get_started/get-started?pivots=shell-bash
-RUN echo 'export VCPKG_DISABLE_METRICS=1' >> $HOME/.profile
-
 # https://opensearch.org/docs/latest/opensearch/install/tar/
 RUN cd /opt/opensearch/ \
     && echo "network.host: 0.0.0.0" >> config/opensearch.yml \
@@ -175,8 +180,6 @@ RUN cd /opt/opensearch/ \
     && mkdir -p config/opensearch-performance-analyzer \
     && touch config/opensearch-performance-analyzer/plugin-stats-metadata \
     && cp -r config/opensearch-analysis-ik plugins/opensearch-analysis-ik/config
-
-RUN python3 -m venv $HOME/local/python3 && echo 'source $HOME/local/python3/bin/activate' >> $HOME/.profile
 
 RUN mkdir -p /var/lib/minio/data && chown -R nobody:nogroup /var/lib/minio
 
