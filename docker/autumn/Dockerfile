@@ -6,16 +6,19 @@ ENV DEBIAN_FRONTEND "noninteractive"
 RUN apt update
 RUN apt -y install lsb-release apt-utils debian-keyring debian-archive-keyring apt-transport-https software-properties-common curl wget gnupg \
     && apt -y clean
-# https://launchpad.net/~ondrej/+archive/ubuntu/php
-RUN add-apt-repository -y ppa:ondrej/php
 # https://launchpad.net/~ubuntu-toolchain-r/+archive/ubuntu/ppa
 RUN add-apt-repository -y ppa:ubuntu-toolchain-r/ppa
+# https://launchpad.net/~deadsnakes/+archive/ubuntu/ppa
+RUN add-apt-repository -y ppa:deadsnakes/ppa
+# https://launchpad.net/~ondrej/+archive/ubuntu/php
+RUN add-apt-repository -y ppa:ondrej/php
 RUN apt update && apt -y upgrade && apt -y clean
 
+ENV PYTHON_VERSION "3.15"
 RUN apt -y install pwgen git locales locales-all vim tzdata zip unzip tree tmux screen \
     curl wget rsync telnet iputils-ping lftp \
     openssh-client sshpass \
-    python3-full \
+    python${PYTHON_VERSION}-full \
     && apt -y clean
 ENV GCC_VERSION 14
 RUN apt -y install cmake pkg-config libtool automake autoconf autoconf-archive cpio mold bison flex meson ninja-build debhelper \
@@ -125,7 +128,7 @@ RUN bash -c "source $HOME/.cargo/env && cargo install diesel_cli && cargo instal
 
 # https://github.com/rbenv/rbenv
 # https://github.com/rbenv/ruby-build/tree/master/share/ruby-build
-ENV RUBY_VERSION "4.0.1"
+ENV RUBY_VERSION "4.0.2"
 RUN git clone https://github.com/rbenv/rbenv.git $HOME/.rbenv \
     && git clone https://github.com/rbenv/ruby-build.git $HOME/.rbenv/plugins/ruby-build \
     && git clone https://github.com/rbenv/rbenv-vars.git $HOME/.rbenv/plugins/rbenv-vars 
@@ -144,6 +147,7 @@ RUN tar xf $HOME/downloads/go${GO_VERSION}.linux-${TARGETARCH}.tar.gz -C $HOME/l
 RUN echo 'export PATH=$HOME/local/go/bin:$PATH' >> $HOME/.profile \
     && echo 'export GOPATH=$HOME/go' >> $HOME/.profile \
     && echo 'export PATH=$(go env GOPATH)/bin:$PATH' >> $HOME/.profile
+# https://gohugo.io/installation/linux/#build-from-source
 RUN bash -c "source $HOME/.profile && CGO_ENABLED=1 go install -tags extended github.com/gohugoio/hugo@latest"
 
 # https://xmake.io/guide/quick-start.html
@@ -153,7 +157,7 @@ RUN echo 'export XMAKE_ROOT=y' >> $HOME/.profile
 # https://learn.microsoft.com/en-us/vcpkg/get_started/get-started?pivots=shell-bash
 RUN echo 'export VCPKG_DISABLE_METRICS=1' >> $HOME/.profile
 
-RUN python3 -m venv $HOME/local/python3
+RUN python${PYTHON_VERSION} -m venv $HOME/local/python3
 RUN bash -c "source $HOME/local/python3/bin/activate \
     && pip install cmake ninja"
 RUN echo 'source $HOME/local/python3/bin/activate' >> $HOME/.profile
