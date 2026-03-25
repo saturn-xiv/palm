@@ -1,11 +1,14 @@
 #pragma once
 
+#include <filesystem>
+
 #include <spdlog/spdlog.h>
 #include <toml++/toml.hpp>
 
 namespace palm {
 void init(bool debug = false);
 std::string uuid();
+bool config_file_permission(const std::filesystem::path& file);
 bool is_stopped();
 
 namespace base64 {

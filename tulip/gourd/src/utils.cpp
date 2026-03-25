@@ -5,7 +5,6 @@
 #include "palm/version.hpp"
 
 #include <climits>
-#include <filesystem>
 #include <iomanip>
 #include <random>
 
@@ -68,6 +67,27 @@ bool palm::is_stopped() {
     spdlog::warn("file {} exists, will be exited...", file);
   }
   return ok;
+}
+
+bool palm::config_file_permission(const std::filesystem::path& file) {
+  const auto it = std::filesystem::status(file).permissions();
+
+  return (it & std::filesystem::perms::owner_read) !=
+             std::filesystem::perms::none &&
+         (it & std::filesystem::perms::owner_exec) ==
+             std::filesystem::perms::none &&
+         (it & std::filesystem::perms::group_read) ==
+             std::filesystem::perms::none &&
+         (it & std::filesystem::perms::group_write) ==
+             std::filesystem::perms::none &&
+         (it & std::filesystem::perms::group_exec) ==
+             std::filesystem::perms::none &&
+         (it & std::filesystem::perms::others_read) ==
+             std::filesystem::perms::none &&
+         (it & std::filesystem::perms::others_write) ==
+             std::filesystem::perms::none &&
+         (it & std::filesystem::perms::others_exec) ==
+             std::filesystem::perms::none;
 }
 
 void palm::init(bool debug) {

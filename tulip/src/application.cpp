@@ -60,6 +60,10 @@ int tulip::Application::launch(int argc, char** argv) const {
   const std::string config_file = program.get<std::string>("--config");
   palm::init(program.get<bool>("--debug"));
   spdlog::debug("load configuration from {}", config_file);
+  if (!palm::config_file_permission(config_file)) {
+    spdlog::error("invalid file permissions, must be 400 or 600");
+    return EXIT_FAILURE;
+  }
   if (program.is_subcommand_used(http_command)) {
     const uint16_t port = http_command.get<uint16_t>("--port");
     const unsigned int threads = http_command.get<unsigned int>("--threads");
