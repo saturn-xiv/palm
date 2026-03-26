@@ -18,8 +18,7 @@ function build_grpc() {
     if [ -d $SOURCE_ROOT ]; then
         cd $SOURCE_ROOT/
         git checkout master
-        git pull
-        git submodule update --recursive --remote
+        git pull        
         git checkout $1
         git submodule update --init --recursive
     else
