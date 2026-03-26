@@ -2,10 +2,12 @@
 
 set -e
 
+exit 1
+
 export WORKSPACE=$PWD
 export PROTOBUF_HOME=$HOME/.local
 
-function generate_grpc_for_go() {
+ generate_grpc_for_go() {
     echo "generate protocols($2) for $1"
     local target=$2/v2
     if [ -d $target ]
