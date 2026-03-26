@@ -1,0 +1,34 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "com.github.saturn_xiv.palm.plugins.cms.v1";
+option java_outer_classname = "CmsProto";
+option go_package = "./;v2";
+option csharp_namespace = "Palm.Plugins.Cms.Grpc";
+package palm.cms.v1;
+
+import "google/protobuf/empty.proto";
+
+import "portal.proto";
+
+service PageService {
+  rpc Index(google.protobuf.Empty) returns (google.protobuf.Empty) {}
+}
+
+message IndexPageResponse {
+  message Item{
+    int64  id    = 1;
+    string title = 2;
+  }
+  repeated Item             items      = 1;
+  palm.portal.v1.Pagination pagination = 9;
+}
+
+message ShowPageHtml{
+  IndexPageResponse.Item item = 1;
+}
+
+message IndexPageHtml{
+  repeated IndexPageResponse.Item items      = 1;
+  palm.portal.v1.Pagination       pagination = 99;
+}

@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "com.github.saturn_xiv.palm.plugins.forum.v1";
+option java_outer_classname = "ForumProto";
+option go_package = "./;v2";
+option csharp_namespace = "Palm.Plugins.Forum.Grpc";
+package palm.forum.v1;
+
+service Post {}
+
+service Topic {}
+
+service Forum {}

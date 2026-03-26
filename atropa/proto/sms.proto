@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "com.github.saturn_xiv.palm.plugins.sms.v1";
+option java_outer_classname = "SmsProto";
+option go_package = "./;v2";
+option csharp_namespace = "Palm.Plugins.Sms.Grpc";
+package palm.sms.v1;
+
+message Task {
+  string from = 1;
+  repeated string to = 2;
+  string body = 3;
+}
