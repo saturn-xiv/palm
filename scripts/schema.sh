@@ -43,25 +43,23 @@ function generate_daisy() {
 #         $WORKSPACE/daisy/proto/*.proto $WORKSPACE/tulip/proto/*.proto $WORKSPACE/camellia/src/main/proto/*.proto
 # }
 
-# https://github.com/grpc/grpc-web?tab=readme-ov-file#typescript-support
-# function generate_marigold() {
-#     # echo "generate marigold dashboard protocols"
-#     # local target=$WORKSPACE/marigold/dashboard/src/protocols
-#     # if [ -d $target ]
-#     # then
-#     #     rm -rf $target
-#     # fi
-#     # mkdir -p $target
-#     # $PROTOBUF_HOME/bin/protoc \
-#     #     -I $WORKSPACE/daisy/proto -I $WORKSPACE/tulip/proto -I $WORKSPACE/camellia/src/main/proto \
-#     #     -I $PROTOBUF_HOME/include/google/protobuf \
-#     #     --js_out=import_style=commonjs,binary:$target \
-#     #     --grpc-web_out=import_style=typescript,mode=grpcweb:$target \
-#     #     $WORKSPACE/daisy/proto/*.proto $WORKSPACE/tulip/proto/*.proto $WORKSPACE/camellia/src/main/proto/*.proto
+# echo "generate marigold db-schema"
+# diesel print-schema --database-url "postgres://www:change-me@127.0.0.1:5432/daisy_dev?sslmode=disable" > $WORKSPACE/marigold/src/schema.rs
 
-#     echo "generate marigold db-schema"
-#     diesel print-schema --database-url "postgres://www:change-me@127.0.0.1:5432/daisy_dev?sslmode=disable" > $WORKSPACE/marigold/src/schema.rs
-# }
+# https://github.com/grpc/grpc-web?tab=readme-ov-file#typescript-support
+function generate_tulip_dashboard() {
+    echo "generate protocols for tulip-dashboard"
+    local target=$WORKSPACE/tulip/dashboard/src/protocols
+    if [ -d $target ]
+    then
+        rm -rf $target
+    fi
+    mkdir -p $target
+    $PROTOBUF_HOME/bin/protoc -I $WORKSPACE/tulip/proto -I $PROTOBUF_HOME/include/google/protobuf \
+        --js_out=import_style=commonjs,binary:$target \
+        --grpc-web_out=import_style=typescript,mode=grpcweb:$target \
+        $WORKSPACE/tulip/proto/*.proto
+}
 
 function generate_tulip() {
     echo "generate protocols for tulip"
@@ -86,6 +84,7 @@ function generate_tulip() {
 
 generate_daisy
 generate_tulip
+generate_tulip_dashboard
 
 echo "format cargo projects"
 cd $WORKSPACE/

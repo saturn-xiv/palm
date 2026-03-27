@@ -12,6 +12,10 @@ grpc::Status tulip::portal::rpc::service::Site::Heartbeat(
     it->set_nanos(now.nanos());
     reply->set_allocated_created_at(it);
   }
-  reply->set_version(palm::GIT_VERSION);
+  {
+    const std::string it =
+        std::format("{}({})", palm::GIT_VERSION, palm::BUILD_TIME);
+    reply->set_version(it);
+  }
   return grpc::Status::OK;
 }
