@@ -166,7 +166,7 @@ struct FileDefaultTypeInternal {
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
     PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 FileDefaultTypeInternal _File_default_instance_;
 
-inline constexpr SiteHealthCheckResponse::Impl_::Impl_(
+inline constexpr SiteHeartbeatResponse::Impl_::Impl_(
     ::_pbi::ConstantInitialized) noexcept
       : _cached_size_{0},
         db_(
@@ -187,24 +187,24 @@ inline constexpr SiteHealthCheckResponse::Impl_::Impl_(
         created_at_{nullptr} {}
 
 template <typename>
-PROTOBUF_CONSTEXPR SiteHealthCheckResponse::SiteHealthCheckResponse(::_pbi::ConstantInitialized)
+PROTOBUF_CONSTEXPR SiteHeartbeatResponse::SiteHeartbeatResponse(::_pbi::ConstantInitialized)
 #if defined(PROTOBUF_CUSTOM_VTABLE)
-    : ::google::protobuf::Message(SiteHealthCheckResponse_class_data_.base()),
+    : ::google::protobuf::Message(SiteHeartbeatResponse_class_data_.base()),
 #else   // PROTOBUF_CUSTOM_VTABLE
     : ::google::protobuf::Message(),
 #endif  // PROTOBUF_CUSTOM_VTABLE
       _impl_(::_pbi::ConstantInitialized()) {
 }
-struct SiteHealthCheckResponseDefaultTypeInternal {
-  PROTOBUF_CONSTEXPR SiteHealthCheckResponseDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
-  ~SiteHealthCheckResponseDefaultTypeInternal() {}
+struct SiteHeartbeatResponseDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR SiteHeartbeatResponseDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~SiteHeartbeatResponseDefaultTypeInternal() {}
   union {
-    SiteHealthCheckResponse _instance;
+    SiteHeartbeatResponse _instance;
   };
 };
 
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
-    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 SiteHealthCheckResponseDefaultTypeInternal _SiteHealthCheckResponse_default_instance_;
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 SiteHeartbeatResponseDefaultTypeInternal _SiteHeartbeatResponse_default_instance_;
 
 inline constexpr Session::Impl_::Impl_(
     ::_pbi::ConstantInitialized) noexcept
@@ -404,14 +404,14 @@ const ::uint32_t
         1,
         2,
         0x081, // bitmap
-        PROTOBUF_FIELD_OFFSET(::palm::portal::v1::SiteHealthCheckResponse, _impl_._has_bits_),
+        PROTOBUF_FIELD_OFFSET(::palm::portal::v1::SiteHeartbeatResponse, _impl_._has_bits_),
         9, // hasbit index offset
-        PROTOBUF_FIELD_OFFSET(::palm::portal::v1::SiteHealthCheckResponse, _impl_.db_),
-        PROTOBUF_FIELD_OFFSET(::palm::portal::v1::SiteHealthCheckResponse, _impl_.cache_),
-        PROTOBUF_FIELD_OFFSET(::palm::portal::v1::SiteHealthCheckResponse, _impl_.queue_),
-        PROTOBUF_FIELD_OFFSET(::palm::portal::v1::SiteHealthCheckResponse, _impl_.s3_),
-        PROTOBUF_FIELD_OFFSET(::palm::portal::v1::SiteHealthCheckResponse, _impl_.version_),
-        PROTOBUF_FIELD_OFFSET(::palm::portal::v1::SiteHealthCheckResponse, _impl_.created_at_),
+        PROTOBUF_FIELD_OFFSET(::palm::portal::v1::SiteHeartbeatResponse, _impl_.db_),
+        PROTOBUF_FIELD_OFFSET(::palm::portal::v1::SiteHeartbeatResponse, _impl_.cache_),
+        PROTOBUF_FIELD_OFFSET(::palm::portal::v1::SiteHeartbeatResponse, _impl_.queue_),
+        PROTOBUF_FIELD_OFFSET(::palm::portal::v1::SiteHeartbeatResponse, _impl_.s3_),
+        PROTOBUF_FIELD_OFFSET(::palm::portal::v1::SiteHeartbeatResponse, _impl_.version_),
+        PROTOBUF_FIELD_OFFSET(::palm::portal::v1::SiteHeartbeatResponse, _impl_.created_at_),
         0,
         1,
         2,
@@ -431,7 +431,7 @@ static const ::_pbi::MigrationSchema
         {48, sizeof(::palm::portal::v1::UserIndexResponse_Item)},
         {57, sizeof(::palm::portal::v1::UserIndexResponse)},
         {64, sizeof(::palm::portal::v1::Session)},
-        {73, sizeof(::palm::portal::v1::SiteHealthCheckResponse)},
+        {73, sizeof(::palm::portal::v1::SiteHeartbeatResponse)},
 };
 static const ::_pb::Message* PROTOBUF_NONNULL const file_default_instances[] = {
     &::palm::portal::v1::_IdRequest_default_instance_._instance,
@@ -443,7 +443,7 @@ static const ::_pb::Message* PROTOBUF_NONNULL const file_default_instances[] = {
     &::palm::portal::v1::_UserIndexResponse_Item_default_instance_._instance,
     &::palm::portal::v1::_UserIndexResponse_default_instance_._instance,
     &::palm::portal::v1::_Session_default_instance_._instance,
-    &::palm::portal::v1::_SiteHealthCheckResponse_default_instance_._instance,
+    &::palm::portal::v1::_SiteHeartbeatResponse_default_instance_._instance,
 };
 const char descriptor_table_protodef_portal_2eproto[] ABSL_ATTRIBUTE_SECTION_VARIABLE(
     protodesc_cold) = {
@@ -471,17 +471,17 @@ const char descriptor_table_protodef_portal_2eproto[] ABSL_ATTRIBUTE_SECTION_VAR
     "hatMiniProgram\020\004\"o\n\007Session\022\016\n\006locale\030\001 "
     "\001(\t\022\026\n\tclient_ip\030\002 \001(\tH\000\210\001\001\022.\n\ncreated_a"
     "t\030c \001(\0132\032.google.protobuf.TimestampB\014\n\n_"
-    "client_ip\"\306\001\n\027SiteHealthCheckResponse\022\017\n"
-    "\002db\030\001 \001(\tH\000\210\001\001\022\022\n\005cache\030\002 \001(\tH\001\210\001\001\022\022\n\005qu"
-    "eue\030\003 \001(\tH\002\210\001\001\022\017\n\002s3\030\004 \001(\tH\003\210\001\001\022\017\n\007versi"
-    "on\030b \001(\t\022.\n\ncreated_at\030c \001(\0132\032.google.pr"
-    "otobuf.TimestampB\005\n\003_dbB\010\n\006_cacheB\010\n\006_qu"
-    "eueB\005\n\003_s32\006\n\004User2X\n\004Site\022P\n\013HealthChec"
-    "k\022\026.google.protobuf.Empty\032\'.palm.portal."
-    "v1.SiteHealthCheckResponse\"\000B_\n,com.gith"
-    "ub.saturn_xiv.palm.plugins.portal.v1B\013Po"
-    "rtalProtoP\001Z\005./;v2\252\002\030Palm.Plugins.Portal"
-    ".Grpcb\006proto3"
+    "client_ip\"\304\001\n\025SiteHeartbeatResponse\022\017\n\002d"
+    "b\030\001 \001(\tH\000\210\001\001\022\022\n\005cache\030\002 \001(\tH\001\210\001\001\022\022\n\005queu"
+    "e\030\003 \001(\tH\002\210\001\001\022\017\n\002s3\030\004 \001(\tH\003\210\001\001\022\017\n\007version"
+    "\030b \001(\t\022.\n\ncreated_at\030c \001(\0132\032.google.prot"
+    "obuf.TimestampB\005\n\003_dbB\010\n\006_cacheB\010\n\006_queu"
+    "eB\005\n\003_s32\006\n\004User2T\n\004Site\022L\n\tHeartbeat\022\026."
+    "google.protobuf.Empty\032%.palm.portal.v1.S"
+    "iteHeartbeatResponse\"\000B_\n,com.github.sat"
+    "urn_xiv.palm.plugins.portal.v1B\013PortalPr"
+    "otoP\001Z\005./;v2\252\002\030Palm.Plugins.Portal.Grpcb"
+    "\006proto3"
 };
 static const ::_pbi::DescriptorTable* PROTOBUF_NONNULL const
     descriptor_table_portal_2eproto_deps[2] = {
@@ -492,7 +492,7 @@ static ::absl::once_flag descriptor_table_portal_2eproto_once;
 PROTOBUF_CONSTINIT const ::_pbi::DescriptorTable descriptor_table_portal_2eproto = {
     false,
     false,
-    1373,
+    1367,
     descriptor_table_protodef_portal_2eproto,
     "portal.proto",
     &descriptor_table_portal_2eproto_once,
@@ -3505,33 +3505,33 @@ void Session::InternalSwap(Session* PROTOBUF_RESTRICT PROTOBUF_NONNULL other) {
 }
 // ===================================================================
 
-class SiteHealthCheckResponse::_Internal {
+class SiteHeartbeatResponse::_Internal {
  public:
   using HasBits =
-      decltype(::std::declval<SiteHealthCheckResponse>()._impl_._has_bits_);
+      decltype(::std::declval<SiteHeartbeatResponse>()._impl_._has_bits_);
   static constexpr ::int32_t kHasBitsOffset =
-      8 * PROTOBUF_FIELD_OFFSET(SiteHealthCheckResponse, _impl_._has_bits_);
+      8 * PROTOBUF_FIELD_OFFSET(SiteHeartbeatResponse, _impl_._has_bits_);
 };
 
-void SiteHealthCheckResponse::clear_created_at() {
+void SiteHeartbeatResponse::clear_created_at() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   if (_impl_.created_at_ != nullptr) _impl_.created_at_->Clear();
   ClearHasBit(_impl_._has_bits_[0],
                   0x00000020U);
 }
-SiteHealthCheckResponse::SiteHealthCheckResponse(::google::protobuf::Arena* PROTOBUF_NULLABLE arena)
+SiteHeartbeatResponse::SiteHeartbeatResponse(::google::protobuf::Arena* PROTOBUF_NULLABLE arena)
 #if defined(PROTOBUF_CUSTOM_VTABLE)
-    : ::google::protobuf::Message(arena, SiteHealthCheckResponse_class_data_.base()) {
+    : ::google::protobuf::Message(arena, SiteHeartbeatResponse_class_data_.base()) {
 #else   // PROTOBUF_CUSTOM_VTABLE
     : ::google::protobuf::Message(arena) {
 #endif  // PROTOBUF_CUSTOM_VTABLE
   SharedCtor(arena);
-  // @@protoc_insertion_point(arena_constructor:palm.portal.v1.SiteHealthCheckResponse)
+  // @@protoc_insertion_point(arena_constructor:palm.portal.v1.SiteHeartbeatResponse)
 }
-PROTOBUF_NDEBUG_INLINE SiteHealthCheckResponse::Impl_::Impl_(
+PROTOBUF_NDEBUG_INLINE SiteHeartbeatResponse::Impl_::Impl_(
     [[maybe_unused]] ::google::protobuf::internal::InternalVisibility visibility,
     [[maybe_unused]] ::google::protobuf::Arena* PROTOBUF_NULLABLE arena, const Impl_& from,
-    [[maybe_unused]] const ::palm::portal::v1::SiteHealthCheckResponse& from_msg)
+    [[maybe_unused]] const ::palm::portal::v1::SiteHeartbeatResponse& from_msg)
       : _has_bits_{from._has_bits_},
         _cached_size_{0},
         db_(arena, from.db_),
@@ -3540,15 +3540,15 @@ PROTOBUF_NDEBUG_INLINE SiteHealthCheckResponse::Impl_::Impl_(
         s3_(arena, from.s3_),
         version_(arena, from.version_) {}
 
-SiteHealthCheckResponse::SiteHealthCheckResponse(
+SiteHeartbeatResponse::SiteHeartbeatResponse(
     ::google::protobuf::Arena* PROTOBUF_NULLABLE arena,
-    const SiteHealthCheckResponse& from)
+    const SiteHeartbeatResponse& from)
 #if defined(PROTOBUF_CUSTOM_VTABLE)
-    : ::google::protobuf::Message(arena, SiteHealthCheckResponse_class_data_.base()) {
+    : ::google::protobuf::Message(arena, SiteHeartbeatResponse_class_data_.base()) {
 #else   // PROTOBUF_CUSTOM_VTABLE
     : ::google::protobuf::Message(arena) {
 #endif  // PROTOBUF_CUSTOM_VTABLE
-  SiteHealthCheckResponse* const _this = this;
+  SiteHeartbeatResponse* const _this = this;
   (void)_this;
   _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
       from._internal_metadata_);
@@ -3558,9 +3558,9 @@ SiteHealthCheckResponse::SiteHealthCheckResponse(
                 ? ::google::protobuf::Message::CopyConstruct(arena, *from._impl_.created_at_)
                 : nullptr;
 
-  // @@protoc_insertion_point(copy_constructor:palm.portal.v1.SiteHealthCheckResponse)
+  // @@protoc_insertion_point(copy_constructor:palm.portal.v1.SiteHeartbeatResponse)
 }
-PROTOBUF_NDEBUG_INLINE SiteHealthCheckResponse::Impl_::Impl_(
+PROTOBUF_NDEBUG_INLINE SiteHeartbeatResponse::Impl_::Impl_(
     [[maybe_unused]] ::google::protobuf::internal::InternalVisibility visibility,
     [[maybe_unused]] ::google::protobuf::Arena* PROTOBUF_NULLABLE arena)
       : _cached_size_{0},
@@ -3570,16 +3570,16 @@ PROTOBUF_NDEBUG_INLINE SiteHealthCheckResponse::Impl_::Impl_(
         s3_(arena),
         version_(arena) {}
 
-inline void SiteHealthCheckResponse::SharedCtor(::_pb::Arena* PROTOBUF_NULLABLE arena) {
+inline void SiteHeartbeatResponse::SharedCtor(::_pb::Arena* PROTOBUF_NULLABLE arena) {
   new (&_impl_) Impl_(internal_visibility(), arena);
   _impl_.created_at_ = {};
 }
-SiteHealthCheckResponse::~SiteHealthCheckResponse() {
-  // @@protoc_insertion_point(destructor:palm.portal.v1.SiteHealthCheckResponse)
+SiteHeartbeatResponse::~SiteHeartbeatResponse() {
+  // @@protoc_insertion_point(destructor:palm.portal.v1.SiteHeartbeatResponse)
   SharedDtor(*this);
 }
-inline void SiteHealthCheckResponse::SharedDtor(MessageLite& self) {
-  SiteHealthCheckResponse& this_ = static_cast<SiteHealthCheckResponse&>(self);
+inline void SiteHeartbeatResponse::SharedDtor(MessageLite& self) {
+  SiteHeartbeatResponse& this_ = static_cast<SiteHeartbeatResponse&>(self);
   if constexpr (::_pbi::DebugHardenCheckHasBitConsistency()) {
     this_.CheckHasBitConsistency();
   }
@@ -3594,53 +3594,53 @@ inline void SiteHealthCheckResponse::SharedDtor(MessageLite& self) {
   this_._impl_.~Impl_();
 }
 
-inline void* PROTOBUF_NONNULL SiteHealthCheckResponse::PlacementNew_(
+inline void* PROTOBUF_NONNULL SiteHeartbeatResponse::PlacementNew_(
     const void* PROTOBUF_NONNULL, void* PROTOBUF_NONNULL mem,
     ::google::protobuf::Arena* PROTOBUF_NULLABLE arena) {
-  return ::new (mem) SiteHealthCheckResponse(arena);
+  return ::new (mem) SiteHeartbeatResponse(arena);
 }
-constexpr auto SiteHealthCheckResponse::InternalNewImpl_() {
-  return ::google::protobuf::internal::MessageCreator::CopyInit(sizeof(SiteHealthCheckResponse),
-                                            alignof(SiteHealthCheckResponse));
+constexpr auto SiteHeartbeatResponse::InternalNewImpl_() {
+  return ::google::protobuf::internal::MessageCreator::CopyInit(sizeof(SiteHeartbeatResponse),
+                                            alignof(SiteHeartbeatResponse));
 }
-constexpr auto SiteHealthCheckResponse::InternalGenerateClassData_() {
+constexpr auto SiteHeartbeatResponse::InternalGenerateClassData_() {
   return ::google::protobuf::internal::ClassDataFull{
       ::google::protobuf::internal::ClassData{
-          &_SiteHealthCheckResponse_default_instance_._instance,
+          &_SiteHeartbeatResponse_default_instance_._instance,
           &_table_.header,
           nullptr,  // OnDemandRegisterArenaDtor
           nullptr,  // IsInitialized
-          &SiteHealthCheckResponse::MergeImpl,
-          ::google::protobuf::Message::GetNewImpl<SiteHealthCheckResponse>(),
+          &SiteHeartbeatResponse::MergeImpl,
+          ::google::protobuf::Message::GetNewImpl<SiteHeartbeatResponse>(),
 #if defined(PROTOBUF_CUSTOM_VTABLE)
-          &SiteHealthCheckResponse::SharedDtor,
-          ::google::protobuf::Message::GetClearImpl<SiteHealthCheckResponse>(), &SiteHealthCheckResponse::ByteSizeLong,
-              &SiteHealthCheckResponse::_InternalSerialize,
+          &SiteHeartbeatResponse::SharedDtor,
+          ::google::protobuf::Message::GetClearImpl<SiteHeartbeatResponse>(), &SiteHeartbeatResponse::ByteSizeLong,
+              &SiteHeartbeatResponse::_InternalSerialize,
 #endif  // PROTOBUF_CUSTOM_VTABLE
-          PROTOBUF_FIELD_OFFSET(SiteHealthCheckResponse, _impl_._cached_size_),
+          PROTOBUF_FIELD_OFFSET(SiteHeartbeatResponse, _impl_._cached_size_),
           false,
       },
-      &SiteHealthCheckResponse::kDescriptorMethods,
+      &SiteHeartbeatResponse::kDescriptorMethods,
       &descriptor_table_portal_2eproto,
       nullptr,  // tracker
   };
 }
 
 PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 const
-    ::google::protobuf::internal::ClassDataFull SiteHealthCheckResponse_class_data_ =
-        SiteHealthCheckResponse::InternalGenerateClassData_();
+    ::google::protobuf::internal::ClassDataFull SiteHeartbeatResponse_class_data_ =
+        SiteHeartbeatResponse::InternalGenerateClassData_();
 
 PROTOBUF_ATTRIBUTE_WEAK const ::google::protobuf::internal::ClassData* PROTOBUF_NONNULL
-SiteHealthCheckResponse::GetClassData() const {
-  ::google::protobuf::internal::PrefetchToLocalCache(&SiteHealthCheckResponse_class_data_);
-  ::google::protobuf::internal::PrefetchToLocalCache(SiteHealthCheckResponse_class_data_.tc_table);
-  return SiteHealthCheckResponse_class_data_.base();
+SiteHeartbeatResponse::GetClassData() const {
+  ::google::protobuf::internal::PrefetchToLocalCache(&SiteHeartbeatResponse_class_data_);
+  ::google::protobuf::internal::PrefetchToLocalCache(SiteHeartbeatResponse_class_data_.tc_table);
+  return SiteHeartbeatResponse_class_data_.base();
 }
 PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::_pbi::TcParseTable<2, 6, 1, 68, 7>
-SiteHealthCheckResponse::_table_ = {
+const ::_pbi::TcParseTable<2, 6, 1, 66, 7>
+SiteHeartbeatResponse::_table_ = {
   {
-    PROTOBUF_FIELD_OFFSET(SiteHealthCheckResponse, _impl_._has_bits_),
+    PROTOBUF_FIELD_OFFSET(SiteHeartbeatResponse, _impl_._has_bits_),
     0, // no _extensions_
     99, 24,  // max_field_number, fast_idx_mask
     offsetof(decltype(_table_), field_lookup_table),
@@ -3649,53 +3649,53 @@ SiteHealthCheckResponse::_table_ = {
     6,  // num_field_entries
     1,  // num_aux_entries
     offsetof(decltype(_table_), aux_entries),
-    SiteHealthCheckResponse_class_data_.base(),
+    SiteHeartbeatResponse_class_data_.base(),
     nullptr,  // post_loop_handler
     ::_pbi::TcParser::GenericFallback,  // fallback
     #ifdef PROTOBUF_PREFETCH_PARSE_TABLE
-    ::_pbi::TcParser::GetTable<::palm::portal::v1::SiteHealthCheckResponse>(),  // to_prefetch
+    ::_pbi::TcParser::GetTable<::palm::portal::v1::SiteHeartbeatResponse>(),  // to_prefetch
     #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
   }, {{
     // optional string s3 = 4;
     {::_pbi::TcParser::FastUS1,
      {34, 3, 0,
-      PROTOBUF_FIELD_OFFSET(SiteHealthCheckResponse, _impl_.s3_)}},
+      PROTOBUF_FIELD_OFFSET(SiteHeartbeatResponse, _impl_.s3_)}},
     // optional string db = 1;
     {::_pbi::TcParser::FastUS1,
      {10, 0, 0,
-      PROTOBUF_FIELD_OFFSET(SiteHealthCheckResponse, _impl_.db_)}},
+      PROTOBUF_FIELD_OFFSET(SiteHeartbeatResponse, _impl_.db_)}},
     // optional string cache = 2;
     {::_pbi::TcParser::FastUS1,
      {18, 1, 0,
-      PROTOBUF_FIELD_OFFSET(SiteHealthCheckResponse, _impl_.cache_)}},
+      PROTOBUF_FIELD_OFFSET(SiteHeartbeatResponse, _impl_.cache_)}},
     // optional string queue = 3;
     {::_pbi::TcParser::FastUS1,
      {26, 2, 0,
-      PROTOBUF_FIELD_OFFSET(SiteHealthCheckResponse, _impl_.queue_)}},
+      PROTOBUF_FIELD_OFFSET(SiteHeartbeatResponse, _impl_.queue_)}},
   }}, {{
     98, 0, 1,
     65532, 4,
     65535, 65535
   }}, {{
     // optional string db = 1;
-    {PROTOBUF_FIELD_OFFSET(SiteHealthCheckResponse, _impl_.db_), _Internal::kHasBitsOffset + 0, 0, (0 | ::_fl::kFcOptional | ::_fl::kUtf8String | ::_fl::kRepAString)},
+    {PROTOBUF_FIELD_OFFSET(SiteHeartbeatResponse, _impl_.db_), _Internal::kHasBitsOffset + 0, 0, (0 | ::_fl::kFcOptional | ::_fl::kUtf8String | ::_fl::kRepAString)},
     // optional string cache = 2;
-    {PROTOBUF_FIELD_OFFSET(SiteHealthCheckResponse, _impl_.cache_), _Internal::kHasBitsOffset + 1, 0, (0 | ::_fl::kFcOptional | ::_fl::kUtf8String | ::_fl::kRepAString)},
+    {PROTOBUF_FIELD_OFFSET(SiteHeartbeatResponse, _impl_.cache_), _Internal::kHasBitsOffset + 1, 0, (0 | ::_fl::kFcOptional | ::_fl::kUtf8String | ::_fl::kRepAString)},
     // optional string queue = 3;
-    {PROTOBUF_FIELD_OFFSET(SiteHealthCheckResponse, _impl_.queue_), _Internal::kHasBitsOffset + 2, 0, (0 | ::_fl::kFcOptional | ::_fl::kUtf8String | ::_fl::kRepAString)},
+    {PROTOBUF_FIELD_OFFSET(SiteHeartbeatResponse, _impl_.queue_), _Internal::kHasBitsOffset + 2, 0, (0 | ::_fl::kFcOptional | ::_fl::kUtf8String | ::_fl::kRepAString)},
     // optional string s3 = 4;
-    {PROTOBUF_FIELD_OFFSET(SiteHealthCheckResponse, _impl_.s3_), _Internal::kHasBitsOffset + 3, 0, (0 | ::_fl::kFcOptional | ::_fl::kUtf8String | ::_fl::kRepAString)},
+    {PROTOBUF_FIELD_OFFSET(SiteHeartbeatResponse, _impl_.s3_), _Internal::kHasBitsOffset + 3, 0, (0 | ::_fl::kFcOptional | ::_fl::kUtf8String | ::_fl::kRepAString)},
     // string version = 98;
-    {PROTOBUF_FIELD_OFFSET(SiteHealthCheckResponse, _impl_.version_), _Internal::kHasBitsOffset + 4, 0, (0 | ::_fl::kFcOptional | ::_fl::kUtf8String | ::_fl::kRepAString)},
+    {PROTOBUF_FIELD_OFFSET(SiteHeartbeatResponse, _impl_.version_), _Internal::kHasBitsOffset + 4, 0, (0 | ::_fl::kFcOptional | ::_fl::kUtf8String | ::_fl::kRepAString)},
     // .google.protobuf.Timestamp created_at = 99;
-    {PROTOBUF_FIELD_OFFSET(SiteHealthCheckResponse, _impl_.created_at_), _Internal::kHasBitsOffset + 5, 0, (0 | ::_fl::kFcOptional | ::_fl::kMessage | ::_fl::kTvTable)},
+    {PROTOBUF_FIELD_OFFSET(SiteHeartbeatResponse, _impl_.created_at_), _Internal::kHasBitsOffset + 5, 0, (0 | ::_fl::kFcOptional | ::_fl::kMessage | ::_fl::kTvTable)},
   }},
   {{
       {::_pbi::TcParser::GetTable<::google::protobuf::Timestamp>()},
   }},
   {{
-    "\46\2\5\5\2\7\0\0"
-    "palm.portal.v1.SiteHealthCheckResponse"
+    "\44\2\5\5\2\7\0\0"
+    "palm.portal.v1.SiteHeartbeatResponse"
     "db"
     "cache"
     "queue"
@@ -3703,8 +3703,8 @@ SiteHealthCheckResponse::_table_ = {
     "version"
   }},
 };
-PROTOBUF_NOINLINE void SiteHealthCheckResponse::Clear() {
-// @@protoc_insertion_point(message_clear_start:palm.portal.v1.SiteHealthCheckResponse)
+PROTOBUF_NOINLINE void SiteHeartbeatResponse::Clear() {
+// @@protoc_insertion_point(message_clear_start:palm.portal.v1.SiteHeartbeatResponse)
   ::google::protobuf::internal::TSanWrite(&_impl_);
   ::uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
@@ -3737,20 +3737,20 @@ PROTOBUF_NOINLINE void SiteHealthCheckResponse::Clear() {
 }
 
 #if defined(PROTOBUF_CUSTOM_VTABLE)
-::uint8_t* PROTOBUF_NONNULL SiteHealthCheckResponse::_InternalSerialize(
+::uint8_t* PROTOBUF_NONNULL SiteHeartbeatResponse::_InternalSerialize(
     const ::google::protobuf::MessageLite& base, ::uint8_t* PROTOBUF_NONNULL target,
     ::google::protobuf::io::EpsCopyOutputStream* PROTOBUF_NONNULL stream) {
-  const SiteHealthCheckResponse& this_ = static_cast<const SiteHealthCheckResponse&>(base);
+  const SiteHeartbeatResponse& this_ = static_cast<const SiteHeartbeatResponse&>(base);
 #else   // PROTOBUF_CUSTOM_VTABLE
-::uint8_t* PROTOBUF_NONNULL SiteHealthCheckResponse::_InternalSerialize(
+::uint8_t* PROTOBUF_NONNULL SiteHeartbeatResponse::_InternalSerialize(
     ::uint8_t* PROTOBUF_NONNULL target,
     ::google::protobuf::io::EpsCopyOutputStream* PROTOBUF_NONNULL stream) const {
-  const SiteHealthCheckResponse& this_ = *this;
+  const SiteHeartbeatResponse& this_ = *this;
 #endif  // PROTOBUF_CUSTOM_VTABLE
   if constexpr (::_pbi::DebugHardenCheckHasBitConsistency()) {
     this_.CheckHasBitConsistency();
   }
-  // @@protoc_insertion_point(serialize_to_array_start:palm.portal.v1.SiteHealthCheckResponse)
+  // @@protoc_insertion_point(serialize_to_array_start:palm.portal.v1.SiteHeartbeatResponse)
   ::uint32_t cached_has_bits = 0;
   (void)cached_has_bits;
 
@@ -3759,7 +3759,7 @@ PROTOBUF_NOINLINE void SiteHealthCheckResponse::Clear() {
   if (CheckHasBit(cached_has_bits, 0x00000001U)) {
     const ::std::string& _s = this_._internal_db();
     ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-        _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "palm.portal.v1.SiteHealthCheckResponse.db");
+        _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "palm.portal.v1.SiteHeartbeatResponse.db");
     target = stream->WriteStringMaybeAliased(1, _s, target);
   }
 
@@ -3767,7 +3767,7 @@ PROTOBUF_NOINLINE void SiteHealthCheckResponse::Clear() {
   if (CheckHasBit(cached_has_bits, 0x00000002U)) {
     const ::std::string& _s = this_._internal_cache();
     ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-        _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "palm.portal.v1.SiteHealthCheckResponse.cache");
+        _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "palm.portal.v1.SiteHeartbeatResponse.cache");
     target = stream->WriteStringMaybeAliased(2, _s, target);
   }
 
@@ -3775,7 +3775,7 @@ PROTOBUF_NOINLINE void SiteHealthCheckResponse::Clear() {
   if (CheckHasBit(cached_has_bits, 0x00000004U)) {
     const ::std::string& _s = this_._internal_queue();
     ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-        _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "palm.portal.v1.SiteHealthCheckResponse.queue");
+        _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "palm.portal.v1.SiteHeartbeatResponse.queue");
     target = stream->WriteStringMaybeAliased(3, _s, target);
   }
 
@@ -3783,7 +3783,7 @@ PROTOBUF_NOINLINE void SiteHealthCheckResponse::Clear() {
   if (CheckHasBit(cached_has_bits, 0x00000008U)) {
     const ::std::string& _s = this_._internal_s3();
     ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-        _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "palm.portal.v1.SiteHealthCheckResponse.s3");
+        _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "palm.portal.v1.SiteHeartbeatResponse.s3");
     target = stream->WriteStringMaybeAliased(4, _s, target);
   }
 
@@ -3792,7 +3792,7 @@ PROTOBUF_NOINLINE void SiteHealthCheckResponse::Clear() {
     if (!this_._internal_version().empty()) {
       const ::std::string& _s = this_._internal_version();
       ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-          _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "palm.portal.v1.SiteHealthCheckResponse.version");
+          _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "palm.portal.v1.SiteHeartbeatResponse.version");
       target = stream->WriteStringMaybeAliased(98, _s, target);
     }
   }
@@ -3809,18 +3809,18 @@ PROTOBUF_NOINLINE void SiteHealthCheckResponse::Clear() {
         ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
             this_._internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
   }
-  // @@protoc_insertion_point(serialize_to_array_end:palm.portal.v1.SiteHealthCheckResponse)
+  // @@protoc_insertion_point(serialize_to_array_end:palm.portal.v1.SiteHeartbeatResponse)
   return target;
 }
 
 #if defined(PROTOBUF_CUSTOM_VTABLE)
-::size_t SiteHealthCheckResponse::ByteSizeLong(const MessageLite& base) {
-  const SiteHealthCheckResponse& this_ = static_cast<const SiteHealthCheckResponse&>(base);
+::size_t SiteHeartbeatResponse::ByteSizeLong(const MessageLite& base) {
+  const SiteHeartbeatResponse& this_ = static_cast<const SiteHeartbeatResponse&>(base);
 #else   // PROTOBUF_CUSTOM_VTABLE
-::size_t SiteHealthCheckResponse::ByteSizeLong() const {
-  const SiteHealthCheckResponse& this_ = *this;
+::size_t SiteHeartbeatResponse::ByteSizeLong() const {
+  const SiteHeartbeatResponse& this_ = *this;
 #endif  // PROTOBUF_CUSTOM_VTABLE
-  // @@protoc_insertion_point(message_byte_size_start:palm.portal.v1.SiteHealthCheckResponse)
+  // @@protoc_insertion_point(message_byte_size_start:palm.portal.v1.SiteHeartbeatResponse)
   ::size_t total_size = 0;
 
   ::uint32_t cached_has_bits = 0;
@@ -3867,16 +3867,16 @@ PROTOBUF_NOINLINE void SiteHealthCheckResponse::Clear() {
                                              &this_._impl_._cached_size_);
 }
 
-void SiteHealthCheckResponse::MergeImpl(::google::protobuf::MessageLite& to_msg,
+void SiteHeartbeatResponse::MergeImpl(::google::protobuf::MessageLite& to_msg,
                             const ::google::protobuf::MessageLite& from_msg) {
    auto* const _this =
-      static_cast<SiteHealthCheckResponse*>(&to_msg);
-  auto& from = static_cast<const SiteHealthCheckResponse&>(from_msg);
+      static_cast<SiteHeartbeatResponse*>(&to_msg);
+  auto& from = static_cast<const SiteHeartbeatResponse&>(from_msg);
   if constexpr (::_pbi::DebugHardenCheckHasBitConsistency()) {
     from.CheckHasBitConsistency();
   }
   ::google::protobuf::Arena* arena = _this->GetArena();
-  // @@protoc_insertion_point(class_specific_merge_from_start:palm.portal.v1.SiteHealthCheckResponse)
+  // @@protoc_insertion_point(class_specific_merge_from_start:palm.portal.v1.SiteHeartbeatResponse)
   ABSL_DCHECK_NE(&from, _this);
   ::uint32_t cached_has_bits = 0;
   (void)cached_has_bits;
@@ -3918,15 +3918,15 @@ void SiteHealthCheckResponse::MergeImpl(::google::protobuf::MessageLite& to_msg,
       from._internal_metadata_);
 }
 
-void SiteHealthCheckResponse::CopyFrom(const SiteHealthCheckResponse& from) {
-  // @@protoc_insertion_point(class_specific_copy_from_start:palm.portal.v1.SiteHealthCheckResponse)
+void SiteHeartbeatResponse::CopyFrom(const SiteHeartbeatResponse& from) {
+  // @@protoc_insertion_point(class_specific_copy_from_start:palm.portal.v1.SiteHeartbeatResponse)
   if (&from == this) return;
   Clear();
   MergeFrom(from);
 }
 
 
-void SiteHealthCheckResponse::InternalSwap(SiteHealthCheckResponse* PROTOBUF_RESTRICT PROTOBUF_NONNULL other) {
+void SiteHeartbeatResponse::InternalSwap(SiteHeartbeatResponse* PROTOBUF_RESTRICT PROTOBUF_NONNULL other) {
   using ::std::swap;
   auto* arena = GetArena();
   ABSL_DCHECK_EQ(arena, other->GetArena());
@@ -3940,7 +3940,7 @@ void SiteHealthCheckResponse::InternalSwap(SiteHealthCheckResponse* PROTOBUF_RES
   swap(_impl_.created_at_, other->_impl_.created_at_);
 }
 
-::google::protobuf::Metadata SiteHealthCheckResponse::GetMetadata() const {
+::google::protobuf::Metadata SiteHeartbeatResponse::GetMetadata() const {
   return ::google::protobuf::Message::GetMetadataImpl(GetClassData()->full());
 }
 // @@protoc_insertion_point(namespace_scope)

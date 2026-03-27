@@ -5,6 +5,15 @@
 #include "tulip/cms.hpp"
 #include "tulip/forum.hpp"
 
+// TODO import iso4217
+static void load_iso4217_by_list_one(const std::filesystem::path& file) {
+  // TODO
+}
+// TODO import locales by yaml
+static void load_locales_by_yaml(const std::filesystem::path& folder) {
+  // TODO
+}
+
 // https://docs.opensearch.org/latest/mappings/
 static void init_search_engine(
     std::shared_ptr<palm::opensearch::Config> search) {

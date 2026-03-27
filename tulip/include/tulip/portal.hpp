@@ -26,6 +26,8 @@ std::shared_ptr<palm::portal::v1::Session> session(
     const boost::beast::http::request<boost::beast::http::string_body>& req);
 
 std::shared_ptr<palm::portal::v1::Page> page(const httplib::Request& req);
+
+// TODO remove
 struct Context {
   std::shared_ptr<palm::redis::Client> cache;
   std::shared_ptr<soci::connection_pool> db;
@@ -34,6 +36,33 @@ struct Context {
   std::shared_ptr<inja::Environment> env;
   std::shared_ptr<::grpc::Channel> daisy;
 };
+
+namespace http {
+struct Context {
+  std::shared_ptr<inja::Environment> env;
+  std::shared_ptr<::grpc::Channel> backend;
+};
+}  // namespace http
+
+namespace rpc {
+struct Context {
+  std::shared_ptr<palm::redis::Client> cache;
+  std::shared_ptr<soci::connection_pool> db;
+  std::shared_ptr<palm::rabbitmq::Client> queue;
+  std::shared_ptr<palm::opensearch::Config> search;
+  std::shared_ptr<::grpc::Channel> daisy;
+};
+namespace service {
+class Site final : public palm::portal::v1::Site::Service {
+ public:
+  grpc::Status Heartbeat(
+      grpc::ServerContext* context, const google::protobuf::Empty* request,
+      palm::portal::v1::SiteHeartbeatResponse* reply) override;
+
+ private:
+};
+}  // namespace service
+}  // namespace rpc
 
 template <typename H, typename Q, typename R>
 inline boost::beast::http::message_generator json(

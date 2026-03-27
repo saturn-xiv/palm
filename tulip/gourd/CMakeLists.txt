@@ -28,6 +28,8 @@ find_package(SOCI CONFIG REQUIRED)
 find_package(spdlog CONFIG REQUIRED)
 find_package(tomlplusplus CONFIG REQUIRED)
 find_package(cryptopp CONFIG REQUIRED)
+find_package(pugixml CONFIG REQUIRED)
+find_package(yaml-cpp CONFIG REQUIRED)
 
 find_path(CPPCODEC_INCLUDE_DIRS "cppcodec/base32_crockford.hpp")
 # -----------------------------------------------------------------------------
@@ -38,7 +40,7 @@ target_link_libraries(gourd PUBLIC m dl anl
   argparse::argparse spdlog::spdlog_header_only cpr::cpr cryptopp::cryptopp
   rabbitmq::rabbitmq-static redis++::redis++_static
   SOCI::soci_core_static SOCI::soci_postgresql_static
-  nlohmann_json::nlohmann_json pantor::inja httplib::httplib tomlplusplus::tomlplusplus
+  nlohmann_json::nlohmann_json pantor::inja httplib::httplib tomlplusplus::tomlplusplus pugixml::pugixml yaml-cpp::yaml-cpp
 )
 
 target_include_directories(gourd PUBLIC

@@ -42,7 +42,17 @@ int tulip::Application::launch(int argc, char** argv) const {
       .required();
   program.add_subparser(http_command);
 
+  argparse::ArgumentParser rpc_command("rpc");
+  rpc_command.add_description("start a gRPC server");
+  rpc_command.add_argument("-p", "--port")
+      .help("listening on")
+      .default_value(static_cast<uint16_t>(8080))
+      .scan<'i', uint16_t>()
+      .required();
+  program.add_subparser(rpc_command);
+
   argparse::ArgumentParser db_seeds_command("db-seeds");
+  db_seeds_command.add_description("load data from filesystem into db");
   program.add_subparser(db_seeds_command);
 
   try {
@@ -63,6 +73,10 @@ int tulip::Application::launch(int argc, char** argv) const {
   if (!palm::config_file_permission(config_file)) {
     spdlog::error("invalid file permissions, must be 400 or 600");
     return EXIT_FAILURE;
+  }
+  if (program.is_subcommand_used(rpc_command)) {
+    const uint16_t port = rpc_command.get<uint16_t>("--port");
+    return this->rpc(config_file, port);
   }
   if (program.is_subcommand_used(http_command)) {
     const uint16_t port = http_command.get<uint16_t>("--port");

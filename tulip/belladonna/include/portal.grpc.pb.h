@@ -90,41 +90,41 @@ class Site final {
   class StubInterface {
    public:
     virtual ~StubInterface() {}
-    virtual ::grpc::Status HealthCheck(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::palm::portal::v1::SiteHealthCheckResponse* response) = 0;
-    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::palm::portal::v1::SiteHealthCheckResponse>> AsyncHealthCheck(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::palm::portal::v1::SiteHealthCheckResponse>>(AsyncHealthCheckRaw(context, request, cq));
+    virtual ::grpc::Status Heartbeat(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::palm::portal::v1::SiteHeartbeatResponse* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::palm::portal::v1::SiteHeartbeatResponse>> AsyncHeartbeat(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::palm::portal::v1::SiteHeartbeatResponse>>(AsyncHeartbeatRaw(context, request, cq));
     }
-    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::palm::portal::v1::SiteHealthCheckResponse>> PrepareAsyncHealthCheck(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::palm::portal::v1::SiteHealthCheckResponse>>(PrepareAsyncHealthCheckRaw(context, request, cq));
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::palm::portal::v1::SiteHeartbeatResponse>> PrepareAsyncHeartbeat(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::palm::portal::v1::SiteHeartbeatResponse>>(PrepareAsyncHeartbeatRaw(context, request, cq));
     }
     class async_interface {
      public:
       virtual ~async_interface() {}
-      virtual void HealthCheck(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::palm::portal::v1::SiteHealthCheckResponse* response, std::function<void(::grpc::Status)>) = 0;
-      virtual void HealthCheck(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::palm::portal::v1::SiteHealthCheckResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      virtual void Heartbeat(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::palm::portal::v1::SiteHeartbeatResponse* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void Heartbeat(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::palm::portal::v1::SiteHeartbeatResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
     };
     typedef class async_interface experimental_async_interface;
     virtual class async_interface* async() { return nullptr; }
     class async_interface* experimental_async() { return async(); }
    private:
-    virtual ::grpc::ClientAsyncResponseReaderInterface< ::palm::portal::v1::SiteHealthCheckResponse>* AsyncHealthCheckRaw(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::grpc::CompletionQueue* cq) = 0;
-    virtual ::grpc::ClientAsyncResponseReaderInterface< ::palm::portal::v1::SiteHealthCheckResponse>* PrepareAsyncHealthCheckRaw(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::palm::portal::v1::SiteHeartbeatResponse>* AsyncHeartbeatRaw(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::palm::portal::v1::SiteHeartbeatResponse>* PrepareAsyncHeartbeatRaw(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::grpc::CompletionQueue* cq) = 0;
   };
   class Stub final : public StubInterface {
    public:
     Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options = ::grpc::StubOptions());
-    ::grpc::Status HealthCheck(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::palm::portal::v1::SiteHealthCheckResponse* response) override;
-    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::palm::portal::v1::SiteHealthCheckResponse>> AsyncHealthCheck(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::palm::portal::v1::SiteHealthCheckResponse>>(AsyncHealthCheckRaw(context, request, cq));
+    ::grpc::Status Heartbeat(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::palm::portal::v1::SiteHeartbeatResponse* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::palm::portal::v1::SiteHeartbeatResponse>> AsyncHeartbeat(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::palm::portal::v1::SiteHeartbeatResponse>>(AsyncHeartbeatRaw(context, request, cq));
     }
-    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::palm::portal::v1::SiteHealthCheckResponse>> PrepareAsyncHealthCheck(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::palm::portal::v1::SiteHealthCheckResponse>>(PrepareAsyncHealthCheckRaw(context, request, cq));
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::palm::portal::v1::SiteHeartbeatResponse>> PrepareAsyncHeartbeat(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::palm::portal::v1::SiteHeartbeatResponse>>(PrepareAsyncHeartbeatRaw(context, request, cq));
     }
     class async final :
       public StubInterface::async_interface {
      public:
-      void HealthCheck(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::palm::portal::v1::SiteHealthCheckResponse* response, std::function<void(::grpc::Status)>) override;
-      void HealthCheck(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::palm::portal::v1::SiteHealthCheckResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
+      void Heartbeat(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::palm::portal::v1::SiteHeartbeatResponse* response, std::function<void(::grpc::Status)>) override;
+      void Heartbeat(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::palm::portal::v1::SiteHeartbeatResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
      private:
       friend class Stub;
       explicit async(Stub* stub): stub_(stub) { }
@@ -136,9 +136,9 @@ class Site final {
    private:
     std::shared_ptr< ::grpc::ChannelInterface> channel_;
     class async async_stub_{this};
-    ::grpc::ClientAsyncResponseReader< ::palm::portal::v1::SiteHealthCheckResponse>* AsyncHealthCheckRaw(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::grpc::CompletionQueue* cq) override;
-    ::grpc::ClientAsyncResponseReader< ::palm::portal::v1::SiteHealthCheckResponse>* PrepareAsyncHealthCheckRaw(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::grpc::CompletionQueue* cq) override;
-    const ::grpc::internal::RpcMethod rpcmethod_HealthCheck_;
+    ::grpc::ClientAsyncResponseReader< ::palm::portal::v1::SiteHeartbeatResponse>* AsyncHeartbeatRaw(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::palm::portal::v1::SiteHeartbeatResponse>* PrepareAsyncHeartbeatRaw(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::grpc::CompletionQueue* cq) override;
+    const ::grpc::internal::RpcMethod rpcmethod_Heartbeat_;
   };
   static std::unique_ptr<Stub> NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options = ::grpc::StubOptions());
 
@@ -146,147 +146,147 @@ class Site final {
    public:
     Service();
     virtual ~Service();
-    virtual ::grpc::Status HealthCheck(::grpc::ServerContext* context, const ::google::protobuf::Empty* request, ::palm::portal::v1::SiteHealthCheckResponse* response);
+    virtual ::grpc::Status Heartbeat(::grpc::ServerContext* context, const ::google::protobuf::Empty* request, ::palm::portal::v1::SiteHeartbeatResponse* response);
   };
   template <class BaseClass>
-  class WithAsyncMethod_HealthCheck : public BaseClass {
+  class WithAsyncMethod_Heartbeat : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithAsyncMethod_HealthCheck() {
+    WithAsyncMethod_Heartbeat() {
       ::grpc::Service::MarkMethodAsync(0);
     }
-    ~WithAsyncMethod_HealthCheck() override {
+    ~WithAsyncMethod_Heartbeat() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status HealthCheck(::grpc::ServerContext* /*context*/, const ::google::protobuf::Empty* /*request*/, ::palm::portal::v1::SiteHealthCheckResponse* /*response*/) override {
+    ::grpc::Status Heartbeat(::grpc::ServerContext* /*context*/, const ::google::protobuf::Empty* /*request*/, ::palm::portal::v1::SiteHeartbeatResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    void RequestHealthCheck(::grpc::ServerContext* context, ::google::protobuf::Empty* request, ::grpc::ServerAsyncResponseWriter< ::palm::portal::v1::SiteHealthCheckResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+    void RequestHeartbeat(::grpc::ServerContext* context, ::google::protobuf::Empty* request, ::grpc::ServerAsyncResponseWriter< ::palm::portal::v1::SiteHeartbeatResponse>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
       ::grpc::Service::RequestAsyncUnary(0, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
-  typedef WithAsyncMethod_HealthCheck<Service > AsyncService;
+  typedef WithAsyncMethod_Heartbeat<Service > AsyncService;
   template <class BaseClass>
-  class WithCallbackMethod_HealthCheck : public BaseClass {
+  class WithCallbackMethod_Heartbeat : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithCallbackMethod_HealthCheck() {
+    WithCallbackMethod_Heartbeat() {
       ::grpc::Service::MarkMethodCallback(0,
-          new ::grpc::internal::CallbackUnaryHandler< ::google::protobuf::Empty, ::palm::portal::v1::SiteHealthCheckResponse>(
+          new ::grpc::internal::CallbackUnaryHandler< ::google::protobuf::Empty, ::palm::portal::v1::SiteHeartbeatResponse>(
             [this](
-                   ::grpc::CallbackServerContext* context, const ::google::protobuf::Empty* request, ::palm::portal::v1::SiteHealthCheckResponse* response) { return this->HealthCheck(context, request, response); }));}
-    void SetMessageAllocatorFor_HealthCheck(
-        ::grpc::MessageAllocator< ::google::protobuf::Empty, ::palm::portal::v1::SiteHealthCheckResponse>* allocator) {
+                   ::grpc::CallbackServerContext* context, const ::google::protobuf::Empty* request, ::palm::portal::v1::SiteHeartbeatResponse* response) { return this->Heartbeat(context, request, response); }));}
+    void SetMessageAllocatorFor_Heartbeat(
+        ::grpc::MessageAllocator< ::google::protobuf::Empty, ::palm::portal::v1::SiteHeartbeatResponse>* allocator) {
       ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(0);
-      static_cast<::grpc::internal::CallbackUnaryHandler< ::google::protobuf::Empty, ::palm::portal::v1::SiteHealthCheckResponse>*>(handler)
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::google::protobuf::Empty, ::palm::portal::v1::SiteHeartbeatResponse>*>(handler)
               ->SetMessageAllocator(allocator);
     }
-    ~WithCallbackMethod_HealthCheck() override {
+    ~WithCallbackMethod_Heartbeat() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status HealthCheck(::grpc::ServerContext* /*context*/, const ::google::protobuf::Empty* /*request*/, ::palm::portal::v1::SiteHealthCheckResponse* /*response*/) override {
+    ::grpc::Status Heartbeat(::grpc::ServerContext* /*context*/, const ::google::protobuf::Empty* /*request*/, ::palm::portal::v1::SiteHeartbeatResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    virtual ::grpc::ServerUnaryReactor* HealthCheck(
-      ::grpc::CallbackServerContext* /*context*/, const ::google::protobuf::Empty* /*request*/, ::palm::portal::v1::SiteHealthCheckResponse* /*response*/)  { return nullptr; }
+    virtual ::grpc::ServerUnaryReactor* Heartbeat(
+      ::grpc::CallbackServerContext* /*context*/, const ::google::protobuf::Empty* /*request*/, ::palm::portal::v1::SiteHeartbeatResponse* /*response*/)  { return nullptr; }
   };
-  typedef WithCallbackMethod_HealthCheck<Service > CallbackService;
+  typedef WithCallbackMethod_Heartbeat<Service > CallbackService;
   typedef CallbackService ExperimentalCallbackService;
   template <class BaseClass>
-  class WithGenericMethod_HealthCheck : public BaseClass {
+  class WithGenericMethod_Heartbeat : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithGenericMethod_HealthCheck() {
+    WithGenericMethod_Heartbeat() {
       ::grpc::Service::MarkMethodGeneric(0);
     }
-    ~WithGenericMethod_HealthCheck() override {
+    ~WithGenericMethod_Heartbeat() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status HealthCheck(::grpc::ServerContext* /*context*/, const ::google::protobuf::Empty* /*request*/, ::palm::portal::v1::SiteHealthCheckResponse* /*response*/) override {
+    ::grpc::Status Heartbeat(::grpc::ServerContext* /*context*/, const ::google::protobuf::Empty* /*request*/, ::palm::portal::v1::SiteHeartbeatResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
   };
   template <class BaseClass>
-  class WithRawMethod_HealthCheck : public BaseClass {
+  class WithRawMethod_Heartbeat : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithRawMethod_HealthCheck() {
+    WithRawMethod_Heartbeat() {
       ::grpc::Service::MarkMethodRaw(0);
     }
-    ~WithRawMethod_HealthCheck() override {
+    ~WithRawMethod_Heartbeat() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status HealthCheck(::grpc::ServerContext* /*context*/, const ::google::protobuf::Empty* /*request*/, ::palm::portal::v1::SiteHealthCheckResponse* /*response*/) override {
+    ::grpc::Status Heartbeat(::grpc::ServerContext* /*context*/, const ::google::protobuf::Empty* /*request*/, ::palm::portal::v1::SiteHeartbeatResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    void RequestHealthCheck(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+    void RequestHeartbeat(::grpc::ServerContext* context, ::grpc::ByteBuffer* request, ::grpc::ServerAsyncResponseWriter< ::grpc::ByteBuffer>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
       ::grpc::Service::RequestAsyncUnary(0, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
   template <class BaseClass>
-  class WithRawCallbackMethod_HealthCheck : public BaseClass {
+  class WithRawCallbackMethod_Heartbeat : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithRawCallbackMethod_HealthCheck() {
+    WithRawCallbackMethod_Heartbeat() {
       ::grpc::Service::MarkMethodRawCallback(0,
           new ::grpc::internal::CallbackUnaryHandler< ::grpc::ByteBuffer, ::grpc::ByteBuffer>(
             [this](
-                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->HealthCheck(context, request, response); }));
+                   ::grpc::CallbackServerContext* context, const ::grpc::ByteBuffer* request, ::grpc::ByteBuffer* response) { return this->Heartbeat(context, request, response); }));
     }
-    ~WithRawCallbackMethod_HealthCheck() override {
+    ~WithRawCallbackMethod_Heartbeat() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status HealthCheck(::grpc::ServerContext* /*context*/, const ::google::protobuf::Empty* /*request*/, ::palm::portal::v1::SiteHealthCheckResponse* /*response*/) override {
+    ::grpc::Status Heartbeat(::grpc::ServerContext* /*context*/, const ::google::protobuf::Empty* /*request*/, ::palm::portal::v1::SiteHeartbeatResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    virtual ::grpc::ServerUnaryReactor* HealthCheck(
+    virtual ::grpc::ServerUnaryReactor* Heartbeat(
       ::grpc::CallbackServerContext* /*context*/, const ::grpc::ByteBuffer* /*request*/, ::grpc::ByteBuffer* /*response*/)  { return nullptr; }
   };
   template <class BaseClass>
-  class WithStreamedUnaryMethod_HealthCheck : public BaseClass {
+  class WithStreamedUnaryMethod_Heartbeat : public BaseClass {
    private:
     void BaseClassMustBeDerivedFromService(const Service* /*service*/) {}
    public:
-    WithStreamedUnaryMethod_HealthCheck() {
+    WithStreamedUnaryMethod_Heartbeat() {
       ::grpc::Service::MarkMethodStreamed(0,
         new ::grpc::internal::StreamedUnaryHandler<
-          ::google::protobuf::Empty, ::palm::portal::v1::SiteHealthCheckResponse>(
+          ::google::protobuf::Empty, ::palm::portal::v1::SiteHeartbeatResponse>(
             [this](::grpc::ServerContext* context,
                    ::grpc::ServerUnaryStreamer<
-                     ::google::protobuf::Empty, ::palm::portal::v1::SiteHealthCheckResponse>* streamer) {
-                       return this->StreamedHealthCheck(context,
+                     ::google::protobuf::Empty, ::palm::portal::v1::SiteHeartbeatResponse>* streamer) {
+                       return this->StreamedHeartbeat(context,
                          streamer);
                   }));
     }
-    ~WithStreamedUnaryMethod_HealthCheck() override {
+    ~WithStreamedUnaryMethod_Heartbeat() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable regular version of this method
-    ::grpc::Status HealthCheck(::grpc::ServerContext* /*context*/, const ::google::protobuf::Empty* /*request*/, ::palm::portal::v1::SiteHealthCheckResponse* /*response*/) override {
+    ::grpc::Status Heartbeat(::grpc::ServerContext* /*context*/, const ::google::protobuf::Empty* /*request*/, ::palm::portal::v1::SiteHeartbeatResponse* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     // replace default version of method with streamed unary
-    virtual ::grpc::Status StreamedHealthCheck(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::google::protobuf::Empty,::palm::portal::v1::SiteHealthCheckResponse>* server_unary_streamer) = 0;
+    virtual ::grpc::Status StreamedHeartbeat(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::google::protobuf::Empty,::palm::portal::v1::SiteHeartbeatResponse>* server_unary_streamer) = 0;
   };
-  typedef WithStreamedUnaryMethod_HealthCheck<Service > StreamedUnaryService;
+  typedef WithStreamedUnaryMethod_Heartbeat<Service > StreamedUnaryService;
   typedef Service SplitStreamedService;
-  typedef WithStreamedUnaryMethod_HealthCheck<Service > StreamedService;
+  typedef WithStreamedUnaryMethod_Heartbeat<Service > StreamedService;
 };
 
 }  // namespace v1

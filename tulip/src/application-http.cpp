@@ -1,5 +1,10 @@
 
+#include "tulip/accounting.hpp"
 #include "tulip/application.hpp"
+#include "tulip/babel.hpp"
+#include "tulip/blog.hpp"
+#include "tulip/cms.hpp"
+#include "tulip/forum.hpp"
 #include "tulip/http.hpp"
 #include "tulip/portal.hpp"
 
@@ -16,6 +21,7 @@ static std::function<void(int)> gl_shutdown_handler;
 
 static void signal_handler(int signal) { gl_shutdown_handler(signal); }
 
+// TODO use grpc client & cpphttplib
 int tulip::Application::http(const std::string& config_file, uint16_t port,
                              size_t threads,
                              const std::filesystem::path& document_root,

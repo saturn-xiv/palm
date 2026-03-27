@@ -92,10 +92,10 @@ class Session;
 struct SessionDefaultTypeInternal;
 extern SessionDefaultTypeInternal _Session_default_instance_;
 extern const ::google::protobuf::internal::ClassDataFull Session_class_data_;
-class SiteHealthCheckResponse;
-struct SiteHealthCheckResponseDefaultTypeInternal;
-extern SiteHealthCheckResponseDefaultTypeInternal _SiteHealthCheckResponse_default_instance_;
-extern const ::google::protobuf::internal::ClassDataFull SiteHealthCheckResponse_class_data_;
+class SiteHeartbeatResponse;
+struct SiteHeartbeatResponseDefaultTypeInternal;
+extern SiteHeartbeatResponseDefaultTypeInternal _SiteHeartbeatResponse_default_instance_;
+extern const ::google::protobuf::internal::ClassDataFull SiteHeartbeatResponse_class_data_;
 class UserIndexResponse;
 struct UserIndexResponseDefaultTypeInternal;
 extern UserIndexResponseDefaultTypeInternal _UserIndexResponse_default_instance_;
@@ -1311,30 +1311,30 @@ class File final : public ::google::protobuf::Message
 extern const ::google::protobuf::internal::ClassDataFull File_class_data_;
 // -------------------------------------------------------------------
 
-class SiteHealthCheckResponse final : public ::google::protobuf::Message
-/* @@protoc_insertion_point(class_definition:palm.portal.v1.SiteHealthCheckResponse) */ {
+class SiteHeartbeatResponse final : public ::google::protobuf::Message
+/* @@protoc_insertion_point(class_definition:palm.portal.v1.SiteHeartbeatResponse) */ {
  public:
-  inline SiteHealthCheckResponse() : SiteHealthCheckResponse(nullptr) {}
-  ~SiteHealthCheckResponse() PROTOBUF_FINAL;
+  inline SiteHeartbeatResponse() : SiteHeartbeatResponse(nullptr) {}
+  ~SiteHeartbeatResponse() PROTOBUF_FINAL;
 
 #if defined(PROTOBUF_CUSTOM_VTABLE)
-  void operator delete(SiteHealthCheckResponse* PROTOBUF_NONNULL msg, ::std::destroying_delete_t) {
+  void operator delete(SiteHeartbeatResponse* PROTOBUF_NONNULL msg, ::std::destroying_delete_t) {
     SharedDtor(*msg);
-    ::google::protobuf::internal::SizedDelete(msg, sizeof(SiteHealthCheckResponse));
+    ::google::protobuf::internal::SizedDelete(msg, sizeof(SiteHeartbeatResponse));
   }
 #endif
 
   template <typename = void>
-  explicit PROTOBUF_CONSTEXPR SiteHealthCheckResponse(::google::protobuf::internal::ConstantInitialized);
+  explicit PROTOBUF_CONSTEXPR SiteHeartbeatResponse(::google::protobuf::internal::ConstantInitialized);
 
-  inline SiteHealthCheckResponse(const SiteHealthCheckResponse& from) : SiteHealthCheckResponse(nullptr, from) {}
-  inline SiteHealthCheckResponse(SiteHealthCheckResponse&& from) noexcept
-      : SiteHealthCheckResponse(nullptr, ::std::move(from)) {}
-  inline SiteHealthCheckResponse& operator=(const SiteHealthCheckResponse& from) {
+  inline SiteHeartbeatResponse(const SiteHeartbeatResponse& from) : SiteHeartbeatResponse(nullptr, from) {}
+  inline SiteHeartbeatResponse(SiteHeartbeatResponse&& from) noexcept
+      : SiteHeartbeatResponse(nullptr, ::std::move(from)) {}
+  inline SiteHeartbeatResponse& operator=(const SiteHeartbeatResponse& from) {
     CopyFrom(from);
     return *this;
   }
-  inline SiteHealthCheckResponse& operator=(SiteHealthCheckResponse&& from) noexcept {
+  inline SiteHeartbeatResponse& operator=(SiteHeartbeatResponse&& from) noexcept {
     if (this == &from) return *this;
     if (::google::protobuf::internal::CanMoveWithInternalSwap(GetArena(), from.GetArena())) {
       InternalSwap(&from);
@@ -1362,13 +1362,13 @@ class SiteHealthCheckResponse final : public ::google::protobuf::Message
   static const ::google::protobuf::Reflection* PROTOBUF_NONNULL GetReflection() {
     return default_instance().GetMetadata().reflection;
   }
-  static const SiteHealthCheckResponse& default_instance() {
-    return *reinterpret_cast<const SiteHealthCheckResponse*>(
-        &_SiteHealthCheckResponse_default_instance_);
+  static const SiteHeartbeatResponse& default_instance() {
+    return *reinterpret_cast<const SiteHeartbeatResponse*>(
+        &_SiteHeartbeatResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages = 9;
-  friend void swap(SiteHealthCheckResponse& a, SiteHealthCheckResponse& b) { a.Swap(&b); }
-  inline void Swap(SiteHealthCheckResponse* PROTOBUF_NONNULL other) {
+  friend void swap(SiteHeartbeatResponse& a, SiteHeartbeatResponse& b) { a.Swap(&b); }
+  inline void Swap(SiteHeartbeatResponse* PROTOBUF_NONNULL other) {
     if (other == this) return;
     if (::google::protobuf::internal::CanUseInternalSwap(GetArena(), other->GetArena())) {
       InternalSwap(other);
@@ -1376,7 +1376,7 @@ class SiteHealthCheckResponse final : public ::google::protobuf::Message
       ::google::protobuf::internal::GenericSwap(this, other);
     }
   }
-  void UnsafeArenaSwap(SiteHealthCheckResponse* PROTOBUF_NONNULL other) {
+  void UnsafeArenaSwap(SiteHeartbeatResponse* PROTOBUF_NONNULL other) {
     if (other == this) return;
     ABSL_DCHECK(GetArena() == other->GetArena());
     InternalSwap(other);
@@ -1384,13 +1384,13 @@ class SiteHealthCheckResponse final : public ::google::protobuf::Message
 
   // implements Message ----------------------------------------------
 
-  SiteHealthCheckResponse* PROTOBUF_NONNULL New(::google::protobuf::Arena* PROTOBUF_NULLABLE arena = nullptr) const {
-    return ::google::protobuf::Message::DefaultConstruct<SiteHealthCheckResponse>(arena);
+  SiteHeartbeatResponse* PROTOBUF_NONNULL New(::google::protobuf::Arena* PROTOBUF_NULLABLE arena = nullptr) const {
+    return ::google::protobuf::Message::DefaultConstruct<SiteHeartbeatResponse>(arena);
   }
   using ::google::protobuf::Message::CopyFrom;
-  void CopyFrom(const SiteHealthCheckResponse& from);
+  void CopyFrom(const SiteHeartbeatResponse& from);
   using ::google::protobuf::Message::MergeFrom;
-  void MergeFrom(const SiteHealthCheckResponse& from) { SiteHealthCheckResponse::MergeImpl(*this, from); }
+  void MergeFrom(const SiteHeartbeatResponse& from) { SiteHeartbeatResponse::MergeImpl(*this, from); }
 
   private:
   static void MergeImpl(::google::protobuf::MessageLite& to_msg,
@@ -1426,17 +1426,17 @@ class SiteHealthCheckResponse final : public ::google::protobuf::Message
   private:
   void SharedCtor(::google::protobuf::Arena* PROTOBUF_NULLABLE arena);
   static void SharedDtor(MessageLite& self);
-  void InternalSwap(SiteHealthCheckResponse* PROTOBUF_NONNULL other);
+  void InternalSwap(SiteHeartbeatResponse* PROTOBUF_NONNULL other);
  private:
   template <typename T>
   friend ::absl::string_view(::google::protobuf::internal::GetAnyMessageName)();
-  static ::absl::string_view FullMessageName() { return "palm.portal.v1.SiteHealthCheckResponse"; }
+  static ::absl::string_view FullMessageName() { return "palm.portal.v1.SiteHeartbeatResponse"; }
 
-  explicit SiteHealthCheckResponse(::google::protobuf::Arena* PROTOBUF_NULLABLE arena);
-  SiteHealthCheckResponse(::google::protobuf::Arena* PROTOBUF_NULLABLE arena, const SiteHealthCheckResponse& from);
-  SiteHealthCheckResponse(
-      ::google::protobuf::Arena* PROTOBUF_NULLABLE arena, SiteHealthCheckResponse&& from) noexcept
-      : SiteHealthCheckResponse(arena) {
+  explicit SiteHeartbeatResponse(::google::protobuf::Arena* PROTOBUF_NULLABLE arena);
+  SiteHeartbeatResponse(::google::protobuf::Arena* PROTOBUF_NULLABLE arena, const SiteHeartbeatResponse& from);
+  SiteHeartbeatResponse(
+      ::google::protobuf::Arena* PROTOBUF_NULLABLE arena, SiteHeartbeatResponse&& from) noexcept
+      : SiteHeartbeatResponse(arena) {
     *this = ::std::move(from);
   }
   const ::google::protobuf::internal::ClassData* PROTOBUF_NONNULL GetClassData() const PROTOBUF_FINAL;
@@ -1554,12 +1554,12 @@ class SiteHealthCheckResponse final : public ::google::protobuf::Message
   ::google::protobuf::Timestamp* PROTOBUF_NONNULL _internal_mutable_created_at();
 
   public:
-  // @@protoc_insertion_point(class_scope:palm.portal.v1.SiteHealthCheckResponse)
+  // @@protoc_insertion_point(class_scope:palm.portal.v1.SiteHeartbeatResponse)
  private:
   class _Internal;
   friend class ::google::protobuf::internal::TcParser;
   static const ::google::protobuf::internal::TcParseTable<2, 6,
-                                   1, 68,
+                                   1, 66,
                                    7>
       _table_;
 
@@ -1577,7 +1577,7 @@ class SiteHealthCheckResponse final : public ::google::protobuf::Message
     inline explicit Impl_(
         ::google::protobuf::internal::InternalVisibility visibility,
         ::google::protobuf::Arena* PROTOBUF_NULLABLE arena, const Impl_& from,
-        const SiteHealthCheckResponse& from_msg);
+        const SiteHeartbeatResponse& from_msg);
     ::google::protobuf::internal::HasBits<1> _has_bits_;
     ::google::protobuf::internal::CachedSize _cached_size_;
     ::google::protobuf::internal::ArenaStringPtr db_;
@@ -1592,7 +1592,7 @@ class SiteHealthCheckResponse final : public ::google::protobuf::Message
   friend struct ::TableStruct_portal_2eproto;
 };
 
-extern const ::google::protobuf::internal::ClassDataFull SiteHealthCheckResponse_class_data_;
+extern const ::google::protobuf::internal::ClassDataFull SiteHeartbeatResponse_class_data_;
 // -------------------------------------------------------------------
 
 class Session final : public ::google::protobuf::Message
@@ -3714,53 +3714,53 @@ inline void Session::set_allocated_created_at(::google::protobuf::Timestamp* PRO
 
 // -------------------------------------------------------------------
 
-// SiteHealthCheckResponse
+// SiteHeartbeatResponse
 
 // optional string db = 1;
-inline bool SiteHealthCheckResponse::has_db() const {
+inline bool SiteHeartbeatResponse::has_db() const {
   bool value = CheckHasBit(_impl_._has_bits_[0], 0x00000001U);
   return value;
 }
-inline void SiteHealthCheckResponse::clear_db() {
+inline void SiteHeartbeatResponse::clear_db() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_.db_.ClearToEmpty();
   ClearHasBit(_impl_._has_bits_[0],
                   0x00000001U);
 }
-inline const ::std::string& SiteHealthCheckResponse::db() const
+inline const ::std::string& SiteHeartbeatResponse::db() const
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:palm.portal.v1.SiteHealthCheckResponse.db)
+  // @@protoc_insertion_point(field_get:palm.portal.v1.SiteHeartbeatResponse.db)
   return _internal_db();
 }
 template <typename Arg_, typename... Args_>
-PROTOBUF_ALWAYS_INLINE void SiteHealthCheckResponse::set_db(Arg_&& arg, Args_... args) {
+PROTOBUF_ALWAYS_INLINE void SiteHeartbeatResponse::set_db(Arg_&& arg, Args_... args) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   SetHasBit(_impl_._has_bits_[0], 0x00000001U);
   _impl_.db_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
-  // @@protoc_insertion_point(field_set:palm.portal.v1.SiteHealthCheckResponse.db)
+  // @@protoc_insertion_point(field_set:palm.portal.v1.SiteHeartbeatResponse.db)
 }
-inline ::std::string* PROTOBUF_NONNULL SiteHealthCheckResponse::mutable_db()
+inline ::std::string* PROTOBUF_NONNULL SiteHeartbeatResponse::mutable_db()
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
   SetHasBit(_impl_._has_bits_[0], 0x00000001U);
   ::std::string* _s = _internal_mutable_db();
-  // @@protoc_insertion_point(field_mutable:palm.portal.v1.SiteHealthCheckResponse.db)
+  // @@protoc_insertion_point(field_mutable:palm.portal.v1.SiteHeartbeatResponse.db)
   return _s;
 }
-inline const ::std::string& SiteHealthCheckResponse::_internal_db() const {
+inline const ::std::string& SiteHeartbeatResponse::_internal_db() const {
   ::google::protobuf::internal::TSanRead(&_impl_);
   return _impl_.db_.Get();
 }
-inline void SiteHealthCheckResponse::_internal_set_db(const ::std::string& value) {
+inline void SiteHeartbeatResponse::_internal_set_db(const ::std::string& value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_.db_.Set(value, GetArena());
 }
-inline ::std::string* PROTOBUF_NONNULL SiteHealthCheckResponse::_internal_mutable_db() {
+inline ::std::string* PROTOBUF_NONNULL SiteHeartbeatResponse::_internal_mutable_db() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   return _impl_.db_.Mutable( GetArena());
 }
-inline ::std::string* PROTOBUF_NULLABLE SiteHealthCheckResponse::release_db() {
+inline ::std::string* PROTOBUF_NULLABLE SiteHeartbeatResponse::release_db() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  // @@protoc_insertion_point(field_release:palm.portal.v1.SiteHealthCheckResponse.db)
+  // @@protoc_insertion_point(field_release:palm.portal.v1.SiteHeartbeatResponse.db)
   if (!CheckHasBit(_impl_._has_bits_[0], 0x00000001U)) {
     return nullptr;
   }
@@ -3771,7 +3771,7 @@ inline ::std::string* PROTOBUF_NULLABLE SiteHealthCheckResponse::release_db() {
   }
   return released;
 }
-inline void SiteHealthCheckResponse::set_allocated_db(::std::string* PROTOBUF_NULLABLE value) {
+inline void SiteHeartbeatResponse::set_allocated_db(::std::string* PROTOBUF_NULLABLE value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   if (value != nullptr) {
     SetHasBit(_impl_._has_bits_[0], 0x00000001U);
@@ -3782,54 +3782,54 @@ inline void SiteHealthCheckResponse::set_allocated_db(::std::string* PROTOBUF_NU
   if (::google::protobuf::internal::DebugHardenForceCopyDefaultString() && _impl_.db_.IsDefault()) {
     _impl_.db_.Set("", GetArena());
   }
-  // @@protoc_insertion_point(field_set_allocated:palm.portal.v1.SiteHealthCheckResponse.db)
+  // @@protoc_insertion_point(field_set_allocated:palm.portal.v1.SiteHeartbeatResponse.db)
 }
 
 // optional string cache = 2;
-inline bool SiteHealthCheckResponse::has_cache() const {
+inline bool SiteHeartbeatResponse::has_cache() const {
   bool value = CheckHasBit(_impl_._has_bits_[0], 0x00000002U);
   return value;
 }
-inline void SiteHealthCheckResponse::clear_cache() {
+inline void SiteHeartbeatResponse::clear_cache() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_.cache_.ClearToEmpty();
   ClearHasBit(_impl_._has_bits_[0],
                   0x00000002U);
 }
-inline const ::std::string& SiteHealthCheckResponse::cache() const
+inline const ::std::string& SiteHeartbeatResponse::cache() const
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:palm.portal.v1.SiteHealthCheckResponse.cache)
+  // @@protoc_insertion_point(field_get:palm.portal.v1.SiteHeartbeatResponse.cache)
   return _internal_cache();
 }
 template <typename Arg_, typename... Args_>
-PROTOBUF_ALWAYS_INLINE void SiteHealthCheckResponse::set_cache(Arg_&& arg, Args_... args) {
+PROTOBUF_ALWAYS_INLINE void SiteHeartbeatResponse::set_cache(Arg_&& arg, Args_... args) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   SetHasBit(_impl_._has_bits_[0], 0x00000002U);
   _impl_.cache_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
-  // @@protoc_insertion_point(field_set:palm.portal.v1.SiteHealthCheckResponse.cache)
+  // @@protoc_insertion_point(field_set:palm.portal.v1.SiteHeartbeatResponse.cache)
 }
-inline ::std::string* PROTOBUF_NONNULL SiteHealthCheckResponse::mutable_cache()
+inline ::std::string* PROTOBUF_NONNULL SiteHeartbeatResponse::mutable_cache()
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
   SetHasBit(_impl_._has_bits_[0], 0x00000002U);
   ::std::string* _s = _internal_mutable_cache();
-  // @@protoc_insertion_point(field_mutable:palm.portal.v1.SiteHealthCheckResponse.cache)
+  // @@protoc_insertion_point(field_mutable:palm.portal.v1.SiteHeartbeatResponse.cache)
   return _s;
 }
-inline const ::std::string& SiteHealthCheckResponse::_internal_cache() const {
+inline const ::std::string& SiteHeartbeatResponse::_internal_cache() const {
   ::google::protobuf::internal::TSanRead(&_impl_);
   return _impl_.cache_.Get();
 }
-inline void SiteHealthCheckResponse::_internal_set_cache(const ::std::string& value) {
+inline void SiteHeartbeatResponse::_internal_set_cache(const ::std::string& value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_.cache_.Set(value, GetArena());
 }
-inline ::std::string* PROTOBUF_NONNULL SiteHealthCheckResponse::_internal_mutable_cache() {
+inline ::std::string* PROTOBUF_NONNULL SiteHeartbeatResponse::_internal_mutable_cache() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   return _impl_.cache_.Mutable( GetArena());
 }
-inline ::std::string* PROTOBUF_NULLABLE SiteHealthCheckResponse::release_cache() {
+inline ::std::string* PROTOBUF_NULLABLE SiteHeartbeatResponse::release_cache() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  // @@protoc_insertion_point(field_release:palm.portal.v1.SiteHealthCheckResponse.cache)
+  // @@protoc_insertion_point(field_release:palm.portal.v1.SiteHeartbeatResponse.cache)
   if (!CheckHasBit(_impl_._has_bits_[0], 0x00000002U)) {
     return nullptr;
   }
@@ -3840,7 +3840,7 @@ inline ::std::string* PROTOBUF_NULLABLE SiteHealthCheckResponse::release_cache()
   }
   return released;
 }
-inline void SiteHealthCheckResponse::set_allocated_cache(::std::string* PROTOBUF_NULLABLE value) {
+inline void SiteHeartbeatResponse::set_allocated_cache(::std::string* PROTOBUF_NULLABLE value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   if (value != nullptr) {
     SetHasBit(_impl_._has_bits_[0], 0x00000002U);
@@ -3851,54 +3851,54 @@ inline void SiteHealthCheckResponse::set_allocated_cache(::std::string* PROTOBUF
   if (::google::protobuf::internal::DebugHardenForceCopyDefaultString() && _impl_.cache_.IsDefault()) {
     _impl_.cache_.Set("", GetArena());
   }
-  // @@protoc_insertion_point(field_set_allocated:palm.portal.v1.SiteHealthCheckResponse.cache)
+  // @@protoc_insertion_point(field_set_allocated:palm.portal.v1.SiteHeartbeatResponse.cache)
 }
 
 // optional string queue = 3;
-inline bool SiteHealthCheckResponse::has_queue() const {
+inline bool SiteHeartbeatResponse::has_queue() const {
   bool value = CheckHasBit(_impl_._has_bits_[0], 0x00000004U);
   return value;
 }
-inline void SiteHealthCheckResponse::clear_queue() {
+inline void SiteHeartbeatResponse::clear_queue() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_.queue_.ClearToEmpty();
   ClearHasBit(_impl_._has_bits_[0],
                   0x00000004U);
 }
-inline const ::std::string& SiteHealthCheckResponse::queue() const
+inline const ::std::string& SiteHeartbeatResponse::queue() const
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:palm.portal.v1.SiteHealthCheckResponse.queue)
+  // @@protoc_insertion_point(field_get:palm.portal.v1.SiteHeartbeatResponse.queue)
   return _internal_queue();
 }
 template <typename Arg_, typename... Args_>
-PROTOBUF_ALWAYS_INLINE void SiteHealthCheckResponse::set_queue(Arg_&& arg, Args_... args) {
+PROTOBUF_ALWAYS_INLINE void SiteHeartbeatResponse::set_queue(Arg_&& arg, Args_... args) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   SetHasBit(_impl_._has_bits_[0], 0x00000004U);
   _impl_.queue_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
-  // @@protoc_insertion_point(field_set:palm.portal.v1.SiteHealthCheckResponse.queue)
+  // @@protoc_insertion_point(field_set:palm.portal.v1.SiteHeartbeatResponse.queue)
 }
-inline ::std::string* PROTOBUF_NONNULL SiteHealthCheckResponse::mutable_queue()
+inline ::std::string* PROTOBUF_NONNULL SiteHeartbeatResponse::mutable_queue()
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
   SetHasBit(_impl_._has_bits_[0], 0x00000004U);
   ::std::string* _s = _internal_mutable_queue();
-  // @@protoc_insertion_point(field_mutable:palm.portal.v1.SiteHealthCheckResponse.queue)
+  // @@protoc_insertion_point(field_mutable:palm.portal.v1.SiteHeartbeatResponse.queue)
   return _s;
 }
-inline const ::std::string& SiteHealthCheckResponse::_internal_queue() const {
+inline const ::std::string& SiteHeartbeatResponse::_internal_queue() const {
   ::google::protobuf::internal::TSanRead(&_impl_);
   return _impl_.queue_.Get();
 }
-inline void SiteHealthCheckResponse::_internal_set_queue(const ::std::string& value) {
+inline void SiteHeartbeatResponse::_internal_set_queue(const ::std::string& value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_.queue_.Set(value, GetArena());
 }
-inline ::std::string* PROTOBUF_NONNULL SiteHealthCheckResponse::_internal_mutable_queue() {
+inline ::std::string* PROTOBUF_NONNULL SiteHeartbeatResponse::_internal_mutable_queue() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   return _impl_.queue_.Mutable( GetArena());
 }
-inline ::std::string* PROTOBUF_NULLABLE SiteHealthCheckResponse::release_queue() {
+inline ::std::string* PROTOBUF_NULLABLE SiteHeartbeatResponse::release_queue() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  // @@protoc_insertion_point(field_release:palm.portal.v1.SiteHealthCheckResponse.queue)
+  // @@protoc_insertion_point(field_release:palm.portal.v1.SiteHeartbeatResponse.queue)
   if (!CheckHasBit(_impl_._has_bits_[0], 0x00000004U)) {
     return nullptr;
   }
@@ -3909,7 +3909,7 @@ inline ::std::string* PROTOBUF_NULLABLE SiteHealthCheckResponse::release_queue()
   }
   return released;
 }
-inline void SiteHealthCheckResponse::set_allocated_queue(::std::string* PROTOBUF_NULLABLE value) {
+inline void SiteHeartbeatResponse::set_allocated_queue(::std::string* PROTOBUF_NULLABLE value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   if (value != nullptr) {
     SetHasBit(_impl_._has_bits_[0], 0x00000004U);
@@ -3920,54 +3920,54 @@ inline void SiteHealthCheckResponse::set_allocated_queue(::std::string* PROTOBUF
   if (::google::protobuf::internal::DebugHardenForceCopyDefaultString() && _impl_.queue_.IsDefault()) {
     _impl_.queue_.Set("", GetArena());
   }
-  // @@protoc_insertion_point(field_set_allocated:palm.portal.v1.SiteHealthCheckResponse.queue)
+  // @@protoc_insertion_point(field_set_allocated:palm.portal.v1.SiteHeartbeatResponse.queue)
 }
 
 // optional string s3 = 4;
-inline bool SiteHealthCheckResponse::has_s3() const {
+inline bool SiteHeartbeatResponse::has_s3() const {
   bool value = CheckHasBit(_impl_._has_bits_[0], 0x00000008U);
   return value;
 }
-inline void SiteHealthCheckResponse::clear_s3() {
+inline void SiteHeartbeatResponse::clear_s3() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_.s3_.ClearToEmpty();
   ClearHasBit(_impl_._has_bits_[0],
                   0x00000008U);
 }
-inline const ::std::string& SiteHealthCheckResponse::s3() const
+inline const ::std::string& SiteHeartbeatResponse::s3() const
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:palm.portal.v1.SiteHealthCheckResponse.s3)
+  // @@protoc_insertion_point(field_get:palm.portal.v1.SiteHeartbeatResponse.s3)
   return _internal_s3();
 }
 template <typename Arg_, typename... Args_>
-PROTOBUF_ALWAYS_INLINE void SiteHealthCheckResponse::set_s3(Arg_&& arg, Args_... args) {
+PROTOBUF_ALWAYS_INLINE void SiteHeartbeatResponse::set_s3(Arg_&& arg, Args_... args) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   SetHasBit(_impl_._has_bits_[0], 0x00000008U);
   _impl_.s3_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
-  // @@protoc_insertion_point(field_set:palm.portal.v1.SiteHealthCheckResponse.s3)
+  // @@protoc_insertion_point(field_set:palm.portal.v1.SiteHeartbeatResponse.s3)
 }
-inline ::std::string* PROTOBUF_NONNULL SiteHealthCheckResponse::mutable_s3()
+inline ::std::string* PROTOBUF_NONNULL SiteHeartbeatResponse::mutable_s3()
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
   SetHasBit(_impl_._has_bits_[0], 0x00000008U);
   ::std::string* _s = _internal_mutable_s3();
-  // @@protoc_insertion_point(field_mutable:palm.portal.v1.SiteHealthCheckResponse.s3)
+  // @@protoc_insertion_point(field_mutable:palm.portal.v1.SiteHeartbeatResponse.s3)
   return _s;
 }
-inline const ::std::string& SiteHealthCheckResponse::_internal_s3() const {
+inline const ::std::string& SiteHeartbeatResponse::_internal_s3() const {
   ::google::protobuf::internal::TSanRead(&_impl_);
   return _impl_.s3_.Get();
 }
-inline void SiteHealthCheckResponse::_internal_set_s3(const ::std::string& value) {
+inline void SiteHeartbeatResponse::_internal_set_s3(const ::std::string& value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_.s3_.Set(value, GetArena());
 }
-inline ::std::string* PROTOBUF_NONNULL SiteHealthCheckResponse::_internal_mutable_s3() {
+inline ::std::string* PROTOBUF_NONNULL SiteHeartbeatResponse::_internal_mutable_s3() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   return _impl_.s3_.Mutable( GetArena());
 }
-inline ::std::string* PROTOBUF_NULLABLE SiteHealthCheckResponse::release_s3() {
+inline ::std::string* PROTOBUF_NULLABLE SiteHeartbeatResponse::release_s3() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  // @@protoc_insertion_point(field_release:palm.portal.v1.SiteHealthCheckResponse.s3)
+  // @@protoc_insertion_point(field_release:palm.portal.v1.SiteHeartbeatResponse.s3)
   if (!CheckHasBit(_impl_._has_bits_[0], 0x00000008U)) {
     return nullptr;
   }
@@ -3978,7 +3978,7 @@ inline ::std::string* PROTOBUF_NULLABLE SiteHealthCheckResponse::release_s3() {
   }
   return released;
 }
-inline void SiteHealthCheckResponse::set_allocated_s3(::std::string* PROTOBUF_NULLABLE value) {
+inline void SiteHeartbeatResponse::set_allocated_s3(::std::string* PROTOBUF_NULLABLE value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   if (value != nullptr) {
     SetHasBit(_impl_._has_bits_[0], 0x00000008U);
@@ -3989,50 +3989,50 @@ inline void SiteHealthCheckResponse::set_allocated_s3(::std::string* PROTOBUF_NU
   if (::google::protobuf::internal::DebugHardenForceCopyDefaultString() && _impl_.s3_.IsDefault()) {
     _impl_.s3_.Set("", GetArena());
   }
-  // @@protoc_insertion_point(field_set_allocated:palm.portal.v1.SiteHealthCheckResponse.s3)
+  // @@protoc_insertion_point(field_set_allocated:palm.portal.v1.SiteHeartbeatResponse.s3)
 }
 
 // string version = 98;
-inline void SiteHealthCheckResponse::clear_version() {
+inline void SiteHeartbeatResponse::clear_version() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_.version_.ClearToEmpty();
   ClearHasBit(_impl_._has_bits_[0],
                   0x00000010U);
 }
-inline const ::std::string& SiteHealthCheckResponse::version() const
+inline const ::std::string& SiteHeartbeatResponse::version() const
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:palm.portal.v1.SiteHealthCheckResponse.version)
+  // @@protoc_insertion_point(field_get:palm.portal.v1.SiteHeartbeatResponse.version)
   return _internal_version();
 }
 template <typename Arg_, typename... Args_>
-PROTOBUF_ALWAYS_INLINE void SiteHealthCheckResponse::set_version(Arg_&& arg, Args_... args) {
+PROTOBUF_ALWAYS_INLINE void SiteHeartbeatResponse::set_version(Arg_&& arg, Args_... args) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   SetHasBit(_impl_._has_bits_[0], 0x00000010U);
   _impl_.version_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
-  // @@protoc_insertion_point(field_set:palm.portal.v1.SiteHealthCheckResponse.version)
+  // @@protoc_insertion_point(field_set:palm.portal.v1.SiteHeartbeatResponse.version)
 }
-inline ::std::string* PROTOBUF_NONNULL SiteHealthCheckResponse::mutable_version()
+inline ::std::string* PROTOBUF_NONNULL SiteHeartbeatResponse::mutable_version()
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
   SetHasBit(_impl_._has_bits_[0], 0x00000010U);
   ::std::string* _s = _internal_mutable_version();
-  // @@protoc_insertion_point(field_mutable:palm.portal.v1.SiteHealthCheckResponse.version)
+  // @@protoc_insertion_point(field_mutable:palm.portal.v1.SiteHeartbeatResponse.version)
   return _s;
 }
-inline const ::std::string& SiteHealthCheckResponse::_internal_version() const {
+inline const ::std::string& SiteHeartbeatResponse::_internal_version() const {
   ::google::protobuf::internal::TSanRead(&_impl_);
   return _impl_.version_.Get();
 }
-inline void SiteHealthCheckResponse::_internal_set_version(const ::std::string& value) {
+inline void SiteHeartbeatResponse::_internal_set_version(const ::std::string& value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_.version_.Set(value, GetArena());
 }
-inline ::std::string* PROTOBUF_NONNULL SiteHealthCheckResponse::_internal_mutable_version() {
+inline ::std::string* PROTOBUF_NONNULL SiteHeartbeatResponse::_internal_mutable_version() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   return _impl_.version_.Mutable( GetArena());
 }
-inline ::std::string* PROTOBUF_NULLABLE SiteHealthCheckResponse::release_version() {
+inline ::std::string* PROTOBUF_NULLABLE SiteHeartbeatResponse::release_version() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  // @@protoc_insertion_point(field_release:palm.portal.v1.SiteHealthCheckResponse.version)
+  // @@protoc_insertion_point(field_release:palm.portal.v1.SiteHeartbeatResponse.version)
   if (!CheckHasBit(_impl_._has_bits_[0], 0x00000010U)) {
     return nullptr;
   }
@@ -4043,7 +4043,7 @@ inline ::std::string* PROTOBUF_NULLABLE SiteHealthCheckResponse::release_version
   }
   return released;
 }
-inline void SiteHealthCheckResponse::set_allocated_version(::std::string* PROTOBUF_NULLABLE value) {
+inline void SiteHeartbeatResponse::set_allocated_version(::std::string* PROTOBUF_NULLABLE value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   if (value != nullptr) {
     SetHasBit(_impl_._has_bits_[0], 0x00000010U);
@@ -4054,25 +4054,25 @@ inline void SiteHealthCheckResponse::set_allocated_version(::std::string* PROTOB
   if (::google::protobuf::internal::DebugHardenForceCopyDefaultString() && _impl_.version_.IsDefault()) {
     _impl_.version_.Set("", GetArena());
   }
-  // @@protoc_insertion_point(field_set_allocated:palm.portal.v1.SiteHealthCheckResponse.version)
+  // @@protoc_insertion_point(field_set_allocated:palm.portal.v1.SiteHeartbeatResponse.version)
 }
 
 // .google.protobuf.Timestamp created_at = 99;
-inline bool SiteHealthCheckResponse::has_created_at() const {
+inline bool SiteHeartbeatResponse::has_created_at() const {
   bool value = CheckHasBit(_impl_._has_bits_[0], 0x00000020U);
   PROTOBUF_ASSUME(!value || _impl_.created_at_ != nullptr);
   return value;
 }
-inline const ::google::protobuf::Timestamp& SiteHealthCheckResponse::_internal_created_at() const {
+inline const ::google::protobuf::Timestamp& SiteHeartbeatResponse::_internal_created_at() const {
   ::google::protobuf::internal::TSanRead(&_impl_);
   const ::google::protobuf::Timestamp* p = _impl_.created_at_;
   return p != nullptr ? *p : reinterpret_cast<const ::google::protobuf::Timestamp&>(::google::protobuf::_Timestamp_default_instance_);
 }
-inline const ::google::protobuf::Timestamp& SiteHealthCheckResponse::created_at() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:palm.portal.v1.SiteHealthCheckResponse.created_at)
+inline const ::google::protobuf::Timestamp& SiteHeartbeatResponse::created_at() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:palm.portal.v1.SiteHeartbeatResponse.created_at)
   return _internal_created_at();
 }
-inline void SiteHealthCheckResponse::unsafe_arena_set_allocated_created_at(
+inline void SiteHeartbeatResponse::unsafe_arena_set_allocated_created_at(
     ::google::protobuf::Timestamp* PROTOBUF_NULLABLE value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   if (GetArena() == nullptr) {
@@ -4084,9 +4084,9 @@ inline void SiteHealthCheckResponse::unsafe_arena_set_allocated_created_at(
   } else {
     ClearHasBit(_impl_._has_bits_[0], 0x00000020U);
   }
-  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:palm.portal.v1.SiteHealthCheckResponse.created_at)
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:palm.portal.v1.SiteHeartbeatResponse.created_at)
 }
-inline ::google::protobuf::Timestamp* PROTOBUF_NULLABLE SiteHealthCheckResponse::release_created_at() {
+inline ::google::protobuf::Timestamp* PROTOBUF_NULLABLE SiteHeartbeatResponse::release_created_at() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
 
   ClearHasBit(_impl_._has_bits_[0], 0x00000020U);
@@ -4105,16 +4105,16 @@ inline ::google::protobuf::Timestamp* PROTOBUF_NULLABLE SiteHealthCheckResponse:
   }
   return released;
 }
-inline ::google::protobuf::Timestamp* PROTOBUF_NULLABLE SiteHealthCheckResponse::unsafe_arena_release_created_at() {
+inline ::google::protobuf::Timestamp* PROTOBUF_NULLABLE SiteHeartbeatResponse::unsafe_arena_release_created_at() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  // @@protoc_insertion_point(field_release:palm.portal.v1.SiteHealthCheckResponse.created_at)
+  // @@protoc_insertion_point(field_release:palm.portal.v1.SiteHeartbeatResponse.created_at)
 
   ClearHasBit(_impl_._has_bits_[0], 0x00000020U);
   ::google::protobuf::Timestamp* temp = _impl_.created_at_;
   _impl_.created_at_ = nullptr;
   return temp;
 }
-inline ::google::protobuf::Timestamp* PROTOBUF_NONNULL SiteHealthCheckResponse::_internal_mutable_created_at() {
+inline ::google::protobuf::Timestamp* PROTOBUF_NONNULL SiteHeartbeatResponse::_internal_mutable_created_at() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   if (_impl_.created_at_ == nullptr) {
     auto* p = ::google::protobuf::Message::DefaultConstruct<::google::protobuf::Timestamp>(GetArena());
@@ -4122,14 +4122,14 @@ inline ::google::protobuf::Timestamp* PROTOBUF_NONNULL SiteHealthCheckResponse::
   }
   return _impl_.created_at_;
 }
-inline ::google::protobuf::Timestamp* PROTOBUF_NONNULL SiteHealthCheckResponse::mutable_created_at()
+inline ::google::protobuf::Timestamp* PROTOBUF_NONNULL SiteHeartbeatResponse::mutable_created_at()
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
   SetHasBit(_impl_._has_bits_[0], 0x00000020U);
   ::google::protobuf::Timestamp* _msg = _internal_mutable_created_at();
-  // @@protoc_insertion_point(field_mutable:palm.portal.v1.SiteHealthCheckResponse.created_at)
+  // @@protoc_insertion_point(field_mutable:palm.portal.v1.SiteHeartbeatResponse.created_at)
   return _msg;
 }
-inline void SiteHealthCheckResponse::set_allocated_created_at(::google::protobuf::Timestamp* PROTOBUF_NULLABLE value) {
+inline void SiteHeartbeatResponse::set_allocated_created_at(::google::protobuf::Timestamp* PROTOBUF_NULLABLE value) {
   ::google::protobuf::Arena* message_arena = GetArena();
   ::google::protobuf::internal::TSanWrite(&_impl_);
   if (message_arena == nullptr) {
@@ -4147,7 +4147,7 @@ inline void SiteHealthCheckResponse::set_allocated_created_at(::google::protobuf
   }
 
   _impl_.created_at_ = reinterpret_cast<::google::protobuf::Timestamp*>(value);
-  // @@protoc_insertion_point(field_set_allocated:palm.portal.v1.SiteHealthCheckResponse.created_at)
+  // @@protoc_insertion_point(field_set_allocated:palm.portal.v1.SiteHeartbeatResponse.created_at)
 }
 
 #ifdef __GNUC__

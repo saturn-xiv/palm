@@ -81,10 +81,10 @@ message Session {
 // ----------------------------------------------------------------------------
 
 service Site {
-  rpc HealthCheck(google.protobuf.Empty) returns (SiteHealthCheckResponse) {}
+  rpc Heartbeat(google.protobuf.Empty) returns (SiteHeartbeatResponse) {}
 }
 
-message SiteHealthCheckResponse{
+message SiteHeartbeatResponse{
   optional string db    = 1;
   optional string cache = 2;
   optional string queue = 3;
