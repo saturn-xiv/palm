@@ -8,6 +8,13 @@ $ ./tulip/docker/run.sh
 > ./scripts/build.sh
 ```
 
+## Development
+
+- start backend `./build/x86_64/tulip -d rpc -p 10011`
+- start frontend `npm run dev`
+- start proxy `envoy --use-dynamic-base-id -l debug -c envoy.yaml`
+- open browser `http://localhost:4000`
+
 ## Documents
 
 - [Version Support](https://protobuf.dev/support/version-support/)
