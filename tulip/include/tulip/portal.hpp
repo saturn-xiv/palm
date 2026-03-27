@@ -1,6 +1,7 @@
 #pragma once
 
-#include "casbin.grpc.pb.h"
+#include "cups.grpc.pb.h"
+#include "email.grpc.pb.h"
 #include "palm/cache.hpp"
 #include "palm/http.hpp"
 #include "palm/orm.hpp"
@@ -10,6 +11,10 @@
 #include "palm/snowflake.hpp"
 #include "palm/utils.hpp"
 #include "portal.grpc.pb.h"
+#include "rbac.grpc.pb.h"
+#include "s3.grpc.pb.h"
+#include "sms.grpc.pb.h"
+#include "tex.grpc.pb.h"
 #include "wechat-pay.grpc.pb.h"
 
 #include <boost/url.hpp>

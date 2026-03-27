@@ -16,21 +16,25 @@ function build_grpc() {
         exit 0
     fi
     if [ -d $SOURCE_ROOT ]; then
-        cd $SOURCE_ROOT
+        cd $SOURCE_ROOT/
         git checkout master
         git pull
+        git submodule update --recursive --remote
         git checkout $1
         git submodule update --init --recursive
     else
         git clone --recurse-submodules -b $1 https://github.com/grpc/grpc.git $SOURCE_ROOT
     fi
+    
+    cd $SOURCE_ROOT/third_party/protobuf/
+    git checkout $2
+    git submodule update --init --recursive
 
     if [ -d $BUILD_ROOT ]; then
         rm -r $BUILD_ROOT
     fi
-
-    CC=clang CXX=clang++ \
-        cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_CXX_STANDARD=20 \
+    
+    CC=clang CXX=clang++ cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_CXX_STANDARD=20 \
         -DABSL_PROPAGATE_CXX_STD=ON \
         -DgRPC_INSTALL=ON -DgRPC_SSL_PROVIDER=package -DgRPC_BUILD_TESTS=OFF \
         -DCMAKE_INSTALL_PREFIX=$INSTALL_ROOT -B $BUILD_ROOT -S $SOURCE_ROOT \
@@ -39,13 +43,12 @@ function build_grpc() {
     cmake --install $BUILD_ROOT
 }
 
-if [ "$#" -ne 1 ]; then
-    echo "USAGE: $0 GRPC_VERSION"
-    exit 1
-fi
+# if [ "$#" -ne 2 ]; then
+#     echo "USAGE: $0 GRPC_VERSION"
+#     exit 1
+# fi
 
-
-build_grpc $1
+build_grpc "v1.76.0" "v33.4"
 echo "done."
 
 exit 0
