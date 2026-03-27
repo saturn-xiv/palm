@@ -10,9 +10,22 @@
 #include <grpcpp/grpcpp.h>
 #include <grpcpp/health_check_service_interface.h>
 
-static std::function<void(int)> gl_shutdown_handler;
-
-static void signal_handler(int signal) { gl_shutdown_handler(signal); }
+static grpc::Server* gl_running_server = nullptr;
+static void signal_handler(int signal) {
+  if (gl_running_server == nullptr) {
+    return;
+  }
+  switch (signal) {
+    case SIGINT:
+      spdlog::warn("Ctrl+C caught, exiting...");
+      break;
+    case SIGTERM:
+      spdlog::warn("Terminated caught, exiting...");
+      break;
+  }
+  std::thread it([] { gl_running_server->Shutdown(); });
+  it.join();
+}
 
 int tulip::Application::rpc(const std::string& config_file,
                             uint16_t port) const {
@@ -39,17 +52,23 @@ int tulip::Application::rpc(const std::string& config_file,
   Config config(config_tree);
 
   const std::string address = std::format("0.0.0.0:{}", port);
-  tulip::portal::rpc::service::Site portal_site_service;
 
   grpc::EnableDefaultHealthCheckService(true);
   // TODO
   // grpc::reflection::InitProtoReflectionServerBuilderPlugin();
   grpc::ServerBuilder builder;
   builder.AddListeningPort(address, grpc::InsecureServerCredentials());
-  builder.RegisterService(&portal_site_service);
-  std::unique_ptr<grpc::Server> server(builder.BuildAndStart());
-  spdlog::info("listening on tcp://{}", address);
-  server->Wait();
 
+  tulip::portal::rpc::service::Site portal_site_service;
+  builder.RegisterService(&portal_site_service);
+
+  spdlog::info("listening on tcp://{}", address);
+  std::unique_ptr<grpc::Server> server(builder.BuildAndStart());
+
+  gl_running_server = server.get();
+  std::signal(SIGINT, signal_handler);
+  std::signal(SIGTERM, signal_handler);
+
+  server->Wait();
   return EXIT_SUCCESS;
 }
