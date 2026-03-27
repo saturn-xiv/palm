@@ -28,9 +28,6 @@ find_package(SOCI CONFIG REQUIRED)
 find_package(spdlog CONFIG REQUIRED)
 find_package(tomlplusplus CONFIG REQUIRED)
 find_package(cryptopp CONFIG REQUIRED)
-find_package(mailio CONFIG REQUIRED)
-find_package(miniocpp CONFIG REQUIRED)
-find_package(cpp-jwt CONFIG REQUIRED)
 
 find_path(CPPCODEC_INCLUDE_DIRS "cppcodec/base32_crockford.hpp")
 # -----------------------------------------------------------------------------
@@ -38,8 +35,8 @@ add_library(gourd STATIC ${LIB_SOURCES})
 
 target_link_libraries(gourd PUBLIC m dl anl
   Boost::algorithm Boost::uuid Boost::date_time Boost::filesystem Boost::url Boost::beast Boost::typeof Boost::exception
-  argparse::argparse spdlog::spdlog_header_only cpr::cpr cryptopp::cryptopp cpp-jwt::cpp-jwt
-  rabbitmq::rabbitmq-static redis++::redis++_static miniocpp::miniocpp mailio::mailio
+  argparse::argparse spdlog::spdlog_header_only cpr::cpr cryptopp::cryptopp
+  rabbitmq::rabbitmq-static redis++::redis++_static
   SOCI::soci_core_static SOCI::soci_postgresql_static
   nlohmann_json::nlohmann_json pantor::inja httplib::httplib tomlplusplus::tomlplusplus
 )

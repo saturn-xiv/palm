@@ -16,14 +16,10 @@
     "cppcodec",
     "tomlplusplus",
     "cpr",
-    "cpp-jwt",
-    "thrift",
-    "mailio",
     "cryptopp",
     { "name": "soci", "features": ["boost", "postgresql"] },
     { "name": "redis-plus-plus", "features": ["cxx17"] },
     "librabbitmq",
-    "minio-cpp",
     "grpc",
 
     "catch2"
