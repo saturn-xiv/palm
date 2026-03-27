@@ -9,7 +9,7 @@ export PROTOBUF_HOME=$HOME/.local
 # -----------------------------------------------------------------------------
 
 function generate_belladonna() {
-    echo "generate protocols for belladonna"
+    echo "generate for belladonna"
     local target=$WORKSPACE/belladonna
     if [ -d $target ]
     then
@@ -22,13 +22,22 @@ function generate_belladonna() {
         --cpp_out=$target --grpc_out=$target \
         --plugin=protoc-gen-grpc=$PROTOBUF_HOME/bin/grpc_cpp_plugin \
         $WORKSPACE/proto/*.proto
+    thrift -out $target --gen cpp:no_skeleton -r $WORKSPACE/proto/*.thrift
     mv $target/*.h $target/include/
-    mv $target/*.cc $target/src/
+    mv $target/*.cc $target/*.cpp $target/src/
+}
+
+function generate_loquat() {
+    echo "generate for loquat"
+    local target=$WORKSPACE/loquat
+    thrift -out $target/src --gen cpp:no_skeleton -r $WORKSPACE/proto/*.thrift
+    mv $target/src/*.h $target/include/
 }
 
 # -----------------------------------------------------------------------------
 
 generate_belladonna
+generate_loquat
 
 echo 'done.'
 exit 0
