@@ -7,6 +7,9 @@ option go_package = "./;v2";
 option csharp_namespace = "Palm.Plugins.Portal.Grpc";
 package palm.portal.v1;
 
+import "google/protobuf/empty.proto";
+import "google/protobuf/timestamp.proto";
+
 // ----------------------------------------------------------------------------
 
 message IdRequest {
@@ -25,7 +28,6 @@ message Pagination {
   int64 pages        = 4;
   int64 total        = 5;
 }
-
 
 message File  {
   string bucket = 1;
@@ -53,31 +55,30 @@ message Location {
 
 message EmailTask {
   message Address {
-    string name = 1;
+    string name  = 1;
     string email = 2;
   }
   message Body {
     string content = 1;
-    bool html = 2;
+    bool   html    = 2;
   }
   message Attachment {
-    string name = 1;
-    bytes content = 2;
-    bool inline = 3;
+    string name    = 1;
+    bytes  content = 2;
+    bool   inline  = 3;
   }
-  Address to = 1;
-  repeated Address cc = 2;
-  repeated Address bcc = 3;
-  string subject = 11;
-  Body body = 12;
+  Address             to          = 1;
+  repeated Address    cc          = 2;
+  repeated Address    bcc         = 3;
+  string              subject     = 11;
+  Body                body        = 12;
   repeated Attachment attachments = 13;
 }
 
-
 message SmsTask {
-  string from = 1;
-  repeated string to = 2;
-  string body = 3;
+  string          from = 1;
+  repeated string to   = 2;
+  string          body = 3;
 }
 
 message CupsTask {
@@ -143,8 +144,43 @@ message TexTask {
 
 // ----------------------------------------------------------------------------
 
-service User {}
+service User {
+}
 
+message UserIndexResponse{
+  message Item{
+    enum Type{
+      Email             = 0;
+      Sms               = 1;
+      GoogleOauth2      = 2;
+      WechatOauth2      = 3;
+      WechatMiniProgram = 4;
+    }
+    int64  id   = 1;
+    Type   type = 2;
+    string sn   = 3;
+  }
+  repeated Item items      = 1;
+  Pagination    pagination = 9;
+}
+
+message Session {
+  string                    locale     = 1;
+  optional string           client_ip  = 2;
+  google.protobuf.Timestamp created_at = 99;
+}
 // ----------------------------------------------------------------------------
 
-service Site {}
+service Site {
+  rpc HealthCheck(google.protobuf.Empty) returns (SiteHealthCheckResponse) {}
+}
+
+message SiteHealthCheckResponse{
+  optional string db    = 1;
+  optional string cache = 2;
+  optional string queue = 3;
+  optional string s3    = 4;
+
+  string                    version    = 98;
+  google.protobuf.Timestamp created_at = 99;
+}

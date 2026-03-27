@@ -1,5 +1,4 @@
-file(GLOB PROTOCOLS_SOURCES ${CMAKE_CURRENT_SOURCE_DIR}/src/*.cc)
-file(GLOB GOURD_SOURCE_LIST CONFIGURE_DEPENDS "${CMAKE_CURRENT_SOURCE_DIR}/src/*.cpp")
+file(GLOB LIB_SOURCES CONFIGURE_DEPENDS "${CMAKE_CURRENT_SOURCE_DIR}/src/*.cpp")
 # -----------------------------------------------------------------------------
 execute_process(COMMAND git describe --tags --always --dirty
     OUTPUT_VARIABLE GIT_REV
@@ -21,7 +20,6 @@ find_package(boost_exception CONFIG REQUIRED)
 find_package(argparse CONFIG REQUIRED)
 find_package(httplib CONFIG REQUIRED)
 find_package(cpr CONFIG REQUIRED)
-find_package(gRPC CONFIG REQUIRED)
 find_package(nlohmann_json CONFIG REQUIRED)
 find_package(inja CONFIG REQUIRED)
 find_package(rabbitmq-c CONFIG REQUIRED)
@@ -29,18 +27,21 @@ find_package(redis++ CONFIG REQUIRED)
 find_package(SOCI CONFIG REQUIRED)
 find_package(spdlog CONFIG REQUIRED)
 find_package(tomlplusplus CONFIG REQUIRED)
+find_package(cryptopp CONFIG REQUIRED)
+find_package(mailio CONFIG REQUIRED)
+find_package(miniocpp CONFIG REQUIRED)
+find_package(cpp-jwt CONFIG REQUIRED)
 
 find_path(CPPCODEC_INCLUDE_DIRS "cppcodec/base32_crockford.hpp")
 # -----------------------------------------------------------------------------
-add_library(gourd STATIC ${PROTOCOLS_SOURCES} ${GOURD_SOURCE_LIST}) 
+add_library(gourd STATIC ${LIB_SOURCES}) 
 
-target_link_libraries(gourd PUBLIC  m dl anl pthread
+target_link_libraries(gourd PUBLIC m dl anl
   Boost::algorithm Boost::uuid Boost::date_time Boost::filesystem Boost::url Boost::beast Boost::typeof Boost::exception
-  argparse::argparse spdlog::spdlog_header_only cpr::cpr
-  rabbitmq::rabbitmq-static redis++::redis++_static
+  argparse::argparse spdlog::spdlog_header_only cpr::cpr cryptopp::cryptopp cpp-jwt::cpp-jwt
+  rabbitmq::rabbitmq-static redis++::redis++_static miniocpp::miniocpp mailio::mailio
   SOCI::soci_core_static SOCI::soci_postgresql_static
   nlohmann_json::nlohmann_json pantor::inja httplib::httplib tomlplusplus::tomlplusplus
-  gRPC::grpc++
 )
 
 target_include_directories(gourd PUBLIC

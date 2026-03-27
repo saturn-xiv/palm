@@ -40,6 +40,10 @@ User::Service::~Service() {
 }
 
 
+static const char* Site_method_names[] = {
+  "/palm.portal.v1.Site/HealthCheck",
+};
+
 std::unique_ptr< Site::Stub> Site::NewStub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options) {
   (void)options;
   std::unique_ptr< Site::Stub> stub(new Site::Stub(channel, options));
@@ -47,12 +51,53 @@ std::unique_ptr< Site::Stub> Site::NewStub(const std::shared_ptr< ::grpc::Channe
 }
 
 Site::Stub::Stub(const std::shared_ptr< ::grpc::ChannelInterface>& channel, const ::grpc::StubOptions& options)
-  : channel_(channel){}
+  : channel_(channel), rpcmethod_HealthCheck_(Site_method_names[0], options.suffix_for_stats(),::grpc::internal::RpcMethod::NORMAL_RPC, channel)
+  {}
+
+::grpc::Status Site::Stub::HealthCheck(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::palm::portal::v1::SiteHealthCheckResponse* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::google::protobuf::Empty, ::palm::portal::v1::SiteHealthCheckResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_HealthCheck_, context, request, response);
+}
+
+void Site::Stub::async::HealthCheck(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::palm::portal::v1::SiteHealthCheckResponse* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::google::protobuf::Empty, ::palm::portal::v1::SiteHealthCheckResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_HealthCheck_, context, request, response, std::move(f));
+}
+
+void Site::Stub::async::HealthCheck(::grpc::ClientContext* context, const ::google::protobuf::Empty* request, ::palm::portal::v1::SiteHealthCheckResponse* response, ::grpc::ClientUnaryReactor* reactor) {
+  ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_HealthCheck_, context, request, response, reactor);
+}
+
+::grpc::ClientAsyncResponseReader< ::palm::portal::v1::SiteHealthCheckResponse>* Site::Stub::PrepareAsyncHealthCheckRaw(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::palm::portal::v1::SiteHealthCheckResponse, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_HealthCheck_, context, request);
+}
+
+::grpc::ClientAsyncResponseReader< ::palm::portal::v1::SiteHealthCheckResponse>* Site::Stub::AsyncHealthCheckRaw(::grpc::ClientContext* context, const ::google::protobuf::Empty& request, ::grpc::CompletionQueue* cq) {
+  auto* result =
+    this->PrepareAsyncHealthCheckRaw(context, request, cq);
+  result->StartCall();
+  return result;
+}
 
 Site::Service::Service() {
+  AddMethod(new ::grpc::internal::RpcServiceMethod(
+      Site_method_names[0],
+      ::grpc::internal::RpcMethod::NORMAL_RPC,
+      new ::grpc::internal::RpcMethodHandler< Site::Service, ::google::protobuf::Empty, ::palm::portal::v1::SiteHealthCheckResponse, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+          [](Site::Service* service,
+             ::grpc::ServerContext* ctx,
+             const ::google::protobuf::Empty* req,
+             ::palm::portal::v1::SiteHealthCheckResponse* resp) {
+               return service->HealthCheck(ctx, req, resp);
+             }, this)));
 }
 
 Site::Service::~Service() {
+}
+
+::grpc::Status Site::Service::HealthCheck(::grpc::ServerContext* context, const ::google::protobuf::Empty* request, ::palm::portal::v1::SiteHealthCheckResponse* response) {
+  (void) context;
+  (void) request;
+  (void) response;
+  return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
 }
 
 

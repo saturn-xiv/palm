@@ -3,8 +3,8 @@ include(FetchContent)
 
 project(
   tulip
-  VERSION 2026.3.23
-  DESCRIPTION "An open source online education & transaction solution."
+  VERSION 2026.3.27
+  DESCRIPTION "An open source online education solution."
   LANGUAGES CXX
 )
 # -----------------------------------------------------------------------------
@@ -14,13 +14,14 @@ set(CMAKE_CXX_EXTENSIONS OFF)
 
 set(CMAKE_LINKER_TYPE MOLD)
 # -----------------------------------------------------------------------------
+add_subdirectory(belladonna)
 add_subdirectory(gourd)
 add_subdirectory(tests)
 # -----------------------------------------------------------------------------
 file(GLOB TULIP_SOURCES ${CMAKE_CURRENT_SOURCE_DIR}/src/*.cpp)
 
 add_executable(tulip ${TULIP_SOURCES})
-target_link_libraries(tulip PRIVATE gourd)
+target_link_libraries(tulip PRIVATE gourd belladonna)
 target_link_options(tulip PRIVATE -static -static-libgcc -static-libstdc++ -Wl,--build-id=sha1)
 set_target_properties(tulip PROPERTIES LINK_FLAGS_RELEASE -s)    
 
