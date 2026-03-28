@@ -5,7 +5,7 @@ find_package(gRPC CONFIG REQUIRED)
 add_library(belladonna STATIC ${LIB_SOURCES}) 
 
 target_link_libraries(belladonna PUBLIC
-  gRPC::grpc++
+  gRPC::grpc++ gRPC::grpc++_reflection
 )
 
 target_include_directories(belladonna PUBLIC

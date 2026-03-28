@@ -6,7 +6,7 @@
 #include "tulip/forum.hpp"
 #include "tulip/portal.hpp"
 
-// #include <grpcpp/ext/proto_server_reflection_plugin.h>
+#include <grpcpp/ext/proto_server_reflection_plugin.h>
 #include <grpcpp/grpcpp.h>
 #include <grpcpp/health_check_service_interface.h>
 
@@ -55,7 +55,7 @@ int tulip::Application::rpc(const std::string& config_file,
 
   grpc::EnableDefaultHealthCheckService(true);
   // TODO grpc codegen feature
-  // grpc::reflection::InitProtoReflectionServerBuilderPlugin();
+  grpc::reflection::InitProtoReflectionServerBuilderPlugin();
   grpc::ServerBuilder builder;
   builder.AddListeningPort(address, grpc::InsecureServerCredentials());
 

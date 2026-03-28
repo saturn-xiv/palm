@@ -2,7 +2,8 @@
 
 set -e
 
-declare -a targets=("x86_64" "aarch64" "riscv64")
+# "riscv64"
+declare -a targets=("x86_64" "aarch64")
 for i in "${targets[@]}"
 do
    cmake --preset=$i
