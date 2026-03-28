@@ -1,7 +1,6 @@
 import type { Metadata } from "grpc-web";
 
-// TODO
-export const BACKEND = "http://localhost:8080";
+export const BACKEND = import.meta.env.VITE_BACKEND;
 
 export const metadata = (): Metadata => {
   return {};
