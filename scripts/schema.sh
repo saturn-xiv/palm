@@ -49,7 +49,7 @@ function generate_daisy() {
 # https://github.com/grpc/grpc-web?tab=readme-ov-file#typescript-support
 function generate_tulip_dashboard() {
     echo "generate protocols for tulip-dashboard"
-    local target=$WORKSPACE/tulip/dashboard/src/protocols
+    local target=$WORKSPACE/tulip/dashboard/src/grpc-web-client-gen
     if [ -d $target ]
     then
         rm -rf $target
@@ -59,6 +59,12 @@ function generate_tulip_dashboard() {
         --js_out=import_style=commonjs,binary:$target \
         --grpc-web_out=import_style=typescript,mode=grpcweb:$target \
         $WORKSPACE/tulip/proto/*.proto
+
+    # $PROTOBUF_HOME/bin/protoc -I $WORKSPACE/tulip/proto -I $PROTOBUF_HOME/include/google/protobuf \
+    #     --js_out=import_style=commonjs,binary:$target \
+    #     --grpc-web_out=import_style=commonjs+dts,mode=grpcweb:$target \
+    #     $WORKSPACE/tulip/proto/*.proto
+
 }
 
 function generate_tulip() {

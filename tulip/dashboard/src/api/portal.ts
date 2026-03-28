@@ -1,9 +1,9 @@
 import type { RpcError } from "grpc-web";
 import { Empty } from "google-protobuf/google/protobuf/empty_pb";
 
-import { SiteClient } from "../protocols/PortalServiceClientPb";
-import type { SiteHeartbeatResponse } from "../protocols/portal_pb";
 import { BACKEND, metadata } from ".";
+import type { SiteHeartbeatResponse } from "grpc-web-client-gen/portal_pb";
+import { SiteClient } from "grpc-web-client-gen/PortalServiceClientPb";
 
 export const heartbeat = (
   callback: (err: RpcError, res: SiteHeartbeatResponse) => void,

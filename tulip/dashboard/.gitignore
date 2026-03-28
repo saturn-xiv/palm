@@ -1,3 +1,6 @@
 /package-lock.json
 /node_modules/
 /dist/
+
+/src/grpc-web-client-gen/package-lock.json
+/src/grpc-web-client-gen/node_modules/

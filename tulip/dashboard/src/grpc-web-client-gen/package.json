@@ -1,0 +1,12 @@
+{
+  "name": "grpc-web-client-gen",
+  "version": "2026.3.28",
+  "description": "protocols",
+  "license": "MIT",
+  "author": "Jeremy Zheng",
+  "type": "commonjs",
+  "dependencies": {
+    "google-protobuf": "^4.0.2",
+    "grpc-web": "^2.0.2"
+  }
+}
