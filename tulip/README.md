@@ -17,6 +17,8 @@ $ ./tulip/docker/run.sh
 - testing
 
   ```bash
+  grpcurl -plaintext 127.0.0.1:10011 grpc.health.v1.Health/Check
+
   grpcurl -plaintext 127.0.0.1:10011 list
   grpcurl -plaintext 127.0.0.1:10011 list palm.portal.v1.Site
   grpcurl -plaintext 127.0.0.1:10011 palm.portal.v1.Site/Heartbeat
