@@ -14,7 +14,7 @@ const Widget = () => {
     });
   }, []);
 
-  return <div>Version{version}</div>;
+  return <div>Version: {version}</div>;
 };
 
 export default Widget;

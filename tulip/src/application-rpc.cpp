@@ -54,7 +54,7 @@ int tulip::Application::rpc(const std::string& config_file,
   const std::string address = std::format("0.0.0.0:{}", port);
 
   grpc::EnableDefaultHealthCheckService(true);
-  // TODO
+  // TODO grpc codegen feature
   // grpc::reflection::InitProtoReflectionServerBuilderPlugin();
   grpc::ServerBuilder builder;
   builder.AddListeningPort(address, grpc::InsecureServerCredentials());

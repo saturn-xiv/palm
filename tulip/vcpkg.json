@@ -22,7 +22,7 @@
     { "name": "soci", "features": ["boost", "postgresql"] },
     { "name": "redis-plus-plus", "features": ["cxx17"] },
     "librabbitmq",
-    "grpc",
+    { "name": "grpc", "features": [] },
 
     "catch2"
   ]
