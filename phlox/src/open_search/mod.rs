@@ -40,6 +40,7 @@ impl Default for Node {
 
 impl Node {
     pub fn single(&self) -> OpenSearchResult<Client> {
+        log::info!("open OpenSearch {}", self.host);
         let transport =
             TransportBuilder::new(SingleNodeConnectionPool::new(Url::parse(&self.host)?))
                 .disable_proxy()

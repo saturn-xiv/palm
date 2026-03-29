@@ -4,7 +4,6 @@ version = "2026.3.29"
 edition = "2024"
 
 [dependencies]
-chrono = "0.4"
 log = "0.4"
 minio = "0.3"
 axum = "0.8"
@@ -20,6 +19,10 @@ opensearch = "2"
 lapin = "4"
 flexbuffers = "25"
 
+
+[dependencies.chrono]
+version = "0.4"
+features = ["serde"]
 
 [dependencies.chrono-tz]
 version = "0.10"
