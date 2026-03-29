@@ -10,10 +10,10 @@ pub mod queue;
 pub mod random;
 pub mod ssha512;
 
-use std::error::Error as StdError;
 use std::fmt;
 use std::result::Result as StdResult;
 use std::str::FromStr;
+use std::{error::Error as StdError, time::Duration};
 
 use data_encoding::{BASE64_NOPAD, DecodeError as Base64DecodeError};
 use hyper::StatusCode;
@@ -71,4 +71,9 @@ pub trait Mac {
 pub trait Enigma {
     fn encrypt(&self, plain: &[u8]) -> Result<(Vec<u8>, Vec<u8>)>;
     fn decrypt(&self, code: &[u8], nonce: &[u8]) -> Result<Vec<u8>>;
+}
+
+pub trait Jwt {
+    fn sign(&self, issuer: &str, subject: &str, audience: &str, ttl: Duration) -> Result<String>;
+    fn verify<T: ToString>(&self, token: &str, issuer: &str, audiences: &[T]) -> Result<String>;
 }
