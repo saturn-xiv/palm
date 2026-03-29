@@ -9,7 +9,7 @@ use diesel::{
 };
 use serde::{Deserialize, Serialize};
 
-pub use diesel::QueryResult;
+pub use diesel::{Connection, QueryResult};
 
 #[derive(Debug, Clone, Serialize, Deserialize, QueryableByName)]
 pub struct Heartbeat {

@@ -12,8 +12,11 @@ pub mod random;
 use std::error::Error as StdError;
 use std::fmt;
 use std::result::Result as StdResult;
+use std::str::FromStr;
 
+use data_encoding::{BASE64_NOPAD, DecodeError as Base64DecodeError};
 use hyper::StatusCode;
+use serde::{Deserialize, Serialize};
 
 pub type Error = Box<dyn StdError + Send + Sync>;
 pub type Result<T> = StdResult<T, Error>;
@@ -39,3 +42,23 @@ impl From<Error> for HttpError {
 
 pub type HttpResult<T> = StdResult<T, HttpError>;
 pub type GrpcResult<T> = StdResult<tonic::Response<T>, tonic::Status>;
+
+#[derive(Debug, Clone, Serialize, Deserialize)]
+pub struct Key(pub Vec<u8>);
+
+impl fmt::Display for Key {
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        write!(f, "{}", BASE64_NOPAD.encode(&self.0))
+    }
+}
+impl FromStr for Key {
+    type Err = Base64DecodeError;
+
+    fn from_str(s: &str) -> StdResult<Self, Self::Err> {
+        let mut buf = vec![0; BASE64_NOPAD.decode_len(s.len())?];
+        BASE64_NOPAD
+            .decode_mut(s.as_bytes(), &mut buf)
+            .map_err(|x| x.error)?;
+        Ok(Self(buf))
+    }
+}

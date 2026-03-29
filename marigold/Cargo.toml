@@ -33,7 +33,6 @@ features = ["full"]
 [dependencies.diesel]
 version = "2"
 default-features = false
-features = ["r2d2", "postgres", "sqlite", "extras", "huge-tables"]
 
 [dependencies.phlox]
 path = "../phlox"
