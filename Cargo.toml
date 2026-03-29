@@ -3,7 +3,6 @@ lto = true
 strip = true
 
 [workspace]
-
 resolver = "2"
 
 members = ["phlox", "marigold"]

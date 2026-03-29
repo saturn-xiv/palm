@@ -1,6 +1,6 @@
 [package]
 name = "marigold"
-version = "2026.1.18"
+version = "2026.3.29"
 edition = "2024"
 description = "A total free online education solution."
 
@@ -18,7 +18,6 @@ tonic-types = "0.14"
 hyper = "1"
 clap = "4"
 
-
 [dependencies.reqwest]
 version = "0.13"
 features = ["json"]
@@ -34,27 +33,10 @@ features = ["full"]
 [dependencies.diesel]
 version = "2"
 default-features = false
-features = ["postgres", "sqlite", "extras", "huge-tables"] # "mysql",
-
-[dependencies.libsqlite3-sys]
-version = "*"
-features = ["bundled"]
-
-# [dependencies.mysqlclient-sys]
-# version = "*"
-# features = ["bundled"]
-
-[dependencies.pq-sys]
-version = "*"
-features = ["bundled"]
-
-[dependencies.openssl-sys]
-version = "*"
-features = ["vendored"]
+features = ["r2d2", "postgres", "sqlite", "extras", "huge-tables"]
 
 [dependencies.phlox]
 path = "../phlox"
-
 
 [build-dependencies]
 tonic-prost-build = "0.14"
