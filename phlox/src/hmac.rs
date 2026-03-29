@@ -10,8 +10,10 @@ pub struct HmacSha512 {
 }
 
 impl HmacSha512 {
-    pub fn new(key: Vec<u8>) -> Self {
-        Self { key }
+    pub fn new(key: &[u8]) -> Self {
+        Self {
+            key: key.to_owned(),
+        }
     }
 }
 

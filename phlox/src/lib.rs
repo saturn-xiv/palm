@@ -68,3 +68,7 @@ pub trait Mac {
     fn sign(&self, message: &[u8]) -> Result<Vec<u8>>;
     fn verify(&self, hash: &[u8], message: &[u8]) -> Result<()>;
 }
+pub trait Enigma {
+    fn encrypt(&self, plain: &[u8]) -> Result<(Vec<u8>, Vec<u8>)>;
+    fn decrypt(&self, code: &[u8], nonce: &[u8]) -> Result<Vec<u8>>;
+}

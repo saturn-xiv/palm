@@ -6,7 +6,7 @@ const HELLO: &str = "Hello, Phlox!";
 
 #[test]
 fn sha512() {
-    let mac = HmacSha512::new(random_bytes(128));
+    let mac = HmacSha512::new(&random_bytes(128));
 
     for i in 1..10 {
         let msg = format!("{}({})", HELLO, i);
