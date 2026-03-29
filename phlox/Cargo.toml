@@ -4,15 +4,24 @@ version = "2026.3.29"
 edition = "2024"
 
 [dependencies]
+chrono = "0.4"
+log = "0.4"
+minio = "0.3"
 axum = "0.8"
 rabbitmq-stream-client = "0.11"
+r2d2 = "0.8"
 tonic = "0.14"
-minio = "0.3"
+prost = "0.14"
+prost-types = "0.14"
 hyper = "1"
 data-encoding = "2"
 opensearch = "2"
 lapin = "4"
 flexbuffers = "25"
+
+[dependencies.chrono-tz]
+version = "0.10"
+features = ["serde"]
 
 [dependencies.rand]
 version = "0.10"
@@ -24,7 +33,11 @@ features = ["json"]
 
 [dependencies.redis]
 version = "1"
-features = ["r2d2"]
+features = ["r2d2", "cluster"]
+
+[dependencies.serde]
+version = "1"
+features = ["derive"]
 
 [dependencies.uuid]
 version = "1"
