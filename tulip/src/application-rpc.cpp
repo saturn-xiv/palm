@@ -54,7 +54,6 @@ int tulip::Application::rpc(const std::string& config_file,
   const std::string address = std::format("0.0.0.0:{}", port);
 
   grpc::EnableDefaultHealthCheckService(true);
-  // TODO grpc codegen feature
   grpc::reflection::InitProtoReflectionServerBuilderPlugin();
   grpc::ServerBuilder builder;
   builder.AddListeningPort(address, grpc::InsecureServerCredentials());
@@ -62,13 +61,21 @@ int tulip::Application::rpc(const std::string& config_file,
   tulip::portal::rpc::service::Site portal_site_service;
   builder.RegisterService(&portal_site_service);
 
-  spdlog::info("listening on tcp://{}", address);
   std::unique_ptr<grpc::Server> server(builder.BuildAndStart());
+
+  {
+    grpc::HealthCheckServiceInterface* health_service =
+        server->GetHealthCheckService();
+    if (health_service) {
+      health_service->SetServingStatus(true);
+    }
+  }
 
   gl_running_server = server.get();
   std::signal(SIGINT, signal_handler);
   std::signal(SIGTERM, signal_handler);
 
+  spdlog::info("listening on tcp://{}", address);
   server->Wait();
   return EXIT_SUCCESS;
 }
