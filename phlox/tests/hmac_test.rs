@@ -1,7 +1,5 @@
 use phlox::{
-    base64::encode as base64_encode,
-    hmac::{Hmac, HmacSha512},
-    random::bytes as random_bytes,
+    Mac, base64::encode as base64_encode, hmac::HmacSha512, random::bytes as random_bytes,
 };
 
 const HELLO: &str = "Hello, Phlox!";

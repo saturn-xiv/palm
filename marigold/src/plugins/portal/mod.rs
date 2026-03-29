@@ -1,4 +1,4 @@
-use phlox::{Result, base64, hmac::Hmac, random};
+use phlox::{Mac, Result, base64, random};
 use prost::Message as ProtobufMessage;
 
 use super::super::palm::portal::v1::HashedPassword;
@@ -13,7 +13,7 @@ impl HashedPassword {
         }
     }
 
-    pub fn sign<H: Hmac, P: AsRef<str>>(&self, mac: &H) -> Result<String> {
+    pub fn sign<H: Mac, P: AsRef<str>>(&self, mac: &H) -> Result<String> {
         let tmp = Self {
             data: mac.sign(&self.to_vec()?)?,
             salt: self.salt.clone(),
@@ -21,7 +21,7 @@ impl HashedPassword {
         let it = base64::encode(&tmp.to_vec()?);
         Ok(it)
     }
-    pub fn verify<H: Hmac, S: AsRef<str>, P: AsRef<str>>(
+    pub fn verify<H: Mac, S: AsRef<str>, P: AsRef<str>>(
         mac: &H,
         hash: S,
         password: P,

@@ -1,14 +1,9 @@
-use hmac::{Hmac as Hmac_, KeyInit, Mac};
+use hmac::{Hmac as Hmac_, KeyInit, Mac as Mac_};
 use sha2::Sha512;
 
 use super::Result;
 
 type HmacSha512_ = Hmac_<Sha512>;
-
-pub trait Hmac {
-    fn sign(&self, message: &[u8]) -> Result<Vec<u8>>;
-    fn verify(&self, hash: &[u8], message: &[u8]) -> Result<()>;
-}
 
 pub struct HmacSha512 {
     key: Vec<u8>,
@@ -20,7 +15,7 @@ impl HmacSha512 {
     }
 }
 
-impl Hmac for HmacSha512 {
+impl super::Mac for HmacSha512 {
     fn sign(&self, message: &[u8]) -> Result<Vec<u8>> {
         let mut mac = HmacSha512_::new_from_slice(&self.key)?;
         mac.update(message);

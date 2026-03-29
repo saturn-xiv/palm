@@ -8,6 +8,7 @@ pub mod open_search;
 pub mod orm;
 pub mod queue;
 pub mod random;
+pub mod ssha512;
 
 use std::error::Error as StdError;
 use std::fmt;
@@ -61,4 +62,9 @@ impl FromStr for Key {
             .map_err(|x| x.error)?;
         Ok(Self(buf))
     }
+}
+
+pub trait Mac {
+    fn sign(&self, message: &[u8]) -> Result<Vec<u8>>;
+    fn verify(&self, hash: &[u8], message: &[u8]) -> Result<()>;
 }

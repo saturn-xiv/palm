@@ -24,7 +24,7 @@ RUN pacman xdebug php-fpm php-pgsql php-sqlite php-redis php-mongodb php-imagick
     -S --needed --noconfirm && pacman -Scc --noconfirm
 RUN pacman dart haxe lua erlang elixir jdk-openjdk \
     -S --needed --noconfirm && pacman -Scc --noconfirm
-RUN pacman nginx mariadb postgresql rabbitmq redis supervisor \
+RUN pacman nginx mariadb postgresql rabbitmq redis dovecot postfix supervisor \
         ansible ansible-lint hugo \
     -S --needed --noconfirm && pacman -Scc --noconfirm
 RUN pacman wqy-bitmapfont wqy-microhei wqy-zenhei \
