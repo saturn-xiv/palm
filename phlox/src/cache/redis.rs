@@ -1,16 +1,16 @@
 use std::{ops::DerefMut, time::Duration};
 
-use ::redis::{
-    Client as RedisClient, Connection as RedisConnection, RedisResult,
-    cluster::{ClusterClient as RedisClusterClient, ClusterConnection as RedisClusterConnection},
-};
 use flexbuffers::{FlexbufferSerializer, Reader as FlexbufferReader};
 use prost::Message as ProtobufMessage_;
 use r2d2::Pool;
+use redis::{
+    Client as RedisClient, Connection as RedisConnection, RedisResult,
+    cluster::{ClusterClient as RedisClusterClient, ClusterConnection as RedisClusterConnection},
+};
 use serde::{Deserialize, Serialize, de::DeserializeOwned};
 
-pub use ::redis::{Commands, RedisError};
 pub use r2d2::ManageConnection;
+pub use redis::{Commands, RedisError};
 
 use super::super::Result;
 

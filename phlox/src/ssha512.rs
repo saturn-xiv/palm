@@ -10,7 +10,7 @@ pub fn sign<P: AsRef<str>>(password: P, salt_len: usize) -> Result<String> {
     sum(password, &salt)
 }
 
-pub fn verify<P: AsRef<str>, H: AsRef<str>>(hash: H, password: &P) -> Result<()> {
+pub fn verify<P: AsRef<str>, H: AsRef<str>>(hash: H, password: P) -> Result<()> {
     let hash = hash.as_ref();
     let tmp = {
         let it = hash.strip_prefix(HEADER).ok_or_else(|| {
