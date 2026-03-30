@@ -6,6 +6,7 @@ edition = "2024"
 [dependencies]
 crypto-common = "0.2"
 futures-util = "0.3"
+mime = "0.3"
 log = "0.4"
 aead = "0.5"
 minio = "0.3"
@@ -14,7 +15,7 @@ rabbitmq-stream-client = "0.11"
 r2d2 = "0.8"
 sha2 = "0.11"
 aes-gcm-siv = "=0.12.0-rc.3"    # FIXME
-hmac = "=0.13.0-rc.6"           # FIXME
+hmac = "=0.13"
 tonic = "0.14"
 prost = "0.14"
 prost-types = "0.14"

@@ -1,6 +1,7 @@
 pub mod aead;
 pub mod base64;
 pub mod cache;
+pub mod content_type;
 pub mod hmac;
 pub mod jwt;
 pub mod minio;
