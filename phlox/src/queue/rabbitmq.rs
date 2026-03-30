@@ -1,3 +1,5 @@
+use std::sync::Arc;
+
 use flexbuffers::{FlexbufferSerializer, Reader as FlexbufferReader};
 use futures_util::StreamExt;
 use hyper::StatusCode;
@@ -9,7 +11,10 @@ use lapin::{
 use prost::Message as ProtobufMessage_;
 use serde::{Deserialize, Serialize};
 
-pub use lapin::options::{BasicPublishOptions, QueueDeclareOptions};
+pub use lapin::{
+    ExchangeKind,
+    options::{BasicPublishOptions, ExchangeDeclareOptions, QueueBindOptions, QueueDeclareOptions},
+};
 
 use super::super::{Error, HttpError, Result, content_type::*, random::uuid};
 
@@ -57,7 +62,7 @@ impl Default for Node {
 }
 
 impl Node {
-    pub async fn open(&self) -> LapinResult<Client> {
+    pub async fn open(&self) -> LapinResult<Arc<Client>> {
         log::info!(
             "open RabbitMQ amqp://{}@{}:{}/{}",
             self.user,
@@ -73,7 +78,7 @@ impl Node {
             ConnectionProperties::default(),
         )
         .await?;
-        Ok(Client { connection: con })
+        Ok(Arc::new(Client { connection: con }))
     }
 }
 
@@ -82,6 +87,53 @@ pub struct Client {
 }
 
 impl Client {
+    pub async fn bind_queue(
+        &self,
+        queue: &str,
+        exchange: &str,
+        routing_key: &str,
+        options: QueueBindOptions,
+    ) -> LapinResult<()> {
+        log::info!("bind queue {} to exchange {}", queue, exchange);
+        let channel = self.connection.create_channel().await?;
+        channel
+            .queue_bind(
+                queue.into(),
+                exchange.into(),
+                routing_key.into(),
+                options,
+                FieldTable::default(),
+            )
+            .await?;
+        Ok(())
+    }
+    pub async fn declare_exchange(
+        &self,
+        name: &str,
+        kind: ExchangeKind,
+        options: ExchangeDeclareOptions,
+    ) -> LapinResult<()> {
+        log::info!("declare exchange {}", name);
+        let channel = self.connection.create_channel().await?;
+        channel
+            .exchange_declare(name.into(), kind, options, FieldTable::default())
+            .await?;
+        Ok(())
+    }
+    pub async fn declare_anonymous_queue(
+        &self,
+        options: QueueDeclareOptions,
+    ) -> LapinResult<String> {
+        log::info!("declare an anonymous queue");
+        let channel = self.connection.create_channel().await?;
+        let queue = channel
+            .queue_declare("".into(), options, FieldTable::default())
+            .await?;
+
+        let name = queue.name();
+        log::debug!("queue {} was created", name);
+        Ok(name.to_string())
+    }
     pub async fn declare_queue(&self, name: &str, options: QueueDeclareOptions) -> LapinResult<()> {
         log::info!("declare queue {}", name);
         let channel = self.connection.create_channel().await?;

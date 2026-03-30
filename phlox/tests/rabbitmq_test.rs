@@ -1,3 +1,5 @@
+use std::{ops::Deref, sync::Arc};
+
 use phlox::{
     Error, Result,
     queue::{
@@ -78,10 +80,10 @@ async fn plain_producer() {
 #[tokio::test]
 async fn flexbuffers_producer() {
     let client = open_rabbitmq().await.unwrap();
-
+    let client = client.deref();
     for i in 1..10 {
         FlexBuffersMessage::publish(
-            &client,
+            client,
             "",
             FLEXBUFFERS_CONSUMER_QUEUE,
             &Message {
@@ -97,10 +99,11 @@ async fn flexbuffers_producer() {
 #[tokio::test]
 async fn protobuf_producer() {
     let client = open_rabbitmq().await.unwrap();
+    let client = client.deref();
 
     for i in 1..10 {
         ProtobufMessage::publish(
-            &client,
+            client,
             "",
             PROTOBUF_CONSUMER_QUEUE,
             &prost_types::Duration {
@@ -183,7 +186,7 @@ async fn protobuf_consumer() {
         .unwrap();
 }
 
-async fn open_rabbitmq() -> Result<Client> {
+async fn open_rabbitmq() -> Result<Arc<Client>> {
     let cfg = Node {
         host: "127.0.0.1".to_string(),
         port: 5672,

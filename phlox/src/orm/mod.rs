@@ -9,6 +9,7 @@ use diesel::{
 };
 use serde::{Deserialize, Serialize};
 
+pub use casbin::{Adapter, RbacApi};
 pub use diesel::{Connection as TransactionConnection, QueryResult};
 
 #[derive(Debug, Clone, Serialize, Deserialize, QueryableByName)]
