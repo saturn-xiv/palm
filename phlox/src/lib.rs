@@ -4,6 +4,7 @@ pub mod cache;
 pub mod casbin;
 pub mod content_type;
 pub mod hmac;
+pub mod iso4217;
 pub mod jwt;
 pub mod minio;
 pub mod open_search;
