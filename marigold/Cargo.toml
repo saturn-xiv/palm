@@ -30,6 +30,10 @@ features = ["derive"]
 version = "0.31"
 features = ["user"]
 
+[dependencies.serde]
+version = "1"
+features = ["derive"]
+
 [dependencies.tokio]
 version = "1"
 features = ["full"]

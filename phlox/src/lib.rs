@@ -14,12 +14,16 @@ pub mod random;
 pub mod ssha512;
 
 use std::fmt;
+use std::fs;
+use std::os::unix::fs::PermissionsExt;
+use std::path::Path;
 use std::result::Result as StdResult;
 use std::str::FromStr;
 use std::{error::Error as StdError, time::Duration};
 
 use data_encoding::{BASE64_NOPAD, DecodeError as Base64DecodeError};
 use hyper::StatusCode;
+use serde::de::DeserializeOwned;
 use serde::{Deserialize, Serialize};
 
 pub type Error = Box<dyn StdError + Send + Sync>;
@@ -46,6 +50,26 @@ impl From<Error> for HttpError {
 
 pub type HttpResult<T> = StdResult<T, HttpError>;
 pub type GrpcResult<T> = StdResult<tonic::Response<T>, tonic::Status>;
+
+pub fn is_stopped() -> bool {
+    Path::new(".stop").exists()
+}
+pub fn check_permission<P: AsRef<Path>>(file: P) -> Result<()> {
+    match fs::metadata(file)?.permissions().mode() {
+        0o400 | 0o600 => Ok(()),
+        _ => Err(Box::new(HttpError(
+            StatusCode::FORBIDDEN,
+            Some("file permission is too open".to_string()),
+        ))),
+    }
+}
+pub fn parse_toml<P: AsRef<Path>, T: DeserializeOwned>(file: P) -> Result<T> {
+    let cfg = file.as_ref();
+    log::info!("load configuration from {}", cfg.display());
+    check_permission(cfg)?;
+    let it: T = toml::from_str(&fs::read_to_string(cfg)?)?;
+    Ok(it)
+}
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct Key(pub Vec<u8>);

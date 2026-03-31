@@ -1,6 +1,7 @@
 use std::path::Path;
 
 use phlox::Result;
+use serde::{Deserialize, Serialize};
 
 pub fn list<P: AsRef<Path>>(_config: P) -> Result<()> {
     // TODO
@@ -25,3 +26,6 @@ pub async fn delete_role<P: AsRef<Path>>(_config: P, _user: &str, _role: &str) -
     // TODO
     Ok(())
 }
+
+#[derive(Debug, Clone, Serialize, Deserialize)]
+pub struct Config {}
