@@ -40,10 +40,10 @@ pub struct CcyNtry {
 
 impl CcyNtry {
     pub fn units(&self) -> StdResult<Option<u8>, ParseIntError> {
-        if let Some(ref it) = self.units {
-            if it.value != "N.A." {
-                return it.value.parse::<u8>().map(Some);
-            }
+        if let Some(ref it) = self.units
+            && it.value != "N.A."
+        {
+            return it.value.parse::<u8>().map(Some);
         }
         Ok(None)
     }

@@ -27,3 +27,4 @@ git submodule update --init --recursive
 - [WeUI - tailor-made for WeChat web service](https://github.com/Tencent/weui)
 - [Modified Preorder Tree Traversal](https://gist.github.com/tmilos/f2f999b5839e2d42d751)
 - [JSON Web Token (JWT)](https://self-issued.info/docs/draft-ietf-oauth-json-web-token.html)
+- [Distance Between Two Locations (Sphere)](https://simplemaps.com/resources/location-distance)
