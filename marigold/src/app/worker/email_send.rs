@@ -40,15 +40,20 @@ pub async fn start<P: AsRef<Path>>(config: P, queue: &str, interval: Duration) -
         )
         .await?;
 
+    let from = Mailbox {
+        name: None,
+        email: config.smtp.user.parse()?,
+    };
     loop {
         if let Err(e) = client
             .consume(
                 "phlox.email-send",
                 queue,
                 &RabbitMqProtobufConsumer {
-                    handler: ProtobufEchoConsumer {
+                    handler: ProtobufEmailSendConsumer {
                         mailer: mailer.clone(),
                         interval,
+                        from: from.clone(),
                     },
                 },
             )
@@ -66,41 +71,44 @@ pub struct Config {
     rabbitmq: RabbitMq,
 }
 
-struct ProtobufEchoConsumer {
+struct ProtobufEmailSendConsumer {
     mailer: Arc<SmtpTransport>,
     interval: Duration,
+    from: Mailbox,
 }
 
-impl ProtobufConsumer for ProtobufEchoConsumer {
+impl ProtobufConsumer for ProtobufEmailSendConsumer {
     type Message = Task;
     async fn consume(&self, _id: &str, task: Self::Message) -> Result<()> {
         log::info!("send email({}) to {:?}", task.subject, task.to);
-        let mail = Message::try_from(task)?;
+        let mail = Message::try_from(Job {
+            task,
+            from: self.from.clone(),
+        })?;
         self.mailer.send(&mail)?;
         sleep(self.interval).await;
         Ok(())
     }
 }
 
-impl TryFrom<Task> for Message {
+struct Job {
+    task: Task,
+    from: Mailbox,
+}
+
+impl TryFrom<Job> for Message {
     type Error = Error;
 
-    fn try_from(task: Task) -> StdResult<Self, Self::Error> {
-        let mut builder = Message::builder().subject(&task.subject);
-        {
-            let it = task.from.as_ref().ok_or_else(|| {
-                HttpError(
-                    StatusCode::BAD_REQUEST,
-                    Some("empty from address".to_string()),
-                )
-            })?;
-            builder = builder.from(Mailbox::try_from(it.clone())?);
-        }
-        if let Some(ref it) = task.reply_to {
+    fn try_from(job: Job) -> StdResult<Self, Self::Error> {
+        let mut builder = Message::builder()
+            .subject(&job.task.subject)
+            .from(job.from.clone());
+
+        if let Some(ref it) = job.task.reply_to {
             builder = builder.reply_to(Mailbox::try_from(it.clone())?);
         }
         {
-            let it = task.to.as_ref().ok_or_else(|| {
+            let it = job.task.to.as_ref().ok_or_else(|| {
                 HttpError(
                     StatusCode::BAD_REQUEST,
                     Some("empty to address".to_string()),
@@ -108,15 +116,15 @@ impl TryFrom<Task> for Message {
             })?;
             builder = builder.to(Mailbox::try_from(it.clone())?);
         }
-        for it in task.cc.iter() {
+        for it in job.task.cc.iter() {
             builder = builder.cc(Mailbox::try_from(it.clone())?);
         }
-        for it in task.bcc.iter() {
+        for it in job.task.bcc.iter() {
             builder = builder.bcc(Mailbox::try_from(it.clone())?);
         }
 
         let mut parts = {
-            let body = task.body.as_ref().ok_or_else(|| {
+            let body = job.task.body.as_ref().ok_or_else(|| {
                 HttpError(
                     StatusCode::BAD_REQUEST,
                     Some("empty email body".to_string()),
@@ -133,7 +141,7 @@ impl TryFrom<Task> for Message {
             })
         };
 
-        for it in task.attachments.iter() {
+        for it in job.task.attachments.iter() {
             let part = match it.inline_id {
                 // <img src="cid:123">
                 Some(ref content_id) => {

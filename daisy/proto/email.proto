@@ -22,11 +22,11 @@ message Task {
     bytes           body         = 3;
     optional string inline_id    = 9;
   }
-  Address          from     = 1;
-  optional Address reply_to = 2;
-  Address          to       = 3;
-  repeated Address cc       = 4;
-  repeated Address bcc      = 5;
+
+  optional Address reply_to = 1;
+  Address          to       = 2;
+  repeated Address cc       = 3;
+  repeated Address bcc      = 4;
 
   string              subject     = 11;
   Body                body        = 12;

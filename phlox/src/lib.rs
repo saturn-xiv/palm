@@ -13,6 +13,7 @@ pub mod orm;
 pub mod queue;
 pub mod random;
 pub mod ssha512;
+pub mod twilio;
 
 use std::fmt;
 use std::fs;
