@@ -28,6 +28,8 @@ use hyper::StatusCode;
 use serde::de::DeserializeOwned;
 use serde::{Deserialize, Serialize};
 
+pub use tempfile::{NamedTempFile, tempdir};
+
 pub type Error = Box<dyn StdError + Send + Sync>;
 pub type Result<T> = StdResult<T, Error>;
 

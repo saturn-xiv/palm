@@ -38,7 +38,7 @@ pub async fn start<P: AsRef<Path>>(config: P, queue: &str, interval: Duration) -
     loop {
         if let Err(e) = client
             .consume(
-                "phlox.email-send",
+                "phlox.sms-send.twilio",
                 queue,
                 &RabbitMqProtobufConsumer {
                     handler: ProtobufSmsSendConsumer {

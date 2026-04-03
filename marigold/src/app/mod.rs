@@ -85,6 +85,45 @@ enum Commands {
         #[arg(short, long, required = true, help = "Queue name")]
         queue: String,
     },
+    #[command(arg_required_else_help = true, about = "Start a sms-send worker")]
+    SmsSendWorker {
+        #[arg(
+            short,
+            long,
+            required = true,
+            help = "Interval by microseconds",
+            default_value_t = 5_000
+        )]
+        interval: u64,
+        #[arg(short, long, required = true, help = "Queue name")]
+        queue: String,
+    },
+    #[command(arg_required_else_help = true, about = "Start a cups worker")]
+    CupsWorker {
+        #[arg(
+            short,
+            long,
+            required = true,
+            help = "Interval by microseconds",
+            default_value_t = 5_000
+        )]
+        interval: u64,
+        #[arg(short, long, required = true, help = "Queue name")]
+        queue: String,
+    },
+    #[command(arg_required_else_help = true, about = "Start a TeX worker")]
+    TexWorker {
+        #[arg(
+            short,
+            long,
+            required = true,
+            help = "Interval by microseconds",
+            default_value_t = 5_000
+        )]
+        interval: u64,
+        #[arg(short, long, required = true, help = "Queue name")]
+        queue: String,
+    },
     #[command(arg_required_else_help = true, about = "Start a gRPC server")]
     Rpc {
         #[arg(short, long, required = true, help = "Port", default_value_t = 8080)]
@@ -125,6 +164,18 @@ pub async fn run() -> Result<()> {
             interval,
             ref queue,
         } => worker::email_send::start(&args.config, queue, Duration::from_micros(interval)).await,
+        Commands::SmsSendWorker {
+            interval,
+            ref queue,
+        } => worker::sms_send::start(&args.config, queue, Duration::from_micros(interval)).await,
+        Commands::CupsWorker {
+            interval,
+            ref queue,
+        } => worker::cups::start(&args.config, queue, Duration::from_micros(interval)).await,
+        Commands::TexWorker {
+            interval,
+            ref queue,
+        } => worker::tex::start(&args.config, queue, Duration::from_micros(interval)).await,
         Commands::Http { port, theme } => http::start(&args.config, port, theme).await,
         Commands::Rpc { port } => rpc::start(&args.config, port).await,
     }

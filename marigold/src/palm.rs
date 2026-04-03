@@ -13,6 +13,11 @@ pub mod tex {
         tonic::include_proto!("palm.tex.v1");
     }
 }
+pub mod cups {
+    pub mod v1 {
+        tonic::include_proto!("palm.cups.v1");
+    }
+}
 pub mod s3 {
     pub mod v1 {
         tonic::include_proto!("palm.s3.v1");
