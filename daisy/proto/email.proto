@@ -9,22 +9,26 @@ package palm.email.v1;
 
 message Task {
   message Address {
-    string name = 1;
+    string name  = 1;
     string email = 2;
   }
   message Body {
     string content = 1;
-    bool html = 2;
+    bool   html    = 2;
   }
   message Attachment {
-    string name = 1;
-    bytes content = 2;
-    bool inline = 3;
+    string          name         = 1;
+    string          content_type = 2;
+    bytes           body         = 3;
+    optional string inline_id    = 9;
   }
-  Address to = 1;
-  repeated Address cc = 2;
-  repeated Address bcc = 3;
-  string subject = 11;
-  Body body = 12;
+  Address          from     = 1;
+  optional Address reply_to = 2;
+  Address          to       = 3;
+  repeated Address cc       = 4;
+  repeated Address bcc      = 5;
+
+  string              subject     = 11;
+  Body                body        = 12;
   repeated Attachment attachments = 13;
 }

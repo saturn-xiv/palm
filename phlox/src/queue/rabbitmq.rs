@@ -292,7 +292,7 @@ impl<H: super::ProtobufConsumer> super::Consumer for ProtobufConsumer<H> {
             )));
         }
         let it = H::Message::decode(payload)?;
-        self.handler.consume(id, &it).await?;
+        self.handler.consume(id, it).await?;
         Ok(())
     }
 }
@@ -312,7 +312,7 @@ impl<H: super::FlexbuffersConsumer> super::Consumer for FlexbuffersConsumer<H> {
         }
         let reader = FlexbufferReader::get_root(payload)?;
         let it = H::Message::deserialize(reader)?;
-        self.handler.consume(id, &it).await?;
+        self.handler.consume(id, it).await?;
         Ok(())
     }
 }

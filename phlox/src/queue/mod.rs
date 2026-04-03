@@ -21,10 +21,10 @@ pub trait Consumer {
 
 pub trait ProtobufConsumer: Sync {
     type Message: ProtobufMessage + Default;
-    fn consume(&self, id: &str, task: &Self::Message) -> impl Future<Output = Result<()>> + Send;
+    fn consume(&self, id: &str, task: Self::Message) -> impl Future<Output = Result<()>> + Send;
 }
 
 pub trait FlexbuffersConsumer: Sync {
     type Message: DeserializeOwned + Send;
-    fn consume(&self, id: &str, task: &Self::Message) -> impl Future<Output = Result<()>> + Send;
+    fn consume(&self, id: &str, task: Self::Message) -> impl Future<Output = Result<()>> + Send;
 }

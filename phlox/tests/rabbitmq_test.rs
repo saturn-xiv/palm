@@ -34,7 +34,7 @@ struct ProtobufEchoConsumer;
 
 impl ProtobufConsumer for ProtobufEchoConsumer {
     type Message = prost_types::Duration;
-    async fn consume(&self, id: &str, task: &Self::Message) -> Result<()> {
+    async fn consume(&self, id: &str, task: Self::Message) -> Result<()> {
         println!("echo(protobuf) {}: duration-{}", id, task.seconds);
         Ok(())
     }
@@ -48,7 +48,7 @@ struct FlexbuffersEchoConsumer;
 
 impl FlexbuffersConsumer for FlexbuffersEchoConsumer {
     type Message = EchoMessage;
-    async fn consume(&self, id: &str, task: &Self::Message) -> Result<()> {
+    async fn consume(&self, id: &str, task: Self::Message) -> Result<()> {
         println!("echo(flexbuffers) {}: {}", id, task.text);
         Ok(())
     }

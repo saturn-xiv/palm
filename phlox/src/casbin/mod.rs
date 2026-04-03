@@ -137,7 +137,7 @@ pub struct RabbitMqWatcherConsumer {
 
 impl FlexbuffersConsumer for RabbitMqWatcherConsumer {
     type Message = WatcherMessage;
-    async fn consume(&self, _id: &str, task: &Self::Message) -> Result<()> {
+    async fn consume(&self, _id: &str, task: Self::Message) -> Result<()> {
         if task.id != self.id {
             let mut it = self.enforcer.lock().await;
             it.load_policy().await?;

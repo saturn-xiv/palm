@@ -2,8 +2,9 @@ pub mod db;
 pub mod http;
 pub mod rpc;
 pub mod user;
+pub mod worker;
 
-use std::path::PathBuf;
+use std::{path::PathBuf, time::Duration};
 
 use clap::{Parser, Subcommand};
 use phlox::Result;
@@ -71,6 +72,19 @@ enum Commands {
         #[arg(short, long, required = true, help = "User's SN")]
         user: String,
     },
+    #[command(arg_required_else_help = true, about = "Start an email-send worker")]
+    EmailSendWorker {
+        #[arg(
+            short,
+            long,
+            required = true,
+            help = "Interval by microseconds",
+            default_value_t = 5_000
+        )]
+        interval: u64,
+        #[arg(short, long, required = true, help = "Queue name")]
+        queue: String,
+    },
     #[command(arg_required_else_help = true, about = "Start a gRPC server")]
     Rpc {
         #[arg(short, long, required = true, help = "Port", default_value_t = 8080)]
@@ -107,6 +121,10 @@ pub async fn run() -> Result<()> {
         Commands::DeleteRoleForUser { ref role, ref user } => {
             user::delete_role(&args.config, user, role).await
         }
+        Commands::EmailSendWorker {
+            interval,
+            ref queue,
+        } => worker::email_send::start(&args.config, queue, Duration::from_micros(interval)).await,
         Commands::Http { port, theme } => http::start(&args.config, port, theme).await,
         Commands::Rpc { port } => rpc::start(&args.config, port).await,
     }
