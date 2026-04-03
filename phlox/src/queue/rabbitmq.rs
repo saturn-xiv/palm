@@ -63,7 +63,7 @@ impl Default for Node {
 
 impl Node {
     pub async fn open(&self) -> LapinResult<Arc<Client>> {
-        log::info!(
+        log::debug!(
             "open RabbitMQ amqp://{}@{}:{}/{}",
             self.user,
             self.host,

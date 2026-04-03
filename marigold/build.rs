@@ -1,6 +1,6 @@
 use std::env;
 use std::fs::{File, read_dir};
-use std::io::Write;
+use std::io::{Error as IoError, ErrorKind as IoErrorKind, Write};
 use std::path::{Path, PathBuf};
 use std::process::Command;
 
@@ -46,6 +46,7 @@ fn shell(cmd: &mut Command) -> Result<String, Box<dyn std::error::Error>> {
 }
 
 fn compile_protos(includes: &[PathBuf]) -> Result<(), Box<dyn std::error::Error>> {
+    let out_dir = PathBuf::from(env::var("OUT_DIR")?);
     for jt in includes {
         for it in read_dir(jt)? {
             let it = it?;
@@ -53,7 +54,14 @@ fn compile_protos(includes: &[PathBuf]) -> Result<(), Box<dyn std::error::Error>
             if let Some(ext) = it.extension()
                 && ext == "proto"
             {
-                tonic_prost_build::configure().compile_protos(&[it], includes)?;
+                let name = it
+                    .file_stem()
+                    .ok_or_else(|| IoError::from(IoErrorKind::UnexpectedEof))?;
+                tonic_prost_build::configure()
+                    .file_descriptor_set_path(
+                        out_dir.join(format!("{}_descriptor.bin", name.display())),
+                    )
+                    .compile_protos(&[it], includes)?;
             }
         }
     }

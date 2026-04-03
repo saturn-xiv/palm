@@ -66,7 +66,7 @@ impl Default for Node {
 
 impl Node {
     pub fn single(&self) -> Result<SingleClient> {
-        log::info!("open redis host tcp://{}:{}", self.host, self.port);
+        log::debug!("open redis host tcp://{}:{}", self.host, self.port);
         let client = RedisClient::open(self.url())?;
         let pool = Pool::builder()
             .max_size(self.pool_size as u32)
@@ -77,7 +77,7 @@ impl Node {
         })
     }
     pub fn cluster(&self) -> Result<ClusterClient> {
-        log::info!("open redis cluster tcp://{}:{}", self.host, self.port);
+        log::debug!("open redis cluster tcp://{}:{}", self.host, self.port);
         let client = RedisClusterClient::new(vec![self.url()])?;
         let pool = Pool::builder()
             .max_size(self.pool_size as u32)

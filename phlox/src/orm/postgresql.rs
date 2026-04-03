@@ -49,7 +49,7 @@ fn node_default_pool_size() -> usize {
 
 impl Node {
     pub fn open(&self) -> StdResult<Pool, R2d2Error> {
-        log::info!(
+        log::debug!(
             "open PostgreSql {}@{}:{}/{}",
             self.user,
             self.host,

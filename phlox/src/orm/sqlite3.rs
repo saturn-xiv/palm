@@ -22,7 +22,7 @@ fn node_default_file() -> String {
 impl Node {
     // https://sqlite.org/wal.html
     pub fn open(&self) -> Result<Connection> {
-        log::info!("open sqlite3 {}", self.file);
+        log::debug!("open sqlite3 {}", self.file);
         let mut it = SqliteConnection::establish(&self.file)?;
         {
             sql_query("PRAGMA journal_mode=WAL").execute(&mut it)?;

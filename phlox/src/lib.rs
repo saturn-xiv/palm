@@ -25,7 +25,7 @@ use std::result::Result as StdResult;
 use std::str::FromStr;
 use std::{error::Error as StdError, time::Duration};
 
-use data_encoding::{BASE64_NOPAD, DecodeError as Base64DecodeError};
+use data_encoding::{BASE64, DecodeError as Base64DecodeError};
 use hyper::StatusCode;
 use serde::de::DeserializeOwned;
 use serde::{Deserialize, Serialize};
@@ -62,17 +62,17 @@ pub fn is_stopped() -> bool {
     Path::new(".stop").exists()
 }
 pub fn check_permission<P: AsRef<Path>>(file: P) -> Result<()> {
-    match fs::metadata(file)?.permissions().mode() {
+    match fs::metadata(file)?.permissions().mode() & 0o777 {
         0o400 | 0o600 => Ok(()),
-        _ => Err(Box::new(HttpError(
+        v => Err(Box::new(HttpError(
             StatusCode::FORBIDDEN,
-            Some("file permission is too open".to_string()),
+            Some(format!("file permission is too open({:#03o})", v)),
         ))),
     }
 }
 pub fn parse_toml<P: AsRef<Path>, T: DeserializeOwned>(file: P) -> Result<T> {
     let cfg = file.as_ref();
-    log::info!("load configuration from {}", cfg.display());
+    log::debug!("load configuration from {}", cfg.display());
     check_permission(cfg)?;
     let it: T = toml::from_str(&fs::read_to_string(cfg)?)?;
     Ok(it)
@@ -83,15 +83,15 @@ pub struct Key(pub Vec<u8>);
 
 impl fmt::Display for Key {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        write!(f, "{}", BASE64_NOPAD.encode(&self.0))
+        write!(f, "{}", BASE64.encode(&self.0))
     }
 }
 impl FromStr for Key {
     type Err = Base64DecodeError;
 
     fn from_str(s: &str) -> StdResult<Self, Self::Err> {
-        let mut buf = vec![0; BASE64_NOPAD.decode_len(s.len())?];
-        BASE64_NOPAD
+        let mut buf = vec![0; BASE64.decode_len(s.len())?];
+        BASE64
             .decode_mut(s.as_bytes(), &mut buf)
             .map_err(|x| x.error)?;
         Ok(Self(buf))

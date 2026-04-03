@@ -21,8 +21,11 @@ use tonic::transport::Server;
 use tonic_health::server::HealthReporter;
 
 use super::super::{
-    palm::cups::v1::cups_server::CupsServer,
-    plugins::portal::services::cups::Server as CupsServerImpl,
+    palm::{
+        accounting::v1 as accounting_v1, babel::v1 as babel_v1, blog::v1 as blog_v1,
+        cms::v1 as cms_v1, cups::v1 as cups_v1, forum::v1 as forum_v1, portal::v1 as portal_v1,
+    },
+    plugins::portal::services::{cups::Server as CupsServerImpl, site::Server as SiteServerImpl},
 };
 
 pub async fn start<P: AsRef<Path>>(config: P, port: u16) -> Result<()> {
@@ -50,12 +53,30 @@ pub async fn start<P: AsRef<Path>>(config: P, port: u16) -> Result<()> {
         });
     }
 
+    let reflection_service = tonic_reflection::server::Builder::configure()
+        .register_encoded_file_descriptor_set(cups_v1::FILE_DESCRIPTOR_SET)
+        .register_encoded_file_descriptor_set(portal_v1::FILE_DESCRIPTOR_SET)
+        .register_encoded_file_descriptor_set(cms_v1::FILE_DESCRIPTOR_SET)
+        .register_encoded_file_descriptor_set(blog_v1::FILE_DESCRIPTOR_SET)
+        .register_encoded_file_descriptor_set(forum_v1::FILE_DESCRIPTOR_SET)
+        .register_encoded_file_descriptor_set(accounting_v1::FILE_DESCRIPTOR_SET)
+        .register_encoded_file_descriptor_set(babel_v1::FILE_DESCRIPTOR_SET)
+        .build_v1()?;
+
     let addr = format!("0.0.0.0:{}", port);
     log::info!("start gRPC server on http://{}", addr);
 
     Server::builder()
         .add_service(health_service)
-        .add_service(CupsServer::new(CupsServerImpl { redis, jwt }))
+        .add_service(reflection_service)
+        .add_service(cups_v1::cups_server::CupsServer::new(CupsServerImpl {
+            redis: redis.clone(),
+            jwt: jwt.clone(),
+        }))
+        .add_service(portal_v1::site_server::SiteServer::new(SiteServerImpl {
+            redis,
+            jwt,
+        }))
         .serve(addr.parse()?)
         .await?;
     Ok(())
@@ -63,23 +84,29 @@ pub async fn start<P: AsRef<Path>>(config: P, port: u16) -> Result<()> {
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct Config {
-    secrets_key: String,
+    // openssl rand -base64 32
+    #[serde(rename = "secret-key")]
+    secret_key: String,
+    // openssl rand -base64 128
+    #[serde(rename = "jwt-key")]
     jwt_key: String,
     postgresql: PostgreSql,
     rabbitmq: RabbitMq,
     redis: Redis,
     minio: Minio,
-    open_search: OpenSearch,
+    opensearch: OpenSearch,
 }
 
 async fn service_status(server: &Heartbeat, reporter: HealthReporter) {
     loop {
         tokio::time::sleep(Duration::from_secs(5)).await;
         if server.check().await.is_ok() {
-            reporter.set_serving::<CupsServer<CupsServerImpl>>().await;
+            reporter
+                .set_serving::<cups_v1::cups_server::CupsServer<CupsServerImpl>>()
+                .await;
         } else {
             reporter
-                .set_not_serving::<CupsServer<CupsServerImpl>>()
+                .set_not_serving::<cups_v1::cups_server::CupsServer<CupsServerImpl>>()
                 .await;
         }
     }

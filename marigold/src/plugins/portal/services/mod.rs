@@ -1,4 +1,5 @@
 pub mod cups;
+pub mod site;
 
 use phlox::{Jwt, Result, cache::ProtobufCacher, grpc::verify as grpc_verify};
 use tonic::Request;

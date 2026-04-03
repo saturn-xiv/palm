@@ -21,25 +21,20 @@ struct Cli {
         default_value = "config.toml"
     )]
     config: PathBuf,
-    #[arg(short, long, help = "Run on debug mode")]
-    debug: bool,
     #[command(subcommand)]
     command: Commands,
 }
 
 #[derive(Debug, Subcommand)]
 enum Commands {
-    #[command(
-        arg_required_else_help = true,
-        about = "Load data into database, init queues"
-    )]
+    #[command(about = "Load data into database, init queues")]
     DbSeeds {
         #[arg(short, long, help = "Load locales from(yaml)")]
         locales: Option<Vec<String>>,
     },
-    #[command(arg_required_else_help = true, about = "List all users")]
+    #[command(about = "List all users")]
     ListUser,
-    #[command(arg_required_else_help = true, about = "Create an email user")]
+    #[command(about = "Create an email user")]
     CreateUserByEmail {
         #[arg(short, long, required = true, help = "Username")]
         name: String,
@@ -48,7 +43,7 @@ enum Commands {
         #[arg(short, long, required = true, help = "Password")]
         password: String,
     },
-    #[command(arg_required_else_help = true, about = "Add role for user")]
+    #[command(about = "Add role for user")]
     AddRoleForUser {
         #[arg(
             short,
@@ -60,7 +55,7 @@ enum Commands {
         #[arg(short, long, required = true, help = "User's SN")]
         user: String,
     },
-    #[command(arg_required_else_help = true, about = "Delete role for user")]
+    #[command(about = "Delete role for user")]
     DeleteRoleForUser {
         #[arg(
             short,
@@ -72,12 +67,11 @@ enum Commands {
         #[arg(short, long, required = true, help = "User's SN")]
         user: String,
     },
-    #[command(arg_required_else_help = true, about = "Start an email-send worker")]
+    #[command(about = "Start an email-send worker")]
     EmailSendWorker {
         #[arg(
             short,
             long,
-            required = true,
             help = "Interval by microseconds",
             default_value_t = 5_000
         )]
@@ -85,12 +79,11 @@ enum Commands {
         #[arg(short, long, required = true, help = "Queue name")]
         queue: String,
     },
-    #[command(arg_required_else_help = true, about = "Start a sms-send worker")]
+    #[command(about = "Start a sms-send worker")]
     SmsSendWorker {
         #[arg(
             short,
             long,
-            required = true,
             help = "Interval by microseconds",
             default_value_t = 5_000
         )]
@@ -98,12 +91,11 @@ enum Commands {
         #[arg(short, long, required = true, help = "Queue name")]
         queue: String,
     },
-    #[command(arg_required_else_help = true, about = "Start a cups worker")]
+    #[command(about = "Start a cups worker")]
     CupsWorker {
         #[arg(
             short,
             long,
-            required = true,
             help = "Interval by microseconds",
             default_value_t = 5_000
         )]
@@ -111,12 +103,11 @@ enum Commands {
         #[arg(short, long, required = true, help = "Queue name")]
         queue: String,
     },
-    #[command(arg_required_else_help = true, about = "Start a TeX worker")]
+    #[command(about = "Start a TeX worker")]
     TexWorker {
         #[arg(
             short,
             long,
-            required = true,
             help = "Interval by microseconds",
             default_value_t = 5_000
         )]
@@ -124,19 +115,18 @@ enum Commands {
         #[arg(short, long, required = true, help = "Queue name")]
         queue: String,
     },
-    #[command(arg_required_else_help = true, about = "Start a gRPC server")]
+    #[command(about = "Start a gRPC server")]
     Rpc {
-        #[arg(short, long, required = true, help = "Port", default_value_t = 8080)]
+        #[arg(short, long, help = "Port", default_value_t = 8080)]
         port: u16,
     },
-    #[command(arg_required_else_help = true, about = "Start a HTTP server")]
+    #[command(about = "Start a HTTP server")]
     Http {
-        #[arg(short, long, required = true, help = "Port", default_value_t = 8080)]
+        #[arg(short, long, help = "Port", default_value_t = 8080)]
         port: u16,
         #[arg(
             short,
             long,
-            required = true,
             help = "Theme",
             default_value_t = http::Theme::Bootstrap,
         )]

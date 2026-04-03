@@ -32,7 +32,7 @@ pub async fn postgresql_rabbitmq_enforcer(
     queue: Arc<RabbitMqClient>,
 ) -> Result<Arc<Mutex<Enforcer>>> {
     let id = uuid();
-    log::info!("open casbin enforcer {}", id);
+    log::debug!("open casbin enforcer {}", id);
     let enforcer = Arc::new(Mutex::new({
         let model = DefaultModel::from_str(RBAC_MODEL).await?;
         let adapter = DieselAdapter::with_pool(db)?;

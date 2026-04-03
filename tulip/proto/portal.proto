@@ -94,11 +94,6 @@ service Site {
 }
 
 message SiteHeartbeatResponse{
-  optional string db    = 1;
-  optional string cache = 2;
-  optional string queue = 3;
-  optional string s3    = 4;
-
-  string                    version    = 98;
-  google.protobuf.Timestamp created_at = 99;
+  string                    version    = 1;
+  google.protobuf.Timestamp created_at = 2;
 }
