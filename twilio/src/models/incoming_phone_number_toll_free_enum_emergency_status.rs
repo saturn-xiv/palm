@@ -19,7 +19,6 @@ pub enum IncomingPhoneNumberTollFreeEnumEmergencyStatus {
     Active,
     #[serde(rename = "Inactive")]
     Inactive,
-
 }
 
 impl std::fmt::Display for IncomingPhoneNumberTollFreeEnumEmergencyStatus {
@@ -36,4 +35,3 @@ impl Default for IncomingPhoneNumberTollFreeEnumEmergencyStatus {
         Self::Active
     }
 }
-

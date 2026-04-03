@@ -11,12 +11,11 @@
 use crate::models;
 use serde::{Deserialize, Serialize};
 
-/// 
+///
 #[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
 pub enum StreamEnumUpdateStatus {
     #[serde(rename = "stopped")]
     Stopped,
-
 }
 
 impl std::fmt::Display for StreamEnumUpdateStatus {
@@ -32,4 +31,3 @@ impl Default for StreamEnumUpdateStatus {
         Self::Stopped
     }
 }
-

@@ -19,7 +19,6 @@ pub enum MessageEnumRiskCheck {
     Enable,
     #[serde(rename = "disable")]
     Disable,
-
 }
 
 impl std::fmt::Display for MessageEnumRiskCheck {
@@ -36,4 +35,3 @@ impl Default for MessageEnumRiskCheck {
         Self::Enable
     }
 }
-

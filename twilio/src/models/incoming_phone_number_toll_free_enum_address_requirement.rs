@@ -23,7 +23,6 @@ pub enum IncomingPhoneNumberTollFreeEnumAddressRequirement {
     Local,
     #[serde(rename = "foreign")]
     Foreign,
-
 }
 
 impl std::fmt::Display for IncomingPhoneNumberTollFreeEnumAddressRequirement {
@@ -42,4 +41,3 @@ impl Default for IncomingPhoneNumberTollFreeEnumAddressRequirement {
         Self::None
     }
 }
-

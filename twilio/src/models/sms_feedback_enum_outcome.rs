@@ -11,7 +11,7 @@
 use crate::models;
 use serde::{Deserialize, Serialize};
 
-/// 
+///
 #[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
 pub enum SmsFeedbackEnumOutcome {
     #[serde(rename = "confirmed")]
@@ -24,7 +24,6 @@ pub enum SmsFeedbackEnumOutcome {
     NotReceived,
     #[serde(rename = "delayed")]
     Delayed,
-
 }
 
 impl std::fmt::Display for SmsFeedbackEnumOutcome {
@@ -44,4 +43,3 @@ impl Default for SmsFeedbackEnumOutcome {
         Self::Confirmed
     }
 }
-

@@ -19,7 +19,6 @@ pub enum MessageEnumAddressRetention {
     Retain,
     #[serde(rename = "obfuscate")]
     Obfuscate,
-
 }
 
 impl std::fmt::Display for MessageEnumAddressRetention {
@@ -36,4 +35,3 @@ impl Default for MessageEnumAddressRetention {
         Self::Retain
     }
 }
-

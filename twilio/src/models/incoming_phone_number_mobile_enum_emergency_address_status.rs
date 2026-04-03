@@ -27,7 +27,6 @@ pub enum IncomingPhoneNumberMobileEnumEmergencyAddressStatus {
     PendingUnregistration,
     #[serde(rename = "unregistration-failure")]
     UnregistrationFailure,
-
 }
 
 impl std::fmt::Display for IncomingPhoneNumberMobileEnumEmergencyAddressStatus {
@@ -48,4 +47,3 @@ impl Default for IncomingPhoneNumberMobileEnumEmergencyAddressStatus {
         Self::Registered
     }
 }
-

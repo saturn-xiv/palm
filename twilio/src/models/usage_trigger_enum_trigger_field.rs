@@ -21,7 +21,6 @@ pub enum UsageTriggerEnumTriggerField {
     Usage,
     #[serde(rename = "price")]
     Price,
-
 }
 
 impl std::fmt::Display for UsageTriggerEnumTriggerField {
@@ -39,4 +38,3 @@ impl Default for UsageTriggerEnumTriggerField {
         Self::Count
     }
 }
-

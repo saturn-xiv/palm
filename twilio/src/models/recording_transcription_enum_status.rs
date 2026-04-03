@@ -21,7 +21,6 @@ pub enum RecordingTranscriptionEnumStatus {
     Completed,
     #[serde(rename = "failed")]
     Failed,
-
 }
 
 impl std::fmt::Display for RecordingTranscriptionEnumStatus {
@@ -39,4 +38,3 @@ impl Default for RecordingTranscriptionEnumStatus {
         Self::InProgress
     }
 }
-

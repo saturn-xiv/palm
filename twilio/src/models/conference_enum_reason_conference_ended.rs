@@ -25,15 +25,18 @@ pub enum ConferenceEnumReasonConferenceEnded {
     LastParticipantKicked,
     #[serde(rename = "last-participant-left")]
     LastParticipantLeft,
-
 }
 
 impl std::fmt::Display for ConferenceEnumReasonConferenceEnded {
     fn fmt(&self, f: &mut std::fmt::Formatter) -> std::fmt::Result {
         match self {
             Self::ConferenceEndedViaApi => write!(f, "conference-ended-via-api"),
-            Self::ParticipantWithEndConferenceOnExitLeft => write!(f, "participant-with-end-conference-on-exit-left"),
-            Self::ParticipantWithEndConferenceOnExitKicked => write!(f, "participant-with-end-conference-on-exit-kicked"),
+            Self::ParticipantWithEndConferenceOnExitLeft => {
+                write!(f, "participant-with-end-conference-on-exit-left")
+            }
+            Self::ParticipantWithEndConferenceOnExitKicked => {
+                write!(f, "participant-with-end-conference-on-exit-kicked")
+            }
             Self::LastParticipantKicked => write!(f, "last-participant-kicked"),
             Self::LastParticipantLeft => write!(f, "last-participant-left"),
         }
@@ -45,4 +48,3 @@ impl Default for ConferenceEnumReasonConferenceEnded {
         Self::ConferenceEndedViaApi
     }
 }
-

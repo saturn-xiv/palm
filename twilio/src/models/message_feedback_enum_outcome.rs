@@ -19,7 +19,6 @@ pub enum MessageFeedbackEnumOutcome {
     Confirmed,
     #[serde(rename = "unconfirmed")]
     Unconfirmed,
-
 }
 
 impl std::fmt::Display for MessageFeedbackEnumOutcome {
@@ -36,4 +35,3 @@ impl Default for MessageFeedbackEnumOutcome {
         Self::Confirmed
     }
 }
-

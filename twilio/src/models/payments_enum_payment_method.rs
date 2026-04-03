@@ -19,7 +19,6 @@ pub enum PaymentsEnumPaymentMethod {
     CreditCard,
     #[serde(rename = "ach-debit")]
     AchDebit,
-
 }
 
 impl std::fmt::Display for PaymentsEnumPaymentMethod {
@@ -36,4 +35,3 @@ impl Default for PaymentsEnumPaymentMethod {
         Self::CreditCard
     }
 }
-

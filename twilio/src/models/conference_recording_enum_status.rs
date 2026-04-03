@@ -27,7 +27,6 @@ pub enum ConferenceRecordingEnumStatus {
     Completed,
     #[serde(rename = "absent")]
     Absent,
-
 }
 
 impl std::fmt::Display for ConferenceRecordingEnumStatus {
@@ -48,4 +47,3 @@ impl Default for ConferenceRecordingEnumStatus {
         Self::InProgress
     }
 }
-

@@ -19,7 +19,6 @@ pub enum RealtimeTranscriptionEnumStatus {
     InProgress,
     #[serde(rename = "stopped")]
     Stopped,
-
 }
 
 impl std::fmt::Display for RealtimeTranscriptionEnumStatus {
@@ -36,4 +35,3 @@ impl Default for RealtimeTranscriptionEnumStatus {
         Self::InProgress
     }
 }
-

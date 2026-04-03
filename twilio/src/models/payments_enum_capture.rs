@@ -35,7 +35,6 @@ pub enum PaymentsEnumCapture {
     SecurityCodeMatcher,
     #[serde(rename = "postal-code-matcher")]
     PostalCodeMatcher,
-
 }
 
 impl std::fmt::Display for PaymentsEnumCapture {
@@ -60,4 +59,3 @@ impl Default for PaymentsEnumCapture {
         Self::PaymentCardNumber
     }
 }
-

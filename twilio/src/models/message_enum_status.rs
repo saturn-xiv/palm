@@ -41,7 +41,6 @@ pub enum MessageEnumStatus {
     PartiallyDelivered,
     #[serde(rename = "canceled")]
     Canceled,
-
 }
 
 impl std::fmt::Display for MessageEnumStatus {
@@ -69,4 +68,3 @@ impl Default for MessageEnumStatus {
         Self::Queued
     }
 }
-

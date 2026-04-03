@@ -27,7 +27,6 @@ pub enum CallRecordingEnumStatus {
     Completed,
     #[serde(rename = "absent")]
     Absent,
-
 }
 
 impl std::fmt::Display for CallRecordingEnumStatus {
@@ -48,4 +47,3 @@ impl Default for CallRecordingEnumStatus {
         Self::InProgress
     }
 }
-

@@ -21,7 +21,6 @@ pub enum SiprecEnumTrack {
     OutboundTrack,
     #[serde(rename = "both_tracks")]
     BothTracks,
-
 }
 
 impl std::fmt::Display for SiprecEnumTrack {
@@ -39,4 +38,3 @@ impl Default for SiprecEnumTrack {
         Self::InboundTrack
     }
 }
-

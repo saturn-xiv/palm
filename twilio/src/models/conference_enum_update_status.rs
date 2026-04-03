@@ -11,12 +11,11 @@
 use crate::models;
 use serde::{Deserialize, Serialize};
 
-/// 
+///
 #[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
 pub enum ConferenceEnumUpdateStatus {
     #[serde(rename = "completed")]
     Completed,
-
 }
 
 impl std::fmt::Display for ConferenceEnumUpdateStatus {
@@ -32,4 +31,3 @@ impl Default for ConferenceEnumUpdateStatus {
         Self::Completed
     }
 }
-

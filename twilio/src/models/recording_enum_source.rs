@@ -29,7 +29,6 @@ pub enum RecordingEnumSource {
     StartCallRecordingApi,
     #[serde(rename = "StartConferenceRecordingAPI")]
     StartConferenceRecordingApi,
-
 }
 
 impl std::fmt::Display for RecordingEnumSource {
@@ -51,4 +50,3 @@ impl Default for RecordingEnumSource {
         Self::DialVerb
     }
 }
-

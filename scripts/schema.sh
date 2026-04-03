@@ -88,6 +88,7 @@ function generate_tulip() {
 
 # https://www.twilio.com/docs/openapi/generating-a-rust-client-for-twilios-api#setup
 # https://github.com/OpenAPITools/openapi-generator?tab=readme-ov-file#launcher-script
+# https://openapi-generator.tech/docs/generators/rust/
 function generate_twilio_rust_api() {
     local target=$WORKSPACE/twilio
     if [ ! -d $target ]
@@ -95,7 +96,11 @@ function generate_twilio_rust_api() {
         $HOME/.local/bin/openapi-generator-cli generate -g rust \
             -i https://raw.githubusercontent.com/twilio/twilio-oai/main/spec/json/twilio_api_v2010.json \
             -o $target \
-            --additional-properties=useSingleRequestParameter=true
+            --additional-properties=useSingleRequestParameter=true,packageName=twilio,packageVersion=$(date +"%Y.%-m.%-d")
+        find $target/src -type f -exec sed -i 's/models::models::/models::/g' {} +
+        sed -i 's/models::serde_json::/serde_json::/g' $target/src/apis/api20100401_payment_api.rs
+        cd $target/
+        git apply $WORKSPACE/twilio.patch
     fi
 }
 # -----------------------------------------------------------------------------

@@ -19,7 +19,6 @@ pub enum IncomingPhoneNumberLocalEnumEmergencyStatus {
     Active,
     #[serde(rename = "Inactive")]
     Inactive,
-
 }
 
 impl std::fmt::Display for IncomingPhoneNumberLocalEnumEmergencyStatus {
@@ -36,4 +35,3 @@ impl Default for IncomingPhoneNumberLocalEnumEmergencyStatus {
         Self::Active
     }
 }
-

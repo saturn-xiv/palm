@@ -11,14 +11,13 @@
 use crate::models;
 use serde::{Deserialize, Serialize};
 
-/// 
+///
 #[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
 pub enum CallEnumUpdateStatus {
     #[serde(rename = "canceled")]
     Canceled,
     #[serde(rename = "completed")]
     Completed,
-
 }
 
 impl std::fmt::Display for CallEnumUpdateStatus {
@@ -35,4 +34,3 @@ impl Default for CallEnumUpdateStatus {
         Self::Canceled
     }
 }
-

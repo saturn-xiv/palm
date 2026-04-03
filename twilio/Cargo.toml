@@ -1,6 +1,6 @@
 [package]
-name = "openapi"
-version = "1.0.0"
+name = "twilio"
+version = "2026.4.3"
 authors = ["support@twilio.com"]
 description = "This is the public Twilio REST API."
 license = "Apache 2.0"

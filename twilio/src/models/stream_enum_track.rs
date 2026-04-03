@@ -21,7 +21,6 @@ pub enum StreamEnumTrack {
     OutboundTrack,
     #[serde(rename = "both_tracks")]
     BothTracks,
-
 }
 
 impl std::fmt::Display for StreamEnumTrack {
@@ -39,4 +38,3 @@ impl Default for StreamEnumTrack {
         Self::InboundTrack
     }
 }
-

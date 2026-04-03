@@ -27,7 +27,6 @@ pub enum ParticipantEnumStatus {
     Complete,
     #[serde(rename = "failed")]
     Failed,
-
 }
 
 impl std::fmt::Display for ParticipantEnumStatus {
@@ -48,4 +47,3 @@ impl Default for ParticipantEnumStatus {
         Self::Queued
     }
 }
-

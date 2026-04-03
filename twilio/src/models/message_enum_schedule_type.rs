@@ -17,7 +17,6 @@ use serde::{Deserialize, Serialize};
 pub enum MessageEnumScheduleType {
     #[serde(rename = "fixed")]
     Fixed,
-
 }
 
 impl std::fmt::Display for MessageEnumScheduleType {
@@ -33,4 +32,3 @@ impl Default for MessageEnumScheduleType {
         Self::Fixed
     }
 }
-

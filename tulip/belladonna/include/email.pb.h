@@ -438,8 +438,9 @@ class Task_Attachment final : public ::google::protobuf::Message
   // accessors -------------------------------------------------------
   enum : int {
     kNameFieldNumber = 1,
-    kContentFieldNumber = 2,
-    kInlineFieldNumber = 3,
+    kContentTypeFieldNumber = 2,
+    kBodyFieldNumber = 3,
+    kInlineIdFieldNumber = 9,
   };
   // string name = 1;
   void clear_name() ;
@@ -456,37 +457,58 @@ class Task_Attachment final : public ::google::protobuf::Message
   ::std::string* PROTOBUF_NONNULL _internal_mutable_name();
 
   public:
-  // bytes content = 2;
-  void clear_content() ;
-  const ::std::string& content() const;
+  // string content_type = 2;
+  void clear_content_type() ;
+  const ::std::string& content_type() const;
   template <typename Arg_ = const ::std::string&, typename... Args_>
-  void set_content(Arg_&& arg, Args_... args);
-  ::std::string* PROTOBUF_NONNULL mutable_content();
-  [[nodiscard]] ::std::string* PROTOBUF_NULLABLE release_content();
-  void set_allocated_content(::std::string* PROTOBUF_NULLABLE value);
+  void set_content_type(Arg_&& arg, Args_... args);
+  ::std::string* PROTOBUF_NONNULL mutable_content_type();
+  [[nodiscard]] ::std::string* PROTOBUF_NULLABLE release_content_type();
+  void set_allocated_content_type(::std::string* PROTOBUF_NULLABLE value);
 
   private:
-  const ::std::string& _internal_content() const;
-  PROTOBUF_ALWAYS_INLINE void _internal_set_content(const ::std::string& value);
-  ::std::string* PROTOBUF_NONNULL _internal_mutable_content();
+  const ::std::string& _internal_content_type() const;
+  PROTOBUF_ALWAYS_INLINE void _internal_set_content_type(const ::std::string& value);
+  ::std::string* PROTOBUF_NONNULL _internal_mutable_content_type();
 
   public:
-  // bool inline = 3;
-  void clear_inline_() ;
-  bool inline_() const;
-  void set_inline_(bool value);
+  // bytes body = 3;
+  void clear_body() ;
+  const ::std::string& body() const;
+  template <typename Arg_ = const ::std::string&, typename... Args_>
+  void set_body(Arg_&& arg, Args_... args);
+  ::std::string* PROTOBUF_NONNULL mutable_body();
+  [[nodiscard]] ::std::string* PROTOBUF_NULLABLE release_body();
+  void set_allocated_body(::std::string* PROTOBUF_NULLABLE value);
 
   private:
-  bool _internal_inline_() const;
-  void _internal_set_inline_(bool value);
+  const ::std::string& _internal_body() const;
+  PROTOBUF_ALWAYS_INLINE void _internal_set_body(const ::std::string& value);
+  ::std::string* PROTOBUF_NONNULL _internal_mutable_body();
+
+  public:
+  // optional string inline_id = 9;
+  bool has_inline_id() const;
+  void clear_inline_id() ;
+  const ::std::string& inline_id() const;
+  template <typename Arg_ = const ::std::string&, typename... Args_>
+  void set_inline_id(Arg_&& arg, Args_... args);
+  ::std::string* PROTOBUF_NONNULL mutable_inline_id();
+  [[nodiscard]] ::std::string* PROTOBUF_NULLABLE release_inline_id();
+  void set_allocated_inline_id(::std::string* PROTOBUF_NULLABLE value);
+
+  private:
+  const ::std::string& _internal_inline_id() const;
+  PROTOBUF_ALWAYS_INLINE void _internal_set_inline_id(const ::std::string& value);
+  ::std::string* PROTOBUF_NONNULL _internal_mutable_inline_id();
 
   public:
   // @@protoc_insertion_point(class_scope:palm.email.v1.Task.Attachment)
  private:
   class _Internal;
   friend class ::google::protobuf::internal::TcParser;
-  static const ::google::protobuf::internal::TcParseTable<2, 3,
-                                   0, 42,
+  static const ::google::protobuf::internal::TcParseTable<2, 4,
+                                   0, 63,
                                    2>
       _table_;
 
@@ -508,8 +530,9 @@ class Task_Attachment final : public ::google::protobuf::Message
     ::google::protobuf::internal::HasBits<1> _has_bits_;
     ::google::protobuf::internal::CachedSize _cached_size_;
     ::google::protobuf::internal::ArenaStringPtr name_;
-    ::google::protobuf::internal::ArenaStringPtr content_;
-    bool inline__;
+    ::google::protobuf::internal::ArenaStringPtr content_type_;
+    ::google::protobuf::internal::ArenaStringPtr body_;
+    ::google::protobuf::internal::ArenaStringPtr inline_id_;
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
   union { Impl_ _impl_; };
@@ -876,14 +899,16 @@ class Task final : public ::google::protobuf::Message
 
   // accessors -------------------------------------------------------
   enum : int {
-    kCcFieldNumber = 2,
-    kBccFieldNumber = 3,
+    kCcFieldNumber = 4,
+    kBccFieldNumber = 5,
     kAttachmentsFieldNumber = 13,
     kSubjectFieldNumber = 11,
-    kToFieldNumber = 1,
+    kFromFieldNumber = 1,
+    kReplyToFieldNumber = 2,
+    kToFieldNumber = 3,
     kBodyFieldNumber = 12,
   };
-  // repeated .palm.email.v1.Task.Address cc = 2;
+  // repeated .palm.email.v1.Task.Address cc = 4;
   int cc_size() const;
   private:
   int _internal_cc_size() const;
@@ -900,7 +925,7 @@ class Task final : public ::google::protobuf::Message
   const ::palm::email::v1::Task_Address& cc(int index) const;
   ::palm::email::v1::Task_Address* PROTOBUF_NONNULL add_cc();
   const ::google::protobuf::RepeatedPtrField<::palm::email::v1::Task_Address>& cc() const;
-  // repeated .palm.email.v1.Task.Address bcc = 3;
+  // repeated .palm.email.v1.Task.Address bcc = 5;
   int bcc_size() const;
   private:
   int _internal_bcc_size() const;
@@ -949,7 +974,37 @@ class Task final : public ::google::protobuf::Message
   ::std::string* PROTOBUF_NONNULL _internal_mutable_subject();
 
   public:
-  // .palm.email.v1.Task.Address to = 1;
+  // .palm.email.v1.Task.Address from = 1;
+  bool has_from() const;
+  void clear_from() ;
+  const ::palm::email::v1::Task_Address& from() const;
+  [[nodiscard]] ::palm::email::v1::Task_Address* PROTOBUF_NULLABLE release_from();
+  ::palm::email::v1::Task_Address* PROTOBUF_NONNULL mutable_from();
+  void set_allocated_from(::palm::email::v1::Task_Address* PROTOBUF_NULLABLE value);
+  void unsafe_arena_set_allocated_from(::palm::email::v1::Task_Address* PROTOBUF_NULLABLE value);
+  ::palm::email::v1::Task_Address* PROTOBUF_NULLABLE unsafe_arena_release_from();
+
+  private:
+  const ::palm::email::v1::Task_Address& _internal_from() const;
+  ::palm::email::v1::Task_Address* PROTOBUF_NONNULL _internal_mutable_from();
+
+  public:
+  // optional .palm.email.v1.Task.Address reply_to = 2;
+  bool has_reply_to() const;
+  void clear_reply_to() ;
+  const ::palm::email::v1::Task_Address& reply_to() const;
+  [[nodiscard]] ::palm::email::v1::Task_Address* PROTOBUF_NULLABLE release_reply_to();
+  ::palm::email::v1::Task_Address* PROTOBUF_NONNULL mutable_reply_to();
+  void set_allocated_reply_to(::palm::email::v1::Task_Address* PROTOBUF_NULLABLE value);
+  void unsafe_arena_set_allocated_reply_to(::palm::email::v1::Task_Address* PROTOBUF_NULLABLE value);
+  ::palm::email::v1::Task_Address* PROTOBUF_NULLABLE unsafe_arena_release_reply_to();
+
+  private:
+  const ::palm::email::v1::Task_Address& _internal_reply_to() const;
+  ::palm::email::v1::Task_Address* PROTOBUF_NONNULL _internal_mutable_reply_to();
+
+  public:
+  // .palm.email.v1.Task.Address to = 3;
   bool has_to() const;
   void clear_to() ;
   const ::palm::email::v1::Task_Address& to() const;
@@ -983,8 +1038,8 @@ class Task final : public ::google::protobuf::Message
  private:
   class _Internal;
   friend class ::google::protobuf::internal::TcParser;
-  static const ::google::protobuf::internal::TcParseTable<3, 6,
-                                   5, 34,
+  static const ::google::protobuf::internal::TcParseTable<4, 8,
+                                   7, 42,
                                    2>
       _table_;
 
@@ -1009,6 +1064,8 @@ class Task final : public ::google::protobuf::Message
     ::google::protobuf::RepeatedPtrField< ::palm::email::v1::Task_Address > bcc_;
     ::google::protobuf::RepeatedPtrField< ::palm::email::v1::Task_Attachment > attachments_;
     ::google::protobuf::internal::ArenaStringPtr subject_;
+    ::palm::email::v1::Task_Address* PROTOBUF_NULLABLE from_;
+    ::palm::email::v1::Task_Address* PROTOBUF_NULLABLE reply_to_;
     ::palm::email::v1::Task_Address* PROTOBUF_NULLABLE to_;
     ::palm::email::v1::Task_Body* PROTOBUF_NULLABLE body_;
     PROTOBUF_TSAN_DECLARE_MEMBER
@@ -1328,103 +1385,410 @@ inline void Task_Attachment::set_allocated_name(::std::string* PROTOBUF_NULLABLE
   // @@protoc_insertion_point(field_set_allocated:palm.email.v1.Task.Attachment.name)
 }
 
-// bytes content = 2;
-inline void Task_Attachment::clear_content() {
+// string content_type = 2;
+inline void Task_Attachment::clear_content_type() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.content_.ClearToEmpty();
+  _impl_.content_type_.ClearToEmpty();
   ClearHasBit(_impl_._has_bits_[0],
                   0x00000002U);
 }
-inline const ::std::string& Task_Attachment::content() const
+inline const ::std::string& Task_Attachment::content_type() const
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:palm.email.v1.Task.Attachment.content)
-  return _internal_content();
+  // @@protoc_insertion_point(field_get:palm.email.v1.Task.Attachment.content_type)
+  return _internal_content_type();
 }
 template <typename Arg_, typename... Args_>
-PROTOBUF_ALWAYS_INLINE void Task_Attachment::set_content(Arg_&& arg, Args_... args) {
+PROTOBUF_ALWAYS_INLINE void Task_Attachment::set_content_type(Arg_&& arg, Args_... args) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   SetHasBit(_impl_._has_bits_[0], 0x00000002U);
-  _impl_.content_.SetBytes(static_cast<Arg_&&>(arg), args..., GetArena());
-  // @@protoc_insertion_point(field_set:palm.email.v1.Task.Attachment.content)
+  _impl_.content_type_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:palm.email.v1.Task.Attachment.content_type)
 }
-inline ::std::string* PROTOBUF_NONNULL Task_Attachment::mutable_content()
+inline ::std::string* PROTOBUF_NONNULL Task_Attachment::mutable_content_type()
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
   SetHasBit(_impl_._has_bits_[0], 0x00000002U);
-  ::std::string* _s = _internal_mutable_content();
-  // @@protoc_insertion_point(field_mutable:palm.email.v1.Task.Attachment.content)
+  ::std::string* _s = _internal_mutable_content_type();
+  // @@protoc_insertion_point(field_mutable:palm.email.v1.Task.Attachment.content_type)
   return _s;
 }
-inline const ::std::string& Task_Attachment::_internal_content() const {
+inline const ::std::string& Task_Attachment::_internal_content_type() const {
   ::google::protobuf::internal::TSanRead(&_impl_);
-  return _impl_.content_.Get();
+  return _impl_.content_type_.Get();
 }
-inline void Task_Attachment::_internal_set_content(const ::std::string& value) {
+inline void Task_Attachment::_internal_set_content_type(const ::std::string& value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.content_.Set(value, GetArena());
+  _impl_.content_type_.Set(value, GetArena());
 }
-inline ::std::string* PROTOBUF_NONNULL Task_Attachment::_internal_mutable_content() {
+inline ::std::string* PROTOBUF_NONNULL Task_Attachment::_internal_mutable_content_type() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  return _impl_.content_.Mutable( GetArena());
+  return _impl_.content_type_.Mutable( GetArena());
 }
-inline ::std::string* PROTOBUF_NULLABLE Task_Attachment::release_content() {
+inline ::std::string* PROTOBUF_NULLABLE Task_Attachment::release_content_type() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  // @@protoc_insertion_point(field_release:palm.email.v1.Task.Attachment.content)
+  // @@protoc_insertion_point(field_release:palm.email.v1.Task.Attachment.content_type)
   if (!CheckHasBit(_impl_._has_bits_[0], 0x00000002U)) {
     return nullptr;
   }
   ClearHasBit(_impl_._has_bits_[0], 0x00000002U);
-  auto* released = _impl_.content_.Release();
+  auto* released = _impl_.content_type_.Release();
   if (::google::protobuf::internal::DebugHardenForceCopyDefaultString()) {
-    _impl_.content_.Set("", GetArena());
+    _impl_.content_type_.Set("", GetArena());
   }
   return released;
 }
-inline void Task_Attachment::set_allocated_content(::std::string* PROTOBUF_NULLABLE value) {
+inline void Task_Attachment::set_allocated_content_type(::std::string* PROTOBUF_NULLABLE value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   if (value != nullptr) {
     SetHasBit(_impl_._has_bits_[0], 0x00000002U);
   } else {
     ClearHasBit(_impl_._has_bits_[0], 0x00000002U);
   }
-  _impl_.content_.SetAllocated(value, GetArena());
-  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString() && _impl_.content_.IsDefault()) {
-    _impl_.content_.Set("", GetArena());
+  _impl_.content_type_.SetAllocated(value, GetArena());
+  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString() && _impl_.content_type_.IsDefault()) {
+    _impl_.content_type_.Set("", GetArena());
   }
-  // @@protoc_insertion_point(field_set_allocated:palm.email.v1.Task.Attachment.content)
+  // @@protoc_insertion_point(field_set_allocated:palm.email.v1.Task.Attachment.content_type)
 }
 
-// bool inline = 3;
-inline void Task_Attachment::clear_inline_() {
+// bytes body = 3;
+inline void Task_Attachment::clear_body() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.inline__ = false;
+  _impl_.body_.ClearToEmpty();
   ClearHasBit(_impl_._has_bits_[0],
                   0x00000004U);
 }
-inline bool Task_Attachment::inline_() const {
-  // @@protoc_insertion_point(field_get:palm.email.v1.Task.Attachment.inline)
-  return _internal_inline_();
+inline const ::std::string& Task_Attachment::body() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:palm.email.v1.Task.Attachment.body)
+  return _internal_body();
 }
-inline void Task_Attachment::set_inline_(bool value) {
-  _internal_set_inline_(value);
-  SetHasBit(_impl_._has_bits_[0], 0x00000004U);
-  // @@protoc_insertion_point(field_set:palm.email.v1.Task.Attachment.inline)
-}
-inline bool Task_Attachment::_internal_inline_() const {
-  ::google::protobuf::internal::TSanRead(&_impl_);
-  return _impl_.inline__;
-}
-inline void Task_Attachment::_internal_set_inline_(bool value) {
+template <typename Arg_, typename... Args_>
+PROTOBUF_ALWAYS_INLINE void Task_Attachment::set_body(Arg_&& arg, Args_... args) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.inline__ = value;
+  SetHasBit(_impl_._has_bits_[0], 0x00000004U);
+  _impl_.body_.SetBytes(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:palm.email.v1.Task.Attachment.body)
+}
+inline ::std::string* PROTOBUF_NONNULL Task_Attachment::mutable_body()
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  SetHasBit(_impl_._has_bits_[0], 0x00000004U);
+  ::std::string* _s = _internal_mutable_body();
+  // @@protoc_insertion_point(field_mutable:palm.email.v1.Task.Attachment.body)
+  return _s;
+}
+inline const ::std::string& Task_Attachment::_internal_body() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.body_.Get();
+}
+inline void Task_Attachment::_internal_set_body(const ::std::string& value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.body_.Set(value, GetArena());
+}
+inline ::std::string* PROTOBUF_NONNULL Task_Attachment::_internal_mutable_body() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  return _impl_.body_.Mutable( GetArena());
+}
+inline ::std::string* PROTOBUF_NULLABLE Task_Attachment::release_body() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  // @@protoc_insertion_point(field_release:palm.email.v1.Task.Attachment.body)
+  if (!CheckHasBit(_impl_._has_bits_[0], 0x00000004U)) {
+    return nullptr;
+  }
+  ClearHasBit(_impl_._has_bits_[0], 0x00000004U);
+  auto* released = _impl_.body_.Release();
+  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString()) {
+    _impl_.body_.Set("", GetArena());
+  }
+  return released;
+}
+inline void Task_Attachment::set_allocated_body(::std::string* PROTOBUF_NULLABLE value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (value != nullptr) {
+    SetHasBit(_impl_._has_bits_[0], 0x00000004U);
+  } else {
+    ClearHasBit(_impl_._has_bits_[0], 0x00000004U);
+  }
+  _impl_.body_.SetAllocated(value, GetArena());
+  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString() && _impl_.body_.IsDefault()) {
+    _impl_.body_.Set("", GetArena());
+  }
+  // @@protoc_insertion_point(field_set_allocated:palm.email.v1.Task.Attachment.body)
+}
+
+// optional string inline_id = 9;
+inline bool Task_Attachment::has_inline_id() const {
+  bool value = CheckHasBit(_impl_._has_bits_[0], 0x00000008U);
+  return value;
+}
+inline void Task_Attachment::clear_inline_id() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.inline_id_.ClearToEmpty();
+  ClearHasBit(_impl_._has_bits_[0],
+                  0x00000008U);
+}
+inline const ::std::string& Task_Attachment::inline_id() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:palm.email.v1.Task.Attachment.inline_id)
+  return _internal_inline_id();
+}
+template <typename Arg_, typename... Args_>
+PROTOBUF_ALWAYS_INLINE void Task_Attachment::set_inline_id(Arg_&& arg, Args_... args) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  SetHasBit(_impl_._has_bits_[0], 0x00000008U);
+  _impl_.inline_id_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:palm.email.v1.Task.Attachment.inline_id)
+}
+inline ::std::string* PROTOBUF_NONNULL Task_Attachment::mutable_inline_id()
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  SetHasBit(_impl_._has_bits_[0], 0x00000008U);
+  ::std::string* _s = _internal_mutable_inline_id();
+  // @@protoc_insertion_point(field_mutable:palm.email.v1.Task.Attachment.inline_id)
+  return _s;
+}
+inline const ::std::string& Task_Attachment::_internal_inline_id() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.inline_id_.Get();
+}
+inline void Task_Attachment::_internal_set_inline_id(const ::std::string& value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.inline_id_.Set(value, GetArena());
+}
+inline ::std::string* PROTOBUF_NONNULL Task_Attachment::_internal_mutable_inline_id() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  return _impl_.inline_id_.Mutable( GetArena());
+}
+inline ::std::string* PROTOBUF_NULLABLE Task_Attachment::release_inline_id() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  // @@protoc_insertion_point(field_release:palm.email.v1.Task.Attachment.inline_id)
+  if (!CheckHasBit(_impl_._has_bits_[0], 0x00000008U)) {
+    return nullptr;
+  }
+  ClearHasBit(_impl_._has_bits_[0], 0x00000008U);
+  auto* released = _impl_.inline_id_.Release();
+  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString()) {
+    _impl_.inline_id_.Set("", GetArena());
+  }
+  return released;
+}
+inline void Task_Attachment::set_allocated_inline_id(::std::string* PROTOBUF_NULLABLE value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (value != nullptr) {
+    SetHasBit(_impl_._has_bits_[0], 0x00000008U);
+  } else {
+    ClearHasBit(_impl_._has_bits_[0], 0x00000008U);
+  }
+  _impl_.inline_id_.SetAllocated(value, GetArena());
+  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString() && _impl_.inline_id_.IsDefault()) {
+    _impl_.inline_id_.Set("", GetArena());
+  }
+  // @@protoc_insertion_point(field_set_allocated:palm.email.v1.Task.Attachment.inline_id)
 }
 
 // -------------------------------------------------------------------
 
 // Task
 
-// .palm.email.v1.Task.Address to = 1;
-inline bool Task::has_to() const {
+// .palm.email.v1.Task.Address from = 1;
+inline bool Task::has_from() const {
   bool value = CheckHasBit(_impl_._has_bits_[0], 0x00000010U);
+  PROTOBUF_ASSUME(!value || _impl_.from_ != nullptr);
+  return value;
+}
+inline void Task::clear_from() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (_impl_.from_ != nullptr) _impl_.from_->Clear();
+  ClearHasBit(_impl_._has_bits_[0],
+                  0x00000010U);
+}
+inline const ::palm::email::v1::Task_Address& Task::_internal_from() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  const ::palm::email::v1::Task_Address* p = _impl_.from_;
+  return p != nullptr ? *p : reinterpret_cast<const ::palm::email::v1::Task_Address&>(::palm::email::v1::_Task_Address_default_instance_);
+}
+inline const ::palm::email::v1::Task_Address& Task::from() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:palm.email.v1.Task.from)
+  return _internal_from();
+}
+inline void Task::unsafe_arena_set_allocated_from(
+    ::palm::email::v1::Task_Address* PROTOBUF_NULLABLE value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (GetArena() == nullptr) {
+    delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.from_);
+  }
+  _impl_.from_ = reinterpret_cast<::palm::email::v1::Task_Address*>(value);
+  if (value != nullptr) {
+    SetHasBit(_impl_._has_bits_[0], 0x00000010U);
+  } else {
+    ClearHasBit(_impl_._has_bits_[0], 0x00000010U);
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:palm.email.v1.Task.from)
+}
+inline ::palm::email::v1::Task_Address* PROTOBUF_NULLABLE Task::release_from() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+
+  ClearHasBit(_impl_._has_bits_[0], 0x00000010U);
+  ::palm::email::v1::Task_Address* released = _impl_.from_;
+  _impl_.from_ = nullptr;
+  if (::google::protobuf::internal::DebugHardenForceCopyInRelease()) {
+    auto* old = reinterpret_cast<::google::protobuf::MessageLite*>(released);
+    released = ::google::protobuf::internal::DuplicateIfNonNull(released);
+    if (GetArena() == nullptr) {
+      delete old;
+    }
+  } else {
+    if (GetArena() != nullptr) {
+      released = ::google::protobuf::internal::DuplicateIfNonNull(released);
+    }
+  }
+  return released;
+}
+inline ::palm::email::v1::Task_Address* PROTOBUF_NULLABLE Task::unsafe_arena_release_from() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  // @@protoc_insertion_point(field_release:palm.email.v1.Task.from)
+
+  ClearHasBit(_impl_._has_bits_[0], 0x00000010U);
+  ::palm::email::v1::Task_Address* temp = _impl_.from_;
+  _impl_.from_ = nullptr;
+  return temp;
+}
+inline ::palm::email::v1::Task_Address* PROTOBUF_NONNULL Task::_internal_mutable_from() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (_impl_.from_ == nullptr) {
+    auto* p = ::google::protobuf::Message::DefaultConstruct<::palm::email::v1::Task_Address>(GetArena());
+    _impl_.from_ = reinterpret_cast<::palm::email::v1::Task_Address*>(p);
+  }
+  return _impl_.from_;
+}
+inline ::palm::email::v1::Task_Address* PROTOBUF_NONNULL Task::mutable_from()
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  SetHasBit(_impl_._has_bits_[0], 0x00000010U);
+  ::palm::email::v1::Task_Address* _msg = _internal_mutable_from();
+  // @@protoc_insertion_point(field_mutable:palm.email.v1.Task.from)
+  return _msg;
+}
+inline void Task::set_allocated_from(::palm::email::v1::Task_Address* PROTOBUF_NULLABLE value) {
+  ::google::protobuf::Arena* message_arena = GetArena();
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (message_arena == nullptr) {
+    delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.from_);
+  }
+
+  if (value != nullptr) {
+    ::google::protobuf::Arena* submessage_arena = value->GetArena();
+    if (message_arena != submessage_arena) {
+      value = ::google::protobuf::internal::GetOwnedMessage(message_arena, value, submessage_arena);
+    }
+    SetHasBit(_impl_._has_bits_[0], 0x00000010U);
+  } else {
+    ClearHasBit(_impl_._has_bits_[0], 0x00000010U);
+  }
+
+  _impl_.from_ = reinterpret_cast<::palm::email::v1::Task_Address*>(value);
+  // @@protoc_insertion_point(field_set_allocated:palm.email.v1.Task.from)
+}
+
+// optional .palm.email.v1.Task.Address reply_to = 2;
+inline bool Task::has_reply_to() const {
+  bool value = CheckHasBit(_impl_._has_bits_[0], 0x00000020U);
+  PROTOBUF_ASSUME(!value || _impl_.reply_to_ != nullptr);
+  return value;
+}
+inline void Task::clear_reply_to() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (_impl_.reply_to_ != nullptr) _impl_.reply_to_->Clear();
+  ClearHasBit(_impl_._has_bits_[0],
+                  0x00000020U);
+}
+inline const ::palm::email::v1::Task_Address& Task::_internal_reply_to() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  const ::palm::email::v1::Task_Address* p = _impl_.reply_to_;
+  return p != nullptr ? *p : reinterpret_cast<const ::palm::email::v1::Task_Address&>(::palm::email::v1::_Task_Address_default_instance_);
+}
+inline const ::palm::email::v1::Task_Address& Task::reply_to() const ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:palm.email.v1.Task.reply_to)
+  return _internal_reply_to();
+}
+inline void Task::unsafe_arena_set_allocated_reply_to(
+    ::palm::email::v1::Task_Address* PROTOBUF_NULLABLE value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (GetArena() == nullptr) {
+    delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.reply_to_);
+  }
+  _impl_.reply_to_ = reinterpret_cast<::palm::email::v1::Task_Address*>(value);
+  if (value != nullptr) {
+    SetHasBit(_impl_._has_bits_[0], 0x00000020U);
+  } else {
+    ClearHasBit(_impl_._has_bits_[0], 0x00000020U);
+  }
+  // @@protoc_insertion_point(field_unsafe_arena_set_allocated:palm.email.v1.Task.reply_to)
+}
+inline ::palm::email::v1::Task_Address* PROTOBUF_NULLABLE Task::release_reply_to() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+
+  ClearHasBit(_impl_._has_bits_[0], 0x00000020U);
+  ::palm::email::v1::Task_Address* released = _impl_.reply_to_;
+  _impl_.reply_to_ = nullptr;
+  if (::google::protobuf::internal::DebugHardenForceCopyInRelease()) {
+    auto* old = reinterpret_cast<::google::protobuf::MessageLite*>(released);
+    released = ::google::protobuf::internal::DuplicateIfNonNull(released);
+    if (GetArena() == nullptr) {
+      delete old;
+    }
+  } else {
+    if (GetArena() != nullptr) {
+      released = ::google::protobuf::internal::DuplicateIfNonNull(released);
+    }
+  }
+  return released;
+}
+inline ::palm::email::v1::Task_Address* PROTOBUF_NULLABLE Task::unsafe_arena_release_reply_to() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  // @@protoc_insertion_point(field_release:palm.email.v1.Task.reply_to)
+
+  ClearHasBit(_impl_._has_bits_[0], 0x00000020U);
+  ::palm::email::v1::Task_Address* temp = _impl_.reply_to_;
+  _impl_.reply_to_ = nullptr;
+  return temp;
+}
+inline ::palm::email::v1::Task_Address* PROTOBUF_NONNULL Task::_internal_mutable_reply_to() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (_impl_.reply_to_ == nullptr) {
+    auto* p = ::google::protobuf::Message::DefaultConstruct<::palm::email::v1::Task_Address>(GetArena());
+    _impl_.reply_to_ = reinterpret_cast<::palm::email::v1::Task_Address*>(p);
+  }
+  return _impl_.reply_to_;
+}
+inline ::palm::email::v1::Task_Address* PROTOBUF_NONNULL Task::mutable_reply_to()
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  SetHasBit(_impl_._has_bits_[0], 0x00000020U);
+  ::palm::email::v1::Task_Address* _msg = _internal_mutable_reply_to();
+  // @@protoc_insertion_point(field_mutable:palm.email.v1.Task.reply_to)
+  return _msg;
+}
+inline void Task::set_allocated_reply_to(::palm::email::v1::Task_Address* PROTOBUF_NULLABLE value) {
+  ::google::protobuf::Arena* message_arena = GetArena();
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (message_arena == nullptr) {
+    delete reinterpret_cast<::google::protobuf::MessageLite*>(_impl_.reply_to_);
+  }
+
+  if (value != nullptr) {
+    ::google::protobuf::Arena* submessage_arena = value->GetArena();
+    if (message_arena != submessage_arena) {
+      value = ::google::protobuf::internal::GetOwnedMessage(message_arena, value, submessage_arena);
+    }
+    SetHasBit(_impl_._has_bits_[0], 0x00000020U);
+  } else {
+    ClearHasBit(_impl_._has_bits_[0], 0x00000020U);
+  }
+
+  _impl_.reply_to_ = reinterpret_cast<::palm::email::v1::Task_Address*>(value);
+  // @@protoc_insertion_point(field_set_allocated:palm.email.v1.Task.reply_to)
+}
+
+// .palm.email.v1.Task.Address to = 3;
+inline bool Task::has_to() const {
+  bool value = CheckHasBit(_impl_._has_bits_[0], 0x00000040U);
   PROTOBUF_ASSUME(!value || _impl_.to_ != nullptr);
   return value;
 }
@@ -1432,7 +1796,7 @@ inline void Task::clear_to() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   if (_impl_.to_ != nullptr) _impl_.to_->Clear();
   ClearHasBit(_impl_._has_bits_[0],
-                  0x00000010U);
+                  0x00000040U);
 }
 inline const ::palm::email::v1::Task_Address& Task::_internal_to() const {
   ::google::protobuf::internal::TSanRead(&_impl_);
@@ -1451,16 +1815,16 @@ inline void Task::unsafe_arena_set_allocated_to(
   }
   _impl_.to_ = reinterpret_cast<::palm::email::v1::Task_Address*>(value);
   if (value != nullptr) {
-    SetHasBit(_impl_._has_bits_[0], 0x00000010U);
+    SetHasBit(_impl_._has_bits_[0], 0x00000040U);
   } else {
-    ClearHasBit(_impl_._has_bits_[0], 0x00000010U);
+    ClearHasBit(_impl_._has_bits_[0], 0x00000040U);
   }
   // @@protoc_insertion_point(field_unsafe_arena_set_allocated:palm.email.v1.Task.to)
 }
 inline ::palm::email::v1::Task_Address* PROTOBUF_NULLABLE Task::release_to() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
 
-  ClearHasBit(_impl_._has_bits_[0], 0x00000010U);
+  ClearHasBit(_impl_._has_bits_[0], 0x00000040U);
   ::palm::email::v1::Task_Address* released = _impl_.to_;
   _impl_.to_ = nullptr;
   if (::google::protobuf::internal::DebugHardenForceCopyInRelease()) {
@@ -1480,7 +1844,7 @@ inline ::palm::email::v1::Task_Address* PROTOBUF_NULLABLE Task::unsafe_arena_rel
   ::google::protobuf::internal::TSanWrite(&_impl_);
   // @@protoc_insertion_point(field_release:palm.email.v1.Task.to)
 
-  ClearHasBit(_impl_._has_bits_[0], 0x00000010U);
+  ClearHasBit(_impl_._has_bits_[0], 0x00000040U);
   ::palm::email::v1::Task_Address* temp = _impl_.to_;
   _impl_.to_ = nullptr;
   return temp;
@@ -1495,7 +1859,7 @@ inline ::palm::email::v1::Task_Address* PROTOBUF_NONNULL Task::_internal_mutable
 }
 inline ::palm::email::v1::Task_Address* PROTOBUF_NONNULL Task::mutable_to()
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  SetHasBit(_impl_._has_bits_[0], 0x00000010U);
+  SetHasBit(_impl_._has_bits_[0], 0x00000040U);
   ::palm::email::v1::Task_Address* _msg = _internal_mutable_to();
   // @@protoc_insertion_point(field_mutable:palm.email.v1.Task.to)
   return _msg;
@@ -1512,16 +1876,16 @@ inline void Task::set_allocated_to(::palm::email::v1::Task_Address* PROTOBUF_NUL
     if (message_arena != submessage_arena) {
       value = ::google::protobuf::internal::GetOwnedMessage(message_arena, value, submessage_arena);
     }
-    SetHasBit(_impl_._has_bits_[0], 0x00000010U);
+    SetHasBit(_impl_._has_bits_[0], 0x00000040U);
   } else {
-    ClearHasBit(_impl_._has_bits_[0], 0x00000010U);
+    ClearHasBit(_impl_._has_bits_[0], 0x00000040U);
   }
 
   _impl_.to_ = reinterpret_cast<::palm::email::v1::Task_Address*>(value);
   // @@protoc_insertion_point(field_set_allocated:palm.email.v1.Task.to)
 }
 
-// repeated .palm.email.v1.Task.Address cc = 2;
+// repeated .palm.email.v1.Task.Address cc = 4;
 inline int Task::_internal_cc_size() const {
   return _internal_cc().size();
 }
@@ -1577,7 +1941,7 @@ Task::_internal_mutable_cc() {
   return &_impl_.cc_;
 }
 
-// repeated .palm.email.v1.Task.Address bcc = 3;
+// repeated .palm.email.v1.Task.Address bcc = 5;
 inline int Task::_internal_bcc_size() const {
   return _internal_bcc().size();
 }
@@ -1700,7 +2064,7 @@ inline void Task::set_allocated_subject(::std::string* PROTOBUF_NULLABLE value) 
 
 // .palm.email.v1.Task.Body body = 12;
 inline bool Task::has_body() const {
-  bool value = CheckHasBit(_impl_._has_bits_[0], 0x00000020U);
+  bool value = CheckHasBit(_impl_._has_bits_[0], 0x00000080U);
   PROTOBUF_ASSUME(!value || _impl_.body_ != nullptr);
   return value;
 }
@@ -1708,7 +2072,7 @@ inline void Task::clear_body() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   if (_impl_.body_ != nullptr) _impl_.body_->Clear();
   ClearHasBit(_impl_._has_bits_[0],
-                  0x00000020U);
+                  0x00000080U);
 }
 inline const ::palm::email::v1::Task_Body& Task::_internal_body() const {
   ::google::protobuf::internal::TSanRead(&_impl_);
@@ -1727,16 +2091,16 @@ inline void Task::unsafe_arena_set_allocated_body(
   }
   _impl_.body_ = reinterpret_cast<::palm::email::v1::Task_Body*>(value);
   if (value != nullptr) {
-    SetHasBit(_impl_._has_bits_[0], 0x00000020U);
+    SetHasBit(_impl_._has_bits_[0], 0x00000080U);
   } else {
-    ClearHasBit(_impl_._has_bits_[0], 0x00000020U);
+    ClearHasBit(_impl_._has_bits_[0], 0x00000080U);
   }
   // @@protoc_insertion_point(field_unsafe_arena_set_allocated:palm.email.v1.Task.body)
 }
 inline ::palm::email::v1::Task_Body* PROTOBUF_NULLABLE Task::release_body() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
 
-  ClearHasBit(_impl_._has_bits_[0], 0x00000020U);
+  ClearHasBit(_impl_._has_bits_[0], 0x00000080U);
   ::palm::email::v1::Task_Body* released = _impl_.body_;
   _impl_.body_ = nullptr;
   if (::google::protobuf::internal::DebugHardenForceCopyInRelease()) {
@@ -1756,7 +2120,7 @@ inline ::palm::email::v1::Task_Body* PROTOBUF_NULLABLE Task::unsafe_arena_releas
   ::google::protobuf::internal::TSanWrite(&_impl_);
   // @@protoc_insertion_point(field_release:palm.email.v1.Task.body)
 
-  ClearHasBit(_impl_._has_bits_[0], 0x00000020U);
+  ClearHasBit(_impl_._has_bits_[0], 0x00000080U);
   ::palm::email::v1::Task_Body* temp = _impl_.body_;
   _impl_.body_ = nullptr;
   return temp;
@@ -1771,7 +2135,7 @@ inline ::palm::email::v1::Task_Body* PROTOBUF_NONNULL Task::_internal_mutable_bo
 }
 inline ::palm::email::v1::Task_Body* PROTOBUF_NONNULL Task::mutable_body()
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  SetHasBit(_impl_._has_bits_[0], 0x00000020U);
+  SetHasBit(_impl_._has_bits_[0], 0x00000080U);
   ::palm::email::v1::Task_Body* _msg = _internal_mutable_body();
   // @@protoc_insertion_point(field_mutable:palm.email.v1.Task.body)
   return _msg;
@@ -1788,9 +2152,9 @@ inline void Task::set_allocated_body(::palm::email::v1::Task_Body* PROTOBUF_NULL
     if (message_arena != submessage_arena) {
       value = ::google::protobuf::internal::GetOwnedMessage(message_arena, value, submessage_arena);
     }
-    SetHasBit(_impl_._has_bits_[0], 0x00000020U);
+    SetHasBit(_impl_._has_bits_[0], 0x00000080U);
   } else {
-    ClearHasBit(_impl_._has_bits_[0], 0x00000020U);
+    ClearHasBit(_impl_._has_bits_[0], 0x00000080U);
   }
 
   _impl_.body_ = reinterpret_cast<::palm::email::v1::Task_Body*>(value);

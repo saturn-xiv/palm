@@ -23,7 +23,6 @@ pub enum UsageTriggerEnumRecurring {
     Yearly,
     #[serde(rename = "alltime")]
     Alltime,
-
 }
 
 impl std::fmt::Display for UsageTriggerEnumRecurring {
@@ -42,4 +41,3 @@ impl Default for UsageTriggerEnumRecurring {
         Self::Daily
     }
 }
-

@@ -21,7 +21,6 @@ pub enum RealtimeTranscriptionEnumTrack {
     OutboundTrack,
     #[serde(rename = "both_tracks")]
     BothTracks,
-
 }
 
 impl std::fmt::Display for RealtimeTranscriptionEnumTrack {
@@ -39,4 +38,3 @@ impl Default for RealtimeTranscriptionEnumTrack {
         Self::InboundTrack
     }
 }
-

@@ -19,7 +19,6 @@ pub enum PaymentsEnumStatus {
     Complete,
     #[serde(rename = "cancel")]
     Cancel,
-
 }
 
 impl std::fmt::Display for PaymentsEnumStatus {
@@ -36,4 +35,3 @@ impl Default for PaymentsEnumStatus {
         Self::Complete
     }
 }
-

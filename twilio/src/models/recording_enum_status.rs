@@ -29,7 +29,6 @@ pub enum RecordingEnumStatus {
     Absent,
     #[serde(rename = "deleted")]
     Deleted,
-
 }
 
 impl std::fmt::Display for RecordingEnumStatus {
@@ -51,4 +50,3 @@ impl Default for RecordingEnumStatus {
         Self::InProgress
     }
 }
-

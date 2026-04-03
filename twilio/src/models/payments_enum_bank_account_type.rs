@@ -21,7 +21,6 @@ pub enum PaymentsEnumBankAccountType {
     ConsumerSavings,
     #[serde(rename = "commercial-checking")]
     CommercialChecking,
-
 }
 
 impl std::fmt::Display for PaymentsEnumBankAccountType {
@@ -39,4 +38,3 @@ impl Default for PaymentsEnumBankAccountType {
         Self::ConsumerChecking
     }
 }
-

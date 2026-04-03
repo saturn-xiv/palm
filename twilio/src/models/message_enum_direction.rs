@@ -23,7 +23,6 @@ pub enum MessageEnumDirection {
     OutboundCall,
     #[serde(rename = "outbound-reply")]
     OutboundReply,
-
 }
 
 impl std::fmt::Display for MessageEnumDirection {
@@ -42,4 +41,3 @@ impl Default for MessageEnumDirection {
         Self::Inbound
     }
 }
-

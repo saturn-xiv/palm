@@ -19,7 +19,6 @@ pub enum MessageEnumContentRetention {
     Retain,
     #[serde(rename = "discard")]
     Discard,
-
 }
 
 impl std::fmt::Display for MessageEnumContentRetention {
@@ -36,4 +35,3 @@ impl Default for MessageEnumContentRetention {
         Self::Retain
     }
 }
-

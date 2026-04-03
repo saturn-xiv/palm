@@ -19,7 +19,6 @@ pub enum StreamEnumStatus {
     InProgress,
     #[serde(rename = "stopped")]
     Stopped,
-
 }
 
 impl std::fmt::Display for StreamEnumStatus {
@@ -36,4 +35,3 @@ impl Default for StreamEnumStatus {
         Self::InProgress
     }
 }
-

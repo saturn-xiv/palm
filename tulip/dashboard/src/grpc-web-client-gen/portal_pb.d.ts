@@ -160,6 +160,32 @@ export namespace Location {
   }
 }
 
+export class HashedPassword extends jspb.Message {
+  getData(): Uint8Array | string;
+  getData_asU8(): Uint8Array;
+  getData_asB64(): string;
+  setData(value: Uint8Array | string): HashedPassword;
+
+  getSalt(): Uint8Array | string;
+  getSalt_asU8(): Uint8Array;
+  getSalt_asB64(): string;
+  setSalt(value: Uint8Array | string): HashedPassword;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): HashedPassword.AsObject;
+  static toObject(includeInstance: boolean, msg: HashedPassword): HashedPassword.AsObject;
+  static serializeBinaryToWriter(message: HashedPassword, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): HashedPassword;
+  static deserializeBinaryFromReader(message: HashedPassword, reader: jspb.BinaryReader): HashedPassword;
+}
+
+export namespace HashedPassword {
+  export type AsObject = {
+    data: Uint8Array | string;
+    salt: Uint8Array | string;
+  };
+}
+
 export class UserIndexResponse extends jspb.Message {
   getItemsList(): Array<UserIndexResponse.Item>;
   setItemsList(value: Array<UserIndexResponse.Item>): UserIndexResponse;

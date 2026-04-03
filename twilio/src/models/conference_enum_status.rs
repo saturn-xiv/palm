@@ -21,7 +21,6 @@ pub enum ConferenceEnumStatus {
     InProgress,
     #[serde(rename = "completed")]
     Completed,
-
 }
 
 impl std::fmt::Display for ConferenceEnumStatus {
@@ -39,4 +38,3 @@ impl Default for ConferenceEnumStatus {
         Self::Init
     }
 }
-

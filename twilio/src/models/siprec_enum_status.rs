@@ -19,7 +19,6 @@ pub enum SiprecEnumStatus {
     InProgress,
     #[serde(rename = "stopped")]
     Stopped,
-
 }
 
 impl std::fmt::Display for SiprecEnumStatus {
@@ -36,4 +35,3 @@ impl Default for SiprecEnumStatus {
         Self::InProgress
     }
 }
-

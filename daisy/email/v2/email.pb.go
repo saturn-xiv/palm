@@ -23,9 +23,11 @@ const (
 
 type Task struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	To            *Task_Address          `protobuf:"bytes,1,opt,name=to,proto3" json:"to,omitempty"`
-	Cc            []*Task_Address        `protobuf:"bytes,2,rep,name=cc,proto3" json:"cc,omitempty"`
-	Bcc           []*Task_Address        `protobuf:"bytes,3,rep,name=bcc,proto3" json:"bcc,omitempty"`
+	From          *Task_Address          `protobuf:"bytes,1,opt,name=from,proto3" json:"from,omitempty"`
+	ReplyTo       *Task_Address          `protobuf:"bytes,2,opt,name=reply_to,json=replyTo,proto3,oneof" json:"reply_to,omitempty"`
+	To            *Task_Address          `protobuf:"bytes,3,opt,name=to,proto3" json:"to,omitempty"`
+	Cc            []*Task_Address        `protobuf:"bytes,4,rep,name=cc,proto3" json:"cc,omitempty"`
+	Bcc           []*Task_Address        `protobuf:"bytes,5,rep,name=bcc,proto3" json:"bcc,omitempty"`
 	Subject       string                 `protobuf:"bytes,11,opt,name=subject,proto3" json:"subject,omitempty"`
 	Body          *Task_Body             `protobuf:"bytes,12,opt,name=body,proto3" json:"body,omitempty"`
 	Attachments   []*Task_Attachment     `protobuf:"bytes,13,rep,name=attachments,proto3" json:"attachments,omitempty"`
@@ -61,6 +63,20 @@ func (x *Task) ProtoReflect() protoreflect.Message {
 // Deprecated: Use Task.ProtoReflect.Descriptor instead.
 func (*Task) Descriptor() ([]byte, []int) {
 	return file_proto_email_proto_rawDescGZIP(), []int{0}
+}
+
+func (x *Task) GetFrom() *Task_Address {
+	if x != nil {
+		return x.From
+	}
+	return nil
+}
+
+func (x *Task) GetReplyTo() *Task_Address {
+	if x != nil {
+		return x.ReplyTo
+	}
+	return nil
 }
 
 func (x *Task) GetTo() *Task_Address {
@@ -212,8 +228,9 @@ func (x *Task_Body) GetHtml() bool {
 type Task_Attachment struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Name          string                 `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
-	Content       []byte                 `protobuf:"bytes,2,opt,name=content,proto3" json:"content,omitempty"`
-	Inline        bool                   `protobuf:"varint,3,opt,name=inline,proto3" json:"inline,omitempty"`
+	ContentType   string                 `protobuf:"bytes,2,opt,name=content_type,json=contentType,proto3" json:"content_type,omitempty"`
+	Body          []byte                 `protobuf:"bytes,3,opt,name=body,proto3" json:"body,omitempty"`
+	InlineId      *string                `protobuf:"bytes,9,opt,name=inline_id,json=inlineId,proto3,oneof" json:"inline_id,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -255,29 +272,38 @@ func (x *Task_Attachment) GetName() string {
 	return ""
 }
 
-func (x *Task_Attachment) GetContent() []byte {
+func (x *Task_Attachment) GetContentType() string {
 	if x != nil {
-		return x.Content
+		return x.ContentType
+	}
+	return ""
+}
+
+func (x *Task_Attachment) GetBody() []byte {
+	if x != nil {
+		return x.Body
 	}
 	return nil
 }
 
-func (x *Task_Attachment) GetInline() bool {
-	if x != nil {
-		return x.Inline
+func (x *Task_Attachment) GetInlineId() string {
+	if x != nil && x.InlineId != nil {
+		return *x.InlineId
 	}
-	return false
+	return ""
 }
 
 var File_proto_email_proto protoreflect.FileDescriptor
 
 const file_proto_email_proto_rawDesc = "" +
 	"\n" +
-	"\x11proto/email.proto\x12\rpalm.email.v1\"\xd8\x03\n" +
-	"\x04Task\x12+\n" +
-	"\x02to\x18\x01 \x01(\v2\x1b.palm.email.v1.Task.AddressR\x02to\x12+\n" +
-	"\x02cc\x18\x02 \x03(\v2\x1b.palm.email.v1.Task.AddressR\x02cc\x12-\n" +
-	"\x03bcc\x18\x03 \x03(\v2\x1b.palm.email.v1.Task.AddressR\x03bcc\x12\x18\n" +
+	"\x11proto/email.proto\x12\rpalm.email.v1\"\x89\x05\n" +
+	"\x04Task\x12/\n" +
+	"\x04from\x18\x01 \x01(\v2\x1b.palm.email.v1.Task.AddressR\x04from\x12;\n" +
+	"\breply_to\x18\x02 \x01(\v2\x1b.palm.email.v1.Task.AddressH\x00R\areplyTo\x88\x01\x01\x12+\n" +
+	"\x02to\x18\x03 \x01(\v2\x1b.palm.email.v1.Task.AddressR\x02to\x12+\n" +
+	"\x02cc\x18\x04 \x03(\v2\x1b.palm.email.v1.Task.AddressR\x02cc\x12-\n" +
+	"\x03bcc\x18\x05 \x03(\v2\x1b.palm.email.v1.Task.AddressR\x03bcc\x12\x18\n" +
 	"\asubject\x18\v \x01(\tR\asubject\x12,\n" +
 	"\x04body\x18\f \x01(\v2\x18.palm.email.v1.Task.BodyR\x04body\x12@\n" +
 	"\vattachments\x18\r \x03(\v2\x1e.palm.email.v1.Task.AttachmentR\vattachments\x1a3\n" +
@@ -286,12 +312,16 @@ const file_proto_email_proto_rawDesc = "" +
 	"\x05email\x18\x02 \x01(\tR\x05email\x1a4\n" +
 	"\x04Body\x12\x18\n" +
 	"\acontent\x18\x01 \x01(\tR\acontent\x12\x12\n" +
-	"\x04html\x18\x02 \x01(\bR\x04html\x1aR\n" +
+	"\x04html\x18\x02 \x01(\bR\x04html\x1a\x87\x01\n" +
 	"\n" +
 	"Attachment\x12\x12\n" +
-	"\x04name\x18\x01 \x01(\tR\x04name\x12\x18\n" +
-	"\acontent\x18\x02 \x01(\fR\acontent\x12\x16\n" +
-	"\x06inline\x18\x03 \x01(\bR\x06inlineB\\\n" +
+	"\x04name\x18\x01 \x01(\tR\x04name\x12!\n" +
+	"\fcontent_type\x18\x02 \x01(\tR\vcontentType\x12\x12\n" +
+	"\x04body\x18\x03 \x01(\fR\x04body\x12 \n" +
+	"\tinline_id\x18\t \x01(\tH\x00R\binlineId\x88\x01\x01B\f\n" +
+	"\n" +
+	"_inline_idB\v\n" +
+	"\t_reply_toB\\\n" +
 	"+com.github.saturn_xiv.palm.plugins.email.v1B\n" +
 	"EmailProtoP\x01Z\x05./;v2\xaa\x02\x17Palm.Plugins.Email.Grpcb\x06proto3"
 
@@ -315,16 +345,18 @@ var file_proto_email_proto_goTypes = []any{
 	(*Task_Attachment)(nil), // 3: palm.email.v1.Task.Attachment
 }
 var file_proto_email_proto_depIdxs = []int32{
-	1, // 0: palm.email.v1.Task.to:type_name -> palm.email.v1.Task.Address
-	1, // 1: palm.email.v1.Task.cc:type_name -> palm.email.v1.Task.Address
-	1, // 2: palm.email.v1.Task.bcc:type_name -> palm.email.v1.Task.Address
-	2, // 3: palm.email.v1.Task.body:type_name -> palm.email.v1.Task.Body
-	3, // 4: palm.email.v1.Task.attachments:type_name -> palm.email.v1.Task.Attachment
-	5, // [5:5] is the sub-list for method output_type
-	5, // [5:5] is the sub-list for method input_type
-	5, // [5:5] is the sub-list for extension type_name
-	5, // [5:5] is the sub-list for extension extendee
-	0, // [0:5] is the sub-list for field type_name
+	1, // 0: palm.email.v1.Task.from:type_name -> palm.email.v1.Task.Address
+	1, // 1: palm.email.v1.Task.reply_to:type_name -> palm.email.v1.Task.Address
+	1, // 2: palm.email.v1.Task.to:type_name -> palm.email.v1.Task.Address
+	1, // 3: palm.email.v1.Task.cc:type_name -> palm.email.v1.Task.Address
+	1, // 4: palm.email.v1.Task.bcc:type_name -> palm.email.v1.Task.Address
+	2, // 5: palm.email.v1.Task.body:type_name -> palm.email.v1.Task.Body
+	3, // 6: palm.email.v1.Task.attachments:type_name -> palm.email.v1.Task.Attachment
+	7, // [7:7] is the sub-list for method output_type
+	7, // [7:7] is the sub-list for method input_type
+	7, // [7:7] is the sub-list for extension type_name
+	7, // [7:7] is the sub-list for extension extendee
+	0, // [0:7] is the sub-list for field type_name
 }
 
 func init() { file_proto_email_proto_init() }
@@ -332,6 +364,8 @@ func file_proto_email_proto_init() {
 	if File_proto_email_proto != nil {
 		return
 	}
+	file_proto_email_proto_msgTypes[0].OneofWrappers = []any{}
+	file_proto_email_proto_msgTypes[3].OneofWrappers = []any{}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{

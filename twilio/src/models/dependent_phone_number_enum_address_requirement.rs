@@ -23,7 +23,6 @@ pub enum DependentPhoneNumberEnumAddressRequirement {
     Local,
     #[serde(rename = "foreign")]
     Foreign,
-
 }
 
 impl std::fmt::Display for DependentPhoneNumberEnumAddressRequirement {
@@ -42,4 +41,3 @@ impl Default for DependentPhoneNumberEnumAddressRequirement {
         Self::None
     }
 }
-

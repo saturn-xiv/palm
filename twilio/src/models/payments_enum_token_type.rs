@@ -21,7 +21,6 @@ pub enum PaymentsEnumTokenType {
     Reusable,
     #[serde(rename = "payment-method")]
     PaymentMethod,
-
 }
 
 impl std::fmt::Display for PaymentsEnumTokenType {
@@ -39,4 +38,3 @@ impl Default for PaymentsEnumTokenType {
         Self::OneTime
     }
 }
-

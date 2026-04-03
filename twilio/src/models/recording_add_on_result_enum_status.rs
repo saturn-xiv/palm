@@ -31,7 +31,6 @@ pub enum RecordingAddOnResultEnumStatus {
     Processing,
     #[serde(rename = "queued")]
     Queued,
-
 }
 
 impl std::fmt::Display for RecordingAddOnResultEnumStatus {
@@ -54,4 +53,3 @@ impl Default for RecordingAddOnResultEnumStatus {
         Self::Canceled
     }
 }
-

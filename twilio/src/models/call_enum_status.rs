@@ -31,7 +31,6 @@ pub enum CallEnumStatus {
     NoAnswer,
     #[serde(rename = "canceled")]
     Canceled,
-
 }
 
 impl std::fmt::Display for CallEnumStatus {
@@ -54,4 +53,3 @@ impl Default for CallEnumStatus {
         Self::Queued
     }
 }
-

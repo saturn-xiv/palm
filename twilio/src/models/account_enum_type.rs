@@ -19,7 +19,6 @@ pub enum AccountEnumType {
     Trial,
     #[serde(rename = "Full")]
     Full,
-
 }
 
 impl std::fmt::Display for AccountEnumType {
@@ -36,4 +35,3 @@ impl Default for AccountEnumType {
         Self::Trial
     }
 }
-

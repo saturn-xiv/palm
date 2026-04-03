@@ -5,4 +5,4 @@ strip = true
 [workspace]
 resolver = "2"
 
-members = ["phlox", "marigold"]
+members = ["twilio", "phlox", "marigold"]

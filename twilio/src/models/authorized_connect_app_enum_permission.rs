@@ -19,7 +19,6 @@ pub enum AuthorizedConnectAppEnumPermission {
     GetAll,
     #[serde(rename = "post-all")]
     PostAll,
-
 }
 
 impl std::fmt::Display for AuthorizedConnectAppEnumPermission {
@@ -36,4 +35,3 @@ impl Default for AuthorizedConnectAppEnumPermission {
         Self::GetAll
     }
 }
-

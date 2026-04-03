@@ -21,7 +21,6 @@ pub enum AccountEnumStatus {
     Suspended,
     #[serde(rename = "closed")]
     Closed,
-
 }
 
 impl std::fmt::Display for AccountEnumStatus {
@@ -39,4 +38,3 @@ impl Default for AccountEnumStatus {
         Self::Active
     }
 }
-
