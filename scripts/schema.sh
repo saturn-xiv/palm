@@ -52,7 +52,7 @@ function generate_tulip_dashboard() {
     local target=$WORKSPACE/tulip/dashboard/src/grpc-web-client-gen
     if [ -d $target ]
     then
-        rm -rf $target
+        rm -f $target/*.js $target/*.ts
     fi
     mkdir -p $target
     $PROTOBUF_HOME/bin/protoc -I $WORKSPACE/tulip/proto -I $PROTOBUF_HOME/include/google/protobuf \
@@ -86,11 +86,24 @@ function generate_tulip() {
     mv $target/*.cc $target/src/
 }
 
+# https://www.twilio.com/docs/openapi/generating-a-rust-client-for-twilios-api#setup
+# https://github.com/OpenAPITools/openapi-generator?tab=readme-ov-file#launcher-script
+function generate_twilio_rust_api() {
+    local target=$WORKSPACE/twilio
+    if [ ! -d $target ]
+    then
+        $HOME/.local/bin/openapi-generator-cli generate -g rust \
+            -i https://raw.githubusercontent.com/twilio/twilio-oai/main/spec/json/twilio_api_v2010.json \
+            -o $target \
+            --additional-properties=useSingleRequestParameter=true
+    fi
+}
 # -----------------------------------------------------------------------------
 
 generate_daisy
 generate_tulip
 generate_tulip_dashboard
+generate_twilio_rust_api
 
 echo "format cargo projects"
 cd $WORKSPACE/
