@@ -49,7 +49,6 @@ pub enum ListAvailablePhoneNumberCountryError {
     UnknownValue(serde_json::Value),
 }
 
-///
 pub async fn fetch_available_phone_number_country(
     configuration: &configuration::Configuration,
     params: FetchAvailablePhoneNumberCountryParams,
@@ -87,8 +86,8 @@ pub async fn fetch_available_phone_number_country(
         let content = resp.text().await?;
         match content_type {
             ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
-            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::ApiV2010AccountAvailablePhoneNumberCountry`"))),
-            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::ApiV2010AccountAvailablePhoneNumberCountry`")))),
+            ContentType::Text => Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::ApiV2010AccountAvailablePhoneNumberCountry`"))),
+            ContentType::Unsupported(unknown_type) => Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::ApiV2010AccountAvailablePhoneNumberCountry`")))),
         }
     } else {
         let content = resp.text().await?;
@@ -102,7 +101,6 @@ pub async fn fetch_available_phone_number_country(
     }
 }
 
-///
 pub async fn list_available_phone_number_country(
     configuration: &configuration::Configuration,
     params: ListAvailablePhoneNumberCountryParams,
@@ -148,8 +146,8 @@ pub async fn list_available_phone_number_country(
         let content = resp.text().await?;
         match content_type {
             ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
-            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::ListAvailablePhoneNumberCountryResponse`"))),
-            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::ListAvailablePhoneNumberCountryResponse`")))),
+            ContentType::Text => Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::ListAvailablePhoneNumberCountryResponse`"))),
+            ContentType::Unsupported(unknown_type) => Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::ListAvailablePhoneNumberCountryResponse`")))),
         }
     } else {
         let content = resp.text().await?;

@@ -14,8 +14,10 @@ use serde::{Deserialize, Serialize};
 /// ParticipantEnumStatus : The status of the participant's call in a session. Can be: `queued`, `connecting`, `ringing`, `connected`, `complete`, or `failed`.
 /// The status of the participant's call in a session. Can be: `queued`, `connecting`, `ringing`, `connected`, `complete`, or `failed`.
 #[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
+#[derive(Default)]
 pub enum ParticipantEnumStatus {
     #[serde(rename = "queued")]
+    #[default]
     Queued,
     #[serde(rename = "connecting")]
     Connecting,
@@ -42,8 +44,3 @@ impl std::fmt::Display for ParticipantEnumStatus {
     }
 }
 
-impl Default for ParticipantEnumStatus {
-    fn default() -> ParticipantEnumStatus {
-        Self::Queued
-    }
-}

@@ -141,7 +141,6 @@ pub enum UpdateAddressError {
     UnknownValue(serde_json::Value),
 }
 
-///
 pub async fn create_address(
     configuration: &configuration::Configuration,
     params: CreateAddressParams,
@@ -197,8 +196,8 @@ pub async fn create_address(
         let content = resp.text().await?;
         match content_type {
             ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
-            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::ApiV2010AccountAddress`"))),
-            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::ApiV2010AccountAddress`")))),
+            ContentType::Text => Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::ApiV2010AccountAddress`"))),
+            ContentType::Unsupported(unknown_type) => Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::ApiV2010AccountAddress`")))),
         }
     } else {
         let content = resp.text().await?;
@@ -211,7 +210,6 @@ pub async fn create_address(
     }
 }
 
-///
 pub async fn delete_address(
     configuration: &configuration::Configuration,
     params: DeleteAddressParams,
@@ -251,7 +249,6 @@ pub async fn delete_address(
     }
 }
 
-///
 pub async fn fetch_address(
     configuration: &configuration::Configuration,
     params: FetchAddressParams,
@@ -286,8 +283,8 @@ pub async fn fetch_address(
         let content = resp.text().await?;
         match content_type {
             ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
-            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::ApiV2010AccountAddress`"))),
-            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::ApiV2010AccountAddress`")))),
+            ContentType::Text => Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::ApiV2010AccountAddress`"))),
+            ContentType::Unsupported(unknown_type) => Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::ApiV2010AccountAddress`")))),
         }
     } else {
         let content = resp.text().await?;
@@ -300,7 +297,6 @@ pub async fn fetch_address(
     }
 }
 
-///
 pub async fn list_address(
     configuration: &configuration::Configuration,
     params: ListAddressParams,
@@ -355,8 +351,8 @@ pub async fn list_address(
         let content = resp.text().await?;
         match content_type {
             ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
-            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::ListAddressResponse`"))),
-            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::ListAddressResponse`")))),
+            ContentType::Text => Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::ListAddressResponse`"))),
+            ContentType::Unsupported(unknown_type) => Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::ListAddressResponse`")))),
         }
     } else {
         let content = resp.text().await?;
@@ -369,7 +365,6 @@ pub async fn list_address(
     }
 }
 
-///
 pub async fn update_address(
     configuration: &configuration::Configuration,
     params: UpdateAddressParams,
@@ -435,8 +430,8 @@ pub async fn update_address(
         let content = resp.text().await?;
         match content_type {
             ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
-            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::ApiV2010AccountAddress`"))),
-            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::ApiV2010AccountAddress`")))),
+            ContentType::Text => Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::ApiV2010AccountAddress`"))),
+            ContentType::Unsupported(unknown_type) => Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::ApiV2010AccountAddress`")))),
         }
     } else {
         let content = resp.text().await?;

@@ -14,8 +14,10 @@ use serde::{Deserialize, Serialize};
 /// StreamEnumStatus : The status of the Stream. Possible values are `stopped` and `in-progress`.
 /// The status of the Stream. Possible values are `stopped` and `in-progress`.
 #[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
+#[derive(Default)]
 pub enum StreamEnumStatus {
     #[serde(rename = "in-progress")]
+    #[default]
     InProgress,
     #[serde(rename = "stopped")]
     Stopped,
@@ -30,8 +32,3 @@ impl std::fmt::Display for StreamEnumStatus {
     }
 }
 
-impl Default for StreamEnumStatus {
-    fn default() -> StreamEnumStatus {
-        Self::InProgress
-    }
-}

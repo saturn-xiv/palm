@@ -14,8 +14,10 @@ use serde::{Deserialize, Serialize};
 /// UsageTriggerEnumTriggerField : The field in the [UsageRecord](https://www.twilio.com/docs/usage/api/usage-record) resource that fires the trigger.  Can be: `count`, `usage`, or `price`, as described in the [UsageRecords documentation](https://www.twilio.com/docs/usage/api/usage-record#usage-count-price).
 /// The field in the [UsageRecord](https://www.twilio.com/docs/usage/api/usage-record) resource that fires the trigger.  Can be: `count`, `usage`, or `price`, as described in the [UsageRecords documentation](https://www.twilio.com/docs/usage/api/usage-record#usage-count-price).
 #[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
+#[derive(Default)]
 pub enum UsageTriggerEnumTriggerField {
     #[serde(rename = "count")]
+    #[default]
     Count,
     #[serde(rename = "usage")]
     Usage,
@@ -33,8 +35,3 @@ impl std::fmt::Display for UsageTriggerEnumTriggerField {
     }
 }
 
-impl Default for UsageTriggerEnumTriggerField {
-    fn default() -> UsageTriggerEnumTriggerField {
-        Self::Count
-    }
-}

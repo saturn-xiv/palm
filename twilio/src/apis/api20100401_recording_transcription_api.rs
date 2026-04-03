@@ -71,7 +71,6 @@ pub enum ListRecordingTranscriptionError {
     UnknownValue(serde_json::Value),
 }
 
-///
 pub async fn delete_recording_transcription(
     configuration: &configuration::Configuration,
     params: DeleteRecordingTranscriptionParams,
@@ -112,7 +111,6 @@ pub async fn delete_recording_transcription(
     }
 }
 
-///
 pub async fn fetch_recording_transcription(
     configuration: &configuration::Configuration,
     params: FetchRecordingTranscriptionParams,
@@ -151,8 +149,8 @@ pub async fn fetch_recording_transcription(
         let content = resp.text().await?;
         match content_type {
             ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
-            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::ApiV2010AccountRecordingRecordingTranscription`"))),
-            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::ApiV2010AccountRecordingRecordingTranscription`")))),
+            ContentType::Text => Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::ApiV2010AccountRecordingRecordingTranscription`"))),
+            ContentType::Unsupported(unknown_type) => Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::ApiV2010AccountRecordingRecordingTranscription`")))),
         }
     } else {
         let content = resp.text().await?;
@@ -165,7 +163,6 @@ pub async fn fetch_recording_transcription(
     }
 }
 
-///
 pub async fn list_recording_transcription(
     configuration: &configuration::Configuration,
     params: ListRecordingTranscriptionParams,
@@ -209,8 +206,8 @@ pub async fn list_recording_transcription(
         let content = resp.text().await?;
         match content_type {
             ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
-            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::ListRecordingTranscriptionResponse`"))),
-            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::ListRecordingTranscriptionResponse`")))),
+            ContentType::Text => Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::ListRecordingTranscriptionResponse`"))),
+            ContentType::Unsupported(unknown_type) => Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::ListRecordingTranscriptionResponse`")))),
         }
     } else {
         let content = resp.text().await?;

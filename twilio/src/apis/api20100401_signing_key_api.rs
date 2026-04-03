@@ -16,25 +16,20 @@ use serde::{de::Error as _, Deserialize, Serialize};
 /// struct for passing parameters to the method [`delete_signing_key`]
 #[derive(Clone, Debug)]
 pub struct DeleteSigningKeyParams {
-    ///
     pub account_sid: String,
-    ///
     pub sid: String,
 }
 
 /// struct for passing parameters to the method [`fetch_signing_key`]
 #[derive(Clone, Debug)]
 pub struct FetchSigningKeyParams {
-    ///
     pub account_sid: String,
-    ///
     pub sid: String,
 }
 
 /// struct for passing parameters to the method [`list_signing_key`]
 #[derive(Clone, Debug)]
 pub struct ListSigningKeyParams {
-    ///
     pub account_sid: String,
     /// How many resources to return in each list page. The default is 50, and the maximum is 1000.
     pub page_size: Option<i64>,
@@ -47,11 +42,8 @@ pub struct ListSigningKeyParams {
 /// struct for passing parameters to the method [`update_signing_key`]
 #[derive(Clone, Debug)]
 pub struct UpdateSigningKeyParams {
-    ///
     pub account_sid: String,
-    ///
     pub sid: String,
-    ///
     pub friendly_name: Option<String>,
 }
 
@@ -83,7 +75,6 @@ pub enum UpdateSigningKeyError {
     UnknownValue(serde_json::Value),
 }
 
-///
 pub async fn delete_signing_key(
     configuration: &configuration::Configuration,
     params: DeleteSigningKeyParams,
@@ -123,7 +114,6 @@ pub async fn delete_signing_key(
     }
 }
 
-///
 pub async fn fetch_signing_key(
     configuration: &configuration::Configuration,
     params: FetchSigningKeyParams,
@@ -158,8 +148,8 @@ pub async fn fetch_signing_key(
         let content = resp.text().await?;
         match content_type {
             ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
-            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::ApiV2010AccountSigningKey`"))),
-            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::ApiV2010AccountSigningKey`")))),
+            ContentType::Text => Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::ApiV2010AccountSigningKey`"))),
+            ContentType::Unsupported(unknown_type) => Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::ApiV2010AccountSigningKey`")))),
         }
     } else {
         let content = resp.text().await?;
@@ -172,7 +162,6 @@ pub async fn fetch_signing_key(
     }
 }
 
-///
 pub async fn list_signing_key(
     configuration: &configuration::Configuration,
     params: ListSigningKeyParams,
@@ -215,8 +204,8 @@ pub async fn list_signing_key(
         let content = resp.text().await?;
         match content_type {
             ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
-            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::ListSigningKeyResponse`"))),
-            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::ListSigningKeyResponse`")))),
+            ContentType::Text => Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::ListSigningKeyResponse`"))),
+            ContentType::Unsupported(unknown_type) => Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::ListSigningKeyResponse`")))),
         }
     } else {
         let content = resp.text().await?;
@@ -229,7 +218,6 @@ pub async fn list_signing_key(
     }
 }
 
-///
 pub async fn update_signing_key(
     configuration: &configuration::Configuration,
     params: UpdateSigningKeyParams,
@@ -271,8 +259,8 @@ pub async fn update_signing_key(
         let content = resp.text().await?;
         match content_type {
             ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
-            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::ApiV2010AccountSigningKey`"))),
-            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::ApiV2010AccountSigningKey`")))),
+            ContentType::Text => Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::ApiV2010AccountSigningKey`"))),
+            ContentType::Unsupported(unknown_type) => Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::ApiV2010AccountSigningKey`")))),
         }
     } else {
         let content = resp.text().await?;

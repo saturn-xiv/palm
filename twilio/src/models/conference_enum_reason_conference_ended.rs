@@ -14,8 +14,10 @@ use serde::{Deserialize, Serialize};
 /// ConferenceEnumReasonConferenceEnded : The reason why a conference ended. When a conference is in progress, will be `null`. When conference is completed, can be: `conference-ended-via-api`, `participant-with-end-conference-on-exit-left`, `participant-with-end-conference-on-exit-kicked`, `last-participant-kicked`, or `last-participant-left`.
 /// The reason why a conference ended. When a conference is in progress, will be `null`. When conference is completed, can be: `conference-ended-via-api`, `participant-with-end-conference-on-exit-left`, `participant-with-end-conference-on-exit-kicked`, `last-participant-kicked`, or `last-participant-left`.
 #[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
+#[derive(Default)]
 pub enum ConferenceEnumReasonConferenceEnded {
     #[serde(rename = "conference-ended-via-api")]
+    #[default]
     ConferenceEndedViaApi,
     #[serde(rename = "participant-with-end-conference-on-exit-left")]
     ParticipantWithEndConferenceOnExitLeft,
@@ -43,8 +45,3 @@ impl std::fmt::Display for ConferenceEnumReasonConferenceEnded {
     }
 }
 
-impl Default for ConferenceEnumReasonConferenceEnded {
-    fn default() -> ConferenceEnumReasonConferenceEnded {
-        Self::ConferenceEndedViaApi
-    }
-}

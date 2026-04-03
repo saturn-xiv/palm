@@ -14,8 +14,10 @@ use serde::{Deserialize, Serialize};
 /// MessageEnumRiskCheck : Include this parameter with a value of `disable` to skip any kind of risk check on the respective message request.
 /// Include this parameter with a value of `disable` to skip any kind of risk check on the respective message request.
 #[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
+#[derive(Default)]
 pub enum MessageEnumRiskCheck {
     #[serde(rename = "enable")]
+    #[default]
     Enable,
     #[serde(rename = "disable")]
     Disable,
@@ -30,8 +32,3 @@ impl std::fmt::Display for MessageEnumRiskCheck {
     }
 }
 
-impl Default for MessageEnumRiskCheck {
-    fn default() -> MessageEnumRiskCheck {
-        Self::Enable
-    }
-}

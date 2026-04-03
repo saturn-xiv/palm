@@ -98,9 +98,11 @@ function generate_twilio_rust_api() {
             -o $target \
             --additional-properties=useSingleRequestParameter=true,packageName=twilio,packageVersion=$(date +"%Y.%-m.%-d")
         find $target/src -type f -exec sed -i 's/models::models::/models::/g' {} +
+        find $target/src -type f -exec sed -i '/\/\/\/$/d' {} +
         sed -i 's/models::serde_json::/serde_json::/g' $target/src/apis/api20100401_payment_api.rs
         cd $target/
         git apply $WORKSPACE/twilio.patch
+        cargo clippy --fix --lib -p twilio    
     fi
 }
 # -----------------------------------------------------------------------------

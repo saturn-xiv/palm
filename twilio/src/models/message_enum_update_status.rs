@@ -11,10 +11,11 @@
 use crate::models;
 use serde::{Deserialize, Serialize};
 
-///
 #[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
+#[derive(Default)]
 pub enum MessageEnumUpdateStatus {
     #[serde(rename = "canceled")]
+    #[default]
     Canceled,
 }
 
@@ -26,8 +27,3 @@ impl std::fmt::Display for MessageEnumUpdateStatus {
     }
 }
 
-impl Default for MessageEnumUpdateStatus {
-    fn default() -> MessageEnumUpdateStatus {
-        Self::Canceled
-    }
-}

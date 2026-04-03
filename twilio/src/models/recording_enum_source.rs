@@ -14,8 +14,10 @@ use serde::{Deserialize, Serialize};
 /// RecordingEnumSource : How the recording was created. Can be: `DialVerb`, `Conference`, `OutboundAPI`, `Trunking`, `RecordVerb`, `StartCallRecordingAPI`, and `StartConferenceRecordingAPI`.
 /// How the recording was created. Can be: `DialVerb`, `Conference`, `OutboundAPI`, `Trunking`, `RecordVerb`, `StartCallRecordingAPI`, and `StartConferenceRecordingAPI`.
 #[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
+#[derive(Default)]
 pub enum RecordingEnumSource {
     #[serde(rename = "DialVerb")]
+    #[default]
     DialVerb,
     #[serde(rename = "Conference")]
     Conference,
@@ -45,8 +47,3 @@ impl std::fmt::Display for RecordingEnumSource {
     }
 }
 
-impl Default for RecordingEnumSource {
-    fn default() -> RecordingEnumSource {
-        Self::DialVerb
-    }
-}

@@ -11,10 +11,11 @@
 use crate::models;
 use serde::{Deserialize, Serialize};
 
-///
 #[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
+#[derive(Default)]
 pub enum MessageEnumTrafficType {
     #[serde(rename = "free")]
+    #[default]
     Free,
 }
 
@@ -26,8 +27,3 @@ impl std::fmt::Display for MessageEnumTrafficType {
     }
 }
 
-impl Default for MessageEnumTrafficType {
-    fn default() -> MessageEnumTrafficType {
-        Self::Free
-    }
-}

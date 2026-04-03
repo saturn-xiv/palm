@@ -212,43 +212,34 @@ impl ApiV2010AccountSipSipDomain {
 }
 /// The HTTP method we use to call `voice_fallback_url`. Can be: `GET` or `POST`.
 #[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
+#[derive(Default)]
 pub enum VoiceFallbackMethod {
     #[serde(rename = "GET")]
+    #[default]
     Get,
     #[serde(rename = "POST")]
     Post,
 }
 
-impl Default for VoiceFallbackMethod {
-    fn default() -> VoiceFallbackMethod {
-        Self::Get
-    }
-}
 /// The HTTP method we use to call `voice_url`. Can be: `GET` or `POST`.
 #[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
+#[derive(Default)]
 pub enum VoiceMethod {
     #[serde(rename = "GET")]
+    #[default]
     Get,
     #[serde(rename = "POST")]
     Post,
 }
 
-impl Default for VoiceMethod {
-    fn default() -> VoiceMethod {
-        Self::Get
-    }
-}
 /// The HTTP method we use to call `voice_status_callback_url`. Either `GET` or `POST`.
 #[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
+#[derive(Default)]
 pub enum VoiceStatusCallbackMethod {
     #[serde(rename = "GET")]
+    #[default]
     Get,
     #[serde(rename = "POST")]
     Post,
 }
 
-impl Default for VoiceStatusCallbackMethod {
-    fn default() -> VoiceStatusCallbackMethod {
-        Self::Get
-    }
-}

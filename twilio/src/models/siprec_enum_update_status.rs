@@ -11,10 +11,11 @@
 use crate::models;
 use serde::{Deserialize, Serialize};
 
-///
 #[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
+#[derive(Default)]
 pub enum SiprecEnumUpdateStatus {
     #[serde(rename = "stopped")]
+    #[default]
     Stopped,
 }
 
@@ -26,8 +27,3 @@ impl std::fmt::Display for SiprecEnumUpdateStatus {
     }
 }
 
-impl Default for SiprecEnumUpdateStatus {
-    fn default() -> SiprecEnumUpdateStatus {
-        Self::Stopped
-    }
-}

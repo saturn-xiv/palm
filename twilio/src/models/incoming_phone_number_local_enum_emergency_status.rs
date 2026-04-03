@@ -14,8 +14,10 @@ use serde::{Deserialize, Serialize};
 /// IncomingPhoneNumberLocalEnumEmergencyStatus : The parameter displays if emergency calling is enabled for this number. Active numbers may place emergency calls by dialing valid emergency numbers for the country.
 /// The parameter displays if emergency calling is enabled for this number. Active numbers may place emergency calls by dialing valid emergency numbers for the country.
 #[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
+#[derive(Default)]
 pub enum IncomingPhoneNumberLocalEnumEmergencyStatus {
     #[serde(rename = "Active")]
+    #[default]
     Active,
     #[serde(rename = "Inactive")]
     Inactive,
@@ -30,8 +32,3 @@ impl std::fmt::Display for IncomingPhoneNumberLocalEnumEmergencyStatus {
     }
 }
 
-impl Default for IncomingPhoneNumberLocalEnumEmergencyStatus {
-    fn default() -> IncomingPhoneNumberLocalEnumEmergencyStatus {
-        Self::Active
-    }
-}

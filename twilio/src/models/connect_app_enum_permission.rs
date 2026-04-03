@@ -14,8 +14,10 @@ use serde::{Deserialize, Serialize};
 /// ConnectAppEnumPermission : The set of permissions that your ConnectApp requests.
 /// The set of permissions that your ConnectApp requests.
 #[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
+#[derive(Default)]
 pub enum ConnectAppEnumPermission {
     #[serde(rename = "get-all")]
+    #[default]
     GetAll,
     #[serde(rename = "post-all")]
     PostAll,
@@ -30,8 +32,3 @@ impl std::fmt::Display for ConnectAppEnumPermission {
     }
 }
 
-impl Default for ConnectAppEnumPermission {
-    fn default() -> ConnectAppEnumPermission {
-        Self::GetAll
-    }
-}

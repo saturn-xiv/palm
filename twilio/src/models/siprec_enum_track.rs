@@ -14,8 +14,10 @@ use serde::{Deserialize, Serialize};
 /// SiprecEnumTrack : One of `inbound_track`, `outbound_track`, `both_tracks`.
 /// One of `inbound_track`, `outbound_track`, `both_tracks`.
 #[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
+#[derive(Default)]
 pub enum SiprecEnumTrack {
     #[serde(rename = "inbound_track")]
+    #[default]
     InboundTrack,
     #[serde(rename = "outbound_track")]
     OutboundTrack,
@@ -33,8 +35,3 @@ impl std::fmt::Display for SiprecEnumTrack {
     }
 }
 
-impl Default for SiprecEnumTrack {
-    fn default() -> SiprecEnumTrack {
-        Self::InboundTrack
-    }
-}

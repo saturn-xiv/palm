@@ -11,10 +11,11 @@
 use crate::models;
 use serde::{Deserialize, Serialize};
 
-///
 #[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
+#[derive(Default)]
 pub enum IncomingPhoneNumberEnumVoiceReceiveMode {
     #[serde(rename = "voice")]
+    #[default]
     Voice,
     #[serde(rename = "fax")]
     Fax,
@@ -29,8 +30,3 @@ impl std::fmt::Display for IncomingPhoneNumberEnumVoiceReceiveMode {
     }
 }
 
-impl Default for IncomingPhoneNumberEnumVoiceReceiveMode {
-    fn default() -> IncomingPhoneNumberEnumVoiceReceiveMode {
-        Self::Voice
-    }
-}

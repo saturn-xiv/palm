@@ -99,7 +99,6 @@ pub enum ListIncomingPhoneNumberTollFreeError {
     UnknownValue(serde_json::Value),
 }
 
-///
 pub async fn create_incoming_phone_number_toll_free(
     configuration: &configuration::Configuration,
     params: CreateIncomingPhoneNumberTollFreeParams,
@@ -207,8 +206,8 @@ pub async fn create_incoming_phone_number_toll_free(
         let content = resp.text().await?;
         match content_type {
             ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
-            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::ApiV2010AccountIncomingPhoneNumberIncomingPhoneNumberTollFree`"))),
-            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::ApiV2010AccountIncomingPhoneNumberIncomingPhoneNumberTollFree`")))),
+            ContentType::Text => Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::ApiV2010AccountIncomingPhoneNumberIncomingPhoneNumberTollFree`"))),
+            ContentType::Unsupported(unknown_type) => Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::ApiV2010AccountIncomingPhoneNumberIncomingPhoneNumberTollFree`")))),
         }
     } else {
         let content = resp.text().await?;
@@ -222,7 +221,6 @@ pub async fn create_incoming_phone_number_toll_free(
     }
 }
 
-///
 pub async fn list_incoming_phone_number_toll_free(
     configuration: &configuration::Configuration,
     params: ListIncomingPhoneNumberTollFreeParams,
@@ -280,8 +278,8 @@ pub async fn list_incoming_phone_number_toll_free(
         let content = resp.text().await?;
         match content_type {
             ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
-            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::ListIncomingPhoneNumberTollFreeResponse`"))),
-            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::ListIncomingPhoneNumberTollFreeResponse`")))),
+            ContentType::Text => Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::ListIncomingPhoneNumberTollFreeResponse`"))),
+            ContentType::Unsupported(unknown_type) => Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::ListIncomingPhoneNumberTollFreeResponse`")))),
         }
     } else {
         let content = resp.text().await?;
