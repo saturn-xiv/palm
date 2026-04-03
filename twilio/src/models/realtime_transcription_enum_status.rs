@@ -13,8 +13,9 @@ use serde::{Deserialize, Serialize};
 
 /// RealtimeTranscriptionEnumStatus : The status - one of `stopped`, `in-flight`
 /// The status - one of `stopped`, `in-flight`
-#[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
-#[derive(Default)]
+#[derive(
+    Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize, Default,
+)]
 pub enum RealtimeTranscriptionEnumStatus {
     #[serde(rename = "in-progress")]
     #[default]
@@ -31,4 +32,3 @@ impl std::fmt::Display for RealtimeTranscriptionEnumStatus {
         }
     }
 }
-

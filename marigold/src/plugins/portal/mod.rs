@@ -1,7 +1,11 @@
+pub mod services;
+
 use phlox::{Mac, Result, base64, random};
 use prost::Message as ProtobufMessage;
 
 use super::super::palm::portal::v1::HashedPassword;
+
+pub const ISSUER: &str = "phlox.portal";
 
 impl HashedPassword {
     pub fn new<P: AsRef<str>>(password: P) -> Self {

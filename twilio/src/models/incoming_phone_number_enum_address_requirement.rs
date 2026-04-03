@@ -13,8 +13,9 @@ use serde::{Deserialize, Serialize};
 
 /// IncomingPhoneNumberEnumAddressRequirement : Whether the phone number requires an [Address](https://www.twilio.com/docs/usage/api/address) registered with Twilio. Can be: `none`, `any`, `local`, or `foreign`.
 /// Whether the phone number requires an [Address](https://www.twilio.com/docs/usage/api/address) registered with Twilio. Can be: `none`, `any`, `local`, or `foreign`.
-#[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
-#[derive(Default)]
+#[derive(
+    Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize, Default,
+)]
 pub enum IncomingPhoneNumberEnumAddressRequirement {
     #[serde(rename = "none")]
     #[default]
@@ -37,4 +38,3 @@ impl std::fmt::Display for IncomingPhoneNumberEnumAddressRequirement {
         }
     }
 }
-

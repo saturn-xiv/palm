@@ -95,7 +95,7 @@ impl Node {
 
 pub struct Client<C: Commands, T: ManageConnection<Connection = C, Error = RedisError>> {
     namespace: Option<String>,
-    pool: Pool<T>,
+    pub pool: Pool<T>,
 }
 
 impl<C: Commands, T: ManageConnection<Connection = C, Error = RedisError>> Client<C, T> {
@@ -107,17 +107,7 @@ impl<C: Commands, T: ManageConnection<Connection = C, Error = RedisError>> Clien
     }
 }
 
-pub trait ProtobufMessage {
-    fn set<K: AsRef<str>, V: ProtobufMessage_>(
-        &self,
-        key: K,
-        value: &V,
-        ttl: Option<Duration>,
-    ) -> Result<()>;
-    fn get<K: AsRef<str>, V: ProtobufMessage_ + Default>(&self, key: K) -> Result<V>;
-}
-
-impl<C: Commands, T: ManageConnection<Connection = C, Error = RedisError>> ProtobufMessage
+impl<C: Commands, T: ManageConnection<Connection = C, Error = RedisError>> super::ProtobufCacher
     for Client<C, T>
 {
     fn set<K: AsRef<str>, V: ProtobufMessage_>(
@@ -144,17 +134,7 @@ impl<C: Commands, T: ManageConnection<Connection = C, Error = RedisError>> Proto
     }
 }
 
-pub trait FlexBuffersMessage {
-    fn set<K: AsRef<str>, V: Serialize>(
-        &self,
-        key: K,
-        value: &V,
-        ttl: Option<Duration>,
-    ) -> Result<()>;
-    fn get<K: AsRef<str>, V: DeserializeOwned>(&self, key: K) -> Result<V>;
-}
-
-impl<C: Commands, T: ManageConnection<Connection = C, Error = RedisError>> FlexBuffersMessage
+impl<C: Commands, T: ManageConnection<Connection = C, Error = RedisError>> super::FlexBuffersCacher
     for Client<C, T>
 {
     fn set<K: AsRef<str>, V: Serialize>(

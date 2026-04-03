@@ -2,7 +2,7 @@ pub mod db;
 pub mod http;
 pub mod rpc;
 pub mod user;
-pub mod worker;
+pub mod workers;
 
 use std::{path::PathBuf, time::Duration};
 
@@ -163,19 +163,19 @@ pub async fn run() -> Result<()> {
         Commands::EmailSendWorker {
             interval,
             ref queue,
-        } => worker::email_send::start(&args.config, queue, Duration::from_micros(interval)).await,
+        } => workers::email_send::start(&args.config, queue, Duration::from_micros(interval)).await,
         Commands::SmsSendWorker {
             interval,
             ref queue,
-        } => worker::sms_send::start(&args.config, queue, Duration::from_micros(interval)).await,
+        } => workers::sms_send::start(&args.config, queue, Duration::from_micros(interval)).await,
         Commands::CupsWorker {
             interval,
             ref queue,
-        } => worker::cups::start(&args.config, queue, Duration::from_micros(interval)).await,
+        } => workers::cups::start(&args.config, queue, Duration::from_micros(interval)).await,
         Commands::TexWorker {
             interval,
             ref queue,
-        } => worker::tex::start(&args.config, queue, Duration::from_micros(interval)).await,
+        } => workers::tex::start(&args.config, queue, Duration::from_micros(interval)).await,
         Commands::Http { port, theme } => http::start(&args.config, port, theme).await,
         Commands::Rpc { port } => rpc::start(&args.config, port).await,
     }

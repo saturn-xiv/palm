@@ -13,8 +13,9 @@ use serde::{Deserialize, Serialize};
 
 /// AccountEnumType : The type of this account. Either `Trial` or `Full` if it's been upgraded
 /// The type of this account. Either `Trial` or `Full` if it's been upgraded
-#[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
-#[derive(Default)]
+#[derive(
+    Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize, Default,
+)]
 pub enum AccountEnumType {
     #[serde(rename = "Trial")]
     #[default]
@@ -31,4 +32,3 @@ impl std::fmt::Display for AccountEnumType {
         }
     }
 }
-

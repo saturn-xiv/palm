@@ -58,9 +58,9 @@ service Cups {
 
 message CupsPrintersResponse{
   message Item{
-    string name    = 1;
-    string status  = 2;
-    string details = 9;
+    string name   = 1;
+    string status = 2;
+    string detail = 9;
   }
   repeated Item items = 2;
 }

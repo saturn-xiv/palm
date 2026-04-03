@@ -13,8 +13,9 @@ use serde::{Deserialize, Serialize};
 
 /// ConferenceEnumStatus : The status of this conference. Can be: `init`, `in-progress`, or `completed`.
 /// The status of this conference. Can be: `init`, `in-progress`, or `completed`.
-#[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
-#[derive(Default)]
+#[derive(
+    Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize, Default,
+)]
 pub enum ConferenceEnumStatus {
     #[serde(rename = "init")]
     #[default]
@@ -34,4 +35,3 @@ impl std::fmt::Display for ConferenceEnumStatus {
         }
     }
 }
-

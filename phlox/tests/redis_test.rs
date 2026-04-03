@@ -3,7 +3,10 @@ use std::default::Default;
 use chrono::Duration;
 use phlox::{
     Result,
-    cache::redis::{Client, Commands, FlexBuffersMessage, ManageConnection, Node, RedisError},
+    cache::{
+        FlexBuffersCacher,
+        redis::{Client, Commands, ManageConnection, Node, RedisError},
+    },
 };
 use serde::{Deserialize, Serialize};
 

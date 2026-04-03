@@ -3,6 +3,8 @@ pub mod base64;
 pub mod cache;
 pub mod casbin;
 pub mod content_type;
+pub mod grpc;
+pub mod headers;
 pub mod hmac;
 pub mod iso4217;
 pub mod jwt;
@@ -28,6 +30,7 @@ use hyper::StatusCode;
 use serde::de::DeserializeOwned;
 use serde::{Deserialize, Serialize};
 
+pub use regex::Regex;
 pub use tempfile::{NamedTempFile, tempdir};
 
 pub type Error = Box<dyn StdError + Send + Sync>;
@@ -107,4 +110,6 @@ pub trait Enigma {
 pub trait Jwt {
     fn sign(&self, issuer: &str, subject: &str, audience: &str, ttl: Duration) -> Result<String>;
     fn verify<T: ToString>(&self, token: &str, issuer: &str, audiences: &[T]) -> Result<String>;
+
+    const BEARER: &str = "Bearer ";
 }

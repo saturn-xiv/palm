@@ -13,8 +13,9 @@ use serde::{Deserialize, Serialize};
 
 /// AuthorizedConnectAppEnumPermission : The set of permissions that you authorized for the Connect App.  Can be: `get-all` or `post-all`.
 /// The set of permissions that you authorized for the Connect App.  Can be: `get-all` or `post-all`.
-#[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
-#[derive(Default)]
+#[derive(
+    Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize, Default,
+)]
 pub enum AuthorizedConnectAppEnumPermission {
     #[serde(rename = "get-all")]
     #[default]
@@ -31,4 +32,3 @@ impl std::fmt::Display for AuthorizedConnectAppEnumPermission {
         }
     }
 }
-

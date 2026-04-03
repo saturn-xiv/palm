@@ -13,8 +13,9 @@ use serde::{Deserialize, Serialize};
 
 /// AccountEnumStatus : The status of this account. Usually `active`, but can be `suspended` or `closed`.
 /// The status of this account. Usually `active`, but can be `suspended` or `closed`.
-#[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
-#[derive(Default)]
+#[derive(
+    Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize, Default,
+)]
 pub enum AccountEnumStatus {
     #[serde(rename = "active")]
     #[default]
@@ -34,4 +35,3 @@ impl std::fmt::Display for AccountEnumStatus {
         }
     }
 }
-

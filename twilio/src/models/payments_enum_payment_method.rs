@@ -13,8 +13,9 @@ use serde::{Deserialize, Serialize};
 
 /// PaymentsEnumPaymentMethod : Type of payment being captured. One of `credit-card` or `ach-debit`. The default value is `credit-card`.
 /// Type of payment being captured. One of `credit-card` or `ach-debit`. The default value is `credit-card`.
-#[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
-#[derive(Default)]
+#[derive(
+    Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize, Default,
+)]
 pub enum PaymentsEnumPaymentMethod {
     #[serde(rename = "credit-card")]
     #[default]
@@ -31,4 +32,3 @@ impl std::fmt::Display for PaymentsEnumPaymentMethod {
         }
     }
 }
-

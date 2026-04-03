@@ -70,9 +70,12 @@ message UserIndexResponse{
       WechatOauth2      = 3;
       WechatMiniProgram = 4;
     }
-    int64  id   = 1;
-    Type   type = 2;
-    string sn   = 3;
+    int64  id       = 1;
+    Type   type     = 2;
+    string sn       = 3;
+    string name     = 5;
+    string lang     = 6;
+    string timezone = 7;
   }
   repeated Item items      = 1;
   Pagination    pagination = 9;
@@ -81,6 +84,7 @@ message UserIndexResponse{
 message Session {
   string                    locale     = 1;
   optional string           client_ip  = 2;
+  UserIndexResponse.Item    user       = 9;
   google.protobuf.Timestamp created_at = 99;
 }
 // ----------------------------------------------------------------------------

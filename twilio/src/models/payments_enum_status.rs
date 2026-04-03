@@ -13,8 +13,9 @@ use serde::{Deserialize, Serialize};
 
 /// PaymentsEnumStatus : Indicates whether the current payment session should be cancelled or completed. When `cancel` the payment session is cancelled. When `complete`, Twilio sends the payment information to the selected Pay Connector for processing.
 /// Indicates whether the current payment session should be cancelled or completed. When `cancel` the payment session is cancelled. When `complete`, Twilio sends the payment information to the selected Pay Connector for processing.
-#[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
-#[derive(Default)]
+#[derive(
+    Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize, Default,
+)]
 pub enum PaymentsEnumStatus {
     #[serde(rename = "complete")]
     #[default]
@@ -31,4 +32,3 @@ impl std::fmt::Display for PaymentsEnumStatus {
         }
     }
 }
-
