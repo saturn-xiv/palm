@@ -196,5 +196,5 @@ async fn open_rabbitmq() -> Result<Arc<Client>> {
     };
 
     let it = cfg.open().await?;
-    Ok(it)
+    Ok(Arc::new(it))
 }

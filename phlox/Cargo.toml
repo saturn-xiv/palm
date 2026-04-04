@@ -45,6 +45,10 @@ features = ["serde"]
 version = "0.10"
 features = ["thread_rng"]
 
+[dependencies.juniper]
+version = "0.17"
+features = ["uuid", "url", "chrono", "chrono-tz"]
+
 [dependencies.reqwest]
 version = "0.13"
 features = ["json"]

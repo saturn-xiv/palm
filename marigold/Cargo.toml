@@ -6,7 +6,10 @@ description = "A total free online education solution."
 homepage = "https://github.com/saturn-xiv/palm"
 
 [dependencies]
+tokio-stream = "0.1"
+futures = "0.3"
 log = "0.4"
+juniper_graphql_ws = "0.5"
 axum = "0.8"
 env_logger = "0.11"
 prost = "0.14"
@@ -16,7 +19,12 @@ tonic-health = "0.14"
 tonic-prost = "0.14"
 tonic-reflection = "0.14"
 tonic-types = "0.14"
+juniper = "0.17"
 hyper = "1"
+
+[dependencies.juniper_axum]
+version = "0.3"
+features = ["subscriptions"]
 
 [dependencies.reqwest]
 version = "0.13"

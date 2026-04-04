@@ -56,7 +56,7 @@ pub async fn start<P: AsRef<Path>>(config: P, queue: &str, interval: Duration) -
 }
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
-pub struct Config {
+struct Config {
     twikio: TwilioConfig,
     rabbitmq: RabbitMq,
 }

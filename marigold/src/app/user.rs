@@ -1,6 +1,6 @@
 use std::path::Path;
 
-use phlox::Result;
+use phlox::{Result, parse_toml};
 use serde::{Deserialize, Serialize};
 
 pub fn list<P: AsRef<Path>>(_config: P) -> Result<()> {
@@ -9,11 +9,12 @@ pub fn list<P: AsRef<Path>>(_config: P) -> Result<()> {
 }
 
 pub fn create_by_email<P: AsRef<Path>>(
-    _config: P,
+    config: P,
     _name: &str,
     _email: &str,
     _password: &str,
 ) -> Result<()> {
+    let _config: Config = parse_toml(config)?;
     // TODO
     Ok(())
 }
@@ -28,4 +29,4 @@ pub async fn delete_role<P: AsRef<Path>>(_config: P, _user: &str, _role: &str) -
 }
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
-pub struct Config {}
+struct Config {}

@@ -57,5 +57,5 @@ async fn open_enforcer() -> Result<Arc<Mutex<Enforcer>>> {
         password: "change-me".to_string(),
         virtual_host: "testing".to_string(),
     };
-    postgresql_rabbitmq_enforcer(db.open()?, queue.open().await?).await
+    postgresql_rabbitmq_enforcer(db.open()?, Arc::new(queue.open().await?)).await
 }

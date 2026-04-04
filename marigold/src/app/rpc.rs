@@ -83,7 +83,7 @@ pub async fn start<P: AsRef<Path>>(config: P, port: u16) -> Result<()> {
 }
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
-pub struct Config {
+struct Config {
     // openssl rand -base64 32
     #[serde(rename = "secret-key")]
     secret_key: String,

@@ -30,6 +30,7 @@ use hyper::StatusCode;
 use serde::de::DeserializeOwned;
 use serde::{Deserialize, Serialize};
 
+pub use chrono::{NaiveDate, NaiveDateTime, NaiveTime, Utc};
 pub use regex::Regex;
 pub use tempfile::{NamedTempFile, tempdir};
 

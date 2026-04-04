@@ -1,5 +1,3 @@
-use std::sync::Arc;
-
 use flexbuffers::{FlexbufferSerializer, Reader as FlexbufferReader};
 use futures_util::StreamExt;
 use hyper::StatusCode;
@@ -29,7 +27,7 @@ pub struct Node {
     #[serde(default = "node_default_password")]
     pub password: String,
     // https://docs.rs/lapin/4.4.0/lapin/struct.Connection.html#method.connect
-    #[serde(rename = "pool-size", default = "node_default_virtual_host")]
+    #[serde(rename = "virtual-host", default = "node_default_virtual_host")]
     pub virtual_host: String,
 }
 
@@ -62,7 +60,7 @@ impl Default for Node {
 }
 
 impl Node {
-    pub async fn open(&self) -> LapinResult<Arc<Client>> {
+    pub async fn open(&self) -> LapinResult<Client> {
         log::debug!(
             "open RabbitMQ amqp://{}@{}:{}/{}",
             self.user,
@@ -78,7 +76,7 @@ impl Node {
             ConnectionProperties::default(),
         )
         .await?;
-        Ok(Arc::new(Client { connection: con }))
+        Ok(Client { connection: con })
     }
 }
 
