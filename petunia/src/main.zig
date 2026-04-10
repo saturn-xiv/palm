@@ -10,6 +10,8 @@ pub fn main() !void {
 }
 
 test "simple test" {
+    std.debug.print("version: {s}\n", .{"123"});
+
     const gpa = std.testing.allocator;
     var list: std.ArrayList(i32) = .empty;
     defer list.deinit(gpa); // Try commenting this out and see if zig detects the memory leak!

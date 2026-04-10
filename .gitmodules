@@ -13,3 +13,6 @@
 [submodule "tulip/vendors/cbeta.org/xml-p5"]
 	path = tulip/vendors/cbeta.org/xml-p5
 	url = https://github.com/cbeta-org/xml-p5.git
+[submodule "petunia/vendors/facil.io"]
+	path = petunia/vendors/facil.io
+	url = https://github.com/boazsegev/facil.io.git
