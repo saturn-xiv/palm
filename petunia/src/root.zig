@@ -1,5 +1,30 @@
 const std = @import("std");
-const third = @import("third.zig");
+pub const cache = @import("cache.zig");
+pub const third = @cImport({
+    @cInclude("time.h");
+    @cInclude("sqlite3.h");
+    @cInclude("hiredis/hiredis.h");
+    // @cInclude("fio.h");
+    // @cInclude("http.h");
+});
+
+pub fn init() !void {
+    // if (debug) {
+    //     log_level = .debug;
+    // } else {
+    //     log_level = .info;
+    // }
+    std.log.debug("sqlite3: v{s}", .{third.SQLITE_VERSION});
+}
+
+pub fn now() []u8 {
+    const it: third.time_t = third.time(null);
+    const ti = third.localtime(&it);
+    var buf: [64]u8 = undefined;
+    const len = third.strftime(&buf, buf.len, "%Y-%m-%d %H:%M:%S", ti);
+    return buf[0..len];
+}
+// ----------------------------------------------------------------------------
 
 pub fn bufferedPrint() !void {
     // Stdout is for the actual output of your application, for example if you
