@@ -196,7 +196,7 @@ RUN mkdir -p /var/lib/minio/data && chown -R nobody:nogroup /var/lib/minio
 
 # https://www.rabbitmq.com/access-control.html#loopback-users
 RUN echo 'loopback_users = none' | tee -a /etc/rabbitmq/rabbitmq.conf \
-    && sed -i "s/NODENAME.*/NODENAME=palm/g" /etc/rabbitmq/rabbitmq-env.conf \
+    && echo 'NODE_IP_ADDRESS=0.0.0.0' >> /etc/rabbitmq/rabbitmq-env.conf \
     && rabbitmq-plugins enable rabbitmq_mqtt \
     && rabbitmq-plugins enable rabbitmq_stream \
     && rabbitmq-plugins enable rabbitmq_shovel rabbitmq_shovel_management
