@@ -16,7 +16,7 @@ RUN apt update && apt -y upgrade && apt -y clean
 
 ENV PYTHON_VERSION "3.15"
 RUN apt -y install pwgen git locales locales-all vim tzdata zip unzip tree tmux screen \
-    curl wget rsync telnet iputils-ping lftp \
+    curl wget rsync telnet dnsutils iputils-ping lftp \
     openssh-client sshpass \
     python${PYTHON_VERSION}-full \
     && apt -y clean
