@@ -3,11 +3,16 @@
 
 #define _GNU_SOURCE
 
+#include <stdlib.h>
+#include <string.h>
+#include <time.h>
+
+#include <amqp.h>
+#include <amqp_tcp_socket.h>
 #include <hiredis/hiredis.h>
 #include <log4c.h>
 #include <postgresql/libpq-fe.h>
 #include <sodium.h>
-#include <time.h>
 
 void debug(const log4c_category_t* a_category, const char* a_format, ...);
 void info(const log4c_category_t* a_category, const char* a_format, ...);

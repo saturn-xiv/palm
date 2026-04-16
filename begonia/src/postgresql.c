@@ -1,8 +1,5 @@
 #include "third.h"
 
-#include <stdlib.h>
-#include <string.h>
-
 int postgresql_timestamp(const char* timestamp, struct tm* time,
                          int64_t* microseconds) {
   memset(time, 0, sizeof(struct tm));

@@ -1,6 +1,5 @@
 #include "third.h"
 
-#include <stdlib.h>
 #include <string.h>
 
 redisContext* redis_open(const char* host, uint16_t port) {

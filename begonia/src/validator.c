@@ -1,7 +1,6 @@
 #include "third.h"
 
 #include <regex.h>
-#include <stdlib.h>
 
 int match(const char* original, const char* pattern) {
   log4c_category_t* logger = log4c_category_get("regex");
