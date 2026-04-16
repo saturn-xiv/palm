@@ -41,11 +41,14 @@ RUN apt install -y postgresql redis rabbitmq-server vsftpd nginx \
     && apt -y clean
 ENV PHP_VERSION "8.5"
 # php${PHP_VERSION}-net-imap php${PHP_VERSION}-net-smtp 
-RUN apt install -y php${PHP_VERSION}-fpm php${PHP_VERSION}-mbstring php${PHP_VERSION}-xml php${PHP_VERSION}-bcmath php${PHP_VERSION}-curl php${PHP_VERSION}-zip php${PHP_VERSION}-zmq php${PHP_VERSION}-imagick php${PHP_VERSION}-gd php${PHP_VERSION}-intl php${PHP_VERSION}-soap \
-    php${PHP_VERSION}-mysql php${PHP_VERSION}-pgsql php${PHP_VERSION}-sqlite3 php${PHP_VERSION}-redis php${PHP_VERSION}-mongodb php${PHP_VERSION}-amqp \
+RUN apt install -y php${PHP_VERSION}-fpm \
+    php${PHP_VERSION}-bz2 php${PHP_VERSION}-zip php${PHP_VERSION}-xml php${PHP_VERSION}-xsl \
+    php${PHP_VERSION}-bcmath php${PHP_VERSION}-gmp php${PHP_VERSION}-enchant\
+    php${PHP_VERSION}-mbstring php${PHP_VERSION}-curl php${PHP_VERSION}-zmq php${PHP_VERSION}-imagick php${PHP_VERSION}-gd php${PHP_VERSION}-intl php${PHP_VERSION}-soap \
+    php${PHP_VERSION}-odbc php${PHP_VERSION}-mysql php${PHP_VERSION}-pgsql php${PHP_VERSION}-sqlite3 php${PHP_VERSION}-redis php${PHP_VERSION}-mongodb php${PHP_VERSION}-amqp \
     php${PHP_VERSION}-snmp \
     && apt -y clean
-RUN apt install -y libpq-dev libmysqlclient-dev libsqlite3-dev libssl-dev libyaml-dev libffi-dev zlib1g-dev && apt -y clean
+RUN apt install -y libssl-dev libsodium-dev libpq-dev libmysqlclient-dev libsqlite3-dev libyaml-dev libffi-dev zlib1g-dev && apt -y clean
 
 RUN mkdir -p $HOME/local $HOME/tmp $HOME/downloads $HOME/build
 
@@ -207,34 +210,8 @@ RUN mkdir -p /var/lib/postgres \
     && echo "listen_addresses = '0.0.0.0'" | tee -a /var/lib/postgres/data/postgresql.conf \
     && echo "host  all  all 0.0.0.0/0 md5" | tee -a /var/lib/postgres/data/pg_hba.conf
 
-# php -i
-# <?php php_info(); ?>
-# <?php xdebug_info(); ?>
-RUN sed -i 's/memory_limit =.*/memory_limit = 1G/' /etc/php/${PHP_VERSION}/fpm/php.ini \
-    && sed -i 's/;extension=bz2/extension=bz2/' /etc/php/${PHP_VERSION}/fpm/php.ini \
-    && sed -i 's/;extension=enchant/extension=enchant/' /etc/php/${PHP_VERSION}/fpm/php.ini \
-    && sed -i 's/;extension=exif/extension=exif/' /etc/php/${PHP_VERSION}/fpm/php.ini \
-    && sed -i 's/;extension=ftp/extension=ftp/' /etc/php/${PHP_VERSION}/fpm/php.ini \
-    && sed -i 's/;extension=gd/extension=gd/' /etc/php/${PHP_VERSION}/fpm/php.ini \
-    && sed -i 's/;extension=gettext/extension=gettext/' /etc/php/${PHP_VERSION}/fpm/php.ini \
-    && sed -i 's/;extension=gmp/extension=gmp/' /etc/php/${PHP_VERSION}/fpm/php.ini \
-    && sed -i 's/;extension=iconv/extension=iconv/' /etc/php/${PHP_VERSION}/fpm/php.ini \
-    && sed -i 's/;extension=intl/extension=intl/' /etc/php/${PHP_VERSION}/fpm/php.ini \
-    && sed -i 's/;extension=mysqli/extension=mysqli/' /etc/php/${PHP_VERSION}/fpm/php.ini \
-    && sed -i 's/;extension=odbc/extension=odbc/' /etc/php/${PHP_VERSION}/fpm/php.ini \
-    && sed -i 's/;extension=pdo_mysql/extension=pdo_mysql/' /etc/php/${PHP_VERSION}/fpm/php.ini \
-    && sed -i 's/;extension=pdo_odbc/extension=pdo_odbc/' /etc/php/${PHP_VERSION}/fpm/php.ini \
-    && sed -i 's/;extension=pdo_pgsql/extension=pdo_pgsql/' /etc/php/${PHP_VERSION}/fpm/php.ini \
-    && sed -i 's/;extension=pdo_sqlite/extension=pdo_sqlite/' /etc/php/${PHP_VERSION}/fpm/php.ini \
-    && sed -i 's/;extension=pgsql/extension=pgsql/' /etc/php/${PHP_VERSION}/fpm/php.ini \
-    && sed -i 's/;extension=snmp/extension=snmp/' /etc/php/${PHP_VERSION}/fpm/php.ini \
-    && sed -i 's/;extension=soap/extension=soap/' /etc/php/${PHP_VERSION}/fpm/php.ini \
-    && sed -i 's/;extension=sockets/extension=sockets/' /etc/php/${PHP_VERSION}/fpm/php.ini \
-    && sed -i 's/;extension=sodium/extension=sodium/' /etc/php/${PHP_VERSION}/fpm/php.ini \
-    && sed -i 's/;extension=sqlite3/extension=sqlite3/' /etc/php/${PHP_VERSION}/fpm/php.ini \
-    && sed -i 's/;extension=tidy/extension=tidy/' /etc/php/${PHP_VERSION}/fpm/php.ini \
-    && sed -i 's/;extension=xsl/extension=xsl/' /etc/php/${PHP_VERSION}/fpm/php.ini
-    
+
+RUN sed -i 's/memory_limit =.*/memory_limit = 1G/' /etc/php/${PHP_VERSION}/fpm/php.ini    
 
 RUN echo "$(date -u +%4Y%m%d%H%M%S)" | tee /VERSION
 
