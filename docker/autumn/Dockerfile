@@ -211,7 +211,8 @@ RUN mkdir -p /var/lib/postgres \
     && echo "host  all  all 0.0.0.0/0 md5" | tee -a /var/lib/postgres/data/pg_hba.conf
 
 
-RUN sed -i 's/memory_limit =.*/memory_limit = 1G/' /etc/php/${PHP_VERSION}/fpm/php.ini    
+RUN sed -i 's/memory_limit =.*/memory_limit = 1G/' /etc/php/${PHP_VERSION}/fpm/php.ini \
+    && sed -i 's/^listen = .*/listen = 0.0.0.0:9000/' /etc/php/${PHP_VERSION}/fpm/pool.d/www.conf
 
 RUN echo "$(date -u +%4Y%m%d%H%M%S)" | tee /VERSION
 
