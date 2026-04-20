@@ -99,6 +99,7 @@ RUN wget -q -O $HOME/downloads/composer-setup.php https://getcomposer.org/instal
     && cd $HOME/downloads \
     && php${PHP_VERSION} $HOME/downloads/composer-setup.php --install-dir=/usr/local/bin --filename=composer${PHP_VERSION} \
     && rm $HOME/downloads/composer-setup.php
+RUN echo 'export PATH=$HOME/.config/composer/vendor/bin:$PATH' >> $HOME/.profile
 
 # https://github.com/nvm-sh/nvm
 ENV NVM_VERSION "v0.40.4"

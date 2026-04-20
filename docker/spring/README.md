@@ -1,4 +1,6 @@
-# USAGE
+# SPRING
+
+## Usage
 
 - add to `/etc/sysctl.d/60-palm.conf` and then `reboot` or `sysctl --system`
 
@@ -75,3 +77,9 @@
     ```bash
     $HOME/local/vcpkg/vcpkg upgrade --no-dry-run
     ```
+
+## Issues
+
+<!-- TODO -->
+
+- Xdebug:[Step Debug] could not connect to debugging client. Tried:0.0.0.0:9003(through xdebug.client host/xdebug.client port).

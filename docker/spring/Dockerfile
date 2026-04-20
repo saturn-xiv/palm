@@ -64,6 +64,7 @@ RUN wget -q -O $HOME/downloads/composer https://getcomposer.org/installer \
     && cd $HOME/downloads \
     && php composer \
     && sudo cp composer.phar /usr/local/bin/composer
+RUN echo 'export PATH=$HOME/.config/composer/vendor/bin:$PATH' >> $HOME/.profile
 
 # https://github.com/improbable-eng/grpc-web
 ENV GRPCWEBPROXY_VERSION="v0.15.0"
