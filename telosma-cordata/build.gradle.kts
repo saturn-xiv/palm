@@ -8,7 +8,7 @@ plugins {
 }
 
 group = "com.github.saturn_xiv.palm"
-version = "0.0.1-SNAPSHOT"
+version = "2026.4.21"
 
 java {
 	toolchain {
@@ -27,6 +27,22 @@ dependencies {
 	implementation("org.springframework.boot:spring-boot-starter-validation")
 	implementation("io.grpc:grpc-services")
 	implementation("org.springframework.grpc:spring-grpc-server-spring-boot-starter")
+	
+	// Source: https://mvnrepository.com/artifact/org.casbin/jcasbin
+	implementation("org.casbin:jcasbin:1.99.0")
+	// Source: https://mvnrepository.com/artifact/org.casbin/jcasbin-rabbitmq-watcher
+	implementation("org.casbin:jcasbin-rabbitmq-watcher:1.3.0")
+	// Source: https://mvnrepository.com/artifact/org.casbin/hibernate-adapter
+	implementation("org.casbin:hibernate-adapter:1.5.0")
+	// Source: https://mvnrepository.com/artifact/com.google.crypto.tink/tink
+	implementation("com.google.crypto.tink:tink:1.21.0")
+	// Source: https://mvnrepository.com/artifact/io.minio/minio
+	implementation("io.minio:minio:9.0.0")
+	// Source: https://mvnrepository.com/artifact/com.github.wechatpay-apiv3/wechatpay-java
+	implementation("com.github.wechatpay-apiv3:wechatpay-java:0.2.17")
+	// Source: https://mvnrepository.com/artifact/com.twilio.sdk/twilio
+	implementation("com.twilio.sdk:twilio:11.4.0")
+
 	runtimeOnly("com.mysql:mysql-connector-j")
 	runtimeOnly("org.postgresql:postgresql")
 	testImplementation("org.springframework.boot:spring-boot-starter-data-jpa-test")

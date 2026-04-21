@@ -5,6 +5,7 @@
 - Development
 
   ```bash
+  $ sudo apt install inotify-tools
   # install and setup dependencies
   $ mix setup
   # start phoenix endpoint
