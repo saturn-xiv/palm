@@ -14,7 +14,8 @@ RUN add-apt-repository -y ppa:deadsnakes/ppa
 RUN add-apt-repository -y ppa:ondrej/php
 RUN apt update && apt -y upgrade && apt -y clean
 
-ENV PYTHON_VERSION "3.15"
+# https://devguide.python.org/versions/
+ENV PYTHON_VERSION "3.14"
 RUN apt -y install pwgen git locales locales-all vim tzdata zip unzip tree tmux screen \
     curl wget rsync telnet dnsutils netcat-openbsd iputils-ping lftp \
     openssh-client sshpass \
@@ -48,12 +49,12 @@ RUN apt install -y php${PHP_VERSION}-fpm \
     php${PHP_VERSION}-odbc php${PHP_VERSION}-mysql php${PHP_VERSION}-pgsql php${PHP_VERSION}-sqlite3 php${PHP_VERSION}-redis php${PHP_VERSION}-mongodb php${PHP_VERSION}-amqp \
     php${PHP_VERSION}-snmp \
     && apt -y clean
-RUN apt install -y libssl-dev libsodium-dev libpq-dev libmysqlclient-dev libsqlite3-dev libyaml-dev libffi-dev zlib1g-dev && apt -y clean
+RUN apt install -y libssl-dev libsodium-dev libpq-dev libmysqlclient-dev libsqlite3-dev libyaml-dev libffi-dev zlib1g-dev python${PYTHON_VERSION}-dev && apt -y clean
 
 RUN mkdir -p $HOME/local $HOME/tmp $HOME/downloads $HOME/build
 
 # https://apt.llvm.org/
-ENV CLANG_VERSION "21"
+ENV CLANG_VERSION "20"
 RUN wget -q -O $HOME/downloads/llvm.sh https://apt.llvm.org/llvm.sh \
     && bash $HOME/downloads/llvm.sh ${CLANG_VERSION} \
     && rm $HOME/downloads/llvm.sh
@@ -132,7 +133,7 @@ RUN bash -c "source $HOME/.cargo/env && cargo install diesel_cli && cargo instal
 
 # https://github.com/rbenv/rbenv
 # https://github.com/rbenv/ruby-build/tree/master/share/ruby-build
-ENV RUBY_VERSION "4.0.2"
+ENV RUBY_VERSION "4.0.3"
 RUN git clone https://github.com/rbenv/rbenv.git $HOME/.rbenv \
     && git clone https://github.com/rbenv/ruby-build.git $HOME/.rbenv/plugins/ruby-build \
     && git clone https://github.com/rbenv/rbenv-vars.git $HOME/.rbenv/plugins/rbenv-vars 
@@ -144,7 +145,7 @@ RUN bash -c "source $HOME/.profile \
     && gem install bundler"
 
 # https://go.dev/doc/install
-ENV GO_VERSION "1.26.1"
+ENV GO_VERSION "1.26.2"
 RUN wget -q -P $HOME/downloads https://go.dev/dl/go${GO_VERSION}.linux-${TARGETARCH}.tar.gz
 RUN tar xf $HOME/downloads/go${GO_VERSION}.linux-${TARGETARCH}.tar.gz -C $HOME/local \
     && rm $HOME/downloads/go${GO_VERSION}.linux-${TARGETARCH}.tar.gz
