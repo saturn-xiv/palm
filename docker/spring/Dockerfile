@@ -406,12 +406,13 @@ RUN sudo sed -i 's/memory_limit =.*/memory_limit = 1G/' /etc/php/php.ini \
     && sudo sed -i 's/; extension = imagick/extension=imagick/' /etc/php/conf.d/imagick.ini \
     && sudo sed -i 's/;zend_extension=opcache/zend_extension=opcache/' /etc/php/php.ini \
     && sudo sed -i 's/;zend_extension=xdebug/zend_extension=xdebug/' /etc/php/conf.d/xdebug.ini \
-    && sudo sed -i 's/;xdebug.mode=debug/xdebug.mode=develop,profile,coverage,debug/' /etc/php/conf.d/xdebug.ini \
-    && echo 'xdebug.start_with_request=yes' | sudo tee -a /etc/php/conf.d/xdebug.ini \
+    && sudo sed -i 's/;xdebug.mode=debug/xdebug.mode=develop,coverage,debug/' /etc/php/conf.d/xdebug.ini \
+    && echo 'xdebug.start_with_request=trigger' | sudo tee -a /etc/php/conf.d/xdebug.ini \
     && echo 'xdebug.client_host=0.0.0.0' | sudo tee -a /etc/php/conf.d/xdebug.ini \
     && echo 'xdebug.client_port=9003' | sudo tee -a /etc/php/conf.d/xdebug.ini \
     && echo 'xdebug.cli_color = 2' | sudo tee -a /etc/php/conf.d/xdebug.ini
 
+# && sudo sed -i 's/;xdebug.mode=debug/xdebug.mode=develop,profile,coverage,debug/' /etc/php/conf.d/xdebug.ini \
 
 RUN mkdir -p $HOME/.ssh \
     && touch $HOME/.ssh/authorized_keys \
