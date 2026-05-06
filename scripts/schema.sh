@@ -112,9 +112,11 @@ generate_tulip
 generate_tulip_dashboard
 generate_twilio_rust_api
 
-echo "format cargo projects"
 cd $WORKSPACE/
+echo "format cargo projects"
 cargo fmt
+echo "format cpp projects"
+clang-format -i loquat/include/loquat/*.hpp loquat/src/*.cpp
 
 echo 'done.'
 exit 0
