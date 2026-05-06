@@ -3,28 +3,19 @@ LABEL maintainer="Jeremy Zheng"
 
 ENV DEBIAN_FRONTEND "noninteractive"
 
-RUN apt update
+RUN apt update && apt -y upgrade && apt -y clean
 RUN apt -y install lsb-release apt-utils debian-keyring debian-archive-keyring apt-transport-https software-properties-common curl wget gnupg \
     && apt -y clean
-# https://launchpad.net/~ubuntu-toolchain-r/+archive/ubuntu/ppa
-RUN add-apt-repository -y ppa:ubuntu-toolchain-r/ppa
-# https://launchpad.net/~deadsnakes/+archive/ubuntu/ppa
-RUN add-apt-repository -y ppa:deadsnakes/ppa
-# https://launchpad.net/~ondrej/+archive/ubuntu/php
-RUN add-apt-repository -y ppa:ondrej/php
-RUN apt update && apt -y upgrade && apt -y clean
 
-# https://devguide.python.org/versions/
-ENV PYTHON_VERSION "3.14"
 RUN apt -y install pwgen git locales locales-all vim tzdata zip unzip tree tmux screen \
     curl wget rsync telnet dnsutils netcat-openbsd iputils-ping lftp \
     openssh-client sshpass \
-    python${PYTHON_VERSION}-full \
+    python3-full \
     && apt -y clean
 ENV GCC_VERSION 14
 RUN apt -y install cmake pkg-config libtool automake autoconf autoconf-archive cpio mold bison flex meson ninja-build debhelper \
     build-essential crossbuild-essential-amd64 crossbuild-essential-arm64 crossbuild-essential-armhf crossbuild-essential-riscv64 \
-    g++-${GCC_VERSION} g++-${GCC_VERSION}-x86-64-linux-gnu g++-${GCC_VERSION}-aarch64-linux-gnu g++-${GCC_VERSION}-riscv64-linux-gnu \
+    g++ g++-x86-64-linux-gnu g++-aarch64-linux-gnu g++-riscv64-linux-gnu \
     && apt -y clean
 RUN apt install -y dialog asciidoc doxygen imagemagick ffmpeg graphviz pandoc texlive-full \
     && apt -y clean
@@ -40,34 +31,17 @@ RUN apt-get install -y fonts-dejavu-extra fonts-opensymbol fonts-lxgw-wenkai fon
     && apt -y clean
 RUN apt install -y postgresql redis rabbitmq-server vsftpd nginx \
     && apt -y clean
-ENV PHP_VERSION "8.5"
-# php${PHP_VERSION}-net-imap php${PHP_VERSION}-net-smtp 
-RUN apt install -y php${PHP_VERSION}-fpm \
-    php${PHP_VERSION}-bz2 php${PHP_VERSION}-zip php${PHP_VERSION}-xml php${PHP_VERSION}-xsl \
-    php${PHP_VERSION}-bcmath php${PHP_VERSION}-gmp php${PHP_VERSION}-enchant\
-    php${PHP_VERSION}-mbstring php${PHP_VERSION}-curl php${PHP_VERSION}-zmq php${PHP_VERSION}-imagick php${PHP_VERSION}-gd php${PHP_VERSION}-intl php${PHP_VERSION}-soap \
-    php${PHP_VERSION}-odbc php${PHP_VERSION}-mysql php${PHP_VERSION}-pgsql php${PHP_VERSION}-sqlite3 php${PHP_VERSION}-redis php${PHP_VERSION}-mongodb php${PHP_VERSION}-amqp \
-    php${PHP_VERSION}-snmp \
+
+RUN apt install -y php-fpm \
+    php-bz2 php-zip php-xml php-xsl \
+    php-bcmath php-gmp php-enchant\
+    php-mbstring php-curl php-zmq php-imagick php-gd php-intl php-soap \
+    php-odbc php-mysql php-pgsql php-sqlite3 php-redis php-mongodb php-amqp \
+    php-snmp \
     && apt -y clean
 RUN apt install -y libssl-dev libsodium-dev libpq-dev libmysqlclient-dev libsqlite3-dev libyaml-dev libffi-dev zlib1g-dev python${PYTHON_VERSION}-dev && apt -y clean
 
 RUN mkdir -p $HOME/local $HOME/tmp $HOME/downloads $HOME/build
-
-# https://apt.llvm.org/
-ENV CLANG_VERSION "20"
-RUN wget -q -O $HOME/downloads/llvm.sh https://apt.llvm.org/llvm.sh \
-    && bash $HOME/downloads/llvm.sh ${CLANG_VERSION} \
-    && rm $HOME/downloads/llvm.sh
-RUN update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-${GCC_VERSION} 100 \
-    && update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-${GCC_VERSION} 100 \
-    && update-alternatives --install /usr/bin/x86_64-linux-gnu-gcc x86_64-linux-gnu-gcc /usr/bin/x86_64-linux-gnu-gcc-${GCC_VERSION} 100 \
-    && update-alternatives --install /usr/bin/x86_64-linux-gnu-g++ x86_64-linux-gnu-g++ /usr/bin/x86_64-linux-gnu-g++-${GCC_VERSION} 100 \
-    && update-alternatives --install /usr/bin/aarch64-linux-gnu-gcc aarch64-linux-gnu-gcc /usr/bin/aarch64-linux-gnu-gcc-${GCC_VERSION} 100 \
-    && update-alternatives --install /usr/bin/aarch64-linux-gnu-g++ aarch64-linux-gnu-g++ /usr/bin/aarch64-linux-gnu-g++-${GCC_VERSION} 100 \
-    && update-alternatives --install /usr/bin/riscv64-linux-gnu-gcc riscv64-linux-gnu-gcc /usr/bin/riscv64-linux-gnu-gcc-${GCC_VERSION} 100 \
-    && update-alternatives --install /usr/bin/riscv64-linux-gnu-g++ riscv64-linux-gnu-g++ /usr/bin/riscv64-linux-gnu-g++-${GCC_VERSION} 100 \
-    && update-alternatives --install /usr/bin/clang clang /usr/bin/clang-${CLANG_VERSION} 100 \
-    && update-alternatives --install /usr/bin/clang++ clang++ /usr/bin/clang++-${CLANG_VERSION} 100
 
 RUN apt -y clean && apt -y autoremove
 
@@ -98,7 +72,7 @@ RUN curl -fsSL -o $HOME/downloads/dbmate https://github.com/amacneil/dbmate/rele
 # https://getcomposer.org/doc/00-intro.md#installation-linux-unix-macos
 RUN wget -q -O $HOME/downloads/composer-setup.php https://getcomposer.org/installer \
     && cd $HOME/downloads \
-    && php${PHP_VERSION} $HOME/downloads/composer-setup.php --install-dir=/usr/local/bin --filename=composer${PHP_VERSION} \
+    && php $HOME/downloads/composer-setup.php --install-dir=/usr/local/bin --filename=composer \
     && rm $HOME/downloads/composer-setup.php
 RUN echo 'export PATH=$HOME/.config/composer/vendor/bin:$PATH' >> $HOME/.profile
 
@@ -112,12 +86,11 @@ RUN bash -c "source $HOME/.nvm/nvm.sh && nvm install --lts && npm install -g yar
 
 # https://github.com/sdkman/sdkman-cli
 # https://docs.gradle.org/current/userguide/compatibility.html
-ENV JDK_VERSION "25.0.2-amzn"
+ENV JDK_VERSION "25.0.3-amzn"
 RUN curl -s "https://get.sdkman.io" | bash
 RUN sed -i -e 's/sdkman_auto_answer=false/sdkman_auto_answer=true/g' $HOME/.sdkman/etc/config
 RUN bash -c "source $HOME/.sdkman/bin/sdkman-init.sh \
     && sdk install java ${JDK_VERSION} \
-    && sdk default java ${JDK_VERSION} \
     && sdk install gradle \
     && sdk install maven"
 
@@ -162,7 +135,7 @@ RUN echo 'export XMAKE_ROOT=y' >> $HOME/.profile
 # https://learn.microsoft.com/en-us/vcpkg/get_started/get-started?pivots=shell-bash
 RUN echo 'export VCPKG_DISABLE_METRICS=1' >> $HOME/.profile
 
-RUN python${PYTHON_VERSION} -m venv $HOME/local/python3
+RUN python3 -m venv $HOME/local/python3
 RUN bash -c "source $HOME/local/python3/bin/activate \
     && pip install cmake ninja"
 RUN echo 'source $HOME/local/python3/bin/activate' >> $HOME/.profile
@@ -208,13 +181,13 @@ RUN echo 'loopback_users = none' | tee -a /etc/rabbitmq/rabbitmq.conf \
 
 RUN mkdir -p /var/lib/postgres \
     && chown postgres:postgres /var/lib/postgres \
-    && su -c "/usr/lib/postgresql/16/bin/initdb -D /var/lib/postgres/data" - postgres \
+    && su -c "/usr/lib/postgresql/18/bin/initdb -D /var/lib/postgres/data" - postgres \
     && echo "listen_addresses = '0.0.0.0'" | tee -a /var/lib/postgres/data/postgresql.conf \
     && echo "host  all  all 0.0.0.0/0 md5" | tee -a /var/lib/postgres/data/pg_hba.conf
 
 
-RUN sed -i 's/memory_limit =.*/memory_limit = 1G/' /etc/php/${PHP_VERSION}/fpm/php.ini \
-    && sed -i 's/^listen = .*/listen = 0.0.0.0:9000/' /etc/php/${PHP_VERSION}/fpm/pool.d/www.conf
+RUN sed -i 's/memory_limit =.*/memory_limit = 1G/' /etc/php/8.5/fpm/php.ini \
+    && sed -i 's/^listen = .*/listen = 0.0.0.0:9000/' /etc/php/8.5/fpm/pool.d/www.conf
 
 RUN echo "$(date -u +%4Y%m%d%H%M%S)" | tee /VERSION
 
