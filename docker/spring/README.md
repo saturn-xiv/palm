@@ -62,6 +62,8 @@
   curl "http://localhost:9200"
   curl "http://localhost:9200/_cat/plugins"
   curl "http://localhost:9200/_cat/allocation"
+  # list indexes
+  curl -X GET "http://localhost:9200/_cat/indices?v"
   ```
 
   - flood-stage watermark
