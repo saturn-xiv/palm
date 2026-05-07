@@ -117,15 +117,14 @@ function generate_thrift_for_cpp() {
     echo "generate $1 => $2"
 
     if [ -d $2/src ]; then
-        rm -rv $2/src
+        rm -r $2/src
     fi
     if [ -d $2/include ]; then
-        rm -rv $2/include
+        rm -r $2/include
     fi
 
-    mkdir -p $2/src
-    thrift -out $2/src --gen cpp:no_skeleton -r $1
-    mkdir -p $2/include
+    mkdir -p $2/src $2/include
+    thrift -out $2/src --gen cpp:no_skeleton -r $1    
     mv $2/src/*.h $2/include/
 }
 
@@ -186,6 +185,22 @@ function generate_thrift_for_cpp() {
 #     thrift -out $3 --gen php:nsglobal=$2 -r $1
 # }
 
+# pip install grpcio-tools==1.76.0
+function generate_dahlia() {
+    cd $WORKSPACE/dahlia/src/
+    echo "generate protocols for dahlia"
+    local target=$WORKSPACE/dahlia/src/dahlia/protocols
+    if [ -d $target ]
+    then
+        rm -r $target
+    fi
+    mkdir -p $target
+    touch $target/__init__.py
+    python -m grpc_tools.protoc \
+        -Idahlia/protocols=$WORKSPACE/dahlia/proto -I $PROTOBUF_HOME/include/google/protobuf \
+        --python_out=. --pyi_out=. --grpc_python_out=. \
+        $WORKSPACE/dahlia/proto/*.proto
+}
 # -----------------------------------------------------------------------------
 
 generate_daisy
@@ -193,6 +208,7 @@ generate_tulip
 # generate_tulip_dashboard
 generate_twilio_rust_api
 generate_thrift_for_cpp $WORKSPACE/loquat/loquat.thrift $WORKSPACE/loquat/gourd
+generate_dahlia
 
 cd $WORKSPACE/
 echo "format cargo projects"
