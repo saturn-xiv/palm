@@ -4,7 +4,7 @@ file(GLOB SOURCE_LIST CONFIGURE_DEPENDS "${CMAKE_CURRENT_SOURCE_DIR}/src/*.cpp")
 add_library(gourd STATIC ${SOURCE_LIST})
 
 target_link_libraries(gourd PUBLIC
-  ${LIBEVENT_LIBRARIES}
+  ${OPENSSL_LIBRARIES} ${LIBEVENT_LIBRARIES}
   thrift 
 )
 

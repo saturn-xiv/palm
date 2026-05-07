@@ -25,8 +25,8 @@ configure_file(include/loquat/version.h.in ${PROJECT_SOURCE_DIR}/include/loquat/
 # --------------------------------------------------------
 
 find_package(OpenSSL REQUIRED)
-find_package(PkgConfig REQUIRED)
 
+find_package(PkgConfig REQUIRED)
 pkg_check_modules(LIBEVENT REQUIRED libevent)
 
 # --------------------------------------------------------
@@ -75,7 +75,6 @@ set_target_properties(loquat PROPERTIES LINK_FLAGS_RELEASE -s)
 target_link_options(loquat PRIVATE -static-libgcc -static-libstdc++)
 
 target_link_libraries(loquat gourd
-  OpenSSL::SSL OpenSSL::Crypto
   argparse::argparse
   spdlog::spdlog_header_only
   pantor::inja
