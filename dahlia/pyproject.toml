@@ -2,7 +2,7 @@
 name = "dahlia"
 version = "2026.5.7"
 authors = [{ name = "Jeremy Zheng", email = "jitang.zheng@gmail.com" }]
-description = "A casbin service"
+description = "A rbac service"
 readme = "README.md"
 requires-python = ">=3.14"
 classifiers = [
@@ -23,4 +23,4 @@ Homepage = "https://github.com/saturn-xiv/palm/tree/main/dahlia"
 Issues = "https://github.com/saturn-xiv/palm/issues"
 
 [project.scripts]
-dahlia = "dahlia:main_cli"
+dahlia = "dahlia:main"
