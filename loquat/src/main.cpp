@@ -109,7 +109,8 @@ int main(int argc, char** argv) {
     const auto ssl = std::make_optional<loquat::application::Ssl>(
         cert_file, key_file, ca_file);
 
-    apache::thrift::GlobalOutput.setOutputFunction(loquat::set_thrift_logger);
+    // FIXME
+    // apache::thrift::GlobalOutput.setOutputFunction(loquat::set_thrift_logger);
 
     loquat::application::launch_rpc_server(
         static_cast<uint16_t>(port),

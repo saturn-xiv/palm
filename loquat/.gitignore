@@ -1,3 +1,5 @@
 /tmp/
 /build/
 /include/loquat/version.hpp
+
+*.bin

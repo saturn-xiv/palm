@@ -1,8 +1,6 @@
 cmake_minimum_required(VERSION 3.22)
 include(FetchContent)
 
-set(CMAKE_TOOLCHAIN_FILE "${CMAKE_CURRENT_SOURCE_DIR}/vcpkg/scripts/buildsystems/vcpkg.cmake" CACHE STRING "Vcpkg toolchain file")
-
 project(
     loquat
     VERSION 2026.5.7
@@ -27,15 +25,9 @@ configure_file(include/loquat/version.h.in ${PROJECT_SOURCE_DIR}/include/loquat/
 # --------------------------------------------------------
 
 find_package(OpenSSL REQUIRED)
-find_package(argparse CONFIG REQUIRED)
-find_package(spdlog CONFIG REQUIRED)
-find_package(nlohmann_json CONFIG REQUIRED)
-find_package(inja CONFIG REQUIRED)
-find_package(Thrift CONFIG REQUIRED)
-
 find_package(PkgConfig REQUIRED)
-pkg_check_modules(thriftnb REQUIRED IMPORTED_TARGET thrift-nb)
-pkg_check_modules(thriftz REQUIRED IMPORTED_TARGET thrift-z)
+
+pkg_check_modules(LIBEVENT REQUIRED libevent)
 
 # --------------------------------------------------------
 
@@ -45,7 +37,30 @@ FetchContent_Declare(tink
   GIT_TAG         "v2.2.0"
 )
 
-FetchContent_MakeAvailable(tink)
+# https://github.com/apache/thrift
+FetchContent_Declare(thrift
+  GIT_REPOSITORY  "https://github.com/apache/thrift.git"
+  GIT_TAG         "v0.23.0"
+)
+
+# https://github.com/pantor/inja
+FetchContent_Declare(inja
+  GIT_REPOSITORY  "https://github.com/pantor/inja.git"
+  GIT_TAG         "v3.5.0"
+)
+
+# https://github.com/gabime/spdlog
+FetchContent_Declare(spdlog
+  GIT_REPOSITORY  "https://github.com/gabime/spdlog.git"
+  GIT_TAG         "v1.17.0"
+)
+
+# https://github.com/p-ranav/argparse
+FetchContent_Declare(argparse
+  GIT_REPOSITORY  "https://github.com/p-ranav/argparse.git"
+  GIT_TAG         "v3.2"
+)
+FetchContent_MakeAvailable(argparse spdlog inja thrift tink)
 
 # --------------------------------------------------------
 
@@ -57,15 +72,16 @@ file(GLOB SOURCE_LIST CONFIGURE_DEPENDS "${PROJECT_SOURCE_DIR}/src/*.cpp")
 
 add_executable(loquat ${SOURCE_LIST})
 set_target_properties(loquat PROPERTIES LINK_FLAGS_RELEASE -s)
+target_link_options(loquat PRIVATE -static -static-libgcc -static-libstdc++)
 
 target_link_libraries(loquat gourd
   OpenSSL::SSL OpenSSL::Crypto
   argparse::argparse
   spdlog::spdlog_header_only
-  pantor::inja nlohmann_json::nlohmann_json
+  pantor::inja
  
   tink::static tink::jwt::jwt_key_templates tink::jwt::jwt_mac tink::jwt::jwt_mac_config
-  thrift::thrift PkgConfig::thriftz PkgConfig::thriftnb
+  thriftz thriftnb
 )
 
 target_include_directories(loquat PUBLIC

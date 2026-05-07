@@ -105,18 +105,100 @@ function generate_twilio_rust_api() {
         cargo clippy --fix --lib -p twilio    
     fi
 }
+
+
+function generate_loquat() {
+    echo "generate protocols for loquat"
+    local target=$WORKSPACE/tulip/belladonna
+}
+
+function generate_thrift_for_cpp() {
+    cd $WORKSPACE
+    echo "generate $1 => $2"
+
+    if [ -d $2/src ]; then
+        rm -rv $2/src
+    fi
+    if [ -d $2/include ]; then
+        rm -rv $2/include
+    fi
+
+    mkdir -p $2/src
+    thrift -out $2/src --gen cpp:no_skeleton -r $1
+    mkdir -p $2/include
+    mv $2/src/*.h $2/include/
+}
+
+# function generate_thrift_for_go() {
+#     cd $WORKSPACE
+#     echo "generate $1 => $2"
+
+#     if [ -d $2 ]; then
+#         for f in $2/*.go; do
+#             n=$(basename $f)
+#             if [[ "$n" != "mod.go" ]]; then
+#                 rm -v $f
+#             fi
+#         done
+#     fi
+
+#     mkdir -p $2
+#     thrift -out $(dirname $2) --gen go:skip_remote,package=v1 -r $1
+# }
+
+# function generate_thrift_for_java() {
+#     cd $WORKSPACE
+#     echo "generate thrift $1 => $2"
+
+#     local target=$2/$3
+#     if [ -d $target ]; then
+#         rm -r $target
+#     fi
+#     thrift -out $2 --gen java:sorted_containers,jakarta_annotations,generated_annotations=undated -r $1
+# }
+
+# function generate_thrift_for_node() {
+#     cd $WORKSPACE
+#     echo "generate thrift $1 => $2"
+
+#     local target=$2
+#     if [ -d $target ]; then
+#         rm -r $target
+#     fi
+#     mkdir -p $2
+#     thrift -out $2 --gen js:node -r $1
+# }
+
+# function generate_thrift_for_rust() {
+#     cd $WORKSPACE
+#     echo "generate thrift $1/$2.thrift => $3"
+#     mkdir -p $3
+#     thrift -out tmp --gen rs -r $1/$2.thrift
+#     mv tmp/$2.rs $3/protocols.rs
+# }
+
+# function generate_thrift_for_php() {
+#     cd $WORKSPACE
+#     echo "generate thrift $1 => $3"
+#     if [ -d $3/$2 ]; then
+#         rm -rv $3/$2
+#     fi
+#     thrift -out $3 --gen php:nsglobal=$2 -r $1
+# }
+
 # -----------------------------------------------------------------------------
 
 generate_daisy
 generate_tulip
 generate_tulip_dashboard
 generate_twilio_rust_api
+generate_thrift_for_cpp $WORKSPACE/loquat/loquat.thrift $WORKSPACE/gourd
 
 cd $WORKSPACE/
 echo "format cargo projects"
 cargo fmt
-echo "format cpp projects"
-clang-format -i loquat/include/loquat/*.hpp loquat/src/*.cpp
+# echo "format cpp projects"
+# clang-format -i loquat/include/loquat/*.hpp loquat/src/*.cpp
 
 echo 'done.'
 exit 0
