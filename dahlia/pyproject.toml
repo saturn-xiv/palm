@@ -14,6 +14,7 @@ dependencies = [
     "protobuf~=6.33",
     "grpcio~=1.76",
     "grpcio-reflection",
+    "grpcio-health-checking",
     "casbin>=1.43",
     "sqlalchemy_adapter>=1.9",
     "casbin-rabbitmq-watcher>=1.7",

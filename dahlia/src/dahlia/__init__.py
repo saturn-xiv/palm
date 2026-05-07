@@ -1,11 +1,15 @@
 import logging
 import argparse
 import tomllib
-from concurrent import futures
 import signal
+import threading
+from concurrent import futures
+from time import sleep
 
 import grpc
 from grpc_reflection.v1alpha import reflection
+from grpc_health.v1 import health, health_pb2, health_pb2_grpc
+
 
 from . import rbac
 from dahlia.protocols import rbac_pb2_grpc, rbac_pb2
@@ -45,6 +49,19 @@ def launch_grpc_server(config, port, workers):
         reflection.SERVICE_NAME,
     ), server)
 
+    health_servicer = health.HealthServicer(
+        experimental_non_blocking=True,
+        experimental_thread_pool=futures.ThreadPoolExecutor(max_workers=10),
+    )
+    health_pb2_grpc.add_HealthServicer_to_server(health_servicer, server)
+
+    toggle_health_status_thread = threading.Thread(
+        target=toggle_grpc_health,
+        args=(health_servicer, "*"),
+        daemon=True,
+    )
+    toggle_health_status_thread.start()
+
     addr = f"0.0.0.0:{port}"
     logger.info(
         "start gRPC server on tcp://%s with %d workers", addr, workers)
@@ -60,3 +77,10 @@ def launch_grpc_server(config, port, workers):
 
     server.wait_for_termination()
     logger.info('exited')
+
+
+def toggle_grpc_health(health_servicer: health.HealthServicer, service: str):
+    while True:
+        # TODO check rabbitmq & postgresql etc
+        health_servicer.set(service, health_pb2.HealthCheckResponse.SERVING)
+        sleep(5)
