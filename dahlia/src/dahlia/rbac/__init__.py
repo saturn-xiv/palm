@@ -5,9 +5,20 @@ import os
 import casbin
 import sqlalchemy_adapter
 import casbin_rabbitmq_watcher
+from google.protobuf.empty_pb2 import Empty
 
+from dahlia.protocols import rbac_pb2_grpc
 
 logger = logging.getLogger(__name__)
+
+
+class Server(rbac_pb2_grpc.EnforcerServicer):
+    def __init__(self, enforcer):
+        self.enforcer = enforcer
+
+    def HasPermission(self, request, context):
+        # TODO
+        return Empty()
 
 
 def update_callback_func(msg):

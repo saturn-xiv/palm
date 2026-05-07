@@ -14,6 +14,13 @@ $ source $HOME/tmp/python3/bin/activate
 > python3 -m dahlia -h
 ```
 
+## Testing
+
+```bash
+python3 -m dahlia -d
+grpcurl -plaintext 127.0.0.1:8080 list
+```
+
 ## Documents
 
 - [Casbin Service](https://casbin.apache.org/docs/service/)
