@@ -23,11 +23,10 @@ const (
 
 type Task struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	From          *Task_Address          `protobuf:"bytes,1,opt,name=from,proto3" json:"from,omitempty"`
-	ReplyTo       *Task_Address          `protobuf:"bytes,2,opt,name=reply_to,json=replyTo,proto3,oneof" json:"reply_to,omitempty"`
-	To            *Task_Address          `protobuf:"bytes,3,opt,name=to,proto3" json:"to,omitempty"`
-	Cc            []*Task_Address        `protobuf:"bytes,4,rep,name=cc,proto3" json:"cc,omitempty"`
-	Bcc           []*Task_Address        `protobuf:"bytes,5,rep,name=bcc,proto3" json:"bcc,omitempty"`
+	ReplyTo       *Task_Address          `protobuf:"bytes,1,opt,name=reply_to,json=replyTo,proto3,oneof" json:"reply_to,omitempty"`
+	To            *Task_Address          `protobuf:"bytes,2,opt,name=to,proto3" json:"to,omitempty"`
+	Cc            []*Task_Address        `protobuf:"bytes,3,rep,name=cc,proto3" json:"cc,omitempty"`
+	Bcc           []*Task_Address        `protobuf:"bytes,4,rep,name=bcc,proto3" json:"bcc,omitempty"`
 	Subject       string                 `protobuf:"bytes,11,opt,name=subject,proto3" json:"subject,omitempty"`
 	Body          *Task_Body             `protobuf:"bytes,12,opt,name=body,proto3" json:"body,omitempty"`
 	Attachments   []*Task_Attachment     `protobuf:"bytes,13,rep,name=attachments,proto3" json:"attachments,omitempty"`
@@ -63,13 +62,6 @@ func (x *Task) ProtoReflect() protoreflect.Message {
 // Deprecated: Use Task.ProtoReflect.Descriptor instead.
 func (*Task) Descriptor() ([]byte, []int) {
 	return file_proto_email_proto_rawDescGZIP(), []int{0}
-}
-
-func (x *Task) GetFrom() *Task_Address {
-	if x != nil {
-		return x.From
-	}
-	return nil
 }
 
 func (x *Task) GetReplyTo() *Task_Address {
@@ -297,13 +289,12 @@ var File_proto_email_proto protoreflect.FileDescriptor
 
 const file_proto_email_proto_rawDesc = "" +
 	"\n" +
-	"\x11proto/email.proto\x12\rpalm.email.v1\"\x89\x05\n" +
-	"\x04Task\x12/\n" +
-	"\x04from\x18\x01 \x01(\v2\x1b.palm.email.v1.Task.AddressR\x04from\x12;\n" +
-	"\breply_to\x18\x02 \x01(\v2\x1b.palm.email.v1.Task.AddressH\x00R\areplyTo\x88\x01\x01\x12+\n" +
-	"\x02to\x18\x03 \x01(\v2\x1b.palm.email.v1.Task.AddressR\x02to\x12+\n" +
-	"\x02cc\x18\x04 \x03(\v2\x1b.palm.email.v1.Task.AddressR\x02cc\x12-\n" +
-	"\x03bcc\x18\x05 \x03(\v2\x1b.palm.email.v1.Task.AddressR\x03bcc\x12\x18\n" +
+	"\x11proto/email.proto\x12\rpalm.email.v1\"\xd8\x04\n" +
+	"\x04Task\x12;\n" +
+	"\breply_to\x18\x01 \x01(\v2\x1b.palm.email.v1.Task.AddressH\x00R\areplyTo\x88\x01\x01\x12+\n" +
+	"\x02to\x18\x02 \x01(\v2\x1b.palm.email.v1.Task.AddressR\x02to\x12+\n" +
+	"\x02cc\x18\x03 \x03(\v2\x1b.palm.email.v1.Task.AddressR\x02cc\x12-\n" +
+	"\x03bcc\x18\x04 \x03(\v2\x1b.palm.email.v1.Task.AddressR\x03bcc\x12\x18\n" +
 	"\asubject\x18\v \x01(\tR\asubject\x12,\n" +
 	"\x04body\x18\f \x01(\v2\x18.palm.email.v1.Task.BodyR\x04body\x12@\n" +
 	"\vattachments\x18\r \x03(\v2\x1e.palm.email.v1.Task.AttachmentR\vattachments\x1a3\n" +
@@ -345,18 +336,17 @@ var file_proto_email_proto_goTypes = []any{
 	(*Task_Attachment)(nil), // 3: palm.email.v1.Task.Attachment
 }
 var file_proto_email_proto_depIdxs = []int32{
-	1, // 0: palm.email.v1.Task.from:type_name -> palm.email.v1.Task.Address
-	1, // 1: palm.email.v1.Task.reply_to:type_name -> palm.email.v1.Task.Address
-	1, // 2: palm.email.v1.Task.to:type_name -> palm.email.v1.Task.Address
-	1, // 3: palm.email.v1.Task.cc:type_name -> palm.email.v1.Task.Address
-	1, // 4: palm.email.v1.Task.bcc:type_name -> palm.email.v1.Task.Address
-	2, // 5: palm.email.v1.Task.body:type_name -> palm.email.v1.Task.Body
-	3, // 6: palm.email.v1.Task.attachments:type_name -> palm.email.v1.Task.Attachment
-	7, // [7:7] is the sub-list for method output_type
-	7, // [7:7] is the sub-list for method input_type
-	7, // [7:7] is the sub-list for extension type_name
-	7, // [7:7] is the sub-list for extension extendee
-	0, // [0:7] is the sub-list for field type_name
+	1, // 0: palm.email.v1.Task.reply_to:type_name -> palm.email.v1.Task.Address
+	1, // 1: palm.email.v1.Task.to:type_name -> palm.email.v1.Task.Address
+	1, // 2: palm.email.v1.Task.cc:type_name -> palm.email.v1.Task.Address
+	1, // 3: palm.email.v1.Task.bcc:type_name -> palm.email.v1.Task.Address
+	2, // 4: palm.email.v1.Task.body:type_name -> palm.email.v1.Task.Body
+	3, // 5: palm.email.v1.Task.attachments:type_name -> palm.email.v1.Task.Attachment
+	6, // [6:6] is the sub-list for method output_type
+	6, // [6:6] is the sub-list for method input_type
+	6, // [6:6] is the sub-list for extension type_name
+	6, // [6:6] is the sub-list for extension extendee
+	0, // [0:6] is the sub-list for field type_name
 }
 
 func init() { file_proto_email_proto_init() }

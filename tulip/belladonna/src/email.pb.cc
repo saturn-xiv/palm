@@ -131,7 +131,6 @@ inline constexpr Task::Impl_::Impl_(
         subject_(
             &::google::protobuf::internal::fixed_address_empty_string,
             ::_pbi::ConstantInitialized()),
-        from_{nullptr},
         reply_to_{nullptr},
         to_{nullptr},
         body_{nullptr} {}
@@ -192,8 +191,7 @@ const ::uint32_t
         3,
         0x081, // bitmap
         PROTOBUF_FIELD_OFFSET(::palm::email::v1::Task, _impl_._has_bits_),
-        11, // hasbit index offset
-        PROTOBUF_FIELD_OFFSET(::palm::email::v1::Task, _impl_.from_),
+        10, // hasbit index offset
         PROTOBUF_FIELD_OFFSET(::palm::email::v1::Task, _impl_.reply_to_),
         PROTOBUF_FIELD_OFFSET(::palm::email::v1::Task, _impl_.to_),
         PROTOBUF_FIELD_OFFSET(::palm::email::v1::Task, _impl_.cc_),
@@ -203,11 +201,10 @@ const ::uint32_t
         PROTOBUF_FIELD_OFFSET(::palm::email::v1::Task, _impl_.attachments_),
         4,
         5,
-        6,
         0,
         1,
         3,
-        7,
+        6,
         2,
 };
 
@@ -226,29 +223,28 @@ static const ::_pb::Message* PROTOBUF_NONNULL const file_default_instances[] = {
 };
 const char descriptor_table_protodef_email_2eproto[] ABSL_ATTRIBUTE_SECTION_VARIABLE(
     protodesc_cold) = {
-    "\n\013email.proto\022\rpalm.email.v1\"\221\004\n\004Task\022)\n"
-    "\004from\030\001 \001(\0132\033.palm.email.v1.Task.Address"
-    "\0222\n\010reply_to\030\002 \001(\0132\033.palm.email.v1.Task."
-    "AddressH\000\210\001\001\022\'\n\002to\030\003 \001(\0132\033.palm.email.v1"
-    ".Task.Address\022\'\n\002cc\030\004 \003(\0132\033.palm.email.v"
-    "1.Task.Address\022(\n\003bcc\030\005 \003(\0132\033.palm.email"
-    ".v1.Task.Address\022\017\n\007subject\030\013 \001(\t\022&\n\004bod"
-    "y\030\014 \001(\0132\030.palm.email.v1.Task.Body\0223\n\013att"
-    "achments\030\r \003(\0132\036.palm.email.v1.Task.Atta"
-    "chment\032&\n\007Address\022\014\n\004name\030\001 \001(\t\022\r\n\005email"
-    "\030\002 \001(\t\032%\n\004Body\022\017\n\007content\030\001 \001(\t\022\014\n\004html\030"
-    "\002 \001(\010\032d\n\nAttachment\022\014\n\004name\030\001 \001(\t\022\024\n\014con"
-    "tent_type\030\002 \001(\t\022\014\n\004body\030\003 \001(\014\022\026\n\tinline_"
-    "id\030\t \001(\tH\000\210\001\001B\014\n\n_inline_idB\013\n\t_reply_to"
-    "B\\\n+com.github.saturn_xiv.palm.plugins.e"
-    "mail.v1B\nEmailProtoP\001Z\005./;v2\252\002\027Palm.Plug"
-    "ins.Email.Grpcb\006proto3"
+    "\n\013email.proto\022\rpalm.email.v1\"\346\003\n\004Task\0222\n"
+    "\010reply_to\030\001 \001(\0132\033.palm.email.v1.Task.Add"
+    "ressH\000\210\001\001\022\'\n\002to\030\002 \001(\0132\033.palm.email.v1.Ta"
+    "sk.Address\022\'\n\002cc\030\003 \003(\0132\033.palm.email.v1.T"
+    "ask.Address\022(\n\003bcc\030\004 \003(\0132\033.palm.email.v1"
+    ".Task.Address\022\017\n\007subject\030\013 \001(\t\022&\n\004body\030\014"
+    " \001(\0132\030.palm.email.v1.Task.Body\0223\n\013attach"
+    "ments\030\r \003(\0132\036.palm.email.v1.Task.Attachm"
+    "ent\032&\n\007Address\022\014\n\004name\030\001 \001(\t\022\r\n\005email\030\002 "
+    "\001(\t\032%\n\004Body\022\017\n\007content\030\001 \001(\t\022\014\n\004html\030\002 \001"
+    "(\010\032d\n\nAttachment\022\014\n\004name\030\001 \001(\t\022\024\n\014conten"
+    "t_type\030\002 \001(\t\022\014\n\004body\030\003 \001(\014\022\026\n\tinline_id\030"
+    "\t \001(\tH\000\210\001\001B\014\n\n_inline_idB\013\n\t_reply_toB\\\n"
+    "+com.github.saturn_xiv.palm.plugins.emai"
+    "l.v1B\nEmailProtoP\001Z\005./;v2\252\002\027Palm.Plugins"
+    ".Email.Grpcb\006proto3"
 };
 static ::absl::once_flag descriptor_table_email_2eproto_once;
 PROTOBUF_CONSTINIT const ::_pbi::DescriptorTable descriptor_table_email_2eproto = {
     false,
     false,
-    662,
+    619,
     descriptor_table_protodef_email_2eproto,
     "email.proto",
     &descriptor_table_email_2eproto_once,
@@ -1320,16 +1316,13 @@ Task::Task(
       from._internal_metadata_);
   new (&_impl_) Impl_(internal_visibility(), arena, from._impl_, from);
   ::uint32_t cached_has_bits = _impl_._has_bits_[0];
-  _impl_.from_ = (CheckHasBit(cached_has_bits, 0x00000010U))
-                ? ::google::protobuf::Message::CopyConstruct(arena, *from._impl_.from_)
-                : nullptr;
-  _impl_.reply_to_ = (CheckHasBit(cached_has_bits, 0x00000020U))
+  _impl_.reply_to_ = (CheckHasBit(cached_has_bits, 0x00000010U))
                 ? ::google::protobuf::Message::CopyConstruct(arena, *from._impl_.reply_to_)
                 : nullptr;
-  _impl_.to_ = (CheckHasBit(cached_has_bits, 0x00000040U))
+  _impl_.to_ = (CheckHasBit(cached_has_bits, 0x00000020U))
                 ? ::google::protobuf::Message::CopyConstruct(arena, *from._impl_.to_)
                 : nullptr;
-  _impl_.body_ = (CheckHasBit(cached_has_bits, 0x00000080U))
+  _impl_.body_ = (CheckHasBit(cached_has_bits, 0x00000040U))
                 ? ::google::protobuf::Message::CopyConstruct(arena, *from._impl_.body_)
                 : nullptr;
 
@@ -1347,10 +1340,10 @@ PROTOBUF_NDEBUG_INLINE Task::Impl_::Impl_(
 inline void Task::SharedCtor(::_pb::Arena* PROTOBUF_NULLABLE arena) {
   new (&_impl_) Impl_(internal_visibility(), arena);
   ::memset(reinterpret_cast<char*>(&_impl_) +
-               offsetof(Impl_, from_),
+               offsetof(Impl_, reply_to_),
            0,
            offsetof(Impl_, body_) -
-               offsetof(Impl_, from_) +
+               offsetof(Impl_, reply_to_) +
                sizeof(Impl_::body_));
 }
 Task::~Task() {
@@ -1365,7 +1358,6 @@ inline void Task::SharedDtor(MessageLite& self) {
   this_._internal_metadata_.Delete<::google::protobuf::UnknownFieldSet>();
   ABSL_DCHECK(this_.GetArena() == nullptr);
   this_._impl_.subject_.Destroy();
-  delete this_._impl_.from_;
   delete this_._impl_.reply_to_;
   delete this_._impl_.to_;
   delete this_._impl_.body_;
@@ -1435,17 +1427,17 @@ Task::GetClassData() const {
   return Task_class_data_.base();
 }
 PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::_pbi::TcParseTable<4, 8, 7, 42, 2>
+const ::_pbi::TcParseTable<3, 7, 6, 34, 2>
 Task::_table_ = {
   {
     PROTOBUF_FIELD_OFFSET(Task, _impl_._has_bits_),
     0, // no _extensions_
-    13, 120,  // max_field_number, fast_idx_mask
+    13, 56,  // max_field_number, fast_idx_mask
     offsetof(decltype(_table_), field_lookup_table),
-    4294960096,  // skipmap
+    4294960112,  // skipmap
     offsetof(decltype(_table_), field_entries),
-    8,  // num_field_entries
-    7,  // num_aux_entries
+    7,  // num_field_entries
+    6,  // num_aux_entries
     offsetof(decltype(_table_), aux_entries),
     Task_class_data_.base(),
     nullptr,  // post_loop_handler
@@ -1455,67 +1447,47 @@ Task::_table_ = {
     #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
   }, {{
     {::_pbi::TcParser::MiniParse, {}},
-    // .palm.email.v1.Task.Address from = 1;
+    // optional .palm.email.v1.Task.Address reply_to = 1;
     {::_pbi::TcParser::FastMtS1,
      {10, 4, 0,
-      PROTOBUF_FIELD_OFFSET(Task, _impl_.from_)}},
-    // optional .palm.email.v1.Task.Address reply_to = 2;
+      PROTOBUF_FIELD_OFFSET(Task, _impl_.reply_to_)}},
+    // .palm.email.v1.Task.Address to = 2;
     {::_pbi::TcParser::FastMtS1,
      {18, 5, 1,
-      PROTOBUF_FIELD_OFFSET(Task, _impl_.reply_to_)}},
-    // .palm.email.v1.Task.Address to = 3;
-    {::_pbi::TcParser::FastMtS1,
-     {26, 6, 2,
       PROTOBUF_FIELD_OFFSET(Task, _impl_.to_)}},
-    // repeated .palm.email.v1.Task.Address cc = 4;
+    // repeated .palm.email.v1.Task.Address cc = 3;
     {::_pbi::TcParser::FastMtR1,
-     {34, 0, 3,
+     {26, 0, 2,
       PROTOBUF_FIELD_OFFSET(Task, _impl_.cc_)}},
-    // repeated .palm.email.v1.Task.Address bcc = 5;
+    // repeated .palm.email.v1.Task.Address bcc = 4;
     {::_pbi::TcParser::FastMtR1,
-     {42, 1, 4,
+     {34, 1, 3,
       PROTOBUF_FIELD_OFFSET(Task, _impl_.bcc_)}},
-    {::_pbi::TcParser::MiniParse, {}},
-    {::_pbi::TcParser::MiniParse, {}},
-    {::_pbi::TcParser::MiniParse, {}},
-    {::_pbi::TcParser::MiniParse, {}},
-    {::_pbi::TcParser::MiniParse, {}},
-    // string subject = 11;
-    {::_pbi::TcParser::FastUS1,
-     {90, 3, 0,
-      PROTOBUF_FIELD_OFFSET(Task, _impl_.subject_)}},
-    // .palm.email.v1.Task.Body body = 12;
-    {::_pbi::TcParser::FastMtS1,
-     {98, 7, 5,
-      PROTOBUF_FIELD_OFFSET(Task, _impl_.body_)}},
     // repeated .palm.email.v1.Task.Attachment attachments = 13;
     {::_pbi::TcParser::FastMtR1,
-     {106, 2, 6,
+     {106, 2, 5,
       PROTOBUF_FIELD_OFFSET(Task, _impl_.attachments_)}},
     {::_pbi::TcParser::MiniParse, {}},
     {::_pbi::TcParser::MiniParse, {}},
   }}, {{
     65535, 65535
   }}, {{
-    // .palm.email.v1.Task.Address from = 1;
-    {PROTOBUF_FIELD_OFFSET(Task, _impl_.from_), _Internal::kHasBitsOffset + 4, 0, (0 | ::_fl::kFcOptional | ::_fl::kMessage | ::_fl::kTvTable)},
-    // optional .palm.email.v1.Task.Address reply_to = 2;
-    {PROTOBUF_FIELD_OFFSET(Task, _impl_.reply_to_), _Internal::kHasBitsOffset + 5, 1, (0 | ::_fl::kFcOptional | ::_fl::kMessage | ::_fl::kTvTable)},
-    // .palm.email.v1.Task.Address to = 3;
-    {PROTOBUF_FIELD_OFFSET(Task, _impl_.to_), _Internal::kHasBitsOffset + 6, 2, (0 | ::_fl::kFcOptional | ::_fl::kMessage | ::_fl::kTvTable)},
-    // repeated .palm.email.v1.Task.Address cc = 4;
-    {PROTOBUF_FIELD_OFFSET(Task, _impl_.cc_), _Internal::kHasBitsOffset + 0, 3, (0 | ::_fl::kFcRepeated | ::_fl::kMessage | ::_fl::kTvTable)},
-    // repeated .palm.email.v1.Task.Address bcc = 5;
-    {PROTOBUF_FIELD_OFFSET(Task, _impl_.bcc_), _Internal::kHasBitsOffset + 1, 4, (0 | ::_fl::kFcRepeated | ::_fl::kMessage | ::_fl::kTvTable)},
+    // optional .palm.email.v1.Task.Address reply_to = 1;
+    {PROTOBUF_FIELD_OFFSET(Task, _impl_.reply_to_), _Internal::kHasBitsOffset + 4, 0, (0 | ::_fl::kFcOptional | ::_fl::kMessage | ::_fl::kTvTable)},
+    // .palm.email.v1.Task.Address to = 2;
+    {PROTOBUF_FIELD_OFFSET(Task, _impl_.to_), _Internal::kHasBitsOffset + 5, 1, (0 | ::_fl::kFcOptional | ::_fl::kMessage | ::_fl::kTvTable)},
+    // repeated .palm.email.v1.Task.Address cc = 3;
+    {PROTOBUF_FIELD_OFFSET(Task, _impl_.cc_), _Internal::kHasBitsOffset + 0, 2, (0 | ::_fl::kFcRepeated | ::_fl::kMessage | ::_fl::kTvTable)},
+    // repeated .palm.email.v1.Task.Address bcc = 4;
+    {PROTOBUF_FIELD_OFFSET(Task, _impl_.bcc_), _Internal::kHasBitsOffset + 1, 3, (0 | ::_fl::kFcRepeated | ::_fl::kMessage | ::_fl::kTvTable)},
     // string subject = 11;
     {PROTOBUF_FIELD_OFFSET(Task, _impl_.subject_), _Internal::kHasBitsOffset + 3, 0, (0 | ::_fl::kFcOptional | ::_fl::kUtf8String | ::_fl::kRepAString)},
     // .palm.email.v1.Task.Body body = 12;
-    {PROTOBUF_FIELD_OFFSET(Task, _impl_.body_), _Internal::kHasBitsOffset + 7, 5, (0 | ::_fl::kFcOptional | ::_fl::kMessage | ::_fl::kTvTable)},
+    {PROTOBUF_FIELD_OFFSET(Task, _impl_.body_), _Internal::kHasBitsOffset + 6, 4, (0 | ::_fl::kFcOptional | ::_fl::kMessage | ::_fl::kTvTable)},
     // repeated .palm.email.v1.Task.Attachment attachments = 13;
-    {PROTOBUF_FIELD_OFFSET(Task, _impl_.attachments_), _Internal::kHasBitsOffset + 2, 6, (0 | ::_fl::kFcRepeated | ::_fl::kMessage | ::_fl::kTvTable)},
+    {PROTOBUF_FIELD_OFFSET(Task, _impl_.attachments_), _Internal::kHasBitsOffset + 2, 5, (0 | ::_fl::kFcRepeated | ::_fl::kMessage | ::_fl::kTvTable)},
   }},
   {{
-      {::_pbi::TcParser::GetTable<::palm::email::v1::Task_Address>()},
       {::_pbi::TcParser::GetTable<::palm::email::v1::Task_Address>()},
       {::_pbi::TcParser::GetTable<::palm::email::v1::Task_Address>()},
       {::_pbi::TcParser::GetTable<::palm::email::v1::Task_Address>()},
@@ -1524,7 +1496,7 @@ Task::_table_ = {
       {::_pbi::TcParser::GetTable<::palm::email::v1::Task_Attachment>()},
   }},
   {{
-    "\22\0\0\0\0\0\7\0\0\0\0\0\0\0\0\0"
+    "\22\0\0\0\0\7\0\0"
     "palm.email.v1.Task"
     "subject"
   }},
@@ -1537,7 +1509,7 @@ PROTOBUF_NOINLINE void Task::Clear() {
   (void) cached_has_bits;
 
   cached_has_bits = _impl_._has_bits_[0];
-  if (BatchCheckHasBit(cached_has_bits, 0x000000ffU)) {
+  if (BatchCheckHasBit(cached_has_bits, 0x0000007fU)) {
     if (CheckHasBitForRepeated(cached_has_bits, 0x00000001U)) {
       _impl_.cc_.Clear();
     }
@@ -1551,18 +1523,14 @@ PROTOBUF_NOINLINE void Task::Clear() {
       _impl_.subject_.ClearNonDefaultToEmpty();
     }
     if (CheckHasBit(cached_has_bits, 0x00000010U)) {
-      ABSL_DCHECK(_impl_.from_ != nullptr);
-      _impl_.from_->Clear();
-    }
-    if (CheckHasBit(cached_has_bits, 0x00000020U)) {
       ABSL_DCHECK(_impl_.reply_to_ != nullptr);
       _impl_.reply_to_->Clear();
     }
-    if (CheckHasBit(cached_has_bits, 0x00000040U)) {
+    if (CheckHasBit(cached_has_bits, 0x00000020U)) {
       ABSL_DCHECK(_impl_.to_ != nullptr);
       _impl_.to_->Clear();
     }
-    if (CheckHasBit(cached_has_bits, 0x00000080U)) {
+    if (CheckHasBit(cached_has_bits, 0x00000040U)) {
       ABSL_DCHECK(_impl_.body_ != nullptr);
       _impl_.body_->Clear();
     }
@@ -1590,28 +1558,21 @@ PROTOBUF_NOINLINE void Task::Clear() {
   (void)cached_has_bits;
 
   cached_has_bits = this_._impl_._has_bits_[0];
-  // .palm.email.v1.Task.Address from = 1;
+  // optional .palm.email.v1.Task.Address reply_to = 1;
   if (CheckHasBit(cached_has_bits, 0x00000010U)) {
     target = ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
-        1, *this_._impl_.from_, this_._impl_.from_->GetCachedSize(), target,
+        1, *this_._impl_.reply_to_, this_._impl_.reply_to_->GetCachedSize(), target,
         stream);
   }
 
-  // optional .palm.email.v1.Task.Address reply_to = 2;
+  // .palm.email.v1.Task.Address to = 2;
   if (CheckHasBit(cached_has_bits, 0x00000020U)) {
     target = ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
-        2, *this_._impl_.reply_to_, this_._impl_.reply_to_->GetCachedSize(), target,
+        2, *this_._impl_.to_, this_._impl_.to_->GetCachedSize(), target,
         stream);
   }
 
-  // .palm.email.v1.Task.Address to = 3;
-  if (CheckHasBit(cached_has_bits, 0x00000040U)) {
-    target = ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
-        3, *this_._impl_.to_, this_._impl_.to_->GetCachedSize(), target,
-        stream);
-  }
-
-  // repeated .palm.email.v1.Task.Address cc = 4;
+  // repeated .palm.email.v1.Task.Address cc = 3;
   if (CheckHasBitForRepeated(cached_has_bits, 0x00000001U)) {
     for (unsigned i = 0, n = static_cast<unsigned>(
                              this_._internal_cc_size());
@@ -1619,12 +1580,12 @@ PROTOBUF_NOINLINE void Task::Clear() {
       const auto& repfield = this_._internal_cc().Get(i);
       target =
           ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
-              4, repfield, repfield.GetCachedSize(),
+              3, repfield, repfield.GetCachedSize(),
               target, stream);
     }
   }
 
-  // repeated .palm.email.v1.Task.Address bcc = 5;
+  // repeated .palm.email.v1.Task.Address bcc = 4;
   if (CheckHasBitForRepeated(cached_has_bits, 0x00000002U)) {
     for (unsigned i = 0, n = static_cast<unsigned>(
                              this_._internal_bcc_size());
@@ -1632,7 +1593,7 @@ PROTOBUF_NOINLINE void Task::Clear() {
       const auto& repfield = this_._internal_bcc().Get(i);
       target =
           ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
-              5, repfield, repfield.GetCachedSize(),
+              4, repfield, repfield.GetCachedSize(),
               target, stream);
     }
   }
@@ -1648,7 +1609,7 @@ PROTOBUF_NOINLINE void Task::Clear() {
   }
 
   // .palm.email.v1.Task.Body body = 12;
-  if (CheckHasBit(cached_has_bits, 0x00000080U)) {
+  if (CheckHasBit(cached_has_bits, 0x00000040U)) {
     target = ::google::protobuf::internal::WireFormatLite::InternalWriteMessage(
         12, *this_._impl_.body_, this_._impl_.body_->GetCachedSize(), target,
         stream);
@@ -1692,15 +1653,15 @@ PROTOBUF_NOINLINE void Task::Clear() {
 
   ::_pbi::Prefetch5LinesFrom7Lines(&this_);
   cached_has_bits = this_._impl_._has_bits_[0];
-  if (BatchCheckHasBit(cached_has_bits, 0x000000ffU)) {
-    // repeated .palm.email.v1.Task.Address cc = 4;
+  if (BatchCheckHasBit(cached_has_bits, 0x0000007fU)) {
+    // repeated .palm.email.v1.Task.Address cc = 3;
     if (CheckHasBitForRepeated(cached_has_bits, 0x00000001U)) {
       total_size += 1UL * this_._internal_cc_size();
       for (const auto& msg : this_._internal_cc()) {
         total_size += ::google::protobuf::internal::WireFormatLite::MessageSize(msg);
       }
     }
-    // repeated .palm.email.v1.Task.Address bcc = 5;
+    // repeated .palm.email.v1.Task.Address bcc = 4;
     if (CheckHasBitForRepeated(cached_has_bits, 0x00000002U)) {
       total_size += 1UL * this_._internal_bcc_size();
       for (const auto& msg : this_._internal_bcc()) {
@@ -1721,23 +1682,18 @@ PROTOBUF_NOINLINE void Task::Clear() {
                                         this_._internal_subject());
       }
     }
-    // .palm.email.v1.Task.Address from = 1;
+    // optional .palm.email.v1.Task.Address reply_to = 1;
     if (CheckHasBit(cached_has_bits, 0x00000010U)) {
-      total_size += 1 +
-                    ::google::protobuf::internal::WireFormatLite::MessageSize(*this_._impl_.from_);
-    }
-    // optional .palm.email.v1.Task.Address reply_to = 2;
-    if (CheckHasBit(cached_has_bits, 0x00000020U)) {
       total_size += 1 +
                     ::google::protobuf::internal::WireFormatLite::MessageSize(*this_._impl_.reply_to_);
     }
-    // .palm.email.v1.Task.Address to = 3;
-    if (CheckHasBit(cached_has_bits, 0x00000040U)) {
+    // .palm.email.v1.Task.Address to = 2;
+    if (CheckHasBit(cached_has_bits, 0x00000020U)) {
       total_size += 1 +
                     ::google::protobuf::internal::WireFormatLite::MessageSize(*this_._impl_.to_);
     }
     // .palm.email.v1.Task.Body body = 12;
-    if (CheckHasBit(cached_has_bits, 0x00000080U)) {
+    if (CheckHasBit(cached_has_bits, 0x00000040U)) {
       total_size += 1 +
                     ::google::protobuf::internal::WireFormatLite::MessageSize(*this_._impl_.body_);
     }
@@ -1761,7 +1717,7 @@ void Task::MergeImpl(::google::protobuf::MessageLite& to_msg,
   (void)cached_has_bits;
 
   cached_has_bits = from._impl_._has_bits_[0];
-  if (BatchCheckHasBit(cached_has_bits, 0x000000ffU)) {
+  if (BatchCheckHasBit(cached_has_bits, 0x0000007fU)) {
     if (CheckHasBitForRepeated(cached_has_bits, 0x00000001U)) {
       _this->_internal_mutable_cc()->InternalMergeFromWithArena(
           ::google::protobuf::MessageLite::internal_visibility(), arena,
@@ -1787,14 +1743,6 @@ void Task::MergeImpl(::google::protobuf::MessageLite& to_msg,
       }
     }
     if (CheckHasBit(cached_has_bits, 0x00000010U)) {
-      ABSL_DCHECK(from._impl_.from_ != nullptr);
-      if (_this->_impl_.from_ == nullptr) {
-        _this->_impl_.from_ = ::google::protobuf::Message::CopyConstruct(arena, *from._impl_.from_);
-      } else {
-        _this->_impl_.from_->MergeFrom(*from._impl_.from_);
-      }
-    }
-    if (CheckHasBit(cached_has_bits, 0x00000020U)) {
       ABSL_DCHECK(from._impl_.reply_to_ != nullptr);
       if (_this->_impl_.reply_to_ == nullptr) {
         _this->_impl_.reply_to_ = ::google::protobuf::Message::CopyConstruct(arena, *from._impl_.reply_to_);
@@ -1802,7 +1750,7 @@ void Task::MergeImpl(::google::protobuf::MessageLite& to_msg,
         _this->_impl_.reply_to_->MergeFrom(*from._impl_.reply_to_);
       }
     }
-    if (CheckHasBit(cached_has_bits, 0x00000040U)) {
+    if (CheckHasBit(cached_has_bits, 0x00000020U)) {
       ABSL_DCHECK(from._impl_.to_ != nullptr);
       if (_this->_impl_.to_ == nullptr) {
         _this->_impl_.to_ = ::google::protobuf::Message::CopyConstruct(arena, *from._impl_.to_);
@@ -1810,7 +1758,7 @@ void Task::MergeImpl(::google::protobuf::MessageLite& to_msg,
         _this->_impl_.to_->MergeFrom(*from._impl_.to_);
       }
     }
-    if (CheckHasBit(cached_has_bits, 0x00000080U)) {
+    if (CheckHasBit(cached_has_bits, 0x00000040U)) {
       ABSL_DCHECK(from._impl_.body_ != nullptr);
       if (_this->_impl_.body_ == nullptr) {
         _this->_impl_.body_ = ::google::protobuf::Message::CopyConstruct(arena, *from._impl_.body_);
@@ -1845,9 +1793,9 @@ void Task::InternalSwap(Task* PROTOBUF_RESTRICT PROTOBUF_NONNULL other) {
   ::google::protobuf::internal::memswap<
       PROTOBUF_FIELD_OFFSET(Task, _impl_.body_)
       + sizeof(Task::_impl_.body_)
-      - PROTOBUF_FIELD_OFFSET(Task, _impl_.from_)>(
-          reinterpret_cast<char*>(&_impl_.from_),
-          reinterpret_cast<char*>(&other->_impl_.from_));
+      - PROTOBUF_FIELD_OFFSET(Task, _impl_.reply_to_)>(
+          reinterpret_cast<char*>(&_impl_.reply_to_),
+          reinterpret_cast<char*>(&other->_impl_.reply_to_));
 }
 
 ::google::protobuf::Metadata Task::GetMetadata() const {

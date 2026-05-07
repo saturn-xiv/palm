@@ -22,12 +22,13 @@ const (
 )
 
 type Task struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	From          string                 `protobuf:"bytes,1,opt,name=from,proto3" json:"from,omitempty"`
-	To            []string               `protobuf:"bytes,2,rep,name=to,proto3" json:"to,omitempty"`
-	Body          string                 `protobuf:"bytes,3,opt,name=body,proto3" json:"body,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
+	state          protoimpl.MessageState `protogen:"open.v1"`
+	From           string                 `protobuf:"bytes,1,opt,name=from,proto3" json:"from,omitempty"`
+	To             []string               `protobuf:"bytes,2,rep,name=to,proto3" json:"to,omitempty"`
+	Body           string                 `protobuf:"bytes,3,opt,name=body,proto3" json:"body,omitempty"`
+	StatusCallback *string                `protobuf:"bytes,9,opt,name=status_callback,json=statusCallback,proto3,oneof" json:"status_callback,omitempty"`
+	unknownFields  protoimpl.UnknownFields
+	sizeCache      protoimpl.SizeCache
 }
 
 func (x *Task) Reset() {
@@ -81,15 +82,24 @@ func (x *Task) GetBody() string {
 	return ""
 }
 
+func (x *Task) GetStatusCallback() string {
+	if x != nil && x.StatusCallback != nil {
+		return *x.StatusCallback
+	}
+	return ""
+}
+
 var File_proto_sms_proto protoreflect.FileDescriptor
 
 const file_proto_sms_proto_rawDesc = "" +
 	"\n" +
-	"\x0fproto/sms.proto\x12\vpalm.sms.v1\">\n" +
+	"\x0fproto/sms.proto\x12\vpalm.sms.v1\"\x80\x01\n" +
 	"\x04Task\x12\x12\n" +
 	"\x04from\x18\x01 \x01(\tR\x04from\x12\x0e\n" +
 	"\x02to\x18\x02 \x03(\tR\x02to\x12\x12\n" +
-	"\x04body\x18\x03 \x01(\tR\x04bodyBV\n" +
+	"\x04body\x18\x03 \x01(\tR\x04body\x12,\n" +
+	"\x0fstatus_callback\x18\t \x01(\tH\x00R\x0estatusCallback\x88\x01\x01B\x12\n" +
+	"\x10_status_callbackBV\n" +
 	")com.github.saturn_xiv.palm.plugins.sms.v1B\bSmsProtoP\x01Z\x05./;v2\xaa\x02\x15Palm.Plugins.Sms.Grpcb\x06proto3"
 
 var (
@@ -121,6 +131,7 @@ func file_proto_sms_proto_init() {
 	if File_proto_sms_proto != nil {
 		return
 	}
+	file_proto_sms_proto_msgTypes[0].OneofWrappers = []any{}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{

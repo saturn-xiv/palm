@@ -440,7 +440,7 @@ type CupsPrintersResponse_Item struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Name          string                 `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
 	Status        string                 `protobuf:"bytes,2,opt,name=status,proto3" json:"status,omitempty"`
-	Details       string                 `protobuf:"bytes,9,opt,name=details,proto3" json:"details,omitempty"`
+	Detail        string                 `protobuf:"bytes,9,opt,name=detail,proto3" json:"detail,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -489,9 +489,9 @@ func (x *CupsPrintersResponse_Item) GetStatus() string {
 	return ""
 }
 
-func (x *CupsPrintersResponse_Item) GetDetails() string {
+func (x *CupsPrintersResponse_Item) GetDetail() string {
 	if x != nil {
-		return x.Details
+		return x.Detail
 	}
 	return ""
 }
@@ -539,13 +539,13 @@ const file_proto_cups_proto_rawDesc = "" +
 	"\vOrientation\x12!\n" +
 	"\x1dLANDSCAPE_COUNTER_CLOCKWISE90\x10\x00\x12\x19\n" +
 	"\x15LANDSCAPE_CLOCKWISE90\x10\x01\x12\x14\n" +
-	"\x10REVERSE_PORTRAIT\x10\x02\"\xa3\x01\n" +
+	"\x10REVERSE_PORTRAIT\x10\x02\"\xa1\x01\n" +
 	"\x14CupsPrintersResponse\x12=\n" +
-	"\x05items\x18\x02 \x03(\v2'.palm.cups.v1.CupsPrintersResponse.ItemR\x05items\x1aL\n" +
+	"\x05items\x18\x02 \x03(\v2'.palm.cups.v1.CupsPrintersResponse.ItemR\x05items\x1aJ\n" +
 	"\x04Item\x12\x12\n" +
 	"\x04name\x18\x01 \x01(\tR\x04name\x12\x16\n" +
-	"\x06status\x18\x02 \x01(\tR\x06status\x12\x18\n" +
-	"\adetails\x18\t \x01(\tR\adetails2P\n" +
+	"\x06status\x18\x02 \x01(\tR\x06status\x12\x16\n" +
+	"\x06detail\x18\t \x01(\tR\x06detail2P\n" +
 	"\x04Cups\x12H\n" +
 	"\bPrinters\x12\x16.google.protobuf.Empty\x1a\".palm.cups.v1.CupsPrintersResponse\"\x00BY\n" +
 	"*com.github.saturn_xiv.palm.plugins.cups.v1B\tCupsProtoP\x01Z\x05./;v2\xaa\x02\x16Palm.Plugins.Cups.Grpcb\x06proto3"

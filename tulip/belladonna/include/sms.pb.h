@@ -221,6 +221,7 @@ class Task final : public ::google::protobuf::Message
     kToFieldNumber = 2,
     kFromFieldNumber = 1,
     kBodyFieldNumber = 3,
+    kStatusCallbackFieldNumber = 9,
   };
   // repeated string to = 2;
   int to_size() const;
@@ -274,12 +275,28 @@ class Task final : public ::google::protobuf::Message
   ::std::string* PROTOBUF_NONNULL _internal_mutable_body();
 
   public:
+  // optional string status_callback = 9;
+  bool has_status_callback() const;
+  void clear_status_callback() ;
+  const ::std::string& status_callback() const;
+  template <typename Arg_ = const ::std::string&, typename... Args_>
+  void set_status_callback(Arg_&& arg, Args_... args);
+  ::std::string* PROTOBUF_NONNULL mutable_status_callback();
+  [[nodiscard]] ::std::string* PROTOBUF_NULLABLE release_status_callback();
+  void set_allocated_status_callback(::std::string* PROTOBUF_NULLABLE value);
+
+  private:
+  const ::std::string& _internal_status_callback() const;
+  PROTOBUF_ALWAYS_INLINE void _internal_set_status_callback(const ::std::string& value);
+  ::std::string* PROTOBUF_NONNULL _internal_mutable_status_callback();
+
+  public:
   // @@protoc_insertion_point(class_scope:palm.sms.v1.Task)
  private:
   class _Internal;
   friend class ::google::protobuf::internal::TcParser;
-  static const ::google::protobuf::internal::TcParseTable<2, 3,
-                                   0, 35,
+  static const ::google::protobuf::internal::TcParseTable<2, 4,
+                                   0, 50,
                                    2>
       _table_;
 
@@ -303,6 +320,7 @@ class Task final : public ::google::protobuf::Message
     ::google::protobuf::RepeatedPtrField<::std::string> to_;
     ::google::protobuf::internal::ArenaStringPtr from_;
     ::google::protobuf::internal::ArenaStringPtr body_;
+    ::google::protobuf::internal::ArenaStringPtr status_callback_;
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
   union { Impl_ _impl_; };
@@ -527,6 +545,75 @@ inline void Task::set_allocated_body(::std::string* PROTOBUF_NULLABLE value) {
     _impl_.body_.Set("", GetArena());
   }
   // @@protoc_insertion_point(field_set_allocated:palm.sms.v1.Task.body)
+}
+
+// optional string status_callback = 9;
+inline bool Task::has_status_callback() const {
+  bool value = CheckHasBit(_impl_._has_bits_[0], 0x00000008U);
+  return value;
+}
+inline void Task::clear_status_callback() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.status_callback_.ClearToEmpty();
+  ClearHasBit(_impl_._has_bits_[0],
+                  0x00000008U);
+}
+inline const ::std::string& Task::status_callback() const
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  // @@protoc_insertion_point(field_get:palm.sms.v1.Task.status_callback)
+  return _internal_status_callback();
+}
+template <typename Arg_, typename... Args_>
+PROTOBUF_ALWAYS_INLINE void Task::set_status_callback(Arg_&& arg, Args_... args) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  SetHasBit(_impl_._has_bits_[0], 0x00000008U);
+  _impl_.status_callback_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:palm.sms.v1.Task.status_callback)
+}
+inline ::std::string* PROTOBUF_NONNULL Task::mutable_status_callback()
+    ABSL_ATTRIBUTE_LIFETIME_BOUND {
+  SetHasBit(_impl_._has_bits_[0], 0x00000008U);
+  ::std::string* _s = _internal_mutable_status_callback();
+  // @@protoc_insertion_point(field_mutable:palm.sms.v1.Task.status_callback)
+  return _s;
+}
+inline const ::std::string& Task::_internal_status_callback() const {
+  ::google::protobuf::internal::TSanRead(&_impl_);
+  return _impl_.status_callback_.Get();
+}
+inline void Task::_internal_set_status_callback(const ::std::string& value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  _impl_.status_callback_.Set(value, GetArena());
+}
+inline ::std::string* PROTOBUF_NONNULL Task::_internal_mutable_status_callback() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  return _impl_.status_callback_.Mutable( GetArena());
+}
+inline ::std::string* PROTOBUF_NULLABLE Task::release_status_callback() {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  // @@protoc_insertion_point(field_release:palm.sms.v1.Task.status_callback)
+  if (!CheckHasBit(_impl_._has_bits_[0], 0x00000008U)) {
+    return nullptr;
+  }
+  ClearHasBit(_impl_._has_bits_[0], 0x00000008U);
+  auto* released = _impl_.status_callback_.Release();
+  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString()) {
+    _impl_.status_callback_.Set("", GetArena());
+  }
+  return released;
+}
+inline void Task::set_allocated_status_callback(::std::string* PROTOBUF_NULLABLE value) {
+  ::google::protobuf::internal::TSanWrite(&_impl_);
+  if (value != nullptr) {
+    SetHasBit(_impl_._has_bits_[0], 0x00000008U);
+  } else {
+    ClearHasBit(_impl_._has_bits_[0], 0x00000008U);
+  }
+  _impl_.status_callback_.SetAllocated(value, GetArena());
+  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString() && _impl_.status_callback_.IsDefault()) {
+    _impl_.status_callback_.Set("", GetArena());
+  }
+  // @@protoc_insertion_point(field_set_allocated:palm.sms.v1.Task.status_callback)
 }
 
 #ifdef __GNUC__

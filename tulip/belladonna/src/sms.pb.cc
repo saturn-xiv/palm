@@ -37,6 +37,9 @@ inline constexpr Task::Impl_::Impl_(
             ::_pbi::ConstantInitialized()),
         body_(
             &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        status_callback_(
+            &::google::protobuf::internal::fixed_address_empty_string,
             ::_pbi::ConstantInitialized()) {}
 
 template <typename>
@@ -70,13 +73,15 @@ const ::uint32_t
         protodesc_cold) = {
         0x081, // bitmap
         PROTOBUF_FIELD_OFFSET(::palm::sms::v1::Task, _impl_._has_bits_),
-        6, // hasbit index offset
+        7, // hasbit index offset
         PROTOBUF_FIELD_OFFSET(::palm::sms::v1::Task, _impl_.from_),
         PROTOBUF_FIELD_OFFSET(::palm::sms::v1::Task, _impl_.to_),
         PROTOBUF_FIELD_OFFSET(::palm::sms::v1::Task, _impl_.body_),
+        PROTOBUF_FIELD_OFFSET(::palm::sms::v1::Task, _impl_.status_callback_),
         1,
         0,
         2,
+        3,
 };
 
 static const ::_pbi::MigrationSchema
@@ -88,17 +93,18 @@ static const ::_pb::Message* PROTOBUF_NONNULL const file_default_instances[] = {
 };
 const char descriptor_table_protodef_sms_2eproto[] ABSL_ATTRIBUTE_SECTION_VARIABLE(
     protodesc_cold) = {
-    "\n\tsms.proto\022\013palm.sms.v1\".\n\004Task\022\014\n\004from"
-    "\030\001 \001(\t\022\n\n\002to\030\002 \003(\t\022\014\n\004body\030\003 \001(\tBV\n)com."
-    "github.saturn_xiv.palm.plugins.sms.v1B\010S"
-    "msProtoP\001Z\005./;v2\252\002\025Palm.Plugins.Sms.Grpc"
-    "b\006proto3"
+    "\n\tsms.proto\022\013palm.sms.v1\"`\n\004Task\022\014\n\004from"
+    "\030\001 \001(\t\022\n\n\002to\030\002 \003(\t\022\014\n\004body\030\003 \001(\t\022\034\n\017stat"
+    "us_callback\030\t \001(\tH\000\210\001\001B\022\n\020_status_callba"
+    "ckBV\n)com.github.saturn_xiv.palm.plugins"
+    ".sms.v1B\010SmsProtoP\001Z\005./;v2\252\002\025Palm.Plugin"
+    "s.Sms.Grpcb\006proto3"
 };
 static ::absl::once_flag descriptor_table_sms_2eproto_once;
 PROTOBUF_CONSTINIT const ::_pbi::DescriptorTable descriptor_table_sms_2eproto = {
     false,
     false,
-    168,
+    218,
     descriptor_table_protodef_sms_2eproto,
     "sms.proto",
     &descriptor_table_sms_2eproto_once,
@@ -141,7 +147,8 @@ PROTOBUF_NDEBUG_INLINE Task::Impl_::Impl_(
         _cached_size_{0},
         to_{visibility, arena, from.to_},
         from_(arena, from.from_),
-        body_(arena, from.body_) {}
+        body_(arena, from.body_),
+        status_callback_(arena, from.status_callback_) {}
 
 Task::Task(
     ::google::protobuf::Arena* PROTOBUF_NULLABLE arena,
@@ -165,7 +172,8 @@ PROTOBUF_NDEBUG_INLINE Task::Impl_::Impl_(
       : _cached_size_{0},
         to_{visibility, arena},
         from_(arena),
-        body_(arena) {}
+        body_(arena),
+        status_callback_(arena) {}
 
 inline void Task::SharedCtor(::_pb::Arena* PROTOBUF_NULLABLE arena) {
   new (&_impl_) Impl_(internal_visibility(), arena);
@@ -183,6 +191,7 @@ inline void Task::SharedDtor(MessageLite& self) {
   ABSL_DCHECK(this_.GetArena() == nullptr);
   this_._impl_.from_.Destroy();
   this_._impl_.body_.Destroy();
+  this_._impl_.status_callback_.Destroy();
   this_._impl_.~Impl_();
 }
 
@@ -241,16 +250,16 @@ Task::GetClassData() const {
   return Task_class_data_.base();
 }
 PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::_pbi::TcParseTable<2, 3, 0, 35, 2>
+const ::_pbi::TcParseTable<2, 4, 0, 50, 2>
 Task::_table_ = {
   {
     PROTOBUF_FIELD_OFFSET(Task, _impl_._has_bits_),
     0, // no _extensions_
-    3, 24,  // max_field_number, fast_idx_mask
+    9, 24,  // max_field_number, fast_idx_mask
     offsetof(decltype(_table_), field_lookup_table),
-    4294967288,  // skipmap
+    4294967032,  // skipmap
     offsetof(decltype(_table_), field_entries),
-    3,  // num_field_entries
+    4,  // num_field_entries
     0,  // num_aux_entries
     offsetof(decltype(_table_), field_names),  // no aux_entries
     Task_class_data_.base(),
@@ -282,14 +291,17 @@ Task::_table_ = {
     {PROTOBUF_FIELD_OFFSET(Task, _impl_.to_), _Internal::kHasBitsOffset + 0, 0, (0 | ::_fl::kFcRepeated | ::_fl::kUtf8String | ::_fl::kRepSString)},
     // string body = 3;
     {PROTOBUF_FIELD_OFFSET(Task, _impl_.body_), _Internal::kHasBitsOffset + 2, 0, (0 | ::_fl::kFcOptional | ::_fl::kUtf8String | ::_fl::kRepAString)},
+    // optional string status_callback = 9;
+    {PROTOBUF_FIELD_OFFSET(Task, _impl_.status_callback_), _Internal::kHasBitsOffset + 3, 0, (0 | ::_fl::kFcOptional | ::_fl::kUtf8String | ::_fl::kRepAString)},
   }},
   // no aux_entries
   {{
-    "\20\4\2\4\0\0\0\0"
+    "\20\4\2\4\17\0\0\0"
     "palm.sms.v1.Task"
     "from"
     "to"
     "body"
+    "status_callback"
   }},
 };
 PROTOBUF_NOINLINE void Task::Clear() {
@@ -300,7 +312,7 @@ PROTOBUF_NOINLINE void Task::Clear() {
   (void) cached_has_bits;
 
   cached_has_bits = _impl_._has_bits_[0];
-  if (BatchCheckHasBit(cached_has_bits, 0x00000007U)) {
+  if (BatchCheckHasBit(cached_has_bits, 0x0000000fU)) {
     if (CheckHasBitForRepeated(cached_has_bits, 0x00000001U)) {
       _impl_.to_.Clear();
     }
@@ -309,6 +321,9 @@ PROTOBUF_NOINLINE void Task::Clear() {
     }
     if (CheckHasBit(cached_has_bits, 0x00000004U)) {
       _impl_.body_.ClearNonDefaultToEmpty();
+    }
+    if (CheckHasBit(cached_has_bits, 0x00000008U)) {
+      _impl_.status_callback_.ClearNonDefaultToEmpty();
     }
   }
   _impl_._has_bits_.Clear();
@@ -364,6 +379,14 @@ PROTOBUF_NOINLINE void Task::Clear() {
     }
   }
 
+  // optional string status_callback = 9;
+  if (CheckHasBit(cached_has_bits, 0x00000008U)) {
+    const ::std::string& _s = this_._internal_status_callback();
+    ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
+        _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "palm.sms.v1.Task.status_callback");
+    target = stream->WriteStringMaybeAliased(9, _s, target);
+  }
+
   if (ABSL_PREDICT_FALSE(this_._internal_metadata_.have_unknown_fields())) {
     target =
         ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
@@ -389,7 +412,7 @@ PROTOBUF_NOINLINE void Task::Clear() {
 
   ::_pbi::Prefetch5LinesFrom7Lines(&this_);
   cached_has_bits = this_._impl_._has_bits_[0];
-  if (BatchCheckHasBit(cached_has_bits, 0x00000007U)) {
+  if (BatchCheckHasBit(cached_has_bits, 0x0000000fU)) {
     // repeated string to = 2;
     if (CheckHasBitForRepeated(cached_has_bits, 0x00000001U)) {
       total_size +=
@@ -413,6 +436,11 @@ PROTOBUF_NOINLINE void Task::Clear() {
                                         this_._internal_body());
       }
     }
+    // optional string status_callback = 9;
+    if (CheckHasBit(cached_has_bits, 0x00000008U)) {
+      total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
+                                      this_._internal_status_callback());
+    }
   }
   return this_.MaybeComputeUnknownFieldsSize(total_size,
                                              &this_._impl_._cached_size_);
@@ -433,7 +461,7 @@ void Task::MergeImpl(::google::protobuf::MessageLite& to_msg,
   (void)cached_has_bits;
 
   cached_has_bits = from._impl_._has_bits_[0];
-  if (BatchCheckHasBit(cached_has_bits, 0x00000007U)) {
+  if (BatchCheckHasBit(cached_has_bits, 0x0000000fU)) {
     if (CheckHasBitForRepeated(cached_has_bits, 0x00000001U)) {
       _this->_internal_mutable_to()->InternalMergeFromWithArena(
           ::google::protobuf::MessageLite::internal_visibility(), arena,
@@ -456,6 +484,9 @@ void Task::MergeImpl(::google::protobuf::MessageLite& to_msg,
           _this->_internal_set_body("");
         }
       }
+    }
+    if (CheckHasBit(cached_has_bits, 0x00000008U)) {
+      _this->_internal_set_status_callback(from._internal_status_callback());
     }
   }
   _this->_impl_._has_bits_[0] |= cached_has_bits;
@@ -480,6 +511,7 @@ void Task::InternalSwap(Task* PROTOBUF_RESTRICT PROTOBUF_NONNULL other) {
   _impl_.to_.InternalSwap(&other->_impl_.to_);
   ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.from_, &other->_impl_.from_, arena);
   ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.body_, &other->_impl_.body_, arena);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.status_callback_, &other->_impl_.status_callback_, arena);
 }
 
 ::google::protobuf::Metadata Task::GetMetadata() const {

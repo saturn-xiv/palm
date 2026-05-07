@@ -190,9 +190,9 @@ function generate_thrift_for_cpp() {
 
 generate_daisy
 generate_tulip
-generate_tulip_dashboard
+# generate_tulip_dashboard
 generate_twilio_rust_api
-generate_thrift_for_cpp $WORKSPACE/loquat/loquat.thrift $WORKSPACE/gourd
+generate_thrift_for_cpp $WORKSPACE/loquat/loquat.thrift $WORKSPACE/loquat/gourd
 
 cd $WORKSPACE/
 echo "format cargo projects"

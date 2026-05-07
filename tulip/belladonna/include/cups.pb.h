@@ -873,7 +873,7 @@ class CupsPrintersResponse_Item final : public ::google::protobuf::Message
   enum : int {
     kNameFieldNumber = 1,
     kStatusFieldNumber = 2,
-    kDetailsFieldNumber = 9,
+    kDetailFieldNumber = 9,
   };
   // string name = 1;
   void clear_name() ;
@@ -905,19 +905,19 @@ class CupsPrintersResponse_Item final : public ::google::protobuf::Message
   ::std::string* PROTOBUF_NONNULL _internal_mutable_status();
 
   public:
-  // string details = 9;
-  void clear_details() ;
-  const ::std::string& details() const;
+  // string detail = 9;
+  void clear_detail() ;
+  const ::std::string& detail() const;
   template <typename Arg_ = const ::std::string&, typename... Args_>
-  void set_details(Arg_&& arg, Args_... args);
-  ::std::string* PROTOBUF_NONNULL mutable_details();
-  [[nodiscard]] ::std::string* PROTOBUF_NULLABLE release_details();
-  void set_allocated_details(::std::string* PROTOBUF_NULLABLE value);
+  void set_detail(Arg_&& arg, Args_... args);
+  ::std::string* PROTOBUF_NONNULL mutable_detail();
+  [[nodiscard]] ::std::string* PROTOBUF_NULLABLE release_detail();
+  void set_allocated_detail(::std::string* PROTOBUF_NULLABLE value);
 
   private:
-  const ::std::string& _internal_details() const;
-  PROTOBUF_ALWAYS_INLINE void _internal_set_details(const ::std::string& value);
-  ::std::string* PROTOBUF_NONNULL _internal_mutable_details();
+  const ::std::string& _internal_detail() const;
+  PROTOBUF_ALWAYS_INLINE void _internal_set_detail(const ::std::string& value);
+  ::std::string* PROTOBUF_NONNULL _internal_mutable_detail();
 
   public:
   // @@protoc_insertion_point(class_scope:palm.cups.v1.CupsPrintersResponse.Item)
@@ -925,7 +925,7 @@ class CupsPrintersResponse_Item final : public ::google::protobuf::Message
   class _Internal;
   friend class ::google::protobuf::internal::TcParser;
   static const ::google::protobuf::internal::TcParseTable<1, 3,
-                                   0, 64,
+                                   0, 63,
                                    2>
       _table_;
 
@@ -948,7 +948,7 @@ class CupsPrintersResponse_Item final : public ::google::protobuf::Message
     ::google::protobuf::internal::CachedSize _cached_size_;
     ::google::protobuf::internal::ArenaStringPtr name_;
     ::google::protobuf::internal::ArenaStringPtr status_;
-    ::google::protobuf::internal::ArenaStringPtr details_;
+    ::google::protobuf::internal::ArenaStringPtr detail_;
     PROTOBUF_TSAN_DECLARE_MEMBER
   };
   union { Impl_ _impl_; };
@@ -1700,69 +1700,69 @@ inline void CupsPrintersResponse_Item::set_allocated_status(::std::string* PROTO
   // @@protoc_insertion_point(field_set_allocated:palm.cups.v1.CupsPrintersResponse.Item.status)
 }
 
-// string details = 9;
-inline void CupsPrintersResponse_Item::clear_details() {
+// string detail = 9;
+inline void CupsPrintersResponse_Item::clear_detail() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.details_.ClearToEmpty();
+  _impl_.detail_.ClearToEmpty();
   ClearHasBit(_impl_._has_bits_[0],
                   0x00000004U);
 }
-inline const ::std::string& CupsPrintersResponse_Item::details() const
+inline const ::std::string& CupsPrintersResponse_Item::detail() const
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:palm.cups.v1.CupsPrintersResponse.Item.details)
-  return _internal_details();
+  // @@protoc_insertion_point(field_get:palm.cups.v1.CupsPrintersResponse.Item.detail)
+  return _internal_detail();
 }
 template <typename Arg_, typename... Args_>
-PROTOBUF_ALWAYS_INLINE void CupsPrintersResponse_Item::set_details(Arg_&& arg, Args_... args) {
+PROTOBUF_ALWAYS_INLINE void CupsPrintersResponse_Item::set_detail(Arg_&& arg, Args_... args) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   SetHasBit(_impl_._has_bits_[0], 0x00000004U);
-  _impl_.details_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
-  // @@protoc_insertion_point(field_set:palm.cups.v1.CupsPrintersResponse.Item.details)
+  _impl_.detail_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
+  // @@protoc_insertion_point(field_set:palm.cups.v1.CupsPrintersResponse.Item.detail)
 }
-inline ::std::string* PROTOBUF_NONNULL CupsPrintersResponse_Item::mutable_details()
+inline ::std::string* PROTOBUF_NONNULL CupsPrintersResponse_Item::mutable_detail()
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
   SetHasBit(_impl_._has_bits_[0], 0x00000004U);
-  ::std::string* _s = _internal_mutable_details();
-  // @@protoc_insertion_point(field_mutable:palm.cups.v1.CupsPrintersResponse.Item.details)
+  ::std::string* _s = _internal_mutable_detail();
+  // @@protoc_insertion_point(field_mutable:palm.cups.v1.CupsPrintersResponse.Item.detail)
   return _s;
 }
-inline const ::std::string& CupsPrintersResponse_Item::_internal_details() const {
+inline const ::std::string& CupsPrintersResponse_Item::_internal_detail() const {
   ::google::protobuf::internal::TSanRead(&_impl_);
-  return _impl_.details_.Get();
+  return _impl_.detail_.Get();
 }
-inline void CupsPrintersResponse_Item::_internal_set_details(const ::std::string& value) {
+inline void CupsPrintersResponse_Item::_internal_set_detail(const ::std::string& value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  _impl_.details_.Set(value, GetArena());
+  _impl_.detail_.Set(value, GetArena());
 }
-inline ::std::string* PROTOBUF_NONNULL CupsPrintersResponse_Item::_internal_mutable_details() {
+inline ::std::string* PROTOBUF_NONNULL CupsPrintersResponse_Item::_internal_mutable_detail() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  return _impl_.details_.Mutable( GetArena());
+  return _impl_.detail_.Mutable( GetArena());
 }
-inline ::std::string* PROTOBUF_NULLABLE CupsPrintersResponse_Item::release_details() {
+inline ::std::string* PROTOBUF_NULLABLE CupsPrintersResponse_Item::release_detail() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  // @@protoc_insertion_point(field_release:palm.cups.v1.CupsPrintersResponse.Item.details)
+  // @@protoc_insertion_point(field_release:palm.cups.v1.CupsPrintersResponse.Item.detail)
   if (!CheckHasBit(_impl_._has_bits_[0], 0x00000004U)) {
     return nullptr;
   }
   ClearHasBit(_impl_._has_bits_[0], 0x00000004U);
-  auto* released = _impl_.details_.Release();
+  auto* released = _impl_.detail_.Release();
   if (::google::protobuf::internal::DebugHardenForceCopyDefaultString()) {
-    _impl_.details_.Set("", GetArena());
+    _impl_.detail_.Set("", GetArena());
   }
   return released;
 }
-inline void CupsPrintersResponse_Item::set_allocated_details(::std::string* PROTOBUF_NULLABLE value) {
+inline void CupsPrintersResponse_Item::set_allocated_detail(::std::string* PROTOBUF_NULLABLE value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   if (value != nullptr) {
     SetHasBit(_impl_._has_bits_[0], 0x00000004U);
   } else {
     ClearHasBit(_impl_._has_bits_[0], 0x00000004U);
   }
-  _impl_.details_.SetAllocated(value, GetArena());
-  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString() && _impl_.details_.IsDefault()) {
-    _impl_.details_.Set("", GetArena());
+  _impl_.detail_.SetAllocated(value, GetArena());
+  if (::google::protobuf::internal::DebugHardenForceCopyDefaultString() && _impl_.detail_.IsDefault()) {
+    _impl_.detail_.Set("", GetArena());
   }
-  // @@protoc_insertion_point(field_set_allocated:palm.cups.v1.CupsPrintersResponse.Item.details)
+  // @@protoc_insertion_point(field_set_allocated:palm.cups.v1.CupsPrintersResponse.Item.detail)
 }
 
 // -------------------------------------------------------------------

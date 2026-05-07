@@ -78,7 +78,7 @@ inline constexpr CupsPrintersResponse_Item::Impl_::Impl_(
         status_(
             &::google::protobuf::internal::fixed_address_empty_string,
             ::_pbi::ConstantInitialized()),
-        details_(
+        detail_(
             &::google::protobuf::internal::fixed_address_empty_string,
             ::_pbi::ConstantInitialized()) {}
 
@@ -164,7 +164,7 @@ const ::uint32_t
         6, // hasbit index offset
         PROTOBUF_FIELD_OFFSET(::palm::cups::v1::CupsPrintersResponse_Item, _impl_.name_),
         PROTOBUF_FIELD_OFFSET(::palm::cups::v1::CupsPrintersResponse_Item, _impl_.status_),
-        PROTOBUF_FIELD_OFFSET(::palm::cups::v1::CupsPrintersResponse_Item, _impl_.details_),
+        PROTOBUF_FIELD_OFFSET(::palm::cups::v1::CupsPrintersResponse_Item, _impl_.detail_),
         0,
         1,
         2,
@@ -205,15 +205,15 @@ const char descriptor_table_protodef_cups_2eproto[] ABSL_ATTRIBUTE_SECTION_VARIA
     "T\020\002\"-\n\005Sides\022\007\n\003ONE\020\000\022\014\n\010TWO_LONG\020\001\022\r\n\tT"
     "WO_SHORT\020\002\"a\n\013Orientation\022!\n\035LANDSCAPE_C"
     "OUNTER_CLOCKWISE90\020\000\022\031\n\025LANDSCAPE_CLOCKW"
-    "ISE90\020\001\022\024\n\020REVERSE_PORTRAIT\020\002\"\205\001\n\024CupsPr"
+    "ISE90\020\001\022\024\n\020REVERSE_PORTRAIT\020\002\"\204\001\n\024CupsPr"
     "intersResponse\0226\n\005items\030\002 \003(\0132\'.palm.cup"
-    "s.v1.CupsPrintersResponse.Item\0325\n\004Item\022\014"
-    "\n\004name\030\001 \001(\t\022\016\n\006status\030\002 \001(\t\022\017\n\007details\030"
-    "\t \001(\t2P\n\004Cups\022H\n\010Printers\022\026.google.proto"
-    "buf.Empty\032\".palm.cups.v1.CupsPrintersRes"
-    "ponse\"\000BY\n*com.github.saturn_xiv.palm.pl"
-    "ugins.cups.v1B\tCupsProtoP\001Z\005./;v2\252\002\026Palm"
-    ".Plugins.Cups.Grpcb\006proto3"
+    "s.v1.CupsPrintersResponse.Item\0324\n\004Item\022\014"
+    "\n\004name\030\001 \001(\t\022\016\n\006status\030\002 \001(\t\022\016\n\006detail\030\t"
+    " \001(\t2P\n\004Cups\022H\n\010Printers\022\026.google.protob"
+    "uf.Empty\032\".palm.cups.v1.CupsPrintersResp"
+    "onse\"\000BY\n*com.github.saturn_xiv.palm.plu"
+    "gins.cups.v1B\tCupsProtoP\001Z\005./;v2\252\002\026Palm."
+    "Plugins.Cups.Grpcb\006proto3"
 };
 static const ::_pbi::DescriptorTable* PROTOBUF_NONNULL const
     descriptor_table_cups_2eproto_deps[1] = {
@@ -223,7 +223,7 @@ static ::absl::once_flag descriptor_table_cups_2eproto_once;
 PROTOBUF_CONSTINIT const ::_pbi::DescriptorTable descriptor_table_cups_2eproto = {
     false,
     false,
-    1026,
+    1025,
     descriptor_table_protodef_cups_2eproto,
     "cups.proto",
     &descriptor_table_cups_2eproto_once,
@@ -901,7 +901,7 @@ PROTOBUF_NDEBUG_INLINE CupsPrintersResponse_Item::Impl_::Impl_(
         _cached_size_{0},
         name_(arena, from.name_),
         status_(arena, from.status_),
-        details_(arena, from.details_) {}
+        detail_(arena, from.detail_) {}
 
 CupsPrintersResponse_Item::CupsPrintersResponse_Item(
     ::google::protobuf::Arena* PROTOBUF_NULLABLE arena,
@@ -925,7 +925,7 @@ PROTOBUF_NDEBUG_INLINE CupsPrintersResponse_Item::Impl_::Impl_(
       : _cached_size_{0},
         name_(arena),
         status_(arena),
-        details_(arena) {}
+        detail_(arena) {}
 
 inline void CupsPrintersResponse_Item::SharedCtor(::_pb::Arena* PROTOBUF_NULLABLE arena) {
   new (&_impl_) Impl_(internal_visibility(), arena);
@@ -943,7 +943,7 @@ inline void CupsPrintersResponse_Item::SharedDtor(MessageLite& self) {
   ABSL_DCHECK(this_.GetArena() == nullptr);
   this_._impl_.name_.Destroy();
   this_._impl_.status_.Destroy();
-  this_._impl_.details_.Destroy();
+  this_._impl_.detail_.Destroy();
   this_._impl_.~Impl_();
 }
 
@@ -990,7 +990,7 @@ CupsPrintersResponse_Item::GetClassData() const {
   return CupsPrintersResponse_Item_class_data_.base();
 }
 PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::_pbi::TcParseTable<1, 3, 0, 64, 2>
+const ::_pbi::TcParseTable<1, 3, 0, 63, 2>
 CupsPrintersResponse_Item::_table_ = {
   {
     PROTOBUF_FIELD_OFFSET(CupsPrintersResponse_Item, _impl_._has_bits_),
@@ -1024,16 +1024,16 @@ CupsPrintersResponse_Item::_table_ = {
     {PROTOBUF_FIELD_OFFSET(CupsPrintersResponse_Item, _impl_.name_), _Internal::kHasBitsOffset + 0, 0, (0 | ::_fl::kFcOptional | ::_fl::kUtf8String | ::_fl::kRepAString)},
     // string status = 2;
     {PROTOBUF_FIELD_OFFSET(CupsPrintersResponse_Item, _impl_.status_), _Internal::kHasBitsOffset + 1, 0, (0 | ::_fl::kFcOptional | ::_fl::kUtf8String | ::_fl::kRepAString)},
-    // string details = 9;
-    {PROTOBUF_FIELD_OFFSET(CupsPrintersResponse_Item, _impl_.details_), _Internal::kHasBitsOffset + 2, 0, (0 | ::_fl::kFcOptional | ::_fl::kUtf8String | ::_fl::kRepAString)},
+    // string detail = 9;
+    {PROTOBUF_FIELD_OFFSET(CupsPrintersResponse_Item, _impl_.detail_), _Internal::kHasBitsOffset + 2, 0, (0 | ::_fl::kFcOptional | ::_fl::kUtf8String | ::_fl::kRepAString)},
   }},
   // no aux_entries
   {{
-    "\46\4\6\7\0\0\0\0"
+    "\46\4\6\6\0\0\0\0"
     "palm.cups.v1.CupsPrintersResponse.Item"
     "name"
     "status"
-    "details"
+    "detail"
   }},
 };
 PROTOBUF_NOINLINE void CupsPrintersResponse_Item::Clear() {
@@ -1052,7 +1052,7 @@ PROTOBUF_NOINLINE void CupsPrintersResponse_Item::Clear() {
       _impl_.status_.ClearNonDefaultToEmpty();
     }
     if (CheckHasBit(cached_has_bits, 0x00000004U)) {
-      _impl_.details_.ClearNonDefaultToEmpty();
+      _impl_.detail_.ClearNonDefaultToEmpty();
     }
   }
   _impl_._has_bits_.Clear();
@@ -1098,12 +1098,12 @@ PROTOBUF_NOINLINE void CupsPrintersResponse_Item::Clear() {
     }
   }
 
-  // string details = 9;
+  // string detail = 9;
   if (CheckHasBit(cached_has_bits, 0x00000004U)) {
-    if (!this_._internal_details().empty()) {
-      const ::std::string& _s = this_._internal_details();
+    if (!this_._internal_detail().empty()) {
+      const ::std::string& _s = this_._internal_detail();
       ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-          _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "palm.cups.v1.CupsPrintersResponse.Item.details");
+          _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "palm.cups.v1.CupsPrintersResponse.Item.detail");
       target = stream->WriteStringMaybeAliased(9, _s, target);
     }
   }
@@ -1148,11 +1148,11 @@ PROTOBUF_NOINLINE void CupsPrintersResponse_Item::Clear() {
                                         this_._internal_status());
       }
     }
-    // string details = 9;
+    // string detail = 9;
     if (CheckHasBit(cached_has_bits, 0x00000004U)) {
-      if (!this_._internal_details().empty()) {
+      if (!this_._internal_detail().empty()) {
         total_size += 1 + ::google::protobuf::internal::WireFormatLite::StringSize(
-                                        this_._internal_details());
+                                        this_._internal_detail());
       }
     }
   }
@@ -1194,11 +1194,11 @@ void CupsPrintersResponse_Item::MergeImpl(::google::protobuf::MessageLite& to_ms
       }
     }
     if (CheckHasBit(cached_has_bits, 0x00000004U)) {
-      if (!from._internal_details().empty()) {
-        _this->_internal_set_details(from._internal_details());
+      if (!from._internal_detail().empty()) {
+        _this->_internal_set_detail(from._internal_detail());
       } else {
-        if (_this->_impl_.details_.IsDefault()) {
-          _this->_internal_set_details("");
+        if (_this->_impl_.detail_.IsDefault()) {
+          _this->_internal_set_detail("");
         }
       }
     }
@@ -1224,7 +1224,7 @@ void CupsPrintersResponse_Item::InternalSwap(CupsPrintersResponse_Item* PROTOBUF
   swap(_impl_._has_bits_[0], other->_impl_._has_bits_[0]);
   ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.name_, &other->_impl_.name_, arena);
   ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.status_, &other->_impl_.status_, arena);
-  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.details_, &other->_impl_.details_, arena);
+  ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.detail_, &other->_impl_.detail_, arena);
 }
 
 ::google::protobuf::Metadata CupsPrintersResponse_Item::GetMetadata() const {
