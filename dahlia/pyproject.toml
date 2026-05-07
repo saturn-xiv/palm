@@ -1,0 +1,26 @@
+[project]
+name = "dahlia"
+version = "2026.5.7"
+authors = [{ name = "Jeremy Zheng", email = "jitang.zheng@gmail.com" }]
+description = "A casbin service"
+readme = "README.md"
+requires-python = ">=3.14"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Operating System :: OS Independent",
+]
+license = "MIT"
+dependencies = [
+    "protobuf~=6.33",
+    "grpcio~=1.76",
+    "casbin>=1.43",
+    "sqlalchemy_adapter>=1.9",
+    "casbin-rabbitmq-watcher>=1.7",
+]
+
+[project.urls]
+Homepage = "https://github.com/saturn-xiv/palm/tree/main/dahlia"
+Issues = "https://github.com/saturn-xiv/palm/issues"
+
+[project.scripts]
+dahlia = "dahlia:main_cli"
