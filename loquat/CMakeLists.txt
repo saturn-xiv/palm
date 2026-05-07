@@ -72,7 +72,7 @@ file(GLOB SOURCE_LIST CONFIGURE_DEPENDS "${PROJECT_SOURCE_DIR}/src/*.cpp")
 
 add_executable(loquat ${SOURCE_LIST})
 set_target_properties(loquat PROPERTIES LINK_FLAGS_RELEASE -s)
-target_link_options(loquat PRIVATE -static -static-libgcc -static-libstdc++)
+target_link_options(loquat PRIVATE -static-libgcc -static-libstdc++)
 
 target_link_libraries(loquat gourd
   OpenSSL::SSL OpenSSL::Crypto
