@@ -190,12 +190,9 @@ function generate_dahlia() {
     cd $WORKSPACE/dahlia/src/
     echo "generate protocols for dahlia"
     local target=$WORKSPACE/dahlia/src/dahlia/protocols
-    if [ -d $target ]
-    then
-        rm -r $target
-    fi
-    mkdir -p $target
-    touch $target/__init__.py
+    
+    rm $target/*_pb2*
+    
     python -m grpc_tools.protoc \
         -Idahlia/protocols=$WORKSPACE/dahlia/proto -I $PROTOBUF_HOME/include/google/protobuf \
         --python_out=. --pyi_out=. --grpc_python_out=. \

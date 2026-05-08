@@ -1,6 +1,6 @@
 [project]
 name = "dahlia"
-version = "2026.5.7"
+version = "2026.5.8"
 authors = [{ name = "Jeremy Zheng", email = "jitang.zheng@gmail.com" }]
 description = "A rbac service"
 readme = "README.md"
@@ -15,11 +15,11 @@ dependencies = [
     "grpcio~=1.76",
     "grpcio-reflection",
     "grpcio-health-checking",
-    "casbin>=1.43",
-    "sqlalchemy_adapter>=1.9",
-    "casbin-rabbitmq-watcher>=1.7",
-    "psycopg[binary,pool]>=3.3",
-    "mysql-connector-python>=9.7",
+    "casbin",
+    "sqlalchemy_adapter",
+    "casbin-rabbitmq-watcher",
+    "psycopg[binary,pool]",
+    "mysql-connector-python",
 ]
 
 [project.urls]

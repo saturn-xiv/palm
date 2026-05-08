@@ -12,6 +12,7 @@ from grpc_health.v1 import health, health_pb2, health_pb2_grpc
 
 
 from . import rbac
+from .rbac.server import Server as RbacServer
 from dahlia.protocols import rbac_pb2_grpc, rbac_pb2
 
 logger = logging.getLogger(__name__)
@@ -42,7 +43,7 @@ def launch_grpc_server(config, port, workers):
     server = grpc.server(futures.ThreadPoolExecutor(max_workers=workers))
 
     enforcer = rbac.open_enforcer(config['postgresql'], config['rabbitmq'])
-    rbac_pb2_grpc.add_EnforcerServicer_to_server(rbac.Server(enforcer), server)
+    rbac_pb2_grpc.add_EnforcerServicer_to_server(RbacServer(enforcer), server)
 
     reflection.enable_server_reflection((
         rbac_pb2.DESCRIPTOR.services_by_name["Enforcer"].full_name,
