@@ -54,7 +54,7 @@ RUN curl -L -o $HOME/downloads/pkl https://github.com/apple/pkl/releases/downloa
 
 
 # https://github.com/envoyproxy/envoy
-ENV ENVOY_VERSION="1.36.4"
+ENV ENVOY_VERSION="1.38.0"
 RUN wget -q -O $HOME/downloads/envoy https://github.com/envoyproxy/envoy/releases/download/v${ENVOY_VERSION}/envoy-${ENVOY_VERSION}-linux-x86_64 \
     && sudo cp $HOME/downloads/envoy /usr/local/bin/ \
     && sudo chmod +x /usr/local/bin/envoy
@@ -75,7 +75,7 @@ RUN wget -q -P $HOME/downloads/ https://github.com/improbable-eng/grpc-web/relea
     && rm -r dist
 
 # https://github.com/bazelbuild/bazelisk
-ENV BAZEL_VERSION="v1.27.0"
+ENV BAZEL_VERSION="v1.29.0"
 RUN wget -q -O $HOME/downloads/bazel https://github.com/bazelbuild/bazelisk/releases/download/${BAZEL_VERSION}/bazelisk-linux-amd64 \
     && sudo cp $HOME/downloads/bazel /usr/local/bin && sudo chmod +x /usr/local/bin/bazel
 
@@ -133,90 +133,44 @@ RUN wget -q -P $HOME/downloads https://github.com/cross-tools/musl-cross/release
     && tar xf $HOME/downloads/loongarch64-unknown-linux-musl.tar.xz -C $HOME/local \
     && echo 'export PATH=$HOME/local/loongarch64-unknown-linux-musl/bin:$PATH' >> $HOME/.zshrc
 
-# https://pip.pypa.io/en/stable/installation/
-RUN zsh -c ". $HOME/.zshrc \
-    && python3 -m venv $HOME/local/python3 \
-    && . $HOME/local/python3/bin/activate \
-    && pip install --upgrade pip \
-    && pip install ansible paramiko conan cmake \
-    && pip install grpcio-tools grpcio-health-checking"
-RUN echo 'source $HOME/local/python3/bin/activate' >> $HOME/.zshrc
-RUN echo 'export ANSIBLE_HOST_KEY_CHECKING=False' >> $HOME/.zshrc \
-    && echo 'alias peony="ANSIBLE_LOG_PATH=$HOME/tmp/$(date +%Y%m%d%H%M%S).log ansible-playbook"' >> $HOME/.zshrc
+# https://github.com/asdf-vm/asdf
+ENV ASDF_VERSION="0.19.0"
+RUN wget -q -P $HOME/downloads https://github.com/asdf-vm/asdf/releases/download/v${ASDF_VERSION}/asdf-v${ASDF_VERSION}-linux-amd64.tar.gz \
+    && tar xf $HOME/downloads/asdf-v${ASDF_VERSION}-linux-amd64.tar.gz \
+    && sudo cp $HOME/downloads/asdf /usr/local/bin/ \
+    && echo 'export PATH=${ASDF_DATA_DIR:-$HOME/.asdf}/shims:$PATH' >> $HOME/.zshrc
+# asdf plugin list --urls
+# asdf plugin list all
+# asdf list all XXX
 
-
-# https://github.com/rbenv/rbenv
-# https://github.com/rbenv/ruby-build/tree/master/share/ruby-build
-ENV RUBY_VERSION="4.0.1"
-RUN git clone https://github.com/rbenv/rbenv.git $HOME/.rbenv \
-    && git clone https://github.com/rbenv/ruby-build.git $HOME/.rbenv/plugins/ruby-build \
-    && git clone https://github.com/rbenv/rbenv-vars.git $HOME/.rbenv/plugins/rbenv-vars 
-RUN echo 'eval "$(~/.rbenv/bin/rbenv init - zsh)"' >> ~/.zshrc
-# https://github.com/rbenv/ruby-build
-RUN zsh -c "source $HOME/.zshrc \
-    && rbenv install ${RUBY_VERSION} \
-    && rbenv global ${RUBY_VERSION} \
-    && gem install bundler"
-
-# https://go.dev/doc/install
-ENV GO_VERSION="1.26.0"
-RUN wget -q -P $HOME/downloads https://go.dev/dl/go${GO_VERSION}.linux-amd64.tar.gz
-RUN tar xf $HOME/downloads/go${GO_VERSION}.linux-amd64.tar.gz -C $HOME/local
-RUN echo 'export PATH=$HOME/local/go/bin:$PATH' >> $HOME/.zshrc \
-    && echo 'export GOPATH=$HOME/go' >> $HOME/.zshrc \
-    && echo 'export PATH=$(go env GOPATH)/bin:$PATH' >> $HOME/.zshrc
+RUN zsh -c "source $HOME/.zshrc && asdf plugin add erlang && asdf install erlang 28.5 && asdf set --home 28.5"
+RUN zsh -c "source $HOME/.zshrc && asdf plugin add elixir && asdf install elixir 1.19.5-otp-28 && asdf set --home elixir 1.19.5-otp-28"
+RUN echo "export HEX_HTTP_CONCURRENCY=1" >> $HOME/.zshrc && echo "export HEX_HTTP_TIMEOUT=120" >> $HOME/.zshrc
+# https://thrift.apache.org/lib/java.html
+RUN zsh -c "source $HOME/.zshrc && asdf plugin add java && asdf install java corretto-25.0.3.9.1 && asdf set --home java corretto-25.0.3.9.1"
+# https://docs.gradle.org/current/userguide/compatibility.html
+RUN zsh -c "source $HOME/.zshrc && asdf plugin add gradle && asdf install gradle 9.5.0 && asdf set --home gradle 9.5.0"
+RUN zsh -c "source $HOME/.zshrc && asdf plugin add maven && asdf install maven latest && asdf set --home maven latest"
+RUN zsh -c "source $HOME/.zshrc && asdf plugin add golang && asdf install golang latest && asdf set --home golang latest"
 # https://code.visualstudio.com/docs/languages/go
 RUN zsh -c "source $HOME/.zshrc \
     && go install golang.org/x/tools/gopls@latest \
     && go install github.com/go-delve/delve/cmd/dlv@latest \
     && go install honnef.co/go/tools/cmd/staticcheck@latest"
+RUN zsh -c "source $HOME/.zshrc && asdf plugin add kotlin && asdf install kotlin latest && asdf set --home kotlin latest"
+RUN zsh -c "source $HOME/.zshrc && asdf plugin add nodejs && asdf install nodejs latest && asdf set --home nodejs latest"
+RUN "source $HOME/.zshrc && npm install -g yarn"
+RUN zsh -c "source $HOME/.zshrc && asdf plugin add ruby && asdf install ruby latest && asdf set --home ruby latest"
+RUN "source $HOME/.zshrc && gem install bundler"
+RUN zsh -c "source $HOME/.zshrc && asdf plugin add python && asdf install python latest && asdf set --home python latest"
 
-# https://github.com/sdkman/sdkman-cli
-# https://docs.gradle.org/current/userguide/compatibility.html
-# https://thrift.apache.org/lib/java.html
-ENV JDK_VERSION="25.0.1-amzn"
-ENV GRADLE_VERSION="9.3.1"
-RUN curl -s "https://get.sdkman.io" | bash
-RUN sed -i -e 's/sdkman_auto_answer=false/sdkman_auto_answer=true/g' $HOME/.sdkman/etc/config
-RUN zsh -c "source $HOME/.zshrc \
-    && sdk install java ${JDK_VERSION} \
-    && sdk install gradle ${GRADLE_VERSION} \
-    && sdk install maven \
-    && sdk install kotlin \
-    && sdk default java ${JDK_VERSION} \
-    && sdk default gradle ${GRADLE_VERSION}"
-
-# https://asdf-vm.com/guide/getting-started.html
-RUN zsh -c "source $HOME/.zshrc && go install github.com/asdf-vm/asdf/cmd/asdf@v0.18.0" \
-    && echo 'export PATH=${ASDF_DATA_DIR:-$HOME/.asdf}/shims:$PATH' >> $HOME/.zshrc
-# asdf list all XXX
-ENV ERLANG_VERSION="28.3.1"
-ENV ELIXIR_VERSION="1.19.5"
-RUN zsh -c "source $HOME/.zshrc \
-    && asdf plugin add erlang https://github.com/asdf-vm/asdf-erlang.git \
-    && asdf install erlang ${ERLANG_VERSION} \
-    && asdf plugin add elixir https://github.com/asdf-vm/asdf-elixir.git \
-    && asdf install elixir ${ELIXIR_VERSION}"
-RUN echo "export HEX_HTTP_CONCURRENCY=1" >> $HOME/.zshrc \
-    && echo "export HEX_HTTP_TIMEOUT=120" >> $HOME/.zshrc
-
-# https://github.com/nvm-sh/nvm
-ENV NVM_VERSION="v0.40.4"
-RUN git clone -b ${NVM_VERSION} https://github.com/nvm-sh/nvm.git $HOME/.nvm
-RUN echo 'export NVM_DIR="$HOME/.nvm"' >> $HOME/.zshrc \
-    && echo '[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"' >> $HOME/.zshrc \
-    && echo '[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"' >> $HOME/.zshrc
-# https://stackoverflow.com/questions/37324519/node-sass-does-not-yet-support-your-current-environment-linux-64-bit-with-false
-RUN zsh -c "source $HOME/.zshrc \
-    && nvm install stable \
-    && nvm use stable \
-    && npm install -g yarn \
-    && nvm install --lts \
-    && nvm use --lts \
-    && npm install -g yarn \
-    && nvm install lts/fermium \
-    && nvm use lts/fermium \
-    && npm install -g yarn"
+# https://pip.pypa.io/en/stable/installation/
+RUN zsh -c ". $HOME/.zshrc \
+    && pip install --upgrade pip \
+    && pip install ansible paramiko conan cmake \
+    && pip install grpcio-tools grpcio-health-checking"
+RUN echo 'export ANSIBLE_HOST_KEY_CHECKING=False' >> $HOME/.zshrc \
+    && echo 'alias peony="ANSIBLE_LOG_PATH=$HOME/tmp/$(date +%Y%m%d%H%M%S).log ansible-playbook"' >> $HOME/.zshrc
 
 # https://www.rust-lang.org/tools/install
 RUN curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
@@ -267,7 +221,7 @@ RUN tar xf $HOME/downloads/opensearch-${OPENSEARCH_VERSION}-linux-x64.tar.gz -C 
     && bin/opensearch-plugin install https://github.com/aparo/opensearch-analysis-pinyin/releases/download/${OPENSEARCH_VERSION}/opensearch-analysis-pinyin.zip
 
 # https://github.com/grpc/grpc
-ENV GRPC_VERSION="v1.78.1"
+ENV GRPC_VERSION="v1.80.0"
 RUN git clone -b $GRPC_VERSION https://github.com/grpc/grpc.git $HOME/downloads/grpc
 RUN cd $HOME/downloads/grpc/ && git submodule update --init --recursive
 # ENV PROTOBUF_VERSION "v3.21.8"
@@ -299,7 +253,7 @@ RUN mkdir -p $HOME/build/protobuf-javascript \
 
 # https://repo1.maven.org/maven2/io/grpc/protoc-gen-grpc-java/
 # https://github.com/grpc/grpc-java
-ENV GRPC_JAVA_PLUGIN_VERSION="1.79.0"
+ENV GRPC_JAVA_PLUGIN_VERSION="1.81.0"
 RUN wget -q -O $HOME/.local/bin/grpc_java_plugin \
     https://repo1.maven.org/maven2/io/grpc/protoc-gen-grpc-java/${GRPC_JAVA_PLUGIN_VERSION}/protoc-gen-grpc-java-${GRPC_JAVA_PLUGIN_VERSION}-linux-x86_64.exe
 RUN chmod +x $HOME/.local/bin/grpc_java_plugin
@@ -314,11 +268,10 @@ RUN zsh -c "source $HOME/.zshrc \
     && go install google.golang.org/grpc/cmd/protoc-gen-go-grpc@latest"
 
 # https://github.com/fullstorydev/grpcurl?tab=readme-ov-file#from-source
-RUN zsh -c "source $HOME/.zshrc \
-    go install github.com/fullstorydev/grpcurl/cmd/grpcurl@latest"
+RUN zsh -c "source $HOME/.zshrc && go install github.com/fullstorydev/grpcurl/cmd/grpcurl@latest"
 
 # https://github.com/google/flatbuffers
-ENV FLATBUFFERS_VERSION="v25.12.19"
+ENV FLATBUFFERS_VERSION="v25.12.19-2026-02-06-03fffb2"
 RUN git clone -b $FLATBUFFERS_VERSION https://github.com/google/flatbuffers.git $HOME/downloads/flatbuffers
 RUN zsh -c "source $HOME/.zshrc \
     && mkdir -pv $HOME/build/flatbuffers \
