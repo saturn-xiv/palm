@@ -2,7 +2,7 @@ import logging
 
 from google.protobuf.empty_pb2 import Empty
 
-from dahlia.protocols import rbac_pb2_grpc, rbac_pb2, to_str, from_str
+from dahlia.protocols import rbac_pb2_grpc, rbac_pb2
 
 logger = logging.getLogger(__name__)
 
@@ -15,28 +15,28 @@ class Server(rbac_pb2_grpc.EnforcerServicer):
         res = rbac_pb2.SubjectsResponse()
         for s in self.enforcer.get_all_subjects():
             it = res.items.add()
-            from_str(s, it)
+            # from_str(s, it)
         return res
 
     def GetAllObjects(self, request, context):
         res = rbac_pb2.ObjectsResponse()
         for s in self.enforcer.get_all_objects():
             it = res.items.add()
-            from_str(s, it)
+            # from_str(s, it)
         return res
 
     def GetAllActions(self, request, context):
         res = rbac_pb2.ActionsResponse()
         for s in self.enforcer.get_all_actions():
             it = res.items.add()
-            from_str(s, it)
+            # from_str(s, it)
         return res
 
     def GetAllRoles(self, request, context):
         res = rbac_pb2.RolesResponse()
         for s in self.enforcer.get_all_roles():
             it = res.items.add()
-            from_str(s, it)
+            # from_str(s, it)
         return res
 
     def GetRolesForUser(self, request, context):
