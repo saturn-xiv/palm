@@ -151,15 +151,33 @@ RUN zsh -c "source $HOME/.zshrc && asdf plugin add java && asdf install java cor
 # https://docs.gradle.org/current/userguide/compatibility.html
 RUN zsh -c "source $HOME/.zshrc && asdf plugin add gradle && asdf install gradle 9.5.0 && asdf set --home gradle 9.5.0"
 RUN zsh -c "source $HOME/.zshrc && asdf plugin add maven && asdf install maven latest && asdf set --home maven latest"
+
 RUN zsh -c "source $HOME/.zshrc && asdf plugin add golang && asdf install golang latest && asdf set --home golang latest"
+# https://github.com/asdf-community/asdf-golang#use
+RUN echo '. ${ASDF_DATA_DIR:-$HOME/.asdf}/plugins/golang/set-env.zsh' >> $HOME/.zshrc \
+    && echo 'export PATH=$GOBIN:$PATH' >> $HOME/.zshrc
 # https://code.visualstudio.com/docs/languages/go
 RUN zsh -c "source $HOME/.zshrc \
     && go install golang.org/x/tools/gopls@latest \
     && go install github.com/go-delve/delve/cmd/dlv@latest \
     && go install honnef.co/go/tools/cmd/staticcheck@latest"
+# https://gohugo.io/installation/linux/#build-from-source
+RUN bash -c "source $HOME/.profile && CGO_ENABLED=1 go install -tags extended github.com/gohugoio/hugo@latest"
+# https://github.com/fullstorydev/grpcurl?tab=readme-ov-file#from-source
+RUN zsh -c "source $HOME/.zshrc && go install github.com/fullstorydev/grpcurl/cmd/grpcurl@latest"
+# https://grpc.io/docs/languages/go/quickstart/
+RUN zsh -c "source $HOME/.zshrc \
+    && go install google.golang.org/protobuf/cmd/protoc-gen-go@latest \
+    && go install google.golang.org/grpc/cmd/protoc-gen-go-grpc@latest"
+
 RUN zsh -c "source $HOME/.zshrc && asdf plugin add kotlin && asdf install kotlin latest && asdf set --home kotlin latest"
+
 RUN zsh -c "source $HOME/.zshrc && asdf plugin add nodejs && asdf install nodejs latest && asdf set --home nodejs latest"
 RUN zsh -c "source $HOME/.zshrc && npm install -g yarn"
+# https://github.com/grpc/grpc-node
+# https://github.com/grpc/grpc-node/tree/master/examples/helloworld/static_codegen
+RUN zsh -c "source $HOME/.zshrc && npm install -g grpc-tools"
+
 RUN zsh -c "source $HOME/.zshrc && asdf plugin add ruby && asdf install ruby latest && asdf set --home ruby latest"
 RUN zsh -c "source $HOME/.zshrc && gem install bundler"
 RUN zsh -c "source $HOME/.zshrc && asdf plugin add python && asdf install python latest && asdf set --home python latest"
@@ -167,7 +185,7 @@ RUN zsh -c "source $HOME/.zshrc && asdf plugin add python && asdf install python
 # https://pip.pypa.io/en/stable/installation/
 RUN zsh -c ". $HOME/.zshrc \
     && pip install --upgrade pip \
-    && pip install ansible paramiko conan cmake \
+    && pip install ansible paramiko conan cmake ninja \
     && pip install grpcio-tools grpcio-health-checking"
 RUN echo 'export ANSIBLE_HOST_KEY_CHECKING=False' >> $HOME/.zshrc \
     && echo 'alias peony="ANSIBLE_LOG_PATH=$HOME/tmp/$(date +%Y%m%d%H%M%S).log ansible-playbook"' >> $HOME/.zshrc
@@ -257,18 +275,6 @@ ENV GRPC_JAVA_PLUGIN_VERSION="1.81.0"
 RUN wget -q -O $HOME/.local/bin/grpc_java_plugin \
     https://repo1.maven.org/maven2/io/grpc/protoc-gen-grpc-java/${GRPC_JAVA_PLUGIN_VERSION}/protoc-gen-grpc-java-${GRPC_JAVA_PLUGIN_VERSION}-linux-x86_64.exe
 RUN chmod +x $HOME/.local/bin/grpc_java_plugin
-
-# https://github.com/grpc/grpc-node
-# https://github.com/grpc/grpc-node/tree/master/examples/helloworld/static_codegen
-RUN zsh -c "source $HOME/.zshrc && npm install -g grpc-tools"
-
-# https://grpc.io/docs/languages/go/quickstart/
-RUN zsh -c "source $HOME/.zshrc \
-    && go install google.golang.org/protobuf/cmd/protoc-gen-go@latest \
-    && go install google.golang.org/grpc/cmd/protoc-gen-go-grpc@latest"
-
-# https://github.com/fullstorydev/grpcurl?tab=readme-ov-file#from-source
-RUN zsh -c "source $HOME/.zshrc && go install github.com/fullstorydev/grpcurl/cmd/grpcurl@latest"
 
 # https://github.com/google/flatbuffers
 ENV FLATBUFFERS_VERSION="v25.12.19-2026-02-06-03fffb2"

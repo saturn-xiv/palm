@@ -76,24 +76,6 @@ RUN wget -q -O $HOME/downloads/composer-setup.php https://getcomposer.org/instal
     && rm $HOME/downloads/composer-setup.php
 RUN echo 'export PATH=$HOME/.config/composer/vendor/bin:$PATH' >> $HOME/.profile
 
-# https://github.com/nvm-sh/nvm
-ENV NVM_VERSION "v0.40.4"
-RUN git clone -b ${NVM_VERSION} https://github.com/nvm-sh/nvm.git $HOME/.nvm
-RUN echo 'export NVM_DIR="$HOME/.nvm"' >> $HOME/.profile \
-    && echo '[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"' >> $HOME/.profile \
-    && echo '[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"' >> $HOME/.profile
-RUN bash -c "source $HOME/.nvm/nvm.sh && nvm install --lts && npm install -g yarn"
-
-# https://github.com/sdkman/sdkman-cli
-# https://docs.gradle.org/current/userguide/compatibility.html
-ENV JDK_VERSION "25.0.3-amzn"
-RUN curl -s "https://get.sdkman.io" | bash
-RUN sed -i -e 's/sdkman_auto_answer=false/sdkman_auto_answer=true/g' $HOME/.sdkman/etc/config
-RUN bash -c "source $HOME/.sdkman/bin/sdkman-init.sh \
-    && sdk install java ${JDK_VERSION} \
-    && sdk install gradle \
-    && sdk install maven"
-
 # https://www.rust-lang.org/tools/install
 RUN curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
 RUN bash -c "source $HOME/.cargo/env \
@@ -104,29 +86,47 @@ RUN bash -c "source $HOME/.cargo/env \
     && rustup target add loongarch64-unknown-linux-gnu"
 RUN bash -c "source $HOME/.cargo/env && cargo install diesel_cli && cargo install mdbook"
 
-# https://github.com/rbenv/rbenv
-# https://github.com/rbenv/ruby-build/tree/master/share/ruby-build
-ENV RUBY_VERSION "4.0.3"
-RUN git clone https://github.com/rbenv/rbenv.git $HOME/.rbenv \
-    && git clone https://github.com/rbenv/ruby-build.git $HOME/.rbenv/plugins/ruby-build \
-    && git clone https://github.com/rbenv/rbenv-vars.git $HOME/.rbenv/plugins/rbenv-vars 
-RUN echo 'eval "$(~/.rbenv/bin/rbenv init - --no-rehash bash)"' >> ~/.profile
-# https://github.com/rbenv/ruby-build
-RUN bash -c "source $HOME/.profile \
-    && rbenv install ${RUBY_VERSION} \
-    && rbenv global ${RUBY_VERSION} \
-    && gem install bundler"
 
-# https://go.dev/doc/install
-ENV GO_VERSION "1.26.2"
-RUN wget -q -P $HOME/downloads https://go.dev/dl/go${GO_VERSION}.linux-${TARGETARCH}.tar.gz
-RUN tar xf $HOME/downloads/go${GO_VERSION}.linux-${TARGETARCH}.tar.gz -C $HOME/local \
-    && rm $HOME/downloads/go${GO_VERSION}.linux-${TARGETARCH}.tar.gz
-RUN echo 'export PATH=$HOME/local/go/bin:$PATH' >> $HOME/.profile \
-    && echo 'export GOPATH=$HOME/go' >> $HOME/.profile \
-    && echo 'export PATH=$(go env GOPATH)/bin:$PATH' >> $HOME/.profile
+# https://github.com/asdf-vm/asdf
+ENV ASDF_VERSION="0.19.0"
+RUN wget -q -P $HOME/downloads https://github.com/asdf-vm/asdf/releases/download/v${ASDF_VERSION}/asdf-v${ASDF_VERSION}-linux-amd64.tar.gz \
+    && tar xf $HOME/downloads/asdf-v${ASDF_VERSION}-linux-amd64.tar.gz -C $HOME/downloads \
+    && sudo cp $HOME/downloads/asdf /usr/local/bin/ \
+    && echo 'export PATH=${ASDF_DATA_DIR:-$HOME/.asdf}/shims:$PATH' >> $HOME/.profile
+
+RUN bash -c "source $HOME/.profile && asdf plugin add erlang && asdf install erlang 28.5 && asdf set --home erlang 28.5"
+RUN bash -c "source $HOME/.profile && asdf plugin add elixir && asdf install elixir 1.19.5-otp-28 && asdf set --home elixir 1.19.5-otp-28"
+RUN echo "export HEX_HTTP_CONCURRENCY=1" >> $HOME/.profile && echo "export HEX_HTTP_TIMEOUT=120" >> $HOME/.profile
+# https://thrift.apache.org/lib/java.html
+RUN bash -c "source $HOME/.profile && asdf plugin add java && asdf install java corretto-25.0.3.9.1 && asdf set --home java corretto-25.0.3.9.1"
+# https://docs.gradle.org/current/userguide/compatibility.html
+RUN bash -c "source $HOME/.profile && asdf plugin add gradle && asdf install gradle 9.5.0 && asdf set --home gradle 9.5.0"
+RUN bash -c "source $HOME/.profile && asdf plugin add maven && asdf install maven latest && asdf set --home maven latest"
+
+RUN bash -c "source $HOME/.profile && asdf plugin add golang && asdf install golang latest && asdf set --home golang latest"
+# https://github.com/asdf-community/asdf-golang#use
+RUN echo '. ${ASDF_DATA_DIR:-$HOME/.asdf}/plugins/golang/set-env.bash' >> $HOME/.profile && echo 'export PATH=$GOBIN:$PATH' >> $HOME/.profile
+# https://code.visualstudio.com/docs/languages/go
+RUN bash -c "source $HOME/.profile \
+    && go install golang.org/x/tools/gopls@latest \
+    && go install github.com/go-delve/delve/cmd/dlv@latest \
+    && go install honnef.co/go/tools/cmd/staticcheck@latest"
+# https://github.com/fullstorydev/grpcurl#from-source
+RUN bash -c "source $HOME/.profile && go install github.com/fullstorydev/grpcurl/cmd/grpcurl@latest"
 # https://gohugo.io/installation/linux/#build-from-source
 RUN bash -c "source $HOME/.profile && CGO_ENABLED=1 go install -tags extended github.com/gohugoio/hugo@latest"
+
+RUN bash -c "source $HOME/.profile && asdf plugin add kotlin && asdf install kotlin latest && asdf set --home kotlin latest"
+
+RUN bash -c "source $HOME/.profile && asdf plugin add nodejs && asdf install nodejs latest && asdf set --home nodejs latest"
+RUN bash -c "source $HOME/.profile && npm install -g yarn"
+
+RUN bash -c "source $HOME/.profile && asdf plugin add ruby && asdf install ruby latest && asdf set --home ruby latest"
+RUN bash -c "source $HOME/.profile && gem install bundler"
+
+RUN bash -c "source $HOME/.profile && asdf plugin add python && asdf install python latest && asdf set --home python latest"
+RUN bash -c "source $HOME/.profile && pip install --upgrade pip && pip install cmake ninja"
+
 
 # https://xmake.io/guide/quick-start.html
 RUN curl -fsSL https://xmake.io/shget.text | bash
@@ -134,11 +134,6 @@ RUN echo 'export XMAKE_ROOT=y' >> $HOME/.profile
 
 # https://learn.microsoft.com/en-us/vcpkg/get_started/get-started?pivots=shell-bash
 RUN echo 'export VCPKG_DISABLE_METRICS=1' >> $HOME/.profile
-
-RUN python3 -m venv $HOME/local/python3
-RUN bash -c "source $HOME/local/python3/bin/activate \
-    && pip install cmake ninja"
-RUN echo 'source $HOME/local/python3/bin/activate' >> $HOME/.profile
 
 # https://opensearch.org/downloads.html#opensearch
 # https://github.com/aparo/opensearch-analysis-ik?tab=readme-ov-file#install
