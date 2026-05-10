@@ -136,14 +136,14 @@ RUN wget -q -P $HOME/downloads https://github.com/cross-tools/musl-cross/release
 # https://github.com/asdf-vm/asdf
 ENV ASDF_VERSION="0.19.0"
 RUN wget -q -P $HOME/downloads https://github.com/asdf-vm/asdf/releases/download/v${ASDF_VERSION}/asdf-v${ASDF_VERSION}-linux-amd64.tar.gz \
-    && tar xf $HOME/downloads/asdf-v${ASDF_VERSION}-linux-amd64.tar.gz \
+    && tar xf $HOME/downloads/asdf-v${ASDF_VERSION}-linux-amd64.tar.gz -C $HOME/downloads \
     && sudo cp $HOME/downloads/asdf /usr/local/bin/ \
     && echo 'export PATH=${ASDF_DATA_DIR:-$HOME/.asdf}/shims:$PATH' >> $HOME/.zshrc
 # asdf plugin list --urls
 # asdf plugin list all
 # asdf list all XXX
 
-RUN zsh -c "source $HOME/.zshrc && asdf plugin add erlang && asdf install erlang 28.5 && asdf set --home 28.5"
+RUN zsh -c "source $HOME/.zshrc && asdf plugin add erlang && asdf install erlang 28.5 && asdf set --home erlang 28.5"
 RUN zsh -c "source $HOME/.zshrc && asdf plugin add elixir && asdf install elixir 1.19.5-otp-28 && asdf set --home elixir 1.19.5-otp-28"
 RUN echo "export HEX_HTTP_CONCURRENCY=1" >> $HOME/.zshrc && echo "export HEX_HTTP_TIMEOUT=120" >> $HOME/.zshrc
 # https://thrift.apache.org/lib/java.html
@@ -159,9 +159,9 @@ RUN zsh -c "source $HOME/.zshrc \
     && go install honnef.co/go/tools/cmd/staticcheck@latest"
 RUN zsh -c "source $HOME/.zshrc && asdf plugin add kotlin && asdf install kotlin latest && asdf set --home kotlin latest"
 RUN zsh -c "source $HOME/.zshrc && asdf plugin add nodejs && asdf install nodejs latest && asdf set --home nodejs latest"
-RUN "source $HOME/.zshrc && npm install -g yarn"
+RUN zsh -c "source $HOME/.zshrc && npm install -g yarn"
 RUN zsh -c "source $HOME/.zshrc && asdf plugin add ruby && asdf install ruby latest && asdf set --home ruby latest"
-RUN "source $HOME/.zshrc && gem install bundler"
+RUN zsh -c "source $HOME/.zshrc && gem install bundler"
 RUN zsh -c "source $HOME/.zshrc && asdf plugin add python && asdf install python latest && asdf set --home python latest"
 
 # https://pip.pypa.io/en/stable/installation/
