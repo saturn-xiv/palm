@@ -100,19 +100,14 @@ class EnforcerStub(object):
                 request_serializer=dahlia_dot_protocols_dot_rbac__pb2.Subject.Role.SerializeToString,
                 response_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
                 _registered_method=True)
-        self.GetPermissionsForUser = channel.unary_unary(
-                '/palm.rbac.v1.Enforcer/GetPermissionsForUser',
-                request_serializer=dahlia_dot_protocols_dot_rbac__pb2.Subject.User.SerializeToString,
+        self.GetPermissions = channel.unary_unary(
+                '/palm.rbac.v1.Enforcer/GetPermissions',
+                request_serializer=dahlia_dot_protocols_dot_rbac__pb2.Subject.SerializeToString,
                 response_deserializer=dahlia_dot_protocols_dot_rbac__pb2.PermissionsResponse.FromString,
                 _registered_method=True)
-        self.GetImplicitPermissionsForUser = channel.unary_unary(
-                '/palm.rbac.v1.Enforcer/GetImplicitPermissionsForUser',
-                request_serializer=dahlia_dot_protocols_dot_rbac__pb2.Subject.User.SerializeToString,
-                response_deserializer=dahlia_dot_protocols_dot_rbac__pb2.PermissionsResponse.FromString,
-                _registered_method=True)
-        self.GetPermissionsForRole = channel.unary_unary(
-                '/palm.rbac.v1.Enforcer/GetPermissionsForRole',
-                request_serializer=dahlia_dot_protocols_dot_rbac__pb2.Subject.Role.SerializeToString,
+        self.GetImplicitPermissions = channel.unary_unary(
+                '/palm.rbac.v1.Enforcer/GetImplicitPermissions',
+                request_serializer=dahlia_dot_protocols_dot_rbac__pb2.Subject.SerializeToString,
                 response_deserializer=dahlia_dot_protocols_dot_rbac__pb2.PermissionsResponse.FromString,
                 _registered_method=True)
         self.DeletePermission = channel.unary_unary(
@@ -213,19 +208,13 @@ class EnforcerServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
-    def GetPermissionsForUser(self, request, context):
+    def GetPermissions(self, request, context):
         """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
-    def GetImplicitPermissionsForUser(self, request, context):
-        """Missing associated documentation comment in .proto file."""
-        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-        context.set_details('Method not implemented!')
-        raise NotImplementedError('Method not implemented!')
-
-    def GetPermissionsForRole(self, request, context):
+    def GetImplicitPermissions(self, request, context):
         """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -317,19 +306,14 @@ def add_EnforcerServicer_to_server(servicer, server):
                     request_deserializer=dahlia_dot_protocols_dot_rbac__pb2.Subject.Role.FromString,
                     response_serializer=google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
             ),
-            'GetPermissionsForUser': grpc.unary_unary_rpc_method_handler(
-                    servicer.GetPermissionsForUser,
-                    request_deserializer=dahlia_dot_protocols_dot_rbac__pb2.Subject.User.FromString,
+            'GetPermissions': grpc.unary_unary_rpc_method_handler(
+                    servicer.GetPermissions,
+                    request_deserializer=dahlia_dot_protocols_dot_rbac__pb2.Subject.FromString,
                     response_serializer=dahlia_dot_protocols_dot_rbac__pb2.PermissionsResponse.SerializeToString,
             ),
-            'GetImplicitPermissionsForUser': grpc.unary_unary_rpc_method_handler(
-                    servicer.GetImplicitPermissionsForUser,
-                    request_deserializer=dahlia_dot_protocols_dot_rbac__pb2.Subject.User.FromString,
-                    response_serializer=dahlia_dot_protocols_dot_rbac__pb2.PermissionsResponse.SerializeToString,
-            ),
-            'GetPermissionsForRole': grpc.unary_unary_rpc_method_handler(
-                    servicer.GetPermissionsForRole,
-                    request_deserializer=dahlia_dot_protocols_dot_rbac__pb2.Subject.Role.FromString,
+            'GetImplicitPermissions': grpc.unary_unary_rpc_method_handler(
+                    servicer.GetImplicitPermissions,
+                    request_deserializer=dahlia_dot_protocols_dot_rbac__pb2.Subject.FromString,
                     response_serializer=dahlia_dot_protocols_dot_rbac__pb2.PermissionsResponse.SerializeToString,
             ),
             'DeletePermission': grpc.unary_unary_rpc_method_handler(
@@ -710,7 +694,7 @@ class Enforcer(object):
             _registered_method=True)
 
     @staticmethod
-    def GetPermissionsForUser(request,
+    def GetPermissions(request,
             target,
             options=(),
             channel_credentials=None,
@@ -723,8 +707,8 @@ class Enforcer(object):
         return grpc.experimental.unary_unary(
             request,
             target,
-            '/palm.rbac.v1.Enforcer/GetPermissionsForUser',
-            dahlia_dot_protocols_dot_rbac__pb2.Subject.User.SerializeToString,
+            '/palm.rbac.v1.Enforcer/GetPermissions',
+            dahlia_dot_protocols_dot_rbac__pb2.Subject.SerializeToString,
             dahlia_dot_protocols_dot_rbac__pb2.PermissionsResponse.FromString,
             options,
             channel_credentials,
@@ -737,7 +721,7 @@ class Enforcer(object):
             _registered_method=True)
 
     @staticmethod
-    def GetImplicitPermissionsForUser(request,
+    def GetImplicitPermissions(request,
             target,
             options=(),
             channel_credentials=None,
@@ -750,35 +734,8 @@ class Enforcer(object):
         return grpc.experimental.unary_unary(
             request,
             target,
-            '/palm.rbac.v1.Enforcer/GetImplicitPermissionsForUser',
-            dahlia_dot_protocols_dot_rbac__pb2.Subject.User.SerializeToString,
-            dahlia_dot_protocols_dot_rbac__pb2.PermissionsResponse.FromString,
-            options,
-            channel_credentials,
-            insecure,
-            call_credentials,
-            compression,
-            wait_for_ready,
-            timeout,
-            metadata,
-            _registered_method=True)
-
-    @staticmethod
-    def GetPermissionsForRole(request,
-            target,
-            options=(),
-            channel_credentials=None,
-            call_credentials=None,
-            insecure=False,
-            compression=None,
-            wait_for_ready=None,
-            timeout=None,
-            metadata=None):
-        return grpc.experimental.unary_unary(
-            request,
-            target,
-            '/palm.rbac.v1.Enforcer/GetPermissionsForRole',
-            dahlia_dot_protocols_dot_rbac__pb2.Subject.Role.SerializeToString,
+            '/palm.rbac.v1.Enforcer/GetImplicitPermissions',
+            dahlia_dot_protocols_dot_rbac__pb2.Subject.SerializeToString,
             dahlia_dot_protocols_dot_rbac__pb2.PermissionsResponse.FromString,
             options,
             channel_credentials,
