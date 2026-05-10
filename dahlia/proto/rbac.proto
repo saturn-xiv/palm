@@ -84,10 +84,8 @@ service Enforcer {
   rpc DeleteUser(Subject.User) returns (google.protobuf.Empty) {}
   rpc DeleteRole(Subject.Role) returns (google.protobuf.Empty) {}
 
-  rpc GetPermissionsForUser(Subject.User) returns (PermissionsResponse) {}
-  rpc GetImplicitPermissionsForUser(Subject.User)
-  returns (PermissionsResponse) {}
-  rpc GetPermissionsForRole(Subject.Role) returns (PermissionsResponse) {}
+  rpc GetPermissions(Subject) returns (PermissionsResponse) {}
+  rpc GetImplicitPermissions(Subject) returns (PermissionsResponse) {}
   rpc DeletePermission(Permission) returns (google.protobuf.Empty) {}
   rpc AddPermission(Permission) returns (google.protobuf.Empty) {}
   rpc HasPermission(Permission) returns (google.protobuf.Empty) {}
