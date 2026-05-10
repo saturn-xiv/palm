@@ -12,7 +12,6 @@ RUN apt -y install pwgen git locales locales-all vim tzdata zip unzip tree tmux 
     openssh-client sshpass \
     python3-full \
     && apt -y clean
-ENV GCC_VERSION 14
 RUN apt -y install cmake pkg-config libtool automake autoconf autoconf-archive cpio mold bison flex meson ninja-build debhelper \
     build-essential crossbuild-essential-amd64 crossbuild-essential-arm64 crossbuild-essential-armhf crossbuild-essential-riscv64 \
     g++ g++-x86-64-linux-gnu g++-aarch64-linux-gnu g++-riscv64-linux-gnu \
@@ -39,7 +38,7 @@ RUN apt install -y php-fpm \
     php-odbc php-mysql php-pgsql php-sqlite3 php-redis php-mongodb php-amqp \
     php-snmp \
     && apt -y clean
-RUN apt install -y libssl-dev libsodium-dev libpq-dev libmysqlclient-dev libsqlite3-dev libyaml-dev libffi-dev zlib1g-dev python3-dev && apt -y clean
+RUN apt install -y libssl-dev libsodium-dev libpq-dev libmysqlclient-dev libsqlite3-dev libyaml-dev libffi-dev zlib1g-dev libncurses-dev python3-dev && apt -y clean
 
 RUN mkdir -p $HOME/local $HOME/tmp $HOME/downloads $HOME/build
 
@@ -91,7 +90,7 @@ RUN bash -c "source $HOME/.cargo/env && cargo install diesel_cli && cargo instal
 ENV ASDF_VERSION="0.19.0"
 RUN wget -q -P $HOME/downloads https://github.com/asdf-vm/asdf/releases/download/v${ASDF_VERSION}/asdf-v${ASDF_VERSION}-linux-amd64.tar.gz \
     && tar xf $HOME/downloads/asdf-v${ASDF_VERSION}-linux-amd64.tar.gz -C $HOME/downloads \
-    && sudo cp $HOME/downloads/asdf /usr/local/bin/ \
+    && cp $HOME/downloads/asdf /usr/local/bin/ \
     && echo 'export PATH=${ASDF_DATA_DIR:-$HOME/.asdf}/shims:$PATH' >> $HOME/.profile
 
 RUN bash -c "source $HOME/.profile && asdf plugin add erlang && asdf install erlang 28.5 && asdf set --home erlang 28.5"
