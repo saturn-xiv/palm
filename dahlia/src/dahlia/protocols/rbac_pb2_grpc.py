@@ -70,6 +70,11 @@ class EnforcerStub(object):
                 request_serializer=dahlia_dot_protocols_dot_rbac__pb2.Subject.Role.SerializeToString,
                 response_deserializer=dahlia_dot_protocols_dot_rbac__pb2.UsersResponse.FromString,
                 _registered_method=True)
+        self.GetImplicitUsersForRole = channel.unary_unary(
+                '/palm.rbac.v1.Enforcer/GetImplicitUsersForRole',
+                request_serializer=dahlia_dot_protocols_dot_rbac__pb2.Subject.Role.SerializeToString,
+                response_deserializer=dahlia_dot_protocols_dot_rbac__pb2.UsersResponse.FromString,
+                _registered_method=True)
         self.HasRoleForUser = channel.unary_unary(
                 '/palm.rbac.v1.Enforcer/HasRoleForUser',
                 request_serializer=dahlia_dot_protocols_dot_rbac__pb2.UserRoleRequest.SerializeToString,
@@ -167,6 +172,12 @@ class EnforcerServicer(object):
         raise NotImplementedError('Method not implemented!')
 
     def GetUsersForRole(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def GetImplicitUsersForRole(self, request, context):
         """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -273,6 +284,11 @@ def add_EnforcerServicer_to_server(servicer, server):
             ),
             'GetUsersForRole': grpc.unary_unary_rpc_method_handler(
                     servicer.GetUsersForRole,
+                    request_deserializer=dahlia_dot_protocols_dot_rbac__pb2.Subject.Role.FromString,
+                    response_serializer=dahlia_dot_protocols_dot_rbac__pb2.UsersResponse.SerializeToString,
+            ),
+            'GetImplicitUsersForRole': grpc.unary_unary_rpc_method_handler(
+                    servicer.GetImplicitUsersForRole,
                     request_deserializer=dahlia_dot_protocols_dot_rbac__pb2.Subject.Role.FromString,
                     response_serializer=dahlia_dot_protocols_dot_rbac__pb2.UsersResponse.SerializeToString,
             ),
@@ -519,6 +535,33 @@ class Enforcer(object):
             request,
             target,
             '/palm.rbac.v1.Enforcer/GetUsersForRole',
+            dahlia_dot_protocols_dot_rbac__pb2.Subject.Role.SerializeToString,
+            dahlia_dot_protocols_dot_rbac__pb2.UsersResponse.FromString,
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True)
+
+    @staticmethod
+    def GetImplicitUsersForRole(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(
+            request,
+            target,
+            '/palm.rbac.v1.Enforcer/GetImplicitUsersForRole',
             dahlia_dot_protocols_dot_rbac__pb2.Subject.Role.SerializeToString,
             dahlia_dot_protocols_dot_rbac__pb2.UsersResponse.FromString,
             options,
