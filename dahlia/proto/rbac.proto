@@ -77,6 +77,7 @@ service Enforcer {
   rpc GetRolesForUser(Subject.User) returns (RolesResponse) {}
   rpc GetImplicitRolesForUser(Subject.User) returns (RolesResponse) {}
   rpc GetUsersForRole(Subject.Role) returns (UsersResponse) {}
+  rpc GetImplicitUsersForRole(Subject.Role) returns (UsersResponse) {}
   rpc HasRoleForUser(UserRoleRequest) returns (google.protobuf.Empty) {}
   rpc AddRoleForUser(UserRoleRequest) returns (google.protobuf.Empty) {}
   rpc DeleteRoleForUser(UserRoleRequest) returns (google.protobuf.Empty) {}
