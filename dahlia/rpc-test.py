@@ -17,7 +17,10 @@ class TestEnforcerServer(unittest.TestCase):
         pass
 
     def test_role(self):
-        pass
+        user_1 = rbac_pb2.Subject.User(code="u.1")
+        user_2 = rbac_pb2.Subject.User(code="u.2")
+        role_1 = rbac_pb2.Subject.Role(code="r.1")
+        role_2 = rbac_pb2.Subject.Role(code="r.2")
 
     def setUp(self):
         logging.info("open gRPC client")
