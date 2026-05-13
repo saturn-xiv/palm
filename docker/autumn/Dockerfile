@@ -38,7 +38,7 @@ RUN apt install -y php-fpm \
     php-odbc php-mysql php-pgsql php-sqlite3 php-redis php-mongodb php-amqp \
     php-snmp \
     && apt -y clean
-RUN apt install -y libssl-dev libsodium-dev libpq-dev libmysqlclient-dev libsqlite3-dev libyaml-dev libffi-dev zlib1g-dev libncurses-dev python3-dev && apt -y clean
+RUN apt install -y libssl-dev libsodium-dev libpq-dev libmysqlclient-dev libsqlite3-dev libyaml-dev libffi-dev libbz2-dev zlib1g-dev libncurses-dev python3-dev && apt -y clean
 
 RUN mkdir -p $HOME/local $HOME/tmp $HOME/downloads $HOME/build
 

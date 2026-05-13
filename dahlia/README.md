@@ -5,14 +5,14 @@
 ```bash
 # Initial python3 virtual env
 $ sudo apt install python3-full python3-dev build-essential
-$ python3 -m venv $PWD/tmp/python3
+$ python -m venv $PWD/tmp/python
 
 # Load virtual env vars
-$ source $PWD/tmp/python3/bin/activate
+$ source $PWD/tmp/python/bin/activate
 # Install dependencies
 > python -m pip install -e .
 
-> python -m dahlia -h
+> dahlia -h
 ```
 
 ## Testing
