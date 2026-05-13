@@ -89,7 +89,7 @@ RUN bash -c "source $HOME/.cargo/env && cargo install diesel_cli && cargo instal
 # https://github.com/asdf-vm/asdf
 ENV ASDF_VERSION="0.19.0"
 RUN wget -q -P $HOME/downloads https://github.com/asdf-vm/asdf/releases/download/v${ASDF_VERSION}/asdf-v${ASDF_VERSION}-linux-${TARGETARCH}.tar.gz \
-    && tar xf $HOME/downloads/asdf-v${ASDF_VERSION}-linux-amd64.tar.gz -C $HOME/downloads \
+    && tar xf $HOME/downloads/asdf-v${ASDF_VERSION}-linux-${TARGETARCH}.tar.gz -C $HOME/downloads \
     && cp $HOME/downloads/asdf /usr/local/bin/ \
     && echo 'export PATH=${ASDF_DATA_DIR:-$HOME/.asdf}/shims:$PATH' >> $HOME/.profile
 
