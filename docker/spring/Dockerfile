@@ -66,14 +66,6 @@ RUN wget -q -O $HOME/downloads/composer https://getcomposer.org/installer \
     && sudo cp composer.phar /usr/local/bin/composer
 RUN echo 'export PATH=$HOME/.config/composer/vendor/bin:$PATH' >> $HOME/.profile
 
-# https://github.com/improbable-eng/grpc-web
-ENV GRPCWEBPROXY_VERSION="v0.15.0"
-RUN wget -q -P $HOME/downloads/ https://github.com/improbable-eng/grpc-web/releases/download/${GRPCWEBPROXY_VERSION}/grpcwebproxy-${GRPCWEBPROXY_VERSION}-linux-x86_64.zip \
-    && cd $HOME/downloads/ \
-    && unzip -q grpcwebproxy-${GRPCWEBPROXY_VERSION}-linux-x86_64.zip \
-    && sudo cp dist/grpcwebproxy-${GRPCWEBPROXY_VERSION}-linux-x86_64 /usr/local/bin/grpcwebproxy \
-    && rm -r dist
-
 # https://github.com/bazelbuild/bazelisk
 ENV BAZEL_VERSION="v1.29.0"
 RUN wget -q -O $HOME/downloads/bazel https://github.com/bazelbuild/bazelisk/releases/download/${BAZEL_VERSION}/bazelisk-linux-amd64 \
@@ -93,6 +85,13 @@ RUN curl -fsSL -o $HOME/downloads/dbmate https://github.com/amacneil/dbmate/rele
     && sudo cp $HOME/downloads/dbmate /usr/local/bin/ \
     && sudo chmod +x /usr/local/bin/dbmate
 
+# https://github.com/fullstorydev/grpcurl?tab=readme-ov-file#from-source
+ENV GRPCURL_VERSION="1.9.3"
+RUN wget -q -P $HOME/downloads https://github.com/fullstorydev/grpcurl/releases/download/v${GRPCURL_VERSION}/grpcurl_${GRPCURL_VERSION}_linux_x86_64.tar.gz \
+    && tar xf $HOME/downloads/grpcurl_${GRPCURL_VERSION}_linux_x86_64.tar.gz -C $HOME/downloads \
+    && sudo cp $HOME/downloads/grpcurl /usr/local/bin/ \
+    && rm $HOME/downloads/grpcurl 
+
 # https://aur.archlinux.org/packages/ttf-arphic-tex-extra
 ENV ARPHIC_TTF_VERSION="20161212-1"
 RUN git clone https://aur.archlinux.org/ttf-arphic-tex-extra.git $HOME/downloads/ttf-arphic-tex-extra \
@@ -111,7 +110,7 @@ RUN echo 'export LANG=en_US.UTF-8' >> $HOME/.zshrc \
 
 RUN git config --global core.quotepath false \
     && git config --global http.version HTTP/1.1 \
-    && git config --global pull.rebase true \
+    && git config --global pull.rebase false \
     && git config --global url."https://".insteadOf git://
 
 RUN echo 'set-option -g history-limit 102400' > $HOME/.tmux.conf \
@@ -134,14 +133,15 @@ RUN wget -q -P $HOME/downloads https://github.com/cross-tools/musl-cross/release
     && echo 'export PATH=$HOME/local/loongarch64-unknown-linux-musl/bin:$PATH' >> $HOME/.zshrc
 
 # https://github.com/asdf-vm/asdf
+# asdf plugin list --urls
+# asdf plugin list all
+# asdf list all XXX
 ENV ASDF_VERSION="0.19.0"
 RUN wget -q -P $HOME/downloads https://github.com/asdf-vm/asdf/releases/download/v${ASDF_VERSION}/asdf-v${ASDF_VERSION}-linux-amd64.tar.gz \
     && tar xf $HOME/downloads/asdf-v${ASDF_VERSION}-linux-amd64.tar.gz -C $HOME/downloads \
     && sudo cp $HOME/downloads/asdf /usr/local/bin/ \
+    && rm $HOME/downloads/asdf \
     && echo 'export PATH=${ASDF_DATA_DIR:-$HOME/.asdf}/shims:$PATH' >> $HOME/.zshrc
-# asdf plugin list --urls
-# asdf plugin list all
-# asdf list all XXX
 
 RUN zsh -c "source $HOME/.zshrc && asdf plugin add erlang && asdf install erlang 28.5 && asdf set --home erlang 28.5"
 RUN zsh -c "source $HOME/.zshrc && asdf plugin add elixir && asdf install elixir 1.19.5-otp-28 && asdf set --home elixir 1.19.5-otp-28"
@@ -162,9 +162,7 @@ RUN zsh -c "source $HOME/.zshrc \
     && go install github.com/go-delve/delve/cmd/dlv@latest \
     && go install honnef.co/go/tools/cmd/staticcheck@latest"
 # https://gohugo.io/installation/linux/#build-from-source
-RUN bash -c "source $HOME/.profile && CGO_ENABLED=1 go install -tags extended github.com/gohugoio/hugo@latest"
-# https://github.com/fullstorydev/grpcurl?tab=readme-ov-file#from-source
-RUN zsh -c "source $HOME/.zshrc && go install github.com/fullstorydev/grpcurl/cmd/grpcurl@latest"
+RUN zsh -c "source $HOME/.profile && CGO_ENABLED=1 go install -tags extended github.com/gohugoio/hugo@latest"
 # https://grpc.io/docs/languages/go/quickstart/
 RUN zsh -c "source $HOME/.zshrc \
     && go install google.golang.org/protobuf/cmd/protoc-gen-go@latest \
@@ -219,9 +217,6 @@ RUN zsh -c "source $HOME/.zshrc \
 RUN curl -fsSL https://xmake.io/shget.text | bash
 
 # https://github.com/microsoft/vcpkg
-# RUN git clone https://github.com/microsoft/vcpkg.git $HOME/local/vcpkg
-# RUN $HOME/local/vcpkg/bootstrap-vcpkg.sh \
-#     && echo 'export VCPKG_DISABLE_METRICS=1' >> $HOME/.zshrc
 RUN echo 'export VCPKG_DISABLE_METRICS=1' >> $HOME/.zshrc
 
 # https://opensearch.org/downloads.html#opensearch
