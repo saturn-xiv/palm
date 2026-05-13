@@ -104,7 +104,7 @@ RUN bash -c "source $HOME/.profile && asdf plugin add maven && asdf install mave
 
 RUN bash -c "source $HOME/.profile && asdf plugin add golang && asdf install golang latest && asdf set --home golang latest"
 # https://github.com/asdf-community/asdf-golang#use
-RUN echo '. ${ASDF_DATA_DIR:-$HOME/.asdf}/plugins/golang/set-env.bash' >> $HOME/.profile && echo 'export PATH=$GOBIN:$PATH' >> $HOME/.profile
+RUN echo '. ${ASDF_DATA_DIR:-$HOME/.asdf}/plugins/golang/set-env.bash' >> $HOME/.profile && echo 'export PATH="$(go env GOBIN):$PATH"' >> $HOME/.zshrc
 # https://code.visualstudio.com/docs/languages/go
 RUN bash -c "source $HOME/.profile \
     && go install golang.org/x/tools/gopls@latest \

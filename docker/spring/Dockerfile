@@ -155,7 +155,7 @@ RUN zsh -c "source $HOME/.zshrc && asdf plugin add maven && asdf install maven l
 RUN zsh -c "source $HOME/.zshrc && asdf plugin add golang && asdf install golang latest && asdf set --home golang latest"
 # https://github.com/asdf-community/asdf-golang#use
 RUN echo '. ${ASDF_DATA_DIR:-$HOME/.asdf}/plugins/golang/set-env.zsh' >> $HOME/.zshrc \
-    && echo 'export PATH=$GOBIN:$PATH' >> $HOME/.zshrc
+    && echo 'export PATH="$(go env GOBIN):$PATH"' >> $HOME/.zshrc
 # https://code.visualstudio.com/docs/languages/go
 RUN zsh -c "source $HOME/.zshrc \
     && go install golang.org/x/tools/gopls@latest \
