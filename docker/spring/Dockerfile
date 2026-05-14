@@ -64,7 +64,7 @@ RUN wget -q -O $HOME/downloads/composer https://getcomposer.org/installer \
     && cd $HOME/downloads \
     && php composer \
     && sudo cp composer.phar /usr/local/bin/composer
-RUN echo 'export PATH=$HOME/.config/composer/vendor/bin:$PATH' >> $HOME/.profile
+RUN echo 'export PATH=$HOME/.config/composer/vendor/bin:$PATH' >> $HOME/.zshrc
 
 # https://github.com/bazelbuild/bazelisk
 ENV BAZEL_VERSION="v1.29.0"
@@ -162,7 +162,7 @@ RUN zsh -c "source $HOME/.zshrc \
     && go install github.com/go-delve/delve/cmd/dlv@latest \
     && go install honnef.co/go/tools/cmd/staticcheck@latest"
 # https://gohugo.io/installation/linux/#build-from-source
-RUN zsh -c "source $HOME/.profile && CGO_ENABLED=1 go install -tags extended github.com/gohugoio/hugo@latest"
+RUN zsh -c "source $HOME/.zshrc && CGO_ENABLED=1 go install -tags extended github.com/gohugoio/hugo@latest"
 # https://grpc.io/docs/languages/go/quickstart/
 RUN zsh -c "source $HOME/.zshrc \
     && go install google.golang.org/protobuf/cmd/protoc-gen-go@latest \
