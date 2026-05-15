@@ -74,6 +74,9 @@
       - podman
       - buildah
       - fuse-overlayfs
+      - nfs-common
+      # - nfs-kernel-server
+      - watchdog
 
 - ansible.builtin.include_tasks: locales.yml
 

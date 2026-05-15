@@ -52,6 +52,7 @@ RUN git config --global core.quotepath false \
     && git config --global pull.rebase false \
     && git config --global url."https://".insteadOf git://
 RUN echo 'set-option -g history-limit 102400' > $HOME/.tmux.conf && echo 'set-option -g default-shell "/bin/bash"' >> $HOME/.tmux.conf
+RUN echo 'set nobackup' >>$HOME/.vimrc && echo 'set nowritebackup' >>$HOME/.vimrc
 
 ARG TARGETARCH
 

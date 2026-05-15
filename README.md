@@ -28,3 +28,4 @@ git submodule update --init --recursive
 - [Modified Preorder Tree Traversal](https://gist.github.com/tmilos/f2f999b5839e2d42d751)
 - [JSON Web Token (JWT)](https://self-issued.info/docs/draft-ietf-oauth-json-web-token.html)
 - [Distance Between Two Locations (Sphere)](https://simplemaps.com/resources/location-distance)
+- [The quick and simple editor for cron schedule expressions by Cronitor](https://crontab.guru/)
