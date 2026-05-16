@@ -28,7 +28,7 @@ RUN apt-get install -y fonts-dejavu-extra fonts-opensymbol fonts-lxgw-wenkai fon
     fonts-mikachan \
     fonts-tibetan-machine fonts-ddc-uchen fonts-monlam fonts-sambhota-tsugring fonts-sambhota-yigchung \
     && apt -y clean
-RUN apt install -y postgresql redis rabbitmq-server vsftpd nginx \
+RUN apt install -y postgresql redis rabbitmq-server vsftpd nginx certbot sqlite3 \
     && apt -y clean
 
 RUN apt install -y php-fpm \
