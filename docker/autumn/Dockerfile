@@ -8,7 +8,7 @@ RUN apt -y install lsb-release apt-utils debian-keyring debian-archive-keyring a
     && apt -y clean
 
 RUN apt -y install pwgen git locales locales-all vim tzdata zip unzip tree tmux screen \
-    curl wget rsync telnet dnsutils netcat-openbsd iputils-ping lftp \
+    curl wget rsync telnet dnsutils netcat-openbsd iputils-ping lftp sudo \
     openssh-client sshpass \
     python3-full \
     && apt -y clean
@@ -44,8 +44,11 @@ RUN mkdir -p $HOME/local $HOME/tmp $HOME/downloads $HOME/build
 
 RUN apt -y clean && apt -y autoremove
 
-RUN echo "en_US.UTF-8 UTF-8" > /etc/locale.gen && locale-gen && update-locale LANG=en_US.UTF-8
+RUN echo "en_US.UTF-8 UTF-8" > /etc/locale.gen && locale-gen && update-locale LANG=en_US.UTF-8 && update-locale LANGUAGE=en_US.UTF-8 && update-locale LC_ALL=en_US.UTF-8
 RUN update-alternatives --set editor /usr/bin/vim.basic
+RUN echo 'ubuntu ALL=(ALL:ALL) NOPASSWD: ALL' > /etc/sudoers.d/101-ubuntu
+
+USER ubuntu
 
 RUN git config --global core.quotepath false \
     && git config --global http.version HTTP/1.1 \
@@ -59,20 +62,23 @@ ARG TARGETARCH
 # https://min.io/download#/linux
 RUN wget -q -P $HOME/downloads/ https://dl.min.io/aistor/minio/release/linux-${TARGETARCH}/minio \
     && chmod +x $HOME/downloads/minio \
-    && mv $HOME/downloads/minio /usr/local/bin/ \
+    && sudo cp $HOME/downloads/minio /usr/local/bin/ \
+    && rm $HOME/downloads/minio \
     && wget -q -P $HOME/downloads/ https://dl.min.io/aistor/mc/release/linux-${TARGETARCH}/mc \
     && chmod +x $HOME/downloads/mc \
-    && mv $HOME/downloads/mc /usr/local/bin/
+    && sudo cp $HOME/downloads/mc /usr/local/bin/ \
+    && rm $HOME/downloads/mc
 
 # https://github.com/amacneil/dbmate
 RUN curl -fsSL -o $HOME/downloads/dbmate https://github.com/amacneil/dbmate/releases/latest/download/dbmate-linux-${TARGETARCH} \
-    && mv $HOME/downloads/dbmate /usr/local/bin/ \
-    && chmod +x /usr/local/bin/dbmate
+    && chmod +x $HOME/downloads/dbmate \
+    && sudo cp $HOME/downloads/dbmate /usr/local/bin/ \
+    && rm $HOME/downloads/dbmate
 
 # https://getcomposer.org/doc/00-intro.md#installation-linux-unix-macos
 RUN wget -q -O $HOME/downloads/composer-setup.php https://getcomposer.org/installer \
     && cd $HOME/downloads \
-    && php $HOME/downloads/composer-setup.php --install-dir=/usr/local/bin --filename=composer \
+    && sudo php $HOME/downloads/composer-setup.php --install-dir=/usr/local/bin --filename=composer \
     && rm $HOME/downloads/composer-setup.php
 RUN echo 'export PATH=$HOME/.config/composer/vendor/bin:$PATH' >> $HOME/.profile
 
@@ -91,8 +97,9 @@ RUN bash -c "source $HOME/.cargo/env && cargo install diesel_cli && cargo instal
 ENV ASDF_VERSION="0.19.0"
 RUN wget -q -P $HOME/downloads https://github.com/asdf-vm/asdf/releases/download/v${ASDF_VERSION}/asdf-v${ASDF_VERSION}-linux-${TARGETARCH}.tar.gz \
     && tar xf $HOME/downloads/asdf-v${ASDF_VERSION}-linux-${TARGETARCH}.tar.gz -C $HOME/downloads \
-    && cp $HOME/downloads/asdf /usr/local/bin/ \
-    && echo 'export PATH=${ASDF_DATA_DIR:-$HOME/.asdf}/shims:$PATH' >> $HOME/.profile
+    && sudo cp $HOME/downloads/asdf /usr/local/bin/ \
+    && echo 'export PATH=${ASDF_DATA_DIR:-$HOME/.asdf}/shims:$PATH' >> $HOME/.profile \
+    && rm $HOME/downloads/asdf $HOME/downloads/asdf-v${ASDF_VERSION}-linux-${TARGETARCH}.tar.gz
 
 RUN bash -c "source $HOME/.profile && asdf plugin add erlang && asdf install erlang 28.5 && asdf set --home erlang 28.5"
 RUN bash -c "source $HOME/.profile && asdf plugin add elixir && asdf install elixir 1.19.5-otp-28 && asdf set --home elixir 1.19.5-otp-28"
@@ -150,7 +157,7 @@ RUN if [ "$TARGETARCH" = "amd64" ]; then \
 
 RUN tar xf $HOME/downloads/opensearch-${OPENSEARCH_VERSION}-linux-${TARGETARCH}.tar.gz -C $HOME/tmp \
     && rm $HOME/downloads/opensearch-${OPENSEARCH_VERSION}-linux-${TARGETARCH}.tar.gz \
-    && mv $HOME/tmp/opensearch-${OPENSEARCH_VERSION} /opt/opensearch \
+    && sudo mv $HOME/tmp/opensearch-${OPENSEARCH_VERSION} /opt/opensearch \
     && cd /opt/opensearch/ \
     && bin/opensearch-plugin install https://github.com/aparo/opensearch-analysis-ik/releases/download/${OPENSEARCH_VERSION}/opensearch-analysis-ik.zip \
     && bin/opensearch-plugin install https://github.com/aparo/opensearch-analysis-stconvert/releases/download/${OPENSEARCH_VERSION}/opensearch-analysis-stconvert.zip \
@@ -165,26 +172,16 @@ RUN cd /opt/opensearch/ \
     && touch config/opensearch-performance-analyzer/plugin-stats-metadata \
     && cp -r config/opensearch-analysis-ik plugins/opensearch-analysis-ik/config
 
-RUN mkdir -p /var/lib/minio/data && chown -R nobody:nogroup /var/lib/minio
-
 # https://www.rabbitmq.com/access-control.html#loopback-users
-RUN echo 'loopback_users = none' | tee -a /etc/rabbitmq/rabbitmq.conf \
-    && echo 'NODE_IP_ADDRESS=0.0.0.0' >> /etc/rabbitmq/rabbitmq-env.conf \
-    && rabbitmq-plugins enable rabbitmq_mqtt \
-    && rabbitmq-plugins enable rabbitmq_stream \
-    && rabbitmq-plugins enable rabbitmq_shovel rabbitmq_shovel_management
+RUN echo 'loopback_users = none' | sudo tee -a /etc/rabbitmq/rabbitmq.conf \
+    && echo 'NODE_IP_ADDRESS=0.0.0.0' |sudo tee -a /etc/rabbitmq/rabbitmq-env.conf \
+    && sudo rabbitmq-plugins enable rabbitmq_mqtt \
+    && sudo rabbitmq-plugins enable rabbitmq_stream \
+    && sudo rabbitmq-plugins enable rabbitmq_shovel rabbitmq_shovel_management
 
-RUN mkdir -p /var/lib/postgres \
-    && chown postgres:postgres /var/lib/postgres \
-    && su -c "/usr/lib/postgresql/18/bin/initdb -D /var/lib/postgres/data" - postgres \
-    && echo "listen_addresses = '0.0.0.0'" | tee -a /var/lib/postgres/data/postgresql.conf \
-    && echo "host  all  all 0.0.0.0/0 md5" | tee -a /var/lib/postgres/data/pg_hba.conf
+RUN sudo sed -i 's/memory_limit =.*/memory_limit = 1G/' /etc/php/8.5/fpm/php.ini && sudo sed -i 's/^listen = .*/listen = 0.0.0.0:9000/' /etc/php/8.5/fpm/pool.d/www.conf
 
-
-RUN sed -i 's/memory_limit =.*/memory_limit = 1G/' /etc/php/8.5/fpm/php.ini \
-    && sed -i 's/^listen = .*/listen = 0.0.0.0:9000/' /etc/php/8.5/fpm/pool.d/www.conf
-
-RUN echo "$(date -u +%4Y%m%d%H%M%S)" | tee /VERSION
+RUN echo "$(date -u +%4Y%m%d%H%M%S)" | sudo tee /VERSION
 
 EXPOSE 80/tcp 8080/tcp 9000/tcp 5432/tcp 6379/tcp 16379/tcp 5672/tcp 9200/tcp 9300/tcp 9600/tcp
 VOLUME /srv
