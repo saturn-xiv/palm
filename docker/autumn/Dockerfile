@@ -40,8 +40,6 @@ RUN apt install -y php-fpm \
     && apt -y clean
 RUN apt install -y libssl-dev libsodium-dev libpq-dev libmysqlclient-dev libsqlite3-dev libyaml-dev libffi-dev libbz2-dev zlib1g-dev libncurses-dev python3-dev && apt -y clean
 
-RUN mkdir -p $HOME/local $HOME/tmp $HOME/downloads $HOME/build
-
 RUN apt -y clean && apt -y autoremove
 
 RUN echo "en_US.UTF-8 UTF-8" > /etc/locale.gen && locale-gen && update-locale LANG=en_US.UTF-8 && update-locale LANGUAGE=en_US.UTF-8 && update-locale LC_ALL=en_US.UTF-8
@@ -49,6 +47,8 @@ RUN update-alternatives --set editor /usr/bin/vim.basic
 RUN echo 'ubuntu ALL=(ALL:ALL) NOPASSWD: ALL' > /etc/sudoers.d/101-ubuntu
 
 USER ubuntu
+
+RUN mkdir -p $HOME/local $HOME/tmp $HOME/downloads $HOME/build
 
 RUN git config --global core.quotepath false \
     && git config --global http.version HTTP/1.1 \
@@ -128,7 +128,8 @@ RUN bash -c "source $HOME/.profile && asdf plugin add kotlin && asdf install kot
 RUN bash -c "source $HOME/.profile && asdf plugin add nodejs && asdf install nodejs latest && asdf set --home nodejs latest"
 RUN bash -c "source $HOME/.profile && npm install -g yarn"
 
-RUN bash -c "source $HOME/.profile && asdf plugin add ruby && asdf install ruby latest && asdf set --home ruby latest"
+# TODO latest
+RUN bash -c "source $HOME/.profile && asdf plugin add ruby && asdf install ruby 4.0.3 && asdf set --home ruby 4.0.3"
 RUN bash -c "source $HOME/.profile && gem install bundler"
 
 RUN bash -c "source $HOME/.profile && asdf plugin add python && asdf install python latest && asdf set --home python latest"
