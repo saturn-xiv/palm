@@ -51,6 +51,7 @@
       - wget
       - zip
       - unzip
+      - socat
       - systemd-cron
       - systemd-timesyncd
       - systemd-journal-remote

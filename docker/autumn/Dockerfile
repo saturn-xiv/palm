@@ -180,6 +180,8 @@ RUN echo 'loopback_users = none' | sudo tee -a /etc/rabbitmq/rabbitmq.conf \
     && sudo rabbitmq-plugins enable rabbitmq_stream \
     && sudo rabbitmq-plugins enable rabbitmq_shovel rabbitmq_shovel_management
 
+RUN chown www-data /var/log/nginx
+
 RUN sudo sed -i 's/memory_limit =.*/memory_limit = 1G/' /etc/php/8.5/fpm/php.ini && sudo sed -i 's/^listen = .*/listen = 0.0.0.0:9000/' /etc/php/8.5/fpm/pool.d/www.conf
 
 RUN echo "$(date -u +%4Y%m%d%H%M%S)" | sudo tee /VERSION
