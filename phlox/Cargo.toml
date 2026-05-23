@@ -8,8 +8,9 @@ crypto-common = "0.2"
 futures-util = "0.3"
 mime = "0.3"
 log = "0.4"
+minio = "0.4"
 aead = "0.5"
-minio = "0.3"
+xmpp = "0.6"
 axum = "0.8"
 rabbitmq-stream-client = "0.11"
 r2d2 = "0.8"
@@ -21,7 +22,7 @@ hmac = "=0.13"
 tonic = "0.14"
 prost = "0.14"
 prost-types = "0.14"
-askama = "0.15"
+askama = "0.16"
 fluent = "0.17"
 hyper = "1"
 regex = "1"
@@ -54,7 +55,7 @@ version = "0.13"
 features = ["json"]
 
 [dependencies.quick-xml]
-version = "0.39"
+version = "0.40"
 features = ["serialize"]
 
 [dependencies.redis]

@@ -4,13 +4,14 @@ use askama::Template;
 use futures_util::StreamExt;
 use hyper::StatusCode;
 use minio::s3::{
-    Client as MinioClient,
-    builders::{ObjectContent, ObjectToDelete},
+    MinioClient,
+    builders::ObjectContent,
     creds::StaticProvider,
     error::Error as MinioError,
     http::BaseUrl,
     lifecycle_config::{LifecycleConfig, LifecycleRule},
     response::{BucketExistsResponse, CreateBucketResponse},
+    response_traits::{HasBucket, HasRegion, HasVersion},
     types::{S3Api, ToStream},
 };
 use serde::{Deserialize, Serialize};
@@ -76,11 +77,7 @@ impl Node {
     pub fn open(&self) -> Result<Client> {
         log::info!("open minio {}", self.endpoint);
         let url = self.endpoint.parse::<BaseUrl>()?;
-        let provider = Box::new(StaticProvider::new(
-            &self.access_key,
-            &self.secret_key,
-            None,
-        ));
+        let provider = StaticProvider::new(&self.access_key, &self.secret_key, None);
         let client = MinioClient::new(url, Some(provider), None, None)?;
         Ok(Client {
             s3: client,
@@ -100,28 +97,34 @@ impl Client {
         log::warn!("delete object {}/{}", bucket, object);
         let res = self
             .s3
-            .delete_object(bucket, ObjectToDelete::from(object))
+            .delete_object(bucket, object)?
+            .build()
             .send()
             .await?;
         log::debug!(
             "the object is deleted. The delete marker has version '{:?}'",
-            res.version_id
+            res.version_id()
         );
         Ok(())
     }
     pub async fn delete_bucket(&self, bucket: &str) -> MinioResult<()> {
         log::warn!("delete bucket {}", bucket);
-        let res = self.s3.delete_bucket(bucket).send().await?;
-        log::debug!("bucket {} in region {} was deleted", res.bucket, res.region);
+        let res = self.s3.delete_bucket(bucket)?.build().send().await?;
+        log::debug!(
+            "bucket {:?} in region {} was deleted",
+            res.bucket().map(|x| x.as_str()),
+            res.region().as_str()
+        );
         Ok(())
     }
     pub async fn list_objects(&self, bucket: &str) -> MinioResult<Vec<String>> {
         let mut res = self
             .s3
-            .list_objects(bucket)
+            .list_objects(bucket)?
             .recursive(true)
             .use_api_v1(false)
             .include_versions(true)
+            .build()
             .to_stream()
             .await;
         let mut items = Vec::new();
@@ -134,16 +137,16 @@ impl Client {
         Ok(items)
     }
     pub async fn list_buckets(&self) -> MinioResult<Vec<String>> {
-        let res = self.s3.list_buckets().send().await?;
+        let res = self.s3.list_buckets().build().send().await?;
         let mut items = Vec::new();
-        for it in res.buckets.iter() {
-            items.push(it.name.clone());
+        for it in res.buckets()?.iter() {
+            items.push(it.name.as_str().to_string());
         }
         Ok(items)
     }
     pub async fn bucket_exists(&self, name: &str) -> MinioResult<bool> {
-        let res: BucketExistsResponse = self.s3.bucket_exists(name).send().await?;
-        Ok(res.exists)
+        let res: BucketExistsResponse = self.s3.bucket_exists(name)?.build().send().await?;
+        Ok(res.exists())
     }
 
     pub async fn create_bucket(
@@ -158,8 +161,12 @@ impl Client {
             None => name.to_string(),
         };
 
-        let res: CreateBucketResponse = self.s3.create_bucket(&bucket).send().await?;
-        log::debug!("made bucket {} in region {}", res.bucket, res.region);
+        let res: CreateBucketResponse = self.s3.create_bucket(&bucket)?.build().send().await?;
+        log::debug!(
+            "made bucket {:?} in region {}",
+            res.bucket().map(|x| x.as_str()),
+            res.region().as_str()
+        );
 
         if public {
             log::info!("set anonymous read access to bucket {}", bucket);
@@ -168,8 +175,9 @@ impl Client {
                 it.render()?
             };
             self.s3
-                .put_bucket_policy(&bucket)
+                .put_bucket_policy(&bucket)?
                 .config(policy)
+                .build()
                 .send()
                 .await?;
         }
@@ -185,8 +193,9 @@ impl Client {
             }];
 
             self.s3
-                .put_bucket_lifecycle(&bucket)
+                .put_bucket_lifecycle(&bucket)?
                 .life_cycle_config(LifecycleConfig { rules })
+                .build()
                 .send()
                 .await?;
         }
@@ -205,7 +214,8 @@ impl Client {
 
         let content = ObjectContent::from(file);
         self.s3
-            .put_object_content(bucket, object, content)
+            .put_object_content(bucket, object, content)?
+            .build()
             .send()
             .await?;
         Ok(())
