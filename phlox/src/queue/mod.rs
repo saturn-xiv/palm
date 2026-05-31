@@ -4,7 +4,7 @@ use std::fmt::Debug;
 use std::future::Future;
 use std::result::Result as StdResult;
 
-use prost::Message as ProtobufMessage;
+use protobuf::Message as ProtobufMessage;
 use serde::de::DeserializeOwned;
 
 use super::Result;

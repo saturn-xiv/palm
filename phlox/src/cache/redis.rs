@@ -1,7 +1,7 @@
 use std::{ops::DerefMut, time::Duration};
 
 use flexbuffers::{FlexbufferSerializer, Reader as FlexbufferReader};
-use prost::Message as ProtobufMessage_;
+use protobuf::Message as ProtobufMessage_;
 use r2d2::Pool;
 use redis::{
     Client as RedisClient, Connection as RedisConnection, RedisResult,
@@ -116,8 +116,7 @@ impl<C: Commands, T: ManageConnection<Connection = C, Error = RedisError>> super
         value: &V,
         ttl: Option<Duration>,
     ) -> Result<()> {
-        let mut buf = Vec::new();
-        value.encode(&mut buf)?;
+        let buf = value.write_to_bytes()?;
         let key = self.key(key);
         let mut db = self.pool.get()?;
         let db = db.deref_mut();
@@ -129,7 +128,7 @@ impl<C: Commands, T: ManageConnection<Connection = C, Error = RedisError>> super
         let mut db = self.pool.get()?;
         let db = db.deref_mut();
         let buf = get(db, &key)?;
-        let it = V::decode(&buf[..])?;
+        let it = V::parse_from_bytes(&buf[..])?;
         Ok(it)
     }
 }

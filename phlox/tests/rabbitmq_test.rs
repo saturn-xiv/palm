@@ -11,6 +11,7 @@ use phlox::{
         },
     },
 };
+use protobuf::well_known_types::duration::Duration as ProtobufDuration;
 use serde::{Deserialize, Serialize};
 
 const PLAIN_CONSUMER_QUEUE: &str = "consumer.plain";
@@ -33,7 +34,7 @@ impl Consumer for EchoConsumer {
 struct ProtobufEchoConsumer;
 
 impl ProtobufConsumer for ProtobufEchoConsumer {
-    type Message = prost_types::Duration;
+    type Message = ProtobufDuration;
     async fn consume(&self, id: &str, task: Self::Message) -> Result<()> {
         println!("echo(protobuf) {}: duration-{}", id, task.seconds);
         Ok(())
@@ -106,9 +107,9 @@ async fn protobuf_producer() {
             client,
             "",
             PROTOBUF_CONSUMER_QUEUE,
-            &prost_types::Duration {
+            &ProtobufDuration {
                 seconds: i,
-                nanos: 0,
+                ..Default::default()
             },
             BasicPublishOptions::default(),
         )

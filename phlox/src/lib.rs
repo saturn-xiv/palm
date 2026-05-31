@@ -57,7 +57,6 @@ impl From<Error> for HttpError {
 }
 
 pub type HttpResult<T> = StdResult<T, HttpError>;
-pub type GrpcResult<T> = StdResult<tonic::Response<T>, tonic::Status>;
 
 pub fn is_stopped() -> bool {
     Path::new(".stop").exists()

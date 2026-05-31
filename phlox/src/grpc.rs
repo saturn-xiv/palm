@@ -1,18 +1,18 @@
+use grpc::core::RequestHeaders;
 use hyper::StatusCode;
-use tonic::Request;
 
 use super::{HttpError, Jwt, Result, headers::AUTHORIZATION};
 
-pub fn verify<J: Jwt, T, A: ToString>(
+pub fn verify<J: Jwt, A: ToString>(
     jwt: &J,
-    request: &Request<T>,
+    request: &RequestHeaders,
     issuer: &str,
     audiences: &[A],
 ) -> Result<String> {
     let mt = request.metadata();
     match mt.get(AUTHORIZATION.to_lowercase()) {
         Some(auth) => {
-            let auth = auth.to_str()?;
+            let auth = auth.to_str();
             match auth.strip_prefix(J::BEARER) {
                 Some(token) => jwt.verify(token, issuer, audiences),
                 None => Err(Box::new(HttpError(

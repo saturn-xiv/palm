@@ -6,7 +6,7 @@ use lapin::{
     options::{BasicAckOptions, BasicConsumeOptions},
     types::FieldTable,
 };
-use prost::Message as ProtobufMessage_;
+use protobuf::Message as ProtobufMessage_;
 use serde::{Deserialize, Serialize};
 
 pub use lapin::{
@@ -236,8 +236,7 @@ impl ProtobufMessage for Client {
         task: &V,
         options: BasicPublishOptions,
     ) -> Result<()> {
-        let mut buf = Vec::new();
-        task.encode(&mut buf)?;
+        let buf = task.write_to_bytes()?;
         self.publish(exchange, routing_key, APPLICATION_X_PROTOBUF, &buf, options)
             .await?;
         Ok(())
@@ -289,7 +288,7 @@ impl<H: super::ProtobufConsumer> super::Consumer for ProtobufConsumer<H> {
                 Some("not a protobuf message".to_string()),
             )));
         }
-        let it = H::Message::decode(payload)?;
+        let it = H::Message::parse_from_bytes(payload)?;
         self.handler.consume(id, it).await?;
         Ok(())
     }

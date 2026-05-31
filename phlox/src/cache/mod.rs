@@ -2,7 +2,7 @@ pub mod redis;
 
 use std::time::Duration;
 
-use prost::Message as ProtobufMessage;
+use protobuf::Message as ProtobufMessage;
 use serde::{Serialize, de::DeserializeOwned};
 
 use super::Result;
