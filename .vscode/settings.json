@@ -84,5 +84,6 @@
   },
   "zig.zls.enabled": "on",
   "zig.buildOnSaveProvider": "zls",
-  "zig.path": "${userHome}/local/zig-x86_64-linux-0.15.2/zig"
+  "zig.path": "${userHome}/local/zig-x86_64-linux-0.15.2/zig",
+  "todo-tree.ripgrep.ripgrep": "/usr/bin/rg"
 }
