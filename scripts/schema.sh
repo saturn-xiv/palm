@@ -185,7 +185,7 @@ function generate_thrift_for_cpp() {
 #     thrift -out $3 --gen php:nsglobal=$2 -r $1
 # }
 
-# pip install grpcio-tools==1.76.0
+# pip install 'grpcio-tools~=1.76.0'
 function generate_dahlia() {
     cd $WORKSPACE/dahlia/src/
     echo "generate protocols for dahlia"
@@ -193,7 +193,7 @@ function generate_dahlia() {
     
     rm $target/*_pb2*
     
-    python -m grpc_tools.protoc \
+    PYTHON_GIL=0 python -m grpc_tools.protoc \
         -Idahlia/protocols=$WORKSPACE/dahlia/proto -I $PROTOBUF_HOME/include/google/protobuf \
         --python_out=. --pyi_out=. --grpc_python_out=. \
         $WORKSPACE/dahlia/proto/*.proto

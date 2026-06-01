@@ -184,7 +184,7 @@ RUN zsh -c "source $HOME/.zshrc && asdf plugin add python && asdf install python
 RUN zsh -c ". $HOME/.zshrc \
     && pip install --upgrade pip \
     && pip install ansible paramiko conan cmake ninja \
-    && pip install grpcio-tools grpcio-health-checking"
+    && pip install grpcio-tools"
 RUN echo 'export ANSIBLE_HOST_KEY_CHECKING=False' >> $HOME/.zshrc \
     && echo 'alias peony="ANSIBLE_LOG_PATH=$HOME/tmp/$(date +%Y%m%d%H%M%S).log ansible-playbook"' >> $HOME/.zshrc
 

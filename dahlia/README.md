@@ -11,6 +11,8 @@ $ python -m venv $PWD/tmp/python
 $ source $PWD/tmp/python/bin/activate
 # Install dependencies
 > python -m pip install -e .
+# Install for production
+> python -m pip install .
 
 > dahlia -h
 ```
