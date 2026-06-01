@@ -1,6 +1,6 @@
 use std::env;
 use std::fs::{File, read_dir};
-use std::io::{Error as IoError, ErrorKind as IoErrorKind, Write};
+use std::io::Write;
 use std::path::{Path, PathBuf};
 use std::process::Command;
 
@@ -46,25 +46,25 @@ fn shell(cmd: &mut Command) -> Result<String, Box<dyn std::error::Error>> {
 }
 
 fn compile_protos(includes: &[PathBuf]) -> Result<(), Box<dyn std::error::Error>> {
-    let out_dir = PathBuf::from(env::var("OUT_DIR")?);
+    // let out_dir = PathBuf::from(env::var("OUT_DIR")?);
+    let mut files = Vec::new();
     for jt in includes {
         for it in read_dir(jt)? {
             let it = it?;
             let it = it.path();
             if let Some(ext) = it.extension()
                 && ext == "proto"
+                && let Some(name) = it.file_name()
+                && let Some(name) = name.to_str()
             {
-                let name = it
-                    .file_stem()
-                    .ok_or_else(|| IoError::from(IoErrorKind::UnexpectedEof))?;
-                tonic_prost_build::configure()
-                    .file_descriptor_set_path(
-                        out_dir.join(format!("{}_descriptor.bin", name.display())),
-                    )
-                    .compile_protos(&[it], includes)?;
+                files.push(name.to_string());
             }
         }
     }
 
+    grpc_protobuf_build::CodeGen::new()
+        .includes(includes)
+        .inputs(files)
+        .compile()?;
     Ok(())
 }

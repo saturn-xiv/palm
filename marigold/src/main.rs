@@ -1,7 +1,11 @@
+use std::process::ExitCode;
+
 #[tokio::main]
-async fn main() {
+async fn main() -> ExitCode {
     env_logger::init();
     if let Err(e) = marigold::app::run().await {
-        log::info!("{}", e);
+        log::error!("{}", e);
+        return ExitCode::FAILURE;
     }
+    ExitCode::SUCCESS
 }
