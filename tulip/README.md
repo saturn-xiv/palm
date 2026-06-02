@@ -31,3 +31,11 @@ $ ./tulip/docker/run.sh
 
 - [Version Support](https://protobuf.dev/support/version-support/)
 - [Yocto Project Quick Build](https://docs.yoctoproject.org/brief-yoctoprojectqs/index.html)
+
+## Issues
+
+- vcpkg.json
+
+```json
+{ "name": "grpc", "features": ["codegen"] },
+```

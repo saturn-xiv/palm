@@ -200,6 +200,11 @@ function generate_dahlia() {
 }
 # -----------------------------------------------------------------------------
 
+if ! command -v python-grpc-tools-protoc &> /dev/null; then
+    echo "please load python-venv at first"
+    exit 1
+fi
+
 generate_daisy
 generate_tulip
 # generate_tulip_dashboard
