@@ -13,7 +13,6 @@
 #include <tink/jwt/jwt_signature_config.h>
 #include <tink/jwt/jwt_validator.h>
 #include <tink/jwt/raw_jwt.h>
-#include <tink/mac/mac_factory.h>
 #include <tink/public_key_sign.h>
 #include <tink/public_key_verify.h>
 #include <tink/signature/signature_key_templates.h>

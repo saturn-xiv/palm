@@ -3,7 +3,7 @@ include(FetchContent)
 
 project(
     loquat
-    VERSION 2026.5.7
+    VERSION 2026.6.19
     DESCRIPTION "A cryptographic rpc service(by Google Tink)."
     LANGUAGES C CXX)
 # --------------------------------------------------------
@@ -34,7 +34,7 @@ pkg_check_modules(LIBEVENT REQUIRED libevent)
 # https://github.com/tink-crypto/tink-cc
 FetchContent_Declare(tink
   GIT_REPOSITORY  "https://github.com/tink-crypto/tink-cc.git"
-  GIT_TAG         "v2.2.0"
+  GIT_TAG         "v2.7.0"
 )
 
 # https://github.com/apache/thrift

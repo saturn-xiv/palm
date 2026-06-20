@@ -64,10 +64,10 @@ class Keyset {
   }
 
   template <class T>
-  void check(const crypto::tink::util::StatusOr<T>& result) const {
+  void check(const absl::StatusOr<T>& result) const {
     this->check(result.status());
   }
-  inline void check(const crypto::tink::util::Status& status) const {
+  inline void check(const absl::Status& status) const {
     const std::string_view it = status.message();
     std::string msg(it.begin(), it.end());
     if (!status.ok()) {
