@@ -44,7 +44,7 @@ pub enum Theme {
 }
 
 pub async fn start<P: AsRef<Path>>(config: P, port: u16, _theme: Theme) -> Result<()> {
-    if is_stopped() {
+    if is_stopped()? {
         log::warn!("stopped file exists, exit...");
         return Ok(());
     }

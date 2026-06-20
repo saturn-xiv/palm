@@ -29,7 +29,7 @@ use super::super::{
 };
 
 pub async fn start<P: AsRef<Path>>(config: P, port: u16) -> Result<()> {
-    if is_stopped() {
+    if is_stopped()? {
         log::warn!("stopped file exists, exit...");
         return Ok(());
     }

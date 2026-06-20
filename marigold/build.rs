@@ -1,6 +1,6 @@
 use std::env;
 use std::fs::{File, read_dir};
-use std::io::Write;
+use std::io::{Error as IoError, ErrorKind as IoErrorKind, Write};
 use std::path::{Path, PathBuf};
 use std::process::Command;
 
@@ -14,6 +14,7 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
         .iter()
         .map(|x| work_dir.join(x).join("proto"))
         .collect();
+
         compile_protos(&folders)?;
     }
     {
@@ -62,9 +63,39 @@ fn compile_protos(includes: &[PathBuf]) -> Result<(), Box<dyn std::error::Error>
         }
     }
 
+    let common = which("protoc")
+        .ok_or_else(|| IoError::from(IoErrorKind::NotFound))?
+        .parent()
+        .ok_or_else(|| IoError::from(IoErrorKind::NotFound))?
+        .join("include");
     grpc_protobuf_build::CodeGen::new()
         .includes(includes)
+        .include(&common)
         .inputs(files)
+        .inputs([
+            &common.join("google").join("protobuf").join("empty.proto"),
+            &common
+                .join("google")
+                .join("protobuf")
+                .join("timestamp.proto"),
+            &common
+                .join("google")
+                .join("protobuf")
+                .join("duration.proto"),
+        ])
         .compile()?;
+
     Ok(())
+}
+
+fn which(command: &str) -> Option<PathBuf> {
+    if let Some(paths) = env::var_os("PATH") {
+        for path in env::split_paths(&paths) {
+            let it = path.join(command);
+            if it.is_file() {
+                return Some(path);
+            }
+        }
+    }
+    None
 }

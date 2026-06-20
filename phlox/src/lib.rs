@@ -17,6 +17,7 @@ pub mod random;
 pub mod ssha512;
 pub mod twilio;
 
+use std::env::current_exe;
 use std::fmt;
 use std::fs;
 use std::os::unix::fs::PermissionsExt;
@@ -58,8 +59,13 @@ impl From<Error> for HttpError {
 
 pub type HttpResult<T> = StdResult<T, HttpError>;
 
-pub fn is_stopped() -> bool {
-    Path::new(".stop").exists()
+pub fn is_stopped() -> Result<bool> {
+    let dir = current_exe()?;
+    let dir = dir
+        .parent()
+        .ok_or_else(|| Box::new(HttpError(StatusCode::INTERNAL_SERVER_ERROR, None)))?;
+    log::debug!("current work dir {}", dir.display());
+    Ok(Path::new(".stop").exists())
 }
 pub fn check_permission<P: AsRef<Path>>(file: P) -> Result<()> {
     match fs::metadata(file)?.permissions().mode() & 0o777 {
