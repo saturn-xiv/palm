@@ -1,12 +1,11 @@
 FROM ubuntu:latest
 LABEL maintainer="Jeremy Zheng"
 
-ENV DEBIAN_FRONTEND "noninteractive"
+ENV DEBIAN_FRONTEND="noninteractive"
 
 RUN apt update && apt -y upgrade && apt -y clean
 RUN apt -y install lsb-release apt-utils debian-keyring debian-archive-keyring apt-transport-https software-properties-common curl wget gnupg \
     && apt -y clean
-
 RUN apt -y install pwgen git locales locales-all vim tzdata zip unzip tree tmux screen \
     curl wget rsync telnet dnsutils netcat-openbsd iputils-ping lftp sudo \
     openssh-client sshpass \
@@ -39,12 +38,18 @@ RUN apt install -y php-fpm \
     php-snmp \
     && apt -y clean
 RUN apt install -y libssl-dev libsodium-dev libpq-dev libmysqlclient-dev libsqlite3-dev libyaml-dev libffi-dev libbz2-dev zlib1g-dev libncurses-dev python3-dev && apt -y clean
-
+# https://apt.llvm.org/
+RUN bash -c "$(wget -O - https://apt.llvm.org/llvm.sh)"
 RUN apt -y clean && apt -y autoremove
+
+RUN update-alternatives --install /usr/bin/clang clang /usr/bin/clang-22 100
+RUN update-alternatives --install /usr/bin/clang++ clang++ /usr/bin/clang++-22 100
+
 
 RUN echo "en_US.UTF-8 UTF-8" > /etc/locale.gen && locale-gen && update-locale LANG=en_US.UTF-8 && update-locale LANGUAGE=en_US.UTF-8 && update-locale LC_ALL=en_US.UTF-8
 RUN update-alternatives --set editor /usr/bin/vim.basic
 RUN echo 'ubuntu ALL=(ALL:ALL) NOPASSWD: ALL' > /etc/sudoers.d/101-ubuntu
+RUN echo "ubuntu:ubuntu" | chpasswd
 
 USER ubuntu
 
@@ -101,13 +106,13 @@ RUN wget -q -P $HOME/downloads https://github.com/asdf-vm/asdf/releases/download
     && echo 'export PATH=${ASDF_DATA_DIR:-$HOME/.asdf}/shims:$PATH' >> $HOME/.profile \
     && rm $HOME/downloads/asdf $HOME/downloads/asdf-v${ASDF_VERSION}-linux-${TARGETARCH}.tar.gz
 
-RUN bash -c "source $HOME/.profile && asdf plugin add erlang && asdf install erlang 28.5 && asdf set --home erlang 28.5"
-RUN bash -c "source $HOME/.profile && asdf plugin add elixir && asdf install elixir 1.19.5-otp-28 && asdf set --home elixir 1.19.5-otp-28"
+RUN bash -c "source $HOME/.profile && asdf plugin add erlang && asdf install erlang 29.0.2 && asdf set --home erlang 29.0.2"
+RUN bash -c "source $HOME/.profile && asdf plugin add elixir && asdf install elixir 1.20.1-otp-29 && asdf set --home elixir 1.20.1-otp-29"
 RUN echo "export HEX_HTTP_CONCURRENCY=1" >> $HOME/.profile && echo "export HEX_HTTP_TIMEOUT=120" >> $HOME/.profile
 # https://thrift.apache.org/lib/java.html
 RUN bash -c "source $HOME/.profile && asdf plugin add java && asdf install java corretto-25.0.3.9.1 && asdf set --home java corretto-25.0.3.9.1"
 # https://docs.gradle.org/current/userguide/compatibility.html
-RUN bash -c "source $HOME/.profile && asdf plugin add gradle && asdf install gradle 9.5.0 && asdf set --home gradle 9.5.0"
+RUN bash -c "source $HOME/.profile && asdf plugin add gradle && asdf install gradle 9.6.0 && asdf set --home gradle 9.6.0"
 RUN bash -c "source $HOME/.profile && asdf plugin add maven && asdf install maven latest && asdf set --home maven latest"
 
 RUN bash -c "source $HOME/.profile && asdf plugin add golang && asdf install golang latest && asdf set --home golang latest"
@@ -128,8 +133,7 @@ RUN bash -c "source $HOME/.profile && asdf plugin add kotlin && asdf install kot
 RUN bash -c "source $HOME/.profile && asdf plugin add nodejs && asdf install nodejs latest && asdf set --home nodejs latest"
 RUN bash -c "source $HOME/.profile && npm install -g yarn"
 
-# TODO latest
-RUN bash -c "source $HOME/.profile && asdf plugin add ruby && asdf install ruby 4.0.3 && asdf set --home ruby 4.0.3"
+RUN bash -c "source $HOME/.profile && asdf plugin add ruby && asdf install ruby latest && asdf set --home ruby latest"
 RUN bash -c "source $HOME/.profile && gem install bundler"
 
 RUN bash -c "source $HOME/.profile && asdf plugin add python && asdf install python latest && asdf set --home python latest"
@@ -147,7 +151,7 @@ RUN echo 'export VCPKG_DISABLE_METRICS=1' >> $HOME/.profile
 # https://github.com/aparo/opensearch-analysis-ik?tab=readme-ov-file#install
 # https://github.com/aparo/opensearch-analysis-stconvert?tab=readme-ov-file#installation
 # https://github.com/aparo/opensearch-analysis-pinyin?tab=readme-ov-file#installation
-ENV OPENSEARCH_VERSION "3.0.0"
+ENV OPENSEARCH_VERSION="3.0.0"
 RUN if [ "$TARGETARCH" = "amd64" ]; then \
         wget -q -O $HOME/downloads/opensearch-${OPENSEARCH_VERSION}-linux-${TARGETARCH}.tar.gz https://artifacts.opensearch.org/releases/bundle/opensearch/${OPENSEARCH_VERSION}/opensearch-${OPENSEARCH_VERSION}-linux-x64.tar.gz; \
     elif [ "$TARGETARCH" = "arm64" ]; then \
@@ -180,7 +184,7 @@ RUN echo 'loopback_users = none' | sudo tee -a /etc/rabbitmq/rabbitmq.conf \
     && sudo rabbitmq-plugins enable rabbitmq_stream \
     && sudo rabbitmq-plugins enable rabbitmq_shovel rabbitmq_shovel_management
 
-RUN chown www-data /var/log/nginx
+RUN sudo chown www-data:www-data /var/log/nginx
 
 RUN sudo sed -i 's/memory_limit =.*/memory_limit = 1G/' /etc/php/8.5/fpm/php.ini && sudo sed -i 's/^listen = .*/listen = 0.0.0.0:9000/' /etc/php/8.5/fpm/pool.d/www.conf
 
