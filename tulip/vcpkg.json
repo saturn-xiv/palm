@@ -22,6 +22,7 @@
     { "name": "soci", "features": ["boost", "postgresql"] },
     { "name": "redis-plus-plus", "features": ["cxx17"] },
     "librabbitmq",
+    { "name": "protobuf", "features": ["libprotoc"] },
     { "name": "grpc", "features": ["codegen"] },
 
     "catch2"

@@ -2,6 +2,9 @@
 
 set -e
 
+export VCPKG_DEFAULT_BINARY_CACHE=$PWD/.cache
+mkdir -p $VCPKG_DEFAULT_BINARY_CACHE
+
 declare -a targets=("x86_64" "aarch64" "riscv64")
 for i in "${targets[@]}"
 do

@@ -3,8 +3,8 @@
 ## Usage
 
 ```bash
-$ ./tulip/docker/run.sh
-> cd /workspace/tulip/
+$ ./docker/autumn/run.sh
+> cd /srv/tulip/
 > ./scripts/build.sh
 ```
 
