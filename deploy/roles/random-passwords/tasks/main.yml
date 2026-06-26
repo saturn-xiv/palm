@@ -1,8 +1,14 @@
 - name: Reset root password
   become: true
-  shell: echo "root:$(pwgen 32 1)" | chpasswd
+  ansible.builtin.shell: set -o pipefail && echo "root:$(pwgen 32 1)" | chpasswd
+  args:
+    executable: /usr/bin/bash
+  changed_when: false
 
-- name: Reset {{ ansible_user }} password
+- name: Reset current user's password
   become: true
-  shell: echo "{{ ansible_user }}:$(pwgen 32 1)" | chpasswd
+  ansible.builtin.shell: set -o pipefail && echo "{{ ansible_user }}:$(pwgen 32 1)" | chpasswd
+  args:
+    executable: /usr/bin/bash
+  changed_when: false
   when: ansible_user != 'root'

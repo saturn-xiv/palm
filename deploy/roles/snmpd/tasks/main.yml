@@ -1,4 +1,4 @@
-- name: Install dependicy packages
+- name: Install dependencies packages
   become: true
   ansible.builtin.apt:
     pkg:
