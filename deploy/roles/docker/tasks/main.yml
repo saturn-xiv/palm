@@ -25,7 +25,9 @@
 - name: Download kubernetes-apt-keyring.gpg
   become: true
   ansible.builtin.shell:
-    cmd: curl -fsSL https://pkgs.k8s.io/core:/stable:/{{ app_kubernetes_version }}/deb/Release.key | gpg --dearmor --yes -o /etc/apt/keyrings/kubernetes-apt-keyring.gpg
+    # yamllint disable rule:line-length
+    cmd: set -o pipefail && curl -fsSL https://pkgs.k8s.io/core:/stable:/{{ app_kubernetes_version }}/deb/Release.key | gpg --dearmor --yes -o /etc/apt/keyrings/kubernetes-apt-keyring.gpg
+  changed_when: false
 
 - name: Upload kubernetes.list
   become: true

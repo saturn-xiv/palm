@@ -52,6 +52,7 @@
     state: present
     line: "fs.file-max = 6815744"
     create: true
+    mode: "0644"
 
 - name: Setup file max
   become: true
@@ -60,6 +61,7 @@
     state: present
     line: "fs.inotify.max_user_watches = 512000"
     create: true
+    mode: "0644"
 
 - name: Setup vm max map count
   become: true
@@ -68,6 +70,7 @@
     state: present
     line: "vm.max_map_count = 262144"
     create: true
+    mode: "0644"
 
 - name: Setup vm over commit memory
   become: true
@@ -76,3 +79,4 @@
     state: present
     line: "vm.overcommit_memory = 1"
     create: true
+    mode: "0644"

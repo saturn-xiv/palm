@@ -1,6 +1,9 @@
-- include_tasks: init.yml
-- include_tasks: sshd.yml
-- include_tasks: ulimits.yml
+- name: Init system
+  ansible.builtin.include_tasks: init.yml
+- name: Setup sshd
+  ansible.builtin.include_tasks: sshd.yml
+- name: Setup fs ulimits
+  ansible.builtin.include_tasks: ulimits.yml
 
 - name: Update system
   become: true
@@ -12,8 +15,7 @@
 - name: Update all packages to their latest version
   become: true
   ansible.builtin.apt:
-    name: "*"
-    state: latest
+    upgrade: dist
   when: ansible_facts.distribution == 'Ubuntu' or ansible_facts.distribution == 'Kylin'
 
 - name: Install dependency packages
@@ -26,9 +28,10 @@
       - tmux
   when: ansible_facts.distribution == 'Ubuntu' or ansible_facts.distribution == 'Kylin'
 
-- name: Set timezone
+- name: Setup timezone
   become: true
-  ansible.builtin.shell: timedatectl set-timezone UTC
+  ansible.builtin.command: timedatectl set-timezone UTC
+  changed_when: false
 
 - name: Setup journald storage
   become: true

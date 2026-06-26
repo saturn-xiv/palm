@@ -1,4 +1,4 @@
-- name: disable autologin for ttyAMA0
+- name: Disable autologin for ttyAMA0
   become: true
   ansible.builtin.replace:
     path: /etc/systemd/system/serial-getty@ttyAMA0.service.d/autologin.conf
@@ -6,7 +6,7 @@
     replace: " "
     backup: true
 
-- name: disable autologin for tty1
+- name: Disable autologin for tty1
   become: true
   ansible.builtin.replace:
     path: /etc/systemd/system/getty@tty1.service.d/autologin.conf
@@ -14,7 +14,7 @@
     replace: " "
     backup: true
 
-- name: disable autologin for ttyS0
+- name: Disable autologin for ttyS0
   become: true
   ansible.builtin.replace:
     path: /etc/systemd/system/serial-getty@ttyS0.service.d/autologin.conf
@@ -22,7 +22,7 @@
     replace: " "
     backup: true
 
-- name: disable autologin for ttySAC0
+- name: Disable autologin for ttySAC0
   become: true
   ansible.builtin.replace:
     path: /etc/systemd/system/serial-getty@ttySAC0.service.d/autologin.conf

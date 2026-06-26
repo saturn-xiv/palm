@@ -1,12 +1,12 @@
-- name: Install dependicy packages
+- name: Install dependencies packages
   become: true
-  apt:
+  ansible.builtin.apt:
     pkg:
       - espeak-ng
 
 # --------------------------------------------
 
-- name: enable option 72 for dhclient
+- name: Enable option 72 for dhclient
   become: true
   ansible.builtin.lineinfile:
     path: /etc/dhcp/dhclient.conf
@@ -15,17 +15,18 @@
 
 # --------------------------------------------
 
-- name: delete /etc/systemd/network
+- name: Delete /etc/systemd/network
   become: true
   ansible.builtin.file:
     path: /etc/systemd/network
     state: absent
 
-- name: create /etc/systemd/network
+- name: Create /etc/systemd/network folder
   become: true
   ansible.builtin.file:
     path: /etc/systemd/network
     state: directory
+    mode: "0755"
 
 - name: Create a symbolic link
   become: true
@@ -34,57 +35,57 @@
     dest: /etc/resolv.conf
     state: link
 
-- name: disable dnsmasq service
+- name: Disable dnsmasq service
   become: true
   ansible.builtin.systemd:
     name: dnsmasq
-    enabled: no
-    masked: yes
+    enabled: false
+    masked: true
 
-- name: disable NetworkManager service
+- name: Disable NetworkManager service
   become: true
   ansible.builtin.systemd:
     name: NetworkManager
-    enabled: no
-    masked: yes
+    enabled: false
+    masked: true
 
-- name: enable systemd-networkd service
+- name: Enable systemd-networkd service
   become: true
   ansible.builtin.systemd:
     name: systemd-networkd
-    enabled: yes
-    masked: no
+    enabled: true
+    masked: false
 
-- name: enable systemd-resolved service
+- name: Enable systemd-resolved service
   become: true
   ansible.builtin.systemd:
     name: systemd-resolved
-    enabled: yes
-    masked: no
+    enabled: true
+    masked: false
 
-- name: enable wpa_supplicant@wlan0service
+- name: Enable wpa_supplicant@wlan0service
   become: true
   ansible.builtin.systemd:
     name: wpa_supplicant@wlan0
-    enabled: yes
-    masked: no
+    enabled: true
+    masked: false
 
-- name: enable openvpn@client service
+- name: Enable openvpn@client service
   become: true
   ansible.builtin.systemd:
     name: openvpn@client
-    enabled: yes
-    masked: no
+    enabled: true
+    masked: false
 
-- name: Reboot
-  become: true
-  reboot:
-    reboot_timeout: 120
-
-- name: enable pulseaudio service
+- name: Enable pulseaudio service
   become: true
   ansible.builtin.systemd:
     name: pulseaudio
-    enabled: yes
-    masked: no
+    enabled: true
+    masked: false
     scope: user
+
+- name: Reboot
+  become: true
+  ansible.builtin.reboot:
+    reboot_timeout: 120
