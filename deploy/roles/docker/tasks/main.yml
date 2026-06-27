@@ -1,6 +1,14 @@
 # https://docs.docker.com/engine/install/ubuntu/
 # https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/install-kubeadm/
 
+- name: Set apt proxy
+  become: true
+  ansible.builtin.template:
+    src: apt-proxy.conf.j2
+    dest: /etc/apt/apt.conf.d/01-proxy.conf
+    mode: "0644"
+  when: app_http_proxy is defined
+
 - name: Create apt keys folder
   become: true
   ansible.builtin.file:
@@ -67,18 +75,34 @@
 
 - name: Change the default Docker storage location
   become: true
-  ansible.builtin.copy:
-    src: daemon.json
+  ansible.builtin.template:
+    src: docker-daemon.json.j2
     dest: /etc/docker/daemon.json
     mode: "0644"
-
-- name: Change the default Docker cache location
-  become: true
-  ansible.builtin.lineinfile:
-    path: /etc/containerd/config.toml
-    regexp: "^#root ="
-    line: 'root = "/srv/.containerd"'
     backup: true
+
+- name: Change the default container storage location
+  become: true
+  ansible.builtin.template:
+    src: container-config.toml.j2
+    dest: /etc/containerd/config.toml
+    mode: "0644"
+    backup: true
+
+- name: Change the default Docker storage location
+  become: true
+  ansible.builtin.copy:
+    src: cilium.conflist
+    dest: /etc/cni/net.d/05-cilium.conflist
+    mode: "0644"
+
+- name: Set containerd proxy
+  become: true
+  ansible.builtin.template:
+    src: containerd-proxy.conf.j2
+    dest: /etc/systemd/system/containerd.service.d/http-proxy.conf
+    mode: "0644"
+  when: app_http_proxy is defined
 
 # https://kubernetes.io/docs/setup/production-environment/container-runtimes/#prerequisite-ipv4-forwarding-optional
 - name: Enable IPv4 packet forwarding

@@ -1,0 +1,11 @@
+disabled_plugins = []
+root = "{{ app_containerd_root }}"
+
+[grpc]
+address = "/run/containerd/containerd.sock"
+uid = 0
+gid = {{ app_containerd_gid }}
+
+[plugins.'io.containerd.cri.v1.runtime'.containerd.runtimes.runc]
+[plugins.'io.containerd.cri.v1.runtime'.containerd.runtimes.runc.options]
+SystemdCgroup = true
