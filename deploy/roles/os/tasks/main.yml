@@ -11,7 +11,7 @@
     src: apt-proxy.conf.j2
     dest: /etc/apt/apt.conf.d/01-proxy.conf
     mode: "0644"
-  when: ansible_facts.distribution == 'Ubuntu' and ansible_env.http_proxy is defined
+  when: ansible_facts.distribution == 'Ubuntu' and ansible_facts.env.http_proxy is defined
 
 - name: Update system
   become: true

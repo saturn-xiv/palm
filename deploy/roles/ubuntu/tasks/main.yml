@@ -1,8 +1,8 @@
-- name: Add PPA for Ubuntu Toolchain
-  become: true
-  ansible.builtin.apt_repository:
-    repo: ppa:ubuntu-toolchain-r/ppa
-  when: ansible_facts.distribution == 'Ubuntu'
+# - name: Add PPA for Ubuntu Toolchain
+#   become: true
+#   ansible.builtin.apt_repository:
+#     repo: ppa:ubuntu-toolchain-r/ppa
+#   when: ansible_facts.distribution == 'Ubuntu'
 
 - name: Install dependicy packages
   become: true
@@ -39,7 +39,6 @@
       - git
       - pwgen
       - locales
-      - ntpdate
       - imagemagick
       - mpg123
       - ffmpeg
