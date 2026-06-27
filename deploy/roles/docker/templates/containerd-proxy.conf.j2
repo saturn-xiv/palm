@@ -1,4 +1,4 @@
 [Service]
-Environment="HTTP_PROXY={{ app_http_proxy }}"
-Environment="HTTPS_PROXY={{ app_https_proxy }}"
-Environment="NO_PROXY={{ app_no_proxy }}"
+Environment="HTTP_PROXY={{ ansible_env.http_proxy }}"
+Environment="HTTPS_PROXY={{ ansible_env.https_proxy }}"
+Environment="NO_PROXY={{ ansible_env.no_proxy }}"
