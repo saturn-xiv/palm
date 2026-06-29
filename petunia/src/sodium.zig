@@ -6,6 +6,7 @@ const c = @cImport({
     @cInclude("stdlib.h");
     @cInclude("sodium.h");
 });
+const base64 = @import("base64.zig");
 
 pub const Error = error{
     LibsodiumInit,
@@ -69,12 +70,14 @@ pub const SecretBox = struct {
 };
 
 pub fn init() !void {
-    if (c.sodium_init() != c.EXIT_SUCCESS) {
+    if (c.sodium_init() < 0) {
         return Error.LibsodiumInit;
     }
 }
 
 test "libsodium random bytes" {
+    try init();
+
     const allocator = std.testing.allocator;
 
     const len = 32;
@@ -89,6 +92,8 @@ test "libsodium random bytes" {
 }
 
 test "libsodium password hashing" {
+    try init();
+
     const allocator = std.testing.allocator;
     const password = "Hello, Palm!";
     for (1..3) |i| {
@@ -97,17 +102,16 @@ test "libsodium password hashing" {
         try std.testing.expect(hashed.len == c.crypto_pwhash_STRBYTES);
 
         {
-            const len = std.base64.standard.Encoder.calcSize(hashed.len);
-            const str = try allocator.alloc(u8, len);
+            const str = try base64.encode(allocator, hashed);
             defer allocator.free(str);
-
-            const rst = std.base64.standard.Encoder.encode(str, hashed);
-            std.debug.print("hash password({}, {}): {s}\n", .{ i, hashed.len, rst });
+            std.debug.print("hash password({}, {}): {s}\n", .{ i, hashed.len, str });
         }
     }
 }
 
 test "libsodium encrypt data" {
+    try init();
+
     const allocator = std.testing.allocator;
     const plain = "Hello, Palm!";
 
@@ -123,12 +127,9 @@ test "libsodium encrypt data" {
         defer allocator.free(cipher.@"1");
 
         {
-            const len = std.base64.standard.Encoder.calcSize(cipher.@"0".len);
-            const str = try allocator.alloc(u8, len);
+            const str = try base64.encode(allocator, cipher.@"0");
             defer allocator.free(str);
-
-            const rst = std.base64.standard.Encoder.encode(str, cipher.@"0");
-            std.debug.print("encrypt({}, {}): {s}\n", .{ i, cipher.@"0".len, rst });
+            std.debug.print("encrypt({}, {}): {s}\n", .{ i, cipher.@"0".len, str });
         }
     }
 }
