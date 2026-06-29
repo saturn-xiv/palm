@@ -1,53 +1,37 @@
 const std = @import("std");
+const Io = std.Io;
+
 const petunia = @import("petunia");
-const config = @import("config");
-const third = @cImport({
-    @cInclude("time.h");
-});
 
-pub fn main() !void {
-    log_level = .debug;
-    try petunia.init();
-
-    // Prints to stderr, ignoring potential errors.
+pub fn main(init: std.process.Init) !void {
+    // Prints to stderr, unbuffered, ignoring potential errors.
     std.debug.print("All your {s} are belong to us.\n", .{"codebase"});
-    std.debug.print("version: {s}, sqlite3: {s}\n", .{ config.version, petunia.third.SQLITE_VERSION });
-    try petunia.bufferedPrint();
-}
 
-pub const std_options: std.Options = .{
-    .logFn = init_logger,
-};
+    // This is appropriate for anything that lives as long as the process.
+    const arena: std.mem.Allocator = init.arena.allocator();
 
-var log_level: std.log.Level = .debug;
-
-fn init_logger(
-    comptime level: std.log.Level,
-    comptime scope: @TypeOf(.enum_literal),
-    comptime format: []const u8,
-    args: anytype,
-) void {
-    if (@intFromEnum(level) <= @intFromEnum(log_level)) {
-        std.log.defaultLog(level, scope, format, args);
+    // Accessing command line arguments:
+    const args = try init.minimal.args.toSlice(arena);
+    for (args) |arg| {
+        std.log.info("arg: {s}", .{arg});
     }
 
-    // const level_txt = comptime level.asText();
-    // const prefix = if (scope == .default) ": " else "(" ++ @tagName(scope) ++ "): ";
+    // In order to do I/O operations need an `Io` instance.
+    const io = init.io;
 
-    // // const ts = std.time.milliTimestamp();
-    // const now: third.time_t = third.time(null);
-    // // const now_str = third.ctime(&now);
-    // const time_info = third.localtime(&now);
-    // var buf: [64]u8 = undefined;
-    // const len = third.strftime(&buf, buf.len, "%Y-%m-%d %H:%M:%S", time_info);
+    // Stdout is for the actual output of your application, for example if you
+    // are implementing gzip, then only the compressed bytes should be sent to
+    // stdout, not any debugging messages.
+    var stdout_buffer: [1024]u8 = undefined;
+    var stdout_file_writer: Io.File.Writer = .init(.stdout(), io, &stdout_buffer);
+    const stdout_writer = &stdout_file_writer.interface;
 
-    // nosuspend std.debug.print("[{s}] {s}{s}", .{ petunia.now(), level_txt, prefix });
-    // nosuspend std.debug.print(format ++ "\n", args);
+    try petunia.printAnotherMessage(stdout_writer);
+
+    try stdout_writer.flush(); // Don't forget to flush!
 }
 
 test "simple test" {
-    std.debug.print("version: {s}\n", .{"123"});
-
     const gpa = std.testing.allocator;
     var list: std.ArrayList(i32) = .empty;
     defer list.deinit(gpa); // Try commenting this out and see if zig detects the memory leak!
@@ -56,12 +40,32 @@ test "simple test" {
 }
 
 test "fuzz example" {
-    const Context = struct {
-        fn testOne(context: @This(), input: []const u8) anyerror!void {
-            _ = context;
-            // Try passing `--fuzz` to `zig build test` and see if it manages to fail this test case!
-            try std.testing.expect(!std.mem.eql(u8, "canyoufindme", input));
-        }
+    try std.testing.fuzz({}, testOne, .{});
+}
+
+fn testOne(context: void, smith: *std.testing.Smith) !void {
+    _ = context;
+    // Try passing `--fuzz` to `zig build test` and see if it manages to fail this test case!
+
+    const gpa = std.testing.allocator;
+    var list: std.ArrayList(u8) = .empty;
+    defer list.deinit(gpa);
+    while (!smith.eos()) switch (smith.value(enum { add_data, dup_data })) {
+        .add_data => {
+            const slice = try list.addManyAsSlice(gpa, smith.value(u4));
+            smith.bytes(slice);
+        },
+        .dup_data => {
+            if (list.items.len == 0) continue;
+            if (list.items.len > std.math.maxInt(u32)) return error.SkipZigTest;
+            const len = smith.valueRangeAtMost(u32, 1, @min(32, list.items.len));
+            const off = smith.valueRangeAtMost(u32, 0, @intCast(list.items.len - len));
+            try list.appendSlice(gpa, list.items[off..][0..len]);
+            try std.testing.expectEqualSlices(
+                u8,
+                list.items[off..][0..len],
+                list.items[list.items.len - len ..],
+            );
+        },
     };
-    try std.testing.fuzz(Context{}, Context.testOne, .{});
 }
