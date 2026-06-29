@@ -8,8 +8,8 @@ const c = @cImport({
 });
 
 pub const Error = error{
-    LogInit,
-    LogGetCategory,
+    ZlogInit,
+    ZlogGetCategory,
 };
 
 pub fn debug(allocator: std.mem.Allocator, category: *c.zlog_category_t, comptime fmt: []const u8, args: anytype) !void {
@@ -29,24 +29,21 @@ fn log(allocator: std.mem.Allocator, category: *c.zlog_category_t, level: c_int,
     const buf = try std.fmt.allocPrint(allocator, fmt, args);
     defer allocator.free(buf);
 
-    const it = try allocator.dupeZ(u8, buf);
-    defer allocator.free(it);
-    // c.zlog_info(category, it);
-    c.zlog(category, "", 0, "", 0, 0, level, it.ptr);
+    c.zlog(category, "", 0, "", 0, 0, level, buf.ptr);
 }
 
 pub fn get_category(allocator: std.mem.Allocator, name: []const u8) !*c.zlog_category_t {
     const it = try allocator.dupeZ(u8, name);
     defer allocator.free(it);
 
-    const rc = c.zlog_get_category(it.ptr) orelse return Error.LogGetCategory;
+    const rc = c.zlog_get_category(it.ptr) orelse return Error.ZlogGetCategory;
     return rc;
 }
 
 pub fn init() !void {
     const rc = c.zlog_init("zlog.conf");
     if (rc != c.EXIT_SUCCESS) {
-        return Error.LogInit;
+        return Error.ZlogInit;
     }
 }
 

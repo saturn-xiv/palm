@@ -12,6 +12,7 @@ pub const rabbitmq = @import("rabbitmq.zig");
 pub const minio = @import("minio.zig");
 pub const http = @import("http.zig");
 pub const logging = @import("logging.zig");
+pub const sodium = @import("sodium.zig");
 
 test {
     std.testing.refAllDecls(@This());

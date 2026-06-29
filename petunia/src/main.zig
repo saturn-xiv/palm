@@ -6,6 +6,7 @@ const petunia = @import("petunia");
 pub fn main(init: std.process.Init) !void {
     const allocator: std.mem.Allocator = init.arena.allocator();
 
+    try petunia.sodium.init();
     try petunia.logging.init();
     defer petunia.logging.release();
 

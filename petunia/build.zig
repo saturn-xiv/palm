@@ -39,6 +39,7 @@ pub fn build(b: *std.Build) void {
         // Later on we'll use this module as the root module of a test executable
         // which requires us to specify a target.
         .target = target,
+        .link_libc = true,
     });
 
     // Here we define an executable. An executable needs to have a root module
@@ -80,7 +81,6 @@ pub fn build(b: *std.Build) void {
                 // importing modules from different packages).
                 .{ .name = "petunia", .module = mod },
             },
-            .link_libc = true,
         }),
     });
 
@@ -92,15 +92,15 @@ pub fn build(b: *std.Build) void {
         exe.root_module.strip = true;
     }
     {
-        const libraries = [_][]const u8{ "zlog", "rabbitmq" };
+        const libraries = [_][]const u8{ "zlog", "sodium", "rabbitmq" };
         for (libraries) |it| {
-            exe.root_module.linkSystemLibrary(it, .{ .preferred_link_mode = .static });
+            mod.linkSystemLibrary(it, .{ .preferred_link_mode = .static });
         }
     }
     {
         const libraries = [_][]const u8{ "ssl", "crypto", "curl", "pq", "mysqlclient", "sqlite3", "hiredis" };
         for (libraries) |it| {
-            exe.root_module.linkSystemLibrary(it, .{});
+            mod.linkSystemLibrary(it, .{});
         }
     }
     {
