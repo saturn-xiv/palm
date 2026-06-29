@@ -80,6 +80,7 @@ pub fn build(b: *std.Build) void {
                 // importing modules from different packages).
                 .{ .name = "petunia", .module = mod },
             },
+            .link_libc = true,
         }),
     });
 
@@ -89,6 +90,39 @@ pub fn build(b: *std.Build) void {
     exe.root_module.addOptions("config", options);
     if (optimize != .Debug) {
         exe.root_module.strip = true;
+    }
+    {
+        const libraries = [_][]const u8{ "zlog", "rabbitmq" };
+        for (libraries) |it| {
+            exe.root_module.linkSystemLibrary(it, .{ .preferred_link_mode = .static });
+        }
+    }
+    {
+        const libraries = [_][]const u8{ "ssl", "crypto", "curl", "pq", "mysqlclient", "sqlite3", "hiredis" };
+        for (libraries) |it| {
+            exe.root_module.linkSystemLibrary(it, .{});
+        }
+    }
+    {
+        // const includes = [_][]const u8{
+        //     "vendors/facil.io/lib/facil",
+        //     "vendors/facil.io/lib/facil/tls",
+        //     "vendors/facil.io/lib/facil/fiobj",
+        //     "vendors/facil.io/lib/facil/cli",
+        //     "vendors/facil.io/lib/facil/http",
+        //     "vendors/facil.io/lib/facil/http/parsers",
+        //     "vendors/facil.io/lib/facil/redis",
+        // };
+        // const sources = [_][]const u8{ "vendors/facil.io/lib/facil/fio.c", "vendors/facil.io/lib/facil/tls/fio_tls_missing.c", "vendors/facil.io/lib/facil/tls/fio_tls_openssl.c", "vendors/facil.io/lib/facil/fiobj/fio_siphash.c", "vendors/facil.io/lib/facil/fiobj/fiobj_ary.c", "vendors/facil.io/lib/facil/fiobj/fiobj_data.c", "vendors/facil.io/lib/facil/fiobj/fiobj_hash.c", "vendors/facil.io/lib/facil/fiobj/fiobj_json.c", "vendors/facil.io/lib/facil/fiobj/fiobj_mustache.c", "vendors/facil.io/lib/facil/fiobj/fiobj_numbers.c", "vendors/facil.io/lib/facil/fiobj/fiobj_str.c", "vendors/facil.io/lib/facil/fiobj/fiobject.c", "vendors/facil.io/lib/facil/cli/fio_cli.c", "vendors/facil.io/lib/facil/http/http.c", "vendors/facil.io/lib/facil/http/http1.c", "vendors/facil.io/lib/facil/http/http_internal.c", "vendors/facil.io/lib/facil/http/websockets.c", "vendors/facil.io/lib/facil/redis/redis_engine.c" };
+        // for (includes) |it| {
+        //     exe.addIncludePath(b.path(it));
+        // }
+        // for (sources) |it| {
+        //     exe.addCSourceFile(.{ .file = b.path(it), .flags = &[_][]const u8{
+        //         "-std=c99",
+        //         "-O2",
+        //     } });
+        // }
     }
 
     // This declares intent for the executable to be installed into the

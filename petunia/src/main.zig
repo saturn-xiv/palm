@@ -3,9 +3,15 @@ const std = @import("std");
 const petunia = @import("petunia");
 
 pub fn main(init: std.process.Init) !void {
-    const arena: std.mem.Allocator = init.arena.allocator();
+    const allocator: std.mem.Allocator = init.arena.allocator();
 
-    const args = try init.minimal.args.toSlice(arena);
+    try petunia.logging.init();
+    defer petunia.logging.release();
+
+    const logger = try petunia.logging.get_category(allocator, "petunia");
+    try petunia.logging.debug(allocator, logger, "run on debug mode", .{});
+
+    const args = try init.minimal.args.toSlice(allocator);
     for (args) |arg| {
         std.log.info("arg: {s}", .{arg});
     }
