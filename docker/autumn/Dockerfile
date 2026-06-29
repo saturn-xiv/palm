@@ -139,7 +139,7 @@ RUN bash -c "source $HOME/.profile && gem install bundler"
 RUN bash -c "source $HOME/.profile && asdf plugin add python && asdf install python latest && asdf set --home python latest"
 RUN bash -c "source $HOME/.profile && pip install --upgrade pip && pip install cmake ninja"
 
-RUN bash -c "source $HOME/.profile && asdf plugin add zig && asdf install zig latest && asdf set --home zig latest"
+RUN bash -c "source $HOME/.profile && cd ~/ && asdf plugin add zig && asdf install zig latest && asdf set --home zig latest"
 
 
 # https://xmake.io/guide/quick-start.html
