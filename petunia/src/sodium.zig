@@ -102,7 +102,7 @@ test "libsodium password hashing" {
         try std.testing.expect(hashed.len == c.crypto_pwhash_STRBYTES);
 
         {
-            const str = try base64.encode(allocator, hashed);
+            const str = try base64.UrlSafeNoPadding.encode(allocator, hashed);
             defer allocator.free(str);
             std.debug.print("hash password({}, {}): {s}\n", .{ i, hashed.len, str });
         }
@@ -127,7 +127,7 @@ test "libsodium encrypt data" {
         defer allocator.free(cipher.@"1");
 
         {
-            const str = try base64.encode(allocator, cipher.@"0");
+            const str = try base64.UrlSafeNoPadding.encode(allocator, cipher.@"0");
             defer allocator.free(str);
             std.debug.print("encrypt({}, {}): {s}\n", .{ i, cipher.@"0".len, str });
         }
