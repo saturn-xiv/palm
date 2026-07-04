@@ -1,5 +1,6 @@
 #include "loquat/application.hpp"
 #include "loquat/env.hpp"
+#include "loquat/erlang.hpp"
 #include "loquat/version.hpp"
 
 #include <openssl/opensslv.h>
@@ -23,15 +24,15 @@ void loquat::Application::launch(int argc, char** argv) const {
   {
     node_command.add_argument("-p", "--port")
         .default_value(9999)
-        .scan<'i', int>()
-        .required(true);
+        .required()
+        .scan<'i', int>();
     node_command.add_argument("-n", "--nodename")
         .default_value(loquat::PROJECT_NAME)
-        .help("Erlang node name")
-        .required(true);
+        .required()
+        .help("Erlang node name");
     node_command.add_argument("-c", "--cookie")
-        .help("a secret cookie string")
-        .required(true);
+        .required()
+        .help("a secret cookie string");
   }
 
   program.add_subparser(node_command);
@@ -69,10 +70,10 @@ void loquat::Application::launch(int argc, char** argv) const {
 
   if (program.is_subcommand_used(node_command)) {
     const int port = node_command.get<int>("--port");
-    const std::string cookie = rpc_command.get<std::string>("--cookie");
-    const std::string nodename = rpc_command.get<std::string>("--nodename");
+    const std::string cookie = node_command.get<std::string>("--cookie");
+    const std::string nodename = node_command.get<std::string>("--nodename");
 
-    loquat::application::start_erlang_c_node(nodename, cookie,
-                                             static_cast<uint16_t>(port));
+    loquat::erlang::CNode node(nodename, cookie, static_cast<uint16_t>(port));
+    node.run();
   }
 }

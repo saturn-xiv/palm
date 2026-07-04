@@ -23,12 +23,7 @@ string(TIMESTAMP BUILD_TIME UTC)
 configure_file(include/loquat/version.h.in ${PROJECT_SOURCE_DIR}/include/loquat/version.hpp)
 
 # --------------------------------------------------------
-
 find_package(OpenSSL REQUIRED)
-
-find_package(PkgConfig REQUIRED)
-pkg_check_modules(LIBEVENT REQUIRED libevent)
-
 # --------------------------------------------------------
 
 # https://github.com/tink-crypto/tink-cc
@@ -49,7 +44,7 @@ FetchContent_Declare(argparse
   GIT_TAG         "v3.2"
 )
 
-FetchContent_MakeAvailable(argparse spdlog inja thrift tink)
+FetchContent_MakeAvailable(argparse spdlog tink)
 # --------------------------------------------------------
 file(GLOB SOURCE_LIST CONFIGURE_DEPENDS "${CMAKE_CURRENT_SOURCE_DIR}/src/*.cpp")
 
