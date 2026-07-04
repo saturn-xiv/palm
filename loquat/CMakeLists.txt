@@ -37,18 +37,6 @@ FetchContent_Declare(tink
   GIT_TAG         "v2.7.0"
 )
 
-# https://github.com/apache/thrift
-FetchContent_Declare(thrift
-  GIT_REPOSITORY  "https://github.com/apache/thrift.git"
-  GIT_TAG         "v0.23.0"
-)
-
-# https://github.com/pantor/inja
-FetchContent_Declare(inja
-  GIT_REPOSITORY  "https://github.com/pantor/inja.git"
-  GIT_TAG         "v3.5.0"
-)
-
 # https://github.com/gabime/spdlog
 FetchContent_Declare(spdlog
   GIT_REPOSITORY  "https://github.com/gabime/spdlog.git"
@@ -60,15 +48,10 @@ FetchContent_Declare(argparse
   GIT_REPOSITORY  "https://github.com/p-ranav/argparse.git"
   GIT_TAG         "v3.2"
 )
+
 FetchContent_MakeAvailable(argparse spdlog inja thrift tink)
-
 # --------------------------------------------------------
-
-add_subdirectory(gourd)
-
-# --------------------------------------------------------
-
-file(GLOB SOURCE_LIST CONFIGURE_DEPENDS "${PROJECT_SOURCE_DIR}/src/*.cpp")
+file(GLOB SOURCE_LIST CONFIGURE_DEPENDS "${CMAKE_CURRENT_SOURCE_DIR}/src/*.cpp")
 
 add_executable(loquat ${SOURCE_LIST})
 set_target_properties(loquat PROPERTIES LINK_FLAGS_RELEASE -s)
@@ -77,14 +60,10 @@ target_link_options(loquat PRIVATE -static-libgcc -static-libstdc++)
 target_link_libraries(loquat ${OPENSSL_LIBRARIES}
   argparse::argparse
   spdlog::spdlog_header_only
-  pantor::inja
- 
-  tink::static tink::jwt::jwt_key_templates tink::jwt::jwt_mac tink::jwt::jwt_mac_config
-  thriftz thriftnb
+   
+  tink::static tink::jwt::jwt_key_templates tink::jwt::jwt_mac tink::jwt::jwt_mac_config  
 )
 
 target_include_directories(loquat PUBLIC
-  ${PROJECT_SOURCE_DIR}/include
+  ${CMAKE_CURRENT_SOURCE_DIR}/include
 )
-
-

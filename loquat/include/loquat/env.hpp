@@ -47,8 +47,6 @@
 
 namespace loquat {
 
-std::string thrift_version();
-
 class Keyset {
  public:
   Keyset(const std::string& name) : _name(name) {}
