@@ -106,13 +106,13 @@ RUN wget -q -P $HOME/downloads https://github.com/asdf-vm/asdf/releases/download
     && echo 'export PATH=${ASDF_DATA_DIR:-$HOME/.asdf}/shims:$PATH' >> $HOME/.profile \
     && rm $HOME/downloads/asdf $HOME/downloads/asdf-v${ASDF_VERSION}-linux-${TARGETARCH}.tar.gz
 
-RUN bash -c "source $HOME/.profile && asdf plugin add erlang && asdf install erlang 29.0.2 && asdf set --home erlang 29.0.2"
-RUN bash -c "source $HOME/.profile && asdf plugin add elixir && asdf install elixir 1.20.1-otp-29 && asdf set --home elixir 1.20.1-otp-29"
+RUN bash -c "source $HOME/.profile && asdf plugin add erlang && asdf install erlang 29.0.3 && asdf set --home erlang 29.0.3"
+RUN bash -c "source $HOME/.profile && asdf plugin add elixir && asdf install elixir 1.20.2-otp-29 && asdf set --home elixir 1.20.2-otp-29"
 RUN echo "export HEX_HTTP_CONCURRENCY=1" >> $HOME/.profile && echo "export HEX_HTTP_TIMEOUT=120" >> $HOME/.profile
 # https://thrift.apache.org/lib/java.html
 RUN bash -c "source $HOME/.profile && asdf plugin add java && asdf install java corretto-25.0.3.9.1 && asdf set --home java corretto-25.0.3.9.1"
 # https://docs.gradle.org/current/userguide/compatibility.html
-RUN bash -c "source $HOME/.profile && asdf plugin add gradle && asdf install gradle 9.6.0 && asdf set --home gradle 9.6.0"
+RUN bash -c "source $HOME/.profile && asdf plugin add gradle && asdf install gradle 9.6.1 && asdf set --home gradle 9.6.1"
 RUN bash -c "source $HOME/.profile && asdf plugin add maven && asdf install maven latest && asdf set --home maven latest"
 
 RUN bash -c "source $HOME/.profile && asdf plugin add golang && asdf install golang latest && asdf set --home golang latest"
