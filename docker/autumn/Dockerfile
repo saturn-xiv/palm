@@ -53,6 +53,7 @@ RUN echo "ubuntu:ubuntu" | chpasswd
 
 USER ubuntu
 
+RUN echo 'export LANG="en_US.UTF-8"' >> $HOME/.profile && echo 'export LANGUAGE="en_US.UTF-8"' >> $HOME/.profile
 RUN mkdir -p $HOME/local $HOME/tmp $HOME/downloads $HOME/build
 
 RUN git config --global core.quotepath false \
