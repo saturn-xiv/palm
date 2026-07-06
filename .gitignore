@@ -1,1 +1,4 @@
 .vscode/
+erl_crash.dump
+
+/tmp/

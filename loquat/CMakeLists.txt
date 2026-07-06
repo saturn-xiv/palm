@@ -51,8 +51,10 @@ file(GLOB SOURCE_LIST CONFIGURE_DEPENDS "${CMAKE_CURRENT_SOURCE_DIR}/src/*.cpp")
 add_executable(loquat ${SOURCE_LIST})
 set_target_properties(loquat PROPERTIES LINK_FLAGS_RELEASE -s)
 target_link_options(loquat PRIVATE -static-libgcc -static-libstdc++)
+# $(erl -noshell -eval 'io:format("~s~n", [code:root_dir()]), halt().')
+target_link_directories(loquat PRIVATE $ENV{HOME}/.asdf/installs/erlang/29.0.3/lib/erl_interface-5.8.1/lib)
 
-target_link_libraries(loquat ${OPENSSL_LIBRARIES}
+target_link_libraries(loquat ${OPENSSL_LIBRARIES} ei
   argparse::argparse
   spdlog::spdlog_header_only
    
@@ -61,4 +63,6 @@ target_link_libraries(loquat ${OPENSSL_LIBRARIES}
 
 target_include_directories(loquat PUBLIC
   ${CMAKE_CURRENT_SOURCE_DIR}/include
+
+  $ENV{HOME}/.asdf/installs/erlang/29.0.3/lib/erl_interface-5.8.1/include
 )

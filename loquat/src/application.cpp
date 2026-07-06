@@ -3,6 +3,8 @@
 #include "loquat/erlang.hpp"
 #include "loquat/version.hpp"
 
+#include <unistd.h>
+
 #include <openssl/opensslv.h>
 #include <tink/config/tink_config.h>
 #include <tink/jwt/jwt_mac_config.h>
@@ -12,6 +14,9 @@
 void loquat::Application::launch(int argc, char** argv) const {
   const std::string version =
       loquat::GIT_VERSION + "(" + loquat::BUILD_TIME + ")";
+  char hostname[HOST_NAME_MAX + 1];
+  gethostname(hostname, sizeof(hostname));
+
   argparse::ArgumentParser program(loquat::PROJECT_NAME, version);
   program.add_description(loquat::PROJECT_DESCRIPTION);
   program.add_epilog("https://github.com/saturn-xiv/palm");
@@ -20,14 +25,14 @@ void loquat::Application::launch(int argc, char** argv) const {
       .help("run on debug mode")
       .implicit_value(true);
 
-  argparse::ArgumentParser node_command("node");
+  argparse::ArgumentParser node_command("c-node");
   {
     node_command.add_argument("-p", "--port")
         .default_value(9999)
         .required()
         .scan<'i', int>();
     node_command.add_argument("-n", "--nodename")
-        .default_value(loquat::PROJECT_NAME)
+        .default_value(std::format("{}@{}", loquat::PROJECT_NAME, hostname))
         .required()
         .help("Erlang node name");
     node_command.add_argument("-c", "--cookie")

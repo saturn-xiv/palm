@@ -15,8 +15,9 @@ fi
 
 # ---------------------------------------------------------
 
-# apt install libboost-all-dev
 function build_loquat() {
+    sudo apt install -y libboost-all-dev
+
     local source_root=$WORK_DIR/loquat
     local build_root=$source_root/build/Release-$VERSION_CODENAME-$(uname -m)
     
