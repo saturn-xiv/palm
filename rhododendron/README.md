@@ -18,6 +18,12 @@ CREATE USER www WITH PASSWORD 'change-me';
 CREATE DATABASE rhododendron_dev WITH OWNER www ENCODING='UTF8';
 ```
 
+## Testing
+
+```bash
+mix test test/rhododendron/crypto_test.exs
+```
+
 ## Learn more
 
 - [Erl_Interface User's Guide](https://www.erlang.org/doc/apps/erl_interface/ei_users_guide.html)
