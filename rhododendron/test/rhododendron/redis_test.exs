@@ -3,8 +3,8 @@ defmodule Rhododendron.CacheTest do
 
   @doc """
   $ redis-cli -c -h 127.0.0.1 -p 6371
-  > get hi
-  > ttl hi
+  > get testing://hi
+  > ttl testing://hi
   """
   test "redis cluster" do
     {:ok, pong} = Rhododendron.Cache.ping()

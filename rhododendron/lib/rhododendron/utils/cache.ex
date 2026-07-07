@@ -1,10 +1,12 @@
 defmodule Rhododendron.Cache do
   # https://redix.hexdocs.pm/real-world-usage.html#name-based-pool
   def child_spec(_args) do
+    %{pool_size: pool_size, url: url} = config()
+
     children =
-      for i <- 0..(pool_size() - 1) do
+      for i <- 1..pool_size do
         Supervisor.child_spec(
-          {Redix.Cluster, nodes: ["redis://127.0.0.1:6371"], name: :"redis_#{i}"},
+          {Redix.Cluster, nodes: [url], name: :"redis_#{i}"},
           id: {Redix.Cluster, i}
         )
       end
@@ -19,11 +21,11 @@ defmodule Rhododendron.Cache do
   def set(key, value, ttl \\ Duration.new!(day: 1)) do
     val = :erlang.term_to_binary(value)
     ttl = div(to_timeout(ttl), 1000)
-    command(["SETEX", key, ttl, val])
+    command(["SETEX", key(key), ttl, val])
   end
 
   def get(key) do
-    {:ok, buf} = command(["GET", key])
+    {:ok, buf} = command(["GET", key(key)])
     :erlang.binary_to_term(buf, [:safe])
   end
 
@@ -36,14 +38,16 @@ defmodule Rhododendron.Cache do
   end
 
   defp command(command) do
-    Redix.Cluster.command(:"redis_#{random_index()}", command)
+    %{pool_size: pool_size} = config()
+    Redix.Cluster.command(:"redis_#{Enum.random(1..pool_size)}", command)
   end
 
-  defp random_index do
-    Enum.random(0..(pool_size() - 1))
+  defp key(s) do
+    %{namespace: namespace} = config()
+    "#{namespace}://#{s}"
   end
 
-  defp pool_size() do
-    32
+  defp config() do
+    Application.fetch_env!(:rhododendron, :redis)
   end
 end
