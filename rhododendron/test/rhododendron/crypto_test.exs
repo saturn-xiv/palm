@@ -10,16 +10,18 @@ defmodule Rhododendron.CryptoTest do
     assert 1 + 1 == 2
   end
 
-  test "hmac sha512" do
-    Enum.each(1..3, fn i ->
-      IO.puts("")
+  test "password hashing" do
+    Enum.each(1..3, fn _ ->
+      {:ok, hashed} = Rhododendron.PasswordHashing.sign(hi(), 16)
+      IO.puts("Argon2id('#{hi()}'): #{hashed}")
+      {:ok} = Rhododendron.PasswordHashing.verify(hashed, hi())
     end)
 
     assert 1 + 1 == 2
   end
 
   test "ssha512" do
-    Enum.each(1..3, fn i ->
+    Enum.each(1..3, fn _ ->
       hashed = Rhododendron.Ssha512.sign(hi(), 16)
       IO.puts("doveadm pw -t '#{hashed}' -p '#{hi()}'")
       {:ok} = Rhododendron.Ssha512.verify(hashed, hi())
