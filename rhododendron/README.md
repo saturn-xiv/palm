@@ -2,6 +2,12 @@
 
 ## Usage
 
+```bash
+git clone -b phoenix https://github.com/saturn-xiv/palm.git $HOME/workspace/palm
+cd $HOME/workspace/palm/
+./scripts/build.sh
+```
+
 To start your Phoenix server:
 
 - Run `mix setup` to install and setup dependencies

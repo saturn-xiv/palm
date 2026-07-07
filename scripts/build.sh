@@ -39,17 +39,35 @@ function build_rhododendron() {
     mix deps.get --only prod
     MIX_ENV=prod mix compile
     MIX_ENV=prod mix assets.deploy
-    mix phx.gen.release
-    MIX_ENV=prod mix release
+    MIX_ENV=prod mix phx.gen.release
+    MIX_ENV=prod mix release --overwrite
 
     cp -r _build/prod/rel/rhododendron $TARGET_DIR/$PACKAGE/
 }
 # ---------------------------------------------------------
 
-build_loquat
+if [ -f $TARGET_DIR/$PACKAGE.md5 ]
+then
+    echo "release $PACKAGE already exists."
+    exit 1
+fi
+
+if [ -f $TARGET_DIR/$PACKAGE.tar.xz ]
+then
+    rm $TARGET_DIR/$PACKAGE.tar.xz
+fi
+
+if [ -d $TARGET_DIR/$PACKAGE ]
+then
+    rm -r $TARGET_DIR/$PACKAGE
+fi
+
+mkdir -p $TARGET_DIR/$PACKAGE
+# build_loquat
 build_rhododendron
 
-XZ_OPT=-9 tar -cJf $WORK_DIR/$PACKAGE.tar.xz -C $WORK_DIR/$PACKAGE .
+XZ_OPT=-9 tar -cJf $TARGET_DIR/$PACKAGE.tar.xz -C $TARGET_DIR/$PACKAGE .
+md5sum $TARGET_DIR/$PACKAGE.tar.xz > $TARGET_DIR/$PACKAGE.md5
 
 echo "done($PACKAGE)."
 exit 0

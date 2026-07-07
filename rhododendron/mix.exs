@@ -4,7 +4,7 @@ defmodule Rhododendron.MixProject do
   def project do
     [
       app: :rhododendron,
-      version: "0.1.0",
+      version: "2026.7.6",
       elixir: "~> 1.15",
       elixirc_paths: elixirc_paths(Mix.env()),
       start_permanent: Mix.env() == :prod,
