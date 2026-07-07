@@ -8,6 +8,7 @@ defmodule Rhododendron.Application do
   @impl true
   def start(_type, _args) do
     children = [
+      Rhododendron.Cache,
       RhododendronWeb.Telemetry,
       Rhododendron.Repo,
       {DNSCluster, query: Application.get_env(:rhododendron, :dns_cluster_query) || :ignore},

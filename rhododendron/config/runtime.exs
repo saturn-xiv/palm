@@ -136,4 +136,11 @@ if config_env() == :prod do
       """
 
   config :rhododendron, secret_box_key: secret_box_key
+
+  config :rhododendron,
+    redis: %{
+      url: System.get_env("REDIS_URL") || "redis://127.0.0.1:6379",
+      namespace: System.get_env("REDIS_NAMESPACE") || "",
+      pool_size: 32
+    }
 end

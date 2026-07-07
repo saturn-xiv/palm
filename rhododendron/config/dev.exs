@@ -103,3 +103,6 @@ config :joken,
   ]
 
 config :rhododendron, secret_box_key: "gcKxNFBNR+soloCGakMjty99nKDuA+cHsLAhpVE9tlY="
+
+config :rhododendron,
+  redis: %{url: "redis://127.0.0.1:6371", namespace: "development", pool_size: 12}
