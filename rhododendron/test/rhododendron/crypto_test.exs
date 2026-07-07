@@ -2,9 +2,8 @@ defmodule Rhododendron.CryptoTest do
   use ExUnit.Case, async: true
 
   test "sha256" do
-    hi = "Hello, Palm!"
-    code = :crypto.hash(:sha256, hi) |> Base.encode64()
-    IO.puts("sha256(#{hi}): #{code}")
+    code = :crypto.hash(:sha256, hi()) |> Base.encode64()
+    IO.puts("sha256(#{hi()}): #{code}")
   end
 
   test "sha512" do
@@ -12,11 +11,19 @@ defmodule Rhododendron.CryptoTest do
   end
 
   test "hmac sha512" do
+    Enum.each(1..3, fn i ->
+      IO.puts("")
+    end)
+
     assert 1 + 1 == 2
   end
 
   test "ssha512" do
-    assert 1 + 1 == 2
+    Enum.each(1..3, fn i ->
+      hashed = Rhododendron.Ssha512.sign(hi(), 16)
+      IO.puts("doveadm pw -t '#{hashed}' -p '#{hi()}'")
+      {:ok} = Rhododendron.Ssha512.verify(hashed, hi())
+    end)
   end
 
   test "aes-gcm-256" do
@@ -38,5 +45,9 @@ defmodule Rhododendron.CryptoTest do
       assert url ==
                "https://gravatar.com/avatar/84059b07d4be67b806386c0aad8070a23f18836bbaae342275dc0a83414c32ee"
     end)
+  end
+
+  defp hi do
+    "Hello, Palm!"
   end
 end
