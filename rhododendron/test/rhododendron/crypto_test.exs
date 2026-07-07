@@ -30,8 +30,6 @@ defmodule Rhododendron.CryptoTest do
       IO.puts("Argon2id('#{hi()}'): #{hashed}")
       {:ok} = Rhododendron.PasswordHashing.verify(hashed, hi())
     end)
-
-    assert 1 + 1 == 2
   end
 
   test "ssha512" do
@@ -43,7 +41,19 @@ defmodule Rhododendron.CryptoTest do
   end
 
   test "aes-gcm-256" do
-    assert 1 + 1 == 2
+    plain = hi()
+    add = ""
+
+    Enum.each(1..3, fn _ ->
+      {cipher, tag, iv} = Rhododendron.SecretBox.encrypt(plain, 32, add)
+
+      IO.puts(
+        "cipher(#{Base.url_encode64(cipher, padding: false)}) tag(#{Base.url_encode64(tag, padding: false)}) iv(#{Base.url_encode64(iv, padding: false)}) "
+      )
+
+      tmp = Rhododendron.SecretBox.decrypt(cipher, tag, iv, add)
+      assert tmp == plain
+    end)
   end
 
   test "gravatar avatar" do

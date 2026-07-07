@@ -10,10 +10,10 @@ defmodule Rhododendron.Token do
 
   @impl true
   def token_config do
-    # {:ok, issuer} = Application.get_application(__MODULE__)
-    issuer = "Aaa"
-
-    default_claims(iss: issuer, skip: [:aud])
+    default_claims(
+      iss: Application.get_application(__MODULE__) |> Atom.to_string() |> String.capitalize(),
+      skip: [:aud]
+    )
     |> add_claim("aud", nil, &(&1 in [@web, @app, @mailer]))
   end
 

@@ -49,3 +49,5 @@ config :joken,
         "1LnCVduOJu9mFlXpHoNRqtGdrFziTQif0sGd1CiXw2QHnJrdtedYAvfTWZTvvsqgIJ7FZauFduH65Ul+amlbT3BV7d/1h0BRbP07Cx5QrFe+/k5V0rS1lEx/fZhHND0SVdnSfS3xekUmjfGlcIlnY9KmYqt3DHUSQPidTEeMQE0="
       )
   ]
+
+config :rhododendron, secret_box_key: "n/xxMD0H5Yav0LggkexJDervfz2Tm44XvbE56e2/JkE="

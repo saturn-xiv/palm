@@ -101,3 +101,5 @@ config :joken,
         "rjJPJnw09lKQEN4Ar5D5lYDJHasAkg0TvGuMOEY37q9lCQkv3PP30pzKmve77MP0K2NbOdgR2SaOH7mcq34KFv4rahNcpfJzrzh3OOEW2kDao9E2Kcn5URl3ulpl83LRIw39hw1KRVbWhFDFXYsmo4tXhrCkd4C1AvsEZztoHBE="
       )
   ]
+
+config :rhododendron, secret_box_key: "gcKxNFBNR+soloCGakMjty99nKDuA+cHsLAhpVE9tlY="

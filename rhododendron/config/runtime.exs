@@ -127,4 +127,13 @@ if config_env() == :prod do
       """
 
   config :joken, default_signer: [signer_alg: "HS512", key_octet: Base.decode64!(jwt_secret_key)]
+
+  secret_box_key =
+    System.get_env("SECRET_BOX_KEY") ||
+      raise """
+      environment variable SECRET_BOX_KEY is missing.
+      For example: openssl rand -base64 32
+      """
+
+  config :rhododendron, secret_box_key: secret_box_key
 end
