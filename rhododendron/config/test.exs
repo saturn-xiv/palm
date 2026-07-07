@@ -39,3 +39,13 @@ config :phoenix_live_view,
 # Sort query params output of verified routes for robust url comparisons
 config :phoenix,
   sort_verified_routes_query_params: true
+
+# My added
+config :joken,
+  default_signer: [
+    signer_alg: "HS512",
+    key_octet:
+      Base.decode64!(
+        "1LnCVduOJu9mFlXpHoNRqtGdrFziTQif0sGd1CiXw2QHnJrdtedYAvfTWZTvvsqgIJ7FZauFduH65Ul+amlbT3BV7d/1h0BRbP07Cx5QrFe+/k5V0rS1lEx/fZhHND0SVdnSfS3xekUmjfGlcIlnY9KmYqt3DHUSQPidTEeMQE0="
+      )
+  ]

@@ -6,8 +6,22 @@ defmodule Rhododendron.CryptoTest do
     IO.puts("sha256(#{hi()}): #{code}")
   end
 
-  test "sha512" do
-    assert 1 + 1 == 2
+  test "jwt" do
+    subject = "sss"
+
+    {:ok, token} =
+      Rhododendron.Token.sign(
+        subject,
+        Rhododendron.Token.audience_by_web(),
+        %{"ei" => 123, "ef" => 1.23, es: "abc"},
+        Duration.new!(year: 10)
+      )
+
+    IO.puts("Jwt: #{token}")
+
+    {:ok, sub, claims} = Rhododendron.Token.parse(token)
+    IO.puts("Subject: '#{subject}' Claims: #{inspect(claims)}")
+    assert sub == subject
   end
 
   test "password hashing" do

@@ -90,3 +90,14 @@ config :phoenix_live_view,
 
 # Disable swoosh api client as it is only required for production adapters.
 config :swoosh, :api_client, false
+
+# My added
+# https://joken.hexdocs.pm/signers.html#octet-keys
+config :joken,
+  default_signer: [
+    signer_alg: "HS512",
+    key_octet:
+      Base.decode64!(
+        "rjJPJnw09lKQEN4Ar5D5lYDJHasAkg0TvGuMOEY37q9lCQkv3PP30pzKmve77MP0K2NbOdgR2SaOH7mcq34KFv4rahNcpfJzrzh3OOEW2kDao9E2Kcn5URl3ulpl83LRIw39hw1KRVbWhFDFXYsmo4tXhrCkd4C1AvsEZztoHBE="
+      )
+  ]

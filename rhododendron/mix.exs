@@ -67,6 +67,7 @@ defmodule Rhododendron.MixProject do
       {:dns_cluster, "~> 0.2.0"},
       {:bandit, "~> 1.5"},
       # my added
+      {:joken, "~> 2.6"},
       {:jargon, "~> 1.1"}
     ]
   end

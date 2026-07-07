@@ -117,4 +117,14 @@ if config_env() == :prod do
   #     config :swoosh, :api_client, Swoosh.ApiClient.Req
   #
   # See https://swoosh.hexdocs.pm/Swoosh.html#module-installation for details.
+
+  # My added
+  jwt_secret_key =
+    System.get_env("JWT_SECRET_KEY") ||
+      raise """
+      environment variable JWT_SECRET_KEY is missing.
+      For example: openssl rand -base64 128
+      """
+
+  config :joken, default_signer: [signer_alg: "HS512", key_octet: Base.decode64!(jwt_secret_key)]
 end
