@@ -9,13 +9,15 @@ defmodule Mix.Tasks.Rhododendron.Db.Seed do
   @requirements ["app.start"]
   def run(_args) do
     if Rhododendron.Dao.Currency.count() == 0 do
-      {:ok, total, inserted} =
-        Rhododendron.Dao.Currency.load_from_one_xml(
-          Application.app_dir(
-            Application.get_application(__MODULE__),
-            "priv/iso4217/list-one.xml"
+      {:ok, %{total: total, inserted: inserted}} =
+        Rhododendron.Repo.transact(fn ->
+          Rhododendron.Dao.Currency.load_from_one_xml(
+            Application.app_dir(
+              Application.get_application(__MODULE__),
+              "priv/iso4217/list-one.xml"
+            )
           )
-        )
+        end)
 
       Logger.info("Load currencies, #{total} total found, #{inserted} inserted")
     end

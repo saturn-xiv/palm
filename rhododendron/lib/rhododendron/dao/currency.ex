@@ -65,7 +65,7 @@ defmodule Rhododendron.Dao.Currency do
         end
       end)
 
-    {:ok, length(result), inserted}
+    {:ok, %{total: length(result), inserted: inserted}}
   end
 
   def count() do
