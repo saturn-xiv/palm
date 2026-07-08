@@ -69,6 +69,7 @@ defmodule Rhododendron.MixProject do
       # my added
       {:redix, "~> 1.6"},
       {:joken, "~> 2.6"},
+      {:sweet_xml, "~> 0.7"},
       {:jargon, "~> 1.1"}
     ]
   end
