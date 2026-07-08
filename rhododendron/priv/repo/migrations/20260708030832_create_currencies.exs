@@ -10,7 +10,7 @@ defmodule Rhododendron.Repo.Migrations.CreateCurrencies do
       add :units, :integer
       add :is_fund, :boolean
 
-      timestamps(type: :utc_datetime)
+      timestamps(type: :utc_datetime_usec)
     end
 
     create index(:currencies, [:name])

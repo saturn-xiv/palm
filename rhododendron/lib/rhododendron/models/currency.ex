@@ -10,7 +10,7 @@ defmodule Rhododendron.Currency do
     field :units, :integer
     field :is_fund, :boolean
 
-    timestamps(type: :utc_datetime)
+    timestamps(type: :utc_datetime_usec)
   end
 
   @doc false
