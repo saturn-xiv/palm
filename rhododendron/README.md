@@ -33,3 +33,4 @@ mix test test/rhododendron/crypto_test.exs
 ## Learn more
 
 - [Erl_Interface User's Guide](https://www.erlang.org/doc/apps/erl_interface/ei_users_guide.html)
+- [ISO 4217 Currency codes](https://www.iso.org/iso-4217-currency-codes.html)

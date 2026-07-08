@@ -68,7 +68,7 @@ mkdir -p $TARGET_DIR/$PACKAGE
 # build_loquat
 build_rhododendron
 
-XZ_OPT=-9 tar -cJf $TARGET_DIR/$PACKAGE.tar.xz -C $TARGET_DIR/$PACKAGE .
+XZ_OPT=-9 tar -cJf $TARGET_DIR/$PACKAGE.tar.xz --remove-files -C $TARGET_DIR/$PACKAGE .
 md5sum $TARGET_DIR/$PACKAGE.tar.xz > $TARGET_DIR/$PACKAGE.md5
 
 echo "done($PACKAGE)."
