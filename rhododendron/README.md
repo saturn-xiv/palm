@@ -17,11 +17,19 @@ Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.
 
 Ready to run in production? Please [check our deployment guides](https://phoenix.hexdocs.pm/deployment.html).
 
-### Database
+## Development
+
+### Database prepare
 
 ```sql
 CREATE USER www WITH PASSWORD 'change-me';
 CREATE DATABASE rhododendron_dev WITH OWNER www ENCODING='UTF8';
+```
+
+```bash
+mix ecto.migrate
+mix ecto.migrations
+mix ecto.rollback
 ```
 
 ## Testing
