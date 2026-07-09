@@ -14,15 +14,26 @@ defmodule Mix.Tasks.Rhododendron.Db.Seed do
           Rhododendron.Dao.Currency.load_from_one_xml(
             Application.app_dir(
               Application.get_application(__MODULE__),
-              "priv/iso4217/list-one.xml"
+              Path.join(["priv", "iso4217", "list-one.xml"])
             )
           )
         end)
 
-      Logger.info("Load currencies, #{total} total found, #{inserted} inserted")
+      Logger.info("#{total} total found, #{inserted} inserted.")
     end
 
-    Logger.info("Load locales")
+    {:ok, %{total: total, inserted: inserted}} =
+      Rhododendron.Repo.transact(fn ->
+        Rhododendron.Dao.Locale.load_from_yml(
+          Application.app_dir(
+            Application.get_application(__MODULE__),
+            Path.join(["priv", "locales"])
+          )
+        )
+      end)
+
+    Logger.info("#{total} total found, #{inserted} inserted.")
+
     Logger.info("Done.")
   end
 end

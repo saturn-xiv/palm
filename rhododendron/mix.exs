@@ -70,6 +70,7 @@ defmodule Rhododendron.MixProject do
       {:redix, "~> 1.6"},
       {:joken, "~> 2.6"},
       {:sweet_xml, "~> 0.7"},
+      {:yaml_elixir, "~> 2.12"},
       {:jargon, "~> 1.1"}
     ]
   end

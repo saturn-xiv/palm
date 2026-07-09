@@ -14,7 +14,7 @@ defmodule Rhododendron.Locale do
   @doc false
   def changeset(locale, attrs) do
     locale
-    |> cast(attrs, [:lang, :code, :message])
-    |> validate_required([:lang, :code, :message])
+    |> cast(attrs, [:lang, :code, :message, :version])
+    |> validate_required([:lang, :code, :message, :version])
   end
 end
