@@ -16,7 +16,7 @@ defmodule Rhododendron.Dao.EmailUser do
     @name_max_len 31
     @password_min_len 8
     @email_min_len 6
-    @email_max_len 127
+    @email_max_len 63
     @email_regex ~r/^[a-z0-9._-]+@[a-z0-9.-]+\.[a-z]{2,5}$/
 
     def name(s) do
