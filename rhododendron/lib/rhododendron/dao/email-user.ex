@@ -1,14 +1,48 @@
 defmodule Rhododendron.Dao.EmailUser do
   require Logger
+  import Ecto.Query
+  import Ecto.Changeset
 
-  def create(name, email, password) do
+  def exists?(email) do
+    {:ok, email} = Rhododendron.Dao.EmailUser.Validators.email(email)
+
+    Rhododendron.Repo.one!(
+      from t in Rhododendron.EmailUser, where: t.email == ^email, select: count()
+    ) > 0
+  end
+
+  def confirm!(item) do
+    Rhododendron.Repo.update!(
+      change(item, %{version: item.version + 1, confirmed_at: DateTime.utc_now(:microsecond)})
+    )
+  end
+
+  def create!(name, email, password) do
     {:ok, name} = Rhododendron.Dao.EmailUser.Validators.name(name)
     {:ok, email} = Rhododendron.Dao.EmailUser.Validators.email(email)
-    {:ok, _password} = Rhododendron.Dao.EmailUser.Validators.password(password)
+    {:ok, password} = Rhododendron.Dao.EmailUser.Validators.password(password)
+    {:ok, password} = Rhododendron.PasswordHashing.sign(password, password_salt_length())
 
     Logger.warning("Create user #{email}<#{name}>.")
-    # TODO
-    {:ok}
+    uid = Ecto.UUID.generate()
+    Logger.debug("Create user #{uid}")
+    %Rhododendron.User{name: name, uid: uid} |> Rhododendron.Repo.insert!()
+    user = Rhododendron.Repo.get_by(Rhododendron.User, uid: uid)
+
+    %Rhododendron.EmailUser{
+      user_id: user.id,
+      name: name,
+      email: email,
+      password: password,
+      avatar: Rhododendron.Gravatar.avatar(email)
+    }
+    |> Rhododendron.Repo.insert!()
+
+    {name, email}
+  end
+
+  def password_salt_length do
+    16
   end
 
   defmodule Validators do

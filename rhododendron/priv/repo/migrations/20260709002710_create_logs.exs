@@ -9,7 +9,6 @@ defmodule Rhododendron.Repo.Migrations.CreateLogs do
       add :ip, :string, null: false, size: 45
       add :message, :text, null: false
       add :resource, :string, null: false, size: 255
-      add :resource_id, :integer
 
       timestamps(updated_at: false, type: :utc_datetime_usec)
     end

@@ -10,7 +10,7 @@ defmodule Rhododendron.Repo.Migrations.CreateAttachments do
       add :size, :integer, null: false
       add :content_type, :string, null: false, size: 63
       add :public, :boolean, null: false, default: false
-      add :updated_at, :utc_datetime_usec
+      add :uploaded_at, :utc_datetime_usec
       add :deleted_at, :utc_datetime_usec
       add :version, :integer, null: false, default: 0
 
