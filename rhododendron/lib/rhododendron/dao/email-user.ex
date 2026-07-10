@@ -12,15 +12,20 @@ defmodule Rhododendron.Dao.EmailUser do
   end
 
   def confirm!(item) do
+    Logger.info("Confirm user #{item.email}<#{item.name}>.")
+
     Rhododendron.Repo.update!(
       change(item, %{version: item.version + 1, confirmed_at: DateTime.utc_now(:microsecond)})
     )
   end
 
+  def set_password!(item, password) do
+    {:ok, password} = Rhododendron.PasswordHashing.sign(password, password_salt_length())
+    Logger.warning("Update user #{item.email}<#{item.name}> password.")
+    Rhododendron.Repo.update!(change(item, %{password: password, version: item.version + 1}))
+  end
+
   def create!(name, email, password) do
-    {:ok, name} = Rhododendron.Dao.EmailUser.Validators.name(name)
-    {:ok, email} = Rhododendron.Dao.EmailUser.Validators.email(email)
-    {:ok, password} = Rhododendron.Dao.EmailUser.Validators.password(password)
     {:ok, password} = Rhododendron.PasswordHashing.sign(password, password_salt_length())
 
     Logger.warning("Create user #{email}<#{name}>.")
@@ -37,8 +42,6 @@ defmodule Rhododendron.Dao.EmailUser do
       avatar: Rhododendron.Gravatar.avatar(email)
     }
     |> Rhododendron.Repo.insert!()
-
-    {name, email}
   end
 
   def password_salt_length do

@@ -1,6 +1,6 @@
 defmodule Mix.Tasks.Rhododendron.Db.Seed do
   @moduledoc "Usage: `mix rhododendron.db.seed`"
-  @shortdoc "Loads data without deleting existing records"
+  @shortdoc "Loads data from filesystem without deleting existing records"
 
   require Logger
   use Mix.Task

@@ -2,8 +2,8 @@ defmodule Mix.Tasks.Rhododendron.User.CreateByEmail do
   @moduledoc "Usage: `mix rhododendron.user.create_by_email -n NAME -e EMAIL -p PASSWORD`"
   @shortdoc "Create an email-user"
 
-  require Logger
   use Mix.Task
+  require Logger
 
   @impl Mix.Task
   @requirements ["app.start"]
@@ -17,14 +17,17 @@ defmodule Mix.Tasks.Rhododendron.User.CreateByEmail do
 
     {parsed, [], []} = OptionParser.parse(args, strict: switches, aliases: aliases)
 
-    if Rhododendron.Dao.EmailUser.exists?(parsed[:email]) do
-      Logger.error("User #{parsed[:name]} already exists")
+    {:ok, name} = Rhododendron.Dao.EmailUser.Validators.name(parsed[:name])
+    {:ok, email} = Rhododendron.Dao.EmailUser.Validators.email(parsed[:email])
+    {:ok, password} = Rhododendron.Dao.EmailUser.Validators.password(parsed[:password])
+
+    if Rhododendron.Dao.EmailUser.exists?(email) do
+      Logger.error("User #{email} already exists")
     else
       ip = Rhododendron.Session.ipv4()
 
       Rhododendron.Repo.transact(fn ->
-        {_, email} =
-          Rhododendron.Dao.EmailUser.create!(parsed[:name], parsed[:email], parsed[:password])
+        Rhododendron.Dao.EmailUser.create!(name, email, password)
 
         it = Rhododendron.Repo.get_by!(Rhododendron.EmailUser, email: email)
         Rhododendron.Dao.EmailUser.confirm!(it)
