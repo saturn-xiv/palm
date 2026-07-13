@@ -3,7 +3,12 @@ defmodule Rhododendron.Role do
   import Ecto.Changeset
 
   schema "roles" do
-    field :name, :string
+    field :code, :string
+    field :left, :integer
+    field :right, :integer
+    field :version, :integer
+
+    many_to_many :users, Rhododendron.User, join_through: "roles_users"
 
     timestamps(type: :utc_datetime_usec)
   end
@@ -11,7 +16,7 @@ defmodule Rhododendron.Role do
   @doc false
   def changeset(role, attrs) do
     role
-    |> cast(attrs, [:name])
-    |> validate_required([:name])
+    |> cast(attrs, [:code, :left, :right, :version])
+    |> validate_required([:code, :left, :right])
   end
 end

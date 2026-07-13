@@ -2,8 +2,9 @@ defmodule Mix.Tasks.Rhododendron.Db.Seed do
   @moduledoc "Usage: `mix rhododendron.db.seed`"
   @shortdoc "Loads data from filesystem without deleting existing records"
 
-  require Logger
   use Mix.Task
+  require Logger
+  import Ecto.Query
 
   @impl Mix.Task
   @requirements ["app.start"]
@@ -33,6 +34,26 @@ defmodule Mix.Tasks.Rhododendron.Db.Seed do
       end)
 
     Logger.info("#{total} total found, #{inserted} inserted.")
+
+    if Rhododendron.Repo.one!(from t in Rhododendron.Role, select: count()) == 0 do
+      Rhododendron.Repo.transact(fn ->
+        %Rhododendron.Role{
+          code: Rhododendron.Dao.Role.topmost(),
+          left: 1,
+          right: 2
+        }
+        |> Rhododendron.Repo.insert!()
+
+        Enum.each(
+          [Rhododendron.Dao.Role.root(), Rhododendron.Dao.Role.administrator()],
+          fn it ->
+            Rhododendron.Dao.Role.create!(it)
+          end
+        )
+
+        {:ok, true}
+      end)
+    end
 
     Logger.info("Done.")
   end

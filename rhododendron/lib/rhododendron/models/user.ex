@@ -19,6 +19,7 @@ defmodule Rhododendron.User do
 
     has_one :email_user, Rhododendron.EmailUser
     has_many :logs, Rhododendron.Log
+    many_to_many :roles, Rhododendron.Role, join_through: "roles_users"
 
     timestamps(type: :utc_datetime_usec)
   end
