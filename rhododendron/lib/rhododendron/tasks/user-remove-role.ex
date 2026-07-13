@@ -22,7 +22,14 @@ defmodule Mix.Tasks.Rhododendron.User.RemoveRole do
       role = Rhododendron.Repo.get_by!(Rhododendron.Role, code: role)
       Rhododendron.Dao.Role.disassociate!(role, user)
 
-      Rhododendron.Dao.Log.info!(user.id, :auth, ip, %{}, "Remove role #{role} by administrator.")
+      Rhododendron.Dao.Log.info!(
+        user.id,
+        :auth,
+        ip,
+        %{},
+        "Remove role #{role.code} by administrator."
+      )
+
       {:ok, true}
     end)
 

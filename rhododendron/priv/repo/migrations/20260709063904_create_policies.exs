@@ -3,16 +3,18 @@ defmodule Rhododendron.Repo.Migrations.CreatePolicies do
 
   def change do
     create table(:policies) do
-      add :subject, :string, null: false, size: 127
-      add :object, :string, null: false, size: 255
       add :action, :string, null: false, size: 31
+      add :object, :string, null: false, size: 255
+
+      add :role_id, references(:roles, on_delete: :delete_all)
+      add :user_id, references(:users, on_delete: :delete_all)
 
       timestamps(updated_at: false, type: :utc_datetime_usec)
     end
 
-    create unique_index(:policies, [:subject, :object, :action])
-    create index(:policies, [:subject])
-    create index(:policies, [:object])
+    create unique_index(:policies, [:user_id, :object, :action], where: "user_id IS NOT NULL")
+    create unique_index(:policies, [:role_id, :object, :action], where: "role_id IS NOT NULL")
     create index(:policies, [:action])
+    create index(:policies, [:object])
   end
 end

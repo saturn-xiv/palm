@@ -5,6 +5,9 @@ defmodule Rhododendron.Policy do
   schema "policies" do
     field :name, :string
 
+    belongs_to :role, Rhododendron.Role
+    belongs_to :user, Rhododendron.User
+
     timestamps(type: :utc_datetime_usec)
   end
 

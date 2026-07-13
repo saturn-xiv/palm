@@ -8,7 +8,8 @@ defmodule Rhododendron.Role do
     field :right, :integer
     field :version, :integer
 
-    many_to_many :users, Rhododendron.User, join_through: "roles_users"
+    has_many :policies, Rhododendron.Policy
+    many_to_many :users, Rhododendron.User, join_through: "roles_users", on_replace: :delete
 
     timestamps(type: :utc_datetime_usec)
   end

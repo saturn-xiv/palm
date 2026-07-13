@@ -24,7 +24,8 @@ defmodule Mix.Tasks.Rhododendron.User.AddRole do
       end
 
       role = Rhododendron.Repo.get_by!(Rhododendron.Role, code: role)
-      Rhododendron.Dao.Role.associate!(user, role)
+
+      {:ok, _} = Rhododendron.Dao.Role.associate!(role, user)
 
       Rhododendron.Dao.Log.info!(
         user.id,

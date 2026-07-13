@@ -18,8 +18,9 @@ defmodule Rhododendron.User do
     field :version, :integer
 
     has_one :email_user, Rhododendron.EmailUser
+    has_many :policies, Rhododendron.Policy
     has_many :logs, Rhododendron.Log
-    many_to_many :roles, Rhododendron.Role, join_through: "roles_users"
+    many_to_many :roles, Rhododendron.Role, join_through: "roles_users", on_replace: :delete
 
     timestamps(type: :utc_datetime_usec)
   end
