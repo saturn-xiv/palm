@@ -3,6 +3,10 @@ defmodule Rhododendron.Dao.Currency do
   import Ecto.Query
   import SweetXml
 
+  def index() do
+    Rhododendron.Repo.all(from t in Rhododendron.Currency, order_by: [asc: t.code])
+  end
+
   def load_from_one_xml(file) do
     Logger.info("load ISO4217 records from #{file}")
     {:ok, buf} = File.read(file)

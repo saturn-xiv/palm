@@ -144,3 +144,6 @@ if config_env() == :prod do
       pool_size: 32
     }
 end
+
+# TODO
+# config :elixir, :time_zone_database, Tzdata.TimeZoneDatabase
