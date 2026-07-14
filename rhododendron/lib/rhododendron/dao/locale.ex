@@ -2,8 +2,16 @@ defmodule Rhododendron.Dao.Locale do
   require Logger
   import Ecto.Query
 
+  def by_lang(lang) do
+    Rhododendron.Repo.all(
+      from t in Rhododendron.Locale, where: t.lang == ^lang, order_by: [asc: t.code]
+    )
+  end
+
   def languages() do
-    Rhododendron.Repo.all(from t in Rhododendron.Locale, distinct: true, select: t.lang)
+    Rhododendron.Repo.all(
+      from t in Rhododendron.Locale, distinct: true, select: t.lang, order_by: [asc: t.lang]
+    )
   end
 
   def load_from_yml(folder) do

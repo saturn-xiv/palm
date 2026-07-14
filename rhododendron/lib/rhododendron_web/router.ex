@@ -25,6 +25,9 @@ defmodule RhododendronWeb.Router do
   #   pipe_through :api
   # end
 
+  forward "/graphql", Absinthe.Plug, schema: RhododendronWeb.Schema
+  forward "/graphiql", Absinthe.Plug.GraphiQL, schema: RhododendronWeb.Schema, interface: :simple
+
   # Enable LiveDashboard and Swoosh mailbox preview in development
   if Application.compile_env(:rhododendron, :dev_routes) do
     # If you want to use the LiveDashboard in production, you should put

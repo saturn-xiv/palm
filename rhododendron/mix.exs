@@ -71,6 +71,8 @@ defmodule Rhododendron.MixProject do
       {:joken, "~> 2.6"},
       {:sweet_xml, "~> 0.7"},
       {:yaml_elixir, "~> 2.12"},
+      {:absinthe, "~> 1.11"},
+      {:absinthe_plug, "~> 1.5"},
       {:jargon, "~> 1.1"}
     ]
   end

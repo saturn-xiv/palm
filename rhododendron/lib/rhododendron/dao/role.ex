@@ -8,6 +8,7 @@ defmodule Rhododendron.Dao.Role do
 
   def associate!(role, user) do
     role = role |> Rhododendron.Repo.preload(:users)
+
     users = role.users ++ [user]
 
     role
@@ -18,7 +19,11 @@ defmodule Rhododendron.Dao.Role do
 
   def disassociate!(role, user) do
     role = role |> Rhododendron.Repo.preload(:users)
-    users = Enum.reject(role.users, &(&1.id == user.id))
+
+    users =
+      Enum.reject(role.users, fn x ->
+        x.id == user.id
+      end)
 
     role
     |> change()
