@@ -42,4 +42,8 @@ defmodule Rhododendron.Token do
     claims = Map.drop(claims, ["jti", "iss", "sub", "aud", "iat", "nbf", "exp"])
     {:ok, subject, claims}
   end
+
+  def bearer() do
+    "Bearer "
+  end
 end

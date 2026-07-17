@@ -26,4 +26,9 @@ defmodule RhododendronWeb.Schema.ContentTypes do
     field :number, non_null(:integer)
     field :units, :integer
   end
+
+  @desc "Succeeded"
+  object :succeeded do
+    field :created_at, non_null(:datetime)
+  end
 end

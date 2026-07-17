@@ -25,13 +25,16 @@ defmodule Rhododendron.Dao.EmailUser do
     Rhododendron.Repo.update!(change(item, %{password: password, version: item.version + 1}))
   end
 
-  def create!(name, email, password) do
+  def create!(name, email, password, lang \\ "en-US", timezone \\ "UTC") do
     {:ok, password} = Rhododendron.PasswordHashing.sign(password, password_salt_length())
 
     Logger.warning("Create user #{email}<#{name}>.")
     uid = Ecto.UUID.generate()
     Logger.debug("Create user #{uid}")
-    %Rhododendron.User{name: name, uid: uid} |> Rhododendron.Repo.insert!()
+
+    %Rhododendron.User{name: name, uid: uid, lang: lang, timezone: timezone}
+    |> Rhododendron.Repo.insert!()
+
     user = Rhododendron.Repo.get_by(Rhododendron.User, uid: uid)
 
     %Rhododendron.EmailUser{

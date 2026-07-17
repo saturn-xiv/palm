@@ -3,28 +3,14 @@ defmodule RhododendronWeb.Resolvers.Portal do
     {:ok,
      %{
        api: Application.spec(:rhododendron, :vsn) |> to_string,
-       # TODO Tzdata.tzdata_version()
-       iana: ""
+       iana: Tzdata.tzdata_version()
      }}
   end
 
   def timezones(_parent, _args, _resolution) do
-    # items.=(
-    #   Enum.map(Tzdata.zone_alias_list(), fn it ->
-    #     %{
-    #       id: it.id,
-    #       lang: it.lang,
-    #       code: it.code,
-    #       message: it.message,
-    #       inserted_at: it.inserted_at
-    #     }
-    #   end)
-    # )
-
     {
       :ok,
-      # TODO Tzdata.zone_alias_list()
-      []
+      Tzdata.zone_alias_list()
     }
   end
 

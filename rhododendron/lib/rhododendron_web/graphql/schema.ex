@@ -24,7 +24,20 @@ defmodule RhododendronWeb.Schema do
     field :locale_by_lang, list_of(non_null(:locale)) do
       arg(:lang, non_null(:string))
 
-      resolve(&Resolvers.Locale.by_lang/3)
+      resolve(&Resolvers.Portal.Locale.by_lang/3)
+    end
+  end
+
+  mutation do
+    @desc "Sign up by email"
+    field :sign_up_by_email, type: :succeeded do
+      arg(:name, non_null(:string))
+      arg(:email, non_null(:string))
+      arg(:password, non_null(:string))
+      arg(:lang, non_null(:string))
+      arg(:timezone, non_null(:string))
+
+      resolve(&Resolvers.Portal.EmailUser.sign_up/3)
     end
   end
 end

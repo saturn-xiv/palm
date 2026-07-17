@@ -145,5 +145,6 @@ if config_env() == :prod do
     }
 end
 
-# TODO
-# config :elixir, :time_zone_database, Tzdata.TimeZoneDatabase
+config :elixir, :time_zone_database, Tzdata.TimeZoneDatabase
+config :rhododendron, :accept_languages, ["en-US", "zh-Hans", "zh-Hant"]
+config :rhododendron, :default_language, "en-US"

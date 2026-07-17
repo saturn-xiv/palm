@@ -72,7 +72,8 @@ defmodule Rhododendron.MixProject do
       {:sweet_xml, "~> 0.7"},
       {:yaml_elixir, "~> 2.12"},
       {:hackney, "~> 4.5"},
-      # {:tzdata, "~> 1.1"},
+      # TODO {:tzdata, "~> 1.1"},
+      {:tzdata, github: "lau/tzdata", tag: "766f38de21e9cd3dc4b185ac6244466e4ee65308"},
       {:absinthe, "~> 1.11"},
       {:absinthe_plug, "~> 1.5"},
       {:jargon, "~> 1.1"}

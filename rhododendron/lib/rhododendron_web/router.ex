@@ -25,8 +25,23 @@ defmodule RhododendronWeb.Router do
   #   pipe_through :api
   # end
 
-  forward "/graphql", Absinthe.Plug, schema: RhododendronWeb.Schema
-  forward "/graphiql", Absinthe.Plug.GraphiQL, schema: RhododendronWeb.Schema, interface: :simple
+  pipeline :graphql do
+    plug RhododendronWeb.Context
+  end
+
+  scope "/graphql" do
+    pipe_through :graphql
+
+    forward "/", Absinthe.Plug, schema: RhododendronWeb.Schema
+  end
+
+  scope "/graphiql" do
+    pipe_through :graphql
+
+    forward "/", Absinthe.Plug.GraphiQL, schema: RhododendronWeb.Schema, interface: :simple
+  end
+
+  # forward "/graphiql", Absinthe.Plug.GraphiQL, schema: RhododendronWeb.Schema, interface: :simple
 
   # Enable LiveDashboard and Swoosh mailbox preview in development
   if Application.compile_env(:rhododendron, :dev_routes) do

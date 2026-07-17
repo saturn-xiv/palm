@@ -1,4 +1,4 @@
-defmodule RhododendronWeb.Resolvers.Locale do
+defmodule RhododendronWeb.Resolvers.Portal.Locale do
   def by_lang(_parent, %{lang: lang}, _resolution) do
     items =
       Enum.map(Rhododendron.Dao.Locale.by_lang(lang), fn it ->
