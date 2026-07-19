@@ -6,6 +6,17 @@ defmodule Rhododendron.Dao.Role do
   @administrator "administrator"
   @root "root"
 
+  def get_implicit_roles_for_user(user) do
+    user = user |> Rhododendron.Repo.preload(:roles)
+
+    items =
+      Enum.reduce(user.roles, [], fn el, acc ->
+        acc ++ tree(el)
+      end)
+
+    Enum.uniq_by(items, fn x -> x.id end)
+  end
+
   def associate!(role, user) do
     role = role |> Rhododendron.Repo.preload(:users)
 

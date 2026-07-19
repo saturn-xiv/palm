@@ -3,18 +3,20 @@ defmodule Rhododendron.Policy do
   import Ecto.Changeset
 
   schema "policies" do
-    field :name, :string
+    field :action, :string
+    field :resource_type, :string
+    field :resource_id, :integer
 
     belongs_to :role, Rhododendron.Role
     belongs_to :user, Rhododendron.User
 
-    timestamps(type: :utc_datetime_usec)
+    timestamps(updated_at: false, type: :utc_datetime_usec)
   end
 
   @doc false
   def changeset(policy, attrs) do
     policy
-    |> cast(attrs, [:name])
-    |> validate_required([:name])
+    |> cast(attrs, [:action, :resource_type, :resource_id])
+    |> validate_required([:action, :resource_type])
   end
 end

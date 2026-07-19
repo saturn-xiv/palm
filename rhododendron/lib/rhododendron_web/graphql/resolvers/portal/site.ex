@@ -3,7 +3,8 @@ defmodule RhododendronWeb.Resolvers.Portal do
     {:ok,
      %{
        api: Application.spec(:rhododendron, :vsn) |> to_string,
-       iana: Tzdata.tzdata_version()
+       iana: Tzdata.tzdata_version(),
+       created_at: DateTime.utc_now(:microsecond)
      }}
   end
 

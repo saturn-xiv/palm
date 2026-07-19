@@ -5,13 +5,11 @@ defmodule RhododendronWeb.Resolvers.Portal.User do
         _parent,
         _args,
         %{
-          context: %RhododendronWeb.Session{token: token, client_ip: client_ip}
+          context: %RhododendronWeb.Session{token: _token, client_ip: _client_ip}
         }
       ) do
     # TODO
     Logger.info("User sign out")
     {:ok, RhododendronWeb.Portal.ok()}
   end
-
-
 end

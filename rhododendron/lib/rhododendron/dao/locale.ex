@@ -2,6 +2,16 @@ defmodule Rhododendron.Dao.Locale do
   require Logger
   import Ecto.Query
 
+  def t(lang, code, args \\ []) do
+    case Rhododendron.Repo.get_by(Rhododendron.Locale, lang: lang, code: code) do
+      nil ->
+        "#{lang}.#{code}"
+
+      val ->
+        EEx.eval_string(val.message, args)
+    end
+  end
+
   def by_lang(lang) do
     Rhododendron.Repo.all(
       from t in Rhododendron.Locale, where: t.lang == ^lang, order_by: [asc: t.code]
