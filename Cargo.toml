@@ -4,4 +4,12 @@ strip = true
 
 [workspace]
 resolver = "2"
-members = ["portal", "cms", "forum", "accounting", "wisteria"]
+members = [
+    "portal",
+    "cms",
+    "forum",
+    "accounting",
+    "questionnaire",
+    "curricula",
+    "wisteria",
+]
