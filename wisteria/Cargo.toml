@@ -1,0 +1,6 @@
+[package]
+name = "wisteria"
+version = "2026.7.21"
+edition = "2024"
+
+[dependencies]
