@@ -1,0 +1,19 @@
+namespace palm.tex.v1;
+
+enum Class: byte { Article = 0, Report, Book, Letter, Beamer }
+
+table Output {
+    bucket: string;
+    object: string;
+}
+
+table Attachment {
+    name: string;
+    content: [ubyte];
+}
+
+table Document {
+    entry: string;    
+    class: Class;
+    attachments: [Attachment];
+}

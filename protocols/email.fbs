@@ -1,0 +1,28 @@
+namespace palm.email.v1;
+
+table Address {
+    name: string;
+    email: string;
+}
+
+table Body {
+    html: bool;
+    content: string;
+}
+
+table Attachment {
+    inline: bool;
+    name: string;
+    body: [ubyte];
+    content_type: string;
+}
+
+table Email {
+    from: Address;
+    to: Address;
+    cc: [Address];
+    bcc: [Address];
+    subject: string;
+    body: Body;
+    attachments: [Attachment];
+}

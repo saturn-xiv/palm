@@ -1,2 +1,1 @@
-# palm
-A total free education &amp; translation solution.
+# PALM = An online education &amp; translation solution
