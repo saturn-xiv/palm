@@ -20,3 +20,7 @@ features = ["128-column-tables", "postgres", "chrono", "uuid"]
 [dependencies.openssl]
 version = "*"
 features = ["vendored"]
+
+[dependencies.pq-sys]
+version = "*"
+features = ["bundled"]
