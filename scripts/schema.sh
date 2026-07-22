@@ -72,12 +72,26 @@ function generate_diesel() {
     diesel print-schema --database-url $database_url > $OUTPUT_DIR/schema.rs
 }
 
+function generate_thrift() {
+    echo "generate thrift protocols"
+    cd $WORK_DIR/loquat/gourd/
+    rm -rf include src
+
+    mkdir include src
+    thrift -out src --gen cpp:no_skeleton -r $WORK_DIR/protocols/loquat.thrift
+    mv src/*.h include/
+    
+    thrift -out $OUTPUT_DIR --gen rs -r $WORK_DIR/protocols/loquat.thrift
+}
+
 generate_belladonna
 generate_flatbuffers
 generate_grpc
+generate_thrift
 generate_diesel
 
 sed -i -E "s/(version = \")[0-9]+\.[0-9]+\.[0-9]+/\1$(date +%Y.%-m.%-d)/g" $WORK_DIR/hyacinth/Cargo.toml
+cd $WORK_DIR/
 cargo fmt
 
 echo 'done.'

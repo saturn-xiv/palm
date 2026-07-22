@@ -34,13 +34,13 @@ pkg_check_modules(LIBEVENT REQUIRED libevent)
 # https://github.com/tink-crypto/tink-cc
 FetchContent_Declare(tink
   GIT_REPOSITORY  "https://github.com/tink-crypto/tink-cc.git"
-  GIT_TAG         "v2.7.0"
+  GIT_TAG         "v2.8.0"
 )
 
 # https://github.com/apache/thrift
 FetchContent_Declare(thrift
   GIT_REPOSITORY  "https://github.com/apache/thrift.git"
-  GIT_TAG         "v0.23.0"
+  GIT_TAG         "v0.24.0"
 )
 
 # https://github.com/pantor/inja
