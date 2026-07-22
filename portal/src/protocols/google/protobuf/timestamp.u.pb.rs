@@ -1,4 +1,4 @@
-const _: () = ::protobuf::__internal::assert_compatible_gencode_version("4.35.1-release");
+const _: () = ::protobuf::__internal::assert_compatible_gencode_version("4.34.0-release");
 // This variable must not be referenced except by protobuf generated
 // code.
 pub(crate) static mut google__protobuf__Timestamp_msg_init: ::protobuf::__internal::runtime::MiniTableInitPtr =
@@ -8,10 +8,7 @@ pub struct Timestamp {
   inner: ::protobuf::__internal::runtime::OwnedMessageInner<Timestamp>
 }
 
-impl ::protobuf::Message for Timestamp {
-  type MessageView<'msg> = TimestampView<'msg>;
-  type MessageMut<'msg> = TimestampMut<'msg>;
-}
+impl ::protobuf::Message for Timestamp {}
 
 impl ::std::default::Default for Timestamp {
   fn default() -> Self {
@@ -28,12 +25,12 @@ impl ::std::fmt::Debug for Timestamp {
 // SAFETY:
 // - `Timestamp` is `Sync` because it does not implement interior mutability.
 //    Neither does `TimestampMut`.
-unsafe impl ::std::marker::Sync for Timestamp {}
+unsafe impl Sync for Timestamp {}
 
 // SAFETY:
 // - `Timestamp` is `Send` because it uniquely owns its arena and does
 //   not use thread-local data.
-unsafe impl ::std::marker::Send for Timestamp {}
+unsafe impl Send for Timestamp {}
 
 impl ::protobuf::Proxied for Timestamp {
   type View<'msg> = TimestampView<'msg>;
@@ -116,12 +113,12 @@ impl<'msg> TimestampView<'msg> {
 
 // SAFETY:
 // - `TimestampView` is `Sync` because it does not support mutation.
-unsafe impl ::std::marker::Sync for TimestampView<'_> {}
+unsafe impl Sync for TimestampView<'_> {}
 
 // SAFETY:
 // - `TimestampView` is `Send` because while its alive a `TimestampMut` cannot.
 // - `TimestampView` does not use thread-local data.
-unsafe impl ::std::marker::Send for TimestampView<'_> {}
+unsafe impl Send for TimestampView<'_> {}
 
 impl<'msg> ::protobuf::AsView for TimestampView<'msg> {
   type Proxied = Timestamp;
@@ -154,16 +151,16 @@ impl<'msg> ::protobuf::IntoProxied<Timestamp> for TimestampMut<'msg> {
   }
 }
 
-impl ::protobuf::__internal::EntityType for Timestamp {
-    type Tag = ::protobuf::__internal::entity_tag::MessageTag;
+impl ::protobuf::__internal::runtime::EntityType for Timestamp {
+    type Tag = ::protobuf::__internal::runtime::MessageTag;
 }
 
-impl<'msg> ::protobuf::__internal::EntityType for TimestampView<'msg> {
-    type Tag = ::protobuf::__internal::entity_tag::ViewProxyTag;
+impl<'msg> ::protobuf::__internal::runtime::EntityType for TimestampView<'msg> {
+    type Tag = ::protobuf::__internal::runtime::ViewProxyTag;
 }
 
-impl<'msg> ::protobuf::__internal::EntityType for TimestampMut<'msg> {
-    type Tag = ::protobuf::__internal::entity_tag::MutProxyTag;
+impl<'msg> ::protobuf::__internal::runtime::EntityType for TimestampMut<'msg> {
+    type Tag = ::protobuf::__internal::runtime::MutProxyTag;
 }
 
 #[allow(dead_code)]
@@ -196,7 +193,7 @@ impl<'msg> TimestampMut<'msg> {
   #[doc(hidden)]
   pub fn as_message_mut_inner(&mut self, _private: ::protobuf::__internal::Private)
     -> ::protobuf::__internal::runtime::MessageMutInner<'msg, Timestamp> {
-    self.inner.reborrow()
+    self.inner
   }
 
   pub fn to_owned(&self) -> Timestamp {
@@ -259,16 +256,18 @@ impl<'msg> TimestampMut<'msg> {
 
 // SAFETY:
 // - `TimestampMut` does not perform any shared mutation.
-unsafe impl ::std::marker::Send for TimestampMut<'_> {}
+unsafe impl Send for TimestampMut<'_> {}
 
 // SAFETY:
 // - `TimestampMut` does not perform any shared mutation.
-unsafe impl ::std::marker::Sync for TimestampMut<'_> {}
+unsafe impl Sync for TimestampMut<'_> {}
 
 impl<'msg> ::protobuf::AsView for TimestampMut<'msg> {
   type Proxied = Timestamp;
   fn as_view(&self) -> ::protobuf::View<'_, Timestamp> {
-    self.inner.as_view().into()
+    TimestampView {
+      inner: ::protobuf::__internal::runtime::MessageViewInner::view_of_mut(self.inner)
+    }
   }
 }
 
@@ -276,14 +275,16 @@ impl<'msg> ::protobuf::IntoView<'msg> for TimestampMut<'msg> {
   fn into_view<'shorter>(self) -> ::protobuf::View<'shorter, Timestamp>
   where
       'msg: 'shorter {
-    self.inner.as_view().into()
+    TimestampView {
+      inner: ::protobuf::__internal::runtime::MessageViewInner::view_of_mut(self.inner)
+    }
   }
 }
 
 impl<'msg> ::protobuf::AsMut for TimestampMut<'msg> {
   type MutProxied = Timestamp;
   fn as_mut(&mut self) -> TimestampMut<'msg> {
-    self.inner.reborrow().into()
+    TimestampMut { inner: self.inner }
   }
 }
 

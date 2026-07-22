@@ -1,36 +1,27 @@
 #[path="empty.u.pb.rs"]
-#[allow(nonstandard_style, unused, unreachable_pub)]
-#[doc(hidden)]
-mod internal_do_not_use_google_sprotobuf_sempty;
+#[allow(nonstandard_style)]
+pub mod internal_do_not_use_google_sprotobuf_sempty;
 
-#[allow(nonstandard_style, unused)]
-#[doc(inline)]
+#[allow(unused_imports, nonstandard_style)]
 pub use internal_do_not_use_google_sprotobuf_sempty::*;
 #[path="timestamp.u.pb.rs"]
-#[allow(nonstandard_style, unused, unreachable_pub)]
-#[doc(hidden)]
-mod internal_do_not_use_google_sprotobuf_stimestamp;
+#[allow(nonstandard_style)]
+pub mod internal_do_not_use_google_sprotobuf_stimestamp;
 
-#[allow(nonstandard_style, unused)]
-#[doc(inline)]
+#[allow(unused_imports, nonstandard_style)]
 pub use internal_do_not_use_google_sprotobuf_stimestamp::*;
 #[path="../../casbin.u.pb.rs"]
-#[allow(nonstandard_style, unused, unreachable_pub)]
-#[doc(hidden)]
-mod internal_do_not_use_casbin;
+#[allow(nonstandard_style)]
+pub mod internal_do_not_use_casbin;
 
-#[allow(nonstandard_style, unused)]
-#[doc(inline)]
+#[allow(unused_imports, nonstandard_style)]
 pub use internal_do_not_use_casbin::*;
 #[path="../../portal.u.pb.rs"]
-#[allow(nonstandard_style, unused, unreachable_pub)]
-#[doc(hidden)]
-mod internal_do_not_use_portal;
+#[allow(nonstandard_style)]
+pub mod internal_do_not_use_portal;
 
-#[allow(nonstandard_style, unused)]
-#[doc(inline)]
+#[allow(unused_imports, nonstandard_style)]
 pub use internal_do_not_use_portal::*;
-#[allow(nonstandard_style, unused)]
 pub mod __unstable {
 pub static GOOGLE_PROTOBUF_EMPTY_DESCRIPTOR_INFO: ::protobuf::__internal::runtime::__unstable::DescriptorInfo = ::protobuf::__internal::runtime::__unstable::DescriptorInfo {
   descriptor: b"\n\x1bgoogle/protobuf/empty.proto\x12\x0fgoogle.protobuf\"\x07\n\x05\x45mptyB}\n\x13\x63om.google.protobufB\nEmptyProtoP\x01Z.google.golang.org/protobuf/types/known/emptypb\xf8\x01\x01\xa2\x02\x03GPB\xaa\x02\x1eGoogle.Protobuf.WellKnownTypesb\x06proto3",

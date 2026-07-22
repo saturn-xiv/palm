@@ -1,4 +1,4 @@
-const _: () = ::protobuf::__internal::assert_compatible_gencode_version("4.35.1-release");
+const _: () = ::protobuf::__internal::assert_compatible_gencode_version("4.34.0-release");
 // This variable must not be referenced except by protobuf generated
 // code.
 pub(crate) static mut palm__portal__v1__IdRequest_msg_init: ::protobuf::__internal::runtime::MiniTableInitPtr =
@@ -8,10 +8,7 @@ pub struct IdRequest {
   inner: ::protobuf::__internal::runtime::OwnedMessageInner<IdRequest>
 }
 
-impl ::protobuf::Message for IdRequest {
-  type MessageView<'msg> = IdRequestView<'msg>;
-  type MessageMut<'msg> = IdRequestMut<'msg>;
-}
+impl ::protobuf::Message for IdRequest {}
 
 impl ::std::default::Default for IdRequest {
   fn default() -> Self {
@@ -28,12 +25,12 @@ impl ::std::fmt::Debug for IdRequest {
 // SAFETY:
 // - `IdRequest` is `Sync` because it does not implement interior mutability.
 //    Neither does `IdRequestMut`.
-unsafe impl ::std::marker::Sync for IdRequest {}
+unsafe impl Sync for IdRequest {}
 
 // SAFETY:
 // - `IdRequest` is `Send` because it uniquely owns its arena and does
 //   not use thread-local data.
-unsafe impl ::std::marker::Send for IdRequest {}
+unsafe impl Send for IdRequest {}
 
 impl ::protobuf::Proxied for IdRequest {
   type View<'msg> = IdRequestView<'msg>;
@@ -101,12 +98,12 @@ impl<'msg> IdRequestView<'msg> {
 
 // SAFETY:
 // - `IdRequestView` is `Sync` because it does not support mutation.
-unsafe impl ::std::marker::Sync for IdRequestView<'_> {}
+unsafe impl Sync for IdRequestView<'_> {}
 
 // SAFETY:
 // - `IdRequestView` is `Send` because while its alive a `IdRequestMut` cannot.
 // - `IdRequestView` does not use thread-local data.
-unsafe impl ::std::marker::Send for IdRequestView<'_> {}
+unsafe impl Send for IdRequestView<'_> {}
 
 impl<'msg> ::protobuf::AsView for IdRequestView<'msg> {
   type Proxied = IdRequest;
@@ -139,16 +136,16 @@ impl<'msg> ::protobuf::IntoProxied<IdRequest> for IdRequestMut<'msg> {
   }
 }
 
-impl ::protobuf::__internal::EntityType for IdRequest {
-    type Tag = ::protobuf::__internal::entity_tag::MessageTag;
+impl ::protobuf::__internal::runtime::EntityType for IdRequest {
+    type Tag = ::protobuf::__internal::runtime::MessageTag;
 }
 
-impl<'msg> ::protobuf::__internal::EntityType for IdRequestView<'msg> {
-    type Tag = ::protobuf::__internal::entity_tag::ViewProxyTag;
+impl<'msg> ::protobuf::__internal::runtime::EntityType for IdRequestView<'msg> {
+    type Tag = ::protobuf::__internal::runtime::ViewProxyTag;
 }
 
-impl<'msg> ::protobuf::__internal::EntityType for IdRequestMut<'msg> {
-    type Tag = ::protobuf::__internal::entity_tag::MutProxyTag;
+impl<'msg> ::protobuf::__internal::runtime::EntityType for IdRequestMut<'msg> {
+    type Tag = ::protobuf::__internal::runtime::MutProxyTag;
 }
 
 #[allow(dead_code)]
@@ -181,7 +178,7 @@ impl<'msg> IdRequestMut<'msg> {
   #[doc(hidden)]
   pub fn as_message_mut_inner(&mut self, _private: ::protobuf::__internal::Private)
     -> ::protobuf::__internal::runtime::MessageMutInner<'msg, IdRequest> {
-    self.inner.reborrow()
+    self.inner
   }
 
   pub fn to_owned(&self) -> IdRequest {
@@ -218,16 +215,18 @@ impl<'msg> IdRequestMut<'msg> {
 
 // SAFETY:
 // - `IdRequestMut` does not perform any shared mutation.
-unsafe impl ::std::marker::Send for IdRequestMut<'_> {}
+unsafe impl Send for IdRequestMut<'_> {}
 
 // SAFETY:
 // - `IdRequestMut` does not perform any shared mutation.
-unsafe impl ::std::marker::Sync for IdRequestMut<'_> {}
+unsafe impl Sync for IdRequestMut<'_> {}
 
 impl<'msg> ::protobuf::AsView for IdRequestMut<'msg> {
   type Proxied = IdRequest;
   fn as_view(&self) -> ::protobuf::View<'_, IdRequest> {
-    self.inner.as_view().into()
+    IdRequestView {
+      inner: ::protobuf::__internal::runtime::MessageViewInner::view_of_mut(self.inner)
+    }
   }
 }
 
@@ -235,14 +234,16 @@ impl<'msg> ::protobuf::IntoView<'msg> for IdRequestMut<'msg> {
   fn into_view<'shorter>(self) -> ::protobuf::View<'shorter, IdRequest>
   where
       'msg: 'shorter {
-    self.inner.as_view().into()
+    IdRequestView {
+      inner: ::protobuf::__internal::runtime::MessageViewInner::view_of_mut(self.inner)
+    }
   }
 }
 
 impl<'msg> ::protobuf::AsMut for IdRequestMut<'msg> {
   type MutProxied = IdRequest;
   fn as_mut(&mut self) -> IdRequestMut<'msg> {
-    self.inner.reborrow().into()
+    IdRequestMut { inner: self.inner }
   }
 }
 
@@ -397,10 +398,7 @@ pub struct Page {
   inner: ::protobuf::__internal::runtime::OwnedMessageInner<Page>
 }
 
-impl ::protobuf::Message for Page {
-  type MessageView<'msg> = PageView<'msg>;
-  type MessageMut<'msg> = PageMut<'msg>;
-}
+impl ::protobuf::Message for Page {}
 
 impl ::std::default::Default for Page {
   fn default() -> Self {
@@ -417,12 +415,12 @@ impl ::std::fmt::Debug for Page {
 // SAFETY:
 // - `Page` is `Sync` because it does not implement interior mutability.
 //    Neither does `PageMut`.
-unsafe impl ::std::marker::Sync for Page {}
+unsafe impl Sync for Page {}
 
 // SAFETY:
 // - `Page` is `Send` because it uniquely owns its arena and does
 //   not use thread-local data.
-unsafe impl ::std::marker::Send for Page {}
+unsafe impl Send for Page {}
 
 impl ::protobuf::Proxied for Page {
   type View<'msg> = PageView<'msg>;
@@ -505,12 +503,12 @@ impl<'msg> PageView<'msg> {
 
 // SAFETY:
 // - `PageView` is `Sync` because it does not support mutation.
-unsafe impl ::std::marker::Sync for PageView<'_> {}
+unsafe impl Sync for PageView<'_> {}
 
 // SAFETY:
 // - `PageView` is `Send` because while its alive a `PageMut` cannot.
 // - `PageView` does not use thread-local data.
-unsafe impl ::std::marker::Send for PageView<'_> {}
+unsafe impl Send for PageView<'_> {}
 
 impl<'msg> ::protobuf::AsView for PageView<'msg> {
   type Proxied = Page;
@@ -543,16 +541,16 @@ impl<'msg> ::protobuf::IntoProxied<Page> for PageMut<'msg> {
   }
 }
 
-impl ::protobuf::__internal::EntityType for Page {
-    type Tag = ::protobuf::__internal::entity_tag::MessageTag;
+impl ::protobuf::__internal::runtime::EntityType for Page {
+    type Tag = ::protobuf::__internal::runtime::MessageTag;
 }
 
-impl<'msg> ::protobuf::__internal::EntityType for PageView<'msg> {
-    type Tag = ::protobuf::__internal::entity_tag::ViewProxyTag;
+impl<'msg> ::protobuf::__internal::runtime::EntityType for PageView<'msg> {
+    type Tag = ::protobuf::__internal::runtime::ViewProxyTag;
 }
 
-impl<'msg> ::protobuf::__internal::EntityType for PageMut<'msg> {
-    type Tag = ::protobuf::__internal::entity_tag::MutProxyTag;
+impl<'msg> ::protobuf::__internal::runtime::EntityType for PageMut<'msg> {
+    type Tag = ::protobuf::__internal::runtime::MutProxyTag;
 }
 
 #[allow(dead_code)]
@@ -585,7 +583,7 @@ impl<'msg> PageMut<'msg> {
   #[doc(hidden)]
   pub fn as_message_mut_inner(&mut self, _private: ::protobuf::__internal::Private)
     -> ::protobuf::__internal::runtime::MessageMutInner<'msg, Page> {
-    self.inner.reborrow()
+    self.inner
   }
 
   pub fn to_owned(&self) -> Page {
@@ -648,16 +646,18 @@ impl<'msg> PageMut<'msg> {
 
 // SAFETY:
 // - `PageMut` does not perform any shared mutation.
-unsafe impl ::std::marker::Send for PageMut<'_> {}
+unsafe impl Send for PageMut<'_> {}
 
 // SAFETY:
 // - `PageMut` does not perform any shared mutation.
-unsafe impl ::std::marker::Sync for PageMut<'_> {}
+unsafe impl Sync for PageMut<'_> {}
 
 impl<'msg> ::protobuf::AsView for PageMut<'msg> {
   type Proxied = Page;
   fn as_view(&self) -> ::protobuf::View<'_, Page> {
-    self.inner.as_view().into()
+    PageView {
+      inner: ::protobuf::__internal::runtime::MessageViewInner::view_of_mut(self.inner)
+    }
   }
 }
 
@@ -665,14 +665,16 @@ impl<'msg> ::protobuf::IntoView<'msg> for PageMut<'msg> {
   fn into_view<'shorter>(self) -> ::protobuf::View<'shorter, Page>
   where
       'msg: 'shorter {
-    self.inner.as_view().into()
+    PageView {
+      inner: ::protobuf::__internal::runtime::MessageViewInner::view_of_mut(self.inner)
+    }
   }
 }
 
 impl<'msg> ::protobuf::AsMut for PageMut<'msg> {
   type MutProxied = Page;
   fn as_mut(&mut self) -> PageMut<'msg> {
-    self.inner.reborrow().into()
+    PageMut { inner: self.inner }
   }
 }
 
@@ -853,10 +855,7 @@ pub struct Pagination {
   inner: ::protobuf::__internal::runtime::OwnedMessageInner<Pagination>
 }
 
-impl ::protobuf::Message for Pagination {
-  type MessageView<'msg> = PaginationView<'msg>;
-  type MessageMut<'msg> = PaginationMut<'msg>;
-}
+impl ::protobuf::Message for Pagination {}
 
 impl ::std::default::Default for Pagination {
   fn default() -> Self {
@@ -873,12 +872,12 @@ impl ::std::fmt::Debug for Pagination {
 // SAFETY:
 // - `Pagination` is `Sync` because it does not implement interior mutability.
 //    Neither does `PaginationMut`.
-unsafe impl ::std::marker::Sync for Pagination {}
+unsafe impl Sync for Pagination {}
 
 // SAFETY:
 // - `Pagination` is `Send` because it uniquely owns its arena and does
 //   not use thread-local data.
-unsafe impl ::std::marker::Send for Pagination {}
+unsafe impl Send for Pagination {}
 
 impl ::protobuf::Proxied for Pagination {
   type View<'msg> = PaginationView<'msg>;
@@ -933,8 +932,8 @@ impl<'msg> PaginationView<'msg> {
       self.inner.ptr().has_field_at_index(0)
     }
   }
-  pub fn current_opt(self) -> ::std::option::Option<super::PageView<'msg>> {
-    self.has_current().then(|| self.current())
+  pub fn current_opt(self) -> ::protobuf::Optional<super::PageView<'msg>> {
+        ::protobuf::Optional::new(self.current(), self.has_current())
   }
   pub fn current(self) -> super::PageView<'msg> {
     let submsg = unsafe {
@@ -1009,12 +1008,12 @@ impl<'msg> PaginationView<'msg> {
 
 // SAFETY:
 // - `PaginationView` is `Sync` because it does not support mutation.
-unsafe impl ::std::marker::Sync for PaginationView<'_> {}
+unsafe impl Sync for PaginationView<'_> {}
 
 // SAFETY:
 // - `PaginationView` is `Send` because while its alive a `PaginationMut` cannot.
 // - `PaginationView` does not use thread-local data.
-unsafe impl ::std::marker::Send for PaginationView<'_> {}
+unsafe impl Send for PaginationView<'_> {}
 
 impl<'msg> ::protobuf::AsView for PaginationView<'msg> {
   type Proxied = Pagination;
@@ -1047,16 +1046,16 @@ impl<'msg> ::protobuf::IntoProxied<Pagination> for PaginationMut<'msg> {
   }
 }
 
-impl ::protobuf::__internal::EntityType for Pagination {
-    type Tag = ::protobuf::__internal::entity_tag::MessageTag;
+impl ::protobuf::__internal::runtime::EntityType for Pagination {
+    type Tag = ::protobuf::__internal::runtime::MessageTag;
 }
 
-impl<'msg> ::protobuf::__internal::EntityType for PaginationView<'msg> {
-    type Tag = ::protobuf::__internal::entity_tag::ViewProxyTag;
+impl<'msg> ::protobuf::__internal::runtime::EntityType for PaginationView<'msg> {
+    type Tag = ::protobuf::__internal::runtime::ViewProxyTag;
 }
 
-impl<'msg> ::protobuf::__internal::EntityType for PaginationMut<'msg> {
-    type Tag = ::protobuf::__internal::entity_tag::MutProxyTag;
+impl<'msg> ::protobuf::__internal::runtime::EntityType for PaginationMut<'msg> {
+    type Tag = ::protobuf::__internal::runtime::MutProxyTag;
 }
 
 #[allow(dead_code)]
@@ -1089,7 +1088,7 @@ impl<'msg> PaginationMut<'msg> {
   #[doc(hidden)]
   pub fn as_message_mut_inner(&mut self, _private: ::protobuf::__internal::Private)
     -> ::protobuf::__internal::runtime::MessageMutInner<'msg, Pagination> {
-    self.inner.reborrow()
+    self.inner
   }
 
   pub fn to_owned(&self) -> Pagination {
@@ -1109,8 +1108,8 @@ impl<'msg> PaginationMut<'msg> {
       );
     }
   }
-  pub fn current_opt(&self) -> ::std::option::Option<super::PageView<'_>> {
-    self.has_current().then(|| self.current())
+  pub fn current_opt(&self) -> ::protobuf::Optional<super::PageView<'_>> {
+        ::protobuf::Optional::new(self.current(), self.has_current())
   }
   pub fn current(&self) -> super::PageView<'_> {
     let submsg = unsafe {
@@ -1251,16 +1250,18 @@ impl<'msg> PaginationMut<'msg> {
 
 // SAFETY:
 // - `PaginationMut` does not perform any shared mutation.
-unsafe impl ::std::marker::Send for PaginationMut<'_> {}
+unsafe impl Send for PaginationMut<'_> {}
 
 // SAFETY:
 // - `PaginationMut` does not perform any shared mutation.
-unsafe impl ::std::marker::Sync for PaginationMut<'_> {}
+unsafe impl Sync for PaginationMut<'_> {}
 
 impl<'msg> ::protobuf::AsView for PaginationMut<'msg> {
   type Proxied = Pagination;
   fn as_view(&self) -> ::protobuf::View<'_, Pagination> {
-    self.inner.as_view().into()
+    PaginationView {
+      inner: ::protobuf::__internal::runtime::MessageViewInner::view_of_mut(self.inner)
+    }
   }
 }
 
@@ -1268,14 +1269,16 @@ impl<'msg> ::protobuf::IntoView<'msg> for PaginationMut<'msg> {
   fn into_view<'shorter>(self) -> ::protobuf::View<'shorter, Pagination>
   where
       'msg: 'shorter {
-    self.inner.as_view().into()
+    PaginationView {
+      inner: ::protobuf::__internal::runtime::MessageViewInner::view_of_mut(self.inner)
+    }
   }
 }
 
 impl<'msg> ::protobuf::AsMut for PaginationMut<'msg> {
   type MutProxied = Pagination;
   fn as_mut(&mut self) -> PaginationMut<'msg> {
-    self.inner.reborrow().into()
+    PaginationMut { inner: self.inner }
   }
 }
 
@@ -1320,8 +1323,8 @@ impl Pagination {
       );
     }
   }
-  pub fn current_opt(&self) -> ::std::option::Option<super::PageView<'_>> {
-    self.has_current().then(|| self.current())
+  pub fn current_opt(&self) -> ::protobuf::Optional<super::PageView<'_>> {
+        ::protobuf::Optional::new(self.current(), self.has_current())
   }
   pub fn current(&self) -> super::PageView<'_> {
     let submsg = unsafe {
@@ -1556,10 +1559,7 @@ pub struct File {
   inner: ::protobuf::__internal::runtime::OwnedMessageInner<File>
 }
 
-impl ::protobuf::Message for File {
-  type MessageView<'msg> = FileView<'msg>;
-  type MessageMut<'msg> = FileMut<'msg>;
-}
+impl ::protobuf::Message for File {}
 
 impl ::std::default::Default for File {
   fn default() -> Self {
@@ -1576,12 +1576,12 @@ impl ::std::fmt::Debug for File {
 // SAFETY:
 // - `File` is `Sync` because it does not implement interior mutability.
 //    Neither does `FileMut`.
-unsafe impl ::std::marker::Sync for File {}
+unsafe impl Sync for File {}
 
 // SAFETY:
 // - `File` is `Send` because it uniquely owns its arena and does
 //   not use thread-local data.
-unsafe impl ::std::marker::Send for File {}
+unsafe impl Send for File {}
 
 impl ::protobuf::Proxied for File {
   type View<'msg> = FileView<'msg>;
@@ -1637,7 +1637,8 @@ impl<'msg> FileView<'msg> {
         0, (b"").into()
       )
     };
-    ::protobuf::ProtoStr::from_utf8_unchecked(unsafe { str_view.as_ref() })
+    // SAFETY: The runtime doesn't require ProtoStr to be UTF-8.
+    unsafe { ::protobuf::ProtoStr::from_utf8_unchecked(str_view.as_ref()) }
   }
 
   // object: optional string
@@ -1647,19 +1648,20 @@ impl<'msg> FileView<'msg> {
         1, (b"").into()
       )
     };
-    ::protobuf::ProtoStr::from_utf8_unchecked(unsafe { str_view.as_ref() })
+    // SAFETY: The runtime doesn't require ProtoStr to be UTF-8.
+    unsafe { ::protobuf::ProtoStr::from_utf8_unchecked(str_view.as_ref()) }
   }
 
 }
 
 // SAFETY:
 // - `FileView` is `Sync` because it does not support mutation.
-unsafe impl ::std::marker::Sync for FileView<'_> {}
+unsafe impl Sync for FileView<'_> {}
 
 // SAFETY:
 // - `FileView` is `Send` because while its alive a `FileMut` cannot.
 // - `FileView` does not use thread-local data.
-unsafe impl ::std::marker::Send for FileView<'_> {}
+unsafe impl Send for FileView<'_> {}
 
 impl<'msg> ::protobuf::AsView for FileView<'msg> {
   type Proxied = File;
@@ -1692,16 +1694,16 @@ impl<'msg> ::protobuf::IntoProxied<File> for FileMut<'msg> {
   }
 }
 
-impl ::protobuf::__internal::EntityType for File {
-    type Tag = ::protobuf::__internal::entity_tag::MessageTag;
+impl ::protobuf::__internal::runtime::EntityType for File {
+    type Tag = ::protobuf::__internal::runtime::MessageTag;
 }
 
-impl<'msg> ::protobuf::__internal::EntityType for FileView<'msg> {
-    type Tag = ::protobuf::__internal::entity_tag::ViewProxyTag;
+impl<'msg> ::protobuf::__internal::runtime::EntityType for FileView<'msg> {
+    type Tag = ::protobuf::__internal::runtime::ViewProxyTag;
 }
 
-impl<'msg> ::protobuf::__internal::EntityType for FileMut<'msg> {
-    type Tag = ::protobuf::__internal::entity_tag::MutProxyTag;
+impl<'msg> ::protobuf::__internal::runtime::EntityType for FileMut<'msg> {
+    type Tag = ::protobuf::__internal::runtime::MutProxyTag;
 }
 
 #[allow(dead_code)]
@@ -1734,7 +1736,7 @@ impl<'msg> FileMut<'msg> {
   #[doc(hidden)]
   pub fn as_message_mut_inner(&mut self, _private: ::protobuf::__internal::Private)
     -> ::protobuf::__internal::runtime::MessageMutInner<'msg, File> {
-    self.inner.reborrow()
+    self.inner
   }
 
   pub fn to_owned(&self) -> File {
@@ -1748,7 +1750,8 @@ impl<'msg> FileMut<'msg> {
         0, (b"").into()
       )
     };
-    ::protobuf::ProtoStr::from_utf8_unchecked(unsafe { str_view.as_ref() })
+    // SAFETY: The runtime doesn't require ProtoStr to be UTF-8.
+    unsafe { ::protobuf::ProtoStr::from_utf8_unchecked(str_view.as_ref()) }
   }
   pub fn set_bucket(&mut self, val: impl ::protobuf::IntoProxied<::protobuf::ProtoString>) {
     unsafe {
@@ -1766,7 +1769,8 @@ impl<'msg> FileMut<'msg> {
         1, (b"").into()
       )
     };
-    ::protobuf::ProtoStr::from_utf8_unchecked(unsafe { str_view.as_ref() })
+    // SAFETY: The runtime doesn't require ProtoStr to be UTF-8.
+    unsafe { ::protobuf::ProtoStr::from_utf8_unchecked(str_view.as_ref()) }
   }
   pub fn set_object(&mut self, val: impl ::protobuf::IntoProxied<::protobuf::ProtoString>) {
     unsafe {
@@ -1781,16 +1785,18 @@ impl<'msg> FileMut<'msg> {
 
 // SAFETY:
 // - `FileMut` does not perform any shared mutation.
-unsafe impl ::std::marker::Send for FileMut<'_> {}
+unsafe impl Send for FileMut<'_> {}
 
 // SAFETY:
 // - `FileMut` does not perform any shared mutation.
-unsafe impl ::std::marker::Sync for FileMut<'_> {}
+unsafe impl Sync for FileMut<'_> {}
 
 impl<'msg> ::protobuf::AsView for FileMut<'msg> {
   type Proxied = File;
   fn as_view(&self) -> ::protobuf::View<'_, File> {
-    self.inner.as_view().into()
+    FileView {
+      inner: ::protobuf::__internal::runtime::MessageViewInner::view_of_mut(self.inner)
+    }
   }
 }
 
@@ -1798,14 +1804,16 @@ impl<'msg> ::protobuf::IntoView<'msg> for FileMut<'msg> {
   fn into_view<'shorter>(self) -> ::protobuf::View<'shorter, File>
   where
       'msg: 'shorter {
-    self.inner.as_view().into()
+    FileView {
+      inner: ::protobuf::__internal::runtime::MessageViewInner::view_of_mut(self.inner)
+    }
   }
 }
 
 impl<'msg> ::protobuf::AsMut for FileMut<'msg> {
   type MutProxied = File;
   fn as_mut(&mut self) -> FileMut<'msg> {
-    self.inner.reborrow().into()
+    FileMut { inner: self.inner }
   }
 }
 
@@ -1844,7 +1852,8 @@ impl File {
         0, (b"").into()
       )
     };
-    ::protobuf::ProtoStr::from_utf8_unchecked(unsafe { str_view.as_ref() })
+    // SAFETY: The runtime doesn't require ProtoStr to be UTF-8.
+    unsafe { ::protobuf::ProtoStr::from_utf8_unchecked(str_view.as_ref()) }
   }
   pub fn set_bucket(&mut self, val: impl ::protobuf::IntoProxied<::protobuf::ProtoString>) {
     unsafe {
@@ -1862,7 +1871,8 @@ impl File {
         1, (b"").into()
       )
     };
-    ::protobuf::ProtoStr::from_utf8_unchecked(unsafe { str_view.as_ref() })
+    // SAFETY: The runtime doesn't require ProtoStr to be UTF-8.
+    unsafe { ::protobuf::ProtoStr::from_utf8_unchecked(str_view.as_ref()) }
   }
   pub fn set_object(&mut self, val: impl ::protobuf::IntoProxied<::protobuf::ProtoString>) {
     unsafe {
@@ -1970,10 +1980,7 @@ pub struct RichText {
   inner: ::protobuf::__internal::runtime::OwnedMessageInner<RichText>
 }
 
-impl ::protobuf::Message for RichText {
-  type MessageView<'msg> = RichTextView<'msg>;
-  type MessageMut<'msg> = RichTextMut<'msg>;
-}
+impl ::protobuf::Message for RichText {}
 
 impl ::std::default::Default for RichText {
   fn default() -> Self {
@@ -1990,12 +1997,12 @@ impl ::std::fmt::Debug for RichText {
 // SAFETY:
 // - `RichText` is `Sync` because it does not implement interior mutability.
 //    Neither does `RichTextMut`.
-unsafe impl ::std::marker::Sync for RichText {}
+unsafe impl Sync for RichText {}
 
 // SAFETY:
 // - `RichText` is `Send` because it uniquely owns its arena and does
 //   not use thread-local data.
-unsafe impl ::std::marker::Send for RichText {}
+unsafe impl Send for RichText {}
 
 impl ::protobuf::Proxied for RichText {
   type View<'msg> = RichTextView<'msg>;
@@ -2066,7 +2073,8 @@ impl<'msg> RichTextView<'msg> {
         1, (b"").into()
       )
     };
-    ::protobuf::ProtoStr::from_utf8_unchecked(unsafe { str_view.as_ref() })
+    // SAFETY: The runtime doesn't require ProtoStr to be UTF-8.
+    unsafe { ::protobuf::ProtoStr::from_utf8_unchecked(str_view.as_ref()) }
   }
 
   // attachments: repeated message palm.portal.v1.File
@@ -2087,12 +2095,12 @@ impl<'msg> RichTextView<'msg> {
 
 // SAFETY:
 // - `RichTextView` is `Sync` because it does not support mutation.
-unsafe impl ::std::marker::Sync for RichTextView<'_> {}
+unsafe impl Sync for RichTextView<'_> {}
 
 // SAFETY:
 // - `RichTextView` is `Send` because while its alive a `RichTextMut` cannot.
 // - `RichTextView` does not use thread-local data.
-unsafe impl ::std::marker::Send for RichTextView<'_> {}
+unsafe impl Send for RichTextView<'_> {}
 
 impl<'msg> ::protobuf::AsView for RichTextView<'msg> {
   type Proxied = RichText;
@@ -2125,16 +2133,16 @@ impl<'msg> ::protobuf::IntoProxied<RichText> for RichTextMut<'msg> {
   }
 }
 
-impl ::protobuf::__internal::EntityType for RichText {
-    type Tag = ::protobuf::__internal::entity_tag::MessageTag;
+impl ::protobuf::__internal::runtime::EntityType for RichText {
+    type Tag = ::protobuf::__internal::runtime::MessageTag;
 }
 
-impl<'msg> ::protobuf::__internal::EntityType for RichTextView<'msg> {
-    type Tag = ::protobuf::__internal::entity_tag::ViewProxyTag;
+impl<'msg> ::protobuf::__internal::runtime::EntityType for RichTextView<'msg> {
+    type Tag = ::protobuf::__internal::runtime::ViewProxyTag;
 }
 
-impl<'msg> ::protobuf::__internal::EntityType for RichTextMut<'msg> {
-    type Tag = ::protobuf::__internal::entity_tag::MutProxyTag;
+impl<'msg> ::protobuf::__internal::runtime::EntityType for RichTextMut<'msg> {
+    type Tag = ::protobuf::__internal::runtime::MutProxyTag;
 }
 
 #[allow(dead_code)]
@@ -2167,7 +2175,7 @@ impl<'msg> RichTextMut<'msg> {
   #[doc(hidden)]
   pub fn as_message_mut_inner(&mut self, _private: ::protobuf::__internal::Private)
     -> ::protobuf::__internal::runtime::MessageMutInner<'msg, RichText> {
-    self.inner.reborrow()
+    self.inner
   }
 
   pub fn to_owned(&self) -> RichText {
@@ -2207,7 +2215,8 @@ impl<'msg> RichTextMut<'msg> {
         1, (b"").into()
       )
     };
-    ::protobuf::ProtoStr::from_utf8_unchecked(unsafe { str_view.as_ref() })
+    // SAFETY: The runtime doesn't require ProtoStr to be UTF-8.
+    unsafe { ::protobuf::ProtoStr::from_utf8_unchecked(str_view.as_ref()) }
   }
   pub fn set_body(&mut self, val: impl ::protobuf::IntoProxied<::protobuf::ProtoString>) {
     unsafe {
@@ -2258,16 +2267,18 @@ impl<'msg> RichTextMut<'msg> {
 
 // SAFETY:
 // - `RichTextMut` does not perform any shared mutation.
-unsafe impl ::std::marker::Send for RichTextMut<'_> {}
+unsafe impl Send for RichTextMut<'_> {}
 
 // SAFETY:
 // - `RichTextMut` does not perform any shared mutation.
-unsafe impl ::std::marker::Sync for RichTextMut<'_> {}
+unsafe impl Sync for RichTextMut<'_> {}
 
 impl<'msg> ::protobuf::AsView for RichTextMut<'msg> {
   type Proxied = RichText;
   fn as_view(&self) -> ::protobuf::View<'_, RichText> {
-    self.inner.as_view().into()
+    RichTextView {
+      inner: ::protobuf::__internal::runtime::MessageViewInner::view_of_mut(self.inner)
+    }
   }
 }
 
@@ -2275,14 +2286,16 @@ impl<'msg> ::protobuf::IntoView<'msg> for RichTextMut<'msg> {
   fn into_view<'shorter>(self) -> ::protobuf::View<'shorter, RichText>
   where
       'msg: 'shorter {
-    self.inner.as_view().into()
+    RichTextView {
+      inner: ::protobuf::__internal::runtime::MessageViewInner::view_of_mut(self.inner)
+    }
   }
 }
 
 impl<'msg> ::protobuf::AsMut for RichTextMut<'msg> {
   type MutProxied = RichText;
   fn as_mut(&mut self) -> RichTextMut<'msg> {
-    self.inner.reborrow().into()
+    RichTextMut { inner: self.inner }
   }
 }
 
@@ -2347,7 +2360,8 @@ impl RichText {
         1, (b"").into()
       )
     };
-    ::protobuf::ProtoStr::from_utf8_unchecked(unsafe { str_view.as_ref() })
+    // SAFETY: The runtime doesn't require ProtoStr to be UTF-8.
+    unsafe { ::protobuf::ProtoStr::from_utf8_unchecked(str_view.as_ref()) }
   }
   pub fn set_body(&mut self, val: impl ::protobuf::IntoProxied<::protobuf::ProtoString>) {
     unsafe {
@@ -2562,8 +2576,8 @@ unsafe impl ::protobuf::__internal::Enum for Editor {
   }
 }
 
-impl ::protobuf::__internal::EntityType for Editor {
-    type Tag = ::protobuf::__internal::entity_tag::EnumTag;
+impl ::protobuf::__internal::runtime::EntityType for Editor {
+    type Tag = ::protobuf::__internal::runtime::EnumTag;
 }
 
 
@@ -2579,10 +2593,7 @@ pub struct Location {
   inner: ::protobuf::__internal::runtime::OwnedMessageInner<Location>
 }
 
-impl ::protobuf::Message for Location {
-  type MessageView<'msg> = LocationView<'msg>;
-  type MessageMut<'msg> = LocationMut<'msg>;
-}
+impl ::protobuf::Message for Location {}
 
 impl ::std::default::Default for Location {
   fn default() -> Self {
@@ -2599,12 +2610,12 @@ impl ::std::fmt::Debug for Location {
 // SAFETY:
 // - `Location` is `Sync` because it does not implement interior mutability.
 //    Neither does `LocationMut`.
-unsafe impl ::std::marker::Sync for Location {}
+unsafe impl Sync for Location {}
 
 // SAFETY:
 // - `Location` is `Send` because it uniquely owns its arena and does
 //   not use thread-local data.
-unsafe impl ::std::marker::Send for Location {}
+unsafe impl Send for Location {}
 
 impl ::protobuf::Proxied for Location {
   type View<'msg> = LocationView<'msg>;
@@ -2675,19 +2686,20 @@ impl<'msg> LocationView<'msg> {
         1, (b"").into()
       )
     };
-    ::protobuf::ProtoStr::from_utf8_unchecked(unsafe { str_view.as_ref() })
+    // SAFETY: The runtime doesn't require ProtoStr to be UTF-8.
+    unsafe { ::protobuf::ProtoStr::from_utf8_unchecked(str_view.as_ref()) }
   }
 
 }
 
 // SAFETY:
 // - `LocationView` is `Sync` because it does not support mutation.
-unsafe impl ::std::marker::Sync for LocationView<'_> {}
+unsafe impl Sync for LocationView<'_> {}
 
 // SAFETY:
 // - `LocationView` is `Send` because while its alive a `LocationMut` cannot.
 // - `LocationView` does not use thread-local data.
-unsafe impl ::std::marker::Send for LocationView<'_> {}
+unsafe impl Send for LocationView<'_> {}
 
 impl<'msg> ::protobuf::AsView for LocationView<'msg> {
   type Proxied = Location;
@@ -2720,16 +2732,16 @@ impl<'msg> ::protobuf::IntoProxied<Location> for LocationMut<'msg> {
   }
 }
 
-impl ::protobuf::__internal::EntityType for Location {
-    type Tag = ::protobuf::__internal::entity_tag::MessageTag;
+impl ::protobuf::__internal::runtime::EntityType for Location {
+    type Tag = ::protobuf::__internal::runtime::MessageTag;
 }
 
-impl<'msg> ::protobuf::__internal::EntityType for LocationView<'msg> {
-    type Tag = ::protobuf::__internal::entity_tag::ViewProxyTag;
+impl<'msg> ::protobuf::__internal::runtime::EntityType for LocationView<'msg> {
+    type Tag = ::protobuf::__internal::runtime::ViewProxyTag;
 }
 
-impl<'msg> ::protobuf::__internal::EntityType for LocationMut<'msg> {
-    type Tag = ::protobuf::__internal::entity_tag::MutProxyTag;
+impl<'msg> ::protobuf::__internal::runtime::EntityType for LocationMut<'msg> {
+    type Tag = ::protobuf::__internal::runtime::MutProxyTag;
 }
 
 #[allow(dead_code)]
@@ -2762,7 +2774,7 @@ impl<'msg> LocationMut<'msg> {
   #[doc(hidden)]
   pub fn as_message_mut_inner(&mut self, _private: ::protobuf::__internal::Private)
     -> ::protobuf::__internal::runtime::MessageMutInner<'msg, Location> {
-    self.inner.reborrow()
+    self.inner
   }
 
   pub fn to_owned(&self) -> Location {
@@ -2802,7 +2814,8 @@ impl<'msg> LocationMut<'msg> {
         1, (b"").into()
       )
     };
-    ::protobuf::ProtoStr::from_utf8_unchecked(unsafe { str_view.as_ref() })
+    // SAFETY: The runtime doesn't require ProtoStr to be UTF-8.
+    unsafe { ::protobuf::ProtoStr::from_utf8_unchecked(str_view.as_ref()) }
   }
   pub fn set_address(&mut self, val: impl ::protobuf::IntoProxied<::protobuf::ProtoString>) {
     unsafe {
@@ -2817,16 +2830,18 @@ impl<'msg> LocationMut<'msg> {
 
 // SAFETY:
 // - `LocationMut` does not perform any shared mutation.
-unsafe impl ::std::marker::Send for LocationMut<'_> {}
+unsafe impl Send for LocationMut<'_> {}
 
 // SAFETY:
 // - `LocationMut` does not perform any shared mutation.
-unsafe impl ::std::marker::Sync for LocationMut<'_> {}
+unsafe impl Sync for LocationMut<'_> {}
 
 impl<'msg> ::protobuf::AsView for LocationMut<'msg> {
   type Proxied = Location;
   fn as_view(&self) -> ::protobuf::View<'_, Location> {
-    self.inner.as_view().into()
+    LocationView {
+      inner: ::protobuf::__internal::runtime::MessageViewInner::view_of_mut(self.inner)
+    }
   }
 }
 
@@ -2834,14 +2849,16 @@ impl<'msg> ::protobuf::IntoView<'msg> for LocationMut<'msg> {
   fn into_view<'shorter>(self) -> ::protobuf::View<'shorter, Location>
   where
       'msg: 'shorter {
-    self.inner.as_view().into()
+    LocationView {
+      inner: ::protobuf::__internal::runtime::MessageViewInner::view_of_mut(self.inner)
+    }
   }
 }
 
 impl<'msg> ::protobuf::AsMut for LocationMut<'msg> {
   type MutProxied = Location;
   fn as_mut(&mut self) -> LocationMut<'msg> {
-    self.inner.reborrow().into()
+    LocationMut { inner: self.inner }
   }
 }
 
@@ -2906,7 +2923,8 @@ impl Location {
         1, (b"").into()
       )
     };
-    ::protobuf::ProtoStr::from_utf8_unchecked(unsafe { str_view.as_ref() })
+    // SAFETY: The runtime doesn't require ProtoStr to be UTF-8.
+    unsafe { ::protobuf::ProtoStr::from_utf8_unchecked(str_view.as_ref()) }
   }
   pub fn set_address(&mut self, val: impl ::protobuf::IntoProxied<::protobuf::ProtoString>) {
     unsafe {
@@ -3084,8 +3102,8 @@ unsafe impl ::protobuf::__internal::Enum for Map {
   }
 }
 
-impl ::protobuf::__internal::EntityType for Map {
-    type Tag = ::protobuf::__internal::entity_tag::EnumTag;
+impl ::protobuf::__internal::runtime::EntityType for Map {
+    type Tag = ::protobuf::__internal::runtime::EnumTag;
 }
 
 
@@ -3101,10 +3119,7 @@ pub struct SiteHeartbeatResponse {
   inner: ::protobuf::__internal::runtime::OwnedMessageInner<SiteHeartbeatResponse>
 }
 
-impl ::protobuf::Message for SiteHeartbeatResponse {
-  type MessageView<'msg> = SiteHeartbeatResponseView<'msg>;
-  type MessageMut<'msg> = SiteHeartbeatResponseMut<'msg>;
-}
+impl ::protobuf::Message for SiteHeartbeatResponse {}
 
 impl ::std::default::Default for SiteHeartbeatResponse {
   fn default() -> Self {
@@ -3121,12 +3136,12 @@ impl ::std::fmt::Debug for SiteHeartbeatResponse {
 // SAFETY:
 // - `SiteHeartbeatResponse` is `Sync` because it does not implement interior mutability.
 //    Neither does `SiteHeartbeatResponseMut`.
-unsafe impl ::std::marker::Sync for SiteHeartbeatResponse {}
+unsafe impl Sync for SiteHeartbeatResponse {}
 
 // SAFETY:
 // - `SiteHeartbeatResponse` is `Send` because it uniquely owns its arena and does
 //   not use thread-local data.
-unsafe impl ::std::marker::Send for SiteHeartbeatResponse {}
+unsafe impl Send for SiteHeartbeatResponse {}
 
 impl ::protobuf::Proxied for SiteHeartbeatResponse {
   type View<'msg> = SiteHeartbeatResponseView<'msg>;
@@ -3182,7 +3197,8 @@ impl<'msg> SiteHeartbeatResponseView<'msg> {
         0, (b"").into()
       )
     };
-    ::protobuf::ProtoStr::from_utf8_unchecked(unsafe { str_view.as_ref() })
+    // SAFETY: The runtime doesn't require ProtoStr to be UTF-8.
+    unsafe { ::protobuf::ProtoStr::from_utf8_unchecked(str_view.as_ref()) }
   }
 
   // created_at: optional message google.protobuf.Timestamp
@@ -3191,8 +3207,8 @@ impl<'msg> SiteHeartbeatResponseView<'msg> {
       self.inner.ptr().has_field_at_index(1)
     }
   }
-  pub fn created_at_opt(self) -> ::std::option::Option<super::TimestampView<'msg>> {
-    self.has_created_at().then(|| self.created_at())
+  pub fn created_at_opt(self) -> ::protobuf::Optional<super::TimestampView<'msg>> {
+        ::protobuf::Optional::new(self.created_at(), self.has_created_at())
   }
   pub fn created_at(self) -> super::TimestampView<'msg> {
     let submsg = unsafe {
@@ -3207,12 +3223,12 @@ impl<'msg> SiteHeartbeatResponseView<'msg> {
 
 // SAFETY:
 // - `SiteHeartbeatResponseView` is `Sync` because it does not support mutation.
-unsafe impl ::std::marker::Sync for SiteHeartbeatResponseView<'_> {}
+unsafe impl Sync for SiteHeartbeatResponseView<'_> {}
 
 // SAFETY:
 // - `SiteHeartbeatResponseView` is `Send` because while its alive a `SiteHeartbeatResponseMut` cannot.
 // - `SiteHeartbeatResponseView` does not use thread-local data.
-unsafe impl ::std::marker::Send for SiteHeartbeatResponseView<'_> {}
+unsafe impl Send for SiteHeartbeatResponseView<'_> {}
 
 impl<'msg> ::protobuf::AsView for SiteHeartbeatResponseView<'msg> {
   type Proxied = SiteHeartbeatResponse;
@@ -3245,16 +3261,16 @@ impl<'msg> ::protobuf::IntoProxied<SiteHeartbeatResponse> for SiteHeartbeatRespo
   }
 }
 
-impl ::protobuf::__internal::EntityType for SiteHeartbeatResponse {
-    type Tag = ::protobuf::__internal::entity_tag::MessageTag;
+impl ::protobuf::__internal::runtime::EntityType for SiteHeartbeatResponse {
+    type Tag = ::protobuf::__internal::runtime::MessageTag;
 }
 
-impl<'msg> ::protobuf::__internal::EntityType for SiteHeartbeatResponseView<'msg> {
-    type Tag = ::protobuf::__internal::entity_tag::ViewProxyTag;
+impl<'msg> ::protobuf::__internal::runtime::EntityType for SiteHeartbeatResponseView<'msg> {
+    type Tag = ::protobuf::__internal::runtime::ViewProxyTag;
 }
 
-impl<'msg> ::protobuf::__internal::EntityType for SiteHeartbeatResponseMut<'msg> {
-    type Tag = ::protobuf::__internal::entity_tag::MutProxyTag;
+impl<'msg> ::protobuf::__internal::runtime::EntityType for SiteHeartbeatResponseMut<'msg> {
+    type Tag = ::protobuf::__internal::runtime::MutProxyTag;
 }
 
 #[allow(dead_code)]
@@ -3287,7 +3303,7 @@ impl<'msg> SiteHeartbeatResponseMut<'msg> {
   #[doc(hidden)]
   pub fn as_message_mut_inner(&mut self, _private: ::protobuf::__internal::Private)
     -> ::protobuf::__internal::runtime::MessageMutInner<'msg, SiteHeartbeatResponse> {
-    self.inner.reborrow()
+    self.inner
   }
 
   pub fn to_owned(&self) -> SiteHeartbeatResponse {
@@ -3301,7 +3317,8 @@ impl<'msg> SiteHeartbeatResponseMut<'msg> {
         0, (b"").into()
       )
     };
-    ::protobuf::ProtoStr::from_utf8_unchecked(unsafe { str_view.as_ref() })
+    // SAFETY: The runtime doesn't require ProtoStr to be UTF-8.
+    unsafe { ::protobuf::ProtoStr::from_utf8_unchecked(str_view.as_ref()) }
   }
   pub fn set_version(&mut self, val: impl ::protobuf::IntoProxied<::protobuf::ProtoString>) {
     unsafe {
@@ -3325,8 +3342,8 @@ impl<'msg> SiteHeartbeatResponseMut<'msg> {
       );
     }
   }
-  pub fn created_at_opt(&self) -> ::std::option::Option<super::TimestampView<'_>> {
-    self.has_created_at().then(|| self.created_at())
+  pub fn created_at_opt(&self) -> ::protobuf::Optional<super::TimestampView<'_>> {
+        ::protobuf::Optional::new(self.created_at(), self.has_created_at())
   }
   pub fn created_at(&self) -> super::TimestampView<'_> {
     let submsg = unsafe {
@@ -3363,16 +3380,18 @@ impl<'msg> SiteHeartbeatResponseMut<'msg> {
 
 // SAFETY:
 // - `SiteHeartbeatResponseMut` does not perform any shared mutation.
-unsafe impl ::std::marker::Send for SiteHeartbeatResponseMut<'_> {}
+unsafe impl Send for SiteHeartbeatResponseMut<'_> {}
 
 // SAFETY:
 // - `SiteHeartbeatResponseMut` does not perform any shared mutation.
-unsafe impl ::std::marker::Sync for SiteHeartbeatResponseMut<'_> {}
+unsafe impl Sync for SiteHeartbeatResponseMut<'_> {}
 
 impl<'msg> ::protobuf::AsView for SiteHeartbeatResponseMut<'msg> {
   type Proxied = SiteHeartbeatResponse;
   fn as_view(&self) -> ::protobuf::View<'_, SiteHeartbeatResponse> {
-    self.inner.as_view().into()
+    SiteHeartbeatResponseView {
+      inner: ::protobuf::__internal::runtime::MessageViewInner::view_of_mut(self.inner)
+    }
   }
 }
 
@@ -3380,14 +3399,16 @@ impl<'msg> ::protobuf::IntoView<'msg> for SiteHeartbeatResponseMut<'msg> {
   fn into_view<'shorter>(self) -> ::protobuf::View<'shorter, SiteHeartbeatResponse>
   where
       'msg: 'shorter {
-    self.inner.as_view().into()
+    SiteHeartbeatResponseView {
+      inner: ::protobuf::__internal::runtime::MessageViewInner::view_of_mut(self.inner)
+    }
   }
 }
 
 impl<'msg> ::protobuf::AsMut for SiteHeartbeatResponseMut<'msg> {
   type MutProxied = SiteHeartbeatResponse;
   fn as_mut(&mut self) -> SiteHeartbeatResponseMut<'msg> {
-    self.inner.reborrow().into()
+    SiteHeartbeatResponseMut { inner: self.inner }
   }
 }
 
@@ -3426,7 +3447,8 @@ impl SiteHeartbeatResponse {
         0, (b"").into()
       )
     };
-    ::protobuf::ProtoStr::from_utf8_unchecked(unsafe { str_view.as_ref() })
+    // SAFETY: The runtime doesn't require ProtoStr to be UTF-8.
+    unsafe { ::protobuf::ProtoStr::from_utf8_unchecked(str_view.as_ref()) }
   }
   pub fn set_version(&mut self, val: impl ::protobuf::IntoProxied<::protobuf::ProtoString>) {
     unsafe {
@@ -3450,8 +3472,8 @@ impl SiteHeartbeatResponse {
       );
     }
   }
-  pub fn created_at_opt(&self) -> ::std::option::Option<super::TimestampView<'_>> {
-    self.has_created_at().then(|| self.created_at())
+  pub fn created_at_opt(&self) -> ::protobuf::Optional<super::TimestampView<'_>> {
+        ::protobuf::Optional::new(self.created_at(), self.has_created_at())
   }
   pub fn created_at(&self) -> super::TimestampView<'_> {
     let submsg = unsafe {

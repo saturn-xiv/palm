@@ -1,4 +1,4 @@
-const _: () = ::protobuf::__internal::assert_compatible_gencode_version("4.35.1-release");
+const _: () = ::protobuf::__internal::assert_compatible_gencode_version("4.34.0-release");
 // This variable must not be referenced except by protobuf generated
 // code.
 pub(crate) static mut palm__casbin__v1__NewEnforcerRequest_msg_init: ::protobuf::__internal::runtime::MiniTableInitPtr =
@@ -8,10 +8,7 @@ pub struct NewEnforcerRequest {
   inner: ::protobuf::__internal::runtime::OwnedMessageInner<NewEnforcerRequest>
 }
 
-impl ::protobuf::Message for NewEnforcerRequest {
-  type MessageView<'msg> = NewEnforcerRequestView<'msg>;
-  type MessageMut<'msg> = NewEnforcerRequestMut<'msg>;
-}
+impl ::protobuf::Message for NewEnforcerRequest {}
 
 impl ::std::default::Default for NewEnforcerRequest {
   fn default() -> Self {
@@ -28,12 +25,12 @@ impl ::std::fmt::Debug for NewEnforcerRequest {
 // SAFETY:
 // - `NewEnforcerRequest` is `Sync` because it does not implement interior mutability.
 //    Neither does `NewEnforcerRequestMut`.
-unsafe impl ::std::marker::Sync for NewEnforcerRequest {}
+unsafe impl Sync for NewEnforcerRequest {}
 
 // SAFETY:
 // - `NewEnforcerRequest` is `Send` because it uniquely owns its arena and does
 //   not use thread-local data.
-unsafe impl ::std::marker::Send for NewEnforcerRequest {}
+unsafe impl Send for NewEnforcerRequest {}
 
 impl ::protobuf::Proxied for NewEnforcerRequest {
   type View<'msg> = NewEnforcerRequestView<'msg>;
@@ -89,7 +86,8 @@ impl<'msg> NewEnforcerRequestView<'msg> {
         0, (b"").into()
       )
     };
-    ::protobuf::ProtoStr::from_utf8_unchecked(unsafe { str_view.as_ref() })
+    // SAFETY: The runtime doesn't require ProtoStr to be UTF-8.
+    unsafe { ::protobuf::ProtoStr::from_utf8_unchecked(str_view.as_ref()) }
   }
 
   // adapterHandle: optional int32
@@ -111,12 +109,12 @@ impl<'msg> NewEnforcerRequestView<'msg> {
 
 // SAFETY:
 // - `NewEnforcerRequestView` is `Sync` because it does not support mutation.
-unsafe impl ::std::marker::Sync for NewEnforcerRequestView<'_> {}
+unsafe impl Sync for NewEnforcerRequestView<'_> {}
 
 // SAFETY:
 // - `NewEnforcerRequestView` is `Send` because while its alive a `NewEnforcerRequestMut` cannot.
 // - `NewEnforcerRequestView` does not use thread-local data.
-unsafe impl ::std::marker::Send for NewEnforcerRequestView<'_> {}
+unsafe impl Send for NewEnforcerRequestView<'_> {}
 
 impl<'msg> ::protobuf::AsView for NewEnforcerRequestView<'msg> {
   type Proxied = NewEnforcerRequest;
@@ -149,16 +147,16 @@ impl<'msg> ::protobuf::IntoProxied<NewEnforcerRequest> for NewEnforcerRequestMut
   }
 }
 
-impl ::protobuf::__internal::EntityType for NewEnforcerRequest {
-    type Tag = ::protobuf::__internal::entity_tag::MessageTag;
+impl ::protobuf::__internal::runtime::EntityType for NewEnforcerRequest {
+    type Tag = ::protobuf::__internal::runtime::MessageTag;
 }
 
-impl<'msg> ::protobuf::__internal::EntityType for NewEnforcerRequestView<'msg> {
-    type Tag = ::protobuf::__internal::entity_tag::ViewProxyTag;
+impl<'msg> ::protobuf::__internal::runtime::EntityType for NewEnforcerRequestView<'msg> {
+    type Tag = ::protobuf::__internal::runtime::ViewProxyTag;
 }
 
-impl<'msg> ::protobuf::__internal::EntityType for NewEnforcerRequestMut<'msg> {
-    type Tag = ::protobuf::__internal::entity_tag::MutProxyTag;
+impl<'msg> ::protobuf::__internal::runtime::EntityType for NewEnforcerRequestMut<'msg> {
+    type Tag = ::protobuf::__internal::runtime::MutProxyTag;
 }
 
 #[allow(dead_code)]
@@ -191,7 +189,7 @@ impl<'msg> NewEnforcerRequestMut<'msg> {
   #[doc(hidden)]
   pub fn as_message_mut_inner(&mut self, _private: ::protobuf::__internal::Private)
     -> ::protobuf::__internal::runtime::MessageMutInner<'msg, NewEnforcerRequest> {
-    self.inner.reborrow()
+    self.inner
   }
 
   pub fn to_owned(&self) -> NewEnforcerRequest {
@@ -205,7 +203,8 @@ impl<'msg> NewEnforcerRequestMut<'msg> {
         0, (b"").into()
       )
     };
-    ::protobuf::ProtoStr::from_utf8_unchecked(unsafe { str_view.as_ref() })
+    // SAFETY: The runtime doesn't require ProtoStr to be UTF-8.
+    unsafe { ::protobuf::ProtoStr::from_utf8_unchecked(str_view.as_ref()) }
   }
   pub fn set_modelText(&mut self, val: impl ::protobuf::IntoProxied<::protobuf::ProtoString>) {
     unsafe {
@@ -246,16 +245,18 @@ impl<'msg> NewEnforcerRequestMut<'msg> {
 
 // SAFETY:
 // - `NewEnforcerRequestMut` does not perform any shared mutation.
-unsafe impl ::std::marker::Send for NewEnforcerRequestMut<'_> {}
+unsafe impl Send for NewEnforcerRequestMut<'_> {}
 
 // SAFETY:
 // - `NewEnforcerRequestMut` does not perform any shared mutation.
-unsafe impl ::std::marker::Sync for NewEnforcerRequestMut<'_> {}
+unsafe impl Sync for NewEnforcerRequestMut<'_> {}
 
 impl<'msg> ::protobuf::AsView for NewEnforcerRequestMut<'msg> {
   type Proxied = NewEnforcerRequest;
   fn as_view(&self) -> ::protobuf::View<'_, NewEnforcerRequest> {
-    self.inner.as_view().into()
+    NewEnforcerRequestView {
+      inner: ::protobuf::__internal::runtime::MessageViewInner::view_of_mut(self.inner)
+    }
   }
 }
 
@@ -263,14 +264,16 @@ impl<'msg> ::protobuf::IntoView<'msg> for NewEnforcerRequestMut<'msg> {
   fn into_view<'shorter>(self) -> ::protobuf::View<'shorter, NewEnforcerRequest>
   where
       'msg: 'shorter {
-    self.inner.as_view().into()
+    NewEnforcerRequestView {
+      inner: ::protobuf::__internal::runtime::MessageViewInner::view_of_mut(self.inner)
+    }
   }
 }
 
 impl<'msg> ::protobuf::AsMut for NewEnforcerRequestMut<'msg> {
   type MutProxied = NewEnforcerRequest;
   fn as_mut(&mut self) -> NewEnforcerRequestMut<'msg> {
-    self.inner.reborrow().into()
+    NewEnforcerRequestMut { inner: self.inner }
   }
 }
 
@@ -309,7 +312,8 @@ impl NewEnforcerRequest {
         0, (b"").into()
       )
     };
-    ::protobuf::ProtoStr::from_utf8_unchecked(unsafe { str_view.as_ref() })
+    // SAFETY: The runtime doesn't require ProtoStr to be UTF-8.
+    unsafe { ::protobuf::ProtoStr::from_utf8_unchecked(str_view.as_ref()) }
   }
   pub fn set_modelText(&mut self, val: impl ::protobuf::IntoProxied<::protobuf::ProtoString>) {
     unsafe {
@@ -380,11 +384,11 @@ unsafe impl ::protobuf::__internal::runtime::AssociatedMiniTable for NewEnforcer
         ::std::sync::OnceLock::new();
     unsafe {
       ONCE_LOCK.get_or_init(|| {
-        super::palm__casbin__v1__NewEnforcerRequest_msg_init.0 =
+        palm__casbin__v1__NewEnforcerRequest_msg_init.0 =
             ::protobuf::__internal::runtime::build_mini_table("$1X(P");
         ::protobuf::__internal::runtime::link_mini_table(
-            super::palm__casbin__v1__NewEnforcerRequest_msg_init.0, &[], &[]);
-        ::protobuf::__internal::runtime::MiniTableInitPtr(super::palm__casbin__v1__NewEnforcerRequest_msg_init.0)
+            palm__casbin__v1__NewEnforcerRequest_msg_init.0, &[], &[]);
+        ::protobuf::__internal::runtime::MiniTableInitPtr(palm__casbin__v1__NewEnforcerRequest_msg_init.0)
       }).0
     }
   }
@@ -443,10 +447,7 @@ pub struct NewEnforcerReply {
   inner: ::protobuf::__internal::runtime::OwnedMessageInner<NewEnforcerReply>
 }
 
-impl ::protobuf::Message for NewEnforcerReply {
-  type MessageView<'msg> = NewEnforcerReplyView<'msg>;
-  type MessageMut<'msg> = NewEnforcerReplyMut<'msg>;
-}
+impl ::protobuf::Message for NewEnforcerReply {}
 
 impl ::std::default::Default for NewEnforcerReply {
   fn default() -> Self {
@@ -463,12 +464,12 @@ impl ::std::fmt::Debug for NewEnforcerReply {
 // SAFETY:
 // - `NewEnforcerReply` is `Sync` because it does not implement interior mutability.
 //    Neither does `NewEnforcerReplyMut`.
-unsafe impl ::std::marker::Sync for NewEnforcerReply {}
+unsafe impl Sync for NewEnforcerReply {}
 
 // SAFETY:
 // - `NewEnforcerReply` is `Send` because it uniquely owns its arena and does
 //   not use thread-local data.
-unsafe impl ::std::marker::Send for NewEnforcerReply {}
+unsafe impl Send for NewEnforcerReply {}
 
 impl ::protobuf::Proxied for NewEnforcerReply {
   type View<'msg> = NewEnforcerReplyView<'msg>;
@@ -536,12 +537,12 @@ impl<'msg> NewEnforcerReplyView<'msg> {
 
 // SAFETY:
 // - `NewEnforcerReplyView` is `Sync` because it does not support mutation.
-unsafe impl ::std::marker::Sync for NewEnforcerReplyView<'_> {}
+unsafe impl Sync for NewEnforcerReplyView<'_> {}
 
 // SAFETY:
 // - `NewEnforcerReplyView` is `Send` because while its alive a `NewEnforcerReplyMut` cannot.
 // - `NewEnforcerReplyView` does not use thread-local data.
-unsafe impl ::std::marker::Send for NewEnforcerReplyView<'_> {}
+unsafe impl Send for NewEnforcerReplyView<'_> {}
 
 impl<'msg> ::protobuf::AsView for NewEnforcerReplyView<'msg> {
   type Proxied = NewEnforcerReply;
@@ -574,16 +575,16 @@ impl<'msg> ::protobuf::IntoProxied<NewEnforcerReply> for NewEnforcerReplyMut<'ms
   }
 }
 
-impl ::protobuf::__internal::EntityType for NewEnforcerReply {
-    type Tag = ::protobuf::__internal::entity_tag::MessageTag;
+impl ::protobuf::__internal::runtime::EntityType for NewEnforcerReply {
+    type Tag = ::protobuf::__internal::runtime::MessageTag;
 }
 
-impl<'msg> ::protobuf::__internal::EntityType for NewEnforcerReplyView<'msg> {
-    type Tag = ::protobuf::__internal::entity_tag::ViewProxyTag;
+impl<'msg> ::protobuf::__internal::runtime::EntityType for NewEnforcerReplyView<'msg> {
+    type Tag = ::protobuf::__internal::runtime::ViewProxyTag;
 }
 
-impl<'msg> ::protobuf::__internal::EntityType for NewEnforcerReplyMut<'msg> {
-    type Tag = ::protobuf::__internal::entity_tag::MutProxyTag;
+impl<'msg> ::protobuf::__internal::runtime::EntityType for NewEnforcerReplyMut<'msg> {
+    type Tag = ::protobuf::__internal::runtime::MutProxyTag;
 }
 
 #[allow(dead_code)]
@@ -616,7 +617,7 @@ impl<'msg> NewEnforcerReplyMut<'msg> {
   #[doc(hidden)]
   pub fn as_message_mut_inner(&mut self, _private: ::protobuf::__internal::Private)
     -> ::protobuf::__internal::runtime::MessageMutInner<'msg, NewEnforcerReply> {
-    self.inner.reborrow()
+    self.inner
   }
 
   pub fn to_owned(&self) -> NewEnforcerReply {
@@ -653,16 +654,18 @@ impl<'msg> NewEnforcerReplyMut<'msg> {
 
 // SAFETY:
 // - `NewEnforcerReplyMut` does not perform any shared mutation.
-unsafe impl ::std::marker::Send for NewEnforcerReplyMut<'_> {}
+unsafe impl Send for NewEnforcerReplyMut<'_> {}
 
 // SAFETY:
 // - `NewEnforcerReplyMut` does not perform any shared mutation.
-unsafe impl ::std::marker::Sync for NewEnforcerReplyMut<'_> {}
+unsafe impl Sync for NewEnforcerReplyMut<'_> {}
 
 impl<'msg> ::protobuf::AsView for NewEnforcerReplyMut<'msg> {
   type Proxied = NewEnforcerReply;
   fn as_view(&self) -> ::protobuf::View<'_, NewEnforcerReply> {
-    self.inner.as_view().into()
+    NewEnforcerReplyView {
+      inner: ::protobuf::__internal::runtime::MessageViewInner::view_of_mut(self.inner)
+    }
   }
 }
 
@@ -670,14 +673,16 @@ impl<'msg> ::protobuf::IntoView<'msg> for NewEnforcerReplyMut<'msg> {
   fn into_view<'shorter>(self) -> ::protobuf::View<'shorter, NewEnforcerReply>
   where
       'msg: 'shorter {
-    self.inner.as_view().into()
+    NewEnforcerReplyView {
+      inner: ::protobuf::__internal::runtime::MessageViewInner::view_of_mut(self.inner)
+    }
   }
 }
 
 impl<'msg> ::protobuf::AsMut for NewEnforcerReplyMut<'msg> {
   type MutProxied = NewEnforcerReply;
   fn as_mut(&mut self) -> NewEnforcerReplyMut<'msg> {
-    self.inner.reborrow().into()
+    NewEnforcerReplyMut { inner: self.inner }
   }
 }
 
@@ -769,11 +774,11 @@ unsafe impl ::protobuf::__internal::runtime::AssociatedMiniTable for NewEnforcer
         ::std::sync::OnceLock::new();
     unsafe {
       ONCE_LOCK.get_or_init(|| {
-        super::palm__casbin__v1__NewEnforcerReply_msg_init.0 =
+        palm__casbin__v1__NewEnforcerReply_msg_init.0 =
             ::protobuf::__internal::runtime::build_mini_table("$(P");
         ::protobuf::__internal::runtime::link_mini_table(
-            super::palm__casbin__v1__NewEnforcerReply_msg_init.0, &[], &[]);
-        ::protobuf::__internal::runtime::MiniTableInitPtr(super::palm__casbin__v1__NewEnforcerReply_msg_init.0)
+            palm__casbin__v1__NewEnforcerReply_msg_init.0, &[], &[]);
+        ::protobuf::__internal::runtime::MiniTableInitPtr(palm__casbin__v1__NewEnforcerReply_msg_init.0)
       }).0
     }
   }
@@ -832,10 +837,7 @@ pub struct NewAdapterRequest {
   inner: ::protobuf::__internal::runtime::OwnedMessageInner<NewAdapterRequest>
 }
 
-impl ::protobuf::Message for NewAdapterRequest {
-  type MessageView<'msg> = NewAdapterRequestView<'msg>;
-  type MessageMut<'msg> = NewAdapterRequestMut<'msg>;
-}
+impl ::protobuf::Message for NewAdapterRequest {}
 
 impl ::std::default::Default for NewAdapterRequest {
   fn default() -> Self {
@@ -852,12 +854,12 @@ impl ::std::fmt::Debug for NewAdapterRequest {
 // SAFETY:
 // - `NewAdapterRequest` is `Sync` because it does not implement interior mutability.
 //    Neither does `NewAdapterRequestMut`.
-unsafe impl ::std::marker::Sync for NewAdapterRequest {}
+unsafe impl Sync for NewAdapterRequest {}
 
 // SAFETY:
 // - `NewAdapterRequest` is `Send` because it uniquely owns its arena and does
 //   not use thread-local data.
-unsafe impl ::std::marker::Send for NewAdapterRequest {}
+unsafe impl Send for NewAdapterRequest {}
 
 impl ::protobuf::Proxied for NewAdapterRequest {
   type View<'msg> = NewAdapterRequestView<'msg>;
@@ -913,7 +915,8 @@ impl<'msg> NewAdapterRequestView<'msg> {
         0, (b"").into()
       )
     };
-    ::protobuf::ProtoStr::from_utf8_unchecked(unsafe { str_view.as_ref() })
+    // SAFETY: The runtime doesn't require ProtoStr to be UTF-8.
+    unsafe { ::protobuf::ProtoStr::from_utf8_unchecked(str_view.as_ref()) }
   }
 
   // driverName: optional string
@@ -923,7 +926,8 @@ impl<'msg> NewAdapterRequestView<'msg> {
         1, (b"").into()
       )
     };
-    ::protobuf::ProtoStr::from_utf8_unchecked(unsafe { str_view.as_ref() })
+    // SAFETY: The runtime doesn't require ProtoStr to be UTF-8.
+    unsafe { ::protobuf::ProtoStr::from_utf8_unchecked(str_view.as_ref()) }
   }
 
   // connectString: optional string
@@ -933,7 +937,8 @@ impl<'msg> NewAdapterRequestView<'msg> {
         2, (b"").into()
       )
     };
-    ::protobuf::ProtoStr::from_utf8_unchecked(unsafe { str_view.as_ref() })
+    // SAFETY: The runtime doesn't require ProtoStr to be UTF-8.
+    unsafe { ::protobuf::ProtoStr::from_utf8_unchecked(str_view.as_ref()) }
   }
 
   // dbSpecified: optional bool
@@ -955,12 +960,12 @@ impl<'msg> NewAdapterRequestView<'msg> {
 
 // SAFETY:
 // - `NewAdapterRequestView` is `Sync` because it does not support mutation.
-unsafe impl ::std::marker::Sync for NewAdapterRequestView<'_> {}
+unsafe impl Sync for NewAdapterRequestView<'_> {}
 
 // SAFETY:
 // - `NewAdapterRequestView` is `Send` because while its alive a `NewAdapterRequestMut` cannot.
 // - `NewAdapterRequestView` does not use thread-local data.
-unsafe impl ::std::marker::Send for NewAdapterRequestView<'_> {}
+unsafe impl Send for NewAdapterRequestView<'_> {}
 
 impl<'msg> ::protobuf::AsView for NewAdapterRequestView<'msg> {
   type Proxied = NewAdapterRequest;
@@ -993,16 +998,16 @@ impl<'msg> ::protobuf::IntoProxied<NewAdapterRequest> for NewAdapterRequestMut<'
   }
 }
 
-impl ::protobuf::__internal::EntityType for NewAdapterRequest {
-    type Tag = ::protobuf::__internal::entity_tag::MessageTag;
+impl ::protobuf::__internal::runtime::EntityType for NewAdapterRequest {
+    type Tag = ::protobuf::__internal::runtime::MessageTag;
 }
 
-impl<'msg> ::protobuf::__internal::EntityType for NewAdapterRequestView<'msg> {
-    type Tag = ::protobuf::__internal::entity_tag::ViewProxyTag;
+impl<'msg> ::protobuf::__internal::runtime::EntityType for NewAdapterRequestView<'msg> {
+    type Tag = ::protobuf::__internal::runtime::ViewProxyTag;
 }
 
-impl<'msg> ::protobuf::__internal::EntityType for NewAdapterRequestMut<'msg> {
-    type Tag = ::protobuf::__internal::entity_tag::MutProxyTag;
+impl<'msg> ::protobuf::__internal::runtime::EntityType for NewAdapterRequestMut<'msg> {
+    type Tag = ::protobuf::__internal::runtime::MutProxyTag;
 }
 
 #[allow(dead_code)]
@@ -1035,7 +1040,7 @@ impl<'msg> NewAdapterRequestMut<'msg> {
   #[doc(hidden)]
   pub fn as_message_mut_inner(&mut self, _private: ::protobuf::__internal::Private)
     -> ::protobuf::__internal::runtime::MessageMutInner<'msg, NewAdapterRequest> {
-    self.inner.reborrow()
+    self.inner
   }
 
   pub fn to_owned(&self) -> NewAdapterRequest {
@@ -1049,7 +1054,8 @@ impl<'msg> NewAdapterRequestMut<'msg> {
         0, (b"").into()
       )
     };
-    ::protobuf::ProtoStr::from_utf8_unchecked(unsafe { str_view.as_ref() })
+    // SAFETY: The runtime doesn't require ProtoStr to be UTF-8.
+    unsafe { ::protobuf::ProtoStr::from_utf8_unchecked(str_view.as_ref()) }
   }
   pub fn set_adapterName(&mut self, val: impl ::protobuf::IntoProxied<::protobuf::ProtoString>) {
     unsafe {
@@ -1067,7 +1073,8 @@ impl<'msg> NewAdapterRequestMut<'msg> {
         1, (b"").into()
       )
     };
-    ::protobuf::ProtoStr::from_utf8_unchecked(unsafe { str_view.as_ref() })
+    // SAFETY: The runtime doesn't require ProtoStr to be UTF-8.
+    unsafe { ::protobuf::ProtoStr::from_utf8_unchecked(str_view.as_ref()) }
   }
   pub fn set_driverName(&mut self, val: impl ::protobuf::IntoProxied<::protobuf::ProtoString>) {
     unsafe {
@@ -1085,7 +1092,8 @@ impl<'msg> NewAdapterRequestMut<'msg> {
         2, (b"").into()
       )
     };
-    ::protobuf::ProtoStr::from_utf8_unchecked(unsafe { str_view.as_ref() })
+    // SAFETY: The runtime doesn't require ProtoStr to be UTF-8.
+    unsafe { ::protobuf::ProtoStr::from_utf8_unchecked(str_view.as_ref()) }
   }
   pub fn set_connectString(&mut self, val: impl ::protobuf::IntoProxied<::protobuf::ProtoString>) {
     unsafe {
@@ -1126,16 +1134,18 @@ impl<'msg> NewAdapterRequestMut<'msg> {
 
 // SAFETY:
 // - `NewAdapterRequestMut` does not perform any shared mutation.
-unsafe impl ::std::marker::Send for NewAdapterRequestMut<'_> {}
+unsafe impl Send for NewAdapterRequestMut<'_> {}
 
 // SAFETY:
 // - `NewAdapterRequestMut` does not perform any shared mutation.
-unsafe impl ::std::marker::Sync for NewAdapterRequestMut<'_> {}
+unsafe impl Sync for NewAdapterRequestMut<'_> {}
 
 impl<'msg> ::protobuf::AsView for NewAdapterRequestMut<'msg> {
   type Proxied = NewAdapterRequest;
   fn as_view(&self) -> ::protobuf::View<'_, NewAdapterRequest> {
-    self.inner.as_view().into()
+    NewAdapterRequestView {
+      inner: ::protobuf::__internal::runtime::MessageViewInner::view_of_mut(self.inner)
+    }
   }
 }
 
@@ -1143,14 +1153,16 @@ impl<'msg> ::protobuf::IntoView<'msg> for NewAdapterRequestMut<'msg> {
   fn into_view<'shorter>(self) -> ::protobuf::View<'shorter, NewAdapterRequest>
   where
       'msg: 'shorter {
-    self.inner.as_view().into()
+    NewAdapterRequestView {
+      inner: ::protobuf::__internal::runtime::MessageViewInner::view_of_mut(self.inner)
+    }
   }
 }
 
 impl<'msg> ::protobuf::AsMut for NewAdapterRequestMut<'msg> {
   type MutProxied = NewAdapterRequest;
   fn as_mut(&mut self) -> NewAdapterRequestMut<'msg> {
-    self.inner.reborrow().into()
+    NewAdapterRequestMut { inner: self.inner }
   }
 }
 
@@ -1189,7 +1201,8 @@ impl NewAdapterRequest {
         0, (b"").into()
       )
     };
-    ::protobuf::ProtoStr::from_utf8_unchecked(unsafe { str_view.as_ref() })
+    // SAFETY: The runtime doesn't require ProtoStr to be UTF-8.
+    unsafe { ::protobuf::ProtoStr::from_utf8_unchecked(str_view.as_ref()) }
   }
   pub fn set_adapterName(&mut self, val: impl ::protobuf::IntoProxied<::protobuf::ProtoString>) {
     unsafe {
@@ -1207,7 +1220,8 @@ impl NewAdapterRequest {
         1, (b"").into()
       )
     };
-    ::protobuf::ProtoStr::from_utf8_unchecked(unsafe { str_view.as_ref() })
+    // SAFETY: The runtime doesn't require ProtoStr to be UTF-8.
+    unsafe { ::protobuf::ProtoStr::from_utf8_unchecked(str_view.as_ref()) }
   }
   pub fn set_driverName(&mut self, val: impl ::protobuf::IntoProxied<::protobuf::ProtoString>) {
     unsafe {
@@ -1225,7 +1239,8 @@ impl NewAdapterRequest {
         2, (b"").into()
       )
     };
-    ::protobuf::ProtoStr::from_utf8_unchecked(unsafe { str_view.as_ref() })
+    // SAFETY: The runtime doesn't require ProtoStr to be UTF-8.
+    unsafe { ::protobuf::ProtoStr::from_utf8_unchecked(str_view.as_ref()) }
   }
   pub fn set_connectString(&mut self, val: impl ::protobuf::IntoProxied<::protobuf::ProtoString>) {
     unsafe {
@@ -1296,11 +1311,11 @@ unsafe impl ::protobuf::__internal::runtime::AssociatedMiniTable for NewAdapterR
         ::std::sync::OnceLock::new();
     unsafe {
       ONCE_LOCK.get_or_init(|| {
-        super::palm__casbin__v1__NewAdapterRequest_msg_init.0 =
+        palm__casbin__v1__NewAdapterRequest_msg_init.0 =
             ::protobuf::__internal::runtime::build_mini_table("$1X1X1X/P");
         ::protobuf::__internal::runtime::link_mini_table(
-            super::palm__casbin__v1__NewAdapterRequest_msg_init.0, &[], &[]);
-        ::protobuf::__internal::runtime::MiniTableInitPtr(super::palm__casbin__v1__NewAdapterRequest_msg_init.0)
+            palm__casbin__v1__NewAdapterRequest_msg_init.0, &[], &[]);
+        ::protobuf::__internal::runtime::MiniTableInitPtr(palm__casbin__v1__NewAdapterRequest_msg_init.0)
       }).0
     }
   }
@@ -1359,10 +1374,7 @@ pub struct NewAdapterReply {
   inner: ::protobuf::__internal::runtime::OwnedMessageInner<NewAdapterReply>
 }
 
-impl ::protobuf::Message for NewAdapterReply {
-  type MessageView<'msg> = NewAdapterReplyView<'msg>;
-  type MessageMut<'msg> = NewAdapterReplyMut<'msg>;
-}
+impl ::protobuf::Message for NewAdapterReply {}
 
 impl ::std::default::Default for NewAdapterReply {
   fn default() -> Self {
@@ -1379,12 +1391,12 @@ impl ::std::fmt::Debug for NewAdapterReply {
 // SAFETY:
 // - `NewAdapterReply` is `Sync` because it does not implement interior mutability.
 //    Neither does `NewAdapterReplyMut`.
-unsafe impl ::std::marker::Sync for NewAdapterReply {}
+unsafe impl Sync for NewAdapterReply {}
 
 // SAFETY:
 // - `NewAdapterReply` is `Send` because it uniquely owns its arena and does
 //   not use thread-local data.
-unsafe impl ::std::marker::Send for NewAdapterReply {}
+unsafe impl Send for NewAdapterReply {}
 
 impl ::protobuf::Proxied for NewAdapterReply {
   type View<'msg> = NewAdapterReplyView<'msg>;
@@ -1452,12 +1464,12 @@ impl<'msg> NewAdapterReplyView<'msg> {
 
 // SAFETY:
 // - `NewAdapterReplyView` is `Sync` because it does not support mutation.
-unsafe impl ::std::marker::Sync for NewAdapterReplyView<'_> {}
+unsafe impl Sync for NewAdapterReplyView<'_> {}
 
 // SAFETY:
 // - `NewAdapterReplyView` is `Send` because while its alive a `NewAdapterReplyMut` cannot.
 // - `NewAdapterReplyView` does not use thread-local data.
-unsafe impl ::std::marker::Send for NewAdapterReplyView<'_> {}
+unsafe impl Send for NewAdapterReplyView<'_> {}
 
 impl<'msg> ::protobuf::AsView for NewAdapterReplyView<'msg> {
   type Proxied = NewAdapterReply;
@@ -1490,16 +1502,16 @@ impl<'msg> ::protobuf::IntoProxied<NewAdapterReply> for NewAdapterReplyMut<'msg>
   }
 }
 
-impl ::protobuf::__internal::EntityType for NewAdapterReply {
-    type Tag = ::protobuf::__internal::entity_tag::MessageTag;
+impl ::protobuf::__internal::runtime::EntityType for NewAdapterReply {
+    type Tag = ::protobuf::__internal::runtime::MessageTag;
 }
 
-impl<'msg> ::protobuf::__internal::EntityType for NewAdapterReplyView<'msg> {
-    type Tag = ::protobuf::__internal::entity_tag::ViewProxyTag;
+impl<'msg> ::protobuf::__internal::runtime::EntityType for NewAdapterReplyView<'msg> {
+    type Tag = ::protobuf::__internal::runtime::ViewProxyTag;
 }
 
-impl<'msg> ::protobuf::__internal::EntityType for NewAdapterReplyMut<'msg> {
-    type Tag = ::protobuf::__internal::entity_tag::MutProxyTag;
+impl<'msg> ::protobuf::__internal::runtime::EntityType for NewAdapterReplyMut<'msg> {
+    type Tag = ::protobuf::__internal::runtime::MutProxyTag;
 }
 
 #[allow(dead_code)]
@@ -1532,7 +1544,7 @@ impl<'msg> NewAdapterReplyMut<'msg> {
   #[doc(hidden)]
   pub fn as_message_mut_inner(&mut self, _private: ::protobuf::__internal::Private)
     -> ::protobuf::__internal::runtime::MessageMutInner<'msg, NewAdapterReply> {
-    self.inner.reborrow()
+    self.inner
   }
 
   pub fn to_owned(&self) -> NewAdapterReply {
@@ -1569,16 +1581,18 @@ impl<'msg> NewAdapterReplyMut<'msg> {
 
 // SAFETY:
 // - `NewAdapterReplyMut` does not perform any shared mutation.
-unsafe impl ::std::marker::Send for NewAdapterReplyMut<'_> {}
+unsafe impl Send for NewAdapterReplyMut<'_> {}
 
 // SAFETY:
 // - `NewAdapterReplyMut` does not perform any shared mutation.
-unsafe impl ::std::marker::Sync for NewAdapterReplyMut<'_> {}
+unsafe impl Sync for NewAdapterReplyMut<'_> {}
 
 impl<'msg> ::protobuf::AsView for NewAdapterReplyMut<'msg> {
   type Proxied = NewAdapterReply;
   fn as_view(&self) -> ::protobuf::View<'_, NewAdapterReply> {
-    self.inner.as_view().into()
+    NewAdapterReplyView {
+      inner: ::protobuf::__internal::runtime::MessageViewInner::view_of_mut(self.inner)
+    }
   }
 }
 
@@ -1586,14 +1600,16 @@ impl<'msg> ::protobuf::IntoView<'msg> for NewAdapterReplyMut<'msg> {
   fn into_view<'shorter>(self) -> ::protobuf::View<'shorter, NewAdapterReply>
   where
       'msg: 'shorter {
-    self.inner.as_view().into()
+    NewAdapterReplyView {
+      inner: ::protobuf::__internal::runtime::MessageViewInner::view_of_mut(self.inner)
+    }
   }
 }
 
 impl<'msg> ::protobuf::AsMut for NewAdapterReplyMut<'msg> {
   type MutProxied = NewAdapterReply;
   fn as_mut(&mut self) -> NewAdapterReplyMut<'msg> {
-    self.inner.reborrow().into()
+    NewAdapterReplyMut { inner: self.inner }
   }
 }
 
@@ -1685,11 +1701,11 @@ unsafe impl ::protobuf::__internal::runtime::AssociatedMiniTable for NewAdapterR
         ::std::sync::OnceLock::new();
     unsafe {
       ONCE_LOCK.get_or_init(|| {
-        super::palm__casbin__v1__NewAdapterReply_msg_init.0 =
+        palm__casbin__v1__NewAdapterReply_msg_init.0 =
             ::protobuf::__internal::runtime::build_mini_table("$(P");
         ::protobuf::__internal::runtime::link_mini_table(
-            super::palm__casbin__v1__NewAdapterReply_msg_init.0, &[], &[]);
-        ::protobuf::__internal::runtime::MiniTableInitPtr(super::palm__casbin__v1__NewAdapterReply_msg_init.0)
+            palm__casbin__v1__NewAdapterReply_msg_init.0, &[], &[]);
+        ::protobuf::__internal::runtime::MiniTableInitPtr(palm__casbin__v1__NewAdapterReply_msg_init.0)
       }).0
     }
   }
@@ -1748,10 +1764,7 @@ pub struct EnforceRequest {
   inner: ::protobuf::__internal::runtime::OwnedMessageInner<EnforceRequest>
 }
 
-impl ::protobuf::Message for EnforceRequest {
-  type MessageView<'msg> = EnforceRequestView<'msg>;
-  type MessageMut<'msg> = EnforceRequestMut<'msg>;
-}
+impl ::protobuf::Message for EnforceRequest {}
 
 impl ::std::default::Default for EnforceRequest {
   fn default() -> Self {
@@ -1768,12 +1781,12 @@ impl ::std::fmt::Debug for EnforceRequest {
 // SAFETY:
 // - `EnforceRequest` is `Sync` because it does not implement interior mutability.
 //    Neither does `EnforceRequestMut`.
-unsafe impl ::std::marker::Sync for EnforceRequest {}
+unsafe impl Sync for EnforceRequest {}
 
 // SAFETY:
 // - `EnforceRequest` is `Send` because it uniquely owns its arena and does
 //   not use thread-local data.
-unsafe impl ::std::marker::Send for EnforceRequest {}
+unsafe impl Send for EnforceRequest {}
 
 impl ::protobuf::Proxied for EnforceRequest {
   type View<'msg> = EnforceRequestView<'msg>;
@@ -1855,12 +1868,12 @@ impl<'msg> EnforceRequestView<'msg> {
 
 // SAFETY:
 // - `EnforceRequestView` is `Sync` because it does not support mutation.
-unsafe impl ::std::marker::Sync for EnforceRequestView<'_> {}
+unsafe impl Sync for EnforceRequestView<'_> {}
 
 // SAFETY:
 // - `EnforceRequestView` is `Send` because while its alive a `EnforceRequestMut` cannot.
 // - `EnforceRequestView` does not use thread-local data.
-unsafe impl ::std::marker::Send for EnforceRequestView<'_> {}
+unsafe impl Send for EnforceRequestView<'_> {}
 
 impl<'msg> ::protobuf::AsView for EnforceRequestView<'msg> {
   type Proxied = EnforceRequest;
@@ -1893,16 +1906,16 @@ impl<'msg> ::protobuf::IntoProxied<EnforceRequest> for EnforceRequestMut<'msg> {
   }
 }
 
-impl ::protobuf::__internal::EntityType for EnforceRequest {
-    type Tag = ::protobuf::__internal::entity_tag::MessageTag;
+impl ::protobuf::__internal::runtime::EntityType for EnforceRequest {
+    type Tag = ::protobuf::__internal::runtime::MessageTag;
 }
 
-impl<'msg> ::protobuf::__internal::EntityType for EnforceRequestView<'msg> {
-    type Tag = ::protobuf::__internal::entity_tag::ViewProxyTag;
+impl<'msg> ::protobuf::__internal::runtime::EntityType for EnforceRequestView<'msg> {
+    type Tag = ::protobuf::__internal::runtime::ViewProxyTag;
 }
 
-impl<'msg> ::protobuf::__internal::EntityType for EnforceRequestMut<'msg> {
-    type Tag = ::protobuf::__internal::entity_tag::MutProxyTag;
+impl<'msg> ::protobuf::__internal::runtime::EntityType for EnforceRequestMut<'msg> {
+    type Tag = ::protobuf::__internal::runtime::MutProxyTag;
 }
 
 #[allow(dead_code)]
@@ -1935,7 +1948,7 @@ impl<'msg> EnforceRequestMut<'msg> {
   #[doc(hidden)]
   pub fn as_message_mut_inner(&mut self, _private: ::protobuf::__internal::Private)
     -> ::protobuf::__internal::runtime::MessageMutInner<'msg, EnforceRequest> {
-    self.inner.reborrow()
+    self.inner
   }
 
   pub fn to_owned(&self) -> EnforceRequest {
@@ -2008,16 +2021,18 @@ impl<'msg> EnforceRequestMut<'msg> {
 
 // SAFETY:
 // - `EnforceRequestMut` does not perform any shared mutation.
-unsafe impl ::std::marker::Send for EnforceRequestMut<'_> {}
+unsafe impl Send for EnforceRequestMut<'_> {}
 
 // SAFETY:
 // - `EnforceRequestMut` does not perform any shared mutation.
-unsafe impl ::std::marker::Sync for EnforceRequestMut<'_> {}
+unsafe impl Sync for EnforceRequestMut<'_> {}
 
 impl<'msg> ::protobuf::AsView for EnforceRequestMut<'msg> {
   type Proxied = EnforceRequest;
   fn as_view(&self) -> ::protobuf::View<'_, EnforceRequest> {
-    self.inner.as_view().into()
+    EnforceRequestView {
+      inner: ::protobuf::__internal::runtime::MessageViewInner::view_of_mut(self.inner)
+    }
   }
 }
 
@@ -2025,14 +2040,16 @@ impl<'msg> ::protobuf::IntoView<'msg> for EnforceRequestMut<'msg> {
   fn into_view<'shorter>(self) -> ::protobuf::View<'shorter, EnforceRequest>
   where
       'msg: 'shorter {
-    self.inner.as_view().into()
+    EnforceRequestView {
+      inner: ::protobuf::__internal::runtime::MessageViewInner::view_of_mut(self.inner)
+    }
   }
 }
 
 impl<'msg> ::protobuf::AsMut for EnforceRequestMut<'msg> {
   type MutProxied = EnforceRequest;
   fn as_mut(&mut self) -> EnforceRequestMut<'msg> {
-    self.inner.reborrow().into()
+    EnforceRequestMut { inner: self.inner }
   }
 }
 
@@ -2160,11 +2177,11 @@ unsafe impl ::protobuf::__internal::runtime::AssociatedMiniTable for EnforceRequ
         ::std::sync::OnceLock::new();
     unsafe {
       ONCE_LOCK.get_or_init(|| {
-        super::palm__casbin__v1__EnforceRequest_msg_init.0 =
+        palm__casbin__v1__EnforceRequest_msg_init.0 =
             ::protobuf::__internal::runtime::build_mini_table("$(PET");
         ::protobuf::__internal::runtime::link_mini_table(
-            super::palm__casbin__v1__EnforceRequest_msg_init.0, &[], &[]);
-        ::protobuf::__internal::runtime::MiniTableInitPtr(super::palm__casbin__v1__EnforceRequest_msg_init.0)
+            palm__casbin__v1__EnforceRequest_msg_init.0, &[], &[]);
+        ::protobuf::__internal::runtime::MiniTableInitPtr(palm__casbin__v1__EnforceRequest_msg_init.0)
       }).0
     }
   }
@@ -2223,10 +2240,7 @@ pub struct BoolReply {
   inner: ::protobuf::__internal::runtime::OwnedMessageInner<BoolReply>
 }
 
-impl ::protobuf::Message for BoolReply {
-  type MessageView<'msg> = BoolReplyView<'msg>;
-  type MessageMut<'msg> = BoolReplyMut<'msg>;
-}
+impl ::protobuf::Message for BoolReply {}
 
 impl ::std::default::Default for BoolReply {
   fn default() -> Self {
@@ -2243,12 +2257,12 @@ impl ::std::fmt::Debug for BoolReply {
 // SAFETY:
 // - `BoolReply` is `Sync` because it does not implement interior mutability.
 //    Neither does `BoolReplyMut`.
-unsafe impl ::std::marker::Sync for BoolReply {}
+unsafe impl Sync for BoolReply {}
 
 // SAFETY:
 // - `BoolReply` is `Send` because it uniquely owns its arena and does
 //   not use thread-local data.
-unsafe impl ::std::marker::Send for BoolReply {}
+unsafe impl Send for BoolReply {}
 
 impl ::protobuf::Proxied for BoolReply {
   type View<'msg> = BoolReplyView<'msg>;
@@ -2316,12 +2330,12 @@ impl<'msg> BoolReplyView<'msg> {
 
 // SAFETY:
 // - `BoolReplyView` is `Sync` because it does not support mutation.
-unsafe impl ::std::marker::Sync for BoolReplyView<'_> {}
+unsafe impl Sync for BoolReplyView<'_> {}
 
 // SAFETY:
 // - `BoolReplyView` is `Send` because while its alive a `BoolReplyMut` cannot.
 // - `BoolReplyView` does not use thread-local data.
-unsafe impl ::std::marker::Send for BoolReplyView<'_> {}
+unsafe impl Send for BoolReplyView<'_> {}
 
 impl<'msg> ::protobuf::AsView for BoolReplyView<'msg> {
   type Proxied = BoolReply;
@@ -2354,16 +2368,16 @@ impl<'msg> ::protobuf::IntoProxied<BoolReply> for BoolReplyMut<'msg> {
   }
 }
 
-impl ::protobuf::__internal::EntityType for BoolReply {
-    type Tag = ::protobuf::__internal::entity_tag::MessageTag;
+impl ::protobuf::__internal::runtime::EntityType for BoolReply {
+    type Tag = ::protobuf::__internal::runtime::MessageTag;
 }
 
-impl<'msg> ::protobuf::__internal::EntityType for BoolReplyView<'msg> {
-    type Tag = ::protobuf::__internal::entity_tag::ViewProxyTag;
+impl<'msg> ::protobuf::__internal::runtime::EntityType for BoolReplyView<'msg> {
+    type Tag = ::protobuf::__internal::runtime::ViewProxyTag;
 }
 
-impl<'msg> ::protobuf::__internal::EntityType for BoolReplyMut<'msg> {
-    type Tag = ::protobuf::__internal::entity_tag::MutProxyTag;
+impl<'msg> ::protobuf::__internal::runtime::EntityType for BoolReplyMut<'msg> {
+    type Tag = ::protobuf::__internal::runtime::MutProxyTag;
 }
 
 #[allow(dead_code)]
@@ -2396,7 +2410,7 @@ impl<'msg> BoolReplyMut<'msg> {
   #[doc(hidden)]
   pub fn as_message_mut_inner(&mut self, _private: ::protobuf::__internal::Private)
     -> ::protobuf::__internal::runtime::MessageMutInner<'msg, BoolReply> {
-    self.inner.reborrow()
+    self.inner
   }
 
   pub fn to_owned(&self) -> BoolReply {
@@ -2433,16 +2447,18 @@ impl<'msg> BoolReplyMut<'msg> {
 
 // SAFETY:
 // - `BoolReplyMut` does not perform any shared mutation.
-unsafe impl ::std::marker::Send for BoolReplyMut<'_> {}
+unsafe impl Send for BoolReplyMut<'_> {}
 
 // SAFETY:
 // - `BoolReplyMut` does not perform any shared mutation.
-unsafe impl ::std::marker::Sync for BoolReplyMut<'_> {}
+unsafe impl Sync for BoolReplyMut<'_> {}
 
 impl<'msg> ::protobuf::AsView for BoolReplyMut<'msg> {
   type Proxied = BoolReply;
   fn as_view(&self) -> ::protobuf::View<'_, BoolReply> {
-    self.inner.as_view().into()
+    BoolReplyView {
+      inner: ::protobuf::__internal::runtime::MessageViewInner::view_of_mut(self.inner)
+    }
   }
 }
 
@@ -2450,14 +2466,16 @@ impl<'msg> ::protobuf::IntoView<'msg> for BoolReplyMut<'msg> {
   fn into_view<'shorter>(self) -> ::protobuf::View<'shorter, BoolReply>
   where
       'msg: 'shorter {
-    self.inner.as_view().into()
+    BoolReplyView {
+      inner: ::protobuf::__internal::runtime::MessageViewInner::view_of_mut(self.inner)
+    }
   }
 }
 
 impl<'msg> ::protobuf::AsMut for BoolReplyMut<'msg> {
   type MutProxied = BoolReply;
   fn as_mut(&mut self) -> BoolReplyMut<'msg> {
-    self.inner.reborrow().into()
+    BoolReplyMut { inner: self.inner }
   }
 }
 
@@ -2549,11 +2567,11 @@ unsafe impl ::protobuf::__internal::runtime::AssociatedMiniTable for BoolReply {
         ::std::sync::OnceLock::new();
     unsafe {
       ONCE_LOCK.get_or_init(|| {
-        super::palm__casbin__v1__BoolReply_msg_init.0 =
+        palm__casbin__v1__BoolReply_msg_init.0 =
             ::protobuf::__internal::runtime::build_mini_table("$/P");
         ::protobuf::__internal::runtime::link_mini_table(
-            super::palm__casbin__v1__BoolReply_msg_init.0, &[], &[]);
-        ::protobuf::__internal::runtime::MiniTableInitPtr(super::palm__casbin__v1__BoolReply_msg_init.0)
+            palm__casbin__v1__BoolReply_msg_init.0, &[], &[]);
+        ::protobuf::__internal::runtime::MiniTableInitPtr(palm__casbin__v1__BoolReply_msg_init.0)
       }).0
     }
   }
@@ -2612,10 +2630,7 @@ pub struct EmptyRequest {
   inner: ::protobuf::__internal::runtime::OwnedMessageInner<EmptyRequest>
 }
 
-impl ::protobuf::Message for EmptyRequest {
-  type MessageView<'msg> = EmptyRequestView<'msg>;
-  type MessageMut<'msg> = EmptyRequestMut<'msg>;
-}
+impl ::protobuf::Message for EmptyRequest {}
 
 impl ::std::default::Default for EmptyRequest {
   fn default() -> Self {
@@ -2632,12 +2647,12 @@ impl ::std::fmt::Debug for EmptyRequest {
 // SAFETY:
 // - `EmptyRequest` is `Sync` because it does not implement interior mutability.
 //    Neither does `EmptyRequestMut`.
-unsafe impl ::std::marker::Sync for EmptyRequest {}
+unsafe impl Sync for EmptyRequest {}
 
 // SAFETY:
 // - `EmptyRequest` is `Send` because it uniquely owns its arena and does
 //   not use thread-local data.
-unsafe impl ::std::marker::Send for EmptyRequest {}
+unsafe impl Send for EmptyRequest {}
 
 impl ::protobuf::Proxied for EmptyRequest {
   type View<'msg> = EmptyRequestView<'msg>;
@@ -2705,12 +2720,12 @@ impl<'msg> EmptyRequestView<'msg> {
 
 // SAFETY:
 // - `EmptyRequestView` is `Sync` because it does not support mutation.
-unsafe impl ::std::marker::Sync for EmptyRequestView<'_> {}
+unsafe impl Sync for EmptyRequestView<'_> {}
 
 // SAFETY:
 // - `EmptyRequestView` is `Send` because while its alive a `EmptyRequestMut` cannot.
 // - `EmptyRequestView` does not use thread-local data.
-unsafe impl ::std::marker::Send for EmptyRequestView<'_> {}
+unsafe impl Send for EmptyRequestView<'_> {}
 
 impl<'msg> ::protobuf::AsView for EmptyRequestView<'msg> {
   type Proxied = EmptyRequest;
@@ -2743,16 +2758,16 @@ impl<'msg> ::protobuf::IntoProxied<EmptyRequest> for EmptyRequestMut<'msg> {
   }
 }
 
-impl ::protobuf::__internal::EntityType for EmptyRequest {
-    type Tag = ::protobuf::__internal::entity_tag::MessageTag;
+impl ::protobuf::__internal::runtime::EntityType for EmptyRequest {
+    type Tag = ::protobuf::__internal::runtime::MessageTag;
 }
 
-impl<'msg> ::protobuf::__internal::EntityType for EmptyRequestView<'msg> {
-    type Tag = ::protobuf::__internal::entity_tag::ViewProxyTag;
+impl<'msg> ::protobuf::__internal::runtime::EntityType for EmptyRequestView<'msg> {
+    type Tag = ::protobuf::__internal::runtime::ViewProxyTag;
 }
 
-impl<'msg> ::protobuf::__internal::EntityType for EmptyRequestMut<'msg> {
-    type Tag = ::protobuf::__internal::entity_tag::MutProxyTag;
+impl<'msg> ::protobuf::__internal::runtime::EntityType for EmptyRequestMut<'msg> {
+    type Tag = ::protobuf::__internal::runtime::MutProxyTag;
 }
 
 #[allow(dead_code)]
@@ -2785,7 +2800,7 @@ impl<'msg> EmptyRequestMut<'msg> {
   #[doc(hidden)]
   pub fn as_message_mut_inner(&mut self, _private: ::protobuf::__internal::Private)
     -> ::protobuf::__internal::runtime::MessageMutInner<'msg, EmptyRequest> {
-    self.inner.reborrow()
+    self.inner
   }
 
   pub fn to_owned(&self) -> EmptyRequest {
@@ -2822,16 +2837,18 @@ impl<'msg> EmptyRequestMut<'msg> {
 
 // SAFETY:
 // - `EmptyRequestMut` does not perform any shared mutation.
-unsafe impl ::std::marker::Send for EmptyRequestMut<'_> {}
+unsafe impl Send for EmptyRequestMut<'_> {}
 
 // SAFETY:
 // - `EmptyRequestMut` does not perform any shared mutation.
-unsafe impl ::std::marker::Sync for EmptyRequestMut<'_> {}
+unsafe impl Sync for EmptyRequestMut<'_> {}
 
 impl<'msg> ::protobuf::AsView for EmptyRequestMut<'msg> {
   type Proxied = EmptyRequest;
   fn as_view(&self) -> ::protobuf::View<'_, EmptyRequest> {
-    self.inner.as_view().into()
+    EmptyRequestView {
+      inner: ::protobuf::__internal::runtime::MessageViewInner::view_of_mut(self.inner)
+    }
   }
 }
 
@@ -2839,14 +2856,16 @@ impl<'msg> ::protobuf::IntoView<'msg> for EmptyRequestMut<'msg> {
   fn into_view<'shorter>(self) -> ::protobuf::View<'shorter, EmptyRequest>
   where
       'msg: 'shorter {
-    self.inner.as_view().into()
+    EmptyRequestView {
+      inner: ::protobuf::__internal::runtime::MessageViewInner::view_of_mut(self.inner)
+    }
   }
 }
 
 impl<'msg> ::protobuf::AsMut for EmptyRequestMut<'msg> {
   type MutProxied = EmptyRequest;
   fn as_mut(&mut self) -> EmptyRequestMut<'msg> {
-    self.inner.reborrow().into()
+    EmptyRequestMut { inner: self.inner }
   }
 }
 
@@ -2938,11 +2957,11 @@ unsafe impl ::protobuf::__internal::runtime::AssociatedMiniTable for EmptyReques
         ::std::sync::OnceLock::new();
     unsafe {
       ONCE_LOCK.get_or_init(|| {
-        super::palm__casbin__v1__EmptyRequest_msg_init.0 =
+        palm__casbin__v1__EmptyRequest_msg_init.0 =
             ::protobuf::__internal::runtime::build_mini_table("$(P");
         ::protobuf::__internal::runtime::link_mini_table(
-            super::palm__casbin__v1__EmptyRequest_msg_init.0, &[], &[]);
-        ::protobuf::__internal::runtime::MiniTableInitPtr(super::palm__casbin__v1__EmptyRequest_msg_init.0)
+            palm__casbin__v1__EmptyRequest_msg_init.0, &[], &[]);
+        ::protobuf::__internal::runtime::MiniTableInitPtr(palm__casbin__v1__EmptyRequest_msg_init.0)
       }).0
     }
   }
@@ -3001,10 +3020,7 @@ pub struct EmptyReply {
   inner: ::protobuf::__internal::runtime::OwnedMessageInner<EmptyReply>
 }
 
-impl ::protobuf::Message for EmptyReply {
-  type MessageView<'msg> = EmptyReplyView<'msg>;
-  type MessageMut<'msg> = EmptyReplyMut<'msg>;
-}
+impl ::protobuf::Message for EmptyReply {}
 
 impl ::std::default::Default for EmptyReply {
   fn default() -> Self {
@@ -3021,12 +3037,12 @@ impl ::std::fmt::Debug for EmptyReply {
 // SAFETY:
 // - `EmptyReply` is `Sync` because it does not implement interior mutability.
 //    Neither does `EmptyReplyMut`.
-unsafe impl ::std::marker::Sync for EmptyReply {}
+unsafe impl Sync for EmptyReply {}
 
 // SAFETY:
 // - `EmptyReply` is `Send` because it uniquely owns its arena and does
 //   not use thread-local data.
-unsafe impl ::std::marker::Send for EmptyReply {}
+unsafe impl Send for EmptyReply {}
 
 impl ::protobuf::Proxied for EmptyReply {
   type View<'msg> = EmptyReplyView<'msg>;
@@ -3079,12 +3095,12 @@ impl<'msg> EmptyReplyView<'msg> {
 
 // SAFETY:
 // - `EmptyReplyView` is `Sync` because it does not support mutation.
-unsafe impl ::std::marker::Sync for EmptyReplyView<'_> {}
+unsafe impl Sync for EmptyReplyView<'_> {}
 
 // SAFETY:
 // - `EmptyReplyView` is `Send` because while its alive a `EmptyReplyMut` cannot.
 // - `EmptyReplyView` does not use thread-local data.
-unsafe impl ::std::marker::Send for EmptyReplyView<'_> {}
+unsafe impl Send for EmptyReplyView<'_> {}
 
 impl<'msg> ::protobuf::AsView for EmptyReplyView<'msg> {
   type Proxied = EmptyReply;
@@ -3117,16 +3133,16 @@ impl<'msg> ::protobuf::IntoProxied<EmptyReply> for EmptyReplyMut<'msg> {
   }
 }
 
-impl ::protobuf::__internal::EntityType for EmptyReply {
-    type Tag = ::protobuf::__internal::entity_tag::MessageTag;
+impl ::protobuf::__internal::runtime::EntityType for EmptyReply {
+    type Tag = ::protobuf::__internal::runtime::MessageTag;
 }
 
-impl<'msg> ::protobuf::__internal::EntityType for EmptyReplyView<'msg> {
-    type Tag = ::protobuf::__internal::entity_tag::ViewProxyTag;
+impl<'msg> ::protobuf::__internal::runtime::EntityType for EmptyReplyView<'msg> {
+    type Tag = ::protobuf::__internal::runtime::ViewProxyTag;
 }
 
-impl<'msg> ::protobuf::__internal::EntityType for EmptyReplyMut<'msg> {
-    type Tag = ::protobuf::__internal::entity_tag::MutProxyTag;
+impl<'msg> ::protobuf::__internal::runtime::EntityType for EmptyReplyMut<'msg> {
+    type Tag = ::protobuf::__internal::runtime::MutProxyTag;
 }
 
 #[allow(dead_code)]
@@ -3159,7 +3175,7 @@ impl<'msg> EmptyReplyMut<'msg> {
   #[doc(hidden)]
   pub fn as_message_mut_inner(&mut self, _private: ::protobuf::__internal::Private)
     -> ::protobuf::__internal::runtime::MessageMutInner<'msg, EmptyReply> {
-    self.inner.reborrow()
+    self.inner
   }
 
   pub fn to_owned(&self) -> EmptyReply {
@@ -3170,16 +3186,18 @@ impl<'msg> EmptyReplyMut<'msg> {
 
 // SAFETY:
 // - `EmptyReplyMut` does not perform any shared mutation.
-unsafe impl ::std::marker::Send for EmptyReplyMut<'_> {}
+unsafe impl Send for EmptyReplyMut<'_> {}
 
 // SAFETY:
 // - `EmptyReplyMut` does not perform any shared mutation.
-unsafe impl ::std::marker::Sync for EmptyReplyMut<'_> {}
+unsafe impl Sync for EmptyReplyMut<'_> {}
 
 impl<'msg> ::protobuf::AsView for EmptyReplyMut<'msg> {
   type Proxied = EmptyReply;
   fn as_view(&self) -> ::protobuf::View<'_, EmptyReply> {
-    self.inner.as_view().into()
+    EmptyReplyView {
+      inner: ::protobuf::__internal::runtime::MessageViewInner::view_of_mut(self.inner)
+    }
   }
 }
 
@@ -3187,14 +3205,16 @@ impl<'msg> ::protobuf::IntoView<'msg> for EmptyReplyMut<'msg> {
   fn into_view<'shorter>(self) -> ::protobuf::View<'shorter, EmptyReply>
   where
       'msg: 'shorter {
-    self.inner.as_view().into()
+    EmptyReplyView {
+      inner: ::protobuf::__internal::runtime::MessageViewInner::view_of_mut(self.inner)
+    }
   }
 }
 
 impl<'msg> ::protobuf::AsMut for EmptyReplyMut<'msg> {
   type MutProxied = EmptyReply;
   fn as_mut(&mut self) -> EmptyReplyMut<'msg> {
-    self.inner.reborrow().into()
+    EmptyReplyMut { inner: self.inner }
   }
 }
 
@@ -3260,11 +3280,11 @@ unsafe impl ::protobuf::__internal::runtime::AssociatedMiniTable for EmptyReply 
         ::std::sync::OnceLock::new();
     unsafe {
       ONCE_LOCK.get_or_init(|| {
-        super::palm__casbin__v1__EmptyReply_msg_init.0 =
+        palm__casbin__v1__EmptyReply_msg_init.0 =
             ::protobuf::__internal::runtime::build_mini_table("$");
         ::protobuf::__internal::runtime::link_mini_table(
-            super::palm__casbin__v1__EmptyReply_msg_init.0, &[], &[]);
-        ::protobuf::__internal::runtime::MiniTableInitPtr(super::palm__casbin__v1__EmptyReply_msg_init.0)
+            palm__casbin__v1__EmptyReply_msg_init.0, &[], &[]);
+        ::protobuf::__internal::runtime::MiniTableInitPtr(palm__casbin__v1__EmptyReply_msg_init.0)
       }).0
     }
   }
@@ -3323,10 +3343,7 @@ pub struct PolicyRequest {
   inner: ::protobuf::__internal::runtime::OwnedMessageInner<PolicyRequest>
 }
 
-impl ::protobuf::Message for PolicyRequest {
-  type MessageView<'msg> = PolicyRequestView<'msg>;
-  type MessageMut<'msg> = PolicyRequestMut<'msg>;
-}
+impl ::protobuf::Message for PolicyRequest {}
 
 impl ::std::default::Default for PolicyRequest {
   fn default() -> Self {
@@ -3343,12 +3360,12 @@ impl ::std::fmt::Debug for PolicyRequest {
 // SAFETY:
 // - `PolicyRequest` is `Sync` because it does not implement interior mutability.
 //    Neither does `PolicyRequestMut`.
-unsafe impl ::std::marker::Sync for PolicyRequest {}
+unsafe impl Sync for PolicyRequest {}
 
 // SAFETY:
 // - `PolicyRequest` is `Send` because it uniquely owns its arena and does
 //   not use thread-local data.
-unsafe impl ::std::marker::Send for PolicyRequest {}
+unsafe impl Send for PolicyRequest {}
 
 impl ::protobuf::Proxied for PolicyRequest {
   type View<'msg> = PolicyRequestView<'msg>;
@@ -3419,7 +3436,8 @@ impl<'msg> PolicyRequestView<'msg> {
         1, (b"").into()
       )
     };
-    ::protobuf::ProtoStr::from_utf8_unchecked(unsafe { str_view.as_ref() })
+    // SAFETY: The runtime doesn't require ProtoStr to be UTF-8.
+    unsafe { ::protobuf::ProtoStr::from_utf8_unchecked(str_view.as_ref()) }
   }
 
   // params: repeated string
@@ -3440,12 +3458,12 @@ impl<'msg> PolicyRequestView<'msg> {
 
 // SAFETY:
 // - `PolicyRequestView` is `Sync` because it does not support mutation.
-unsafe impl ::std::marker::Sync for PolicyRequestView<'_> {}
+unsafe impl Sync for PolicyRequestView<'_> {}
 
 // SAFETY:
 // - `PolicyRequestView` is `Send` because while its alive a `PolicyRequestMut` cannot.
 // - `PolicyRequestView` does not use thread-local data.
-unsafe impl ::std::marker::Send for PolicyRequestView<'_> {}
+unsafe impl Send for PolicyRequestView<'_> {}
 
 impl<'msg> ::protobuf::AsView for PolicyRequestView<'msg> {
   type Proxied = PolicyRequest;
@@ -3478,16 +3496,16 @@ impl<'msg> ::protobuf::IntoProxied<PolicyRequest> for PolicyRequestMut<'msg> {
   }
 }
 
-impl ::protobuf::__internal::EntityType for PolicyRequest {
-    type Tag = ::protobuf::__internal::entity_tag::MessageTag;
+impl ::protobuf::__internal::runtime::EntityType for PolicyRequest {
+    type Tag = ::protobuf::__internal::runtime::MessageTag;
 }
 
-impl<'msg> ::protobuf::__internal::EntityType for PolicyRequestView<'msg> {
-    type Tag = ::protobuf::__internal::entity_tag::ViewProxyTag;
+impl<'msg> ::protobuf::__internal::runtime::EntityType for PolicyRequestView<'msg> {
+    type Tag = ::protobuf::__internal::runtime::ViewProxyTag;
 }
 
-impl<'msg> ::protobuf::__internal::EntityType for PolicyRequestMut<'msg> {
-    type Tag = ::protobuf::__internal::entity_tag::MutProxyTag;
+impl<'msg> ::protobuf::__internal::runtime::EntityType for PolicyRequestMut<'msg> {
+    type Tag = ::protobuf::__internal::runtime::MutProxyTag;
 }
 
 #[allow(dead_code)]
@@ -3520,7 +3538,7 @@ impl<'msg> PolicyRequestMut<'msg> {
   #[doc(hidden)]
   pub fn as_message_mut_inner(&mut self, _private: ::protobuf::__internal::Private)
     -> ::protobuf::__internal::runtime::MessageMutInner<'msg, PolicyRequest> {
-    self.inner.reborrow()
+    self.inner
   }
 
   pub fn to_owned(&self) -> PolicyRequest {
@@ -3560,7 +3578,8 @@ impl<'msg> PolicyRequestMut<'msg> {
         1, (b"").into()
       )
     };
-    ::protobuf::ProtoStr::from_utf8_unchecked(unsafe { str_view.as_ref() })
+    // SAFETY: The runtime doesn't require ProtoStr to be UTF-8.
+    unsafe { ::protobuf::ProtoStr::from_utf8_unchecked(str_view.as_ref()) }
   }
   pub fn set_pType(&mut self, val: impl ::protobuf::IntoProxied<::protobuf::ProtoString>) {
     unsafe {
@@ -3611,16 +3630,18 @@ impl<'msg> PolicyRequestMut<'msg> {
 
 // SAFETY:
 // - `PolicyRequestMut` does not perform any shared mutation.
-unsafe impl ::std::marker::Send for PolicyRequestMut<'_> {}
+unsafe impl Send for PolicyRequestMut<'_> {}
 
 // SAFETY:
 // - `PolicyRequestMut` does not perform any shared mutation.
-unsafe impl ::std::marker::Sync for PolicyRequestMut<'_> {}
+unsafe impl Sync for PolicyRequestMut<'_> {}
 
 impl<'msg> ::protobuf::AsView for PolicyRequestMut<'msg> {
   type Proxied = PolicyRequest;
   fn as_view(&self) -> ::protobuf::View<'_, PolicyRequest> {
-    self.inner.as_view().into()
+    PolicyRequestView {
+      inner: ::protobuf::__internal::runtime::MessageViewInner::view_of_mut(self.inner)
+    }
   }
 }
 
@@ -3628,14 +3649,16 @@ impl<'msg> ::protobuf::IntoView<'msg> for PolicyRequestMut<'msg> {
   fn into_view<'shorter>(self) -> ::protobuf::View<'shorter, PolicyRequest>
   where
       'msg: 'shorter {
-    self.inner.as_view().into()
+    PolicyRequestView {
+      inner: ::protobuf::__internal::runtime::MessageViewInner::view_of_mut(self.inner)
+    }
   }
 }
 
 impl<'msg> ::protobuf::AsMut for PolicyRequestMut<'msg> {
   type MutProxied = PolicyRequest;
   fn as_mut(&mut self) -> PolicyRequestMut<'msg> {
-    self.inner.reborrow().into()
+    PolicyRequestMut { inner: self.inner }
   }
 }
 
@@ -3700,7 +3723,8 @@ impl PolicyRequest {
         1, (b"").into()
       )
     };
-    ::protobuf::ProtoStr::from_utf8_unchecked(unsafe { str_view.as_ref() })
+    // SAFETY: The runtime doesn't require ProtoStr to be UTF-8.
+    unsafe { ::protobuf::ProtoStr::from_utf8_unchecked(str_view.as_ref()) }
   }
   pub fn set_pType(&mut self, val: impl ::protobuf::IntoProxied<::protobuf::ProtoString>) {
     unsafe {
@@ -3781,11 +3805,11 @@ unsafe impl ::protobuf::__internal::runtime::AssociatedMiniTable for PolicyReque
         ::std::sync::OnceLock::new();
     unsafe {
       ONCE_LOCK.get_or_init(|| {
-        super::palm__casbin__v1__PolicyRequest_msg_init.0 =
+        palm__casbin__v1__PolicyRequest_msg_init.0 =
             ::protobuf::__internal::runtime::build_mini_table("$(P1XET");
         ::protobuf::__internal::runtime::link_mini_table(
-            super::palm__casbin__v1__PolicyRequest_msg_init.0, &[], &[]);
-        ::protobuf::__internal::runtime::MiniTableInitPtr(super::palm__casbin__v1__PolicyRequest_msg_init.0)
+            palm__casbin__v1__PolicyRequest_msg_init.0, &[], &[]);
+        ::protobuf::__internal::runtime::MiniTableInitPtr(palm__casbin__v1__PolicyRequest_msg_init.0)
       }).0
     }
   }
@@ -3844,10 +3868,7 @@ pub struct SimpleGetRequest {
   inner: ::protobuf::__internal::runtime::OwnedMessageInner<SimpleGetRequest>
 }
 
-impl ::protobuf::Message for SimpleGetRequest {
-  type MessageView<'msg> = SimpleGetRequestView<'msg>;
-  type MessageMut<'msg> = SimpleGetRequestMut<'msg>;
-}
+impl ::protobuf::Message for SimpleGetRequest {}
 
 impl ::std::default::Default for SimpleGetRequest {
   fn default() -> Self {
@@ -3864,12 +3885,12 @@ impl ::std::fmt::Debug for SimpleGetRequest {
 // SAFETY:
 // - `SimpleGetRequest` is `Sync` because it does not implement interior mutability.
 //    Neither does `SimpleGetRequestMut`.
-unsafe impl ::std::marker::Sync for SimpleGetRequest {}
+unsafe impl Sync for SimpleGetRequest {}
 
 // SAFETY:
 // - `SimpleGetRequest` is `Send` because it uniquely owns its arena and does
 //   not use thread-local data.
-unsafe impl ::std::marker::Send for SimpleGetRequest {}
+unsafe impl Send for SimpleGetRequest {}
 
 impl ::protobuf::Proxied for SimpleGetRequest {
   type View<'msg> = SimpleGetRequestView<'msg>;
@@ -3940,19 +3961,20 @@ impl<'msg> SimpleGetRequestView<'msg> {
         1, (b"").into()
       )
     };
-    ::protobuf::ProtoStr::from_utf8_unchecked(unsafe { str_view.as_ref() })
+    // SAFETY: The runtime doesn't require ProtoStr to be UTF-8.
+    unsafe { ::protobuf::ProtoStr::from_utf8_unchecked(str_view.as_ref()) }
   }
 
 }
 
 // SAFETY:
 // - `SimpleGetRequestView` is `Sync` because it does not support mutation.
-unsafe impl ::std::marker::Sync for SimpleGetRequestView<'_> {}
+unsafe impl Sync for SimpleGetRequestView<'_> {}
 
 // SAFETY:
 // - `SimpleGetRequestView` is `Send` because while its alive a `SimpleGetRequestMut` cannot.
 // - `SimpleGetRequestView` does not use thread-local data.
-unsafe impl ::std::marker::Send for SimpleGetRequestView<'_> {}
+unsafe impl Send for SimpleGetRequestView<'_> {}
 
 impl<'msg> ::protobuf::AsView for SimpleGetRequestView<'msg> {
   type Proxied = SimpleGetRequest;
@@ -3985,16 +4007,16 @@ impl<'msg> ::protobuf::IntoProxied<SimpleGetRequest> for SimpleGetRequestMut<'ms
   }
 }
 
-impl ::protobuf::__internal::EntityType for SimpleGetRequest {
-    type Tag = ::protobuf::__internal::entity_tag::MessageTag;
+impl ::protobuf::__internal::runtime::EntityType for SimpleGetRequest {
+    type Tag = ::protobuf::__internal::runtime::MessageTag;
 }
 
-impl<'msg> ::protobuf::__internal::EntityType for SimpleGetRequestView<'msg> {
-    type Tag = ::protobuf::__internal::entity_tag::ViewProxyTag;
+impl<'msg> ::protobuf::__internal::runtime::EntityType for SimpleGetRequestView<'msg> {
+    type Tag = ::protobuf::__internal::runtime::ViewProxyTag;
 }
 
-impl<'msg> ::protobuf::__internal::EntityType for SimpleGetRequestMut<'msg> {
-    type Tag = ::protobuf::__internal::entity_tag::MutProxyTag;
+impl<'msg> ::protobuf::__internal::runtime::EntityType for SimpleGetRequestMut<'msg> {
+    type Tag = ::protobuf::__internal::runtime::MutProxyTag;
 }
 
 #[allow(dead_code)]
@@ -4027,7 +4049,7 @@ impl<'msg> SimpleGetRequestMut<'msg> {
   #[doc(hidden)]
   pub fn as_message_mut_inner(&mut self, _private: ::protobuf::__internal::Private)
     -> ::protobuf::__internal::runtime::MessageMutInner<'msg, SimpleGetRequest> {
-    self.inner.reborrow()
+    self.inner
   }
 
   pub fn to_owned(&self) -> SimpleGetRequest {
@@ -4067,7 +4089,8 @@ impl<'msg> SimpleGetRequestMut<'msg> {
         1, (b"").into()
       )
     };
-    ::protobuf::ProtoStr::from_utf8_unchecked(unsafe { str_view.as_ref() })
+    // SAFETY: The runtime doesn't require ProtoStr to be UTF-8.
+    unsafe { ::protobuf::ProtoStr::from_utf8_unchecked(str_view.as_ref()) }
   }
   pub fn set_pType(&mut self, val: impl ::protobuf::IntoProxied<::protobuf::ProtoString>) {
     unsafe {
@@ -4082,16 +4105,18 @@ impl<'msg> SimpleGetRequestMut<'msg> {
 
 // SAFETY:
 // - `SimpleGetRequestMut` does not perform any shared mutation.
-unsafe impl ::std::marker::Send for SimpleGetRequestMut<'_> {}
+unsafe impl Send for SimpleGetRequestMut<'_> {}
 
 // SAFETY:
 // - `SimpleGetRequestMut` does not perform any shared mutation.
-unsafe impl ::std::marker::Sync for SimpleGetRequestMut<'_> {}
+unsafe impl Sync for SimpleGetRequestMut<'_> {}
 
 impl<'msg> ::protobuf::AsView for SimpleGetRequestMut<'msg> {
   type Proxied = SimpleGetRequest;
   fn as_view(&self) -> ::protobuf::View<'_, SimpleGetRequest> {
-    self.inner.as_view().into()
+    SimpleGetRequestView {
+      inner: ::protobuf::__internal::runtime::MessageViewInner::view_of_mut(self.inner)
+    }
   }
 }
 
@@ -4099,14 +4124,16 @@ impl<'msg> ::protobuf::IntoView<'msg> for SimpleGetRequestMut<'msg> {
   fn into_view<'shorter>(self) -> ::protobuf::View<'shorter, SimpleGetRequest>
   where
       'msg: 'shorter {
-    self.inner.as_view().into()
+    SimpleGetRequestView {
+      inner: ::protobuf::__internal::runtime::MessageViewInner::view_of_mut(self.inner)
+    }
   }
 }
 
 impl<'msg> ::protobuf::AsMut for SimpleGetRequestMut<'msg> {
   type MutProxied = SimpleGetRequest;
   fn as_mut(&mut self) -> SimpleGetRequestMut<'msg> {
-    self.inner.reborrow().into()
+    SimpleGetRequestMut { inner: self.inner }
   }
 }
 
@@ -4171,7 +4198,8 @@ impl SimpleGetRequest {
         1, (b"").into()
       )
     };
-    ::protobuf::ProtoStr::from_utf8_unchecked(unsafe { str_view.as_ref() })
+    // SAFETY: The runtime doesn't require ProtoStr to be UTF-8.
+    unsafe { ::protobuf::ProtoStr::from_utf8_unchecked(str_view.as_ref()) }
   }
   pub fn set_pType(&mut self, val: impl ::protobuf::IntoProxied<::protobuf::ProtoString>) {
     unsafe {
@@ -4216,11 +4244,11 @@ unsafe impl ::protobuf::__internal::runtime::AssociatedMiniTable for SimpleGetRe
         ::std::sync::OnceLock::new();
     unsafe {
       ONCE_LOCK.get_or_init(|| {
-        super::palm__casbin__v1__SimpleGetRequest_msg_init.0 =
+        palm__casbin__v1__SimpleGetRequest_msg_init.0 =
             ::protobuf::__internal::runtime::build_mini_table("$(P1X");
         ::protobuf::__internal::runtime::link_mini_table(
-            super::palm__casbin__v1__SimpleGetRequest_msg_init.0, &[], &[]);
-        ::protobuf::__internal::runtime::MiniTableInitPtr(super::palm__casbin__v1__SimpleGetRequest_msg_init.0)
+            palm__casbin__v1__SimpleGetRequest_msg_init.0, &[], &[]);
+        ::protobuf::__internal::runtime::MiniTableInitPtr(palm__casbin__v1__SimpleGetRequest_msg_init.0)
       }).0
     }
   }
@@ -4279,10 +4307,7 @@ pub struct ArrayReply {
   inner: ::protobuf::__internal::runtime::OwnedMessageInner<ArrayReply>
 }
 
-impl ::protobuf::Message for ArrayReply {
-  type MessageView<'msg> = ArrayReplyView<'msg>;
-  type MessageMut<'msg> = ArrayReplyMut<'msg>;
-}
+impl ::protobuf::Message for ArrayReply {}
 
 impl ::std::default::Default for ArrayReply {
   fn default() -> Self {
@@ -4299,12 +4324,12 @@ impl ::std::fmt::Debug for ArrayReply {
 // SAFETY:
 // - `ArrayReply` is `Sync` because it does not implement interior mutability.
 //    Neither does `ArrayReplyMut`.
-unsafe impl ::std::marker::Sync for ArrayReply {}
+unsafe impl Sync for ArrayReply {}
 
 // SAFETY:
 // - `ArrayReply` is `Send` because it uniquely owns its arena and does
 //   not use thread-local data.
-unsafe impl ::std::marker::Send for ArrayReply {}
+unsafe impl Send for ArrayReply {}
 
 impl ::protobuf::Proxied for ArrayReply {
   type View<'msg> = ArrayReplyView<'msg>;
@@ -4371,12 +4396,12 @@ impl<'msg> ArrayReplyView<'msg> {
 
 // SAFETY:
 // - `ArrayReplyView` is `Sync` because it does not support mutation.
-unsafe impl ::std::marker::Sync for ArrayReplyView<'_> {}
+unsafe impl Sync for ArrayReplyView<'_> {}
 
 // SAFETY:
 // - `ArrayReplyView` is `Send` because while its alive a `ArrayReplyMut` cannot.
 // - `ArrayReplyView` does not use thread-local data.
-unsafe impl ::std::marker::Send for ArrayReplyView<'_> {}
+unsafe impl Send for ArrayReplyView<'_> {}
 
 impl<'msg> ::protobuf::AsView for ArrayReplyView<'msg> {
   type Proxied = ArrayReply;
@@ -4409,16 +4434,16 @@ impl<'msg> ::protobuf::IntoProxied<ArrayReply> for ArrayReplyMut<'msg> {
   }
 }
 
-impl ::protobuf::__internal::EntityType for ArrayReply {
-    type Tag = ::protobuf::__internal::entity_tag::MessageTag;
+impl ::protobuf::__internal::runtime::EntityType for ArrayReply {
+    type Tag = ::protobuf::__internal::runtime::MessageTag;
 }
 
-impl<'msg> ::protobuf::__internal::EntityType for ArrayReplyView<'msg> {
-    type Tag = ::protobuf::__internal::entity_tag::ViewProxyTag;
+impl<'msg> ::protobuf::__internal::runtime::EntityType for ArrayReplyView<'msg> {
+    type Tag = ::protobuf::__internal::runtime::ViewProxyTag;
 }
 
-impl<'msg> ::protobuf::__internal::EntityType for ArrayReplyMut<'msg> {
-    type Tag = ::protobuf::__internal::entity_tag::MutProxyTag;
+impl<'msg> ::protobuf::__internal::runtime::EntityType for ArrayReplyMut<'msg> {
+    type Tag = ::protobuf::__internal::runtime::MutProxyTag;
 }
 
 #[allow(dead_code)]
@@ -4451,7 +4476,7 @@ impl<'msg> ArrayReplyMut<'msg> {
   #[doc(hidden)]
   pub fn as_message_mut_inner(&mut self, _private: ::protobuf::__internal::Private)
     -> ::protobuf::__internal::runtime::MessageMutInner<'msg, ArrayReply> {
-    self.inner.reborrow()
+    self.inner
   }
 
   pub fn to_owned(&self) -> ArrayReply {
@@ -4498,16 +4523,18 @@ impl<'msg> ArrayReplyMut<'msg> {
 
 // SAFETY:
 // - `ArrayReplyMut` does not perform any shared mutation.
-unsafe impl ::std::marker::Send for ArrayReplyMut<'_> {}
+unsafe impl Send for ArrayReplyMut<'_> {}
 
 // SAFETY:
 // - `ArrayReplyMut` does not perform any shared mutation.
-unsafe impl ::std::marker::Sync for ArrayReplyMut<'_> {}
+unsafe impl Sync for ArrayReplyMut<'_> {}
 
 impl<'msg> ::protobuf::AsView for ArrayReplyMut<'msg> {
   type Proxied = ArrayReply;
   fn as_view(&self) -> ::protobuf::View<'_, ArrayReply> {
-    self.inner.as_view().into()
+    ArrayReplyView {
+      inner: ::protobuf::__internal::runtime::MessageViewInner::view_of_mut(self.inner)
+    }
   }
 }
 
@@ -4515,14 +4542,16 @@ impl<'msg> ::protobuf::IntoView<'msg> for ArrayReplyMut<'msg> {
   fn into_view<'shorter>(self) -> ::protobuf::View<'shorter, ArrayReply>
   where
       'msg: 'shorter {
-    self.inner.as_view().into()
+    ArrayReplyView {
+      inner: ::protobuf::__internal::runtime::MessageViewInner::view_of_mut(self.inner)
+    }
   }
 }
 
 impl<'msg> ::protobuf::AsMut for ArrayReplyMut<'msg> {
   type MutProxied = ArrayReply;
   fn as_mut(&mut self) -> ArrayReplyMut<'msg> {
-    self.inner.reborrow().into()
+    ArrayReplyMut { inner: self.inner }
   }
 }
 
@@ -4624,11 +4653,11 @@ unsafe impl ::protobuf::__internal::runtime::AssociatedMiniTable for ArrayReply 
         ::std::sync::OnceLock::new();
     unsafe {
       ONCE_LOCK.get_or_init(|| {
-        super::palm__casbin__v1__ArrayReply_msg_init.0 =
+        palm__casbin__v1__ArrayReply_msg_init.0 =
             ::protobuf::__internal::runtime::build_mini_table("$ME");
         ::protobuf::__internal::runtime::link_mini_table(
-            super::palm__casbin__v1__ArrayReply_msg_init.0, &[], &[]);
-        ::protobuf::__internal::runtime::MiniTableInitPtr(super::palm__casbin__v1__ArrayReply_msg_init.0)
+            palm__casbin__v1__ArrayReply_msg_init.0, &[], &[]);
+        ::protobuf::__internal::runtime::MiniTableInitPtr(palm__casbin__v1__ArrayReply_msg_init.0)
       }).0
     }
   }
@@ -4687,10 +4716,7 @@ pub struct FilteredPolicyRequest {
   inner: ::protobuf::__internal::runtime::OwnedMessageInner<FilteredPolicyRequest>
 }
 
-impl ::protobuf::Message for FilteredPolicyRequest {
-  type MessageView<'msg> = FilteredPolicyRequestView<'msg>;
-  type MessageMut<'msg> = FilteredPolicyRequestMut<'msg>;
-}
+impl ::protobuf::Message for FilteredPolicyRequest {}
 
 impl ::std::default::Default for FilteredPolicyRequest {
   fn default() -> Self {
@@ -4707,12 +4733,12 @@ impl ::std::fmt::Debug for FilteredPolicyRequest {
 // SAFETY:
 // - `FilteredPolicyRequest` is `Sync` because it does not implement interior mutability.
 //    Neither does `FilteredPolicyRequestMut`.
-unsafe impl ::std::marker::Sync for FilteredPolicyRequest {}
+unsafe impl Sync for FilteredPolicyRequest {}
 
 // SAFETY:
 // - `FilteredPolicyRequest` is `Send` because it uniquely owns its arena and does
 //   not use thread-local data.
-unsafe impl ::std::marker::Send for FilteredPolicyRequest {}
+unsafe impl Send for FilteredPolicyRequest {}
 
 impl ::protobuf::Proxied for FilteredPolicyRequest {
   type View<'msg> = FilteredPolicyRequestView<'msg>;
@@ -4783,7 +4809,8 @@ impl<'msg> FilteredPolicyRequestView<'msg> {
         1, (b"").into()
       )
     };
-    ::protobuf::ProtoStr::from_utf8_unchecked(unsafe { str_view.as_ref() })
+    // SAFETY: The runtime doesn't require ProtoStr to be UTF-8.
+    unsafe { ::protobuf::ProtoStr::from_utf8_unchecked(str_view.as_ref()) }
   }
 
   // fieldIndex: optional int32
@@ -4819,12 +4846,12 @@ impl<'msg> FilteredPolicyRequestView<'msg> {
 
 // SAFETY:
 // - `FilteredPolicyRequestView` is `Sync` because it does not support mutation.
-unsafe impl ::std::marker::Sync for FilteredPolicyRequestView<'_> {}
+unsafe impl Sync for FilteredPolicyRequestView<'_> {}
 
 // SAFETY:
 // - `FilteredPolicyRequestView` is `Send` because while its alive a `FilteredPolicyRequestMut` cannot.
 // - `FilteredPolicyRequestView` does not use thread-local data.
-unsafe impl ::std::marker::Send for FilteredPolicyRequestView<'_> {}
+unsafe impl Send for FilteredPolicyRequestView<'_> {}
 
 impl<'msg> ::protobuf::AsView for FilteredPolicyRequestView<'msg> {
   type Proxied = FilteredPolicyRequest;
@@ -4857,16 +4884,16 @@ impl<'msg> ::protobuf::IntoProxied<FilteredPolicyRequest> for FilteredPolicyRequ
   }
 }
 
-impl ::protobuf::__internal::EntityType for FilteredPolicyRequest {
-    type Tag = ::protobuf::__internal::entity_tag::MessageTag;
+impl ::protobuf::__internal::runtime::EntityType for FilteredPolicyRequest {
+    type Tag = ::protobuf::__internal::runtime::MessageTag;
 }
 
-impl<'msg> ::protobuf::__internal::EntityType for FilteredPolicyRequestView<'msg> {
-    type Tag = ::protobuf::__internal::entity_tag::ViewProxyTag;
+impl<'msg> ::protobuf::__internal::runtime::EntityType for FilteredPolicyRequestView<'msg> {
+    type Tag = ::protobuf::__internal::runtime::ViewProxyTag;
 }
 
-impl<'msg> ::protobuf::__internal::EntityType for FilteredPolicyRequestMut<'msg> {
-    type Tag = ::protobuf::__internal::entity_tag::MutProxyTag;
+impl<'msg> ::protobuf::__internal::runtime::EntityType for FilteredPolicyRequestMut<'msg> {
+    type Tag = ::protobuf::__internal::runtime::MutProxyTag;
 }
 
 #[allow(dead_code)]
@@ -4899,7 +4926,7 @@ impl<'msg> FilteredPolicyRequestMut<'msg> {
   #[doc(hidden)]
   pub fn as_message_mut_inner(&mut self, _private: ::protobuf::__internal::Private)
     -> ::protobuf::__internal::runtime::MessageMutInner<'msg, FilteredPolicyRequest> {
-    self.inner.reborrow()
+    self.inner
   }
 
   pub fn to_owned(&self) -> FilteredPolicyRequest {
@@ -4939,7 +4966,8 @@ impl<'msg> FilteredPolicyRequestMut<'msg> {
         1, (b"").into()
       )
     };
-    ::protobuf::ProtoStr::from_utf8_unchecked(unsafe { str_view.as_ref() })
+    // SAFETY: The runtime doesn't require ProtoStr to be UTF-8.
+    unsafe { ::protobuf::ProtoStr::from_utf8_unchecked(str_view.as_ref()) }
   }
   pub fn set_pType(&mut self, val: impl ::protobuf::IntoProxied<::protobuf::ProtoString>) {
     unsafe {
@@ -5016,16 +5044,18 @@ impl<'msg> FilteredPolicyRequestMut<'msg> {
 
 // SAFETY:
 // - `FilteredPolicyRequestMut` does not perform any shared mutation.
-unsafe impl ::std::marker::Send for FilteredPolicyRequestMut<'_> {}
+unsafe impl Send for FilteredPolicyRequestMut<'_> {}
 
 // SAFETY:
 // - `FilteredPolicyRequestMut` does not perform any shared mutation.
-unsafe impl ::std::marker::Sync for FilteredPolicyRequestMut<'_> {}
+unsafe impl Sync for FilteredPolicyRequestMut<'_> {}
 
 impl<'msg> ::protobuf::AsView for FilteredPolicyRequestMut<'msg> {
   type Proxied = FilteredPolicyRequest;
   fn as_view(&self) -> ::protobuf::View<'_, FilteredPolicyRequest> {
-    self.inner.as_view().into()
+    FilteredPolicyRequestView {
+      inner: ::protobuf::__internal::runtime::MessageViewInner::view_of_mut(self.inner)
+    }
   }
 }
 
@@ -5033,14 +5063,16 @@ impl<'msg> ::protobuf::IntoView<'msg> for FilteredPolicyRequestMut<'msg> {
   fn into_view<'shorter>(self) -> ::protobuf::View<'shorter, FilteredPolicyRequest>
   where
       'msg: 'shorter {
-    self.inner.as_view().into()
+    FilteredPolicyRequestView {
+      inner: ::protobuf::__internal::runtime::MessageViewInner::view_of_mut(self.inner)
+    }
   }
 }
 
 impl<'msg> ::protobuf::AsMut for FilteredPolicyRequestMut<'msg> {
   type MutProxied = FilteredPolicyRequest;
   fn as_mut(&mut self) -> FilteredPolicyRequestMut<'msg> {
-    self.inner.reborrow().into()
+    FilteredPolicyRequestMut { inner: self.inner }
   }
 }
 
@@ -5105,7 +5137,8 @@ impl FilteredPolicyRequest {
         1, (b"").into()
       )
     };
-    ::protobuf::ProtoStr::from_utf8_unchecked(unsafe { str_view.as_ref() })
+    // SAFETY: The runtime doesn't require ProtoStr to be UTF-8.
+    unsafe { ::protobuf::ProtoStr::from_utf8_unchecked(str_view.as_ref()) }
   }
   pub fn set_pType(&mut self, val: impl ::protobuf::IntoProxied<::protobuf::ProtoString>) {
     unsafe {
@@ -5212,11 +5245,11 @@ unsafe impl ::protobuf::__internal::runtime::AssociatedMiniTable for FilteredPol
         ::std::sync::OnceLock::new();
     unsafe {
       ONCE_LOCK.get_or_init(|| {
-        super::palm__casbin__v1__FilteredPolicyRequest_msg_init.0 =
+        palm__casbin__v1__FilteredPolicyRequest_msg_init.0 =
             ::protobuf::__internal::runtime::build_mini_table("$(P1X(PET");
         ::protobuf::__internal::runtime::link_mini_table(
-            super::palm__casbin__v1__FilteredPolicyRequest_msg_init.0, &[], &[]);
-        ::protobuf::__internal::runtime::MiniTableInitPtr(super::palm__casbin__v1__FilteredPolicyRequest_msg_init.0)
+            palm__casbin__v1__FilteredPolicyRequest_msg_init.0, &[], &[]);
+        ::protobuf::__internal::runtime::MiniTableInitPtr(palm__casbin__v1__FilteredPolicyRequest_msg_init.0)
       }).0
     }
   }
@@ -5275,10 +5308,7 @@ pub struct UserRoleRequest {
   inner: ::protobuf::__internal::runtime::OwnedMessageInner<UserRoleRequest>
 }
 
-impl ::protobuf::Message for UserRoleRequest {
-  type MessageView<'msg> = UserRoleRequestView<'msg>;
-  type MessageMut<'msg> = UserRoleRequestMut<'msg>;
-}
+impl ::protobuf::Message for UserRoleRequest {}
 
 impl ::std::default::Default for UserRoleRequest {
   fn default() -> Self {
@@ -5295,12 +5325,12 @@ impl ::std::fmt::Debug for UserRoleRequest {
 // SAFETY:
 // - `UserRoleRequest` is `Sync` because it does not implement interior mutability.
 //    Neither does `UserRoleRequestMut`.
-unsafe impl ::std::marker::Sync for UserRoleRequest {}
+unsafe impl Sync for UserRoleRequest {}
 
 // SAFETY:
 // - `UserRoleRequest` is `Send` because it uniquely owns its arena and does
 //   not use thread-local data.
-unsafe impl ::std::marker::Send for UserRoleRequest {}
+unsafe impl Send for UserRoleRequest {}
 
 impl ::protobuf::Proxied for UserRoleRequest {
   type View<'msg> = UserRoleRequestView<'msg>;
@@ -5371,7 +5401,8 @@ impl<'msg> UserRoleRequestView<'msg> {
         1, (b"").into()
       )
     };
-    ::protobuf::ProtoStr::from_utf8_unchecked(unsafe { str_view.as_ref() })
+    // SAFETY: The runtime doesn't require ProtoStr to be UTF-8.
+    unsafe { ::protobuf::ProtoStr::from_utf8_unchecked(str_view.as_ref()) }
   }
 
   // role: optional string
@@ -5381,19 +5412,20 @@ impl<'msg> UserRoleRequestView<'msg> {
         2, (b"").into()
       )
     };
-    ::protobuf::ProtoStr::from_utf8_unchecked(unsafe { str_view.as_ref() })
+    // SAFETY: The runtime doesn't require ProtoStr to be UTF-8.
+    unsafe { ::protobuf::ProtoStr::from_utf8_unchecked(str_view.as_ref()) }
   }
 
 }
 
 // SAFETY:
 // - `UserRoleRequestView` is `Sync` because it does not support mutation.
-unsafe impl ::std::marker::Sync for UserRoleRequestView<'_> {}
+unsafe impl Sync for UserRoleRequestView<'_> {}
 
 // SAFETY:
 // - `UserRoleRequestView` is `Send` because while its alive a `UserRoleRequestMut` cannot.
 // - `UserRoleRequestView` does not use thread-local data.
-unsafe impl ::std::marker::Send for UserRoleRequestView<'_> {}
+unsafe impl Send for UserRoleRequestView<'_> {}
 
 impl<'msg> ::protobuf::AsView for UserRoleRequestView<'msg> {
   type Proxied = UserRoleRequest;
@@ -5426,16 +5458,16 @@ impl<'msg> ::protobuf::IntoProxied<UserRoleRequest> for UserRoleRequestMut<'msg>
   }
 }
 
-impl ::protobuf::__internal::EntityType for UserRoleRequest {
-    type Tag = ::protobuf::__internal::entity_tag::MessageTag;
+impl ::protobuf::__internal::runtime::EntityType for UserRoleRequest {
+    type Tag = ::protobuf::__internal::runtime::MessageTag;
 }
 
-impl<'msg> ::protobuf::__internal::EntityType for UserRoleRequestView<'msg> {
-    type Tag = ::protobuf::__internal::entity_tag::ViewProxyTag;
+impl<'msg> ::protobuf::__internal::runtime::EntityType for UserRoleRequestView<'msg> {
+    type Tag = ::protobuf::__internal::runtime::ViewProxyTag;
 }
 
-impl<'msg> ::protobuf::__internal::EntityType for UserRoleRequestMut<'msg> {
-    type Tag = ::protobuf::__internal::entity_tag::MutProxyTag;
+impl<'msg> ::protobuf::__internal::runtime::EntityType for UserRoleRequestMut<'msg> {
+    type Tag = ::protobuf::__internal::runtime::MutProxyTag;
 }
 
 #[allow(dead_code)]
@@ -5468,7 +5500,7 @@ impl<'msg> UserRoleRequestMut<'msg> {
   #[doc(hidden)]
   pub fn as_message_mut_inner(&mut self, _private: ::protobuf::__internal::Private)
     -> ::protobuf::__internal::runtime::MessageMutInner<'msg, UserRoleRequest> {
-    self.inner.reborrow()
+    self.inner
   }
 
   pub fn to_owned(&self) -> UserRoleRequest {
@@ -5508,7 +5540,8 @@ impl<'msg> UserRoleRequestMut<'msg> {
         1, (b"").into()
       )
     };
-    ::protobuf::ProtoStr::from_utf8_unchecked(unsafe { str_view.as_ref() })
+    // SAFETY: The runtime doesn't require ProtoStr to be UTF-8.
+    unsafe { ::protobuf::ProtoStr::from_utf8_unchecked(str_view.as_ref()) }
   }
   pub fn set_user(&mut self, val: impl ::protobuf::IntoProxied<::protobuf::ProtoString>) {
     unsafe {
@@ -5526,7 +5559,8 @@ impl<'msg> UserRoleRequestMut<'msg> {
         2, (b"").into()
       )
     };
-    ::protobuf::ProtoStr::from_utf8_unchecked(unsafe { str_view.as_ref() })
+    // SAFETY: The runtime doesn't require ProtoStr to be UTF-8.
+    unsafe { ::protobuf::ProtoStr::from_utf8_unchecked(str_view.as_ref()) }
   }
   pub fn set_role(&mut self, val: impl ::protobuf::IntoProxied<::protobuf::ProtoString>) {
     unsafe {
@@ -5541,16 +5575,18 @@ impl<'msg> UserRoleRequestMut<'msg> {
 
 // SAFETY:
 // - `UserRoleRequestMut` does not perform any shared mutation.
-unsafe impl ::std::marker::Send for UserRoleRequestMut<'_> {}
+unsafe impl Send for UserRoleRequestMut<'_> {}
 
 // SAFETY:
 // - `UserRoleRequestMut` does not perform any shared mutation.
-unsafe impl ::std::marker::Sync for UserRoleRequestMut<'_> {}
+unsafe impl Sync for UserRoleRequestMut<'_> {}
 
 impl<'msg> ::protobuf::AsView for UserRoleRequestMut<'msg> {
   type Proxied = UserRoleRequest;
   fn as_view(&self) -> ::protobuf::View<'_, UserRoleRequest> {
-    self.inner.as_view().into()
+    UserRoleRequestView {
+      inner: ::protobuf::__internal::runtime::MessageViewInner::view_of_mut(self.inner)
+    }
   }
 }
 
@@ -5558,14 +5594,16 @@ impl<'msg> ::protobuf::IntoView<'msg> for UserRoleRequestMut<'msg> {
   fn into_view<'shorter>(self) -> ::protobuf::View<'shorter, UserRoleRequest>
   where
       'msg: 'shorter {
-    self.inner.as_view().into()
+    UserRoleRequestView {
+      inner: ::protobuf::__internal::runtime::MessageViewInner::view_of_mut(self.inner)
+    }
   }
 }
 
 impl<'msg> ::protobuf::AsMut for UserRoleRequestMut<'msg> {
   type MutProxied = UserRoleRequest;
   fn as_mut(&mut self) -> UserRoleRequestMut<'msg> {
-    self.inner.reborrow().into()
+    UserRoleRequestMut { inner: self.inner }
   }
 }
 
@@ -5630,7 +5668,8 @@ impl UserRoleRequest {
         1, (b"").into()
       )
     };
-    ::protobuf::ProtoStr::from_utf8_unchecked(unsafe { str_view.as_ref() })
+    // SAFETY: The runtime doesn't require ProtoStr to be UTF-8.
+    unsafe { ::protobuf::ProtoStr::from_utf8_unchecked(str_view.as_ref()) }
   }
   pub fn set_user(&mut self, val: impl ::protobuf::IntoProxied<::protobuf::ProtoString>) {
     unsafe {
@@ -5648,7 +5687,8 @@ impl UserRoleRequest {
         2, (b"").into()
       )
     };
-    ::protobuf::ProtoStr::from_utf8_unchecked(unsafe { str_view.as_ref() })
+    // SAFETY: The runtime doesn't require ProtoStr to be UTF-8.
+    unsafe { ::protobuf::ProtoStr::from_utf8_unchecked(str_view.as_ref()) }
   }
   pub fn set_role(&mut self, val: impl ::protobuf::IntoProxied<::protobuf::ProtoString>) {
     unsafe {
@@ -5693,11 +5733,11 @@ unsafe impl ::protobuf::__internal::runtime::AssociatedMiniTable for UserRoleReq
         ::std::sync::OnceLock::new();
     unsafe {
       ONCE_LOCK.get_or_init(|| {
-        super::palm__casbin__v1__UserRoleRequest_msg_init.0 =
+        palm__casbin__v1__UserRoleRequest_msg_init.0 =
             ::protobuf::__internal::runtime::build_mini_table("$(P1X1X");
         ::protobuf::__internal::runtime::link_mini_table(
-            super::palm__casbin__v1__UserRoleRequest_msg_init.0, &[], &[]);
-        ::protobuf::__internal::runtime::MiniTableInitPtr(super::palm__casbin__v1__UserRoleRequest_msg_init.0)
+            palm__casbin__v1__UserRoleRequest_msg_init.0, &[], &[]);
+        ::protobuf::__internal::runtime::MiniTableInitPtr(palm__casbin__v1__UserRoleRequest_msg_init.0)
       }).0
     }
   }
@@ -5756,10 +5796,7 @@ pub struct PermissionRequest {
   inner: ::protobuf::__internal::runtime::OwnedMessageInner<PermissionRequest>
 }
 
-impl ::protobuf::Message for PermissionRequest {
-  type MessageView<'msg> = PermissionRequestView<'msg>;
-  type MessageMut<'msg> = PermissionRequestMut<'msg>;
-}
+impl ::protobuf::Message for PermissionRequest {}
 
 impl ::std::default::Default for PermissionRequest {
   fn default() -> Self {
@@ -5776,12 +5813,12 @@ impl ::std::fmt::Debug for PermissionRequest {
 // SAFETY:
 // - `PermissionRequest` is `Sync` because it does not implement interior mutability.
 //    Neither does `PermissionRequestMut`.
-unsafe impl ::std::marker::Sync for PermissionRequest {}
+unsafe impl Sync for PermissionRequest {}
 
 // SAFETY:
 // - `PermissionRequest` is `Send` because it uniquely owns its arena and does
 //   not use thread-local data.
-unsafe impl ::std::marker::Send for PermissionRequest {}
+unsafe impl Send for PermissionRequest {}
 
 impl ::protobuf::Proxied for PermissionRequest {
   type View<'msg> = PermissionRequestView<'msg>;
@@ -5852,7 +5889,8 @@ impl<'msg> PermissionRequestView<'msg> {
         1, (b"").into()
       )
     };
-    ::protobuf::ProtoStr::from_utf8_unchecked(unsafe { str_view.as_ref() })
+    // SAFETY: The runtime doesn't require ProtoStr to be UTF-8.
+    unsafe { ::protobuf::ProtoStr::from_utf8_unchecked(str_view.as_ref()) }
   }
 
   // permissions: repeated string
@@ -5873,12 +5911,12 @@ impl<'msg> PermissionRequestView<'msg> {
 
 // SAFETY:
 // - `PermissionRequestView` is `Sync` because it does not support mutation.
-unsafe impl ::std::marker::Sync for PermissionRequestView<'_> {}
+unsafe impl Sync for PermissionRequestView<'_> {}
 
 // SAFETY:
 // - `PermissionRequestView` is `Send` because while its alive a `PermissionRequestMut` cannot.
 // - `PermissionRequestView` does not use thread-local data.
-unsafe impl ::std::marker::Send for PermissionRequestView<'_> {}
+unsafe impl Send for PermissionRequestView<'_> {}
 
 impl<'msg> ::protobuf::AsView for PermissionRequestView<'msg> {
   type Proxied = PermissionRequest;
@@ -5911,16 +5949,16 @@ impl<'msg> ::protobuf::IntoProxied<PermissionRequest> for PermissionRequestMut<'
   }
 }
 
-impl ::protobuf::__internal::EntityType for PermissionRequest {
-    type Tag = ::protobuf::__internal::entity_tag::MessageTag;
+impl ::protobuf::__internal::runtime::EntityType for PermissionRequest {
+    type Tag = ::protobuf::__internal::runtime::MessageTag;
 }
 
-impl<'msg> ::protobuf::__internal::EntityType for PermissionRequestView<'msg> {
-    type Tag = ::protobuf::__internal::entity_tag::ViewProxyTag;
+impl<'msg> ::protobuf::__internal::runtime::EntityType for PermissionRequestView<'msg> {
+    type Tag = ::protobuf::__internal::runtime::ViewProxyTag;
 }
 
-impl<'msg> ::protobuf::__internal::EntityType for PermissionRequestMut<'msg> {
-    type Tag = ::protobuf::__internal::entity_tag::MutProxyTag;
+impl<'msg> ::protobuf::__internal::runtime::EntityType for PermissionRequestMut<'msg> {
+    type Tag = ::protobuf::__internal::runtime::MutProxyTag;
 }
 
 #[allow(dead_code)]
@@ -5953,7 +5991,7 @@ impl<'msg> PermissionRequestMut<'msg> {
   #[doc(hidden)]
   pub fn as_message_mut_inner(&mut self, _private: ::protobuf::__internal::Private)
     -> ::protobuf::__internal::runtime::MessageMutInner<'msg, PermissionRequest> {
-    self.inner.reborrow()
+    self.inner
   }
 
   pub fn to_owned(&self) -> PermissionRequest {
@@ -5993,7 +6031,8 @@ impl<'msg> PermissionRequestMut<'msg> {
         1, (b"").into()
       )
     };
-    ::protobuf::ProtoStr::from_utf8_unchecked(unsafe { str_view.as_ref() })
+    // SAFETY: The runtime doesn't require ProtoStr to be UTF-8.
+    unsafe { ::protobuf::ProtoStr::from_utf8_unchecked(str_view.as_ref()) }
   }
   pub fn set_user(&mut self, val: impl ::protobuf::IntoProxied<::protobuf::ProtoString>) {
     unsafe {
@@ -6044,16 +6083,18 @@ impl<'msg> PermissionRequestMut<'msg> {
 
 // SAFETY:
 // - `PermissionRequestMut` does not perform any shared mutation.
-unsafe impl ::std::marker::Send for PermissionRequestMut<'_> {}
+unsafe impl Send for PermissionRequestMut<'_> {}
 
 // SAFETY:
 // - `PermissionRequestMut` does not perform any shared mutation.
-unsafe impl ::std::marker::Sync for PermissionRequestMut<'_> {}
+unsafe impl Sync for PermissionRequestMut<'_> {}
 
 impl<'msg> ::protobuf::AsView for PermissionRequestMut<'msg> {
   type Proxied = PermissionRequest;
   fn as_view(&self) -> ::protobuf::View<'_, PermissionRequest> {
-    self.inner.as_view().into()
+    PermissionRequestView {
+      inner: ::protobuf::__internal::runtime::MessageViewInner::view_of_mut(self.inner)
+    }
   }
 }
 
@@ -6061,14 +6102,16 @@ impl<'msg> ::protobuf::IntoView<'msg> for PermissionRequestMut<'msg> {
   fn into_view<'shorter>(self) -> ::protobuf::View<'shorter, PermissionRequest>
   where
       'msg: 'shorter {
-    self.inner.as_view().into()
+    PermissionRequestView {
+      inner: ::protobuf::__internal::runtime::MessageViewInner::view_of_mut(self.inner)
+    }
   }
 }
 
 impl<'msg> ::protobuf::AsMut for PermissionRequestMut<'msg> {
   type MutProxied = PermissionRequest;
   fn as_mut(&mut self) -> PermissionRequestMut<'msg> {
-    self.inner.reborrow().into()
+    PermissionRequestMut { inner: self.inner }
   }
 }
 
@@ -6133,7 +6176,8 @@ impl PermissionRequest {
         1, (b"").into()
       )
     };
-    ::protobuf::ProtoStr::from_utf8_unchecked(unsafe { str_view.as_ref() })
+    // SAFETY: The runtime doesn't require ProtoStr to be UTF-8.
+    unsafe { ::protobuf::ProtoStr::from_utf8_unchecked(str_view.as_ref()) }
   }
   pub fn set_user(&mut self, val: impl ::protobuf::IntoProxied<::protobuf::ProtoString>) {
     unsafe {
@@ -6214,11 +6258,11 @@ unsafe impl ::protobuf::__internal::runtime::AssociatedMiniTable for PermissionR
         ::std::sync::OnceLock::new();
     unsafe {
       ONCE_LOCK.get_or_init(|| {
-        super::palm__casbin__v1__PermissionRequest_msg_init.0 =
+        palm__casbin__v1__PermissionRequest_msg_init.0 =
             ::protobuf::__internal::runtime::build_mini_table("$(P1XET");
         ::protobuf::__internal::runtime::link_mini_table(
-            super::palm__casbin__v1__PermissionRequest_msg_init.0, &[], &[]);
-        ::protobuf::__internal::runtime::MiniTableInitPtr(super::palm__casbin__v1__PermissionRequest_msg_init.0)
+            palm__casbin__v1__PermissionRequest_msg_init.0, &[], &[]);
+        ::protobuf::__internal::runtime::MiniTableInitPtr(palm__casbin__v1__PermissionRequest_msg_init.0)
       }).0
     }
   }
@@ -6277,10 +6321,7 @@ pub struct Array2DReply {
   inner: ::protobuf::__internal::runtime::OwnedMessageInner<Array2DReply>
 }
 
-impl ::protobuf::Message for Array2DReply {
-  type MessageView<'msg> = Array2DReplyView<'msg>;
-  type MessageMut<'msg> = Array2DReplyMut<'msg>;
-}
+impl ::protobuf::Message for Array2DReply {}
 
 impl ::std::default::Default for Array2DReply {
   fn default() -> Self {
@@ -6297,12 +6338,12 @@ impl ::std::fmt::Debug for Array2DReply {
 // SAFETY:
 // - `Array2DReply` is `Sync` because it does not implement interior mutability.
 //    Neither does `Array2DReplyMut`.
-unsafe impl ::std::marker::Sync for Array2DReply {}
+unsafe impl Sync for Array2DReply {}
 
 // SAFETY:
 // - `Array2DReply` is `Send` because it uniquely owns its arena and does
 //   not use thread-local data.
-unsafe impl ::std::marker::Send for Array2DReply {}
+unsafe impl Send for Array2DReply {}
 
 impl ::protobuf::Proxied for Array2DReply {
   type View<'msg> = Array2DReplyView<'msg>;
@@ -6352,13 +6393,13 @@ impl<'msg> Array2DReplyView<'msg> {
   }
 
   // d2: repeated message palm.casbin.v1.Array2DReply.d
-  pub fn d2(self) -> ::protobuf::RepeatedView<'msg, super::array2_d_reply::d> {
+  pub fn d2(self) -> ::protobuf::RepeatedView<'msg, array2_d_reply::d> {
     unsafe {
       self.inner.ptr().get_array_at_index(
         0
       )
     }.map_or_else(
-        ::protobuf::__internal::runtime::empty_array::<super::array2_d_reply::d>,
+        ::protobuf::__internal::runtime::empty_array::<array2_d_reply::d>,
         |raw| unsafe {
           ::protobuf::RepeatedView::from_raw(::protobuf::__internal::Private, raw)
         }
@@ -6369,12 +6410,12 @@ impl<'msg> Array2DReplyView<'msg> {
 
 // SAFETY:
 // - `Array2DReplyView` is `Sync` because it does not support mutation.
-unsafe impl ::std::marker::Sync for Array2DReplyView<'_> {}
+unsafe impl Sync for Array2DReplyView<'_> {}
 
 // SAFETY:
 // - `Array2DReplyView` is `Send` because while its alive a `Array2DReplyMut` cannot.
 // - `Array2DReplyView` does not use thread-local data.
-unsafe impl ::std::marker::Send for Array2DReplyView<'_> {}
+unsafe impl Send for Array2DReplyView<'_> {}
 
 impl<'msg> ::protobuf::AsView for Array2DReplyView<'msg> {
   type Proxied = Array2DReply;
@@ -6407,16 +6448,16 @@ impl<'msg> ::protobuf::IntoProxied<Array2DReply> for Array2DReplyMut<'msg> {
   }
 }
 
-impl ::protobuf::__internal::EntityType for Array2DReply {
-    type Tag = ::protobuf::__internal::entity_tag::MessageTag;
+impl ::protobuf::__internal::runtime::EntityType for Array2DReply {
+    type Tag = ::protobuf::__internal::runtime::MessageTag;
 }
 
-impl<'msg> ::protobuf::__internal::EntityType for Array2DReplyView<'msg> {
-    type Tag = ::protobuf::__internal::entity_tag::ViewProxyTag;
+impl<'msg> ::protobuf::__internal::runtime::EntityType for Array2DReplyView<'msg> {
+    type Tag = ::protobuf::__internal::runtime::ViewProxyTag;
 }
 
-impl<'msg> ::protobuf::__internal::EntityType for Array2DReplyMut<'msg> {
-    type Tag = ::protobuf::__internal::entity_tag::MutProxyTag;
+impl<'msg> ::protobuf::__internal::runtime::EntityType for Array2DReplyMut<'msg> {
+    type Tag = ::protobuf::__internal::runtime::MutProxyTag;
 }
 
 #[allow(dead_code)]
@@ -6449,7 +6490,7 @@ impl<'msg> Array2DReplyMut<'msg> {
   #[doc(hidden)]
   pub fn as_message_mut_inner(&mut self, _private: ::protobuf::__internal::Private)
     -> ::protobuf::__internal::runtime::MessageMutInner<'msg, Array2DReply> {
-    self.inner.reborrow()
+    self.inner
   }
 
   pub fn to_owned(&self) -> Array2DReply {
@@ -6457,19 +6498,19 @@ impl<'msg> Array2DReplyMut<'msg> {
   }
 
   // d2: repeated message palm.casbin.v1.Array2DReply.d
-  pub fn d2(&self) -> ::protobuf::RepeatedView<'_, super::array2_d_reply::d> {
+  pub fn d2(&self) -> ::protobuf::RepeatedView<'_, array2_d_reply::d> {
     unsafe {
       self.inner.ptr().get_array_at_index(
         0
       )
     }.map_or_else(
-        ::protobuf::__internal::runtime::empty_array::<super::array2_d_reply::d>,
+        ::protobuf::__internal::runtime::empty_array::<array2_d_reply::d>,
         |raw| unsafe {
           ::protobuf::RepeatedView::from_raw(::protobuf::__internal::Private, raw)
         }
       )
   }
-  pub fn d2_mut(&mut self) -> ::protobuf::RepeatedMut<'_, super::array2_d_reply::d> {
+  pub fn d2_mut(&mut self) -> ::protobuf::RepeatedMut<'_, array2_d_reply::d> {
     unsafe {
       let raw_array = self.inner.ptr_mut().get_or_create_mutable_array_at_index(
         0,
@@ -6483,7 +6524,7 @@ impl<'msg> Array2DReplyMut<'msg> {
       )
     }
   }
-  pub fn set_d2(&mut self, src: impl ::protobuf::IntoProxied<::protobuf::Repeated<super::array2_d_reply::d>>) {
+  pub fn set_d2(&mut self, src: impl ::protobuf::IntoProxied<::protobuf::Repeated<array2_d_reply::d>>) {
     unsafe {
       ::protobuf::__internal::runtime::message_set_repeated_field(
         ::protobuf::AsMut::as_mut(self).inner,
@@ -6496,16 +6537,18 @@ impl<'msg> Array2DReplyMut<'msg> {
 
 // SAFETY:
 // - `Array2DReplyMut` does not perform any shared mutation.
-unsafe impl ::std::marker::Send for Array2DReplyMut<'_> {}
+unsafe impl Send for Array2DReplyMut<'_> {}
 
 // SAFETY:
 // - `Array2DReplyMut` does not perform any shared mutation.
-unsafe impl ::std::marker::Sync for Array2DReplyMut<'_> {}
+unsafe impl Sync for Array2DReplyMut<'_> {}
 
 impl<'msg> ::protobuf::AsView for Array2DReplyMut<'msg> {
   type Proxied = Array2DReply;
   fn as_view(&self) -> ::protobuf::View<'_, Array2DReply> {
-    self.inner.as_view().into()
+    Array2DReplyView {
+      inner: ::protobuf::__internal::runtime::MessageViewInner::view_of_mut(self.inner)
+    }
   }
 }
 
@@ -6513,14 +6556,16 @@ impl<'msg> ::protobuf::IntoView<'msg> for Array2DReplyMut<'msg> {
   fn into_view<'shorter>(self) -> ::protobuf::View<'shorter, Array2DReply>
   where
       'msg: 'shorter {
-    self.inner.as_view().into()
+    Array2DReplyView {
+      inner: ::protobuf::__internal::runtime::MessageViewInner::view_of_mut(self.inner)
+    }
   }
 }
 
 impl<'msg> ::protobuf::AsMut for Array2DReplyMut<'msg> {
   type MutProxied = Array2DReply;
   fn as_mut(&mut self) -> Array2DReplyMut<'msg> {
-    self.inner.reborrow().into()
+    Array2DReplyMut { inner: self.inner }
   }
 }
 
@@ -6553,19 +6598,19 @@ impl Array2DReply {
   }
 
   // d2: repeated message palm.casbin.v1.Array2DReply.d
-  pub fn d2(&self) -> ::protobuf::RepeatedView<'_, super::array2_d_reply::d> {
+  pub fn d2(&self) -> ::protobuf::RepeatedView<'_, array2_d_reply::d> {
     unsafe {
       self.inner.ptr().get_array_at_index(
         0
       )
     }.map_or_else(
-        ::protobuf::__internal::runtime::empty_array::<super::array2_d_reply::d>,
+        ::protobuf::__internal::runtime::empty_array::<array2_d_reply::d>,
         |raw| unsafe {
           ::protobuf::RepeatedView::from_raw(::protobuf::__internal::Private, raw)
         }
       )
   }
-  pub fn d2_mut(&mut self) -> ::protobuf::RepeatedMut<'_, super::array2_d_reply::d> {
+  pub fn d2_mut(&mut self) -> ::protobuf::RepeatedMut<'_, array2_d_reply::d> {
     unsafe {
       let raw_array = self.inner.ptr_mut().get_or_create_mutable_array_at_index(
         0,
@@ -6579,7 +6624,7 @@ impl Array2DReply {
       )
     }
   }
-  pub fn set_d2(&mut self, src: impl ::protobuf::IntoProxied<::protobuf::Repeated<super::array2_d_reply::d>>) {
+  pub fn set_d2(&mut self, src: impl ::protobuf::IntoProxied<::protobuf::Repeated<array2_d_reply::d>>) {
     unsafe {
       ::protobuf::__internal::runtime::message_set_repeated_field(
         ::protobuf::AsMut::as_mut(self).inner,
@@ -6622,12 +6667,12 @@ unsafe impl ::protobuf::__internal::runtime::AssociatedMiniTable for Array2DRepl
         ::std::sync::OnceLock::new();
     unsafe {
       ONCE_LOCK.get_or_init(|| {
-        super::palm__casbin__v1__Array2DReply_msg_init.0 =
+        palm__casbin__v1__Array2DReply_msg_init.0 =
             ::protobuf::__internal::runtime::build_mini_table("$G");
         ::protobuf::__internal::runtime::link_mini_table(
-            super::palm__casbin__v1__Array2DReply_msg_init.0, &[<super::array2_d_reply::d as ::protobuf::__internal::runtime::AssociatedMiniTable>::mini_table(),
+            palm__casbin__v1__Array2DReply_msg_init.0, &[<array2_d_reply::d as ::protobuf::__internal::runtime::AssociatedMiniTable>::mini_table(),
             ], &[]);
-        ::protobuf::__internal::runtime::MiniTableInitPtr(super::palm__casbin__v1__Array2DReply_msg_init.0)
+        ::protobuf::__internal::runtime::MiniTableInitPtr(palm__casbin__v1__Array2DReply_msg_init.0)
       }).0
     }
   }
@@ -6684,10 +6729,7 @@ pub struct d {
   inner: ::protobuf::__internal::runtime::OwnedMessageInner<d>
 }
 
-impl ::protobuf::Message for d {
-  type MessageView<'msg> = dView<'msg>;
-  type MessageMut<'msg> = dMut<'msg>;
-}
+impl ::protobuf::Message for d {}
 
 impl ::std::default::Default for d {
   fn default() -> Self {
@@ -6704,12 +6746,12 @@ impl ::std::fmt::Debug for d {
 // SAFETY:
 // - `d` is `Sync` because it does not implement interior mutability.
 //    Neither does `dMut`.
-unsafe impl ::std::marker::Sync for d {}
+unsafe impl Sync for d {}
 
 // SAFETY:
 // - `d` is `Send` because it uniquely owns its arena and does
 //   not use thread-local data.
-unsafe impl ::std::marker::Send for d {}
+unsafe impl Send for d {}
 
 impl ::protobuf::Proxied for d {
   type View<'msg> = dView<'msg>;
@@ -6776,12 +6818,12 @@ impl<'msg> dView<'msg> {
 
 // SAFETY:
 // - `dView` is `Sync` because it does not support mutation.
-unsafe impl ::std::marker::Sync for dView<'_> {}
+unsafe impl Sync for dView<'_> {}
 
 // SAFETY:
 // - `dView` is `Send` because while its alive a `dMut` cannot.
 // - `dView` does not use thread-local data.
-unsafe impl ::std::marker::Send for dView<'_> {}
+unsafe impl Send for dView<'_> {}
 
 impl<'msg> ::protobuf::AsView for dView<'msg> {
   type Proxied = d;
@@ -6814,16 +6856,16 @@ impl<'msg> ::protobuf::IntoProxied<d> for dMut<'msg> {
   }
 }
 
-impl ::protobuf::__internal::EntityType for d {
-    type Tag = ::protobuf::__internal::entity_tag::MessageTag;
+impl ::protobuf::__internal::runtime::EntityType for d {
+    type Tag = ::protobuf::__internal::runtime::MessageTag;
 }
 
-impl<'msg> ::protobuf::__internal::EntityType for dView<'msg> {
-    type Tag = ::protobuf::__internal::entity_tag::ViewProxyTag;
+impl<'msg> ::protobuf::__internal::runtime::EntityType for dView<'msg> {
+    type Tag = ::protobuf::__internal::runtime::ViewProxyTag;
 }
 
-impl<'msg> ::protobuf::__internal::EntityType for dMut<'msg> {
-    type Tag = ::protobuf::__internal::entity_tag::MutProxyTag;
+impl<'msg> ::protobuf::__internal::runtime::EntityType for dMut<'msg> {
+    type Tag = ::protobuf::__internal::runtime::MutProxyTag;
 }
 
 #[allow(dead_code)]
@@ -6856,7 +6898,7 @@ impl<'msg> dMut<'msg> {
   #[doc(hidden)]
   pub fn as_message_mut_inner(&mut self, _private: ::protobuf::__internal::Private)
     -> ::protobuf::__internal::runtime::MessageMutInner<'msg, d> {
-    self.inner.reborrow()
+    self.inner
   }
 
   pub fn to_owned(&self) -> d {
@@ -6903,16 +6945,18 @@ impl<'msg> dMut<'msg> {
 
 // SAFETY:
 // - `dMut` does not perform any shared mutation.
-unsafe impl ::std::marker::Send for dMut<'_> {}
+unsafe impl Send for dMut<'_> {}
 
 // SAFETY:
 // - `dMut` does not perform any shared mutation.
-unsafe impl ::std::marker::Sync for dMut<'_> {}
+unsafe impl Sync for dMut<'_> {}
 
 impl<'msg> ::protobuf::AsView for dMut<'msg> {
   type Proxied = d;
   fn as_view(&self) -> ::protobuf::View<'_, d> {
-    self.inner.as_view().into()
+    dView {
+      inner: ::protobuf::__internal::runtime::MessageViewInner::view_of_mut(self.inner)
+    }
   }
 }
 
@@ -6920,14 +6964,16 @@ impl<'msg> ::protobuf::IntoView<'msg> for dMut<'msg> {
   fn into_view<'shorter>(self) -> ::protobuf::View<'shorter, d>
   where
       'msg: 'shorter {
-    self.inner.as_view().into()
+    dView {
+      inner: ::protobuf::__internal::runtime::MessageViewInner::view_of_mut(self.inner)
+    }
   }
 }
 
 impl<'msg> ::protobuf::AsMut for dMut<'msg> {
   type MutProxied = d;
   fn as_mut(&mut self) -> dMut<'msg> {
-    self.inner.reborrow().into()
+    dMut { inner: self.inner }
   }
 }
 
@@ -7029,11 +7075,11 @@ unsafe impl ::protobuf::__internal::runtime::AssociatedMiniTable for d {
         ::std::sync::OnceLock::new();
     unsafe {
       ONCE_LOCK.get_or_init(|| {
-        super::super::array2_d_reply::palm__casbin__v1__Array2DReply__d_msg_init.0 =
+        palm__casbin__v1__Array2DReply__d_msg_init.0 =
             ::protobuf::__internal::runtime::build_mini_table("$ME");
         ::protobuf::__internal::runtime::link_mini_table(
-            super::super::array2_d_reply::palm__casbin__v1__Array2DReply__d_msg_init.0, &[], &[]);
-        ::protobuf::__internal::runtime::MiniTableInitPtr(super::super::array2_d_reply::palm__casbin__v1__Array2DReply__d_msg_init.0)
+            palm__casbin__v1__Array2DReply__d_msg_init.0, &[], &[]);
+        ::protobuf::__internal::runtime::MiniTableInitPtr(palm__casbin__v1__Array2DReply__d_msg_init.0)
       }).0
     }
   }

@@ -1,4 +1,4 @@
-const _: () = ::protobuf::__internal::assert_compatible_gencode_version("4.35.1-release");
+const _: () = ::protobuf::__internal::assert_compatible_gencode_version("4.34.0-release");
 // This variable must not be referenced except by protobuf generated
 // code.
 pub(crate) static mut google__protobuf__Empty_msg_init: ::protobuf::__internal::runtime::MiniTableInitPtr =
@@ -8,10 +8,7 @@ pub struct Empty {
   inner: ::protobuf::__internal::runtime::OwnedMessageInner<Empty>
 }
 
-impl ::protobuf::Message for Empty {
-  type MessageView<'msg> = EmptyView<'msg>;
-  type MessageMut<'msg> = EmptyMut<'msg>;
-}
+impl ::protobuf::Message for Empty {}
 
 impl ::std::default::Default for Empty {
   fn default() -> Self {
@@ -28,12 +25,12 @@ impl ::std::fmt::Debug for Empty {
 // SAFETY:
 // - `Empty` is `Sync` because it does not implement interior mutability.
 //    Neither does `EmptyMut`.
-unsafe impl ::std::marker::Sync for Empty {}
+unsafe impl Sync for Empty {}
 
 // SAFETY:
 // - `Empty` is `Send` because it uniquely owns its arena and does
 //   not use thread-local data.
-unsafe impl ::std::marker::Send for Empty {}
+unsafe impl Send for Empty {}
 
 impl ::protobuf::Proxied for Empty {
   type View<'msg> = EmptyView<'msg>;
@@ -86,12 +83,12 @@ impl<'msg> EmptyView<'msg> {
 
 // SAFETY:
 // - `EmptyView` is `Sync` because it does not support mutation.
-unsafe impl ::std::marker::Sync for EmptyView<'_> {}
+unsafe impl Sync for EmptyView<'_> {}
 
 // SAFETY:
 // - `EmptyView` is `Send` because while its alive a `EmptyMut` cannot.
 // - `EmptyView` does not use thread-local data.
-unsafe impl ::std::marker::Send for EmptyView<'_> {}
+unsafe impl Send for EmptyView<'_> {}
 
 impl<'msg> ::protobuf::AsView for EmptyView<'msg> {
   type Proxied = Empty;
@@ -124,16 +121,16 @@ impl<'msg> ::protobuf::IntoProxied<Empty> for EmptyMut<'msg> {
   }
 }
 
-impl ::protobuf::__internal::EntityType for Empty {
-    type Tag = ::protobuf::__internal::entity_tag::MessageTag;
+impl ::protobuf::__internal::runtime::EntityType for Empty {
+    type Tag = ::protobuf::__internal::runtime::MessageTag;
 }
 
-impl<'msg> ::protobuf::__internal::EntityType for EmptyView<'msg> {
-    type Tag = ::protobuf::__internal::entity_tag::ViewProxyTag;
+impl<'msg> ::protobuf::__internal::runtime::EntityType for EmptyView<'msg> {
+    type Tag = ::protobuf::__internal::runtime::ViewProxyTag;
 }
 
-impl<'msg> ::protobuf::__internal::EntityType for EmptyMut<'msg> {
-    type Tag = ::protobuf::__internal::entity_tag::MutProxyTag;
+impl<'msg> ::protobuf::__internal::runtime::EntityType for EmptyMut<'msg> {
+    type Tag = ::protobuf::__internal::runtime::MutProxyTag;
 }
 
 #[allow(dead_code)]
@@ -166,7 +163,7 @@ impl<'msg> EmptyMut<'msg> {
   #[doc(hidden)]
   pub fn as_message_mut_inner(&mut self, _private: ::protobuf::__internal::Private)
     -> ::protobuf::__internal::runtime::MessageMutInner<'msg, Empty> {
-    self.inner.reborrow()
+    self.inner
   }
 
   pub fn to_owned(&self) -> Empty {
@@ -177,16 +174,18 @@ impl<'msg> EmptyMut<'msg> {
 
 // SAFETY:
 // - `EmptyMut` does not perform any shared mutation.
-unsafe impl ::std::marker::Send for EmptyMut<'_> {}
+unsafe impl Send for EmptyMut<'_> {}
 
 // SAFETY:
 // - `EmptyMut` does not perform any shared mutation.
-unsafe impl ::std::marker::Sync for EmptyMut<'_> {}
+unsafe impl Sync for EmptyMut<'_> {}
 
 impl<'msg> ::protobuf::AsView for EmptyMut<'msg> {
   type Proxied = Empty;
   fn as_view(&self) -> ::protobuf::View<'_, Empty> {
-    self.inner.as_view().into()
+    EmptyView {
+      inner: ::protobuf::__internal::runtime::MessageViewInner::view_of_mut(self.inner)
+    }
   }
 }
 
@@ -194,14 +193,16 @@ impl<'msg> ::protobuf::IntoView<'msg> for EmptyMut<'msg> {
   fn into_view<'shorter>(self) -> ::protobuf::View<'shorter, Empty>
   where
       'msg: 'shorter {
-    self.inner.as_view().into()
+    EmptyView {
+      inner: ::protobuf::__internal::runtime::MessageViewInner::view_of_mut(self.inner)
+    }
   }
 }
 
 impl<'msg> ::protobuf::AsMut for EmptyMut<'msg> {
   type MutProxied = Empty;
   fn as_mut(&mut self) -> EmptyMut<'msg> {
-    self.inner.reborrow().into()
+    EmptyMut { inner: self.inner }
   }
 }
 

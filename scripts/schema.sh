@@ -10,6 +10,7 @@ export PROTOBUF_HOME=$HOME/local/protobuf
 # https://github.com/OpenAPITools/openapi-generator?tab=readme-ov-file#launcher-script
 # https://openapi-generator.tech/docs/generators/rust/
 function generate_belladonna() {
+    echo "generate belladonna protocols"
     local target=$WORK_DIR/belladonna
     if [ ! -d $target ]
     then
@@ -30,21 +31,30 @@ function generate_belladonna() {
 }
 
 function generate_grpc() {
+    echo "generate grpc protocols"
+    # cd $WORK_DIR/portal/src/protocols/
+    # rm -r google casbin*.rs portal*.rs
+
     # https://grpc.io/docs/languages/rust/quickstart/#prerequisites
-    $PROTOBUF_HOME/bin/protoc --rust_opt=experimental-codegen=enabled,kernel=upb \
+    $PROTOBUF_HOME/bin/protoc --rust_opt=experimental-codegen=enabled,kernel=upb --rust-grpc_opt=client_only=true \
         --plugin=protoc-gen-rust-grpc=$PROTOBUF_HOME/bin/protoc-gen-rust-grpc \
         -I $PROTOBUF_HOME/include/ -I $WORK_DIR/protocols/ \
         --rust_out=$WORK_DIR/portal/src/protocols/ --rust-grpc_out=$WORK_DIR/portal/src/protocols/ \
         $PROTOBUF_HOME/include/google/protobuf/empty.proto $PROTOBUF_HOME/include/google/protobuf/timestamp.proto \
         $WORK_DIR/protocols/casbin.proto $WORK_DIR/protocols/portal.proto
+
+    sed -i 's/super:://g' $WORK_DIR/portal/src/protocols/casbin.u.pb.rs
+    sed -i 's/array2_d_reply::palm__casbin__v1/palm__casbin__v1/g' $WORK_DIR/portal/src/protocols/casbin.u.pb.rs
 }
 
 function generate_flatbuffers() {
+    echo "generate flatbuffers protocols"
     flatc -o $WORK_DIR/portal/src/protocols --filename-suffix "" --rust $WORK_DIR/protocols/email.fbs
     flatc -o $WORK_DIR/portal/src/protocols --filename-suffix "" --rust $WORK_DIR/protocols/tex.fbs
 }
 
 function generate_diesel() {
+    echo "generate diesel schemas"
     local database_url="postgres://postgres@127.0.0.1:5432/wisteria_dev?sslmode=disable"
     diesel print-schema --database-url $database_url -o schema_migrations > $WORK_DIR/portal/src/schema.rs
 }
@@ -53,7 +63,6 @@ generate_belladonna
 generate_flatbuffers
 generate_grpc
 generate_diesel
-
 
 cargo fmt
 
