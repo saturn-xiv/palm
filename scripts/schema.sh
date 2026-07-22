@@ -38,23 +38,24 @@ function generate_grpc() {
     $PROTOBUF_HOME/bin/protoc --rust_opt=experimental-codegen=enabled,kernel=upb --rust-grpc_opt=client_only=true \
         --plugin=protoc-gen-rust-grpc=$PROTOBUF_HOME/bin/protoc-gen-rust-grpc \
         -I $PROTOBUF_HOME/include/ -I $WORK_DIR/marigold/src/main/proto \
-        --rust_out=$OUTPUT_DIR/marigold --rust-grpc_out=$OUTPUT_DIR/marigold \
-        $WORK_DIR/marigold/src/main/proto/marigold.proto
-        
-    $PROTOBUF_HOME/bin/protoc --rust_opt=experimental-codegen=enabled,kernel=upb --rust-grpc_opt=client_only=true \
-        --plugin=protoc-gen-rust-grpc=$PROTOBUF_HOME/bin/protoc-gen-rust-grpc \
-        -I $PROTOBUF_HOME/include/ -I $WORK_DIR/protocols/ \
-        --rust_out=$OUTPUT_DIR --rust-grpc_out=$OUTPUT_DIR \
-        $PROTOBUF_HOME/include/google/protobuf/empty.proto \
-        $PROTOBUF_HOME/include/google/protobuf/timestamp.proto \
-        $PROTOBUF_HOME/include/google/protobuf/duration.proto \
-        $PROTOBUF_HOME/include/google/protobuf/any.proto
+        --rust_out=$OUTPUT_DIR/wechatpay --rust-grpc_out=$OUTPUT_DIR/wechatpay \
+        $WORK_DIR/marigold/src/main/proto/wechatpay.proto
     
     $PROTOBUF_HOME/bin/protoc --rust_opt=experimental-codegen=enabled,kernel=upb --rust-grpc_opt=client_only=true \
         --plugin=protoc-gen-rust-grpc=$PROTOBUF_HOME/bin/protoc-gen-rust-grpc \
-        -I $PROTOBUF_HOME/include/ -I $WORK_DIR/protocols/ \
-        --rust_out=$OUTPUT_DIR/casbin --rust-grpc_out=$OUTPUT_DIR/casbin \
-        $WORK_DIR/protocols/casbin.proto
+        -I $PROTOBUF_HOME/include/ -I $WORK_DIR/dahlia/proto/ \
+        --rust_out=$OUTPUT_DIR/rbac --rust-grpc_out=$OUTPUT_DIR/rbac \
+        $WORK_DIR/dahlia/proto/rbac.proto
+        
+    # $PROTOBUF_HOME/bin/protoc --rust_opt=experimental-codegen=enabled,kernel=upb --rust-grpc_opt=client_only=true \
+    #     --plugin=protoc-gen-rust-grpc=$PROTOBUF_HOME/bin/protoc-gen-rust-grpc \
+    #     -I $PROTOBUF_HOME/include/ -I $WORK_DIR/protocols/ \
+    #     --rust_out=$OUTPUT_DIR --rust-grpc_out=$OUTPUT_DIR \
+    #     $PROTOBUF_HOME/include/google/protobuf/empty.proto \
+    #     $PROTOBUF_HOME/include/google/protobuf/timestamp.proto \
+    #     $PROTOBUF_HOME/include/google/protobuf/duration.proto \
+    #     $PROTOBUF_HOME/include/google/protobuf/any.proto
+    
 
     # TODO 
     # $PROTOBUF_HOME/bin/protoc --rust_opt=experimental-codegen=enabled,kernel=upb --rust-grpc_opt=client_only=true \

@@ -71,7 +71,18 @@ function build_wisteria_assets() {
 
     cp -r db assets $target/
 }
+
+function build_marigold() {
+    cd $WORK_DIR/marigold/
+    mvn clean
+    mvn package -Dmaven.test.skip=true
+
+    mkdir -p $TARGET_DIR/$PACKAGE/marigold
+    cp target/marigold-*.jar README.md $TARGET_DIR/$PACKAGE/marigold/
+}
+
 # ---------------------------------------------------------
+
 if [ -f $TARGET_DIR/$PACKAGE.md5 ]
 then
     echo "release $PACKAGE already exists."
@@ -95,6 +106,7 @@ done
 
 build_dashboard wisteria
 build_wisteria_assets
+build_marigold
 
 XZ_OPT=-9 tar -cJf $TARGET_DIR/$PACKAGE.tar.xz --remove-files -C $TARGET_DIR/$PACKAGE .
 md5sum $TARGET_DIR/$PACKAGE.tar.xz > $TARGET_DIR/$PACKAGE.md5

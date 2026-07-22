@@ -17,7 +17,7 @@ int main(int argc, char** argv) {
       loquat::GIT_VERSION + "(" + loquat::BUILD_TIME + ")";
   argparse::ArgumentParser program(loquat::PROJECT_NAME, version);
   program.add_description(loquat::PROJECT_DESCRIPTION);
-  program.add_epilog("https://github.com/saturn-xiv/palm");
+  program.add_epilog("https://github.com/saturn-xiv/palm/tree/main/loquat");
   program.add_argument("-d", "--debug")
       .default_value(false)
       .help("run on debug mode")
