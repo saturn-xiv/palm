@@ -1,0 +1,121 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "com.github.saturn_xiv.palm.plugins.rbac.v1";
+option java_outer_classname = "RbacProto";
+option go_package = "./;v2";
+option csharp_namespace = "Palm.Plugins.Rbac.Grpc";
+package palm.rbac.v1;
+
+message Empty {}
+
+message Object {
+  string type = 1;
+  oneof by {
+    int64  id   = 11;
+    string code = 12;
+    Empty  all  = 19;
+  }
+}
+
+message Subject {
+  message Role {
+    message Root {}
+    message Administrator {}
+    oneof by {
+      Root          root          = 1;
+      Administrator administrator = 2;
+      int64         id            = 8;
+      string        code          = 9;
+    }
+  }
+  message User {
+    oneof by {
+      int64  id   = 1;
+      string code = 2;
+    }
+  }
+  oneof by {
+    User user = 1;
+    Role role = 2;
+  }
+}
+
+message Action {
+  message Read {}
+  message Write {}
+  message Append {}
+  message Execute {}
+  message Credit {}
+  message Debit {}
+  message Inquiry {}
+
+  oneof by {
+    Read    read    = 1;
+    Write   write   = 2;
+    Append  append  = 3;
+    Execute execute = 4;
+    Credit  credit  = 5;
+    Debit   debit   = 6;
+    Inquiry inquiry = 7;
+    string  code    = 9;
+  }
+}
+
+message Permission {
+  Subject subject = 1;
+  Object  object  = 2;
+  Action  action  = 3;
+}
+
+service Enforcer {
+  rpc GetAllSubjects(Empty) returns (SubjectsResponse) {}
+  rpc GetAllObjects(Empty) returns (ObjectsResponse) {}
+  rpc GetAllActions(Empty) returns (ActionsResponse) {}
+  rpc GetAllRoles(Empty) returns (RolesResponse) {}
+
+  rpc GetRolesForUser(Subject.User) returns (RolesResponse) {}
+  rpc GetImplicitRolesForUser(Subject.User) returns (RolesResponse) {}
+  rpc GetUsersForRole(Subject.Role) returns (UsersResponse) {}
+  rpc GetImplicitUsersForRole(Subject.Role) returns (UsersResponse) {}
+  rpc HasRoleForUser(UserRoleRequest) returns (Empty) {}
+  rpc AddRoleForUser(UserRoleRequest) returns (Empty) {}
+  rpc DeleteRoleForUser(UserRoleRequest) returns (Empty) {}
+  rpc DeleteUser(Subject.User) returns (Empty) {}
+  rpc DeleteRole(Subject.Role) returns (Empty) {}
+
+  rpc GetPermissions(Subject) returns (PermissionsResponse) {}
+  rpc GetImplicitPermissions(Subject) returns (PermissionsResponse) {}
+  rpc DeletePermission(Permission) returns (Empty) {}
+  rpc AddPermission(Permission) returns (Empty) {}
+  rpc HasPermission(Permission) returns (Empty) {}
+}
+
+message UserRoleRequest {
+  Subject.User user = 1;
+  Subject.Role role = 2;
+}
+
+message RolesResponse {
+  repeated Subject.Role items = 1;
+}
+
+message UsersResponse {
+  repeated Subject.User items = 1;
+}
+
+message SubjectsResponse {
+  repeated Subject items = 1;
+}
+
+message ObjectsResponse {
+  repeated Object items = 1;
+}
+
+message ActionsResponse {
+  repeated Action items = 1;
+}
+
+message PermissionsResponse {
+  repeated Permission items = 1;
+}

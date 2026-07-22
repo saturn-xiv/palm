@@ -1,0 +1,30 @@
+[project]
+name = "dahlia"
+version = "2026.7.22"
+authors = [{ name = "Jeremy Zheng", email = "jitang.zheng@gmail.com" }]
+description = "RBAC services"
+readme = "README.md"
+requires-python = ">=3.14"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Operating System :: OS Independent",
+]
+license = "MIT"
+dependencies = [
+    "protobuf~=6.34",
+    "grpcio~=1.76",
+    "grpcio-reflection",
+    "grpcio-health-checking",
+    "casbin",
+    "sqlalchemy_adapter",
+    "casbin-rabbitmq-watcher",
+    "psycopg[c,pool]",
+    "mysql-connector-python",
+]
+
+[project.urls]
+Homepage = "https://github.com/saturn-xiv/palm/tree/main/dahlia"
+Issues = "https://github.com/saturn-xiv/palm/issues"
+
+[project.scripts]
+dahlia = "dahlia:main"
