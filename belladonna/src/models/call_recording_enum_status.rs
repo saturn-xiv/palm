@@ -14,8 +14,10 @@ use serde::{Deserialize, Serialize};
 /// CallRecordingEnumStatus : The status of the recording. Can be: `processing`, `completed` and `absent`. For more detailed statuses on in-progress recordings, check out how to [Update a Recording Resource](https://www.twilio.com/docs/voice/api/recording#update-a-recording-resource).
 /// The status of the recording. Can be: `processing`, `completed` and `absent`. For more detailed statuses on in-progress recordings, check out how to [Update a Recording Resource](https://www.twilio.com/docs/voice/api/recording#update-a-recording-resource).
 #[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
+#[derive(Default)]
 pub enum CallRecordingEnumStatus {
     #[serde(rename = "in-progress")]
+    #[default]
     InProgress,
     #[serde(rename = "paused")]
     Paused,
@@ -42,8 +44,3 @@ impl std::fmt::Display for CallRecordingEnumStatus {
     }
 }
 
-impl Default for CallRecordingEnumStatus {
-    fn default() -> CallRecordingEnumStatus {
-        Self::InProgress
-    }
-}

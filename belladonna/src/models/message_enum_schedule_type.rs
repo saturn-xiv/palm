@@ -14,8 +14,10 @@ use serde::{Deserialize, Serialize};
 /// MessageEnumScheduleType : For Messaging Services only: Include this parameter with a value of `fixed` in conjuction with the `send_time` parameter in order to [schedule a Message](https://www.twilio.com/docs/messaging/features/message-scheduling).
 /// For Messaging Services only: Include this parameter with a value of `fixed` in conjuction with the `send_time` parameter in order to [schedule a Message](https://www.twilio.com/docs/messaging/features/message-scheduling).
 #[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
+#[derive(Default)]
 pub enum MessageEnumScheduleType {
     #[serde(rename = "fixed")]
+    #[default]
     Fixed,
 }
 
@@ -27,8 +29,3 @@ impl std::fmt::Display for MessageEnumScheduleType {
     }
 }
 
-impl Default for MessageEnumScheduleType {
-    fn default() -> MessageEnumScheduleType {
-        Self::Fixed
-    }
-}

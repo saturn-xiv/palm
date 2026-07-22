@@ -303,8 +303,8 @@ pub async fn create_incoming_phone_number(
         let content = resp.text().await?;
         match content_type {
             ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
-            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::ApiV2010AccountIncomingPhoneNumber`"))),
-            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::ApiV2010AccountIncomingPhoneNumber`")))),
+            ContentType::Text => Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::ApiV2010AccountIncomingPhoneNumber`"))),
+            ContentType::Unsupported(unknown_type) => Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::ApiV2010AccountIncomingPhoneNumber`")))),
         }
     } else {
         let content = resp.text().await?;
@@ -392,8 +392,8 @@ pub async fn fetch_incoming_phone_number(
         let content = resp.text().await?;
         match content_type {
             ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
-            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::ApiV2010AccountIncomingPhoneNumber`"))),
-            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::ApiV2010AccountIncomingPhoneNumber`")))),
+            ContentType::Text => Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::ApiV2010AccountIncomingPhoneNumber`"))),
+            ContentType::Unsupported(unknown_type) => Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::ApiV2010AccountIncomingPhoneNumber`")))),
         }
     } else {
         let content = resp.text().await?;
@@ -461,8 +461,8 @@ pub async fn list_incoming_phone_number(
         let content = resp.text().await?;
         match content_type {
             ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
-            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::ListIncomingPhoneNumberResponse`"))),
-            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::ListIncomingPhoneNumberResponse`")))),
+            ContentType::Text => Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::ListIncomingPhoneNumberResponse`"))),
+            ContentType::Unsupported(unknown_type) => Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::ListIncomingPhoneNumberResponse`")))),
         }
     } else {
         let content = resp.text().await?;
@@ -483,7 +483,7 @@ pub async fn update_incoming_phone_number(
     let uri_str = format!(
         "{}/2010-04-01/Accounts/{AccountSid}/IncomingPhoneNumbers/{Sid}.json",
         configuration.base_path,
-        AccountSid = crate::apis::urlencode(params.account_sid),
+        AccountSid = crate::apis::urlencode(&params.account_sid),
         Sid = crate::apis::urlencode(params.sid)
     );
     let mut req_builder = configuration
@@ -497,9 +497,9 @@ pub async fn update_incoming_phone_number(
         req_builder = req_builder.basic_auth(auth_conf.0.to_owned(), auth_conf.1.to_owned());
     };
     let mut multipart_form_params = std::collections::HashMap::new();
-    if let Some(param_value) = params.account_sid {
-        multipart_form_params.insert("AccountSid", param_value.to_string());
-    }
+
+    multipart_form_params.insert("AccountSid", params.account_sid.clone());
+
     if let Some(param_value) = params.api_version {
         multipart_form_params.insert("ApiVersion", param_value.to_string());
     }
@@ -583,8 +583,8 @@ pub async fn update_incoming_phone_number(
         let content = resp.text().await?;
         match content_type {
             ContentType::Json => serde_json::from_str(&content).map_err(Error::from),
-            ContentType::Text => return Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::ApiV2010AccountIncomingPhoneNumber`"))),
-            ContentType::Unsupported(unknown_type) => return Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::ApiV2010AccountIncomingPhoneNumber`")))),
+            ContentType::Text => Err(Error::from(serde_json::Error::custom("Received `text/plain` content type response that cannot be converted to `models::ApiV2010AccountIncomingPhoneNumber`"))),
+            ContentType::Unsupported(unknown_type) => Err(Error::from(serde_json::Error::custom(format!("Received `{unknown_type}` content type response that cannot be converted to `models::ApiV2010AccountIncomingPhoneNumber`")))),
         }
     } else {
         let content = resp.text().await?;

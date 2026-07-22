@@ -13,8 +13,10 @@ use serde::{Deserialize, Serialize};
 
 ///
 #[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
+#[derive(Default)]
 pub enum CallEnumEvent {
     #[serde(rename = "initiated")]
+    #[default]
     Initiated,
     #[serde(rename = "ringing")]
     Ringing,
@@ -35,8 +37,3 @@ impl std::fmt::Display for CallEnumEvent {
     }
 }
 
-impl Default for CallEnumEvent {
-    fn default() -> CallEnumEvent {
-        Self::Initiated
-    }
-}

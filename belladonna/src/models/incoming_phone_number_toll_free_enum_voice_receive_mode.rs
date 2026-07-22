@@ -13,8 +13,10 @@ use serde::{Deserialize, Serialize};
 
 ///
 #[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
+#[derive(Default)]
 pub enum IncomingPhoneNumberTollFreeEnumVoiceReceiveMode {
     #[serde(rename = "voice")]
+    #[default]
     Voice,
     #[serde(rename = "fax")]
     Fax,
@@ -29,8 +31,3 @@ impl std::fmt::Display for IncomingPhoneNumberTollFreeEnumVoiceReceiveMode {
     }
 }
 
-impl Default for IncomingPhoneNumberTollFreeEnumVoiceReceiveMode {
-    fn default() -> IncomingPhoneNumberTollFreeEnumVoiceReceiveMode {
-        Self::Voice
-    }
-}

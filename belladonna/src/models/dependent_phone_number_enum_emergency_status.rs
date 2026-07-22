@@ -14,8 +14,10 @@ use serde::{Deserialize, Serialize};
 /// DependentPhoneNumberEnumEmergencyStatus : Whether the phone number is enabled for emergency calling.
 /// Whether the phone number is enabled for emergency calling.
 #[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
+#[derive(Default)]
 pub enum DependentPhoneNumberEnumEmergencyStatus {
     #[serde(rename = "Active")]
+    #[default]
     Active,
     #[serde(rename = "Inactive")]
     Inactive,
@@ -30,8 +32,3 @@ impl std::fmt::Display for DependentPhoneNumberEnumEmergencyStatus {
     }
 }
 
-impl Default for DependentPhoneNumberEnumEmergencyStatus {
-    fn default() -> DependentPhoneNumberEnumEmergencyStatus {
-        Self::Active
-    }
-}

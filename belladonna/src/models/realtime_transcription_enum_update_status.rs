@@ -13,8 +13,10 @@ use serde::{Deserialize, Serialize};
 
 ///
 #[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
+#[derive(Default)]
 pub enum RealtimeTranscriptionEnumUpdateStatus {
     #[serde(rename = "stopped")]
+    #[default]
     Stopped,
 }
 
@@ -26,8 +28,3 @@ impl std::fmt::Display for RealtimeTranscriptionEnumUpdateStatus {
     }
 }
 
-impl Default for RealtimeTranscriptionEnumUpdateStatus {
-    fn default() -> RealtimeTranscriptionEnumUpdateStatus {
-        Self::Stopped
-    }
-}

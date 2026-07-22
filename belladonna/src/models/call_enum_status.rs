@@ -14,8 +14,10 @@ use serde::{Deserialize, Serialize};
 /// CallEnumStatus : The status of this call. Can be: `queued`, `ringing`, `in-progress`, `canceled`, `completed`, `failed`, `busy` or `no-answer`. See [Call Status Values](https://www.twilio.com/docs/voice/api/call-resource#call-status-values) below for more information.
 /// The status of this call. Can be: `queued`, `ringing`, `in-progress`, `canceled`, `completed`, `failed`, `busy` or `no-answer`. See [Call Status Values](https://www.twilio.com/docs/voice/api/call-resource#call-status-values) below for more information.
 #[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
+#[derive(Default)]
 pub enum CallEnumStatus {
     #[serde(rename = "queued")]
+    #[default]
     Queued,
     #[serde(rename = "ringing")]
     Ringing,
@@ -48,8 +50,3 @@ impl std::fmt::Display for CallEnumStatus {
     }
 }
 
-impl Default for CallEnumStatus {
-    fn default() -> CallEnumStatus {
-        Self::Queued
-    }
-}

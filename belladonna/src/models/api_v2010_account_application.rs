@@ -212,71 +212,56 @@ impl ApiV2010AccountApplication {
 }
 /// The HTTP method we use to call `sms_fallback_url`. Can be: `GET` or `POST`.
 #[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
+#[derive(Default)]
 pub enum SmsFallbackMethod {
     #[serde(rename = "GET")]
+    #[default]
     Get,
     #[serde(rename = "POST")]
     Post,
 }
 
-impl Default for SmsFallbackMethod {
-    fn default() -> SmsFallbackMethod {
-        Self::Get
-    }
-}
 /// The HTTP method we use to call `sms_url`. Can be: `GET` or `POST`.
 #[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
+#[derive(Default)]
 pub enum SmsMethod {
     #[serde(rename = "GET")]
+    #[default]
     Get,
     #[serde(rename = "POST")]
     Post,
 }
 
-impl Default for SmsMethod {
-    fn default() -> SmsMethod {
-        Self::Get
-    }
-}
 /// The HTTP method we use to call `status_callback`. Can be: `GET` or `POST`.
 #[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
+#[derive(Default)]
 pub enum StatusCallbackMethod {
     #[serde(rename = "GET")]
+    #[default]
     Get,
     #[serde(rename = "POST")]
     Post,
 }
 
-impl Default for StatusCallbackMethod {
-    fn default() -> StatusCallbackMethod {
-        Self::Get
-    }
-}
 /// The HTTP method we use to call `voice_fallback_url`. Can be: `GET` or `POST`.
 #[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
+#[derive(Default)]
 pub enum VoiceFallbackMethod {
     #[serde(rename = "GET")]
+    #[default]
     Get,
     #[serde(rename = "POST")]
     Post,
 }
 
-impl Default for VoiceFallbackMethod {
-    fn default() -> VoiceFallbackMethod {
-        Self::Get
-    }
-}
 /// The HTTP method we use to call `voice_url`. Can be: `GET` or `POST`.
 #[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
+#[derive(Default)]
 pub enum VoiceMethod {
     #[serde(rename = "GET")]
+    #[default]
     Get,
     #[serde(rename = "POST")]
     Post,
 }
 
-impl Default for VoiceMethod {
-    fn default() -> VoiceMethod {
-        Self::Get
-    }
-}

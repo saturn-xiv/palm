@@ -13,8 +13,10 @@ use serde::{Deserialize, Serialize};
 
 ///
 #[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
+#[derive(Default)]
 pub enum SmsMessageEnumStatus {
     #[serde(rename = "queued")]
+    #[default]
     Queued,
     #[serde(rename = "sending")]
     Sending,
@@ -62,8 +64,3 @@ impl std::fmt::Display for SmsMessageEnumStatus {
     }
 }
 
-impl Default for SmsMessageEnumStatus {
-    fn default() -> SmsMessageEnumStatus {
-        Self::Queued
-    }
-}

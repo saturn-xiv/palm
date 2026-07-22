@@ -14,8 +14,10 @@ use serde::{Deserialize, Serialize};
 /// SiprecEnumStatus : The status - one of `stopped`, `in-progress`
 /// The status - one of `stopped`, `in-progress`
 #[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
+#[derive(Default)]
 pub enum SiprecEnumStatus {
     #[serde(rename = "in-progress")]
+    #[default]
     InProgress,
     #[serde(rename = "stopped")]
     Stopped,
@@ -30,8 +32,3 @@ impl std::fmt::Display for SiprecEnumStatus {
     }
 }
 
-impl Default for SiprecEnumStatus {
-    fn default() -> SiprecEnumStatus {
-        Self::InProgress
-    }
-}

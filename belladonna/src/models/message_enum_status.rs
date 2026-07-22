@@ -14,8 +14,10 @@ use serde::{Deserialize, Serialize};
 /// MessageEnumStatus : The status of the Message. Possible values: `accepted`, `scheduled`, `canceled`, `queued`, `sending`, `sent`, `failed`, `delivered`, `undelivered`, `receiving`, `received`, or `read` (WhatsApp only). For more information, See [detailed descriptions](https://www.twilio.com/docs/sms/api/message-resource#message-status-values).
 /// The status of the Message. Possible values: `accepted`, `scheduled`, `canceled`, `queued`, `sending`, `sent`, `failed`, `delivered`, `undelivered`, `receiving`, `received`, or `read` (WhatsApp only). For more information, See [detailed descriptions](https://www.twilio.com/docs/sms/api/message-resource#message-status-values).
 #[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
+#[derive(Default)]
 pub enum MessageEnumStatus {
     #[serde(rename = "queued")]
+    #[default]
     Queued,
     #[serde(rename = "sending")]
     Sending,
@@ -63,8 +65,3 @@ impl std::fmt::Display for MessageEnumStatus {
     }
 }
 
-impl Default for MessageEnumStatus {
-    fn default() -> MessageEnumStatus {
-        Self::Queued
-    }
-}

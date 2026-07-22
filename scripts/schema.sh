@@ -22,9 +22,9 @@ function generate_belladonna() {
         find $target/src -type f -exec sed -i '/\/\/\/$/d' {} +
         sed -i 's/models::serde_json::/serde_json::/g' $target/src/apis/api20100401_payment_api.rs
         
-        # cd $target/
-        # git apply $WORK_DIR/twilio.patch
-        # cargo clippy --fix --lib -p belladonna
+        cd $WORK_DIR/
+        git apply patches/twilio.patch
+        # cargo clippy --fix --lib --allow-dirty -p belladonna
     fi
 }
 

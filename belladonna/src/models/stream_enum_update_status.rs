@@ -13,8 +13,10 @@ use serde::{Deserialize, Serialize};
 
 ///
 #[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
+#[derive(Default)]
 pub enum StreamEnumUpdateStatus {
     #[serde(rename = "stopped")]
+    #[default]
     Stopped,
 }
 
@@ -26,8 +28,3 @@ impl std::fmt::Display for StreamEnumUpdateStatus {
     }
 }
 
-impl Default for StreamEnumUpdateStatus {
-    fn default() -> StreamEnumUpdateStatus {
-        Self::Stopped
-    }
-}

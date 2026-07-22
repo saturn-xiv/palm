@@ -14,8 +14,10 @@ use serde::{Deserialize, Serialize};
 /// PaymentsEnumBankAccountType : Type of bank account if payment source is ACH. One of `consumer-checking`, `consumer-savings`, or `commercial-checking`. The default value is `consumer-checking`.
 /// Type of bank account if payment source is ACH. One of `consumer-checking`, `consumer-savings`, or `commercial-checking`. The default value is `consumer-checking`.
 #[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
+#[derive(Default)]
 pub enum PaymentsEnumBankAccountType {
     #[serde(rename = "consumer-checking")]
+    #[default]
     ConsumerChecking,
     #[serde(rename = "consumer-savings")]
     ConsumerSavings,
@@ -33,8 +35,3 @@ impl std::fmt::Display for PaymentsEnumBankAccountType {
     }
 }
 
-impl Default for PaymentsEnumBankAccountType {
-    fn default() -> PaymentsEnumBankAccountType {
-        Self::ConsumerChecking
-    }
-}

@@ -13,8 +13,10 @@ use serde::{Deserialize, Serialize};
 
 ///
 #[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
+#[derive(Default)]
 pub enum ConferenceEnumUpdateStatus {
     #[serde(rename = "completed")]
+    #[default]
     Completed,
 }
 
@@ -26,8 +28,3 @@ impl std::fmt::Display for ConferenceEnumUpdateStatus {
     }
 }
 
-impl Default for ConferenceEnumUpdateStatus {
-    fn default() -> ConferenceEnumUpdateStatus {
-        Self::Completed
-    }
-}

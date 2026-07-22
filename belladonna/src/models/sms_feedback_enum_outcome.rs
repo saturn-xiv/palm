@@ -13,8 +13,10 @@ use serde::{Deserialize, Serialize};
 
 ///
 #[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
+#[derive(Default)]
 pub enum SmsFeedbackEnumOutcome {
     #[serde(rename = "confirmed")]
+    #[default]
     Confirmed,
     #[serde(rename = "unconfirmed")]
     Unconfirmed,
@@ -38,8 +40,3 @@ impl std::fmt::Display for SmsFeedbackEnumOutcome {
     }
 }
 
-impl Default for SmsFeedbackEnumOutcome {
-    fn default() -> SmsFeedbackEnumOutcome {
-        Self::Confirmed
-    }
-}
