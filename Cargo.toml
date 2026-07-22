@@ -6,6 +6,7 @@ strip = true
 resolver = "2"
 members = [
     "belladonna",
+    "hyacinth",
     "portal",
     "cms",
     "forum",

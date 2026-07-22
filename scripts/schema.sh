@@ -3,8 +3,8 @@
 set -e
 
 export WORK_DIR=$PWD
+export OUTPUT_DIR=$WORK_DIR/hyacinth/src
 export PROTOBUF_HOME=$HOME/local/protobuf
-
 
 # https://www.twilio.com/docs/openapi/generating-a-rust-client-for-twilios-api#setup
 # https://github.com/OpenAPITools/openapi-generator?tab=readme-ov-file#launcher-script
@@ -32,31 +32,29 @@ function generate_belladonna() {
 
 function generate_grpc() {
     echo "generate grpc protocols"
-    # cd $WORK_DIR/portal/src/protocols/
-    # rm -r google casbin*.rs portal*.rs
-
+    
     # https://grpc.io/docs/languages/rust/quickstart/#prerequisites
     $PROTOBUF_HOME/bin/protoc --rust_opt=experimental-codegen=enabled,kernel=upb --rust-grpc_opt=client_only=true \
         --plugin=protoc-gen-rust-grpc=$PROTOBUF_HOME/bin/protoc-gen-rust-grpc \
         -I $PROTOBUF_HOME/include/ -I $WORK_DIR/protocols/ \
-        --rust_out=$WORK_DIR/portal/src/protocols/ --rust-grpc_out=$WORK_DIR/portal/src/protocols/ \
+        --rust_out=$OUTPUT_DIR --rust-grpc_out=$OUTPUT_DIR \
         $PROTOBUF_HOME/include/google/protobuf/empty.proto $PROTOBUF_HOME/include/google/protobuf/timestamp.proto \
         $WORK_DIR/protocols/casbin.proto $WORK_DIR/protocols/portal.proto
 
-    sed -i 's/super:://g' $WORK_DIR/portal/src/protocols/casbin.u.pb.rs
-    sed -i 's/array2_d_reply::palm__casbin__v1/palm__casbin__v1/g' $WORK_DIR/portal/src/protocols/casbin.u.pb.rs
+    sed -i 's/super:://g' $OUTPUT_DIR/casbin.u.pb.rs
+    sed -i 's/array2_d_reply::palm__casbin__v1/palm__casbin__v1/g' $OUTPUT_DIR/casbin.u.pb.rs
 }
 
 function generate_flatbuffers() {
     echo "generate flatbuffers protocols"
-    flatc -o $WORK_DIR/portal/src/protocols --filename-suffix "" --rust $WORK_DIR/protocols/email.fbs
-    flatc -o $WORK_DIR/portal/src/protocols --filename-suffix "" --rust $WORK_DIR/protocols/tex.fbs
+    flatc -o $OUTPUT_DIR --filename-suffix "" --rust $WORK_DIR/protocols/email.fbs
+    flatc -o $OUTPUT_DIR --filename-suffix "" --rust $WORK_DIR/protocols/tex.fbs
 }
 
 function generate_diesel() {
     echo "generate diesel schemas"
     local database_url="postgres://postgres@127.0.0.1:5432/wisteria_dev?sslmode=disable"
-    diesel print-schema --database-url $database_url -o schema_migrations > $WORK_DIR/portal/src/schema.rs
+    diesel print-schema --database-url $database_url > $OUTPUT_DIR/schema.rs
 }
 
 generate_belladonna
@@ -64,6 +62,7 @@ generate_flatbuffers
 generate_grpc
 generate_diesel
 
+sed -i -E "s/(version = \")[0-9]+\.[0-9]+\.[0-9]+/\1$(date +%Y.%-m.%-d)/g" $WORK_DIR/hyacinth/Cargo.toml
 cargo fmt
 
 echo 'done.'

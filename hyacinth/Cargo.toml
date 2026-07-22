@@ -1,0 +1,17 @@
+[package]
+name = "hyacinth"
+version = "2026.7.22"
+edition = "2024"
+description = "Generated protocols"
+
+[dependencies]
+grpc = "0.9"
+grpc-protobuf = "0.9"
+tonic = "0.14"
+protobuf = "=4.34.0-release"
+flatbuffers = "25"
+
+[dependencies.diesel]
+version = "2"
+default-features = false
+features = ["128-column-tables", "postgres", "chrono", "uuid"]

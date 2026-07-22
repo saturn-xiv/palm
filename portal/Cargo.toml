@@ -4,23 +4,8 @@ version = "2026.7.21"
 edition = "2024"
 
 [dependencies]
-flatbuffers = "25"
-
-grpc = "0.9"
-grpc-protobuf = "0.9"
-tonic = "0.14"
-protobuf = "=4.34.0-release"
 
 [dependencies.diesel]
 version = "2"
 default-features = false
-features = [
-    "128-column-tables",
-    "postgres",
-    "chrono",
-    "serde_json",
-    "uuid",
-    "network-address",
-    "numeric",
-    "r2d2",
-]
+features = ["postgres", "r2d2"]
