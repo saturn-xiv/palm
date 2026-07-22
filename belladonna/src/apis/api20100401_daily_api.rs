@@ -41,7 +41,6 @@ pub enum ListUsageRecordDailyError {
     UnknownValue(serde_json::Value),
 }
 
-///
 pub async fn list_usage_record_daily(
     configuration: &configuration::Configuration,
     params: ListUsageRecordDailyParams,

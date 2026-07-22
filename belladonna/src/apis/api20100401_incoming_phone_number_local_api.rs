@@ -99,7 +99,6 @@ pub enum ListIncomingPhoneNumberLocalError {
     UnknownValue(serde_json::Value),
 }
 
-///
 pub async fn create_incoming_phone_number_local(
     configuration: &configuration::Configuration,
     params: CreateIncomingPhoneNumberLocalParams,
@@ -222,7 +221,6 @@ pub async fn create_incoming_phone_number_local(
     }
 }
 
-///
 pub async fn list_incoming_phone_number_local(
     configuration: &configuration::Configuration,
     params: ListIncomingPhoneNumberLocalParams,

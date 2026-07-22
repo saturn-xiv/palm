@@ -41,7 +41,6 @@ pub enum ListUsageRecordThisMonthError {
     UnknownValue(serde_json::Value),
 }
 
-///
 pub async fn list_usage_record_this_month(
     configuration: &configuration::Configuration,
     params: ListUsageRecordThisMonthParams,

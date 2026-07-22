@@ -99,7 +99,6 @@ pub enum ListIncomingPhoneNumberTollFreeError {
     UnknownValue(serde_json::Value),
 }
 
-///
 pub async fn create_incoming_phone_number_toll_free(
     configuration: &configuration::Configuration,
     params: CreateIncomingPhoneNumberTollFreeParams,
@@ -222,7 +221,6 @@ pub async fn create_incoming_phone_number_toll_free(
     }
 }
 
-///
 pub async fn list_incoming_phone_number_toll_free(
     configuration: &configuration::Configuration,
     params: ListIncomingPhoneNumberTollFreeParams,

@@ -41,7 +41,6 @@ pub enum ListUsageRecordAllTimeError {
     UnknownValue(serde_json::Value),
 }
 
-///
 pub async fn list_usage_record_all_time(
     configuration: &configuration::Configuration,
     params: ListUsageRecordAllTimeParams,

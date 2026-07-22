@@ -29,7 +29,6 @@ pub enum CreateNewKeyError {
     UnknownValue(serde_json::Value),
 }
 
-///
 pub async fn create_new_key(
     configuration: &configuration::Configuration,
     params: CreateNewKeyParams,

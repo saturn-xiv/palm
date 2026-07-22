@@ -61,7 +61,6 @@ pub enum ListCallNotificationError {
     UnknownValue(serde_json::Value),
 }
 
-///
 pub async fn fetch_call_notification(
     configuration: &configuration::Configuration,
     params: FetchCallNotificationParams,
@@ -112,7 +111,6 @@ pub async fn fetch_call_notification(
     }
 }
 
-///
 pub async fn list_call_notification(
     configuration: &configuration::Configuration,
     params: ListCallNotificationParams,

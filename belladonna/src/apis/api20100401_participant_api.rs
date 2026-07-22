@@ -237,7 +237,6 @@ pub enum UpdateParticipantError {
     UnknownValue(serde_json::Value),
 }
 
-///
 pub async fn create_participant(
     configuration: &configuration::Configuration,
     params: CreateParticipantParams,

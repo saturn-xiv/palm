@@ -71,7 +71,6 @@ pub enum ListAvailablePhoneNumberVoipError {
     UnknownValue(serde_json::Value),
 }
 
-///
 pub async fn list_available_phone_number_voip(
     configuration: &configuration::Configuration,
     params: ListAvailablePhoneNumberVoipParams,

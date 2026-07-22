@@ -71,7 +71,6 @@ pub enum ListRecordingTranscriptionError {
     UnknownValue(serde_json::Value),
 }
 
-///
 pub async fn delete_recording_transcription(
     configuration: &configuration::Configuration,
     params: DeleteRecordingTranscriptionParams,
@@ -112,7 +111,6 @@ pub async fn delete_recording_transcription(
     }
 }
 
-///
 pub async fn fetch_recording_transcription(
     configuration: &configuration::Configuration,
     params: FetchRecordingTranscriptionParams,
@@ -165,7 +163,6 @@ pub async fn fetch_recording_transcription(
     }
 }
 
-///
 pub async fn list_recording_transcription(
     configuration: &configuration::Configuration,
     params: ListRecordingTranscriptionParams,

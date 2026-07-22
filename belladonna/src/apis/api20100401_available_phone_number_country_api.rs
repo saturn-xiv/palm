@@ -49,7 +49,6 @@ pub enum ListAvailablePhoneNumberCountryError {
     UnknownValue(serde_json::Value),
 }
 
-///
 pub async fn fetch_available_phone_number_country(
     configuration: &configuration::Configuration,
     params: FetchAvailablePhoneNumberCountryParams,
@@ -102,7 +101,6 @@ pub async fn fetch_available_phone_number_country(
     }
 }
 
-///
 pub async fn list_available_phone_number_country(
     configuration: &configuration::Configuration,
     params: ListAvailablePhoneNumberCountryParams,

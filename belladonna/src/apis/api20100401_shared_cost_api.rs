@@ -71,7 +71,6 @@ pub enum ListAvailablePhoneNumberSharedCostError {
     UnknownValue(serde_json::Value),
 }
 
-///
 pub async fn list_available_phone_number_shared_cost(
     configuration: &configuration::Configuration,
     params: ListAvailablePhoneNumberSharedCostParams,

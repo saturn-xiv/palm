@@ -39,7 +39,6 @@ pub enum CreateValidationRequestError {
     UnknownValue(serde_json::Value),
 }
 
-///
 pub async fn create_validation_request(
     configuration: &configuration::Configuration,
     params: CreateValidationRequestParams,

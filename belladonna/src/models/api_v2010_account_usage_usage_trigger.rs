@@ -154,8 +154,9 @@ impl ApiV2010AccountUsageUsageTrigger {
     }
 }
 /// The HTTP method we use to call `callback_url`. Can be: `GET` or `POST`.
-#[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
-#[derive(Default)]
+#[derive(
+    Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize, Default,
+)]
 pub enum CallbackMethod {
     #[serde(rename = "GET")]
     #[default]
@@ -163,4 +164,3 @@ pub enum CallbackMethod {
     #[serde(rename = "POST")]
     Post,
 }
-

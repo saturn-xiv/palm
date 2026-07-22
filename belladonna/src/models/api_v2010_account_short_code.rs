@@ -130,8 +130,9 @@ impl ApiV2010AccountShortCode {
     }
 }
 /// The HTTP method we use to call the `sms_fallback_url`. Can be: `GET` or `POST`.
-#[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
-#[derive(Default)]
+#[derive(
+    Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize, Default,
+)]
 pub enum SmsFallbackMethod {
     #[serde(rename = "GET")]
     #[default]
@@ -141,8 +142,9 @@ pub enum SmsFallbackMethod {
 }
 
 /// The HTTP method we use to call the `sms_url`. Can be: `GET` or `POST`.
-#[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
-#[derive(Default)]
+#[derive(
+    Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize, Default,
+)]
 pub enum SmsMethod {
     #[serde(rename = "GET")]
     #[default]
@@ -150,4 +152,3 @@ pub enum SmsMethod {
     #[serde(rename = "POST")]
     Post,
 }
-

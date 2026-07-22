@@ -24,7 +24,8 @@ function generate_belladonna() {
         
         cd $WORK_DIR/
         git apply patches/twilio.patch
-        # cargo clippy --fix --lib --allow-dirty -p belladonna
+        cargo clippy --fix --lib --allow-dirty --allow-staged -p belladonna
+        sed -i '\|///$|d' belladonna/src/models/*.rs belladonna/src/apis/*.rs
     fi
 }
 

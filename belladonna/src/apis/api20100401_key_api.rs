@@ -83,7 +83,6 @@ pub enum UpdateKeyError {
     UnknownValue(serde_json::Value),
 }
 
-///
 pub async fn delete_key(
     configuration: &configuration::Configuration,
     params: DeleteKeyParams,
@@ -123,7 +122,6 @@ pub async fn delete_key(
     }
 }
 
-///
 pub async fn fetch_key(
     configuration: &configuration::Configuration,
     params: FetchKeyParams,
@@ -172,7 +170,6 @@ pub async fn fetch_key(
     }
 }
 
-///
 pub async fn list_key(
     configuration: &configuration::Configuration,
     params: ListKeyParams,
@@ -229,7 +226,6 @@ pub async fn list_key(
     }
 }
 
-///
 pub async fn update_key(
     configuration: &configuration::Configuration,
     params: UpdateKeyParams,

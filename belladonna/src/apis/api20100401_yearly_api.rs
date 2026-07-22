@@ -41,7 +41,6 @@ pub enum ListUsageRecordYearlyError {
     UnknownValue(serde_json::Value),
 }
 
-///
 pub async fn list_usage_record_yearly(
     configuration: &configuration::Configuration,
     params: ListUsageRecordYearlyParams,

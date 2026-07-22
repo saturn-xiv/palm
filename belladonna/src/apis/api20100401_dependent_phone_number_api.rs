@@ -35,7 +35,6 @@ pub enum ListDependentPhoneNumberError {
     UnknownValue(serde_json::Value),
 }
 
-///
 pub async fn list_dependent_phone_number(
     configuration: &configuration::Configuration,
     params: ListDependentPhoneNumberParams,

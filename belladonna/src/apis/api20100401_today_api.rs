@@ -41,7 +41,6 @@ pub enum ListUsageRecordTodayError {
     UnknownValue(serde_json::Value),
 }
 
-///
 pub async fn list_usage_record_today(
     configuration: &configuration::Configuration,
     params: ListUsageRecordTodayParams,

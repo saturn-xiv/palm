@@ -216,7 +216,6 @@ pub async fn list_conference(
     }
 }
 
-///
 pub async fn update_conference(
     configuration: &configuration::Configuration,
     params: UpdateConferenceParams,

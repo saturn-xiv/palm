@@ -71,7 +71,6 @@ pub enum ListAvailablePhoneNumberMobileError {
     UnknownValue(serde_json::Value),
 }
 
-///
 pub async fn list_available_phone_number_mobile(
     configuration: &configuration::Configuration,
     params: ListAvailablePhoneNumberMobileParams,

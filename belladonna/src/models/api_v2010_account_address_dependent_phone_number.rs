@@ -247,8 +247,9 @@ impl ApiV2010AccountAddressDependentPhoneNumber {
     }
 }
 /// The HTTP method we use to call `voice_url`. Can be: `GET` or `POST`.
-#[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
-#[derive(Default)]
+#[derive(
+    Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize, Default,
+)]
 pub enum VoiceMethod {
     #[serde(rename = "GET")]
     #[default]
@@ -258,8 +259,9 @@ pub enum VoiceMethod {
 }
 
 /// The HTTP method we use to call `voice_fallback_url`. Can be: `GET` or `POST`.
-#[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
-#[derive(Default)]
+#[derive(
+    Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize, Default,
+)]
 pub enum VoiceFallbackMethod {
     #[serde(rename = "GET")]
     #[default]
@@ -269,8 +271,9 @@ pub enum VoiceFallbackMethod {
 }
 
 /// The HTTP method we use to call `sms_fallback_url`. Can be: `GET` or `POST`.
-#[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
-#[derive(Default)]
+#[derive(
+    Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize, Default,
+)]
 pub enum SmsFallbackMethod {
     #[serde(rename = "GET")]
     #[default]
@@ -280,8 +283,9 @@ pub enum SmsFallbackMethod {
 }
 
 /// The HTTP method we use to call `sms_url`. Can be: `GET` or `POST`.
-#[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
-#[derive(Default)]
+#[derive(
+    Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize, Default,
+)]
 pub enum SmsMethod {
     #[serde(rename = "GET")]
     #[default]
@@ -291,8 +295,9 @@ pub enum SmsMethod {
 }
 
 /// The HTTP method we use to call `status_callback`. Can be: `GET` or `POST`.
-#[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
-#[derive(Default)]
+#[derive(
+    Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize, Default,
+)]
 pub enum StatusCallbackMethod {
     #[serde(rename = "GET")]
     #[default]
@@ -300,4 +305,3 @@ pub enum StatusCallbackMethod {
     #[serde(rename = "POST")]
     Post,
 }
-

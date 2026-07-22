@@ -121,8 +121,9 @@ impl ApiV2010AccountConnectApp {
     }
 }
 /// The HTTP method we use to call `deauthorize_callback_url`.
-#[derive(Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize)]
-#[derive(Default)]
+#[derive(
+    Clone, Copy, Debug, Eq, PartialEq, Ord, PartialOrd, Hash, Serialize, Deserialize, Default,
+)]
 pub enum DeauthorizeCallbackMethod {
     #[serde(rename = "GET")]
     #[default]
@@ -130,4 +131,3 @@ pub enum DeauthorizeCallbackMethod {
     #[serde(rename = "POST")]
     Post,
 }
-

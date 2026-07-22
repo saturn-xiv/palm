@@ -71,7 +71,6 @@ pub enum ListAvailablePhoneNumberNationalError {
     UnknownValue(serde_json::Value),
 }
 
-///
 pub async fn list_available_phone_number_national(
     configuration: &configuration::Configuration,
     params: ListAvailablePhoneNumberNationalParams,

@@ -186,7 +186,6 @@ pub async fn create_usage_trigger(
     }
 }
 
-///
 pub async fn delete_usage_trigger(
     configuration: &configuration::Configuration,
     params: DeleteUsageTriggerParams,

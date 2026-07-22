@@ -71,7 +71,6 @@ pub enum ListAvailablePhoneNumberTollFreeError {
     UnknownValue(serde_json::Value),
 }
 
-///
 pub async fn list_available_phone_number_toll_free(
     configuration: &configuration::Configuration,
     params: ListAvailablePhoneNumberTollFreeParams,

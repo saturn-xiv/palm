@@ -71,7 +71,6 @@ pub enum ListAvailablePhoneNumberMachineToMachineError {
     UnknownValue(serde_json::Value),
 }
 
-///
 pub async fn list_available_phone_number_machine_to_machine(
     configuration: &configuration::Configuration,
     params: ListAvailablePhoneNumberMachineToMachineParams,

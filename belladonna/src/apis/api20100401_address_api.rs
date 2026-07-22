@@ -141,7 +141,6 @@ pub enum UpdateAddressError {
     UnknownValue(serde_json::Value),
 }
 
-///
 pub async fn create_address(
     configuration: &configuration::Configuration,
     params: CreateAddressParams,
@@ -211,7 +210,6 @@ pub async fn create_address(
     }
 }
 
-///
 pub async fn delete_address(
     configuration: &configuration::Configuration,
     params: DeleteAddressParams,
@@ -251,7 +249,6 @@ pub async fn delete_address(
     }
 }
 
-///
 pub async fn fetch_address(
     configuration: &configuration::Configuration,
     params: FetchAddressParams,
@@ -300,7 +297,6 @@ pub async fn fetch_address(
     }
 }
 
-///
 pub async fn list_address(
     configuration: &configuration::Configuration,
     params: ListAddressParams,
@@ -369,7 +365,6 @@ pub async fn list_address(
     }
 }
 
-///
 pub async fn update_address(
     configuration: &configuration::Configuration,
     params: UpdateAddressParams,
