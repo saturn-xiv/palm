@@ -31,6 +31,7 @@ function generate_belladonna() {
 }
 
 # https://grpc.io/docs/languages/rust/quickstart/#prerequisites
+# https://github.com/grpc/grpc-rust/tree/master/protoc-gen-rust-grpc
 function generate_grpc() {
     echo "generate grpc protocols"
         
@@ -49,11 +50,13 @@ function generate_grpc() {
         --rust_out=$OUTPUT_DIR/casbin --rust-grpc_out=$OUTPUT_DIR/casbin \
         $WORK_DIR/protocols/casbin.proto
 
-    $PROTOBUF_HOME/bin/protoc --rust_opt=experimental-codegen=enabled,kernel=upb --rust-grpc_opt=client_only=true \
-        --plugin=protoc-gen-rust-grpc=$PROTOBUF_HOME/bin/protoc-gen-rust-grpc \
-        -I $PROTOBUF_HOME/include/ -I $WORK_DIR/protocols/ \
-        --rust_out=$OUTPUT_DIR/portal --rust-grpc_out=$OUTPUT_DIR/portal \
-        $WORK_DIR/protocols/portal.proto
+    # TODO 
+    # $PROTOBUF_HOME/bin/protoc --rust_opt=experimental-codegen=enabled,kernel=upb --rust-grpc_opt=client_only=true \
+    #     --rust-grpc_opt=extern_path=.google.protobuf=::crate::google::protobuf \
+    #     --plugin=protoc-gen-rust-grpc=$PROTOBUF_HOME/bin/protoc-gen-rust-grpc \
+    #     -I $PROTOBUF_HOME/include/ -I $WORK_DIR/protocols/ \
+    #     --rust_out=$OUTPUT_DIR/portal --rust-grpc_out=$OUTPUT_DIR/portal \
+    #     $WORK_DIR/protocols/portal.proto
 
 }
 
