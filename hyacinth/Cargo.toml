@@ -15,3 +15,7 @@ flatbuffers = "25"
 version = "2"
 default-features = false
 features = ["128-column-tables", "postgres", "chrono", "uuid"]
+
+[dependencies.openssl]
+version = "*"
+features = ["vendored"]
