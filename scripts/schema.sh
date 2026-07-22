@@ -3,6 +3,13 @@
 set -e
 
 export WORK_DIR=$PWD
+export PROTOBUF_HOME=$HOME/local/protobuf
+
+# https://grpc.io/docs/languages/rust/quickstart/#prerequisites
+protoc --rust_opt=experimental-codegen=enabled,kernel=upb \
+    -I $PROTOBUF_HOME/include/google/protobuf -I $WORK_DIR/protocols \
+    --rust_out=$WORK_DIR/portal/src/protocols/ --rust-grpc_out=$WORK_DIR/portal/src/protocols/ \
+    $WORK_DIR/protocols/casbin.proto $WORK_DIR/protocols/portal.proto
 
 flatc -o portal/src/protocols --filename-suffix "" --rust protocols/email.fbs
 flatc -o portal/src/protocols --filename-suffix "" --rust protocols/tex.fbs
