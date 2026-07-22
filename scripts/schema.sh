@@ -30,19 +30,31 @@ function generate_belladonna() {
     fi
 }
 
+# https://grpc.io/docs/languages/rust/quickstart/#prerequisites
 function generate_grpc() {
     echo "generate grpc protocols"
-    
-    # https://grpc.io/docs/languages/rust/quickstart/#prerequisites
+        
     $PROTOBUF_HOME/bin/protoc --rust_opt=experimental-codegen=enabled,kernel=upb --rust-grpc_opt=client_only=true \
         --plugin=protoc-gen-rust-grpc=$PROTOBUF_HOME/bin/protoc-gen-rust-grpc \
         -I $PROTOBUF_HOME/include/ -I $WORK_DIR/protocols/ \
         --rust_out=$OUTPUT_DIR --rust-grpc_out=$OUTPUT_DIR \
-        $PROTOBUF_HOME/include/google/protobuf/empty.proto $PROTOBUF_HOME/include/google/protobuf/timestamp.proto \
-        $WORK_DIR/protocols/casbin.proto $WORK_DIR/protocols/portal.proto
+        $PROTOBUF_HOME/include/google/protobuf/empty.proto \
+        $PROTOBUF_HOME/include/google/protobuf/timestamp.proto \
+        $PROTOBUF_HOME/include/google/protobuf/duration.proto \
+        $PROTOBUF_HOME/include/google/protobuf/any.proto
+    
+    $PROTOBUF_HOME/bin/protoc --rust_opt=experimental-codegen=enabled,kernel=upb --rust-grpc_opt=client_only=true \
+        --plugin=protoc-gen-rust-grpc=$PROTOBUF_HOME/bin/protoc-gen-rust-grpc \
+        -I $PROTOBUF_HOME/include/ -I $WORK_DIR/protocols/ \
+        --rust_out=$OUTPUT_DIR/casbin --rust-grpc_out=$OUTPUT_DIR/casbin \
+        $WORK_DIR/protocols/casbin.proto
 
-    sed -i 's/super:://g' $OUTPUT_DIR/casbin.u.pb.rs
-    sed -i 's/array2_d_reply::palm__casbin__v1/palm__casbin__v1/g' $OUTPUT_DIR/casbin.u.pb.rs
+    $PROTOBUF_HOME/bin/protoc --rust_opt=experimental-codegen=enabled,kernel=upb --rust-grpc_opt=client_only=true \
+        --plugin=protoc-gen-rust-grpc=$PROTOBUF_HOME/bin/protoc-gen-rust-grpc \
+        -I $PROTOBUF_HOME/include/ -I $WORK_DIR/protocols/ \
+        --rust_out=$OUTPUT_DIR/portal --rust-grpc_out=$OUTPUT_DIR/portal \
+        $WORK_DIR/protocols/portal.proto
+
 }
 
 function generate_flatbuffers() {

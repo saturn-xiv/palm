@@ -384,11 +384,11 @@ unsafe impl ::protobuf::__internal::runtime::AssociatedMiniTable for NewEnforcer
         ::std::sync::OnceLock::new();
     unsafe {
       ONCE_LOCK.get_or_init(|| {
-        palm__casbin__v1__NewEnforcerRequest_msg_init.0 =
+        super::palm__casbin__v1__NewEnforcerRequest_msg_init.0 =
             ::protobuf::__internal::runtime::build_mini_table("$1X(P");
         ::protobuf::__internal::runtime::link_mini_table(
-            palm__casbin__v1__NewEnforcerRequest_msg_init.0, &[], &[]);
-        ::protobuf::__internal::runtime::MiniTableInitPtr(palm__casbin__v1__NewEnforcerRequest_msg_init.0)
+            super::palm__casbin__v1__NewEnforcerRequest_msg_init.0, &[], &[]);
+        ::protobuf::__internal::runtime::MiniTableInitPtr(super::palm__casbin__v1__NewEnforcerRequest_msg_init.0)
       }).0
     }
   }
@@ -774,11 +774,11 @@ unsafe impl ::protobuf::__internal::runtime::AssociatedMiniTable for NewEnforcer
         ::std::sync::OnceLock::new();
     unsafe {
       ONCE_LOCK.get_or_init(|| {
-        palm__casbin__v1__NewEnforcerReply_msg_init.0 =
+        super::palm__casbin__v1__NewEnforcerReply_msg_init.0 =
             ::protobuf::__internal::runtime::build_mini_table("$(P");
         ::protobuf::__internal::runtime::link_mini_table(
-            palm__casbin__v1__NewEnforcerReply_msg_init.0, &[], &[]);
-        ::protobuf::__internal::runtime::MiniTableInitPtr(palm__casbin__v1__NewEnforcerReply_msg_init.0)
+            super::palm__casbin__v1__NewEnforcerReply_msg_init.0, &[], &[]);
+        ::protobuf::__internal::runtime::MiniTableInitPtr(super::palm__casbin__v1__NewEnforcerReply_msg_init.0)
       }).0
     }
   }
@@ -1311,11 +1311,11 @@ unsafe impl ::protobuf::__internal::runtime::AssociatedMiniTable for NewAdapterR
         ::std::sync::OnceLock::new();
     unsafe {
       ONCE_LOCK.get_or_init(|| {
-        palm__casbin__v1__NewAdapterRequest_msg_init.0 =
+        super::palm__casbin__v1__NewAdapterRequest_msg_init.0 =
             ::protobuf::__internal::runtime::build_mini_table("$1X1X1X/P");
         ::protobuf::__internal::runtime::link_mini_table(
-            palm__casbin__v1__NewAdapterRequest_msg_init.0, &[], &[]);
-        ::protobuf::__internal::runtime::MiniTableInitPtr(palm__casbin__v1__NewAdapterRequest_msg_init.0)
+            super::palm__casbin__v1__NewAdapterRequest_msg_init.0, &[], &[]);
+        ::protobuf::__internal::runtime::MiniTableInitPtr(super::palm__casbin__v1__NewAdapterRequest_msg_init.0)
       }).0
     }
   }
@@ -1701,11 +1701,11 @@ unsafe impl ::protobuf::__internal::runtime::AssociatedMiniTable for NewAdapterR
         ::std::sync::OnceLock::new();
     unsafe {
       ONCE_LOCK.get_or_init(|| {
-        palm__casbin__v1__NewAdapterReply_msg_init.0 =
+        super::palm__casbin__v1__NewAdapterReply_msg_init.0 =
             ::protobuf::__internal::runtime::build_mini_table("$(P");
         ::protobuf::__internal::runtime::link_mini_table(
-            palm__casbin__v1__NewAdapterReply_msg_init.0, &[], &[]);
-        ::protobuf::__internal::runtime::MiniTableInitPtr(palm__casbin__v1__NewAdapterReply_msg_init.0)
+            super::palm__casbin__v1__NewAdapterReply_msg_init.0, &[], &[]);
+        ::protobuf::__internal::runtime::MiniTableInitPtr(super::palm__casbin__v1__NewAdapterReply_msg_init.0)
       }).0
     }
   }
@@ -2177,11 +2177,11 @@ unsafe impl ::protobuf::__internal::runtime::AssociatedMiniTable for EnforceRequ
         ::std::sync::OnceLock::new();
     unsafe {
       ONCE_LOCK.get_or_init(|| {
-        palm__casbin__v1__EnforceRequest_msg_init.0 =
+        super::palm__casbin__v1__EnforceRequest_msg_init.0 =
             ::protobuf::__internal::runtime::build_mini_table("$(PET");
         ::protobuf::__internal::runtime::link_mini_table(
-            palm__casbin__v1__EnforceRequest_msg_init.0, &[], &[]);
-        ::protobuf::__internal::runtime::MiniTableInitPtr(palm__casbin__v1__EnforceRequest_msg_init.0)
+            super::palm__casbin__v1__EnforceRequest_msg_init.0, &[], &[]);
+        ::protobuf::__internal::runtime::MiniTableInitPtr(super::palm__casbin__v1__EnforceRequest_msg_init.0)
       }).0
     }
   }
@@ -2567,11 +2567,11 @@ unsafe impl ::protobuf::__internal::runtime::AssociatedMiniTable for BoolReply {
         ::std::sync::OnceLock::new();
     unsafe {
       ONCE_LOCK.get_or_init(|| {
-        palm__casbin__v1__BoolReply_msg_init.0 =
+        super::palm__casbin__v1__BoolReply_msg_init.0 =
             ::protobuf::__internal::runtime::build_mini_table("$/P");
         ::protobuf::__internal::runtime::link_mini_table(
-            palm__casbin__v1__BoolReply_msg_init.0, &[], &[]);
-        ::protobuf::__internal::runtime::MiniTableInitPtr(palm__casbin__v1__BoolReply_msg_init.0)
+            super::palm__casbin__v1__BoolReply_msg_init.0, &[], &[]);
+        ::protobuf::__internal::runtime::MiniTableInitPtr(super::palm__casbin__v1__BoolReply_msg_init.0)
       }).0
     }
   }
@@ -2957,11 +2957,11 @@ unsafe impl ::protobuf::__internal::runtime::AssociatedMiniTable for EmptyReques
         ::std::sync::OnceLock::new();
     unsafe {
       ONCE_LOCK.get_or_init(|| {
-        palm__casbin__v1__EmptyRequest_msg_init.0 =
+        super::palm__casbin__v1__EmptyRequest_msg_init.0 =
             ::protobuf::__internal::runtime::build_mini_table("$(P");
         ::protobuf::__internal::runtime::link_mini_table(
-            palm__casbin__v1__EmptyRequest_msg_init.0, &[], &[]);
-        ::protobuf::__internal::runtime::MiniTableInitPtr(palm__casbin__v1__EmptyRequest_msg_init.0)
+            super::palm__casbin__v1__EmptyRequest_msg_init.0, &[], &[]);
+        ::protobuf::__internal::runtime::MiniTableInitPtr(super::palm__casbin__v1__EmptyRequest_msg_init.0)
       }).0
     }
   }
@@ -3280,11 +3280,11 @@ unsafe impl ::protobuf::__internal::runtime::AssociatedMiniTable for EmptyReply 
         ::std::sync::OnceLock::new();
     unsafe {
       ONCE_LOCK.get_or_init(|| {
-        palm__casbin__v1__EmptyReply_msg_init.0 =
+        super::palm__casbin__v1__EmptyReply_msg_init.0 =
             ::protobuf::__internal::runtime::build_mini_table("$");
         ::protobuf::__internal::runtime::link_mini_table(
-            palm__casbin__v1__EmptyReply_msg_init.0, &[], &[]);
-        ::protobuf::__internal::runtime::MiniTableInitPtr(palm__casbin__v1__EmptyReply_msg_init.0)
+            super::palm__casbin__v1__EmptyReply_msg_init.0, &[], &[]);
+        ::protobuf::__internal::runtime::MiniTableInitPtr(super::palm__casbin__v1__EmptyReply_msg_init.0)
       }).0
     }
   }
@@ -3805,11 +3805,11 @@ unsafe impl ::protobuf::__internal::runtime::AssociatedMiniTable for PolicyReque
         ::std::sync::OnceLock::new();
     unsafe {
       ONCE_LOCK.get_or_init(|| {
-        palm__casbin__v1__PolicyRequest_msg_init.0 =
+        super::palm__casbin__v1__PolicyRequest_msg_init.0 =
             ::protobuf::__internal::runtime::build_mini_table("$(P1XET");
         ::protobuf::__internal::runtime::link_mini_table(
-            palm__casbin__v1__PolicyRequest_msg_init.0, &[], &[]);
-        ::protobuf::__internal::runtime::MiniTableInitPtr(palm__casbin__v1__PolicyRequest_msg_init.0)
+            super::palm__casbin__v1__PolicyRequest_msg_init.0, &[], &[]);
+        ::protobuf::__internal::runtime::MiniTableInitPtr(super::palm__casbin__v1__PolicyRequest_msg_init.0)
       }).0
     }
   }
@@ -4244,11 +4244,11 @@ unsafe impl ::protobuf::__internal::runtime::AssociatedMiniTable for SimpleGetRe
         ::std::sync::OnceLock::new();
     unsafe {
       ONCE_LOCK.get_or_init(|| {
-        palm__casbin__v1__SimpleGetRequest_msg_init.0 =
+        super::palm__casbin__v1__SimpleGetRequest_msg_init.0 =
             ::protobuf::__internal::runtime::build_mini_table("$(P1X");
         ::protobuf::__internal::runtime::link_mini_table(
-            palm__casbin__v1__SimpleGetRequest_msg_init.0, &[], &[]);
-        ::protobuf::__internal::runtime::MiniTableInitPtr(palm__casbin__v1__SimpleGetRequest_msg_init.0)
+            super::palm__casbin__v1__SimpleGetRequest_msg_init.0, &[], &[]);
+        ::protobuf::__internal::runtime::MiniTableInitPtr(super::palm__casbin__v1__SimpleGetRequest_msg_init.0)
       }).0
     }
   }
@@ -4653,11 +4653,11 @@ unsafe impl ::protobuf::__internal::runtime::AssociatedMiniTable for ArrayReply 
         ::std::sync::OnceLock::new();
     unsafe {
       ONCE_LOCK.get_or_init(|| {
-        palm__casbin__v1__ArrayReply_msg_init.0 =
+        super::palm__casbin__v1__ArrayReply_msg_init.0 =
             ::protobuf::__internal::runtime::build_mini_table("$ME");
         ::protobuf::__internal::runtime::link_mini_table(
-            palm__casbin__v1__ArrayReply_msg_init.0, &[], &[]);
-        ::protobuf::__internal::runtime::MiniTableInitPtr(palm__casbin__v1__ArrayReply_msg_init.0)
+            super::palm__casbin__v1__ArrayReply_msg_init.0, &[], &[]);
+        ::protobuf::__internal::runtime::MiniTableInitPtr(super::palm__casbin__v1__ArrayReply_msg_init.0)
       }).0
     }
   }
@@ -5245,11 +5245,11 @@ unsafe impl ::protobuf::__internal::runtime::AssociatedMiniTable for FilteredPol
         ::std::sync::OnceLock::new();
     unsafe {
       ONCE_LOCK.get_or_init(|| {
-        palm__casbin__v1__FilteredPolicyRequest_msg_init.0 =
+        super::palm__casbin__v1__FilteredPolicyRequest_msg_init.0 =
             ::protobuf::__internal::runtime::build_mini_table("$(P1X(PET");
         ::protobuf::__internal::runtime::link_mini_table(
-            palm__casbin__v1__FilteredPolicyRequest_msg_init.0, &[], &[]);
-        ::protobuf::__internal::runtime::MiniTableInitPtr(palm__casbin__v1__FilteredPolicyRequest_msg_init.0)
+            super::palm__casbin__v1__FilteredPolicyRequest_msg_init.0, &[], &[]);
+        ::protobuf::__internal::runtime::MiniTableInitPtr(super::palm__casbin__v1__FilteredPolicyRequest_msg_init.0)
       }).0
     }
   }
@@ -5733,11 +5733,11 @@ unsafe impl ::protobuf::__internal::runtime::AssociatedMiniTable for UserRoleReq
         ::std::sync::OnceLock::new();
     unsafe {
       ONCE_LOCK.get_or_init(|| {
-        palm__casbin__v1__UserRoleRequest_msg_init.0 =
+        super::palm__casbin__v1__UserRoleRequest_msg_init.0 =
             ::protobuf::__internal::runtime::build_mini_table("$(P1X1X");
         ::protobuf::__internal::runtime::link_mini_table(
-            palm__casbin__v1__UserRoleRequest_msg_init.0, &[], &[]);
-        ::protobuf::__internal::runtime::MiniTableInitPtr(palm__casbin__v1__UserRoleRequest_msg_init.0)
+            super::palm__casbin__v1__UserRoleRequest_msg_init.0, &[], &[]);
+        ::protobuf::__internal::runtime::MiniTableInitPtr(super::palm__casbin__v1__UserRoleRequest_msg_init.0)
       }).0
     }
   }
@@ -6258,11 +6258,11 @@ unsafe impl ::protobuf::__internal::runtime::AssociatedMiniTable for PermissionR
         ::std::sync::OnceLock::new();
     unsafe {
       ONCE_LOCK.get_or_init(|| {
-        palm__casbin__v1__PermissionRequest_msg_init.0 =
+        super::palm__casbin__v1__PermissionRequest_msg_init.0 =
             ::protobuf::__internal::runtime::build_mini_table("$(P1XET");
         ::protobuf::__internal::runtime::link_mini_table(
-            palm__casbin__v1__PermissionRequest_msg_init.0, &[], &[]);
-        ::protobuf::__internal::runtime::MiniTableInitPtr(palm__casbin__v1__PermissionRequest_msg_init.0)
+            super::palm__casbin__v1__PermissionRequest_msg_init.0, &[], &[]);
+        ::protobuf::__internal::runtime::MiniTableInitPtr(super::palm__casbin__v1__PermissionRequest_msg_init.0)
       }).0
     }
   }
@@ -6393,13 +6393,13 @@ impl<'msg> Array2DReplyView<'msg> {
   }
 
   // d2: repeated message palm.casbin.v1.Array2DReply.d
-  pub fn d2(self) -> ::protobuf::RepeatedView<'msg, array2_d_reply::d> {
+  pub fn d2(self) -> ::protobuf::RepeatedView<'msg, super::array2_d_reply::d> {
     unsafe {
       self.inner.ptr().get_array_at_index(
         0
       )
     }.map_or_else(
-        ::protobuf::__internal::runtime::empty_array::<array2_d_reply::d>,
+        ::protobuf::__internal::runtime::empty_array::<super::array2_d_reply::d>,
         |raw| unsafe {
           ::protobuf::RepeatedView::from_raw(::protobuf::__internal::Private, raw)
         }
@@ -6498,19 +6498,19 @@ impl<'msg> Array2DReplyMut<'msg> {
   }
 
   // d2: repeated message palm.casbin.v1.Array2DReply.d
-  pub fn d2(&self) -> ::protobuf::RepeatedView<'_, array2_d_reply::d> {
+  pub fn d2(&self) -> ::protobuf::RepeatedView<'_, super::array2_d_reply::d> {
     unsafe {
       self.inner.ptr().get_array_at_index(
         0
       )
     }.map_or_else(
-        ::protobuf::__internal::runtime::empty_array::<array2_d_reply::d>,
+        ::protobuf::__internal::runtime::empty_array::<super::array2_d_reply::d>,
         |raw| unsafe {
           ::protobuf::RepeatedView::from_raw(::protobuf::__internal::Private, raw)
         }
       )
   }
-  pub fn d2_mut(&mut self) -> ::protobuf::RepeatedMut<'_, array2_d_reply::d> {
+  pub fn d2_mut(&mut self) -> ::protobuf::RepeatedMut<'_, super::array2_d_reply::d> {
     unsafe {
       let raw_array = self.inner.ptr_mut().get_or_create_mutable_array_at_index(
         0,
@@ -6524,7 +6524,7 @@ impl<'msg> Array2DReplyMut<'msg> {
       )
     }
   }
-  pub fn set_d2(&mut self, src: impl ::protobuf::IntoProxied<::protobuf::Repeated<array2_d_reply::d>>) {
+  pub fn set_d2(&mut self, src: impl ::protobuf::IntoProxied<::protobuf::Repeated<super::array2_d_reply::d>>) {
     unsafe {
       ::protobuf::__internal::runtime::message_set_repeated_field(
         ::protobuf::AsMut::as_mut(self).inner,
@@ -6598,19 +6598,19 @@ impl Array2DReply {
   }
 
   // d2: repeated message palm.casbin.v1.Array2DReply.d
-  pub fn d2(&self) -> ::protobuf::RepeatedView<'_, array2_d_reply::d> {
+  pub fn d2(&self) -> ::protobuf::RepeatedView<'_, super::array2_d_reply::d> {
     unsafe {
       self.inner.ptr().get_array_at_index(
         0
       )
     }.map_or_else(
-        ::protobuf::__internal::runtime::empty_array::<array2_d_reply::d>,
+        ::protobuf::__internal::runtime::empty_array::<super::array2_d_reply::d>,
         |raw| unsafe {
           ::protobuf::RepeatedView::from_raw(::protobuf::__internal::Private, raw)
         }
       )
   }
-  pub fn d2_mut(&mut self) -> ::protobuf::RepeatedMut<'_, array2_d_reply::d> {
+  pub fn d2_mut(&mut self) -> ::protobuf::RepeatedMut<'_, super::array2_d_reply::d> {
     unsafe {
       let raw_array = self.inner.ptr_mut().get_or_create_mutable_array_at_index(
         0,
@@ -6624,7 +6624,7 @@ impl Array2DReply {
       )
     }
   }
-  pub fn set_d2(&mut self, src: impl ::protobuf::IntoProxied<::protobuf::Repeated<array2_d_reply::d>>) {
+  pub fn set_d2(&mut self, src: impl ::protobuf::IntoProxied<::protobuf::Repeated<super::array2_d_reply::d>>) {
     unsafe {
       ::protobuf::__internal::runtime::message_set_repeated_field(
         ::protobuf::AsMut::as_mut(self).inner,
@@ -6667,12 +6667,12 @@ unsafe impl ::protobuf::__internal::runtime::AssociatedMiniTable for Array2DRepl
         ::std::sync::OnceLock::new();
     unsafe {
       ONCE_LOCK.get_or_init(|| {
-        palm__casbin__v1__Array2DReply_msg_init.0 =
+        super::palm__casbin__v1__Array2DReply_msg_init.0 =
             ::protobuf::__internal::runtime::build_mini_table("$G");
         ::protobuf::__internal::runtime::link_mini_table(
-            palm__casbin__v1__Array2DReply_msg_init.0, &[<array2_d_reply::d as ::protobuf::__internal::runtime::AssociatedMiniTable>::mini_table(),
+            super::palm__casbin__v1__Array2DReply_msg_init.0, &[<super::array2_d_reply::d as ::protobuf::__internal::runtime::AssociatedMiniTable>::mini_table(),
             ], &[]);
-        ::protobuf::__internal::runtime::MiniTableInitPtr(palm__casbin__v1__Array2DReply_msg_init.0)
+        ::protobuf::__internal::runtime::MiniTableInitPtr(super::palm__casbin__v1__Array2DReply_msg_init.0)
       }).0
     }
   }
@@ -7075,11 +7075,11 @@ unsafe impl ::protobuf::__internal::runtime::AssociatedMiniTable for d {
         ::std::sync::OnceLock::new();
     unsafe {
       ONCE_LOCK.get_or_init(|| {
-        palm__casbin__v1__Array2DReply__d_msg_init.0 =
+        super::super::array2_d_reply::palm__casbin__v1__Array2DReply__d_msg_init.0 =
             ::protobuf::__internal::runtime::build_mini_table("$ME");
         ::protobuf::__internal::runtime::link_mini_table(
-            palm__casbin__v1__Array2DReply__d_msg_init.0, &[], &[]);
-        ::protobuf::__internal::runtime::MiniTableInitPtr(palm__casbin__v1__Array2DReply__d_msg_init.0)
+            super::super::array2_d_reply::palm__casbin__v1__Array2DReply__d_msg_init.0, &[], &[]);
+        ::protobuf::__internal::runtime::MiniTableInitPtr(super::super::array2_d_reply::palm__casbin__v1__Array2DReply__d_msg_init.0)
       }).0
     }
   }
