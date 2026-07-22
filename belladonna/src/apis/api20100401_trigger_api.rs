@@ -28,8 +28,8 @@ pub struct CreateUsageTriggerParams {
     pub callback_method: Option<String>,
     /// A descriptive string that you create to describe the resource. It can be up to 64 characters long.
     pub friendly_name: Option<String>,
-    pub recurring: Option<models::models::UsageTriggerEnumRecurring>,
-    pub trigger_by: Option<models::models::UsageTriggerEnumTriggerField>,
+    pub recurring: Option<models::UsageTriggerEnumRecurring>,
+    pub trigger_by: Option<models::UsageTriggerEnumTriggerField>,
 }
 
 /// struct for passing parameters to the method [`delete_usage_trigger`]

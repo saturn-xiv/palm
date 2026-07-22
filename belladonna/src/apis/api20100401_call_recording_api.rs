@@ -88,7 +88,7 @@ pub struct UpdateCallRecordingParams {
     pub call_sid: String,
     /// The Twilio-provided string that uniquely identifies the Recording resource to update.
     pub sid: String,
-    pub status: models::models::CallRecordingEnumStatus,
+    pub status: models::CallRecordingEnumStatus,
     /// Whether to record during a pause. Can be: `skip` or `silence` and the default is `silence`. `skip` does not record during the pause period, while `silence` will replace the actual audio of the call with silence during the pause period. This parameter only applies when setting `status` is set to `paused`.
     pub pause_behavior: Option<String>,
 }

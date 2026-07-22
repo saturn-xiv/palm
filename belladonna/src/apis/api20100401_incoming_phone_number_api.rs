@@ -48,7 +48,7 @@ pub struct CreateIncomingPhoneNumberParams {
     pub voice_method: Option<String>,
     /// The URL that we should call to answer a call to the new phone number. The `voice_url` will not be called if a `voice_application_sid` or a `trunk_sid` is set.
     pub voice_url: Option<String>,
-    pub emergency_status: Option<models::models::IncomingPhoneNumberEnumEmergencyStatus>,
+    pub emergency_status: Option<models::IncomingPhoneNumberEnumEmergencyStatus>,
     /// The SID of the emergency address configuration to use for emergency calling from the new phone number.
     pub emergency_address_sid: Option<String>,
     /// The SID of the Trunk we should use to handle calls to the new phone number. If a `trunk_sid` is present, we ignore all of the voice urls and voice applications and use only those set on the Trunk. Setting a `trunk_sid` will automatically delete your `voice_application_sid` and vice versa.
@@ -57,7 +57,7 @@ pub struct CreateIncomingPhoneNumberParams {
     pub identity_sid: Option<String>,
     /// The SID of the Address resource we should associate with the new phone number. Some regions require addresses to meet local regulations.
     pub address_sid: Option<String>,
-    pub voice_receive_mode: Option<models::models::IncomingPhoneNumberEnumVoiceReceiveMode>,
+    pub voice_receive_mode: Option<models::IncomingPhoneNumberEnumVoiceReceiveMode>,
     /// The SID of the Bundle resource that you associate with the phone number. Some regions require a Bundle to meet local Regulations.
     pub bundle_sid: Option<String>,
     /// The phone number to purchase specified in [E.164](https://www.twilio.com/docs/glossary/what-e164) format.  E.164 phone numbers consist of a + followed by the country code and subscriber number without punctuation characters. For example, +14155551234.
@@ -144,12 +144,12 @@ pub struct UpdateIncomingPhoneNumberParams {
     pub voice_method: Option<String>,
     /// The URL that we should call to answer a call to the phone number. The `voice_url` will not be called if a `voice_application_sid` or a `trunk_sid` is set.
     pub voice_url: Option<String>,
-    pub emergency_status: Option<models::models::IncomingPhoneNumberEnumEmergencyStatus>,
+    pub emergency_status: Option<models::IncomingPhoneNumberEnumEmergencyStatus>,
     /// The SID of the emergency address configuration to use for emergency calling from this phone number.
     pub emergency_address_sid: Option<String>,
     /// The SID of the Trunk we should use to handle phone calls to the phone number. If a `trunk_sid` is present, we ignore all of the voice urls and voice applications and use only those set on the Trunk. Setting a `trunk_sid` will automatically delete your `voice_application_sid` and vice versa.
     pub trunk_sid: Option<String>,
-    pub voice_receive_mode: Option<models::models::IncomingPhoneNumberEnumVoiceReceiveMode>,
+    pub voice_receive_mode: Option<models::IncomingPhoneNumberEnumVoiceReceiveMode>,
     /// The SID of the Identity resource that we should associate with the phone number. Some regions require an identity to meet local regulations.
     pub identity_sid: Option<String>,
     /// The SID of the Address resource we should associate with the phone number. Some regions require addresses to meet local regulations.

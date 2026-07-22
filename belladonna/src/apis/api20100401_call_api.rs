@@ -156,7 +156,7 @@ pub struct UpdateCallParams {
     pub url: Option<String>,
     /// The HTTP method we should use when calling the `url`. Can be: `GET` or `POST` and the default is `POST`. If an `application_sid` parameter is present, this parameter is ignored.
     pub method: Option<String>,
-    pub status: Option<models::models::CallEnumUpdateStatus>,
+    pub status: Option<models::CallEnumUpdateStatus>,
     /// The URL that we call using the `fallback_method` if an error occurs when requesting or executing the TwiML at `url`. If an `application_sid` parameter is present, this parameter is ignored.
     pub fallback_url: Option<String>,
     /// The HTTP method that we should use to request the `fallback_url`. Can be: `GET` or `POST` and the default is `POST`. If an `application_sid` parameter is present, this parameter is ignored.

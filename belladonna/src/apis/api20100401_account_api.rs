@@ -49,7 +49,7 @@ pub struct UpdateAccountParams {
     pub sid: String,
     /// Update the human-readable description of this Account
     pub friendly_name: Option<String>,
-    pub status: Option<models::models::AccountEnumStatus>,
+    pub status: Option<models::AccountEnumStatus>,
 }
 
 /// struct for typed errors of method [`create_account`]

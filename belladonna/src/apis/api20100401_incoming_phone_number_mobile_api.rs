@@ -54,12 +54,12 @@ pub struct CreateIncomingPhoneNumberMobileParams {
     pub identity_sid: Option<String>,
     /// The SID of the Address resource we should associate with the new phone number. Some regions require addresses to meet local regulations.
     pub address_sid: Option<String>,
-    pub emergency_status: Option<models::models::IncomingPhoneNumberMobileEnumEmergencyStatus>,
+    pub emergency_status: Option<models::IncomingPhoneNumberMobileEnumEmergencyStatus>,
     /// The SID of the emergency address configuration to use for emergency calling from the new phone number.
     pub emergency_address_sid: Option<String>,
     /// The SID of the Trunk we should use to handle calls to the new phone number. If a `trunk_sid` is present, we ignore all of the voice urls and voice applications and use only those set on the Trunk. Setting a `trunk_sid` will automatically delete your `voice_application_sid` and vice versa.
     pub trunk_sid: Option<String>,
-    pub voice_receive_mode: Option<models::models::IncomingPhoneNumberMobileEnumVoiceReceiveMode>,
+    pub voice_receive_mode: Option<models::IncomingPhoneNumberMobileEnumVoiceReceiveMode>,
     /// The SID of the Bundle resource that you associate with the phone number. Some regions require a Bundle to meet local Regulations.
     pub bundle_sid: Option<String>,
 }

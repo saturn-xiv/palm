@@ -24,7 +24,7 @@ pub struct CreateStreamParams {
     pub url: String,
     /// The user-specified name of this Stream, if one was given when the Stream was created. This can be used to stop the Stream.
     pub name: Option<String>,
-    pub track: Option<models::models::StreamEnumTrack>,
+    pub track: Option<models::StreamEnumTrack>,
     /// Absolute URL to which Twilio sends status callback HTTP requests.
     pub status_callback: Option<String>,
     /// The HTTP method Twilio uses when sending `status_callback` requests. Possible values are `GET` and `POST`. Default is `POST`.
@@ -436,7 +436,7 @@ pub struct UpdateStreamParams {
     pub call_sid: String,
     /// The SID or the `name` of the Stream resource to be stopped
     pub sid: String,
-    pub status: models::models::StreamEnumUpdateStatus,
+    pub status: models::StreamEnumUpdateStatus,
 }
 
 /// struct for typed errors of method [`create_stream`]

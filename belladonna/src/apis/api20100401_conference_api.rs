@@ -58,7 +58,7 @@ pub struct UpdateConferenceParams {
     pub account_sid: String,
     /// The Twilio-provided string that uniquely identifies the Conference resource to update
     pub sid: String,
-    pub status: Option<models::models::ConferenceEnumUpdateStatus>,
+    pub status: Option<models::ConferenceEnumUpdateStatus>,
     /// The URL we should call to announce something into the conference. The URL may return an MP3 file, a WAV file, or a TwiML document that contains `<Play>`, `<Say>`, `<Pause>`, or `<Redirect>` verbs.
     pub announce_url: Option<String>,
     /// The HTTP method used to call `announce_url`. Can be: `GET` or `POST` and the default is `POST`

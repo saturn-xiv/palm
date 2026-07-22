@@ -20,7 +20,7 @@ pub struct CreateMessageFeedbackParams {
     pub account_sid: String,
     /// The SID of the Message resource for which to create MessageFeedback.
     pub message_sid: String,
-    pub outcome: Option<models::models::MessageFeedbackEnumOutcome>,
+    pub outcome: Option<models::MessageFeedbackEnumOutcome>,
 }
 
 /// struct for typed errors of method [`create_message_feedback`]

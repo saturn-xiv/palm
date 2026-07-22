@@ -24,7 +24,7 @@ pub struct CreatePaymentsParams {
     pub idempotency_key: String,
     /// Provide an absolute or relative URL to receive status updates regarding your Pay session. Read more about the [expected StatusCallback values](https://www.twilio.com/docs/voice/api/payment-resource#statuscallback)
     pub status_callback: String,
-    pub bank_account_type: Option<models::models::PaymentsEnumBankAccountType>,
+    pub bank_account_type: Option<models::PaymentsEnumBankAccountType>,
     /// A positive decimal value less than 1,000,000 to charge against the credit card or bank account. Default currency can be overwritten with `currency` field. Leave blank or set to 0 to tokenize.
     pub charge_amount: Option<f64>,
     /// The currency of the `charge_amount`, formatted as [ISO 4127](http://www.iso.org/iso/home/standards/currency_codes.htm) format. The default value is `USD` and all values allowed from the Pay Connector are accepted.
@@ -36,17 +36,17 @@ pub struct CreatePaymentsParams {
     /// A positive integer that is used to validate the length of the `PostalCode` inputted by the user. User must enter this many digits.
     pub min_postal_code_length: Option<i32>,
     /// A single-level JSON object used to pass custom parameters to payment processors. (Required for ACH payments). The information that has to be included here depends on the <Pay> Connector. [Read more](https://www.twilio.com/console/voice/pay-connectors).
-    pub parameter: Option<models::serde_json::Value>,
+    pub parameter: Option<serde_json::Value>,
     /// This is the unique name corresponding to the Pay Connector installed in the Twilio Add-ons. Learn more about [<Pay> Connectors](https://www.twilio.com/console/voice/pay-connectors). The default value is `Default`.
     pub payment_connector: Option<String>,
-    pub payment_method: Option<models::models::PaymentsEnumPaymentMethod>,
+    pub payment_method: Option<models::PaymentsEnumPaymentMethod>,
     /// Indicates whether the credit card postal code (zip code) is a required piece of payment information that must be provided by the caller. The default is `true`.
     pub postal_code: Option<bool>,
     /// Indicates whether the credit card security code is a required piece of payment information that must be provided by the caller. The default is `true`.
     pub security_code: Option<bool>,
     /// The number of seconds that <Pay> should wait for the caller to press a digit between each subsequent digit, after the first one, before moving on to validate the digits captured. The default is `5`, maximum is `600`.
     pub timeout: Option<i32>,
-    pub token_type: Option<models::models::PaymentsEnumTokenType>,
+    pub token_type: Option<models::PaymentsEnumTokenType>,
     /// Credit card types separated by space that Pay should accept. The default value is `visa mastercard amex`
     pub valid_card_types: Option<String>,
     /// A comma-separated list of payment information fields that require the caller to enter the same value twice for confirmation. Supported values are `payment-card-number`, `expiration-date`, `security-code`, and `postal-code`.
@@ -68,8 +68,8 @@ pub struct UpdatePaymentsParams {
     pub idempotency_key: String,
     /// Provide an absolute or relative URL to receive status updates regarding your Pay session. Read more about the [Update](https://www.twilio.com/docs/voice/api/payment-resource#statuscallback-update) and [Complete/Cancel](https://www.twilio.com/docs/voice/api/payment-resource#statuscallback-cancelcomplete) POST requests.
     pub status_callback: String,
-    pub capture: Option<models::models::PaymentsEnumCapture>,
-    pub status: Option<models::models::PaymentsEnumStatus>,
+    pub capture: Option<models::PaymentsEnumCapture>,
+    pub status: Option<models::PaymentsEnumStatus>,
 }
 
 /// struct for typed errors of method [`create_payments`]

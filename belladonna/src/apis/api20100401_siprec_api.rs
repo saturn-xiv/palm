@@ -24,7 +24,7 @@ pub struct CreateSiprecParams {
     pub name: Option<String>,
     /// Unique name used when configuring the connector via Marketplace Add-on.
     pub connector_name: Option<String>,
-    pub track: Option<models::models::SiprecEnumTrack>,
+    pub track: Option<models::SiprecEnumTrack>,
     /// Absolute URL of the status callback.
     pub status_callback: Option<String>,
     /// The http method for the status_callback (one of GET, POST).
@@ -436,7 +436,7 @@ pub struct UpdateSiprecParams {
     pub call_sid: String,
     /// The SID of the Siprec resource, or the `name` used when creating the resource
     pub sid: String,
-    pub status: models::models::SiprecEnumUpdateStatus,
+    pub status: models::SiprecEnumUpdateStatus,
 }
 
 /// struct for typed errors of method [`create_siprec`]

@@ -22,7 +22,7 @@ pub struct CreateRealtimeTranscriptionParams {
     pub call_sid: String,
     /// The user-specified name of this Transcription, if one was given when the Transcription was created. This may be used to stop the Transcription.
     pub name: Option<String>,
-    pub track: Option<models::models::RealtimeTranscriptionEnumTrack>,
+    pub track: Option<models::RealtimeTranscriptionEnumTrack>,
     /// Absolute URL of the status callback.
     pub status_callback_url: Option<String>,
     /// The http method for the status_callback (one of GET, POST).
@@ -66,7 +66,7 @@ pub struct UpdateRealtimeTranscriptionParams {
     pub call_sid: String,
     /// The SID of the Transcription resource, or the `name` used when creating the resource
     pub sid: String,
-    pub status: models::models::RealtimeTranscriptionEnumUpdateStatus,
+    pub status: models::RealtimeTranscriptionEnumUpdateStatus,
 }
 
 /// struct for typed errors of method [`create_realtime_transcription`]

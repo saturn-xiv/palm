@@ -34,23 +34,23 @@ pub struct CreateMessageParams {
     pub validity_period: Option<i32>,
     /// Reserved
     pub force_delivery: Option<bool>,
-    pub content_retention: Option<models::models::MessageEnumContentRetention>,
-    pub address_retention: Option<models::models::MessageEnumAddressRetention>,
+    pub content_retention: Option<models::MessageEnumContentRetention>,
+    pub address_retention: Option<models::MessageEnumAddressRetention>,
     /// Whether to detect Unicode characters that have a similar GSM-7 character and replace them. Can be: `true` or `false`.
     pub smart_encoded: Option<bool>,
     /// Rich actions for non-SMS/MMS channels. Used for [sending location in WhatsApp messages](https://www.twilio.com/docs/whatsapp/message-features#location-messages-with-whatsapp).
     pub persistent_action: Option<Vec<String>>,
-    pub traffic_type: Option<models::models::MessageEnumTrafficType>,
+    pub traffic_type: Option<models::MessageEnumTrafficType>,
     /// For Messaging Services with [Link Shortening configured](https://www.twilio.com/docs/messaging/features/link-shortening) only: A Boolean indicating whether or not Twilio should shorten links in the `body` of the Message. Default value is `false`. If `true`, the `messaging_service_sid` parameter must also be provided.
     pub shorten_urls: Option<bool>,
-    pub schedule_type: Option<models::models::MessageEnumScheduleType>,
+    pub schedule_type: Option<models::MessageEnumScheduleType>,
     /// The time that Twilio will send the message. Must be in ISO 8601 format.
     pub send_at: Option<chrono::DateTime<chrono::FixedOffset>>,
     /// If set to `true`, Twilio delivers the message as a single MMS message, regardless of the presence of media.
     pub send_as_mms: Option<bool>,
     /// For [Content Editor/API](https://www.twilio.com/docs/content) only: Key-value pairs of [Template variables](https://www.twilio.com/docs/content/using-variables-with-content-api) and their substitution values. `content_sid` parameter must also be provided. If values are not defined in the `content_variables` parameter, the [Template's default placeholder values](https://www.twilio.com/docs/content/content-api-resources#create-templates) are used.
     pub content_variables: Option<String>,
-    pub risk_check: Option<models::models::MessageEnumRiskCheck>,
+    pub risk_check: Option<models::MessageEnumRiskCheck>,
     /// The sender's Twilio phone number (in [E.164](https://en.wikipedia.org/wiki/E.164) format), [alphanumeric sender ID](https://www.twilio.com/docs/sms/quickstart), [Wireless SIM](https://www.twilio.com/docs/iot/wireless/programmable-wireless-send-machine-machine-sms-commands), [short code](https://www.twilio.com/en-us/messaging/channels/sms/short-codes), or [channel address](https://www.twilio.com/docs/messaging/channels) (e.g., `whatsapp:+15554449999`). The value of the `from` parameter must be a sender that is hosted within Twilio and belongs to the Account creating the Message. If you are using `messaging_service_sid`, this parameter can be empty (Twilio assigns a `from` value from the Messaging Service's Sender Pool) or you can provide a specific sender from your Sender Pool.
     pub from: Option<String>,
     /// A fallback SMS sender to use when the recipient cannot be reached over RCS. This parameter may only be used when also providing a [Messaging Service](https://twilio.com/docs/messaging/services) containing an RCS sender. The fallback SMS sender must be either a Twilio phone number (in [E.164](https://en.wikipedia.org/wiki/E.164) format), [alphanumeric sender ID](https://www.twilio.com/docs/sms/quickstart), or [short code](https://www.twilio.com/en-us/messaging/channels/sms/short-codes), hosted within Twilio and belong to the Account creating the Message.
@@ -115,7 +115,7 @@ pub struct UpdateMessageParams {
     pub sid: String,
     /// The new `body` of the Message resource. To redact the text content of a Message, this parameter's value must be an empty string
     pub body: Option<String>,
-    pub status: Option<models::models::MessageEnumUpdateStatus>,
+    pub status: Option<models::MessageEnumUpdateStatus>,
 }
 
 /// struct for typed errors of method [`create_message`]

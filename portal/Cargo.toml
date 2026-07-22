@@ -9,7 +9,7 @@ flatbuffers = "25"
 grpc = "0.9"
 grpc-protobuf = "0.9"
 tonic = "0.14"
-protobuf = "3"
+protobuf = "=4.34.0-release"
 
 [dependencies.diesel]
 version = "2"
