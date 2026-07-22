@@ -12,6 +12,7 @@
 #include "Health.h"
 #include "Hmac.h"
 #include "Jwt.h"
+#include "PasswordHashing.h"
 
 namespace loquat {
 

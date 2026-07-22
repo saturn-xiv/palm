@@ -13,7 +13,7 @@ apt update
 apt -y upgrade
 DEBIAN_FRONTEND=noninteractive apt install -y curl git zip \
     pkg-config build-essential cmake ninja-build flex bison \
-    linux-libc-dev libssl-dev libevent-dev libboost-all-dev
+    linux-libc-dev libssl-dev libargon2-dev libevent-dev libboost-all-dev
 
 export SOURCE_ROOT=$PWD
 export BUILD_ROOT=$PWD/build/Release-$VERSION_CODENAME-$(uname -m)

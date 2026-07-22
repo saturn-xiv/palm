@@ -40,6 +40,11 @@ service Aes {
     binary decrypt(1:binary code);
 }
 
+service PasswordHashing {
+    string sign(1:string password, 2:i16 salt_length);
+    void verify(1:string code, 2:string password);
+}
+
 service Health {
   map<string,string> check();
 }
