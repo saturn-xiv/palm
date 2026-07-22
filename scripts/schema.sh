@@ -34,6 +34,12 @@ function generate_belladonna() {
 # https://github.com/grpc/grpc-rust/tree/master/protoc-gen-rust-grpc
 function generate_grpc() {
     echo "generate grpc protocols"
+
+    $PROTOBUF_HOME/bin/protoc --rust_opt=experimental-codegen=enabled,kernel=upb --rust-grpc_opt=client_only=true \
+        --plugin=protoc-gen-rust-grpc=$PROTOBUF_HOME/bin/protoc-gen-rust-grpc \
+        -I $PROTOBUF_HOME/include/ -I $WORK_DIR/marigold/src/main/proto \
+        --rust_out=$OUTPUT_DIR/marigold --rust-grpc_out=$OUTPUT_DIR/marigold \
+        $WORK_DIR/marigold/src/main/proto/marigold.proto
         
     $PROTOBUF_HOME/bin/protoc --rust_opt=experimental-codegen=enabled,kernel=upb --rust-grpc_opt=client_only=true \
         --plugin=protoc-gen-rust-grpc=$PROTOBUF_HOME/bin/protoc-gen-rust-grpc \

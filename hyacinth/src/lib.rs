@@ -15,11 +15,13 @@ pub mod google {
 }
 
 #[allow(
+    dead_code,
+    unused_imports,
     non_snake_case,
     non_upper_case_globals,
     non_camel_case_types,
-    unused_imports,
-    clippy::useless_conversion
+    clippy::useless_conversion,
+    clippy::wrong_self_convention
 )]
 mod palm {
     pub mod casbin {
@@ -28,12 +30,12 @@ mod palm {
             include!("casbin/casbin_grpc.pb.rs");
         }
     }
-    // pub mod portal {
-    //     pub mod v1 {
-    //         include!("portal.u.pb.rs");
-    //         include!("portal_grpc.pb.rs");
-    //     }
-    // }
+    pub mod marigold {
+        pub mod v1 {
+            include!("marigold/generated.rs");
+            include!("marigold/marigold_grpc.pb.rs");
+        }
+    }
 }
 
 pub use email::palm::email::v_1 as email_v1;

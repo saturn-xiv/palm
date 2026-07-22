@@ -9,4 +9,13 @@ option csharp_namespace = "Palm.Plugins.MarigoldPay.Grpc";
 package palm.marigold.v1;
 
 service WechatPay {
+  rpc BillPull(WechatPayBillPullRequest) returns (WechatPayBillPullResponse) {}
+}
+
+message WechatPayBillPullRequest {
+
+}
+
+message WechatPayBillPullResponse {
+
 }
