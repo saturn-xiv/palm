@@ -13,8 +13,8 @@ $PROTOBUF_HOME/bin/protoc --rust_opt=experimental-codegen=enabled,kernel=upb \
     $PROTOBUF_HOME/include/google/protobuf/empty.proto $PROTOBUF_HOME/include/google/protobuf/timestamp.proto \
     $WORK_DIR/protocols/casbin.proto $WORK_DIR/protocols/portal.proto
 
-flatc -o portal/src/protocols --filename-suffix "" --rust protocols/email.fbs
-flatc -o portal/src/protocols --filename-suffix "" --rust protocols/tex.fbs
+flatc -o $WORK_DIR/portal/src/protocols --filename-suffix "" --rust $WORK_DIR/protocols/email.fbs
+flatc -o $WORK_DIR/portal/src/protocols --filename-suffix "" --rust $WORK_DIR/protocols/tex.fbs
 
 # https://www.twilio.com/docs/openapi/generating-a-rust-client-for-twilios-api
 if [ ! -d $WORK_DIR/belladonna ]
