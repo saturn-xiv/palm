@@ -3,17 +3,6 @@ mod email;
 #[allow(clippy::missing_safety_doc, clippy::extra_unused_lifetimes)]
 mod tex;
 
-// #[allow(
-//     clippy::derivable_impls,
-//     clippy::useless_conversion,
-//     clippy::unnecessary_fallible_conversions
-// )]
-// pub mod google {
-//     pub mod protobuf {
-//         include!("google/protobuf/generated.rs");
-//     }
-// }
-
 #[allow(
     dead_code,
     unused_imports,
@@ -38,6 +27,9 @@ mod palm {
         }
     }
 }
+
+pub use flexbuffers::{FlexbufferSerializer, Reader as FlexbufferReader};
+pub use protobuf::Message as ProtobufMessage;
 
 pub use email::palm::email::v_1 as email_v1;
 pub use palm::rbac::v1 as rbac_v1;

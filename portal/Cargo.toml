@@ -73,3 +73,6 @@ features = ["serde"]
 
 [dependencies.belladonna]
 path = "../belladonna"
+
+[dependencies.hyacinth]
+path = "../hyacinth"

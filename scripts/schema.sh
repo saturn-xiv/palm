@@ -46,7 +46,17 @@ function generate_grpc() {
         -I $PROTOBUF_HOME/include/ -I $WORK_DIR/dahlia/proto/ \
         --rust_out=$OUTPUT_DIR/rbac --rust-grpc_out=$OUTPUT_DIR/rbac \
         $WORK_DIR/dahlia/proto/rbac.proto
-        
+    
+    # pip install 'grpcio-tools~=1.82'
+    cd $WORK_DIR/dahlia/src/
+    
+    rm dahlia/protocols/*_pb2*
+
+    PYTHON_GIL=0 python -m grpc_tools.protoc \
+        -Idahlia/protocols=$WORK_DIR/dahlia/proto -I $PROTOBUF_HOME/include/google/protobuf \
+        --python_out=. --pyi_out=. --grpc_python_out=. \
+        $WORK_DIR/dahlia/proto/*.proto
+
     # $PROTOBUF_HOME/bin/protoc --rust_opt=experimental-codegen=enabled,kernel=upb --rust-grpc_opt=client_only=true \
     #     --plugin=protoc-gen-rust-grpc=$PROTOBUF_HOME/bin/protoc-gen-rust-grpc \
     #     -I $PROTOBUF_HOME/include/ -I $WORK_DIR/protocols/ \

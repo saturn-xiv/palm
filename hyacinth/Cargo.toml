@@ -11,6 +11,7 @@ tonic = "0.14"
 thrift = "0.24"
 protobuf = "=4.34.0-release"
 flatbuffers = "25"
+flexbuffers = "25"
 
 [dependencies.diesel]
 version = "2"

@@ -11,8 +11,8 @@ classifiers = [
 ]
 license = "MIT"
 dependencies = [
-    "protobuf~=6.34",
-    "grpcio~=1.76",
+    "protobuf~=7.34",
+    "grpcio~=1.82",
     "grpcio-reflection",
     "grpcio-health-checking",
     "casbin",
