@@ -1,0 +1,106 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "com.github.saturn_xiv.palm.plugins.loquat.v1";
+option java_outer_classname = "LoquatProto";
+option go_package = "./;v2";
+option csharp_namespace = "Palm.Plugins.Loquat.Grpc";
+package palm.loquat.v1;
+
+message Empty {}
+
+// --------------------------------------------------------
+service Jwt {
+  rpc Sign(JwtSignRequest) returns (JwtSignResponse){}
+  rpc Verify(JwtVerifyRequest) returns (JwtVerifyResponse) {}
+}
+
+message JwtVerifyRequest {
+  string token    = 1;
+  string issuer   = 2;
+  string audience = 3;
+}
+
+message JwtVerifyResponse{
+  string         subject = 1;
+  optional bytes payload = 2;
+}
+
+message JwtSignRequest{
+  optional string jwt_id     = 1;
+  optional string key_id     = 2;
+  string          issuer     = 3;
+  string          subject    = 4;
+  repeated string audiences  = 5;
+  int64           issued_at  = 6;
+  int64           not_before = 7;
+  int64           expired_at = 8;
+  optional bytes  payload    = 9;
+}
+
+message JwtSignResponse {
+  string token = 1;
+}
+
+// --------------------------------------------------------
+service HMac {
+  rpc Sign(HMacSignRequest) returns (HMacSignResponse){}
+  rpc Verify(HMacVerifyRequest) returns (Empty) {}
+}
+
+message HMacSignRequest {
+  bytes plain = 1;
+}
+
+message HMacSignResponse {
+  bytes hashed = 1;
+}
+
+message HMacVerifyRequest {
+  bytes hashed = 1;
+  bytes plain  = 2;
+}
+
+// --------------------------------------------------------
+service Aes {
+  rpc Encrypt(AesEncryptRequest) returns (AesEncryptResponse){}
+  rpc Decrypt(AesDecryptRequest) returns (AesDecryptResponse) {}
+}
+
+message AesEncryptRequest {
+  bytes plain           = 1;
+  bytes associated_data = 2;
+}
+
+message AesEncryptResponse {
+  bytes cipher = 1;
+}
+
+message AesDecryptRequest {
+  bytes cipher          = 1;
+  bytes associated_data = 2;
+}
+
+message AesDecryptResponse {
+  bytes plain = 1;
+}
+
+// --------------------------------------------------------
+service Argon2 {
+  rpc Sign(Argon2SignRequest) returns (Argon2SignResponse){}
+  rpc Verify(Argon2VerifyRequest) returns (Empty) {}
+}
+
+message Argon2SignRequest {
+  string password = 1;
+}
+
+message Argon2SignResponse {
+  string hashed = 1;
+}
+
+message Argon2VerifyRequest {
+  string hashed   = 1;
+  string password = 2;
+}
+// --------------------------------------------------------

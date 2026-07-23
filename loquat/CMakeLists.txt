@@ -23,8 +23,7 @@ find_package(argparse CONFIG REQUIRED)
 find_package(nlohmann_json CONFIG REQUIRED)
 find_package(inja CONFIG REQUIRED)
 find_package(OpenSSL REQUIRED)
-find_package(Libevent CONFIG REQUIRED)
-find_package(Thrift CONFIG REQUIRED)
+find_package(gRPC CONFIG REQUIRED)
 find_package(unofficial-sodium CONFIG REQUIRED)
 find_package(spdlog CONFIG REQUIRED)
 # --------------------------------------------------------
@@ -48,7 +47,7 @@ target_link_libraries(loquat gourd
   argparse::argparse
   pantor::inja nlohmann_json::nlohmann_json
   spdlog::spdlog_header_only 
-  unofficial-sodium::sodium
+  OpenSSL::SSL OpenSSL::Crypto unofficial-sodium::sodium
   tink::static tink::jwt::jwt_key_templates tink::jwt::jwt_mac tink::jwt::jwt_mac_config
 )
 

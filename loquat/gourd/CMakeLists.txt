@@ -4,9 +4,7 @@ file(GLOB SOURCE_LIST CONFIGURE_DEPENDS "${CMAKE_CURRENT_SOURCE_DIR}/src/*.cpp")
 add_library(gourd STATIC ${SOURCE_LIST})
 
 target_link_libraries(gourd PUBLIC
-  OpenSSL::SSL OpenSSL::Crypto
-  libevent::core libevent::extra libevent::openssl libevent::pthreads
-  thrift::thrift thriftz::thriftz thriftnb::thriftnb 
+  gRPC::gpr gRPC::grpc gRPC::grpc++ gRPC::grpc++_alts
 )
 
 target_include_directories(gourd PUBLIC

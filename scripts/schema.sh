@@ -3,7 +3,7 @@
 set -e
 
 export WORK_DIR=$PWD
-export OUTPUT_DIR=$WORK_DIR/hyacinth/src
+export HYACINTH_OUTPUT_DIR=$WORK_DIR/hyacinth/src
 export PROTOBUF_HOME=$HOME/local/protobuf
 
 # https://www.twilio.com/docs/openapi/generating-a-rust-client-for-twilios-api#setup
@@ -35,16 +35,25 @@ function generate_belladonna() {
 function generate_grpc() {
     echo "generate grpc protocols"
 
+    rm -r $WORK_DIR/loquat/gourd/src $WORK_DIR/loquat/gourd/include
+    mkdir $WORK_DIR/loquat/gourd/src $WORK_DIR/loquat/gourd/include
+    $PROTOBUF_HOME/bin/protoc \
+        -I $WORK_DIR/loquat/proto -I $PROTOBUF_HOME/include/google/protobuf \
+        --cpp_out=$WORK_DIR/loquat/gourd/src --grpc_out=$WORK_DIR/loquat/gourd/src \
+        --plugin=protoc-gen-grpc=$WORK_DIR/loquat/vcpkg/packages/grpc_x64-linux/tools/grpc/grpc_cpp_plugin \
+        $WORKSPACE/loquat/proto/*.proto
+    mv $WORK_DIR/loquat/gourd/src/*.h $WORK_DIR/loquat/gourd/include/
+
     $PROTOBUF_HOME/bin/protoc --rust_opt=experimental-codegen=enabled,kernel=upb --rust-grpc_opt=client_only=true \
         --plugin=protoc-gen-rust-grpc=$PROTOBUF_HOME/bin/protoc-gen-rust-grpc \
         -I $PROTOBUF_HOME/include/ -I $WORK_DIR/marigold/src/main/proto \
-        --rust_out=$OUTPUT_DIR/wechatpay --rust-grpc_out=$OUTPUT_DIR/wechatpay \
+        --rust_out=$HYACINTH_OUTPUT_DIR/wechatpay --rust-grpc_out=$HYACINTH_OUTPUT_DIR/wechatpay \
         $WORK_DIR/marigold/src/main/proto/wechatpay.proto
     
     $PROTOBUF_HOME/bin/protoc --rust_opt=experimental-codegen=enabled,kernel=upb --rust-grpc_opt=client_only=true \
         --plugin=protoc-gen-rust-grpc=$PROTOBUF_HOME/bin/protoc-gen-rust-grpc \
         -I $PROTOBUF_HOME/include/ -I $WORK_DIR/dahlia/proto/ \
-        --rust_out=$OUTPUT_DIR/rbac --rust-grpc_out=$OUTPUT_DIR/rbac \
+        --rust_out=$HYACINTH_OUTPUT_DIR/rbac --rust-grpc_out=$HYACINTH_OUTPUT_DIR/rbac \
         $WORK_DIR/dahlia/proto/rbac.proto
     
     # pip install 'grpcio-tools~=1.82'
@@ -60,7 +69,7 @@ function generate_grpc() {
     # $PROTOBUF_HOME/bin/protoc --rust_opt=experimental-codegen=enabled,kernel=upb --rust-grpc_opt=client_only=true \
     #     --plugin=protoc-gen-rust-grpc=$PROTOBUF_HOME/bin/protoc-gen-rust-grpc \
     #     -I $PROTOBUF_HOME/include/ -I $WORK_DIR/protocols/ \
-    #     --rust_out=$OUTPUT_DIR --rust-grpc_out=$OUTPUT_DIR \
+    #     --rust_out=$HYACINTH_OUTPUT_DIR --rust-grpc_out=$HYACINTH_OUTPUT_DIR \
     #     $PROTOBUF_HOME/include/google/protobuf/empty.proto \
     #     $PROTOBUF_HOME/include/google/protobuf/timestamp.proto \
     #     $PROTOBUF_HOME/include/google/protobuf/duration.proto \
@@ -72,39 +81,39 @@ function generate_grpc() {
     #     --rust-grpc_opt=extern_path=.google.protobuf=::crate::google::protobuf \
     #     --plugin=protoc-gen-rust-grpc=$PROTOBUF_HOME/bin/protoc-gen-rust-grpc \
     #     -I $PROTOBUF_HOME/include/ -I $WORK_DIR/protocols/ \
-    #     --rust_out=$OUTPUT_DIR/portal --rust-grpc_out=$OUTPUT_DIR/portal \
+    #     --rust_out=$HYACINTH_OUTPUT_DIR/portal --rust-grpc_out=$HYACINTH_OUTPUT_DIR/portal \
     #     $WORK_DIR/protocols/portal.proto
 
 }
 
 function generate_flatbuffers() {
     echo "generate flatbuffers protocols"
-    flatc -o $OUTPUT_DIR --filename-suffix "" --rust $WORK_DIR/protocols/email.fbs
-    flatc -o $OUTPUT_DIR --filename-suffix "" --rust $WORK_DIR/protocols/tex.fbs
+    flatc -o $HYACINTH_OUTPUT_DIR --filename-suffix "" --rust $WORK_DIR/protocols/email.fbs
+    flatc -o $HYACINTH_OUTPUT_DIR --filename-suffix "" --rust $WORK_DIR/protocols/tex.fbs
 }
 
 function generate_diesel() {
     echo "generate diesel schemas"
     local database_url="postgres://postgres@127.0.0.1:5432/wisteria_dev?sslmode=disable"
-    diesel print-schema --database-url $database_url > $OUTPUT_DIR/schema.rs
+    diesel print-schema --database-url $database_url > $HYACINTH_OUTPUT_DIR/schema.rs
 }
 
-function generate_thrift() {
-    echo "generate thrift protocols"
-    cd $WORK_DIR/loquat/gourd/
-    rm -rf include src
+# function generate_thrift() {
+#     echo "generate thrift protocols"
+#     cd $WORK_DIR/loquat/gourd/
+#     rm -rf include src
 
-    mkdir include src
-    thrift -out src --gen cpp:no_skeleton -r $WORK_DIR/protocols/loquat.thrift
-    mv src/*.h include/
+#     mkdir include src
+#     thrift -out src --gen cpp:no_skeleton -r $WORK_DIR/protocols/loquat.thrift
+#     mv src/*.h include/
     
-    thrift -out $OUTPUT_DIR --gen rs -r $WORK_DIR/protocols/loquat.thrift
-}
+#     thrift -out $HYACINTH_OUTPUT_DIR --gen rs -r $WORK_DIR/protocols/loquat.thrift
+# }
 
 generate_belladonna
 generate_flatbuffers
 generate_grpc
-generate_thrift
+# generate_thrift
 generate_diesel
 
 sed -i -E "s/(version = \")[0-9]+\.[0-9]+\.[0-9]+/\1$(date +%Y.%-m.%-d)/g" $WORK_DIR/hyacinth/Cargo.toml
