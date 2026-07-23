@@ -4,6 +4,7 @@ version = "2026.7.21"
 edition = "2024"
 
 [dependencies]
+futures-util = "0.3"
 log = "0.4"
 minio = "0.4"
 xmpp = "0.7"

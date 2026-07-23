@@ -29,7 +29,7 @@ mod palm {
 }
 
 pub use flexbuffers::{FlexbufferSerializer, Reader as FlexbufferReader};
-pub use protobuf::Message as ProtobufMessage;
+pub use protobuf::{Message as ProtobufMessage, Parse as ProtobufParse};
 
 pub use email::palm::email::v_1 as email_v1;
 pub use palm::rbac::v1 as rbac_v1;
