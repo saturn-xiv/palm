@@ -4,17 +4,19 @@
 #include <tink/aead/aead_config.h>
 #include <tink/aead/aes_gcm_key_manager.h>
 
-std::string loquat::Aes::encrypt(const std::string& plain) {
+std::string loquat::Aes::encrypt(const std::string& plain,
+                                 const std::string& associated_data) {
   auto aes = this->load();
-  auto code_r = aes->Encrypt(plain, "");
+  auto code_r = aes->Encrypt(plain, associated_data);
   this->check(code_r);
   auto code = std::move(code_r.value());
   return code;
 }
 
-std::string loquat::Aes::decrypt(const std::string& code) {
+std::string loquat::Aes::decrypt(const std::string& code,
+                                 const std::string& associated_data) {
   auto aes = this->load();
-  auto plain_r = aes->Decrypt(code, "");
+  auto plain_r = aes->Decrypt(code, associated_data);
   this->check(plain_r);
   auto plain = std::move(plain_r.value());
   return plain;

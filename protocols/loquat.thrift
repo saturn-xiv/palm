@@ -36,8 +36,8 @@ service Hmac {
 }
 
 service Aes {
-    binary encrypt(1:binary plain);
-    binary decrypt(1:binary code);
+    binary encrypt(1:binary plain, 2:binary associated_data);
+    binary decrypt(1:binary code, 2:binary associated_data);
 }
 
 service Argon2 {

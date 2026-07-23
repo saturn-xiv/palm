@@ -1181,8 +1181,8 @@ impl HmacVerifyResult {
 //
 
 pub trait TAesSyncClient {
-  fn encrypt(&mut self, plain: Vec<u8>) -> thrift::Result<Vec<u8>>;
-  fn decrypt(&mut self, code: Vec<u8>) -> thrift::Result<Vec<u8>>;
+  fn encrypt(&mut self, plain: Vec<u8>, associated_data: Vec<u8>) -> thrift::Result<Vec<u8>>;
+  fn decrypt(&mut self, code: Vec<u8>, associated_data: Vec<u8>) -> thrift::Result<Vec<u8>>;
 }
 
 pub trait TAesSyncClientMarker {}
@@ -1209,12 +1209,12 @@ impl <IP, OP> TThriftClient for AesSyncClient<IP, OP> where IP: TInputProtocol, 
 impl <IP, OP> TAesSyncClientMarker for AesSyncClient<IP, OP> where IP: TInputProtocol, OP: TOutputProtocol {}
 
 impl <C: TThriftClient + TAesSyncClientMarker> TAesSyncClient for C {
-  fn encrypt(&mut self, plain: Vec<u8>) -> thrift::Result<Vec<u8>> {
+  fn encrypt(&mut self, plain: Vec<u8>, associated_data: Vec<u8>) -> thrift::Result<Vec<u8>> {
     (
       {
         self.increment_sequence_number();
         let message_ident = TMessageIdentifier::new("encrypt", TMessageType::Call, self.sequence_number());
-        let call_args = AesEncryptArgs { plain };
+        let call_args = AesEncryptArgs { plain, associated_data };
         self.o_prot_mut().write_message_begin(&message_ident)?;
         call_args.write_to_out_protocol(self.o_prot_mut())?;
         self.o_prot_mut().write_message_end()?;
@@ -1236,12 +1236,12 @@ impl <C: TThriftClient + TAesSyncClientMarker> TAesSyncClient for C {
       result.ok_or()
     }
   }
-  fn decrypt(&mut self, code: Vec<u8>) -> thrift::Result<Vec<u8>> {
+  fn decrypt(&mut self, code: Vec<u8>, associated_data: Vec<u8>) -> thrift::Result<Vec<u8>> {
     (
       {
         self.increment_sequence_number();
         let message_ident = TMessageIdentifier::new("decrypt", TMessageType::Call, self.sequence_number());
-        let call_args = AesDecryptArgs { code };
+        let call_args = AesDecryptArgs { code, associated_data };
         self.o_prot_mut().write_message_begin(&message_ident)?;
         call_args.write_to_out_protocol(self.o_prot_mut())?;
         self.o_prot_mut().write_message_end()?;
@@ -1270,8 +1270,8 @@ impl <C: TThriftClient + TAesSyncClientMarker> TAesSyncClient for C {
 //
 
 pub trait AesSyncHandler {
-  fn handle_encrypt(&self, plain: Vec<u8>) -> thrift::Result<Vec<u8>>;
-  fn handle_decrypt(&self, code: Vec<u8>) -> thrift::Result<Vec<u8>>;
+  fn handle_encrypt(&self, plain: Vec<u8>, associated_data: Vec<u8>) -> thrift::Result<Vec<u8>>;
+  fn handle_decrypt(&self, code: Vec<u8>, associated_data: Vec<u8>) -> thrift::Result<Vec<u8>>;
 }
 
 pub struct AesSyncProcessor<H: AesSyncHandler> {
@@ -1297,7 +1297,7 @@ pub struct TAesProcessFunctions;
 impl TAesProcessFunctions {
   pub fn process_encrypt<H: AesSyncHandler>(handler: &H, incoming_sequence_number: i32, i_prot: &mut dyn TInputProtocol, o_prot: &mut dyn TOutputProtocol) -> thrift::Result<()> {
     let args = AesEncryptArgs::read_from_in_protocol(i_prot)?;
-    match handler.handle_encrypt(args.plain) {
+    match handler.handle_encrypt(args.plain, args.associated_data) {
       Ok(handler_return) => {
         let message_ident = TMessageIdentifier::new("encrypt", TMessageType::Reply, incoming_sequence_number);
         o_prot.write_message_begin(&message_ident)?;
@@ -1334,7 +1334,7 @@ impl TAesProcessFunctions {
   }
   pub fn process_decrypt<H: AesSyncHandler>(handler: &H, incoming_sequence_number: i32, i_prot: &mut dyn TInputProtocol, o_prot: &mut dyn TOutputProtocol) -> thrift::Result<()> {
     let args = AesDecryptArgs::read_from_in_protocol(i_prot)?;
-    match handler.handle_decrypt(args.code) {
+    match handler.handle_decrypt(args.code, args.associated_data) {
       Ok(handler_return) => {
         let message_ident = TMessageIdentifier::new("decrypt", TMessageType::Reply, incoming_sequence_number);
         o_prot.write_message_begin(&message_ident)?;
@@ -1403,12 +1403,14 @@ impl <H: AesSyncHandler> TProcessor for AesSyncProcessor<H> {
 #[derive(Clone, Debug, Eq, Hash, Ord, PartialEq, PartialOrd)]
 struct AesEncryptArgs {
   plain: Vec<u8>,
+  associated_data: Vec<u8>,
 }
 
 impl AesEncryptArgs {
   fn read_from_in_protocol(i_prot: &mut dyn TInputProtocol) -> thrift::Result<AesEncryptArgs> {
     i_prot.read_struct_begin()?;
     let mut f_1: Option<Vec<u8>> = None;
+    let mut f_2: Option<Vec<u8>> = None;
     loop {
       let field_ident = i_prot.read_field_begin()?;
       if field_ident.field_type == TType::Stop {
@@ -1420,6 +1422,10 @@ impl AesEncryptArgs {
           let val = i_prot.read_bytes()?;
           f_1 = Some(val);
         },
+        2 => {
+          let val = i_prot.read_bytes()?;
+          f_2 = Some(val);
+        },
         _ => {
           i_prot.skip(field_ident.field_type)?;
         },
@@ -1428,8 +1434,10 @@ impl AesEncryptArgs {
     }
     i_prot.read_struct_end()?;
     verify_required_field_exists("AesEncryptArgs.plain", &f_1)?;
+    verify_required_field_exists("AesEncryptArgs.associated_data", &f_2)?;
     let ret = AesEncryptArgs {
       plain: f_1.expect("auto-generated code should have checked for presence of required fields"),
+      associated_data: f_2.expect("auto-generated code should have checked for presence of required fields"),
     };
     Ok(ret)
   }
@@ -1438,6 +1446,9 @@ impl AesEncryptArgs {
     o_prot.write_struct_begin(&struct_ident)?;
     o_prot.write_field_begin(&TFieldIdentifier::new("plain", TType::String, 1))?;
     o_prot.write_bytes(&self.plain)?;
+    o_prot.write_field_end()?;
+    o_prot.write_field_begin(&TFieldIdentifier::new("associated_data", TType::String, 2))?;
+    o_prot.write_bytes(&self.associated_data)?;
     o_prot.write_field_end()?;
     o_prot.write_field_stop()?;
     o_prot.write_struct_end()
@@ -1514,12 +1525,14 @@ impl AesEncryptResult {
 #[derive(Clone, Debug, Eq, Hash, Ord, PartialEq, PartialOrd)]
 struct AesDecryptArgs {
   code: Vec<u8>,
+  associated_data: Vec<u8>,
 }
 
 impl AesDecryptArgs {
   fn read_from_in_protocol(i_prot: &mut dyn TInputProtocol) -> thrift::Result<AesDecryptArgs> {
     i_prot.read_struct_begin()?;
     let mut f_1: Option<Vec<u8>> = None;
+    let mut f_2: Option<Vec<u8>> = None;
     loop {
       let field_ident = i_prot.read_field_begin()?;
       if field_ident.field_type == TType::Stop {
@@ -1531,6 +1544,10 @@ impl AesDecryptArgs {
           let val = i_prot.read_bytes()?;
           f_1 = Some(val);
         },
+        2 => {
+          let val = i_prot.read_bytes()?;
+          f_2 = Some(val);
+        },
         _ => {
           i_prot.skip(field_ident.field_type)?;
         },
@@ -1539,8 +1556,10 @@ impl AesDecryptArgs {
     }
     i_prot.read_struct_end()?;
     verify_required_field_exists("AesDecryptArgs.code", &f_1)?;
+    verify_required_field_exists("AesDecryptArgs.associated_data", &f_2)?;
     let ret = AesDecryptArgs {
       code: f_1.expect("auto-generated code should have checked for presence of required fields"),
+      associated_data: f_2.expect("auto-generated code should have checked for presence of required fields"),
     };
     Ok(ret)
   }
@@ -1549,6 +1568,9 @@ impl AesDecryptArgs {
     o_prot.write_struct_begin(&struct_ident)?;
     o_prot.write_field_begin(&TFieldIdentifier::new("code", TType::String, 1))?;
     o_prot.write_bytes(&self.code)?;
+    o_prot.write_field_end()?;
+    o_prot.write_field_begin(&TFieldIdentifier::new("associated_data", TType::String, 2))?;
+    o_prot.write_bytes(&self.associated_data)?;
     o_prot.write_field_end()?;
     o_prot.write_field_stop()?;
     o_prot.write_struct_end()

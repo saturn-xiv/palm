@@ -35,8 +35,8 @@ class AesHandler final : public v1::AesIf {
  public:
   AesHandler() = default;
 
-  void encrypt(std::string& code, const std::string& plain) override;
-  void decrypt(std::string& plain, const std::string& code) override;
+  void encrypt(std::string& code, const std::string& plain, const std::string& associated_data) override;
+  void decrypt(std::string& plain, const std::string& code, const std::string& associated_data) override;
 };
 
 class HmacHandler final : public v1::HmacIf {
