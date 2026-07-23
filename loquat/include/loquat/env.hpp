@@ -116,8 +116,10 @@ class HMac final : public Keyset {
 class Aes final : public Keyset {
  public:
   Aes() : Keyset("aes") {}
-  std::string encrypt(const std::string& plain, const std::string& associated_data);
-  std::string decrypt(const std::string& code, const std::string& associated_data);
+  std::string encrypt(const std::string& plain,
+                      const std::string& associated_data);
+  std::string decrypt(const std::string& code,
+                      const std::string& associated_data);
 
  private:
   std::unique_ptr<crypto::tink::Aead> load();

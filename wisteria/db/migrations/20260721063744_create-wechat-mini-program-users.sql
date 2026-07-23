@@ -15,7 +15,7 @@ CREATE TABLE wechat_mini_program_users(
 );
 
 CREATE UNIQUE INDEX idx_wechat_mini_program_users_app_open ON wechat_mini_program_users(app_id, open_id);
-CREATE INDEX idx_wechat_mini_program_users_union ON wechat_mini_program(union_id);
+CREATE INDEX idx_wechat_mini_program_users_union ON wechat_mini_program_users(union_id);
 CREATE INDEX idx_wechat_mini_program_users_nickname ON wechat_mini_program_users(nickname) WHERE nickname IS NOT NULL;
 
 -- migrate:down

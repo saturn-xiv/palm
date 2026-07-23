@@ -12,7 +12,7 @@ CREATE TABLE votes(
     created_at TIMESTAMP WITHOUT TIME ZONE NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
 
-CREATE INDEX idx_categories_editor ON categories(editor);
+CREATE INDEX idx_votes_editor ON votes(editor);
 
 -- migrate:down
-DROP TABLE categories;
+DROP TABLE votes;

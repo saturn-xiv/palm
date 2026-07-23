@@ -21,7 +21,7 @@ CREATE TABLE wechat_oauth2_users(
 );
 
 CREATE UNIQUE INDEX idx_wechat_oauth2_users_app_open ON wechat_oauth2_users(app_id, open_id);
-CREATE INDEX idx_wechat_oauth2_users_union ON wechat_oauth2(union_id);
+CREATE INDEX idx_wechat_oauth2_users_union ON wechat_oauth2_users(union_id);
 CREATE INDEX idx_wechat_oauth2_users_nickname ON wechat_oauth2_users(nickname);
 CREATE INDEX idx_wechat_oauth2_users_city ON wechat_oauth2_users(city);
 CREATE INDEX idx_wechat_oauth2_users_province ON wechat_oauth2_users(province);

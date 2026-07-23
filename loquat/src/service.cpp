@@ -158,13 +158,15 @@ void loquat::application::launch_rpc_server(
   server->serve();
 }
 
-void loquat::AesHandler::encrypt(std::string& code, const std::string& plain, const std::string& associated_data) {
+void loquat::AesHandler::encrypt(std::string& code, const std::string& plain,
+                                 const std::string& associated_data) {
   spdlog::info("call {}", __PRETTY_FUNCTION__);
   loquat::Aes aes;
   code = aes.encrypt(plain, associated_data);
 }
 
-void loquat::AesHandler::decrypt(std::string& plain, const std::string& code, const std::string& associated_data) {
+void loquat::AesHandler::decrypt(std::string& plain, const std::string& code,
+                                 const std::string& associated_data) {
   spdlog::info("call {}", __PRETTY_FUNCTION__);
   loquat::Aes aes;
   plain = aes.decrypt(code, associated_data);
