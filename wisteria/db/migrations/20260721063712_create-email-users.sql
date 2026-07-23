@@ -5,14 +5,17 @@ CREATE TABLE email_users(
     name VARCHAR(255) NOT NULL,
     email VARCHAR(63) NOT NULL,
     password VARCHAR(127) NOT NULL,
-    value BYTEA NOT NULL,
-    associated_data BYTEA,
+    avatar VARCHAR(127) NOT NULL,
+    confirmed_at TIMESTAMP WITHOUT TIME ZONE,
+    locked_at TIMESTAMP WITHOUT TIME ZONE,
+    deleted_at  TIMESTAMP WITHOUT TIME ZONE,
     version BIGINT NOT NULL DEFAULT 0,
     updated_at TIMESTAMP WITHOUT TIME ZONE NOT NULL,
     created_at TIMESTAMP WITHOUT TIME ZONE NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
 
-CREATE UNIQUE INDEX idx_settings_key ON settings(key) WHERE user_id IS NULL;
+CREATE UNIQUE INDEX idx_email_users_email ON email_users(email);
+CREATE INDEX idx_email_users_name ON email_users(name);
 
 -- migrate:down
 DROP TABLE email_users;

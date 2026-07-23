@@ -1,5 +1,13 @@
 -- migrate:up
+CREATE TABLE tags(
+    id BIGSERIAL PRIMARY KEY,
+    code VARCHAR(31) NOT NULL,
+    version BIGINT NOT NULL DEFAULT 0,
+    updated_at TIMESTAMP WITHOUT TIME ZONE NOT NULL,
+    created_at TIMESTAMP WITHOUT TIME ZONE NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
 
+CREATE UNIQUE INDEX idx_tags_code ON tags(code);
 
 -- migrate:down
-
+DROP TABLE tags;

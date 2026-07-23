@@ -1,5 +1,18 @@
 -- migrate:up
+CREATE TABLE votes(
+    id BIGSERIAL PRIMARY KEY,
+    user_id BIGINT NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+    star INTEGER NOT NULL,
+    comment TEXT NOT NULL,
+    editor VARCHAR(7) NOT NULL,
+    published_at TIMESTAMP WITHOUT TIME ZONE,
+    deleted_at TIMESTAMP WITHOUT TIME ZONE,
+    version BIGINT NOT NULL DEFAULT 0,
+    updated_at TIMESTAMP WITHOUT TIME ZONE NOT NULL,
+    created_at TIMESTAMP WITHOUT TIME ZONE NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
 
+CREATE INDEX idx_categories_editor ON categories(editor);
 
 -- migrate:down
-
+DROP TABLE categories;

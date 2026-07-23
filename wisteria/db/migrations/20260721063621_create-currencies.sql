@@ -6,7 +6,7 @@ CREATE TABLE currencies(
     country VARCHAR(127) NOT NULL,
     number INTEGER NOT NULL,
     units INTEGER,
-    fund BOOLEAN,    
+    fund BOOLEAN,
     created_at TIMESTAMP WITHOUT TIME ZONE NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
 
