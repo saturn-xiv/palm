@@ -1,0 +1,1 @@
+pub struct HmacSha512 {}

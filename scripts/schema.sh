@@ -99,10 +99,13 @@ generate_diesel
 
 sed -i -E "s/(version = \")[0-9]+\.[0-9]+\.[0-9]+/\1$(date +%Y.%-m.%-d)/g" $WORK_DIR/hyacinth/Cargo.toml
 
-echo "formating source codes"
+echo "format source codes"
 cd $WORK_DIR/
 cargo fmt
-clang-format -i loquat/include/loquat/*.hpp loquat/src/*.cpp
+cd $WORK_DIR/loquat/
+clang-format -i include/loquat/*.hpp src/*.cpp
+cd $WORK_DIR/dahlia/
+autopep8 --in-place --recursive src --exclude="src/dahlia/protocols/*,tmp/*"
 
 echo 'done.'
 exit 0

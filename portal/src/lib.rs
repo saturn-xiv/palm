@@ -1,8 +1,10 @@
 pub mod aes;
+pub mod cache;
 pub mod gravatar;
 pub mod hmac;
 pub mod jwt;
 pub mod models;
+pub mod orm;
 pub mod random;
 pub mod ssha512;
 
