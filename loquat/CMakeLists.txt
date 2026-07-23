@@ -3,7 +3,7 @@ include(FetchContent)
 
 project(
     loquat
-    VERSION 2026.6.19
+    VERSION 2026.7.23
     DESCRIPTION "A cryptographic rpc service(by Google Tink)."
     LANGUAGES C CXX)
 # --------------------------------------------------------
@@ -24,12 +24,6 @@ configure_file(include/loquat/version.h.in ${PROJECT_SOURCE_DIR}/include/loquat/
 
 # --------------------------------------------------------
 
-find_package(OpenSSL REQUIRED)
-
-find_package(PkgConfig REQUIRED)
-pkg_check_modules(LIBEVENT REQUIRED libevent)
-pkg_check_modules(SODIUM REQUIRED libsodium)
-
 # --------------------------------------------------------
 
 # https://github.com/tink-crypto/tink-cc
@@ -38,30 +32,7 @@ FetchContent_Declare(tink
   GIT_TAG         "v2.8.0"
 )
 
-# https://github.com/apache/thrift
-FetchContent_Declare(thrift
-  GIT_REPOSITORY  "https://github.com/apache/thrift.git"
-  GIT_TAG         "v0.24.0"
-)
-
-# https://github.com/pantor/inja
-FetchContent_Declare(inja
-  GIT_REPOSITORY  "https://github.com/pantor/inja.git"
-  GIT_TAG         "v3.5.0"
-)
-
-# https://github.com/gabime/spdlog
-FetchContent_Declare(spdlog
-  GIT_REPOSITORY  "https://github.com/gabime/spdlog.git"
-  GIT_TAG         "v1.17.0"
-)
-
-# https://github.com/p-ranav/argparse
-FetchContent_Declare(argparse
-  GIT_REPOSITORY  "https://github.com/p-ranav/argparse.git"
-  GIT_TAG         "v3.2"
-)
-FetchContent_MakeAvailable(argparse spdlog inja thrift tink)
+FetchContent_MakeAvailable(tink)
 
 # --------------------------------------------------------
 
@@ -76,13 +47,13 @@ set_target_properties(loquat PROPERTIES LINK_FLAGS_RELEASE -s)
 target_link_options(loquat PRIVATE -static-libgcc -static-libstdc++)
 
 target_link_libraries(loquat gourd
-  argparse::argparse
-  spdlog::spdlog_header_only
-  pantor::inja
+  # argparse::argparse
+  # spdlog::spdlog_header_only
+  # pantor::inja
  
-  ${SODIUM_LIBRARIES}
+
   tink::static tink::jwt::jwt_key_templates tink::jwt::jwt_mac tink::jwt::jwt_mac_config
-  thriftz thriftnb
+  # thriftz thriftnb
 )
 
 target_include_directories(loquat PUBLIC

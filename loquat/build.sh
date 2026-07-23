@@ -4,29 +4,25 @@ set -e
 
 . /etc/os-release
 
+export VCPKG_DISABLE_METRICS=1
+export VCPKG_DEFAULT_BINARY_CACHE=$PWD/.cache
+
 # https://github.com/grpc/grpc/blob/master/BUILDING.md#pre-requisites
-if [[ "$ID" != "ubuntu" ]]; then
-    echo "Unsupported system: $ID/$VERSION_CODENAME"
-    exit 1
+if [[ "$ID" == "ubuntu" ]]; then
+    apt update
+    apt -y upgrade
+    DEBIAN_FRONTEND=noninteractive apt install -y wget curl git zip \
+        pkg-config build-essential cmake ninja-build flex bison clang    
 fi
-apt update
-apt -y upgrade
-DEBIAN_FRONTEND=noninteractive apt install -y curl git zip \
-    pkg-config build-essential cmake ninja-build flex bison \
-    linux-libc-dev libssl-dev libsodium-dev libevent-dev libboost-all-dev
 
-export SOURCE_ROOT=$PWD
-export BUILD_ROOT=$PWD/build/Release-$VERSION_CODENAME-$(uname -m)
+mkdir -p $VCPKG_DEFAULT_BINARY_CACHE
 
-mkdir -p $BUILD_ROOT
-# https://thrift.apache.org/lib/cpp.html
-cmake -Wno-dev -DCMAKE_BUILD_TYPE=Release \
-    -DBUILD_SHARED_LIBS=OFF -DBoost_USE_STATIC_LIBS=ON -DBUILD_COMPILER=OFF -DWITH_LIBEVENT=ON -DBUILD_CPP=ON -DWITH_JAVA=OFF -DWITH_PYTHON=OFF -DWITH_NODEJS=OFF -DWITH_JAVASCRIPT=OFF \
-    -DABSL_PROPAGATE_CXX_STD=ON \
-    -DTINK_USE_SYSTEM_OPENSSL=ON -DTINK_BUILD_TESTS=OFF \
-    -B $BUILD_ROOT -S $SOURCE_ROOT \
-    -G Ninja
-cmake --build $BUILD_ROOT
+declare -a targets=("x86_64" "aarch64" "riscv64")
+for i in "${targets[@]}"
+do
+   cmake -DTINK_USE_SYSTEM_OPENSSL=ON -DTINK_BUILD_TESTS=OFF --preset=$i
+   cmake --build build/$i
+done
 
 echo 'done.'
 exit 0

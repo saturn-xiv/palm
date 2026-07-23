@@ -1,0 +1,12 @@
+{
+  "dependencies": [
+    "argparse",
+    "spdlog",
+    "inja",
+    "nlohmann-json",
+    "openssl",
+    "libsodium",
+    "thrift",
+    { "name": "libevent", "features": ["openssl", "thread"] }
+  ]
+}
