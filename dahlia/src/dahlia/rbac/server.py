@@ -1,6 +1,5 @@
 import logging
 
-from google.protobuf.empty_pb2 import Empty
 from grpc import StatusCode
 
 from dahlia.protocols import rbac_pb2_grpc, rbac_pb2, from_str, to_str, role_from_str, user_from_str, permission_from_line
@@ -76,30 +75,30 @@ class Server(rbac_pb2_grpc.EnforcerServicer):
         usr = rbac_pb2.Subject(user=request.user)
         rol = rbac_pb2.Subject(role=request.role)
         if not self.enforcer.has_role_for_user(to_str(usr), to_str(rol)):
-            context.abort(StatusCode.NOT_FOUND, "")
-        return Empty()
+            context.abort(StatusCode.NOT_FOUND, "didn't have role")
+        return rbac_pb2.Empty()
 
     def AddRoleForUser(self, request, context):
         usr = rbac_pb2.Subject(user=request.user)
         rol = rbac_pb2.Subject(role=request.role)
         self.enforcer.add_role_for_user(to_str(usr), to_str(rol))
-        return Empty()
+        return rbac_pb2.Empty()
 
     def DeleteRoleForUser(self, request, context):
         usr = rbac_pb2.Subject(user=request.user)
         rol = rbac_pb2.Subject(role=request.role)
         self.enforcer.delete_role_for_user(to_str(usr), to_str(rol))
-        return Empty()
+        return rbac_pb2.Empty()
 
     def DeleteRole(self, request, context):
         rol = rbac_pb2.Subject(role=request.role)
         self.enforcer.delete_role(to_str(rol))
-        return Empty()
+        return rbac_pb2.Empty()
 
     def DeleteUser(self, request, context):
         usr = rbac_pb2.Subject(user=request.user)
         self.enforcer.delete_user(to_str(usr))
-        return Empty()
+        return rbac_pb2.Empty()
 
     def GetPermissions(self, request, context):
         res = rbac_pb2.PermissionsResponse()
@@ -118,15 +117,15 @@ class Server(rbac_pb2_grpc.EnforcerServicer):
     def DeletePermission(self, request, context):
         self.enforcer.delete_permissions_for_user(
             to_str(request.subject), to_str(request.object), to_str(request.action))
-        return Empty()
+        return rbac_pb2.Empty()
 
     def AddPermission(self, request, context):
         self.enforcer.add_permission_for_user(
             to_str(request.subject), to_str(request.object), to_str(request.action))
-        return Empty()
+        return rbac_pb2.Empty()
 
     def HasPermission(self, request, context):
         if not self.enforcer.has_permission_for_user(
                 to_str(request.subject), to_str(request.object), to_str(request.action)):
-            context.abort(StatusCode.NOT_FOUND, "")
-        return Empty()
+            context.abort(StatusCode.NOT_FOUND, "didn't have permission")
+        return rbac_pb2.Empty()

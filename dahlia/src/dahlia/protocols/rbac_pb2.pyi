@@ -1,4 +1,3 @@
-from google.protobuf import empty_pb2 as _empty_pb2
 from google.protobuf.internal import containers as _containers
 from google.protobuf import descriptor as _descriptor
 from google.protobuf import message as _message
@@ -6,6 +5,10 @@ from collections.abc import Iterable as _Iterable, Mapping as _Mapping
 from typing import ClassVar as _ClassVar, Optional as _Optional, Union as _Union
 
 DESCRIPTOR: _descriptor.FileDescriptor
+
+class Empty(_message.Message):
+    __slots__ = ()
+    def __init__(self) -> None: ...
 
 class Object(_message.Message):
     __slots__ = ("type", "id", "code", "all")
@@ -16,8 +19,8 @@ class Object(_message.Message):
     type: str
     id: int
     code: str
-    all: _empty_pb2.Empty
-    def __init__(self, type: _Optional[str] = ..., id: _Optional[int] = ..., code: _Optional[str] = ..., all: _Optional[_Union[_empty_pb2.Empty, _Mapping]] = ...) -> None: ...
+    all: Empty
+    def __init__(self, type: _Optional[str] = ..., id: _Optional[int] = ..., code: _Optional[str] = ..., all: _Optional[_Union[Empty, _Mapping]] = ...) -> None: ...
 
 class Subject(_message.Message):
     __slots__ = ("user", "role")

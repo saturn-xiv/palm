@@ -4,9 +4,8 @@ import grpc
 import warnings
 
 from dahlia.protocols import rbac_pb2 as dahlia_dot_protocols_dot_rbac__pb2
-from google.protobuf import empty_pb2 as google_dot_protobuf_dot_empty__pb2
 
-GRPC_GENERATED_VERSION = '1.76.0'
+GRPC_GENERATED_VERSION = '1.82.1'
 GRPC_VERSION = grpc.__version__
 _version_not_supported = False
 
@@ -26,7 +25,7 @@ if _version_not_supported:
     )
 
 
-class EnforcerStub(object):
+class EnforcerStub:
     """Missing associated documentation comment in .proto file."""
 
     def __init__(self, channel):
@@ -37,22 +36,22 @@ class EnforcerStub(object):
         """
         self.GetAllSubjects = channel.unary_unary(
                 '/palm.rbac.v1.Enforcer/GetAllSubjects',
-                request_serializer=google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
+                request_serializer=dahlia_dot_protocols_dot_rbac__pb2.Empty.SerializeToString,
                 response_deserializer=dahlia_dot_protocols_dot_rbac__pb2.SubjectsResponse.FromString,
                 _registered_method=True)
         self.GetAllObjects = channel.unary_unary(
                 '/palm.rbac.v1.Enforcer/GetAllObjects',
-                request_serializer=google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
+                request_serializer=dahlia_dot_protocols_dot_rbac__pb2.Empty.SerializeToString,
                 response_deserializer=dahlia_dot_protocols_dot_rbac__pb2.ObjectsResponse.FromString,
                 _registered_method=True)
         self.GetAllActions = channel.unary_unary(
                 '/palm.rbac.v1.Enforcer/GetAllActions',
-                request_serializer=google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
+                request_serializer=dahlia_dot_protocols_dot_rbac__pb2.Empty.SerializeToString,
                 response_deserializer=dahlia_dot_protocols_dot_rbac__pb2.ActionsResponse.FromString,
                 _registered_method=True)
         self.GetAllRoles = channel.unary_unary(
                 '/palm.rbac.v1.Enforcer/GetAllRoles',
-                request_serializer=google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
+                request_serializer=dahlia_dot_protocols_dot_rbac__pb2.Empty.SerializeToString,
                 response_deserializer=dahlia_dot_protocols_dot_rbac__pb2.RolesResponse.FromString,
                 _registered_method=True)
         self.GetRolesForUser = channel.unary_unary(
@@ -78,27 +77,27 @@ class EnforcerStub(object):
         self.HasRoleForUser = channel.unary_unary(
                 '/palm.rbac.v1.Enforcer/HasRoleForUser',
                 request_serializer=dahlia_dot_protocols_dot_rbac__pb2.UserRoleRequest.SerializeToString,
-                response_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
+                response_deserializer=dahlia_dot_protocols_dot_rbac__pb2.Empty.FromString,
                 _registered_method=True)
         self.AddRoleForUser = channel.unary_unary(
                 '/palm.rbac.v1.Enforcer/AddRoleForUser',
                 request_serializer=dahlia_dot_protocols_dot_rbac__pb2.UserRoleRequest.SerializeToString,
-                response_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
+                response_deserializer=dahlia_dot_protocols_dot_rbac__pb2.Empty.FromString,
                 _registered_method=True)
         self.DeleteRoleForUser = channel.unary_unary(
                 '/palm.rbac.v1.Enforcer/DeleteRoleForUser',
                 request_serializer=dahlia_dot_protocols_dot_rbac__pb2.UserRoleRequest.SerializeToString,
-                response_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
+                response_deserializer=dahlia_dot_protocols_dot_rbac__pb2.Empty.FromString,
                 _registered_method=True)
         self.DeleteUser = channel.unary_unary(
                 '/palm.rbac.v1.Enforcer/DeleteUser',
                 request_serializer=dahlia_dot_protocols_dot_rbac__pb2.Subject.User.SerializeToString,
-                response_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
+                response_deserializer=dahlia_dot_protocols_dot_rbac__pb2.Empty.FromString,
                 _registered_method=True)
         self.DeleteRole = channel.unary_unary(
                 '/palm.rbac.v1.Enforcer/DeleteRole',
                 request_serializer=dahlia_dot_protocols_dot_rbac__pb2.Subject.Role.SerializeToString,
-                response_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
+                response_deserializer=dahlia_dot_protocols_dot_rbac__pb2.Empty.FromString,
                 _registered_method=True)
         self.GetPermissions = channel.unary_unary(
                 '/palm.rbac.v1.Enforcer/GetPermissions',
@@ -113,21 +112,21 @@ class EnforcerStub(object):
         self.DeletePermission = channel.unary_unary(
                 '/palm.rbac.v1.Enforcer/DeletePermission',
                 request_serializer=dahlia_dot_protocols_dot_rbac__pb2.Permission.SerializeToString,
-                response_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
+                response_deserializer=dahlia_dot_protocols_dot_rbac__pb2.Empty.FromString,
                 _registered_method=True)
         self.AddPermission = channel.unary_unary(
                 '/palm.rbac.v1.Enforcer/AddPermission',
                 request_serializer=dahlia_dot_protocols_dot_rbac__pb2.Permission.SerializeToString,
-                response_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
+                response_deserializer=dahlia_dot_protocols_dot_rbac__pb2.Empty.FromString,
                 _registered_method=True)
         self.HasPermission = channel.unary_unary(
                 '/palm.rbac.v1.Enforcer/HasPermission',
                 request_serializer=dahlia_dot_protocols_dot_rbac__pb2.Permission.SerializeToString,
-                response_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
+                response_deserializer=dahlia_dot_protocols_dot_rbac__pb2.Empty.FromString,
                 _registered_method=True)
 
 
-class EnforcerServicer(object):
+class EnforcerServicer:
     """Missing associated documentation comment in .proto file."""
 
     def GetAllSubjects(self, request, context):
@@ -243,22 +242,22 @@ def add_EnforcerServicer_to_server(servicer, server):
     rpc_method_handlers = {
             'GetAllSubjects': grpc.unary_unary_rpc_method_handler(
                     servicer.GetAllSubjects,
-                    request_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
+                    request_deserializer=dahlia_dot_protocols_dot_rbac__pb2.Empty.FromString,
                     response_serializer=dahlia_dot_protocols_dot_rbac__pb2.SubjectsResponse.SerializeToString,
             ),
             'GetAllObjects': grpc.unary_unary_rpc_method_handler(
                     servicer.GetAllObjects,
-                    request_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
+                    request_deserializer=dahlia_dot_protocols_dot_rbac__pb2.Empty.FromString,
                     response_serializer=dahlia_dot_protocols_dot_rbac__pb2.ObjectsResponse.SerializeToString,
             ),
             'GetAllActions': grpc.unary_unary_rpc_method_handler(
                     servicer.GetAllActions,
-                    request_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
+                    request_deserializer=dahlia_dot_protocols_dot_rbac__pb2.Empty.FromString,
                     response_serializer=dahlia_dot_protocols_dot_rbac__pb2.ActionsResponse.SerializeToString,
             ),
             'GetAllRoles': grpc.unary_unary_rpc_method_handler(
                     servicer.GetAllRoles,
-                    request_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
+                    request_deserializer=dahlia_dot_protocols_dot_rbac__pb2.Empty.FromString,
                     response_serializer=dahlia_dot_protocols_dot_rbac__pb2.RolesResponse.SerializeToString,
             ),
             'GetRolesForUser': grpc.unary_unary_rpc_method_handler(
@@ -284,27 +283,27 @@ def add_EnforcerServicer_to_server(servicer, server):
             'HasRoleForUser': grpc.unary_unary_rpc_method_handler(
                     servicer.HasRoleForUser,
                     request_deserializer=dahlia_dot_protocols_dot_rbac__pb2.UserRoleRequest.FromString,
-                    response_serializer=google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
+                    response_serializer=dahlia_dot_protocols_dot_rbac__pb2.Empty.SerializeToString,
             ),
             'AddRoleForUser': grpc.unary_unary_rpc_method_handler(
                     servicer.AddRoleForUser,
                     request_deserializer=dahlia_dot_protocols_dot_rbac__pb2.UserRoleRequest.FromString,
-                    response_serializer=google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
+                    response_serializer=dahlia_dot_protocols_dot_rbac__pb2.Empty.SerializeToString,
             ),
             'DeleteRoleForUser': grpc.unary_unary_rpc_method_handler(
                     servicer.DeleteRoleForUser,
                     request_deserializer=dahlia_dot_protocols_dot_rbac__pb2.UserRoleRequest.FromString,
-                    response_serializer=google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
+                    response_serializer=dahlia_dot_protocols_dot_rbac__pb2.Empty.SerializeToString,
             ),
             'DeleteUser': grpc.unary_unary_rpc_method_handler(
                     servicer.DeleteUser,
                     request_deserializer=dahlia_dot_protocols_dot_rbac__pb2.Subject.User.FromString,
-                    response_serializer=google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
+                    response_serializer=dahlia_dot_protocols_dot_rbac__pb2.Empty.SerializeToString,
             ),
             'DeleteRole': grpc.unary_unary_rpc_method_handler(
                     servicer.DeleteRole,
                     request_deserializer=dahlia_dot_protocols_dot_rbac__pb2.Subject.Role.FromString,
-                    response_serializer=google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
+                    response_serializer=dahlia_dot_protocols_dot_rbac__pb2.Empty.SerializeToString,
             ),
             'GetPermissions': grpc.unary_unary_rpc_method_handler(
                     servicer.GetPermissions,
@@ -319,17 +318,17 @@ def add_EnforcerServicer_to_server(servicer, server):
             'DeletePermission': grpc.unary_unary_rpc_method_handler(
                     servicer.DeletePermission,
                     request_deserializer=dahlia_dot_protocols_dot_rbac__pb2.Permission.FromString,
-                    response_serializer=google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
+                    response_serializer=dahlia_dot_protocols_dot_rbac__pb2.Empty.SerializeToString,
             ),
             'AddPermission': grpc.unary_unary_rpc_method_handler(
                     servicer.AddPermission,
                     request_deserializer=dahlia_dot_protocols_dot_rbac__pb2.Permission.FromString,
-                    response_serializer=google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
+                    response_serializer=dahlia_dot_protocols_dot_rbac__pb2.Empty.SerializeToString,
             ),
             'HasPermission': grpc.unary_unary_rpc_method_handler(
                     servicer.HasPermission,
                     request_deserializer=dahlia_dot_protocols_dot_rbac__pb2.Permission.FromString,
-                    response_serializer=google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
+                    response_serializer=dahlia_dot_protocols_dot_rbac__pb2.Empty.SerializeToString,
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
@@ -339,7 +338,7 @@ def add_EnforcerServicer_to_server(servicer, server):
 
 
  # This class is part of an EXPERIMENTAL API.
-class Enforcer(object):
+class Enforcer:
     """Missing associated documentation comment in .proto file."""
 
     @staticmethod
@@ -357,7 +356,7 @@ class Enforcer(object):
             request,
             target,
             '/palm.rbac.v1.Enforcer/GetAllSubjects',
-            google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
+            dahlia_dot_protocols_dot_rbac__pb2.Empty.SerializeToString,
             dahlia_dot_protocols_dot_rbac__pb2.SubjectsResponse.FromString,
             options,
             channel_credentials,
@@ -384,7 +383,7 @@ class Enforcer(object):
             request,
             target,
             '/palm.rbac.v1.Enforcer/GetAllObjects',
-            google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
+            dahlia_dot_protocols_dot_rbac__pb2.Empty.SerializeToString,
             dahlia_dot_protocols_dot_rbac__pb2.ObjectsResponse.FromString,
             options,
             channel_credentials,
@@ -411,7 +410,7 @@ class Enforcer(object):
             request,
             target,
             '/palm.rbac.v1.Enforcer/GetAllActions',
-            google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
+            dahlia_dot_protocols_dot_rbac__pb2.Empty.SerializeToString,
             dahlia_dot_protocols_dot_rbac__pb2.ActionsResponse.FromString,
             options,
             channel_credentials,
@@ -438,7 +437,7 @@ class Enforcer(object):
             request,
             target,
             '/palm.rbac.v1.Enforcer/GetAllRoles',
-            google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
+            dahlia_dot_protocols_dot_rbac__pb2.Empty.SerializeToString,
             dahlia_dot_protocols_dot_rbac__pb2.RolesResponse.FromString,
             options,
             channel_credentials,
@@ -574,7 +573,7 @@ class Enforcer(object):
             target,
             '/palm.rbac.v1.Enforcer/HasRoleForUser',
             dahlia_dot_protocols_dot_rbac__pb2.UserRoleRequest.SerializeToString,
-            google_dot_protobuf_dot_empty__pb2.Empty.FromString,
+            dahlia_dot_protocols_dot_rbac__pb2.Empty.FromString,
             options,
             channel_credentials,
             insecure,
@@ -601,7 +600,7 @@ class Enforcer(object):
             target,
             '/palm.rbac.v1.Enforcer/AddRoleForUser',
             dahlia_dot_protocols_dot_rbac__pb2.UserRoleRequest.SerializeToString,
-            google_dot_protobuf_dot_empty__pb2.Empty.FromString,
+            dahlia_dot_protocols_dot_rbac__pb2.Empty.FromString,
             options,
             channel_credentials,
             insecure,
@@ -628,7 +627,7 @@ class Enforcer(object):
             target,
             '/palm.rbac.v1.Enforcer/DeleteRoleForUser',
             dahlia_dot_protocols_dot_rbac__pb2.UserRoleRequest.SerializeToString,
-            google_dot_protobuf_dot_empty__pb2.Empty.FromString,
+            dahlia_dot_protocols_dot_rbac__pb2.Empty.FromString,
             options,
             channel_credentials,
             insecure,
@@ -655,7 +654,7 @@ class Enforcer(object):
             target,
             '/palm.rbac.v1.Enforcer/DeleteUser',
             dahlia_dot_protocols_dot_rbac__pb2.Subject.User.SerializeToString,
-            google_dot_protobuf_dot_empty__pb2.Empty.FromString,
+            dahlia_dot_protocols_dot_rbac__pb2.Empty.FromString,
             options,
             channel_credentials,
             insecure,
@@ -682,7 +681,7 @@ class Enforcer(object):
             target,
             '/palm.rbac.v1.Enforcer/DeleteRole',
             dahlia_dot_protocols_dot_rbac__pb2.Subject.Role.SerializeToString,
-            google_dot_protobuf_dot_empty__pb2.Empty.FromString,
+            dahlia_dot_protocols_dot_rbac__pb2.Empty.FromString,
             options,
             channel_credentials,
             insecure,
@@ -763,7 +762,7 @@ class Enforcer(object):
             target,
             '/palm.rbac.v1.Enforcer/DeletePermission',
             dahlia_dot_protocols_dot_rbac__pb2.Permission.SerializeToString,
-            google_dot_protobuf_dot_empty__pb2.Empty.FromString,
+            dahlia_dot_protocols_dot_rbac__pb2.Empty.FromString,
             options,
             channel_credentials,
             insecure,
@@ -790,7 +789,7 @@ class Enforcer(object):
             target,
             '/palm.rbac.v1.Enforcer/AddPermission',
             dahlia_dot_protocols_dot_rbac__pb2.Permission.SerializeToString,
-            google_dot_protobuf_dot_empty__pb2.Empty.FromString,
+            dahlia_dot_protocols_dot_rbac__pb2.Empty.FromString,
             options,
             channel_credentials,
             insecure,
@@ -817,7 +816,7 @@ class Enforcer(object):
             target,
             '/palm.rbac.v1.Enforcer/HasPermission',
             dahlia_dot_protocols_dot_rbac__pb2.Permission.SerializeToString,
-            google_dot_protobuf_dot_empty__pb2.Empty.FromString,
+            dahlia_dot_protocols_dot_rbac__pb2.Empty.FromString,
             options,
             channel_credentials,
             insecure,
