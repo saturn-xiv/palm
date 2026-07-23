@@ -123,4 +123,10 @@ class Aes final : public Keyset {
   std::unique_ptr<crypto::tink::Aead> load();
 };
 
+namespace argon2id {
+std::pair<std::vector<uint8_t>, std::vector<uint8_t>> sign(
+    const std::string& password, size_t salt_length);
+bool verify(const std::vector<uint8_t>& code, const std::string& password,
+            const std::vector<uint8_t>& salt);
+}  // namespace argon2id
 }  // namespace loquat

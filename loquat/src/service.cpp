@@ -62,6 +62,11 @@ void loquat::application::launch_rpc_server(
   std::shared_ptr<v1::JwtProcessor> jwtProcessor =
       std::make_shared<v1::JwtProcessor>(jwtHandler);
 
+  std::shared_ptr<PasswordHashingHandler> passwordHashingHandler =
+      std::make_shared<PasswordHashingHandler>();
+  std::shared_ptr<v1::PasswordHashingProcessor> passwordHashingProcessor =
+      std::make_shared<v1::PasswordHashingProcessor>(passwordHashingHandler);
+
   std::shared_ptr<HealthHandler> healthHandler =
       std::make_shared<HealthHandler>();
   std::shared_ptr<v1::HealthProcessor> healthProcessor =
@@ -84,6 +89,11 @@ void loquat::application::launch_rpc_server(
     const auto name = typeid(v1::JwtIf).name();
     spdlog::info("register jwt service {}", name);
     multiplexedProcessor->registerProcessor(name, jwtProcessor);
+  }
+  {
+    const auto name = typeid(v1::PasswordHashingIf).name();
+    spdlog::info("register password-hashing service {}", name);
+    multiplexedProcessor->registerProcessor(name, passwordHashingProcessor);
   }
   {
     const auto name = typeid(v1::HealthIf).name();
@@ -212,6 +222,26 @@ void loquat::JwtHandler::verify(loquat::v1::JwtVerfifyResponse& response,
   response.__set_subject(subject);
   if (payload) {
     response.__set_payload(payload.value());
+  }
+}
+
+void loquat::PasswordHashingHandler::sign(
+    loquat::v1::PasswordHashingResponse& reply, const std::string& password,
+    const int16_t salt_length) {
+  const auto it =
+      loquat::argon2id::sign(password, static_cast<size_t>(salt_length));
+  std::string code(it.first.begin(), it.first.end());
+  reply.__set_code(code);
+  std::string salt(it.second.begin(), it.second.end());
+  reply.__set_salt(salt);
+}
+void loquat::PasswordHashingHandler::verify(const std::string& code,
+                                            const std::string& password,
+                                            const std::string& salt) {
+  std::vector<uint8_t> code_(code.begin(), code.end());
+  std::vector<uint8_t> salt_(salt.begin(), salt.end());
+  if (!loquat::argon2id::verify(code_, password, salt_)) {
+    throw std::runtime_error("password not matched");
   }
 }
 

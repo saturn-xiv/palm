@@ -25,6 +25,11 @@ struct JwtSignRequest{
     99:optional binary payload,
 }
 
+struct PasswordHashingResponse{    
+    1:required binary code,
+    2:required binary salt,
+}
+
 service Jwt {
     string sign(1:JwtSignRequest request);
     JwtVerfifyResponse verify(1:string token, 2:string issuer, 3:string audience);
@@ -41,8 +46,8 @@ service Aes {
 }
 
 service PasswordHashing {
-    string sign(1:string password, 2:i16 salt_length);
-    void verify(1:string code, 2:string password);
+    PasswordHashingResponse sign(1:string password, 2:i16 salt_length);
+    void verify(1:binary code, 2:string password, 3:binary salt);
 }
 
 service Health {

@@ -64,4 +64,14 @@ class HealthHandler final : public v1::HealthIf {
 
   void check(std::map<std::string, std::string>& response) override;
 };
+
+class PasswordHashingHandler final : public v1::PasswordHashingIf {
+ public:
+  PasswordHashingHandler() = default;
+
+  void sign(loquat::v1::PasswordHashingResponse& reply,
+            const std::string& password, const int16_t salt_length) override;
+  void verify(const std::string& code, const std::string& password,
+              const std::string& salt) override;
+};
 }  // namespace loquat

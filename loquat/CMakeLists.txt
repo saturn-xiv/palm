@@ -28,6 +28,7 @@ find_package(OpenSSL REQUIRED)
 
 find_package(PkgConfig REQUIRED)
 pkg_check_modules(LIBEVENT REQUIRED libevent)
+pkg_search_module(ARGON2 REQUIRED IMPORTED_TARGET libargon2)
 
 # --------------------------------------------------------
 
@@ -75,6 +76,8 @@ set_target_properties(loquat PROPERTIES LINK_FLAGS_RELEASE -s)
 target_link_options(loquat PRIVATE -static-libgcc -static-libstdc++)
 
 target_link_libraries(loquat gourd
+  PkgConfig::ARGON2
+
   argparse::argparse
   spdlog::spdlog_header_only
   pantor::inja

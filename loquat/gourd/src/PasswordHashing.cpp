@@ -111,8 +111,7 @@ uint32_t PasswordHashing_sign_pargs::write(::apache::thrift::protocol::TProtocol
 PasswordHashing_sign_result::~PasswordHashing_sign_result() noexcept {
 }
 
-PasswordHashing_sign_result::PasswordHashing_sign_result() noexcept
-   : success() {
+PasswordHashing_sign_result::PasswordHashing_sign_result() noexcept {
 }
 
 uint32_t PasswordHashing_sign_result::read(::apache::thrift::protocol::TProtocol* iprot) {
@@ -137,8 +136,8 @@ uint32_t PasswordHashing_sign_result::read(::apache::thrift::protocol::TProtocol
     switch (fid)
     {
       case 0:
-        if (ftype == ::apache::thrift::protocol::T_STRING) {
-          xfer += iprot->readString(this->success);
+        if (ftype == ::apache::thrift::protocol::T_STRUCT) {
+          xfer += this->success.read(iprot);
           this->__isset.success = true;
         } else {
           xfer += iprot->skip(ftype);
@@ -163,8 +162,8 @@ uint32_t PasswordHashing_sign_result::write(::apache::thrift::protocol::TProtoco
   xfer += oprot->writeStructBegin("PasswordHashing_sign_result");
 
   if (this->__isset.success) {
-    xfer += oprot->writeFieldBegin("success", ::apache::thrift::protocol::T_STRING, 0);
-    xfer += oprot->writeString(this->success);
+    xfer += oprot->writeFieldBegin("success", ::apache::thrift::protocol::T_STRUCT, 0);
+    xfer += this->success.write(oprot);
     xfer += oprot->writeFieldEnd();
   }
   xfer += oprot->writeFieldStop();
@@ -199,8 +198,8 @@ uint32_t PasswordHashing_sign_presult::read(::apache::thrift::protocol::TProtoco
     switch (fid)
     {
       case 0:
-        if (ftype == ::apache::thrift::protocol::T_STRING) {
-          xfer += iprot->readString((*(this->success)));
+        if (ftype == ::apache::thrift::protocol::T_STRUCT) {
+          xfer += (*(this->success)).read(iprot);
           this->__isset.success = true;
         } else {
           xfer += iprot->skip(ftype);
@@ -224,7 +223,8 @@ PasswordHashing_verify_args::~PasswordHashing_verify_args() noexcept {
 
 PasswordHashing_verify_args::PasswordHashing_verify_args() noexcept
    : code(),
-     password() {
+     password(),
+     salt() {
 }
 
 uint32_t PasswordHashing_verify_args::read(::apache::thrift::protocol::TProtocol* iprot) {
@@ -250,7 +250,7 @@ uint32_t PasswordHashing_verify_args::read(::apache::thrift::protocol::TProtocol
     {
       case 1:
         if (ftype == ::apache::thrift::protocol::T_STRING) {
-          xfer += iprot->readString(this->code);
+          xfer += iprot->readBinary(this->code);
           this->__isset.code = true;
         } else {
           xfer += iprot->skip(ftype);
@@ -260,6 +260,14 @@ uint32_t PasswordHashing_verify_args::read(::apache::thrift::protocol::TProtocol
         if (ftype == ::apache::thrift::protocol::T_STRING) {
           xfer += iprot->readString(this->password);
           this->__isset.password = true;
+        } else {
+          xfer += iprot->skip(ftype);
+        }
+        break;
+      case 3:
+        if (ftype == ::apache::thrift::protocol::T_STRING) {
+          xfer += iprot->readBinary(this->salt);
+          this->__isset.salt = true;
         } else {
           xfer += iprot->skip(ftype);
         }
@@ -282,11 +290,15 @@ uint32_t PasswordHashing_verify_args::write(::apache::thrift::protocol::TProtoco
   xfer += oprot->writeStructBegin("PasswordHashing_verify_args");
 
   xfer += oprot->writeFieldBegin("code", ::apache::thrift::protocol::T_STRING, 1);
-  xfer += oprot->writeString(this->code);
+  xfer += oprot->writeBinary(this->code);
   xfer += oprot->writeFieldEnd();
 
   xfer += oprot->writeFieldBegin("password", ::apache::thrift::protocol::T_STRING, 2);
   xfer += oprot->writeString(this->password);
+  xfer += oprot->writeFieldEnd();
+
+  xfer += oprot->writeFieldBegin("salt", ::apache::thrift::protocol::T_STRING, 3);
+  xfer += oprot->writeBinary(this->salt);
   xfer += oprot->writeFieldEnd();
 
   xfer += oprot->writeFieldStop();
@@ -305,11 +317,15 @@ uint32_t PasswordHashing_verify_pargs::write(::apache::thrift::protocol::TProtoc
   xfer += oprot->writeStructBegin("PasswordHashing_verify_pargs");
 
   xfer += oprot->writeFieldBegin("code", ::apache::thrift::protocol::T_STRING, 1);
-  xfer += oprot->writeString((*(this->code)));
+  xfer += oprot->writeBinary((*(this->code)));
   xfer += oprot->writeFieldEnd();
 
   xfer += oprot->writeFieldBegin("password", ::apache::thrift::protocol::T_STRING, 2);
   xfer += oprot->writeString((*(this->password)));
+  xfer += oprot->writeFieldEnd();
+
+  xfer += oprot->writeFieldBegin("salt", ::apache::thrift::protocol::T_STRING, 3);
+  xfer += oprot->writeBinary((*(this->salt)));
   xfer += oprot->writeFieldEnd();
 
   xfer += oprot->writeFieldStop();
@@ -396,7 +412,7 @@ uint32_t PasswordHashing_verify_presult::read(::apache::thrift::protocol::TProto
   return xfer;
 }
 
-void PasswordHashingClient::sign(std::string& _return, const std::string& password, const int16_t salt_length)
+void PasswordHashingClient::sign(PasswordHashingResponse& _return, const std::string& password, const int16_t salt_length)
 {
   send_sign(password, salt_length);
   recv_sign(_return);
@@ -417,7 +433,7 @@ void PasswordHashingClient::send_sign(const std::string& password, const int16_t
   oprot_->getTransport()->flush();
 }
 
-void PasswordHashingClient::recv_sign(std::string& _return)
+void PasswordHashingClient::recv_sign(PasswordHashingResponse& _return)
 {
 
   int32_t rseqid = 0;
@@ -455,13 +471,13 @@ void PasswordHashingClient::recv_sign(std::string& _return)
   throw ::apache::thrift::TApplicationException(::apache::thrift::TApplicationException::MISSING_RESULT, "sign failed: unknown result");
 }
 
-void PasswordHashingClient::verify(const std::string& code, const std::string& password)
+void PasswordHashingClient::verify(const std::string& code, const std::string& password, const std::string& salt)
 {
-  send_verify(code, password);
+  send_verify(code, password, salt);
   recv_verify();
 }
 
-void PasswordHashingClient::send_verify(const std::string& code, const std::string& password)
+void PasswordHashingClient::send_verify(const std::string& code, const std::string& password, const std::string& salt)
 {
   int32_t cseqid = 0;
   oprot_->writeMessageBegin("verify", ::apache::thrift::protocol::T_CALL, cseqid);
@@ -469,6 +485,7 @@ void PasswordHashingClient::send_verify(const std::string& code, const std::stri
   PasswordHashing_verify_pargs args;
   args.code = &code;
   args.password = &password;
+  args.salt = &salt;
   args.write(oprot_);
 
   oprot_->writeMessageEnd();
@@ -605,7 +622,7 @@ void PasswordHashingProcessor::process_verify(int32_t seqid, ::apache::thrift::p
 
   PasswordHashing_verify_result result;
   try {
-    iface_->verify(args.code, args.password);
+    iface_->verify(args.code, args.password, args.salt);
   } catch (const std::exception& e) {
     if (this->eventHandler_.get() != nullptr) {
       this->eventHandler_->handlerError(ctx, "PasswordHashing.verify");
@@ -642,7 +659,7 @@ void PasswordHashingProcessor::process_verify(int32_t seqid, ::apache::thrift::p
   return processor;
 }
 
-void PasswordHashingConcurrentClient::sign(std::string& _return, const std::string& password, const int16_t salt_length)
+void PasswordHashingConcurrentClient::sign(PasswordHashingResponse& _return, const std::string& password, const int16_t salt_length)
 {
   int32_t seqid = send_sign(password, salt_length);
   recv_sign(_return, seqid);
@@ -667,7 +684,7 @@ int32_t PasswordHashingConcurrentClient::send_sign(const std::string& password, 
   return cseqid;
 }
 
-void PasswordHashingConcurrentClient::recv_sign(std::string& _return, const int32_t seqid)
+void PasswordHashingConcurrentClient::recv_sign(PasswordHashingResponse& _return, const int32_t seqid)
 {
 
   int32_t rseqid = 0;
@@ -727,13 +744,13 @@ void PasswordHashingConcurrentClient::recv_sign(std::string& _return, const int3
   } // end while(true)
 }
 
-void PasswordHashingConcurrentClient::verify(const std::string& code, const std::string& password)
+void PasswordHashingConcurrentClient::verify(const std::string& code, const std::string& password, const std::string& salt)
 {
-  int32_t seqid = send_verify(code, password);
+  int32_t seqid = send_verify(code, password, salt);
   recv_verify(seqid);
 }
 
-int32_t PasswordHashingConcurrentClient::send_verify(const std::string& code, const std::string& password)
+int32_t PasswordHashingConcurrentClient::send_verify(const std::string& code, const std::string& password, const std::string& salt)
 {
   int32_t cseqid = this->sync_->generateSeqId();
   ::apache::thrift::async::TConcurrentSendSentry sentry(this->sync_.get());
@@ -742,6 +759,7 @@ int32_t PasswordHashingConcurrentClient::send_verify(const std::string& code, co
   PasswordHashing_verify_pargs args;
   args.code = &code;
   args.password = &password;
+  args.salt = &salt;
   args.write(oprot_);
 
   oprot_->writeMessageEnd();

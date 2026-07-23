@@ -286,6 +286,74 @@ impl TSerializable for JwtSignRequest {
   }
 }
 
+//
+// PasswordHashingResponse
+//
+
+#[derive(Clone, Debug, Eq, Hash, Ord, PartialEq, PartialOrd)]
+pub struct PasswordHashingResponse {
+  pub code: Vec<u8>,
+  pub salt: Vec<u8>,
+}
+
+impl PasswordHashingResponse {
+  pub fn new(code: Vec<u8>, salt: Vec<u8>) -> PasswordHashingResponse {
+    PasswordHashingResponse {
+      code,
+      salt,
+    }
+  }
+}
+
+impl TSerializable for PasswordHashingResponse {
+  fn read_from_in_protocol(i_prot: &mut dyn TInputProtocol) -> thrift::Result<PasswordHashingResponse> {
+    i_prot.read_struct_begin()?;
+    let mut f_1: Option<Vec<u8>> = None;
+    let mut f_2: Option<Vec<u8>> = None;
+    loop {
+      let field_ident = i_prot.read_field_begin()?;
+      if field_ident.field_type == TType::Stop {
+        break;
+      }
+      let field_id = field_id(&field_ident)?;
+      match field_id {
+        1 => {
+          let val = i_prot.read_bytes()?;
+          f_1 = Some(val);
+        },
+        2 => {
+          let val = i_prot.read_bytes()?;
+          f_2 = Some(val);
+        },
+        _ => {
+          i_prot.skip(field_ident.field_type)?;
+        },
+      };
+      i_prot.read_field_end()?;
+    }
+    i_prot.read_struct_end()?;
+    verify_required_field_exists("PasswordHashingResponse.code", &f_1)?;
+    verify_required_field_exists("PasswordHashingResponse.salt", &f_2)?;
+    let ret = PasswordHashingResponse {
+      code: f_1.expect("auto-generated code should have checked for presence of required fields"),
+      salt: f_2.expect("auto-generated code should have checked for presence of required fields"),
+    };
+    Ok(ret)
+  }
+  fn write_to_out_protocol(&self, o_prot: &mut dyn TOutputProtocol) -> thrift::Result<()> {
+    let struct_ident = TStructIdentifier::new("PasswordHashingResponse");
+    o_prot.write_struct_begin(&struct_ident)?;
+    o_prot.write_field_begin(&TFieldIdentifier::new("code", TType::String, 1))?;
+    o_prot.write_bytes(&self.code)?;
+    o_prot.write_field_end()?;
+    o_prot.write_field_begin(&TFieldIdentifier::new("salt", TType::String, 2))?;
+    o_prot.write_bytes(&self.salt)?;
+    o_prot.write_field_end()?;
+    o_prot.write_field_stop()?;
+    o_prot.write_struct_end()
+  }
+}
+
 pub const VERSION: &str = "2026.5.7";
 
 //
@@ -1623,8 +1691,8 @@ impl AesDecryptResult {
 //
 
 pub trait TPasswordHashingSyncClient {
-  fn sign(&mut self, password: String, salt_length: i16) -> thrift::Result<String>;
-  fn verify(&mut self, code: String, password: String) -> thrift::Result<()>;
+  fn sign(&mut self, password: String, salt_length: i16) -> thrift::Result<PasswordHashingResponse>;
+  fn verify(&mut self, code: Vec<u8>, password: String, salt: Vec<u8>) -> thrift::Result<()>;
 }
 
 pub trait TPasswordHashingSyncClientMarker {}
@@ -1651,7 +1719,7 @@ impl <IP, OP> TThriftClient for PasswordHashingSyncClient<IP, OP> where IP: TInp
 impl <IP, OP> TPasswordHashingSyncClientMarker for PasswordHashingSyncClient<IP, OP> where IP: TInputProtocol, OP: TOutputProtocol {}
 
 impl <C: TThriftClient + TPasswordHashingSyncClientMarker> TPasswordHashingSyncClient for C {
-  fn sign(&mut self, password: String, salt_length: i16) -> thrift::Result<String> {
+  fn sign(&mut self, password: String, salt_length: i16) -> thrift::Result<PasswordHashingResponse> {
     (
       {
         self.increment_sequence_number();
@@ -1678,12 +1746,12 @@ impl <C: TThriftClient + TPasswordHashingSyncClientMarker> TPasswordHashingSyncC
       result.ok_or()
     }
   }
-  fn verify(&mut self, code: String, password: String) -> thrift::Result<()> {
+  fn verify(&mut self, code: Vec<u8>, password: String, salt: Vec<u8>) -> thrift::Result<()> {
     (
       {
         self.increment_sequence_number();
         let message_ident = TMessageIdentifier::new("verify", TMessageType::Call, self.sequence_number());
-        let call_args = PasswordHashingVerifyArgs { code, password };
+        let call_args = PasswordHashingVerifyArgs { code, password, salt };
         self.o_prot_mut().write_message_begin(&message_ident)?;
         call_args.write_to_out_protocol(self.o_prot_mut())?;
         self.o_prot_mut().write_message_end()?;
@@ -1712,8 +1780,8 @@ impl <C: TThriftClient + TPasswordHashingSyncClientMarker> TPasswordHashingSyncC
 //
 
 pub trait PasswordHashingSyncHandler {
-  fn handle_sign(&self, password: String, salt_length: i16) -> thrift::Result<String>;
-  fn handle_verify(&self, code: String, password: String) -> thrift::Result<()>;
+  fn handle_sign(&self, password: String, salt_length: i16) -> thrift::Result<PasswordHashingResponse>;
+  fn handle_verify(&self, code: Vec<u8>, password: String, salt: Vec<u8>) -> thrift::Result<()>;
 }
 
 pub struct PasswordHashingSyncProcessor<H: PasswordHashingSyncHandler> {
@@ -1776,7 +1844,7 @@ impl TPasswordHashingProcessFunctions {
   }
   pub fn process_verify<H: PasswordHashingSyncHandler>(handler: &H, incoming_sequence_number: i32, i_prot: &mut dyn TInputProtocol, o_prot: &mut dyn TOutputProtocol) -> thrift::Result<()> {
     let args = PasswordHashingVerifyArgs::read_from_in_protocol(i_prot)?;
-    match handler.handle_verify(args.code, args.password) {
+    match handler.handle_verify(args.code, args.password, args.salt) {
       Ok(_) => {
         let message_ident = TMessageIdentifier::new("verify", TMessageType::Reply, incoming_sequence_number);
         o_prot.write_message_begin(&message_ident)?;
@@ -1903,11 +1971,11 @@ impl PasswordHashingSignArgs {
 
 #[derive(Clone, Debug, Eq, Hash, Ord, PartialEq, PartialOrd)]
 struct PasswordHashingSignResult {
-  result_value: Option<String>,
+  result_value: Option<PasswordHashingResponse>,
 }
 
 impl PasswordHashingSignResult {
-  fn ok_or(self) -> thrift::Result<String> {
+  fn ok_or(self) -> thrift::Result<PasswordHashingResponse> {
     if self.result_value.is_some() {
       Ok(self.result_value.unwrap())
     } else {
@@ -1923,7 +1991,7 @@ impl PasswordHashingSignResult {
   }
   fn read_from_in_protocol(i_prot: &mut dyn TInputProtocol) -> thrift::Result<PasswordHashingSignResult> {
     i_prot.read_struct_begin()?;
-    let mut f_0: Option<String> = None;
+    let mut f_0: Option<PasswordHashingResponse> = None;
     loop {
       let field_ident = i_prot.read_field_begin()?;
       if field_ident.field_type == TType::Stop {
@@ -1932,7 +2000,7 @@ impl PasswordHashingSignResult {
       let field_id = field_id(&field_ident)?;
       match field_id {
         0 => {
-          let val = i_prot.read_string()?;
+          let val = PasswordHashingResponse::read_from_in_protocol(i_prot)?;
           f_0 = Some(val);
         },
         _ => {
@@ -1951,8 +2019,8 @@ impl PasswordHashingSignResult {
     let struct_ident = TStructIdentifier::new("PasswordHashingSignResult");
     o_prot.write_struct_begin(&struct_ident)?;
     if let Some(ref fld_var) = self.result_value {
-      o_prot.write_field_begin(&TFieldIdentifier::new("result_value", TType::String, 0))?;
-      o_prot.write_string(fld_var)?;
+      o_prot.write_field_begin(&TFieldIdentifier::new("result_value", TType::Struct, 0))?;
+      fld_var.write_to_out_protocol(o_prot)?;
       o_prot.write_field_end()?
     }
     o_prot.write_field_stop()?;
@@ -1966,15 +2034,17 @@ impl PasswordHashingSignResult {
 
 #[derive(Clone, Debug, Eq, Hash, Ord, PartialEq, PartialOrd)]
 struct PasswordHashingVerifyArgs {
-  code: String,
+  code: Vec<u8>,
   password: String,
+  salt: Vec<u8>,
 }
 
 impl PasswordHashingVerifyArgs {
   fn read_from_in_protocol(i_prot: &mut dyn TInputProtocol) -> thrift::Result<PasswordHashingVerifyArgs> {
     i_prot.read_struct_begin()?;
-    let mut f_1: Option<String> = None;
+    let mut f_1: Option<Vec<u8>> = None;
     let mut f_2: Option<String> = None;
+    let mut f_3: Option<Vec<u8>> = None;
     loop {
       let field_ident = i_prot.read_field_begin()?;
       if field_ident.field_type == TType::Stop {
@@ -1983,12 +2053,16 @@ impl PasswordHashingVerifyArgs {
       let field_id = field_id(&field_ident)?;
       match field_id {
         1 => {
-          let val = i_prot.read_string()?;
+          let val = i_prot.read_bytes()?;
           f_1 = Some(val);
         },
         2 => {
           let val = i_prot.read_string()?;
           f_2 = Some(val);
+        },
+        3 => {
+          let val = i_prot.read_bytes()?;
+          f_3 = Some(val);
         },
         _ => {
           i_prot.skip(field_ident.field_type)?;
@@ -1999,9 +2073,11 @@ impl PasswordHashingVerifyArgs {
     i_prot.read_struct_end()?;
     verify_required_field_exists("PasswordHashingVerifyArgs.code", &f_1)?;
     verify_required_field_exists("PasswordHashingVerifyArgs.password", &f_2)?;
+    verify_required_field_exists("PasswordHashingVerifyArgs.salt", &f_3)?;
     let ret = PasswordHashingVerifyArgs {
       code: f_1.expect("auto-generated code should have checked for presence of required fields"),
       password: f_2.expect("auto-generated code should have checked for presence of required fields"),
+      salt: f_3.expect("auto-generated code should have checked for presence of required fields"),
     };
     Ok(ret)
   }
@@ -2009,10 +2085,13 @@ impl PasswordHashingVerifyArgs {
     let struct_ident = TStructIdentifier::new("verify_args");
     o_prot.write_struct_begin(&struct_ident)?;
     o_prot.write_field_begin(&TFieldIdentifier::new("code", TType::String, 1))?;
-    o_prot.write_string(&self.code)?;
+    o_prot.write_bytes(&self.code)?;
     o_prot.write_field_end()?;
     o_prot.write_field_begin(&TFieldIdentifier::new("password", TType::String, 2))?;
     o_prot.write_string(&self.password)?;
+    o_prot.write_field_end()?;
+    o_prot.write_field_begin(&TFieldIdentifier::new("salt", TType::String, 3))?;
+    o_prot.write_bytes(&self.salt)?;
     o_prot.write_field_end()?;
     o_prot.write_field_stop()?;
     o_prot.write_struct_end()

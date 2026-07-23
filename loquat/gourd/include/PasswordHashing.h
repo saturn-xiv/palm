@@ -22,8 +22,8 @@ namespace loquat { namespace v1 {
 class PasswordHashingIf {
  public:
   virtual ~PasswordHashingIf() {}
-  virtual void sign(std::string& _return, const std::string& password, const int16_t salt_length) = 0;
-  virtual void verify(const std::string& code, const std::string& password) = 0;
+  virtual void sign(PasswordHashingResponse& _return, const std::string& password, const int16_t salt_length) = 0;
+  virtual void verify(const std::string& code, const std::string& password, const std::string& salt) = 0;
 };
 
 class PasswordHashingIfFactory {
@@ -53,10 +53,10 @@ class PasswordHashingIfSingletonFactory : virtual public PasswordHashingIfFactor
 class PasswordHashingNull : virtual public PasswordHashingIf {
  public:
   virtual ~PasswordHashingNull() {}
-  void sign(std::string& /* _return */, const std::string& /* password */, const int16_t /* salt_length */) override {
+  void sign(PasswordHashingResponse& /* _return */, const std::string& /* password */, const int16_t /* salt_length */) override {
     return;
   }
-  void verify(const std::string& /* code */, const std::string& /* password */) override {
+  void verify(const std::string& /* code */, const std::string& /* password */, const std::string& /* salt */) override {
     return;
   }
 };
@@ -122,11 +122,11 @@ class PasswordHashing_sign_result {
   PasswordHashing_sign_result() noexcept;
 
   virtual ~PasswordHashing_sign_result() noexcept;
-  std::string success;
+  PasswordHashingResponse success;
 
   _PasswordHashing_sign_result__isset __isset;
 
-  void __set_success(const std::string& val);
+  void __set_success(const PasswordHashingResponse& val);
 
   bool operator == (const PasswordHashing_sign_result & rhs) const;
   bool operator != (const PasswordHashing_sign_result &rhs) const {
@@ -150,7 +150,7 @@ class PasswordHashing_sign_presult {
 
 
   virtual ~PasswordHashing_sign_presult() noexcept;
-  std::string* success;
+  PasswordHashingResponse* success;
 
   _PasswordHashing_sign_presult__isset __isset;
 
@@ -159,9 +159,10 @@ class PasswordHashing_sign_presult {
 };
 
 typedef struct _PasswordHashing_verify_args__isset {
-  _PasswordHashing_verify_args__isset() : code(false), password(false) {}
+  _PasswordHashing_verify_args__isset() : code(false), password(false), salt(false) {}
   bool code :1;
   bool password :1;
+  bool salt :1;
 } _PasswordHashing_verify_args__isset;
 
 class PasswordHashing_verify_args {
@@ -174,12 +175,15 @@ class PasswordHashing_verify_args {
   virtual ~PasswordHashing_verify_args() noexcept;
   std::string code;
   std::string password;
+  std::string salt;
 
   _PasswordHashing_verify_args__isset __isset;
 
   void __set_code(const std::string& val);
 
   void __set_password(const std::string& val);
+
+  void __set_salt(const std::string& val);
 
   bool operator == (const PasswordHashing_verify_args & rhs) const;
   bool operator != (const PasswordHashing_verify_args &rhs) const {
@@ -201,6 +205,7 @@ class PasswordHashing_verify_pargs {
   virtual ~PasswordHashing_verify_pargs() noexcept;
   const std::string* code;
   const std::string* password;
+  const std::string* salt;
 
   uint32_t write(::apache::thrift::protocol::TProtocol* oprot) const;
 
@@ -264,11 +269,11 @@ class PasswordHashingClient : virtual public PasswordHashingIf {
   std::shared_ptr< ::apache::thrift::protocol::TProtocol> getOutputProtocol() {
     return poprot_;
   }
-  void sign(std::string& _return, const std::string& password, const int16_t salt_length) override;
+  void sign(PasswordHashingResponse& _return, const std::string& password, const int16_t salt_length) override;
   void send_sign(const std::string& password, const int16_t salt_length);
-  void recv_sign(std::string& _return);
-  void verify(const std::string& code, const std::string& password) override;
-  void send_verify(const std::string& code, const std::string& password);
+  void recv_sign(PasswordHashingResponse& _return);
+  void verify(const std::string& code, const std::string& password, const std::string& salt) override;
+  void send_verify(const std::string& code, const std::string& password, const std::string& salt);
   void recv_verify();
  protected:
   std::shared_ptr< ::apache::thrift::protocol::TProtocol> piprot_;
@@ -320,7 +325,7 @@ class PasswordHashingMultiface : virtual public PasswordHashingIf {
     ifaces_.push_back(iface);
   }
  public:
-  void sign(std::string& _return, const std::string& password, const int16_t salt_length) override {
+  void sign(PasswordHashingResponse& _return, const std::string& password, const int16_t salt_length) override {
     size_t sz = ifaces_.size();
     size_t i = 0;
     for (; i < (sz - 1); ++i) {
@@ -330,13 +335,13 @@ class PasswordHashingMultiface : virtual public PasswordHashingIf {
     return;
   }
 
-  void verify(const std::string& code, const std::string& password) override {
+  void verify(const std::string& code, const std::string& password, const std::string& salt) override {
     size_t sz = ifaces_.size();
     size_t i = 0;
     for (; i < (sz - 1); ++i) {
-      ifaces_[i]->verify(code, password);
+      ifaces_[i]->verify(code, password, salt);
     }
-    ifaces_[i]->verify(code, password);
+    ifaces_[i]->verify(code, password, salt);
   }
 
 };
@@ -371,11 +376,11 @@ class PasswordHashingConcurrentClient : virtual public PasswordHashingIf {
   std::shared_ptr< ::apache::thrift::protocol::TProtocol> getOutputProtocol() {
     return poprot_;
   }
-  void sign(std::string& _return, const std::string& password, const int16_t salt_length) override;
+  void sign(PasswordHashingResponse& _return, const std::string& password, const int16_t salt_length) override;
   int32_t send_sign(const std::string& password, const int16_t salt_length);
-  void recv_sign(std::string& _return, const int32_t seqid);
-  void verify(const std::string& code, const std::string& password) override;
-  int32_t send_verify(const std::string& code, const std::string& password);
+  void recv_sign(PasswordHashingResponse& _return, const int32_t seqid);
+  void verify(const std::string& code, const std::string& password, const std::string& salt) override;
+  int32_t send_verify(const std::string& code, const std::string& password, const std::string& salt);
   void recv_verify(const int32_t seqid);
  protected:
   std::shared_ptr< ::apache::thrift::protocol::TProtocol> piprot_;
