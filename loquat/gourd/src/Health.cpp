@@ -100,17 +100,17 @@ uint32_t Health_check_result::read(::apache::thrift::protocol::TProtocol* iprot)
         if (ftype == ::apache::thrift::protocol::T_MAP) {
           {
             this->success.clear();
-            uint32_t _size13;
-            ::apache::thrift::protocol::TType _ktype14;
-            ::apache::thrift::protocol::TType _vtype15;
-            xfer += iprot->readMapBegin(_ktype14, _vtype15, _size13);
-            uint32_t _i17;
-            for (_i17 = 0; _i17 < _size13; ++_i17)
+            uint32_t _size11;
+            ::apache::thrift::protocol::TType _ktype12;
+            ::apache::thrift::protocol::TType _vtype13;
+            xfer += iprot->readMapBegin(_ktype12, _vtype13, _size11);
+            uint32_t _i15;
+            for (_i15 = 0; _i15 < _size11; ++_i15)
             {
-              std::string _key18;
-              xfer += iprot->readString(_key18);
-              std::string& _val19 = this->success[_key18];
-              xfer += iprot->readString(_val19);
+              std::string _key16;
+              xfer += iprot->readString(_key16);
+              std::string& _val17 = this->success[_key16];
+              xfer += iprot->readString(_val17);
             }
             xfer += iprot->readMapEnd();
           }
@@ -141,11 +141,11 @@ uint32_t Health_check_result::write(::apache::thrift::protocol::TProtocol* oprot
     xfer += oprot->writeFieldBegin("success", ::apache::thrift::protocol::T_MAP, 0);
     {
       xfer += oprot->writeMapBegin(::apache::thrift::protocol::T_STRING, ::apache::thrift::protocol::T_STRING, static_cast<uint32_t>(this->success.size()));
-      std::map<std::string, std::string> ::const_iterator _iter20;
-      for (_iter20 = this->success.begin(); _iter20 != this->success.end(); ++_iter20)
+      std::map<std::string, std::string> ::const_iterator _iter18;
+      for (_iter18 = this->success.begin(); _iter18 != this->success.end(); ++_iter18)
       {
-        xfer += oprot->writeString(_iter20->first);
-        xfer += oprot->writeString(_iter20->second);
+        xfer += oprot->writeString(_iter18->first);
+        xfer += oprot->writeString(_iter18->second);
       }
       xfer += oprot->writeMapEnd();
     }
@@ -186,17 +186,17 @@ uint32_t Health_check_presult::read(::apache::thrift::protocol::TProtocol* iprot
         if (ftype == ::apache::thrift::protocol::T_MAP) {
           {
             (*(this->success)).clear();
-            uint32_t _size21;
-            ::apache::thrift::protocol::TType _ktype22;
-            ::apache::thrift::protocol::TType _vtype23;
-            xfer += iprot->readMapBegin(_ktype22, _vtype23, _size21);
-            uint32_t _i25;
-            for (_i25 = 0; _i25 < _size21; ++_i25)
+            uint32_t _size19;
+            ::apache::thrift::protocol::TType _ktype20;
+            ::apache::thrift::protocol::TType _vtype21;
+            xfer += iprot->readMapBegin(_ktype20, _vtype21, _size19);
+            uint32_t _i23;
+            for (_i23 = 0; _i23 < _size19; ++_i23)
             {
-              std::string _key26;
-              xfer += iprot->readString(_key26);
-              std::string& _val27 = (*(this->success))[_key26];
-              xfer += iprot->readString(_val27);
+              std::string _key24;
+              xfer += iprot->readString(_key24);
+              std::string& _val25 = (*(this->success))[_key24];
+              xfer += iprot->readString(_val25);
             }
             xfer += iprot->readMapEnd();
           }

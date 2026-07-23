@@ -25,11 +25,6 @@ struct JwtSignRequest{
     99:optional binary payload,
 }
 
-struct PasswordHashingResponse{    
-    1:required binary code,
-    2:required binary salt,
-}
-
 service Jwt {
     string sign(1:JwtSignRequest request);
     JwtVerfifyResponse verify(1:string token, 2:string issuer, 3:string audience);
@@ -45,9 +40,9 @@ service Aes {
     binary decrypt(1:binary code);
 }
 
-service PasswordHashing {
-    PasswordHashingResponse sign(1:string password, 2:i16 salt_length);
-    void verify(1:binary code, 2:string password, 3:binary salt);
+service Argon2 {
+    string sign(1:string password);
+    bool verify(1:binary hashed, 2:string password);
 }
 
 service Health {

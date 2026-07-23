@@ -9,10 +9,10 @@
 #pragma GCC diagnostic pop
 
 #include "Aes.h"
+#include "Argon2.h"
 #include "Health.h"
 #include "Hmac.h"
 #include "Jwt.h"
-#include "PasswordHashing.h"
 
 namespace loquat {
 
@@ -58,6 +58,14 @@ class JwtHandler final : public v1::JwtIf {
               const std::string& audience) override;
 };
 
+class Argon2Handler final : public v1::Argon2If {
+ public:
+  Argon2Handler() = default;
+
+  void sign(std::string& reply, const std::string& password) override;
+  bool verify(const std::string& hashed, const std::string& password) override;
+};
+
 class HealthHandler final : public v1::HealthIf {
  public:
   HealthHandler() = default;
@@ -65,13 +73,4 @@ class HealthHandler final : public v1::HealthIf {
   void check(std::map<std::string, std::string>& response) override;
 };
 
-class PasswordHashingHandler final : public v1::PasswordHashingIf {
- public:
-  PasswordHashingHandler() = default;
-
-  void sign(loquat::v1::PasswordHashingResponse& reply,
-            const std::string& password, const int16_t salt_length) override;
-  void verify(const std::string& code, const std::string& password,
-              const std::string& salt) override;
-};
 }  // namespace loquat

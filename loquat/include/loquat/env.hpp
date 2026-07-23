@@ -124,9 +124,7 @@ class Aes final : public Keyset {
 };
 
 namespace argon2id {
-std::pair<std::vector<uint8_t>, std::vector<uint8_t>> sign(
-    const std::string& password, size_t salt_length);
-bool verify(const std::vector<uint8_t>& code, const std::string& password,
-            const std::vector<uint8_t>& salt);
+std::optional<std::string> sign(const std::string& password);
+bool verify(const std::string& hashed, const std::string& password);
 }  // namespace argon2id
 }  // namespace loquat

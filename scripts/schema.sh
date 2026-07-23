@@ -98,8 +98,11 @@ generate_thrift
 generate_diesel
 
 sed -i -E "s/(version = \")[0-9]+\.[0-9]+\.[0-9]+/\1$(date +%Y.%-m.%-d)/g" $WORK_DIR/hyacinth/Cargo.toml
+
+echo "formating source codes"
 cd $WORK_DIR/
 cargo fmt
+clang-format -i loquat/include/loquat/*.hpp loquat/src/*.cpp
 
 echo 'done.'
 exit 0

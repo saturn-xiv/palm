@@ -25,8 +25,6 @@ class JwtVerfifyResponse;
 
 class JwtSignRequest;
 
-class PasswordHashingResponse;
-
 typedef struct _JwtVerfifyResponse__isset {
   _JwtVerfifyResponse__isset() : jwt_id(false), key_id(false), payload(false) {}
   bool jwt_id :1;
@@ -135,39 +133,6 @@ class JwtSignRequest : public virtual ::apache::thrift::TBase {
 void swap(JwtSignRequest &a, JwtSignRequest &b);
 
 std::ostream& operator<<(std::ostream& out, const JwtSignRequest& obj);
-
-
-class PasswordHashingResponse : public virtual ::apache::thrift::TBase {
- public:
-
-  PasswordHashingResponse(const PasswordHashingResponse&);
-  PasswordHashingResponse& operator=(const PasswordHashingResponse&);
-  PasswordHashingResponse() noexcept;
-
-  virtual ~PasswordHashingResponse() noexcept;
-  std::string code;
-  std::string salt;
-
-  void __set_code(const std::string& val);
-
-  void __set_salt(const std::string& val);
-
-  bool operator == (const PasswordHashingResponse & rhs) const;
-  bool operator != (const PasswordHashingResponse &rhs) const {
-    return !(*this == rhs);
-  }
-
-  bool operator < (const PasswordHashingResponse & ) const;
-
-  uint32_t read(::apache::thrift::protocol::TProtocol* iprot) override;
-  uint32_t write(::apache::thrift::protocol::TProtocol* oprot) const override;
-
-  virtual void printTo(std::ostream& out) const;
-};
-
-void swap(PasswordHashingResponse &a, PasswordHashingResponse &b);
-
-std::ostream& operator<<(std::ostream& out, const PasswordHashingResponse& obj);
 
 }} // namespace
 

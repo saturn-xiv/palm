@@ -4,20 +4,19 @@
  * DO NOT EDIT UNLESS YOU ARE SURE THAT YOU KNOW WHAT YOU ARE DOING
  *  @generated
  */
-#include "PasswordHashing.h"
+#include "Argon2.h"
 
 namespace loquat { namespace v1 {
 
 
-PasswordHashing_sign_args::~PasswordHashing_sign_args() noexcept {
+Argon2_sign_args::~Argon2_sign_args() noexcept {
 }
 
-PasswordHashing_sign_args::PasswordHashing_sign_args() noexcept
-   : password(),
-     salt_length(0) {
+Argon2_sign_args::Argon2_sign_args() noexcept
+   : password() {
 }
 
-uint32_t PasswordHashing_sign_args::read(::apache::thrift::protocol::TProtocol* iprot) {
+uint32_t Argon2_sign_args::read(::apache::thrift::protocol::TProtocol* iprot) {
 
   ::apache::thrift::protocol::TInputRecursionTracker tracker(*iprot);
   uint32_t xfer = 0;
@@ -46,14 +45,6 @@ uint32_t PasswordHashing_sign_args::read(::apache::thrift::protocol::TProtocol* 
           xfer += iprot->skip(ftype);
         }
         break;
-      case 2:
-        if (ftype == ::apache::thrift::protocol::T_I16) {
-          xfer += iprot->readI16(this->salt_length);
-          this->__isset.salt_length = true;
-        } else {
-          xfer += iprot->skip(ftype);
-        }
-        break;
       default:
         xfer += iprot->skip(ftype);
         break;
@@ -66,55 +57,48 @@ uint32_t PasswordHashing_sign_args::read(::apache::thrift::protocol::TProtocol* 
   return xfer;
 }
 
-uint32_t PasswordHashing_sign_args::write(::apache::thrift::protocol::TProtocol* oprot) const {
+uint32_t Argon2_sign_args::write(::apache::thrift::protocol::TProtocol* oprot) const {
   uint32_t xfer = 0;
   ::apache::thrift::protocol::TOutputRecursionTracker tracker(*oprot);
-  xfer += oprot->writeStructBegin("PasswordHashing_sign_args");
+  xfer += oprot->writeStructBegin("Argon2_sign_args");
 
   xfer += oprot->writeFieldBegin("password", ::apache::thrift::protocol::T_STRING, 1);
   xfer += oprot->writeString(this->password);
   xfer += oprot->writeFieldEnd();
 
-  xfer += oprot->writeFieldBegin("salt_length", ::apache::thrift::protocol::T_I16, 2);
-  xfer += oprot->writeI16(this->salt_length);
-  xfer += oprot->writeFieldEnd();
-
   xfer += oprot->writeFieldStop();
   xfer += oprot->writeStructEnd();
   return xfer;
 }
 
 
-PasswordHashing_sign_pargs::~PasswordHashing_sign_pargs() noexcept {
+Argon2_sign_pargs::~Argon2_sign_pargs() noexcept {
 }
 
 
-uint32_t PasswordHashing_sign_pargs::write(::apache::thrift::protocol::TProtocol* oprot) const {
+uint32_t Argon2_sign_pargs::write(::apache::thrift::protocol::TProtocol* oprot) const {
   uint32_t xfer = 0;
   ::apache::thrift::protocol::TOutputRecursionTracker tracker(*oprot);
-  xfer += oprot->writeStructBegin("PasswordHashing_sign_pargs");
+  xfer += oprot->writeStructBegin("Argon2_sign_pargs");
 
   xfer += oprot->writeFieldBegin("password", ::apache::thrift::protocol::T_STRING, 1);
   xfer += oprot->writeString((*(this->password)));
   xfer += oprot->writeFieldEnd();
 
-  xfer += oprot->writeFieldBegin("salt_length", ::apache::thrift::protocol::T_I16, 2);
-  xfer += oprot->writeI16((*(this->salt_length)));
-  xfer += oprot->writeFieldEnd();
-
   xfer += oprot->writeFieldStop();
   xfer += oprot->writeStructEnd();
   return xfer;
 }
 
 
-PasswordHashing_sign_result::~PasswordHashing_sign_result() noexcept {
+Argon2_sign_result::~Argon2_sign_result() noexcept {
 }
 
-PasswordHashing_sign_result::PasswordHashing_sign_result() noexcept {
+Argon2_sign_result::Argon2_sign_result() noexcept
+   : success() {
 }
 
-uint32_t PasswordHashing_sign_result::read(::apache::thrift::protocol::TProtocol* iprot) {
+uint32_t Argon2_sign_result::read(::apache::thrift::protocol::TProtocol* iprot) {
 
   ::apache::thrift::protocol::TInputRecursionTracker tracker(*iprot);
   uint32_t xfer = 0;
@@ -136,8 +120,8 @@ uint32_t PasswordHashing_sign_result::read(::apache::thrift::protocol::TProtocol
     switch (fid)
     {
       case 0:
-        if (ftype == ::apache::thrift::protocol::T_STRUCT) {
-          xfer += this->success.read(iprot);
+        if (ftype == ::apache::thrift::protocol::T_STRING) {
+          xfer += iprot->readString(this->success);
           this->__isset.success = true;
         } else {
           xfer += iprot->skip(ftype);
@@ -155,15 +139,15 @@ uint32_t PasswordHashing_sign_result::read(::apache::thrift::protocol::TProtocol
   return xfer;
 }
 
-uint32_t PasswordHashing_sign_result::write(::apache::thrift::protocol::TProtocol* oprot) const {
+uint32_t Argon2_sign_result::write(::apache::thrift::protocol::TProtocol* oprot) const {
 
   uint32_t xfer = 0;
 
-  xfer += oprot->writeStructBegin("PasswordHashing_sign_result");
+  xfer += oprot->writeStructBegin("Argon2_sign_result");
 
   if (this->__isset.success) {
-    xfer += oprot->writeFieldBegin("success", ::apache::thrift::protocol::T_STRUCT, 0);
-    xfer += this->success.write(oprot);
+    xfer += oprot->writeFieldBegin("success", ::apache::thrift::protocol::T_STRING, 0);
+    xfer += oprot->writeString(this->success);
     xfer += oprot->writeFieldEnd();
   }
   xfer += oprot->writeFieldStop();
@@ -172,11 +156,11 @@ uint32_t PasswordHashing_sign_result::write(::apache::thrift::protocol::TProtoco
 }
 
 
-PasswordHashing_sign_presult::~PasswordHashing_sign_presult() noexcept {
+Argon2_sign_presult::~Argon2_sign_presult() noexcept {
 }
 
 
-uint32_t PasswordHashing_sign_presult::read(::apache::thrift::protocol::TProtocol* iprot) {
+uint32_t Argon2_sign_presult::read(::apache::thrift::protocol::TProtocol* iprot) {
 
   ::apache::thrift::protocol::TInputRecursionTracker tracker(*iprot);
   uint32_t xfer = 0;
@@ -198,8 +182,8 @@ uint32_t PasswordHashing_sign_presult::read(::apache::thrift::protocol::TProtoco
     switch (fid)
     {
       case 0:
-        if (ftype == ::apache::thrift::protocol::T_STRUCT) {
-          xfer += (*(this->success)).read(iprot);
+        if (ftype == ::apache::thrift::protocol::T_STRING) {
+          xfer += iprot->readString((*(this->success)));
           this->__isset.success = true;
         } else {
           xfer += iprot->skip(ftype);
@@ -218,16 +202,15 @@ uint32_t PasswordHashing_sign_presult::read(::apache::thrift::protocol::TProtoco
 }
 
 
-PasswordHashing_verify_args::~PasswordHashing_verify_args() noexcept {
+Argon2_verify_args::~Argon2_verify_args() noexcept {
 }
 
-PasswordHashing_verify_args::PasswordHashing_verify_args() noexcept
-   : code(),
-     password(),
-     salt() {
+Argon2_verify_args::Argon2_verify_args() noexcept
+   : hashed(),
+     password() {
 }
 
-uint32_t PasswordHashing_verify_args::read(::apache::thrift::protocol::TProtocol* iprot) {
+uint32_t Argon2_verify_args::read(::apache::thrift::protocol::TProtocol* iprot) {
 
   ::apache::thrift::protocol::TInputRecursionTracker tracker(*iprot);
   uint32_t xfer = 0;
@@ -250,8 +233,8 @@ uint32_t PasswordHashing_verify_args::read(::apache::thrift::protocol::TProtocol
     {
       case 1:
         if (ftype == ::apache::thrift::protocol::T_STRING) {
-          xfer += iprot->readBinary(this->code);
-          this->__isset.code = true;
+          xfer += iprot->readBinary(this->hashed);
+          this->__isset.hashed = true;
         } else {
           xfer += iprot->skip(ftype);
         }
@@ -260,14 +243,6 @@ uint32_t PasswordHashing_verify_args::read(::apache::thrift::protocol::TProtocol
         if (ftype == ::apache::thrift::protocol::T_STRING) {
           xfer += iprot->readString(this->password);
           this->__isset.password = true;
-        } else {
-          xfer += iprot->skip(ftype);
-        }
-        break;
-      case 3:
-        if (ftype == ::apache::thrift::protocol::T_STRING) {
-          xfer += iprot->readBinary(this->salt);
-          this->__isset.salt = true;
         } else {
           xfer += iprot->skip(ftype);
         }
@@ -284,63 +259,56 @@ uint32_t PasswordHashing_verify_args::read(::apache::thrift::protocol::TProtocol
   return xfer;
 }
 
-uint32_t PasswordHashing_verify_args::write(::apache::thrift::protocol::TProtocol* oprot) const {
+uint32_t Argon2_verify_args::write(::apache::thrift::protocol::TProtocol* oprot) const {
   uint32_t xfer = 0;
   ::apache::thrift::protocol::TOutputRecursionTracker tracker(*oprot);
-  xfer += oprot->writeStructBegin("PasswordHashing_verify_args");
+  xfer += oprot->writeStructBegin("Argon2_verify_args");
 
-  xfer += oprot->writeFieldBegin("code", ::apache::thrift::protocol::T_STRING, 1);
-  xfer += oprot->writeBinary(this->code);
+  xfer += oprot->writeFieldBegin("hashed", ::apache::thrift::protocol::T_STRING, 1);
+  xfer += oprot->writeBinary(this->hashed);
   xfer += oprot->writeFieldEnd();
 
   xfer += oprot->writeFieldBegin("password", ::apache::thrift::protocol::T_STRING, 2);
   xfer += oprot->writeString(this->password);
   xfer += oprot->writeFieldEnd();
 
-  xfer += oprot->writeFieldBegin("salt", ::apache::thrift::protocol::T_STRING, 3);
-  xfer += oprot->writeBinary(this->salt);
-  xfer += oprot->writeFieldEnd();
-
   xfer += oprot->writeFieldStop();
   xfer += oprot->writeStructEnd();
   return xfer;
 }
 
 
-PasswordHashing_verify_pargs::~PasswordHashing_verify_pargs() noexcept {
+Argon2_verify_pargs::~Argon2_verify_pargs() noexcept {
 }
 
 
-uint32_t PasswordHashing_verify_pargs::write(::apache::thrift::protocol::TProtocol* oprot) const {
+uint32_t Argon2_verify_pargs::write(::apache::thrift::protocol::TProtocol* oprot) const {
   uint32_t xfer = 0;
   ::apache::thrift::protocol::TOutputRecursionTracker tracker(*oprot);
-  xfer += oprot->writeStructBegin("PasswordHashing_verify_pargs");
+  xfer += oprot->writeStructBegin("Argon2_verify_pargs");
 
-  xfer += oprot->writeFieldBegin("code", ::apache::thrift::protocol::T_STRING, 1);
-  xfer += oprot->writeBinary((*(this->code)));
+  xfer += oprot->writeFieldBegin("hashed", ::apache::thrift::protocol::T_STRING, 1);
+  xfer += oprot->writeBinary((*(this->hashed)));
   xfer += oprot->writeFieldEnd();
 
   xfer += oprot->writeFieldBegin("password", ::apache::thrift::protocol::T_STRING, 2);
   xfer += oprot->writeString((*(this->password)));
   xfer += oprot->writeFieldEnd();
 
-  xfer += oprot->writeFieldBegin("salt", ::apache::thrift::protocol::T_STRING, 3);
-  xfer += oprot->writeBinary((*(this->salt)));
-  xfer += oprot->writeFieldEnd();
-
   xfer += oprot->writeFieldStop();
   xfer += oprot->writeStructEnd();
   return xfer;
 }
 
 
-PasswordHashing_verify_result::~PasswordHashing_verify_result() noexcept {
+Argon2_verify_result::~Argon2_verify_result() noexcept {
 }
 
-PasswordHashing_verify_result::PasswordHashing_verify_result() noexcept {
+Argon2_verify_result::Argon2_verify_result() noexcept
+   : success(0) {
 }
 
-uint32_t PasswordHashing_verify_result::read(::apache::thrift::protocol::TProtocol* iprot) {
+uint32_t Argon2_verify_result::read(::apache::thrift::protocol::TProtocol* iprot) {
 
   ::apache::thrift::protocol::TInputRecursionTracker tracker(*iprot);
   uint32_t xfer = 0;
@@ -359,7 +327,20 @@ uint32_t PasswordHashing_verify_result::read(::apache::thrift::protocol::TProtoc
     if (ftype == ::apache::thrift::protocol::T_STOP) {
       break;
     }
-    xfer += iprot->skip(ftype);
+    switch (fid)
+    {
+      case 0:
+        if (ftype == ::apache::thrift::protocol::T_BOOL) {
+          xfer += iprot->readBool(this->success);
+          this->__isset.success = true;
+        } else {
+          xfer += iprot->skip(ftype);
+        }
+        break;
+      default:
+        xfer += iprot->skip(ftype);
+        break;
+    }
     xfer += iprot->readFieldEnd();
   }
 
@@ -368,23 +349,28 @@ uint32_t PasswordHashing_verify_result::read(::apache::thrift::protocol::TProtoc
   return xfer;
 }
 
-uint32_t PasswordHashing_verify_result::write(::apache::thrift::protocol::TProtocol* oprot) const {
+uint32_t Argon2_verify_result::write(::apache::thrift::protocol::TProtocol* oprot) const {
 
   uint32_t xfer = 0;
 
-  xfer += oprot->writeStructBegin("PasswordHashing_verify_result");
+  xfer += oprot->writeStructBegin("Argon2_verify_result");
 
+  if (this->__isset.success) {
+    xfer += oprot->writeFieldBegin("success", ::apache::thrift::protocol::T_BOOL, 0);
+    xfer += oprot->writeBool(this->success);
+    xfer += oprot->writeFieldEnd();
+  }
   xfer += oprot->writeFieldStop();
   xfer += oprot->writeStructEnd();
   return xfer;
 }
 
 
-PasswordHashing_verify_presult::~PasswordHashing_verify_presult() noexcept {
+Argon2_verify_presult::~Argon2_verify_presult() noexcept {
 }
 
 
-uint32_t PasswordHashing_verify_presult::read(::apache::thrift::protocol::TProtocol* iprot) {
+uint32_t Argon2_verify_presult::read(::apache::thrift::protocol::TProtocol* iprot) {
 
   ::apache::thrift::protocol::TInputRecursionTracker tracker(*iprot);
   uint32_t xfer = 0;
@@ -403,7 +389,20 @@ uint32_t PasswordHashing_verify_presult::read(::apache::thrift::protocol::TProto
     if (ftype == ::apache::thrift::protocol::T_STOP) {
       break;
     }
-    xfer += iprot->skip(ftype);
+    switch (fid)
+    {
+      case 0:
+        if (ftype == ::apache::thrift::protocol::T_BOOL) {
+          xfer += iprot->readBool((*(this->success)));
+          this->__isset.success = true;
+        } else {
+          xfer += iprot->skip(ftype);
+        }
+        break;
+      default:
+        xfer += iprot->skip(ftype);
+        break;
+    }
     xfer += iprot->readFieldEnd();
   }
 
@@ -412,20 +411,19 @@ uint32_t PasswordHashing_verify_presult::read(::apache::thrift::protocol::TProto
   return xfer;
 }
 
-void PasswordHashingClient::sign(PasswordHashingResponse& _return, const std::string& password, const int16_t salt_length)
+void Argon2Client::sign(std::string& _return, const std::string& password)
 {
-  send_sign(password, salt_length);
+  send_sign(password);
   recv_sign(_return);
 }
 
-void PasswordHashingClient::send_sign(const std::string& password, const int16_t salt_length)
+void Argon2Client::send_sign(const std::string& password)
 {
   int32_t cseqid = 0;
   oprot_->writeMessageBegin("sign", ::apache::thrift::protocol::T_CALL, cseqid);
 
-  PasswordHashing_sign_pargs args;
+  Argon2_sign_pargs args;
   args.password = &password;
-  args.salt_length = &salt_length;
   args.write(oprot_);
 
   oprot_->writeMessageEnd();
@@ -433,7 +431,7 @@ void PasswordHashingClient::send_sign(const std::string& password, const int16_t
   oprot_->getTransport()->flush();
 }
 
-void PasswordHashingClient::recv_sign(PasswordHashingResponse& _return)
+void Argon2Client::recv_sign(std::string& _return)
 {
 
   int32_t rseqid = 0;
@@ -458,7 +456,7 @@ void PasswordHashingClient::recv_sign(PasswordHashingResponse& _return)
     iprot_->readMessageEnd();
     iprot_->getTransport()->readEnd();
   }
-  PasswordHashing_sign_presult result;
+  Argon2_sign_presult result;
   result.success = &_return;
   result.read(iprot_);
   iprot_->readMessageEnd();
@@ -471,21 +469,20 @@ void PasswordHashingClient::recv_sign(PasswordHashingResponse& _return)
   throw ::apache::thrift::TApplicationException(::apache::thrift::TApplicationException::MISSING_RESULT, "sign failed: unknown result");
 }
 
-void PasswordHashingClient::verify(const std::string& code, const std::string& password, const std::string& salt)
+bool Argon2Client::verify(const std::string& hashed, const std::string& password)
 {
-  send_verify(code, password, salt);
-  recv_verify();
+  send_verify(hashed, password);
+  return recv_verify();
 }
 
-void PasswordHashingClient::send_verify(const std::string& code, const std::string& password, const std::string& salt)
+void Argon2Client::send_verify(const std::string& hashed, const std::string& password)
 {
   int32_t cseqid = 0;
   oprot_->writeMessageBegin("verify", ::apache::thrift::protocol::T_CALL, cseqid);
 
-  PasswordHashing_verify_pargs args;
-  args.code = &code;
+  Argon2_verify_pargs args;
+  args.hashed = &hashed;
   args.password = &password;
-  args.salt = &salt;
   args.write(oprot_);
 
   oprot_->writeMessageEnd();
@@ -493,7 +490,7 @@ void PasswordHashingClient::send_verify(const std::string& code, const std::stri
   oprot_->getTransport()->flush();
 }
 
-void PasswordHashingClient::recv_verify()
+bool Argon2Client::recv_verify()
 {
 
   int32_t rseqid = 0;
@@ -518,15 +515,20 @@ void PasswordHashingClient::recv_verify()
     iprot_->readMessageEnd();
     iprot_->getTransport()->readEnd();
   }
-  PasswordHashing_verify_presult result;
+  bool _return;
+  Argon2_verify_presult result;
+  result.success = &_return;
   result.read(iprot_);
   iprot_->readMessageEnd();
   iprot_->getTransport()->readEnd();
 
-  return;
+  if (result.__isset.success) {
+    return _return;
+  }
+  throw ::apache::thrift::TApplicationException(::apache::thrift::TApplicationException::MISSING_RESULT, "verify failed: unknown result");
 }
 
-bool PasswordHashingProcessor::dispatchCall(::apache::thrift::protocol::TProtocol* iprot, ::apache::thrift::protocol::TProtocol* oprot, const std::string& fname, int32_t seqid, void* callContext) {
+bool Argon2Processor::dispatchCall(::apache::thrift::protocol::TProtocol* iprot, ::apache::thrift::protocol::TProtocol* oprot, const std::string& fname, int32_t seqid, void* callContext) {
   ProcessMap::iterator pfn;
   pfn = processMap_.find(fname);
   if (pfn == processMap_.end()) {
@@ -545,34 +547,34 @@ bool PasswordHashingProcessor::dispatchCall(::apache::thrift::protocol::TProtoco
   return true;
 }
 
-void PasswordHashingProcessor::process_sign(int32_t seqid, ::apache::thrift::protocol::TProtocol* iprot, ::apache::thrift::protocol::TProtocol* oprot, void* callContext)
+void Argon2Processor::process_sign(int32_t seqid, ::apache::thrift::protocol::TProtocol* iprot, ::apache::thrift::protocol::TProtocol* oprot, void* callContext)
 {
   void* ctx = nullptr;
   if (this->eventHandler_.get() != nullptr) {
-    ctx = this->eventHandler_->getContext("PasswordHashing.sign", callContext);
+    ctx = this->eventHandler_->getContext("Argon2.sign", callContext);
   }
-  ::apache::thrift::TProcessorContextFreer freer(this->eventHandler_.get(), ctx, "PasswordHashing.sign");
+  ::apache::thrift::TProcessorContextFreer freer(this->eventHandler_.get(), ctx, "Argon2.sign");
 
   if (this->eventHandler_.get() != nullptr) {
-    this->eventHandler_->preRead(ctx, "PasswordHashing.sign");
+    this->eventHandler_->preRead(ctx, "Argon2.sign");
   }
 
-  PasswordHashing_sign_args args;
+  Argon2_sign_args args;
   args.read(iprot);
   iprot->readMessageEnd();
   uint32_t bytes = iprot->getTransport()->readEnd();
 
   if (this->eventHandler_.get() != nullptr) {
-    this->eventHandler_->postRead(ctx, "PasswordHashing.sign", bytes);
+    this->eventHandler_->postRead(ctx, "Argon2.sign", bytes);
   }
 
-  PasswordHashing_sign_result result;
+  Argon2_sign_result result;
   try {
-    iface_->sign(result.success, args.password, args.salt_length);
+    iface_->sign(result.success, args.password);
     result.__isset.success = true;
   } catch (const std::exception& e) {
     if (this->eventHandler_.get() != nullptr) {
-      this->eventHandler_->handlerError(ctx, "PasswordHashing.sign");
+      this->eventHandler_->handlerError(ctx, "Argon2.sign");
     }
 
     ::apache::thrift::TApplicationException x(e.what());
@@ -585,7 +587,7 @@ void PasswordHashingProcessor::process_sign(int32_t seqid, ::apache::thrift::pro
   }
 
   if (this->eventHandler_.get() != nullptr) {
-    this->eventHandler_->preWrite(ctx, "PasswordHashing.sign");
+    this->eventHandler_->preWrite(ctx, "Argon2.sign");
   }
 
   oprot->writeMessageBegin("sign", ::apache::thrift::protocol::T_REPLY, seqid);
@@ -595,37 +597,38 @@ void PasswordHashingProcessor::process_sign(int32_t seqid, ::apache::thrift::pro
   oprot->getTransport()->flush();
 
   if (this->eventHandler_.get() != nullptr) {
-    this->eventHandler_->postWrite(ctx, "PasswordHashing.sign", bytes);
+    this->eventHandler_->postWrite(ctx, "Argon2.sign", bytes);
   }
 }
 
-void PasswordHashingProcessor::process_verify(int32_t seqid, ::apache::thrift::protocol::TProtocol* iprot, ::apache::thrift::protocol::TProtocol* oprot, void* callContext)
+void Argon2Processor::process_verify(int32_t seqid, ::apache::thrift::protocol::TProtocol* iprot, ::apache::thrift::protocol::TProtocol* oprot, void* callContext)
 {
   void* ctx = nullptr;
   if (this->eventHandler_.get() != nullptr) {
-    ctx = this->eventHandler_->getContext("PasswordHashing.verify", callContext);
+    ctx = this->eventHandler_->getContext("Argon2.verify", callContext);
   }
-  ::apache::thrift::TProcessorContextFreer freer(this->eventHandler_.get(), ctx, "PasswordHashing.verify");
+  ::apache::thrift::TProcessorContextFreer freer(this->eventHandler_.get(), ctx, "Argon2.verify");
 
   if (this->eventHandler_.get() != nullptr) {
-    this->eventHandler_->preRead(ctx, "PasswordHashing.verify");
+    this->eventHandler_->preRead(ctx, "Argon2.verify");
   }
 
-  PasswordHashing_verify_args args;
+  Argon2_verify_args args;
   args.read(iprot);
   iprot->readMessageEnd();
   uint32_t bytes = iprot->getTransport()->readEnd();
 
   if (this->eventHandler_.get() != nullptr) {
-    this->eventHandler_->postRead(ctx, "PasswordHashing.verify", bytes);
+    this->eventHandler_->postRead(ctx, "Argon2.verify", bytes);
   }
 
-  PasswordHashing_verify_result result;
+  Argon2_verify_result result;
   try {
-    iface_->verify(args.code, args.password, args.salt);
+    result.success = iface_->verify(args.hashed, args.password);
+    result.__isset.success = true;
   } catch (const std::exception& e) {
     if (this->eventHandler_.get() != nullptr) {
-      this->eventHandler_->handlerError(ctx, "PasswordHashing.verify");
+      this->eventHandler_->handlerError(ctx, "Argon2.verify");
     }
 
     ::apache::thrift::TApplicationException x(e.what());
@@ -638,7 +641,7 @@ void PasswordHashingProcessor::process_verify(int32_t seqid, ::apache::thrift::p
   }
 
   if (this->eventHandler_.get() != nullptr) {
-    this->eventHandler_->preWrite(ctx, "PasswordHashing.verify");
+    this->eventHandler_->preWrite(ctx, "Argon2.verify");
   }
 
   oprot->writeMessageBegin("verify", ::apache::thrift::protocol::T_REPLY, seqid);
@@ -648,32 +651,31 @@ void PasswordHashingProcessor::process_verify(int32_t seqid, ::apache::thrift::p
   oprot->getTransport()->flush();
 
   if (this->eventHandler_.get() != nullptr) {
-    this->eventHandler_->postWrite(ctx, "PasswordHashing.verify", bytes);
+    this->eventHandler_->postWrite(ctx, "Argon2.verify", bytes);
   }
 }
 
-::std::shared_ptr< ::apache::thrift::TProcessor > PasswordHashingProcessorFactory::getProcessor(const ::apache::thrift::TConnectionInfo& connInfo) {
-  ::apache::thrift::ReleaseHandler< PasswordHashingIfFactory > cleanup(handlerFactory_);
-  ::std::shared_ptr< PasswordHashingIf > handler(handlerFactory_->getHandler(connInfo), cleanup);
-  ::std::shared_ptr< ::apache::thrift::TProcessor > processor(new PasswordHashingProcessor(handler));
+::std::shared_ptr< ::apache::thrift::TProcessor > Argon2ProcessorFactory::getProcessor(const ::apache::thrift::TConnectionInfo& connInfo) {
+  ::apache::thrift::ReleaseHandler< Argon2IfFactory > cleanup(handlerFactory_);
+  ::std::shared_ptr< Argon2If > handler(handlerFactory_->getHandler(connInfo), cleanup);
+  ::std::shared_ptr< ::apache::thrift::TProcessor > processor(new Argon2Processor(handler));
   return processor;
 }
 
-void PasswordHashingConcurrentClient::sign(PasswordHashingResponse& _return, const std::string& password, const int16_t salt_length)
+void Argon2ConcurrentClient::sign(std::string& _return, const std::string& password)
 {
-  int32_t seqid = send_sign(password, salt_length);
+  int32_t seqid = send_sign(password);
   recv_sign(_return, seqid);
 }
 
-int32_t PasswordHashingConcurrentClient::send_sign(const std::string& password, const int16_t salt_length)
+int32_t Argon2ConcurrentClient::send_sign(const std::string& password)
 {
   int32_t cseqid = this->sync_->generateSeqId();
   ::apache::thrift::async::TConcurrentSendSentry sentry(this->sync_.get());
   oprot_->writeMessageBegin("sign", ::apache::thrift::protocol::T_CALL, cseqid);
 
-  PasswordHashing_sign_pargs args;
+  Argon2_sign_pargs args;
   args.password = &password;
-  args.salt_length = &salt_length;
   args.write(oprot_);
 
   oprot_->writeMessageEnd();
@@ -684,7 +686,7 @@ int32_t PasswordHashingConcurrentClient::send_sign(const std::string& password, 
   return cseqid;
 }
 
-void PasswordHashingConcurrentClient::recv_sign(PasswordHashingResponse& _return, const int32_t seqid)
+void Argon2ConcurrentClient::recv_sign(std::string& _return, const int32_t seqid)
 {
 
   int32_t rseqid = 0;
@@ -722,7 +724,7 @@ void PasswordHashingConcurrentClient::recv_sign(PasswordHashingResponse& _return
         using ::apache::thrift::protocol::TProtocolException;
         throw TProtocolException(TProtocolException::INVALID_DATA);
       }
-      PasswordHashing_sign_presult result;
+      Argon2_sign_presult result;
       result.success = &_return;
       result.read(iprot_);
       iprot_->readMessageEnd();
@@ -744,22 +746,21 @@ void PasswordHashingConcurrentClient::recv_sign(PasswordHashingResponse& _return
   } // end while(true)
 }
 
-void PasswordHashingConcurrentClient::verify(const std::string& code, const std::string& password, const std::string& salt)
+bool Argon2ConcurrentClient::verify(const std::string& hashed, const std::string& password)
 {
-  int32_t seqid = send_verify(code, password, salt);
-  recv_verify(seqid);
+  int32_t seqid = send_verify(hashed, password);
+  return recv_verify(seqid);
 }
 
-int32_t PasswordHashingConcurrentClient::send_verify(const std::string& code, const std::string& password, const std::string& salt)
+int32_t Argon2ConcurrentClient::send_verify(const std::string& hashed, const std::string& password)
 {
   int32_t cseqid = this->sync_->generateSeqId();
   ::apache::thrift::async::TConcurrentSendSentry sentry(this->sync_.get());
   oprot_->writeMessageBegin("verify", ::apache::thrift::protocol::T_CALL, cseqid);
 
-  PasswordHashing_verify_pargs args;
-  args.code = &code;
+  Argon2_verify_pargs args;
+  args.hashed = &hashed;
   args.password = &password;
-  args.salt = &salt;
   args.write(oprot_);
 
   oprot_->writeMessageEnd();
@@ -770,7 +771,7 @@ int32_t PasswordHashingConcurrentClient::send_verify(const std::string& code, co
   return cseqid;
 }
 
-void PasswordHashingConcurrentClient::recv_verify(const int32_t seqid)
+bool Argon2ConcurrentClient::recv_verify(const int32_t seqid)
 {
 
   int32_t rseqid = 0;
@@ -808,13 +809,19 @@ void PasswordHashingConcurrentClient::recv_verify(const int32_t seqid)
         using ::apache::thrift::protocol::TProtocolException;
         throw TProtocolException(TProtocolException::INVALID_DATA);
       }
-      PasswordHashing_verify_presult result;
+      bool _return;
+      Argon2_verify_presult result;
+      result.success = &_return;
       result.read(iprot_);
       iprot_->readMessageEnd();
       iprot_->getTransport()->readEnd();
 
-      sentry.commit();
-      return;
+      if (result.__isset.success) {
+        sentry.commit();
+        return _return;
+      }
+      // in a bad state, don't commit
+      throw ::apache::thrift::TApplicationException(::apache::thrift::TApplicationException::MISSING_RESULT, "verify failed: unknown result");
     }
     // seqid != rseqid
     this->sync_->updatePending(fname, mtype, rseqid);

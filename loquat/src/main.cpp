@@ -3,6 +3,7 @@
 
 #include <event2/event.h>
 #include <openssl/opensslv.h>
+#include <sodium.h>
 #include <tink/config/tink_config.h>
 #include <tink/jwt/jwt_mac_config.h>
 #include <tink/version.h>
@@ -81,10 +82,16 @@ int main(int argc, char** argv) {
     spdlog::debug("OpenSSL v{}", OPENSSL_VERSION_STR);
     spdlog::debug("libevent v{}", event_get_version());
     spdlog::debug("Tink v{}", crypto::tink::Version::kTinkVersion);
+    spdlog::debug("Libsodium v{}", SODIUM_VERSION_STRING);
     spdlog::debug(
         "Protocol Buffers v{}",
         google::protobuf::internal::VersionString(GOOGLE_PROTOBUF_VERSION));
     spdlog::debug("Thrift v{}", loquat::thrift_version());
+  }
+  if (sodium_init() < 0) {
+    spdlog::error(
+        "the libsodium couldn't be initialized; it is not safe to use");
+    return EXIT_FAILURE;
   }
   {
     const auto status = crypto::tink::TinkConfig::Register();
