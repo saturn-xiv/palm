@@ -4,15 +4,13 @@ file(GLOB SOURCE_LIST CONFIGURE_DEPENDS "${CMAKE_CURRENT_SOURCE_DIR}/src/*.cpp")
 add_library(gourd STATIC ${SOURCE_LIST})
 
 target_link_libraries(gourd PUBLIC
-  ${OPENSSL_LIBRARIES} ${LIBEVENT_LIBRARIES}
-  thrift 
+  OpenSSL::SSL OpenSSL::Crypto
+  libevent::core libevent::extra libevent::openssl libevent::pthreads
+  thrift::thrift thriftz::thriftz thriftnb::thriftnb 
 )
 
 target_include_directories(gourd PUBLIC
   ${CMAKE_CURRENT_SOURCE_DIR}/include
-
-  ${thrift_SOURCE_DIR}/lib/cpp/src
-  ${thrift_BINARY_DIR}
 )
 
 source_group(
