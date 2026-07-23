@@ -5,7 +5,7 @@
 ```bash
 # Initial python3 virtual env
 $ sudo apt install python3-full python3-dev build-essential
-$ python -m venv $PWD/tmp/python
+$ python3 -m venv $PWD/tmp/python
 
 # Load virtual env vars
 $ source $PWD/tmp/python/bin/activate

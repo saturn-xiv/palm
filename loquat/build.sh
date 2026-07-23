@@ -17,10 +17,13 @@ fi
 
 mkdir -p $VCPKG_DEFAULT_BINARY_CACHE
 
+# https://github.com/tink-crypto/tink-cc/blob/main/cmake/TinkWorkspace.cmake
+# 
+# 
 declare -a targets=("x86_64" "aarch64" "riscv64")
 for i in "${targets[@]}"
 do
-   cmake -DTINK_USE_SYSTEM_OPENSSL=ON -DTINK_BUILD_TESTS=OFF --preset=$i
+   cmake -DTINK_USE_INSTALLED_ABSEIL=ON -DTINK_USE_INSTALLED_PROTOBUF=ON -DTINK_USE_SYSTEM_OPENSSL=ON -DTINK_BUILD_TESTS=OFF --preset=$i
    cmake --build build/$i
 done
 

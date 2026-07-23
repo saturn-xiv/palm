@@ -7,6 +7,8 @@
     "openssl",
     "libsodium",
     "thrift",
-    { "name": "libevent", "features": ["openssl", "thread"] }
+    { "name": "libevent", "features": ["openssl", "thread"] },
+    "abseil",
+    { "name": "protobuf", "features": ["libprotoc"] }
   ]
 }
