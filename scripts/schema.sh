@@ -55,6 +55,12 @@ function generate_grpc() {
         -I $PROTOBUF_HOME/include/ -I $WORK_DIR/dahlia/proto/ \
         --rust_out=$HYACINTH_OUTPUT_DIR/rbac --rust-grpc_out=$HYACINTH_OUTPUT_DIR/rbac \
         $WORK_DIR/dahlia/proto/rbac.proto
+
+    $PROTOBUF_HOME/bin/protoc --rust_opt=experimental-codegen=enabled,kernel=upb --rust-grpc_opt=client_only=true \
+        --plugin=protoc-gen-rust-grpc=$PROTOBUF_HOME/bin/protoc-gen-rust-grpc \
+        -I $PROTOBUF_HOME/include/ -I $WORK_DIR/loquat/proto/ \
+        --rust_out=$HYACINTH_OUTPUT_DIR/loquat --rust-grpc_out=$HYACINTH_OUTPUT_DIR/loquat \
+        $WORK_DIR/loquat/proto/loquat.proto
     
     # pip install 'grpcio-tools~=1.82'
     cd $WORK_DIR/dahlia/src/
@@ -113,7 +119,6 @@ function generate_diesel() {
 generate_belladonna
 generate_flatbuffers
 generate_grpc
-# generate_thrift
 generate_diesel
 
 sed -i -E "s/(version = \")[0-9]+\.[0-9]+\.[0-9]+/\1$(date +%Y.%-m.%-d)/g" $WORK_DIR/hyacinth/Cargo.toml

@@ -26,6 +26,12 @@ mod palm {
             include!("wechatpay/wechatpay_grpc.pb.rs");
         }
     }
+    pub mod loquat {
+        pub mod v1 {
+            include!("loquat/generated.rs");
+            include!("loquat/loquat_grpc.pb.rs");
+        }
+    }
 }
 
 pub use flexbuffers::{FlexbufferSerializer, Reader as FlexbufferReader};
