@@ -37,11 +37,11 @@ function generate_grpc() {
 
     rm -r $WORK_DIR/loquat/gourd/src $WORK_DIR/loquat/gourd/include
     mkdir $WORK_DIR/loquat/gourd/src $WORK_DIR/loquat/gourd/include
-    $PROTOBUF_HOME/bin/protoc \
-        -I $WORK_DIR/loquat/proto -I $PROTOBUF_HOME/include/google/protobuf \
+    $WORK_DIR/loquat/vcpkg/packages/protobuf_x64-linux-release/tools/protobuf/protoc \
+        -I $WORK_DIR/loquat/proto -I $WORK_DIR/loquat/vcpkg/packages/protobuf_x64-linux-release/include/google/protobuf \
         --cpp_out=$WORK_DIR/loquat/gourd/src --grpc_out=$WORK_DIR/loquat/gourd/src \
         --plugin=protoc-gen-grpc=$WORK_DIR/loquat/vcpkg/packages/grpc_x64-linux/tools/grpc/grpc_cpp_plugin \
-        $WORKSPACE/loquat/proto/*.proto
+        $WORK_DIR/loquat/proto/*.proto
     mv $WORK_DIR/loquat/gourd/src/*.h $WORK_DIR/loquat/gourd/include/
 
     $PROTOBUF_HOME/bin/protoc --rust_opt=experimental-codegen=enabled,kernel=upb --rust-grpc_opt=client_only=true \

@@ -1,7 +1,8 @@
+#include "loquat/application.hpp"
 #include "loquat/service.hpp"
 #include "loquat/version.hpp"
 
-#include <event2/event.h>
+#include <grpcpp/grpcpp.h>
 #include <openssl/opensslv.h>
 #include <sodium.h>
 #include <tink/config/tink_config.h>
@@ -77,16 +78,15 @@ int main(int argc, char** argv) {
   {
     spdlog::set_level(program.get<bool>("--debug") ? spdlog::level::debug
                                                    : spdlog::level::info);
-    spdlog::debug("run on debug mode {}", version);
+    spdlog::debug("run on debug mode v{}", version);
 
     spdlog::debug("OpenSSL v{}", OPENSSL_VERSION_STR);
-    spdlog::debug("libevent v{}", event_get_version());
     spdlog::debug("Tink v{}", crypto::tink::Version::kTinkVersion);
     spdlog::debug("Libsodium v{}", SODIUM_VERSION_STRING);
     spdlog::debug(
         "Protocol Buffers v{}",
         google::protobuf::internal::VersionString(GOOGLE_PROTOBUF_VERSION));
-    spdlog::debug("Thrift v{}", loquat::thrift_version());
+    spdlog::debug("gRPC v{}", grpc::Version());
   }
   if (sodium_init() < 0) {
     spdlog::error(
@@ -115,9 +115,6 @@ int main(int argc, char** argv) {
     const std::string ca_file = rpc_command.get<std::string>("--ca-file");
     const auto ssl = std::make_optional<loquat::application::Ssl>(
         cert_file, key_file, ca_file);
-
-    // TODO
-    // apache::thrift::GlobalOutput.setOutputFunction(loquat::set_thrift_logger);
 
     loquat::application::launch_rpc_server(
         static_cast<uint16_t>(port),

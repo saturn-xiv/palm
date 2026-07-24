@@ -1,78 +1,46 @@
 #pragma once
 
 #include "loquat/env.hpp"
-
-// TODO
-#pragma GCC diagnostic push
-#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
-#include <thrift/Thrift.h>
-#pragma GCC diagnostic pop
-
-#include "Aes.h"
-#include "Argon2.h"
-#include "Health.h"
-#include "Hmac.h"
-#include "Jwt.h"
+#include "loquat.grpc.pb.h"
 
 namespace loquat {
 
-namespace application {
 
-struct Ssl {
-  Ssl(const std::string& cert_file, const std::string& key_file,
-      const std::string& ca_file)
-      : cert_file(cert_file), key_file(key_file), ca_file(ca_file) {}
-  std::string cert_file;
-  std::string key_file;
-  std::string ca_file;
+
+class JwtService final : public palm::loquat::v1::Jwt::Service {
+  grpc::Status Sign(grpc::ServerContext* context,
+                    const palm::loquat::v1::JwtSignRequest* request,
+                    palm::loquat::v1::JwtSignResponse* response) override;
+  grpc::Status Verify(grpc::ServerContext* context,
+                      const palm::loquat::v1::JwtVerifyRequest* request,
+                      palm::loquat::v1::JwtVerifyResponse* response) override;
 };
 
-void launch_rpc_server(const uint16_t port, std::optional<Ssl> ssl);
-void generate_systemd_config(const std::string& name, const uint16_t port);
-}  // namespace application
-
-class AesHandler final : public v1::AesIf {
- public:
-  AesHandler() = default;
-
-  void encrypt(std::string& code, const std::string& plain,
-               const std::string& associated_data) override;
-  void decrypt(std::string& plain, const std::string& code,
-               const std::string& associated_data) override;
+class HMacService final : public palm::loquat::v1::HMac::Service {
+  grpc::Status Sign(grpc::ServerContext* context,
+                    const palm::loquat::v1::HMacSignRequest* request,
+                    palm::loquat::v1::HMacSignResponse* response) override;
+  grpc::Status Verify(grpc::ServerContext* context,
+                      const palm::loquat::v1::HMacVerifyRequest* request,
+                      palm::loquat::v1::Empty* response) override;
 };
 
-class HmacHandler final : public v1::HmacIf {
- public:
-  HmacHandler() = default;
-
-  void sign(std::string& code, const std::string& plain) override;
-  void verify(const std::string& code, const std::string& plain) override;
+class AesService final : public palm::loquat::v1::Aes::Service {
+  grpc::Status Encrypt(grpc::ServerContext* context,
+                       const palm::loquat::v1::AesEncryptRequest* request,
+                       palm::loquat::v1::AesEncryptResponse* response) override;
+  grpc::Status Decrypt(grpc::ServerContext* context,
+                       const palm::loquat::v1::AesDecryptRequest* request,
+                       palm::loquat::v1::AesDecryptResponse* response) override;
 };
 
-class JwtHandler final : public v1::JwtIf {
- public:
-  JwtHandler() = default;
-
-  void sign(std::string& token,
-            const loquat::v1::JwtSignRequest& request) override;
-  void verify(loquat::v1::JwtVerfifyResponse& response,
-              const std::string& token, const std::string& issuer,
-              const std::string& audience) override;
-};
-
-class Argon2Handler final : public v1::Argon2If {
- public:
-  Argon2Handler() = default;
-
-  void sign(std::string& reply, const std::string& password) override;
-  bool verify(const std::string& hashed, const std::string& password) override;
-};
-
-class HealthHandler final : public v1::HealthIf {
- public:
-  HealthHandler() = default;
-
-  void check(std::map<std::string, std::string>& response) override;
+class Argon2Service final : public palm::loquat::v1::Argon2::Service {
+  grpc::Status Sign(grpc::ServerContext* context,
+                    const palm::loquat::v1::Argon2SignRequest* request,
+                    palm::loquat::v1::Argon2SignResponse* response) override;
+  grpc::Status Verify(grpc::ServerContext* context,
+                      const palm::loquat::v1::Argon2VerifyRequest* request,
+                      palm::loquat::v1::Empty* response) override;
 };
 
 }  // namespace loquat

@@ -47,8 +47,6 @@
 
 namespace loquat {
 
-std::string thrift_version();
-
 class Keyset {
  public:
   Keyset(const std::string& name) : _name(name) {}
@@ -57,23 +55,9 @@ class Keyset {
   std::unique_ptr<crypto::tink::KeysetHandle> load(
       const google::crypto::tink::KeyTemplate& tpl);
   inline std::filesystem::path keyset() const {
-    // std::filesystem::path it(this->_name);
-    // it.replace_extension("bin");
-    // return it;
-    return this->_name + ".bin";
-  }
-
-  template <class T>
-  void check(const absl::StatusOr<T>& result) const {
-    this->check(result.status());
-  }
-  inline void check(const absl::Status& status) const {
-    const std::string_view it = status.message();
-    std::string msg(it.begin(), it.end());
-    if (!status.ok()) {
-      spdlog::error("{}", msg);
-      throw std::runtime_error(msg);
-    }
+    std::filesystem::path it(this->_name);
+    it.replace_extension("bin");
+    return it;
   }
 
  private:
@@ -107,7 +91,7 @@ class HMac final : public Keyset {
  public:
   HMac() : Keyset("hmac") {}
   std::string sign(const std::string& plain);
-  void verify(const std::string& code, const std::string& plain);
+  bool verify(const std::string& code, const std::string& plain);
 
  private:
   std::unique_ptr<crypto::tink::Mac> load();
