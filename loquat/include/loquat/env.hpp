@@ -70,17 +70,15 @@ class Jwt final : public Keyset {
  public:
   Jwt() : Keyset("jwt") {}
 
-  std::tuple<std::optional<std::string>, std::optional<std::string>,
-             std::string, std::optional<std::string>>
-  verify(const std::string& token, const std::string& issuer,
-         const std::string& audience);
-  std::string sign(const std::optional<std::string> jwt_id,
-                   const std::optional<std::string> key_id,
-                   const std::string& issuer, const std::string& subject,
-                   const std::set<std::string> audiences,
-                   const absl::Time& issued_at, const absl::Time& not_before,
-                   const absl::Time& expired_at,
-                   const std::optional<std::string> payload);
+  std::optional<std::pair<std::string, std::optional<std::string>>> verify(
+      const std::string& token, const std::string& issuer,
+      const std::string& audience);
+  std::optional<std::string> sign(
+      const std::optional<std::string> jwt_id,
+      const std::optional<std::string> key_id, const std::string& issuer,
+      const std::string& subject, const std::set<std::string> audiences,
+      const absl::Time& issued_at, const absl::Time& not_before,
+      const absl::Time& expired_at, const std::optional<std::string> payload);
 
  private:
   std::unique_ptr<crypto::tink::JwtMac> load();
@@ -90,7 +88,7 @@ class Jwt final : public Keyset {
 class HMac final : public Keyset {
  public:
   HMac() : Keyset("hmac") {}
-  std::string sign(const std::string& plain);
+  std::optional<std::string> sign(const std::string& plain);
   bool verify(const std::string& code, const std::string& plain);
 
  private:
@@ -100,10 +98,10 @@ class HMac final : public Keyset {
 class Aes final : public Keyset {
  public:
   Aes() : Keyset("aes") {}
-  std::string encrypt(const std::string& plain,
-                      const std::string& associated_data);
-  std::string decrypt(const std::string& code,
-                      const std::string& associated_data);
+  std::optional<std::string> encrypt(const std::string& plain,
+                                     const std::string& associated_data);
+  std::optional<std::string> decrypt(const std::string& cipher,
+                                     const std::string& associated_data);
 
  private:
   std::unique_ptr<crypto::tink::Aead> load();

@@ -1,11 +1,9 @@
 #pragma once
 
-#include "loquat/env.hpp"
 #include "loquat.grpc.pb.h"
+#include "loquat/env.hpp"
 
 namespace loquat {
-
-
 
 class JwtService final : public palm::loquat::v1::Jwt::Service {
   grpc::Status Sign(grpc::ServerContext* context,

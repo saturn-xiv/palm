@@ -1,5 +1,6 @@
 {
   "dependencies": [
+    "boost-exception",
     "argparse",
     "spdlog",
     "inja",

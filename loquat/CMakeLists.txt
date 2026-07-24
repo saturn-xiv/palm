@@ -26,6 +26,7 @@ find_package(OpenSSL REQUIRED)
 find_package(gRPC CONFIG REQUIRED)
 find_package(unofficial-sodium CONFIG REQUIRED)
 find_package(spdlog CONFIG REQUIRED)
+find_package(boost_exception CONFIG REQUIRED)
 # --------------------------------------------------------
 # https://github.com/tink-crypto/tink-cc
 FetchContent_Declare(tink
@@ -44,6 +45,7 @@ set_target_properties(loquat PROPERTIES LINK_FLAGS_RELEASE -s)
 target_link_options(loquat PRIVATE -static-libgcc -static-libstdc++)
 
 target_link_libraries(loquat gourd
+  Boost::exception
   argparse::argparse
   pantor::inja nlohmann_json::nlohmann_json
   spdlog::spdlog_header_only 

@@ -7,7 +7,7 @@
 #include <tink/jwt/jwt_validator.h>
 #include <tink/jwt/raw_jwt.h>
 
-std::string loquat::Jwt::sign(
+std::optional<std::string> loquat::Jwt::sign(
     const std::optional<std::string> jwt_id,
     const std::optional<std::string> key_id, const std::string& issuer,
     const std::string& subject, const std::set<std::string> audiences,
@@ -37,17 +37,28 @@ std::string loquat::Jwt::sign(
   }
 
   auto raw_r = raw_rb.Build();
-  this->check(raw_r);
+  {
+    const auto status = raw_r.status();
+    if (!status.ok()) {
+      spdlog::error("{}", status.message());
+      return std::nullopt;
+    }
+  }
   auto raw = std::move(raw_r.value());
   auto jwt = this->load();
   auto token_r = jwt->ComputeMacAndEncode(raw);
-  this->check(token_r);
+  {
+    const auto status = token_r.status();
+    if (!status.ok()) {
+      spdlog::error("{}", status.message());
+      return std::nullopt;
+    }
+  }
   auto token = std::move(token_r.value());
   return token;
 }
 
-std::tuple<std::optional<std::string>, std::optional<std::string>, std::string,
-           std::optional<std::string>>
+std::optional<std::pair<std::string, std::optional<std::string>>>
 loquat::Jwt::verify(const std::string& token, const std::string& issuer,
                     const std::string& audience) {
   spdlog::debug("verify issuer({}) audience({}) token({})", issuer, audience,
@@ -59,48 +70,80 @@ loquat::Jwt::verify(const std::string& token, const std::string& issuer,
                          .ExpectIssuedInThePast();
 
   auto validator_r = validator_b.Build();
-  this->check(validator_r);
+  {
+    const auto status = validator_r.status();
+    if (!status.ok()) {
+      spdlog::error("{}", status.message());
+      return std::nullopt;
+    }
+  }
   auto validator = std::move(validator_r.value());
 
   auto jwt = this->load();
   auto payload_r = jwt->VerifyMacAndDecode(token, validator);
-  this->check(payload_r);
+  {
+    const auto status = payload_r.status();
+    if (!status.ok()) {
+      spdlog::error("{}", status.message());
+      return std::nullopt;
+    }
+  }
   auto payload = std::move(payload_r.value());
 
   // https://github.com/tink-crypto/tink-cc/blob/main/tink/jwt/verified_jwt.h#L53
   auto subject_r = payload.GetSubject();
-  this->check(subject_r);
+  {
+    const auto status = subject_r.status();
+    if (!status.ok()) {
+      spdlog::error("{}", status.message());
+      return std::nullopt;
+    }
+  }
   auto subject = std::move(subject_r.value());
 
   std::optional<std::string> jwt_id = std::nullopt;
   if (payload.HasJwtId()) {
     auto ir = payload.GetJwtId();
-    this->check(ir);
+    {
+      const auto status = ir.status();
+      if (!status.ok()) {
+        spdlog::error("{}", status.message());
+        return std::nullopt;
+      }
+    }
     auto iv = std::move(ir.value());
     jwt_id = std::optional<std::string>{iv};
   }
-  std::optional<std::string> key_id = std::nullopt;
+
   std::optional<std::string> payload_ = std::nullopt;
   if (payload.HasJsonObjectClaim(loquat::Jwt::PAYLOAD_KEY)) {
     auto ir = payload.GetJsonObjectClaim(loquat::Jwt::PAYLOAD_KEY);
-    this->check(ir);
+    {
+      const auto status = ir.status();
+      if (!status.ok()) {
+        spdlog::error("{}", status.message());
+        return std::nullopt;
+      }
+    }
     auto iv = std::move(ir.value());
     payload_ = std::optional<std::string>{iv};
   }
 
-  spdlog::debug("get jwt-id({}) key-id({}) subject({})", jwt_id.value_or(""),
-                key_id.value_or(""), subject);
-  std::tuple<std::optional<std::string>, std::optional<std::string>,
-             std::string, std::optional<std::string>>
-      it = std::make_tuple(jwt_id, key_id, subject, payload_);
-  return it;
+  spdlog::debug("get jwt-id({}) subject({})", jwt_id.value_or(""), subject);
+  return std::make_pair(subject, payload_);
 }
 
 std::unique_ptr<crypto::tink::JwtMac> loquat::Jwt::load() {
   auto keyset = this->Keyset::load(crypto::tink::JwtHs512Template());
   auto jwt_r = keyset->GetPrimitive<crypto::tink::JwtMac>(
       crypto::tink::ConfigGlobalRegistry());
-  this->check(jwt_r);
+  {
+    const auto status = jwt_r.status();
+    if (!status.ok()) {
+      spdlog::error("{}", status.message());
+      return nullptr;
+    }
+  }
   auto jwt = std::move(jwt_r.value());
   return jwt;
 }

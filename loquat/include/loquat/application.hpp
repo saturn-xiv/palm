@@ -5,7 +5,6 @@
 #include <string>
 
 namespace loquat {
-namespace application {
 struct Ssl {
   Ssl(const std::string& cert_file, const std::string& key_file,
       const std::string& ca_file)
@@ -14,8 +13,15 @@ struct Ssl {
   std::string key_file;
   std::string ca_file;
 };
+class Application {
+ public:
+  Application() {}
+  int launch(int argc, char** argv) const;
 
-void launch_rpc_server(const uint16_t port, std::optional<Ssl> ssl);
-void generate_systemd_config(const std::string& name, const uint16_t port);
-}  // namespace application
+ private:
+  void launch_rpc_server(const uint16_t port, std::optional<Ssl> ssl) const;
+  void generate_systemd_config(const std::string& name,
+                               const uint16_t port) const;
+};
+
 }  // namespace loquat
