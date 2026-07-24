@@ -19,9 +19,12 @@ class Application {
   int launch(int argc, char** argv) const;
 
  private:
-  void launch_rpc_server(const uint16_t port, std::optional<Ssl> ssl) const;
-  void generate_systemd_config(const std::string& name,
-                               const uint16_t port) const;
+  bool init(bool debug, const std::string& version) const;
+  void launch_rpc_server(uint16_t port, std::optional<Ssl> ssl) const;
+  void generate_systemd_config(const std::string& name, uint16_t port) const;
+  void generate_token(const std::string& key_id, const std::string& issuer,
+                      const std::string& audience, const std::string& subject,
+                      int16_t years) const;
 };
 
 }  // namespace loquat

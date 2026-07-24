@@ -1,10 +1,8 @@
 #include "loquat/application.hpp"
-#include "loquat/service.hpp"
+#include "loquat/env.hpp"
 #include "loquat/version.hpp"
 
-// #include <grpcpp/ext/proto_server_reflection_plugin.h>
 #include <grpcpp/grpcpp.h>
-#include <grpcpp/health_check_service_interface.h>
 #include <openssl/opensslv.h>
 #include <sodium.h>
 #include <tink/config/tink_config.h>
@@ -71,38 +69,12 @@ int loquat::Application::launch(int argc, char** argv) const {
     program.parse_args(argc, argv);
   } catch (const std::runtime_error& err) {
     spdlog::error("{}", err.what());
-    std::exit(1);
-  }
-
-  {
-    spdlog::set_level(program.get<bool>("--debug") ? spdlog::level::debug
-                                                   : spdlog::level::info);
-    spdlog::debug("run on debug mode v{}", version);
-
-    spdlog::debug("OpenSSL v{}", OPENSSL_VERSION_STR);
-    spdlog::debug("Tink v{}", crypto::tink::Version::kTinkVersion);
-    spdlog::debug("Libsodium v{}", SODIUM_VERSION_STRING);
-    spdlog::debug(
-        "Protocol Buffers v{}",
-        google::protobuf::internal::VersionString(GOOGLE_PROTOBUF_VERSION));
-    spdlog::debug("gRPC v{}", grpc::Version());
-  }
-  if (sodium_init() < 0) {
-    spdlog::error(
-        "the libsodium couldn't be initialized; it is not safe to use");
     return EXIT_FAILURE;
   }
+
   {
-    const auto status = crypto::tink::TinkConfig::Register();
-    if (!status.ok()) {
-      spdlog::error("failed to register tink");
-      return EXIT_FAILURE;
-    }
-  }
-  {
-    const auto status = crypto::tink::JwtMacRegister();
-    if (!status.ok()) {
-      spdlog::error("failed to register tink-jwt");
+    const bool debug = program.get<bool>("--debug");
+    if (!this->init(debug, version)) {
       return EXIT_FAILURE;
     }
   }
@@ -129,21 +101,9 @@ int loquat::Application::launch(int argc, char** argv) const {
         generate_token_command.get<std::string>("--subject");
     const std::string audience =
         generate_token_command.get<std::string>("--audience");
-    spdlog::warn("generate token to (kid: {}, aud: {}, sub: {}) for {}-years",
-                 key_id, audience, subject, years);
+    this->generate_token(key_id, issuer, audience, subject,
+                         static_cast<int16_t>(years));
 
-    const auto ttl = std::chrono::duration_cast<std::chrono::seconds>(
-        std::chrono::years(years));
-    loquat::Jwt jwt;
-    std::set<std::string> audiences{audience};
-
-    auto now = absl::Now();
-    const auto token =
-        jwt.sign(std::nullopt, std::optional<std::string>{key_id}, issuer,
-                 subject, audiences, now, now - absl::Seconds(1),
-                 now + absl::Seconds(ttl.count()), std::nullopt);
-
-    std::cout << token.value() << std::endl;
   } else if (program.is_subcommand_used(systemd_config_command)) {
     const int port = systemd_config_command.get<int>("--port");
     const std::string name = systemd_config_command.get<std::string>("--name");
@@ -153,8 +113,43 @@ int loquat::Application::launch(int argc, char** argv) const {
   return EXIT_SUCCESS;
 }
 
+bool loquat::Application::init(bool debug, const std::string& version) const {
+  spdlog::set_level(debug ? spdlog::level::debug : spdlog::level::info);
+  {
+    spdlog::debug("run on debug mode {}", version);
+
+    spdlog::debug("OpenSSL v{}", OPENSSL_VERSION_STR);
+    spdlog::debug("Tink v{}", crypto::tink::Version::kTinkVersion);
+    spdlog::debug("Libsodium v{}", SODIUM_VERSION_STRING);
+    spdlog::debug(
+        "Protocol Buffers v{}",
+        google::protobuf::internal::VersionString(GOOGLE_PROTOBUF_VERSION));
+    spdlog::debug("gRPC v{}", grpc::Version());
+  }
+  if (sodium_init() < 0) {
+    spdlog::error(
+        "the libsodium couldn't be initialized; it is not safe to use");
+    return false;
+  }
+  {
+    const auto status = crypto::tink::TinkConfig::Register();
+    if (!status.ok()) {
+      spdlog::error("failed to register tink");
+      return false;
+    }
+  }
+  {
+    const auto status = crypto::tink::JwtMacRegister();
+    if (!status.ok()) {
+      spdlog::error("failed to register tink-jwt");
+      return false;
+    }
+  }
+  return true;
+}
+
 void loquat::Application::generate_systemd_config(const std::string& name,
-                                                  const uint16_t port) const {
+                                                  uint16_t port) const {
   const std::filesystem::path file(name + ".conf");
   spdlog::info("generate file {}", file.string());
   nlohmann::json data = {
@@ -183,52 +178,23 @@ WantedBy=multi-user.target
                   data);
 }
 
-static inline std::string _load_file(const std::string& path) {
-  std::ifstream file(path);
-  std::stringstream buf;
-  buf << file.rdbuf();
-  return buf.str();
-}
+void loquat::Application::generate_token(const std::string& key_id,
+                                         const std::string& issuer,
+                                         const std::string& audience,
+                                         const std::string& subject,
+                                         int16_t years) const {
+  spdlog::warn("generate token to (kid: {}, aud: {}, sub: {}) for {}-years",
+               key_id, audience, subject, years);
+  const auto ttl = std::chrono::duration_cast<std::chrono::seconds>(
+      std::chrono::years(years));
+  loquat::Jwt jwt;
+  std::set<std::string> audiences{audience};
 
-void loquat::Application::launch_rpc_server(
-    const uint16_t port, std::optional<loquat::Ssl> ssl) const {
-  const std::string address = std::format("0.0.0.0:{}", port);
-  loquat::JwtService jwt_service;
-  loquat::HMacService hmac_service;
-  loquat::AesService aes_service;
-  loquat::Argon2Service argon2_service;
+  auto now = absl::Now();
+  const auto token =
+      jwt.sign(std::nullopt, std::optional<std::string>{key_id}, issuer,
+               subject, audiences, now, now - absl::Seconds(1),
+               now + absl::Seconds(ttl.count()), std::nullopt);
 
-  grpc::EnableDefaultHealthCheckService(true);
-  // TODO
-  // grpc::reflection::InitProtoReflectionServerBuilderPlugin();
-  grpc::ServerBuilder builder;
-
-  if (ssl) {
-    spdlog::info("listening on tcps://0.0.0.0:{}", port);
-    spdlog::debug("load cert from {}, key from {}, ca from {}", ssl->cert_file,
-                  ssl->key_file, ssl->ca_file);
-    const std::string server_key = _load_file(ssl->key_file);
-    const std::string server_cert = _load_file(ssl->cert_file);
-    const std::string root_ca = _load_file(ssl->ca_file);
-
-    grpc::SslServerCredentialsOptions::PemKeyCertPair pkcp;
-    pkcp.private_key = server_key;
-    pkcp.cert_chain = server_cert;
-    grpc::SslServerCredentialsOptions ssl_opts;
-    ssl_opts.pem_key_cert_pairs.push_back(pkcp);
-    ssl_opts.pem_root_certs = root_ca;
-    ssl_opts.client_certificate_request =
-        GRPC_SSL_REQUEST_AND_REQUIRE_CLIENT_CERTIFICATE_AND_VERIFY;
-    auto server_creds = grpc::SslServerCredentials(ssl_opts);
-    builder.AddListeningPort(address, server_creds);
-  } else {
-    spdlog::info("listening on tcp://0.0.0.0:{}", port);
-    builder.AddListeningPort(address, grpc::InsecureServerCredentials());
-  }
-  builder.RegisterService(&jwt_service);
-  builder.RegisterService(&aes_service);
-  builder.RegisterService(&hmac_service);
-  builder.RegisterService(&argon2_service);
-  std::unique_ptr<grpc::Server> server(builder.BuildAndStart());
-  server->Wait();
+  std::cout << token.value() << std::endl;
 }
