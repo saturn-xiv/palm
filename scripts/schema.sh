@@ -94,8 +94,16 @@ function generate_grpc() {
 
 function generate_flatbuffers() {
     echo "generate flatbuffers protocols"
-    flatc -o $HYACINTH_OUTPUT_DIR --filename-suffix "" --rust $WORK_DIR/protocols/email.fbs
-    flatc -o $HYACINTH_OUTPUT_DIR --filename-suffix "" --rust $WORK_DIR/protocols/tex.fbs
+    local -a items=(
+        "email"
+        "sms"
+        "tex"
+        "cups"
+    )
+    for it in "${items[@]}"
+    do
+        flatc -o $HYACINTH_OUTPUT_DIR --filename-suffix "" --rust $WORK_DIR/protocols/$it.fbs
+    done
 }
 
 function generate_diesel() {

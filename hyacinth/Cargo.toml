@@ -15,12 +15,28 @@ flexbuffers = "25"
 [dependencies.diesel]
 version = "2"
 default-features = false
-features = ["128-column-tables", "postgres", "chrono", "uuid"]
+features = [
+    "128-column-tables",
+    "postgres",
+    # "mysql",
+    "sqlite",
+    "chrono",
+    "uuid",
+    "r2d2",
+]
 
-[dependencies.openssl]
+[dependencies.libsqlite3-sys]
 version = "*"
-features = ["vendored"]
+features = ["bundled"]
+
+# [dependencies.mysqlclient-sys]
+# version = "*"
+# features = ["bundled"]
 
 [dependencies.pq-sys]
 version = "*"
 features = ["bundled"]
+
+[dependencies.openssl-sys]
+version = "*"
+features = ["vendored"]

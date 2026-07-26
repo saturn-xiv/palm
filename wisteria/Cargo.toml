@@ -4,8 +4,28 @@ version = "2026.7.21"
 edition = "2024"
 
 [dependencies]
+juniper_axum = "0.3"
 log = "0.4"
+axum = "0.8"
+env_logger = "0.11"
 hyper = "1"
+tempfile = "3"
+
+[dependencies.strum]
+version = "0.28"
+features = ["derive"]
+
+[dependencies.serde]
+version = "1"
+features = ["derive"]
+
+[dependencies.tokio]
+version = "1"
+features = ["full"]
+
+[dependencies.clap]
+version = "4"
+features = ["derive"]
 
 [dependencies.belladonna]
 path = "../belladonna"

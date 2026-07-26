@@ -3,17 +3,18 @@ namespace palm.tex.v1;
 enum Class: byte { Article = 0, Report, Book, Letter, Beamer }
 
 table Output {
-    bucket: string;
-    object: string;
+    bucket: string (required);
+    object: string (required);
 }
 
-table Attachment {
-    name: string;
-    content: [ubyte];
+table File {
+    name: string (required);
+    content: [ubyte] (required);
 }
 
-table Document {
-    entry: string;    
+table Task {
+    entry: string (required);
     class: Class;
-    attachments: [Attachment];
+    files: [File] (required);
+    output: Output (required);
 }

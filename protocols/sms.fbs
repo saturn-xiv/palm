@@ -1,0 +1,7 @@
+namespace palm.sms.v1;
+
+table Task {
+    body: string (required);
+    to: [string] (required);
+    status_callback: string;
+}

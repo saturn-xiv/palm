@@ -168,23 +168,25 @@ pub mod palm {
                 }
 
                 #[inline]
-                pub fn bucket(&self) -> Option<&'a str> {
+                pub fn bucket(&self) -> &'a str {
                     // Safety:
                     // Created from valid Table for this object
                     // which contains a valid value in this slot
                     unsafe {
                         self._tab
                             .get::<::flatbuffers::ForwardsUOffset<&str>>(Output::VT_BUCKET, None)
+                            .unwrap()
                     }
                 }
                 #[inline]
-                pub fn object(&self) -> Option<&'a str> {
+                pub fn object(&self) -> &'a str {
                     // Safety:
                     // Created from valid Table for this object
                     // which contains a valid value in this slot
                     unsafe {
                         self._tab
                             .get::<::flatbuffers::ForwardsUOffset<&str>>(Output::VT_OBJECT, None)
+                            .unwrap()
                     }
                 }
             }
@@ -199,12 +201,12 @@ pub mod palm {
                         .visit_field::<::flatbuffers::ForwardsUOffset<&str>>(
                             "bucket",
                             Self::VT_BUCKET,
-                            false,
+                            true,
                         )?
                         .visit_field::<::flatbuffers::ForwardsUOffset<&str>>(
                             "object",
                             Self::VT_OBJECT,
-                            false,
+                            true,
                         )?
                         .finish();
                     Ok(())
@@ -218,8 +220,8 @@ pub mod palm {
                 #[inline]
                 fn default() -> Self {
                     OutputArgs {
-                        bucket: None,
-                        object: None,
+                        bucket: None, // required field
+                        object: None, // required field
                     }
                 }
             }
@@ -252,6 +254,8 @@ pub mod palm {
                 #[inline]
                 pub fn finish(self) -> ::flatbuffers::WIPOffset<Output<'a>> {
                     let o = self.fbb_.end_table(self.start_);
+                    self.fbb_.required(o, Output::VT_BUCKET, "bucket");
+                    self.fbb_.required(o, Output::VT_OBJECT, "object");
                     ::flatbuffers::WIPOffset::new(o.value())
                 }
             }
@@ -264,15 +268,15 @@ pub mod palm {
                     ds.finish()
                 }
             }
-            pub enum AttachmentOffset {}
+            pub enum FileOffset {}
             #[derive(Copy, Clone, PartialEq)]
 
-            pub struct Attachment<'a> {
+            pub struct File<'a> {
                 pub _tab: ::flatbuffers::Table<'a>,
             }
 
-            impl<'a> ::flatbuffers::Follow<'a> for Attachment<'a> {
-                type Inner = Attachment<'a>;
+            impl<'a> ::flatbuffers::Follow<'a> for File<'a> {
+                type Inner = File<'a>;
                 #[inline]
                 unsafe fn follow(buf: &'a [u8], loc: usize) -> Self::Inner {
                     Self {
@@ -281,13 +285,13 @@ pub mod palm {
                 }
             }
 
-            impl<'a> Attachment<'a> {
+            impl<'a> File<'a> {
                 pub const VT_NAME: ::flatbuffers::VOffsetT = 4;
                 pub const VT_CONTENT: ::flatbuffers::VOffsetT = 6;
 
                 #[inline]
                 pub unsafe fn init_from_table(table: ::flatbuffers::Table<'a>) -> Self {
-                    Attachment { _tab: table }
+                    File { _tab: table }
                 }
                 #[allow(unused_mut)]
                 pub fn create<
@@ -297,9 +301,9 @@ pub mod palm {
                     A: ::flatbuffers::Allocator + 'bldr,
                 >(
                     _fbb: &'mut_bldr mut ::flatbuffers::FlatBufferBuilder<'bldr, A>,
-                    args: &'args AttachmentArgs<'args>,
-                ) -> ::flatbuffers::WIPOffset<Attachment<'bldr>> {
-                    let mut builder = AttachmentBuilder::new(_fbb);
+                    args: &'args FileArgs<'args>,
+                ) -> ::flatbuffers::WIPOffset<File<'bldr>> {
+                    let mut builder = FileBuilder::new(_fbb);
                     if let Some(x) = args.content {
                         builder.add_content(x);
                     }
@@ -310,111 +314,113 @@ pub mod palm {
                 }
 
                 #[inline]
-                pub fn name(&self) -> Option<&'a str> {
+                pub fn name(&self) -> &'a str {
                     // Safety:
                     // Created from valid Table for this object
                     // which contains a valid value in this slot
                     unsafe {
                         self._tab
-                            .get::<::flatbuffers::ForwardsUOffset<&str>>(Attachment::VT_NAME, None)
+                            .get::<::flatbuffers::ForwardsUOffset<&str>>(File::VT_NAME, None)
+                            .unwrap()
                     }
                 }
                 #[inline]
-                pub fn content(&self) -> Option<::flatbuffers::Vector<'a, u8>> {
+                pub fn content(&self) -> ::flatbuffers::Vector<'a, u8> {
                     // Safety:
                     // Created from valid Table for this object
                     // which contains a valid value in this slot
                     unsafe {
                         self._tab
                             .get::<::flatbuffers::ForwardsUOffset<::flatbuffers::Vector<'a, u8>>>(
-                                Attachment::VT_CONTENT,
+                                File::VT_CONTENT,
                                 None,
                             )
+                            .unwrap()
                     }
                 }
             }
 
-            impl ::flatbuffers::Verifiable for Attachment<'_> {
+            impl ::flatbuffers::Verifiable for File<'_> {
                 #[inline]
                 fn run_verifier(
                     v: &mut ::flatbuffers::Verifier,
                     pos: usize,
                 ) -> Result<(), ::flatbuffers::InvalidFlatbuffer> {
                     v.visit_table(pos)?
-     .visit_field::<::flatbuffers::ForwardsUOffset<&str>>("name", Self::VT_NAME, false)?
-     .visit_field::<::flatbuffers::ForwardsUOffset<::flatbuffers::Vector<'_, u8>>>("content", Self::VT_CONTENT, false)?
+     .visit_field::<::flatbuffers::ForwardsUOffset<&str>>("name", Self::VT_NAME, true)?
+     .visit_field::<::flatbuffers::ForwardsUOffset<::flatbuffers::Vector<'_, u8>>>("content", Self::VT_CONTENT, true)?
      .finish();
                     Ok(())
                 }
             }
-            pub struct AttachmentArgs<'a> {
+            pub struct FileArgs<'a> {
                 pub name: Option<::flatbuffers::WIPOffset<&'a str>>,
                 pub content: Option<::flatbuffers::WIPOffset<::flatbuffers::Vector<'a, u8>>>,
             }
-            impl<'a> Default for AttachmentArgs<'a> {
+            impl<'a> Default for FileArgs<'a> {
                 #[inline]
                 fn default() -> Self {
-                    AttachmentArgs {
-                        name: None,
-                        content: None,
+                    FileArgs {
+                        name: None,    // required field
+                        content: None, // required field
                     }
                 }
             }
 
-            pub struct AttachmentBuilder<'a: 'b, 'b, A: ::flatbuffers::Allocator + 'a> {
+            pub struct FileBuilder<'a: 'b, 'b, A: ::flatbuffers::Allocator + 'a> {
                 fbb_: &'b mut ::flatbuffers::FlatBufferBuilder<'a, A>,
                 start_: ::flatbuffers::WIPOffset<::flatbuffers::TableUnfinishedWIPOffset>,
             }
-            impl<'a: 'b, 'b, A: ::flatbuffers::Allocator + 'a> AttachmentBuilder<'a, 'b, A> {
+            impl<'a: 'b, 'b, A: ::flatbuffers::Allocator + 'a> FileBuilder<'a, 'b, A> {
                 #[inline]
                 pub fn add_name(&mut self, name: ::flatbuffers::WIPOffset<&'b str>) {
                     self.fbb_
-                        .push_slot_always::<::flatbuffers::WIPOffset<_>>(Attachment::VT_NAME, name);
+                        .push_slot_always::<::flatbuffers::WIPOffset<_>>(File::VT_NAME, name);
                 }
                 #[inline]
                 pub fn add_content(
                     &mut self,
                     content: ::flatbuffers::WIPOffset<::flatbuffers::Vector<'b, u8>>,
                 ) {
-                    self.fbb_.push_slot_always::<::flatbuffers::WIPOffset<_>>(
-                        Attachment::VT_CONTENT,
-                        content,
-                    );
+                    self.fbb_
+                        .push_slot_always::<::flatbuffers::WIPOffset<_>>(File::VT_CONTENT, content);
                 }
                 #[inline]
                 pub fn new(
                     _fbb: &'b mut ::flatbuffers::FlatBufferBuilder<'a, A>,
-                ) -> AttachmentBuilder<'a, 'b, A> {
+                ) -> FileBuilder<'a, 'b, A> {
                     let start = _fbb.start_table();
-                    AttachmentBuilder {
+                    FileBuilder {
                         fbb_: _fbb,
                         start_: start,
                     }
                 }
                 #[inline]
-                pub fn finish(self) -> ::flatbuffers::WIPOffset<Attachment<'a>> {
+                pub fn finish(self) -> ::flatbuffers::WIPOffset<File<'a>> {
                     let o = self.fbb_.end_table(self.start_);
+                    self.fbb_.required(o, File::VT_NAME, "name");
+                    self.fbb_.required(o, File::VT_CONTENT, "content");
                     ::flatbuffers::WIPOffset::new(o.value())
                 }
             }
 
-            impl ::core::fmt::Debug for Attachment<'_> {
+            impl ::core::fmt::Debug for File<'_> {
                 fn fmt(&self, f: &mut ::core::fmt::Formatter<'_>) -> ::core::fmt::Result {
-                    let mut ds = f.debug_struct("Attachment");
+                    let mut ds = f.debug_struct("File");
                     ds.field("name", &self.name());
                     ds.field("content", &self.content());
                     ds.finish()
                 }
             }
-            pub enum DocumentOffset {}
+            pub enum TaskOffset {}
             #[derive(Copy, Clone, PartialEq)]
 
-            pub struct Document<'a> {
+            pub struct Task<'a> {
                 pub _tab: ::flatbuffers::Table<'a>,
             }
 
-            impl<'a> ::flatbuffers::Follow<'a> for Document<'a> {
-                type Inner = Document<'a>;
+            impl<'a> ::flatbuffers::Follow<'a> for Task<'a> {
+                type Inner = Task<'a>;
                 #[inline]
                 unsafe fn follow(buf: &'a [u8], loc: usize) -> Self::Inner {
                     Self {
@@ -423,14 +429,15 @@ pub mod palm {
                 }
             }
 
-            impl<'a> Document<'a> {
+            impl<'a> Task<'a> {
                 pub const VT_ENTRY: ::flatbuffers::VOffsetT = 4;
                 pub const VT_CLASS: ::flatbuffers::VOffsetT = 6;
-                pub const VT_ATTACHMENTS: ::flatbuffers::VOffsetT = 8;
+                pub const VT_FILES: ::flatbuffers::VOffsetT = 8;
+                pub const VT_OUTPUT: ::flatbuffers::VOffsetT = 10;
 
                 #[inline]
                 pub unsafe fn init_from_table(table: ::flatbuffers::Table<'a>) -> Self {
-                    Document { _tab: table }
+                    Task { _tab: table }
                 }
                 #[allow(unused_mut)]
                 pub fn create<
@@ -440,11 +447,14 @@ pub mod palm {
                     A: ::flatbuffers::Allocator + 'bldr,
                 >(
                     _fbb: &'mut_bldr mut ::flatbuffers::FlatBufferBuilder<'bldr, A>,
-                    args: &'args DocumentArgs<'args>,
-                ) -> ::flatbuffers::WIPOffset<Document<'bldr>> {
-                    let mut builder = DocumentBuilder::new(_fbb);
-                    if let Some(x) = args.attachments {
-                        builder.add_attachments(x);
+                    args: &'args TaskArgs<'args>,
+                ) -> ::flatbuffers::WIPOffset<Task<'bldr>> {
+                    let mut builder = TaskBuilder::new(_fbb);
+                    if let Some(x) = args.output {
+                        builder.add_output(x);
+                    }
+                    if let Some(x) = args.files {
+                        builder.add_files(x);
                     }
                     if let Some(x) = args.entry {
                         builder.add_entry(x);
@@ -454,13 +464,14 @@ pub mod palm {
                 }
 
                 #[inline]
-                pub fn entry(&self) -> Option<&'a str> {
+                pub fn entry(&self) -> &'a str {
                     // Safety:
                     // Created from valid Table for this object
                     // which contains a valid value in this slot
                     unsafe {
                         self._tab
-                            .get::<::flatbuffers::ForwardsUOffset<&str>>(Document::VT_ENTRY, None)
+                            .get::<::flatbuffers::ForwardsUOffset<&str>>(Task::VT_ENTRY, None)
+                            .unwrap()
                     }
                 }
                 #[inline]
@@ -470,27 +481,40 @@ pub mod palm {
                     // which contains a valid value in this slot
                     unsafe {
                         self._tab
-                            .get::<Class>(Document::VT_CLASS, Some(Class::Article))
+                            .get::<Class>(Task::VT_CLASS, Some(Class::Article))
                             .unwrap()
                     }
                 }
                 #[inline]
-                pub fn attachments(
+                pub fn files(
                     &self,
-                ) -> Option<::flatbuffers::Vector<'a, ::flatbuffers::ForwardsUOffset<Attachment<'a>>>>
+                ) -> ::flatbuffers::Vector<'a, ::flatbuffers::ForwardsUOffset<File<'a>>>
                 {
                     // Safety:
                     // Created from valid Table for this object
                     // which contains a valid value in this slot
                     unsafe {
-                        self._tab.get::<::flatbuffers::ForwardsUOffset<
-                            ::flatbuffers::Vector<'a, ::flatbuffers::ForwardsUOffset<Attachment>>,
-                        >>(Document::VT_ATTACHMENTS, None)
+                        self._tab
+                            .get::<::flatbuffers::ForwardsUOffset<
+                                ::flatbuffers::Vector<'a, ::flatbuffers::ForwardsUOffset<File>>,
+                            >>(Task::VT_FILES, None)
+                            .unwrap()
+                    }
+                }
+                #[inline]
+                pub fn output(&self) -> Output<'a> {
+                    // Safety:
+                    // Created from valid Table for this object
+                    // which contains a valid value in this slot
+                    unsafe {
+                        self._tab
+                            .get::<::flatbuffers::ForwardsUOffset<Output>>(Task::VT_OUTPUT, None)
+                            .unwrap()
                     }
                 }
             }
 
-            impl ::flatbuffers::Verifiable for Document<'_> {
+            impl ::flatbuffers::Verifiable for Task<'_> {
                 #[inline]
                 fn run_verifier(
                     v: &mut ::flatbuffers::Verifier,
@@ -500,86 +524,103 @@ pub mod palm {
                         .visit_field::<::flatbuffers::ForwardsUOffset<&str>>(
                             "entry",
                             Self::VT_ENTRY,
-                            false,
+                            true,
                         )?
                         .visit_field::<Class>("class", Self::VT_CLASS, false)?
                         .visit_field::<::flatbuffers::ForwardsUOffset<
-                            ::flatbuffers::Vector<'_, ::flatbuffers::ForwardsUOffset<Attachment>>,
-                        >>("attachments", Self::VT_ATTACHMENTS, false)?
+                            ::flatbuffers::Vector<'_, ::flatbuffers::ForwardsUOffset<File>>,
+                        >>("files", Self::VT_FILES, true)?
+                        .visit_field::<::flatbuffers::ForwardsUOffset<Output>>(
+                            "output",
+                            Self::VT_OUTPUT,
+                            true,
+                        )?
                         .finish();
                     Ok(())
                 }
             }
-            pub struct DocumentArgs<'a> {
+            pub struct TaskArgs<'a> {
                 pub entry: Option<::flatbuffers::WIPOffset<&'a str>>,
                 pub class: Class,
-                pub attachments: Option<
+                pub files: Option<
                     ::flatbuffers::WIPOffset<
-                        ::flatbuffers::Vector<'a, ::flatbuffers::ForwardsUOffset<Attachment<'a>>>,
+                        ::flatbuffers::Vector<'a, ::flatbuffers::ForwardsUOffset<File<'a>>>,
                     >,
                 >,
+                pub output: Option<::flatbuffers::WIPOffset<Output<'a>>>,
             }
-            impl<'a> Default for DocumentArgs<'a> {
+            impl<'a> Default for TaskArgs<'a> {
                 #[inline]
                 fn default() -> Self {
-                    DocumentArgs {
-                        entry: None,
+                    TaskArgs {
+                        entry: None, // required field
                         class: Class::Article,
-                        attachments: None,
+                        files: None,  // required field
+                        output: None, // required field
                     }
                 }
             }
 
-            pub struct DocumentBuilder<'a: 'b, 'b, A: ::flatbuffers::Allocator + 'a> {
+            pub struct TaskBuilder<'a: 'b, 'b, A: ::flatbuffers::Allocator + 'a> {
                 fbb_: &'b mut ::flatbuffers::FlatBufferBuilder<'a, A>,
                 start_: ::flatbuffers::WIPOffset<::flatbuffers::TableUnfinishedWIPOffset>,
             }
-            impl<'a: 'b, 'b, A: ::flatbuffers::Allocator + 'a> DocumentBuilder<'a, 'b, A> {
+            impl<'a: 'b, 'b, A: ::flatbuffers::Allocator + 'a> TaskBuilder<'a, 'b, A> {
                 #[inline]
                 pub fn add_entry(&mut self, entry: ::flatbuffers::WIPOffset<&'b str>) {
                     self.fbb_
-                        .push_slot_always::<::flatbuffers::WIPOffset<_>>(Document::VT_ENTRY, entry);
+                        .push_slot_always::<::flatbuffers::WIPOffset<_>>(Task::VT_ENTRY, entry);
                 }
                 #[inline]
                 pub fn add_class(&mut self, class: Class) {
                     self.fbb_
-                        .push_slot::<Class>(Document::VT_CLASS, class, Class::Article);
+                        .push_slot::<Class>(Task::VT_CLASS, class, Class::Article);
                 }
                 #[inline]
-                pub fn add_attachments(
+                pub fn add_files(
                     &mut self,
-                    attachments: ::flatbuffers::WIPOffset<
-                        ::flatbuffers::Vector<'b, ::flatbuffers::ForwardsUOffset<Attachment<'b>>>,
+                    files: ::flatbuffers::WIPOffset<
+                        ::flatbuffers::Vector<'b, ::flatbuffers::ForwardsUOffset<File<'b>>>,
                     >,
                 ) {
-                    self.fbb_.push_slot_always::<::flatbuffers::WIPOffset<_>>(
-                        Document::VT_ATTACHMENTS,
-                        attachments,
-                    );
+                    self.fbb_
+                        .push_slot_always::<::flatbuffers::WIPOffset<_>>(Task::VT_FILES, files);
+                }
+                #[inline]
+                pub fn add_output(&mut self, output: ::flatbuffers::WIPOffset<Output<'b>>) {
+                    self.fbb_
+                        .push_slot_always::<::flatbuffers::WIPOffset<Output>>(
+                            Task::VT_OUTPUT,
+                            output,
+                        );
                 }
                 #[inline]
                 pub fn new(
                     _fbb: &'b mut ::flatbuffers::FlatBufferBuilder<'a, A>,
-                ) -> DocumentBuilder<'a, 'b, A> {
+                ) -> TaskBuilder<'a, 'b, A> {
                     let start = _fbb.start_table();
-                    DocumentBuilder {
+                    TaskBuilder {
                         fbb_: _fbb,
                         start_: start,
                     }
                 }
                 #[inline]
-                pub fn finish(self) -> ::flatbuffers::WIPOffset<Document<'a>> {
+                pub fn finish(self) -> ::flatbuffers::WIPOffset<Task<'a>> {
                     let o = self.fbb_.end_table(self.start_);
+                    self.fbb_.required(o, Task::VT_ENTRY, "entry");
+                    self.fbb_.required(o, Task::VT_FILES, "files");
+                    self.fbb_.required(o, Task::VT_OUTPUT, "output");
                     ::flatbuffers::WIPOffset::new(o.value())
                 }
             }
 
-            impl ::core::fmt::Debug for Document<'_> {
+            impl ::core::fmt::Debug for Task<'_> {
                 fn fmt(&self, f: &mut ::core::fmt::Formatter<'_>) -> ::core::fmt::Result {
-                    let mut ds = f.debug_struct("Document");
+                    let mut ds = f.debug_struct("Task");
                     ds.field("entry", &self.entry());
                     ds.field("class", &self.class());
-                    ds.field("attachments", &self.attachments());
+                    ds.field("files", &self.files());
+                    ds.field("output", &self.output());
                     ds.finish()
                 }
             }

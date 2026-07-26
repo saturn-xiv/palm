@@ -10,6 +10,7 @@ minio = "0.4"
 xmpp = "0.7"
 axum = "0.8"
 r2d2 = "0.8"
+lettre = "0.11"
 rabbitmq-stream-client = "0.11"
 sha2 = "0.11"
 askama = "0.16"
@@ -18,6 +19,7 @@ regex = "1"
 serde_json = "1"
 toml = "1"
 data-encoding = "2"
+diesel = "2"
 opensearch = "2"
 tempfile = "3"
 lapin = "4"
@@ -43,6 +45,10 @@ features = ["uuid", "url", "chrono", "chrono-tz"]
 version = "0.13"
 features = ["json"]
 
+[dependencies.strum]
+version = "0.28"
+features = ["derive"]
+
 [dependencies.quick-xml]
 version = "0.41"
 features = ["serialize"]
@@ -62,11 +68,6 @@ features = ["full"]
 [dependencies.uuid]
 version = "1"
 features = ["v4", "serde"]
-
-[dependencies.diesel]
-version = "2"
-default-features = false
-features = ["postgres", "r2d2"]
 
 [dependencies.url]
 version = "2"

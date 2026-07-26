@@ -4,11 +4,15 @@ pub mod content_type;
 pub mod gravatar;
 pub mod hmac;
 pub mod jwt;
+pub mod mailer;
+pub mod minio;
 pub mod models;
+pub mod open_search;
 pub mod orm;
 pub mod queue;
 pub mod random;
 pub mod ssha512;
+pub mod twilio;
 
 use std::env::current_exe;
 use std::error::Error as StdError;
