@@ -2,12 +2,12 @@ use std::{path::Path, sync::Arc, time::Duration};
 
 use hyacinth::{flatbuffers_root, sms_v1::Task};
 use portal::{
-    Result, is_stopped, parse_toml,
+    Error, Result,
+    graphql::QUEUE_SMS_BY_TWILIO,
+    is_stopped, parse_toml,
     queue::{
-        ProtobufConsumer,
-        rabbitmq::{
-            Node as RabbitMq, ProtobufConsumer as RabbitMqProtobufConsumer, QueueDeclareOptions,
-        },
+        Consumer as QueueConsumer,
+        rabbitmq::{Node as RabbitMq, QueueDeclareOptions},
     },
     twilio::Node as TwilioConfig,
 };
@@ -37,13 +37,11 @@ pub async fn start<P: AsRef<Path>>(config: P, queue: &str, interval: Duration) -
     loop {
         if let Err(e) = client
             .consume(
-                "phlox.sms-send.twilio",
+                QUEUE_SMS_BY_TWILIO,
                 queue,
-                &RabbitMqProtobufConsumer {
-                    handler: ProtobufSmsSendConsumer {
-                        client: twilio.clone(),
-                        interval,
-                    },
+                &Consumer {
+                    client: twilio.clone(),
+                    interval,
                 },
             )
             .await
@@ -60,17 +58,22 @@ struct Config {
     rabbitmq: RabbitMq,
 }
 
-struct ProtobufSmsSendConsumer {
+struct Consumer {
     client: Arc<TwilioConfig>,
     interval: Duration,
 }
 
-impl ProtobufConsumer for ProtobufSmsSendConsumer {
-    type Message = Task;
-    async fn consume(&self, _id: &str, task: Self::Message) -> Result<()> {
-        for to in task.to.iter() {
+impl QueueConsumer for Consumer {
+    type Error = Error;
+    async fn consume(&self, _id: &str, _content_type: &str, payload: &[u8]) -> Result<()> {
+        let task = flatbuffers_root::<Task>(payload)?;
+        for to in task.to().iter() {
             self.client
-                .sms(to.clone(), task.body.clone(), task.status_callback.clone())
+                .sms(
+                    to.to_string(),
+                    task.body().to_string(),
+                    task.status_callback().map(|x| x.to_string()),
+                )
                 .await?;
             sleep(self.interval).await;
         }

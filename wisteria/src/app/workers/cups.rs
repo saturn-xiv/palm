@@ -1,22 +1,18 @@
 use std::{fs::File, io::prelude::*, path::Path, process::Command, time::Duration};
 
+use hyacinth::{cups_v1::Task, flatbuffers_root};
 use portal::{
-    Result, is_stopped, parse_toml,
+    Error, Result,
+    graphql::QUEUE_CUPS,
+    is_stopped, parse_toml,
     queue::{
-        ProtobufConsumer,
-        rabbitmq::{
-            Node as RabbitMq, ProtobufConsumer as RabbitMqProtobufConsumer, QueueDeclareOptions,
-        },
+        Consumer as QueueConsumer,
+        rabbitmq::{Node as RabbitMq, QueueDeclareOptions},
     },
 };
 use serde::{Deserialize, Serialize};
 pub use tempfile::tempdir;
 use tokio::time::sleep;
-
-use super::super::super::palm::cups::v1::{
-    Task,
-    task::{JobSheet, Media, Orientation, Quality, Sides},
-};
 
 pub async fn start<P: AsRef<Path>>(config: P, queue: &str, interval: Duration) -> Result<()> {
     if is_stopped()? {
@@ -44,13 +40,7 @@ pub async fn start<P: AsRef<Path>>(config: P, queue: &str, interval: Duration) -
 
     loop {
         if let Err(e) = client
-            .consume(
-                "phlox.cups",
-                queue,
-                &RabbitMqProtobufConsumer {
-                    handler: ProtobufCupsConsumer { interval },
-                },
-            )
+            .consume(QUEUE_CUPS, queue, &Consumer { interval })
             .await
         {
             log::error!("{}", e);
@@ -64,91 +54,31 @@ struct Config {
     rabbitmq: RabbitMq,
 }
 
-struct ProtobufCupsConsumer {
+struct Consumer {
     interval: Duration,
 }
 
-impl ProtobufConsumer for ProtobufCupsConsumer {
-    type Message = Task;
-    async fn consume(&self, _id: &str, task: Self::Message) -> Result<()> {
+impl QueueConsumer for Consumer {
+    type Error = Error;
+    async fn consume(&self, _id: &str, _content_type: &str, payload: &[u8]) -> Result<()> {
+        let task = flatbuffers_root::<Task>(payload)?;
         let work_dir = tempdir()?;
-        let file = work_dir.path().join(&task.name);
+        let file = work_dir.path().join(task.name());
         {
             let mut it = File::create_new(&file)?;
-            it.write_all(&task.document)?;
+            it.write_all(task.document().bytes())?;
         }
-        log::info!("print job({}) {}", task.name, file.display());
-        {
-            let cmd = task.shell_command(&file)?;
-            log::debug!("{}", cmd);
-            let out = Command::new("sh").arg("-c").arg(&cmd).output()?;
-            log::debug!("{}", std::str::from_utf8(&out.stdout)?);
+        log::info!("print job({}) {}", task.name(), file.display());
+        match task.command(&file) {
+            Ok(ref cmd) => {
+                log::debug!("{}", cmd);
+                let out = Command::new("sh").arg("-c").arg(cmd).output()?;
+                log::debug!("{}", std::str::from_utf8(&out.stdout)?);
+                sleep(self.interval).await;
+            }
+            Err(err) => log::error!("{}", err),
         }
-        sleep(self.interval).await;
+
         Ok(())
-    }
-}
-
-impl Task {
-    // https://man7.org/linux/man-pages/man1/lpr.1.html
-    pub fn shell_command<P: AsRef<Path>>(&self, file: P) -> Result<String> {
-        let file = file.as_ref();
-        let mut it = format!("lpr -T {} -#{} -r", self.name, self.copies);
-
-        if !self.number_up.is_empty() {
-            let pages: Vec<String> = self.number_up.iter().map(|x| format!("{}", x)).collect();
-            it = format!("{} -o number-up={}", it, pages.join("|"));
-        }
-
-        it = format!(
-            "{} -o media={}",
-            it,
-            match Media::try_from(self.media)? {
-                Media::A3 => "a3",
-                Media::A4 => "a4",
-                Media::Letter => "letter",
-            }
-        );
-        it = format!(
-            "{} -o job-sheets={}",
-            it,
-            match JobSheet::try_from(self.job_sheet)? {
-                JobSheet::Classified => "classified",
-                JobSheet::Confidential => "confidential",
-                JobSheet::Secret => "secret",
-                JobSheet::Standard => "standard",
-                JobSheet::TopSecret => "topsecret",
-                JobSheet::Unclassified => "unclassified",
-            }
-        );
-        it = format!(
-            "{} -o orientation-requested={}",
-            it,
-            match Orientation::try_from(self.orientation)? {
-                Orientation::LandscapeCounterClockwise90 => 4,
-                Orientation::LandscapeClockwise90 => 5,
-                Orientation::ReversePortrait => 6,
-            }
-        );
-        it = format!(
-            "{} -o print-quality={}",
-            it,
-            match Quality::try_from(self.quality)? {
-                Quality::Draft => 3,
-                Quality::Normal => 4,
-                Quality::Best => 5,
-            }
-        );
-        it = format!(
-            "{} -o sides={}",
-            it,
-            match Sides::try_from(self.sides)? {
-                Sides::One => "one-sided",
-                Sides::TwoLong => "two-sided-long-edge",
-                Sides::TwoShort => "two-sided-short-edge",
-            }
-        );
-
-        Ok(format!("{} {}", it, file.display()))
     }
 }

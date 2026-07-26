@@ -515,9 +515,14 @@ pub mod palm {
 
             impl<'a> Task<'a> {
                 pub const VT_NAME: ::flatbuffers::VOffsetT = 4;
-                pub const VT_CONTENT: ::flatbuffers::VOffsetT = 6;
-                pub const VT_PAGES: ::flatbuffers::VOffsetT = 8;
+                pub const VT_DOCUMENT: ::flatbuffers::VOffsetT = 6;
+                pub const VT_NUMBER_UP: ::flatbuffers::VOffsetT = 8;
                 pub const VT_COPIES: ::flatbuffers::VOffsetT = 10;
+                pub const VT_JOB_SHEET: ::flatbuffers::VOffsetT = 12;
+                pub const VT_MEDIA: ::flatbuffers::VOffsetT = 14;
+                pub const VT_ORIENTATION: ::flatbuffers::VOffsetT = 16;
+                pub const VT_QUALITY: ::flatbuffers::VOffsetT = 18;
+                pub const VT_SIDES: ::flatbuffers::VOffsetT = 20;
 
                 #[inline]
                 pub unsafe fn init_from_table(table: ::flatbuffers::Table<'a>) -> Self {
@@ -534,51 +539,58 @@ pub mod palm {
                     args: &'args TaskArgs<'args>,
                 ) -> ::flatbuffers::WIPOffset<Task<'bldr>> {
                     let mut builder = TaskBuilder::new(_fbb);
-                    if let Some(x) = args.pages {
-                        builder.add_pages(x);
+                    if let Some(x) = args.number_up {
+                        builder.add_number_up(x);
                     }
-                    if let Some(x) = args.content {
-                        builder.add_content(x);
+                    if let Some(x) = args.document {
+                        builder.add_document(x);
                     }
                     if let Some(x) = args.name {
                         builder.add_name(x);
                     }
                     builder.add_copies(args.copies);
+                    builder.add_sides(args.sides);
+                    builder.add_quality(args.quality);
+                    builder.add_orientation(args.orientation);
+                    builder.add_media(args.media);
+                    builder.add_job_sheet(args.job_sheet);
                     builder.finish()
                 }
 
                 #[inline]
-                pub fn name(&self) -> Option<&'a str> {
+                pub fn name(&self) -> &'a str {
                     // Safety:
                     // Created from valid Table for this object
                     // which contains a valid value in this slot
                     unsafe {
                         self._tab
                             .get::<::flatbuffers::ForwardsUOffset<&str>>(Task::VT_NAME, None)
+                            .unwrap()
                     }
                 }
                 #[inline]
-                pub fn content(&self) -> Option<::flatbuffers::Vector<'a, u8>> {
+                pub fn document(&self) -> ::flatbuffers::Vector<'a, u8> {
                     // Safety:
                     // Created from valid Table for this object
                     // which contains a valid value in this slot
                     unsafe {
                         self._tab
                             .get::<::flatbuffers::ForwardsUOffset<::flatbuffers::Vector<'a, u8>>>(
-                                Task::VT_CONTENT,
+                                Task::VT_DOCUMENT,
                                 None,
                             )
+                            .unwrap()
                     }
                 }
                 #[inline]
-                pub fn pages(&self) -> Option<::flatbuffers::Vector<'a, u16>> {
+                pub fn number_up(&self) -> Option<::flatbuffers::Vector<'a, u16>> {
                     // Safety:
                     // Created from valid Table for this object
                     // which contains a valid value in this slot
                     unsafe {
                         self._tab
                             .get::<::flatbuffers::ForwardsUOffset<::flatbuffers::Vector<'a, u16>>>(
-                                Task::VT_PAGES,
+                                Task::VT_NUMBER_UP,
                                 None,
                             )
                     }
@@ -590,6 +602,64 @@ pub mod palm {
                     // which contains a valid value in this slot
                     unsafe { self._tab.get::<u16>(Task::VT_COPIES, Some(0)).unwrap() }
                 }
+                #[inline]
+                pub fn job_sheet(&self) -> JobSheet {
+                    // Safety:
+                    // Created from valid Table for this object
+                    // which contains a valid value in this slot
+                    unsafe {
+                        self._tab
+                            .get::<JobSheet>(Task::VT_JOB_SHEET, Some(JobSheet::Standard))
+                            .unwrap()
+                    }
+                }
+                #[inline]
+                pub fn media(&self) -> Media {
+                    // Safety:
+                    // Created from valid Table for this object
+                    // which contains a valid value in this slot
+                    unsafe {
+                        self._tab
+                            .get::<Media>(Task::VT_MEDIA, Some(Media::A4))
+                            .unwrap()
+                    }
+                }
+                #[inline]
+                pub fn orientation(&self) -> Orientation {
+                    // Safety:
+                    // Created from valid Table for this object
+                    // which contains a valid value in this slot
+                    unsafe {
+                        self._tab
+                            .get::<Orientation>(
+                                Task::VT_ORIENTATION,
+                                Some(Orientation::LandscapeCounterClockwise90),
+                            )
+                            .unwrap()
+                    }
+                }
+                #[inline]
+                pub fn quality(&self) -> Quality {
+                    // Safety:
+                    // Created from valid Table for this object
+                    // which contains a valid value in this slot
+                    unsafe {
+                        self._tab
+                            .get::<Quality>(Task::VT_QUALITY, Some(Quality::Draft))
+                            .unwrap()
+                    }
+                }
+                #[inline]
+                pub fn sides(&self) -> Sides {
+                    // Safety:
+                    // Created from valid Table for this object
+                    // which contains a valid value in this slot
+                    unsafe {
+                        self._tab
+                            .get::<Sides>(Task::VT_SIDES, Some(Sides::One))
+                            .unwrap()
+                    }
+                }
             }
 
             impl ::flatbuffers::Verifiable for Task<'_> {
@@ -599,28 +669,43 @@ pub mod palm {
                     pos: usize,
                 ) -> Result<(), ::flatbuffers::InvalidFlatbuffer> {
                     v.visit_table(pos)?
-     .visit_field::<::flatbuffers::ForwardsUOffset<&str>>("name", Self::VT_NAME, false)?
-     .visit_field::<::flatbuffers::ForwardsUOffset<::flatbuffers::Vector<'_, u8>>>("content", Self::VT_CONTENT, false)?
-     .visit_field::<::flatbuffers::ForwardsUOffset<::flatbuffers::Vector<'_, u16>>>("pages", Self::VT_PAGES, false)?
+     .visit_field::<::flatbuffers::ForwardsUOffset<&str>>("name", Self::VT_NAME, true)?
+     .visit_field::<::flatbuffers::ForwardsUOffset<::flatbuffers::Vector<'_, u8>>>("document", Self::VT_DOCUMENT, true)?
+     .visit_field::<::flatbuffers::ForwardsUOffset<::flatbuffers::Vector<'_, u16>>>("number_up", Self::VT_NUMBER_UP, false)?
      .visit_field::<u16>("copies", Self::VT_COPIES, false)?
+     .visit_field::<JobSheet>("job_sheet", Self::VT_JOB_SHEET, false)?
+     .visit_field::<Media>("media", Self::VT_MEDIA, false)?
+     .visit_field::<Orientation>("orientation", Self::VT_ORIENTATION, false)?
+     .visit_field::<Quality>("quality", Self::VT_QUALITY, false)?
+     .visit_field::<Sides>("sides", Self::VT_SIDES, false)?
      .finish();
                     Ok(())
                 }
             }
             pub struct TaskArgs<'a> {
                 pub name: Option<::flatbuffers::WIPOffset<&'a str>>,
-                pub content: Option<::flatbuffers::WIPOffset<::flatbuffers::Vector<'a, u8>>>,
-                pub pages: Option<::flatbuffers::WIPOffset<::flatbuffers::Vector<'a, u16>>>,
+                pub document: Option<::flatbuffers::WIPOffset<::flatbuffers::Vector<'a, u8>>>,
+                pub number_up: Option<::flatbuffers::WIPOffset<::flatbuffers::Vector<'a, u16>>>,
                 pub copies: u16,
+                pub job_sheet: JobSheet,
+                pub media: Media,
+                pub orientation: Orientation,
+                pub quality: Quality,
+                pub sides: Sides,
             }
             impl<'a> Default for TaskArgs<'a> {
                 #[inline]
                 fn default() -> Self {
                     TaskArgs {
-                        name: None,
-                        content: None,
-                        pages: None,
+                        name: None,     // required field
+                        document: None, // required field
+                        number_up: None,
                         copies: 0,
+                        job_sheet: JobSheet::Standard,
+                        media: Media::A4,
+                        orientation: Orientation::LandscapeCounterClockwise90,
+                        quality: Quality::Draft,
+                        sides: Sides::One,
                     }
                 }
             }
@@ -636,24 +721,59 @@ pub mod palm {
                         .push_slot_always::<::flatbuffers::WIPOffset<_>>(Task::VT_NAME, name);
                 }
                 #[inline]
-                pub fn add_content(
+                pub fn add_document(
                     &mut self,
-                    content: ::flatbuffers::WIPOffset<::flatbuffers::Vector<'b, u8>>,
+                    document: ::flatbuffers::WIPOffset<::flatbuffers::Vector<'b, u8>>,
                 ) {
-                    self.fbb_
-                        .push_slot_always::<::flatbuffers::WIPOffset<_>>(Task::VT_CONTENT, content);
+                    self.fbb_.push_slot_always::<::flatbuffers::WIPOffset<_>>(
+                        Task::VT_DOCUMENT,
+                        document,
+                    );
                 }
                 #[inline]
-                pub fn add_pages(
+                pub fn add_number_up(
                     &mut self,
-                    pages: ::flatbuffers::WIPOffset<::flatbuffers::Vector<'b, u16>>,
+                    number_up: ::flatbuffers::WIPOffset<::flatbuffers::Vector<'b, u16>>,
                 ) {
-                    self.fbb_
-                        .push_slot_always::<::flatbuffers::WIPOffset<_>>(Task::VT_PAGES, pages);
+                    self.fbb_.push_slot_always::<::flatbuffers::WIPOffset<_>>(
+                        Task::VT_NUMBER_UP,
+                        number_up,
+                    );
                 }
                 #[inline]
                 pub fn add_copies(&mut self, copies: u16) {
                     self.fbb_.push_slot::<u16>(Task::VT_COPIES, copies, 0);
+                }
+                #[inline]
+                pub fn add_job_sheet(&mut self, job_sheet: JobSheet) {
+                    self.fbb_.push_slot::<JobSheet>(
+                        Task::VT_JOB_SHEET,
+                        job_sheet,
+                        JobSheet::Standard,
+                    );
+                }
+                #[inline]
+                pub fn add_media(&mut self, media: Media) {
+                    self.fbb_
+                        .push_slot::<Media>(Task::VT_MEDIA, media, Media::A4);
+                }
+                #[inline]
+                pub fn add_orientation(&mut self, orientation: Orientation) {
+                    self.fbb_.push_slot::<Orientation>(
+                        Task::VT_ORIENTATION,
+                        orientation,
+                        Orientation::LandscapeCounterClockwise90,
+                    );
+                }
+                #[inline]
+                pub fn add_quality(&mut self, quality: Quality) {
+                    self.fbb_
+                        .push_slot::<Quality>(Task::VT_QUALITY, quality, Quality::Draft);
+                }
+                #[inline]
+                pub fn add_sides(&mut self, sides: Sides) {
+                    self.fbb_
+                        .push_slot::<Sides>(Task::VT_SIDES, sides, Sides::One);
                 }
                 #[inline]
                 pub fn new(
@@ -668,6 +788,8 @@ pub mod palm {
                 #[inline]
                 pub fn finish(self) -> ::flatbuffers::WIPOffset<Task<'a>> {
                     let o = self.fbb_.end_table(self.start_);
+                    self.fbb_.required(o, Task::VT_NAME, "name");
+                    self.fbb_.required(o, Task::VT_DOCUMENT, "document");
                     ::flatbuffers::WIPOffset::new(o.value())
                 }
             }
@@ -676,9 +798,14 @@ pub mod palm {
                 fn fmt(&self, f: &mut ::core::fmt::Formatter<'_>) -> ::core::fmt::Result {
                     let mut ds = f.debug_struct("Task");
                     ds.field("name", &self.name());
-                    ds.field("content", &self.content());
-                    ds.field("pages", &self.pages());
+                    ds.field("document", &self.document());
+                    ds.field("number_up", &self.number_up());
                     ds.field("copies", &self.copies());
+                    ds.field("job_sheet", &self.job_sheet());
+                    ds.field("media", &self.media());
+                    ds.field("orientation", &self.orientation());
+                    ds.field("quality", &self.quality());
+                    ds.field("sides", &self.sides());
                     ds.finish()
                 }
             }

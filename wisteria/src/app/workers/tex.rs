@@ -2,11 +2,13 @@ use std::{fs::File, io::prelude::*, path::Path, process::Command, sync::Arc, tim
 
 use hyacinth::{flatbuffers_root, tex_v1::Task};
 use portal::{
-    Error, Result, is_stopped,
+    Error, Result,
+    graphql::QUEUE_TEX,
+    is_stopped,
     minio::{Client as MinioClient, Node as MinioConfig},
     parse_toml,
     queue::{
-        Consumer,
+        Consumer as QueueConsumer,
         rabbitmq::{Node as RabbitMq, QueueDeclareOptions},
     },
 };
@@ -37,9 +39,9 @@ pub async fn start<P: AsRef<Path>>(config: P, queue: &str, interval: Duration) -
     loop {
         if let Err(e) = client
             .consume(
-                "wisteria.tex",
+                QUEUE_TEX,
                 queue,
-                &ProtobufTexConsumer {
+                &Consumer {
                     interval,
                     s3: s3.clone(),
                 },
@@ -58,12 +60,12 @@ struct Config {
     minio: MinioConfig,
 }
 
-struct ProtobufTexConsumer {
+struct Consumer {
     interval: Duration,
     s3: Arc<MinioClient>,
 }
 
-impl Consumer for ProtobufTexConsumer {
+impl QueueConsumer for Consumer {
     type Error = Error;
     async fn consume(&self, _id: &str, _content_type: &str, payload: &[u8]) -> Result<()> {
         let task = flatbuffers_root::<Task>(payload)?;
@@ -104,8 +106,8 @@ impl Consumer for ProtobufTexConsumer {
         {
             self.s3
                 .upload(
-                    &task.output().bucket(),
-                    &task.output().object(),
+                    task.output().bucket(),
+                    task.output().object(),
                     &work_dir.join(&entry_pdf),
                 )
                 .await?;

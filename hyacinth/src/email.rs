@@ -62,23 +62,25 @@ pub mod palm {
                 }
 
                 #[inline]
-                pub fn name(&self) -> Option<&'a str> {
+                pub fn name(&self) -> &'a str {
                     // Safety:
                     // Created from valid Table for this object
                     // which contains a valid value in this slot
                     unsafe {
                         self._tab
                             .get::<::flatbuffers::ForwardsUOffset<&str>>(Address::VT_NAME, None)
+                            .unwrap()
                     }
                 }
                 #[inline]
-                pub fn email(&self) -> Option<&'a str> {
+                pub fn email(&self) -> &'a str {
                     // Safety:
                     // Created from valid Table for this object
                     // which contains a valid value in this slot
                     unsafe {
                         self._tab
                             .get::<::flatbuffers::ForwardsUOffset<&str>>(Address::VT_EMAIL, None)
+                            .unwrap()
                     }
                 }
             }
@@ -93,12 +95,12 @@ pub mod palm {
                         .visit_field::<::flatbuffers::ForwardsUOffset<&str>>(
                             "name",
                             Self::VT_NAME,
-                            false,
+                            true,
                         )?
                         .visit_field::<::flatbuffers::ForwardsUOffset<&str>>(
                             "email",
                             Self::VT_EMAIL,
-                            false,
+                            true,
                         )?
                         .finish();
                     Ok(())
@@ -112,8 +114,8 @@ pub mod palm {
                 #[inline]
                 fn default() -> Self {
                     AddressArgs {
-                        name: None,
-                        email: None,
+                        name: None,  // required field
+                        email: None, // required field
                     }
                 }
             }
@@ -146,6 +148,8 @@ pub mod palm {
                 #[inline]
                 pub fn finish(self) -> ::flatbuffers::WIPOffset<Address<'a>> {
                     let o = self.fbb_.end_table(self.start_);
+                    self.fbb_.required(o, Address::VT_NAME, "name");
+                    self.fbb_.required(o, Address::VT_EMAIL, "email");
                     ::flatbuffers::WIPOffset::new(o.value())
                 }
             }
@@ -209,13 +213,14 @@ pub mod palm {
                     unsafe { self._tab.get::<bool>(Body::VT_HTML, Some(false)).unwrap() }
                 }
                 #[inline]
-                pub fn content(&self) -> Option<&'a str> {
+                pub fn content(&self) -> &'a str {
                     // Safety:
                     // Created from valid Table for this object
                     // which contains a valid value in this slot
                     unsafe {
                         self._tab
                             .get::<::flatbuffers::ForwardsUOffset<&str>>(Body::VT_CONTENT, None)
+                            .unwrap()
                     }
                 }
             }
@@ -231,7 +236,7 @@ pub mod palm {
                         .visit_field::<::flatbuffers::ForwardsUOffset<&str>>(
                             "content",
                             Self::VT_CONTENT,
-                            false,
+                            true,
                         )?
                         .finish();
                     Ok(())
@@ -246,7 +251,7 @@ pub mod palm {
                 fn default() -> Self {
                     BodyArgs {
                         html: false,
-                        content: None,
+                        content: None, // required field
                     }
                 }
             }
@@ -278,6 +283,7 @@ pub mod palm {
                 #[inline]
                 pub fn finish(self) -> ::flatbuffers::WIPOffset<Body<'a>> {
                     let o = self.fbb_.end_table(self.start_);
+                    self.fbb_.required(o, Body::VT_CONTENT, "content");
                     ::flatbuffers::WIPOffset::new(o.value())
                 }
             }
@@ -308,7 +314,7 @@ pub mod palm {
             }
 
             impl<'a> Attachment<'a> {
-                pub const VT_INLINE: ::flatbuffers::VOffsetT = 4;
+                pub const VT_INLINE_ID: ::flatbuffers::VOffsetT = 4;
                 pub const VT_NAME: ::flatbuffers::VOffsetT = 6;
                 pub const VT_BODY: ::flatbuffers::VOffsetT = 8;
                 pub const VT_CONTENT_TYPE: ::flatbuffers::VOffsetT = 10;
@@ -337,33 +343,37 @@ pub mod palm {
                     if let Some(x) = args.name {
                         builder.add_name(x);
                     }
-                    builder.add_inline(args.inline);
+                    if let Some(x) = args.inline_id {
+                        builder.add_inline_id(x);
+                    }
                     builder.finish()
                 }
 
                 #[inline]
-                pub fn inline(&self) -> bool {
+                pub fn inline_id(&self) -> Option<&'a str> {
                     // Safety:
                     // Created from valid Table for this object
                     // which contains a valid value in this slot
                     unsafe {
-                        self._tab
-                            .get::<bool>(Attachment::VT_INLINE, Some(false))
-                            .unwrap()
+                        self._tab.get::<::flatbuffers::ForwardsUOffset<&str>>(
+                            Attachment::VT_INLINE_ID,
+                            None,
+                        )
                     }
                 }
                 #[inline]
-                pub fn name(&self) -> Option<&'a str> {
+                pub fn name(&self) -> &'a str {
                     // Safety:
                     // Created from valid Table for this object
                     // which contains a valid value in this slot
                     unsafe {
                         self._tab
                             .get::<::flatbuffers::ForwardsUOffset<&str>>(Attachment::VT_NAME, None)
+                            .unwrap()
                     }
                 }
                 #[inline]
-                pub fn body(&self) -> Option<::flatbuffers::Vector<'a, u8>> {
+                pub fn body(&self) -> ::flatbuffers::Vector<'a, u8> {
                     // Safety:
                     // Created from valid Table for this object
                     // which contains a valid value in this slot
@@ -373,18 +383,21 @@ pub mod palm {
                                 Attachment::VT_BODY,
                                 None,
                             )
+                            .unwrap()
                     }
                 }
                 #[inline]
-                pub fn content_type(&self) -> Option<&'a str> {
+                pub fn content_type(&self) -> &'a str {
                     // Safety:
                     // Created from valid Table for this object
                     // which contains a valid value in this slot
                     unsafe {
-                        self._tab.get::<::flatbuffers::ForwardsUOffset<&str>>(
-                            Attachment::VT_CONTENT_TYPE,
-                            None,
-                        )
+                        self._tab
+                            .get::<::flatbuffers::ForwardsUOffset<&str>>(
+                                Attachment::VT_CONTENT_TYPE,
+                                None,
+                            )
+                            .unwrap()
                     }
                 }
             }
@@ -396,16 +409,16 @@ pub mod palm {
                     pos: usize,
                 ) -> Result<(), ::flatbuffers::InvalidFlatbuffer> {
                     v.visit_table(pos)?
-     .visit_field::<bool>("inline", Self::VT_INLINE, false)?
-     .visit_field::<::flatbuffers::ForwardsUOffset<&str>>("name", Self::VT_NAME, false)?
-     .visit_field::<::flatbuffers::ForwardsUOffset<::flatbuffers::Vector<'_, u8>>>("body", Self::VT_BODY, false)?
-     .visit_field::<::flatbuffers::ForwardsUOffset<&str>>("content_type", Self::VT_CONTENT_TYPE, false)?
+     .visit_field::<::flatbuffers::ForwardsUOffset<&str>>("inline_id", Self::VT_INLINE_ID, false)?
+     .visit_field::<::flatbuffers::ForwardsUOffset<&str>>("name", Self::VT_NAME, true)?
+     .visit_field::<::flatbuffers::ForwardsUOffset<::flatbuffers::Vector<'_, u8>>>("body", Self::VT_BODY, true)?
+     .visit_field::<::flatbuffers::ForwardsUOffset<&str>>("content_type", Self::VT_CONTENT_TYPE, true)?
      .finish();
                     Ok(())
                 }
             }
             pub struct AttachmentArgs<'a> {
-                pub inline: bool,
+                pub inline_id: Option<::flatbuffers::WIPOffset<&'a str>>,
                 pub name: Option<::flatbuffers::WIPOffset<&'a str>>,
                 pub body: Option<::flatbuffers::WIPOffset<::flatbuffers::Vector<'a, u8>>>,
                 pub content_type: Option<::flatbuffers::WIPOffset<&'a str>>,
@@ -414,10 +427,10 @@ pub mod palm {
                 #[inline]
                 fn default() -> Self {
                     AttachmentArgs {
-                        inline: false,
-                        name: None,
-                        body: None,
-                        content_type: None,
+                        inline_id: None,
+                        name: None,         // required field
+                        body: None,         // required field
+                        content_type: None, // required field
                     }
                 }
             }
@@ -428,9 +441,11 @@ pub mod palm {
             }
             impl<'a: 'b, 'b, A: ::flatbuffers::Allocator + 'a> AttachmentBuilder<'a, 'b, A> {
                 #[inline]
-                pub fn add_inline(&mut self, inline: bool) {
-                    self.fbb_
-                        .push_slot::<bool>(Attachment::VT_INLINE, inline, false);
+                pub fn add_inline_id(&mut self, inline_id: ::flatbuffers::WIPOffset<&'b str>) {
+                    self.fbb_.push_slot_always::<::flatbuffers::WIPOffset<_>>(
+                        Attachment::VT_INLINE_ID,
+                        inline_id,
+                    );
                 }
                 #[inline]
                 pub fn add_name(&mut self, name: ::flatbuffers::WIPOffset<&'b str>) {
@@ -468,6 +483,10 @@ pub mod palm {
                 #[inline]
                 pub fn finish(self) -> ::flatbuffers::WIPOffset<Attachment<'a>> {
                     let o = self.fbb_.end_table(self.start_);
+                    self.fbb_.required(o, Attachment::VT_NAME, "name");
+                    self.fbb_.required(o, Attachment::VT_BODY, "body");
+                    self.fbb_
+                        .required(o, Attachment::VT_CONTENT_TYPE, "content_type");
                     ::flatbuffers::WIPOffset::new(o.value())
                 }
             }
@@ -475,22 +494,22 @@ pub mod palm {
             impl ::core::fmt::Debug for Attachment<'_> {
                 fn fmt(&self, f: &mut ::core::fmt::Formatter<'_>) -> ::core::fmt::Result {
                     let mut ds = f.debug_struct("Attachment");
-                    ds.field("inline", &self.inline());
+                    ds.field("inline_id", &self.inline_id());
                     ds.field("name", &self.name());
                     ds.field("body", &self.body());
                     ds.field("content_type", &self.content_type());
                     ds.finish()
                 }
             }
-            pub enum EmailOffset {}
+            pub enum TaskOffset {}
             #[derive(Copy, Clone, PartialEq)]
 
-            pub struct Email<'a> {
+            pub struct Task<'a> {
                 pub _tab: ::flatbuffers::Table<'a>,
             }
 
-            impl<'a> ::flatbuffers::Follow<'a> for Email<'a> {
-                type Inner = Email<'a>;
+            impl<'a> ::flatbuffers::Follow<'a> for Task<'a> {
+                type Inner = Task<'a>;
                 #[inline]
                 unsafe fn follow(buf: &'a [u8], loc: usize) -> Self::Inner {
                     Self {
@@ -499,18 +518,19 @@ pub mod palm {
                 }
             }
 
-            impl<'a> Email<'a> {
+            impl<'a> Task<'a> {
                 pub const VT_FROM: ::flatbuffers::VOffsetT = 4;
                 pub const VT_TO: ::flatbuffers::VOffsetT = 6;
-                pub const VT_CC: ::flatbuffers::VOffsetT = 8;
-                pub const VT_BCC: ::flatbuffers::VOffsetT = 10;
-                pub const VT_SUBJECT: ::flatbuffers::VOffsetT = 12;
-                pub const VT_BODY: ::flatbuffers::VOffsetT = 14;
-                pub const VT_ATTACHMENTS: ::flatbuffers::VOffsetT = 16;
+                pub const VT_REPLY_TO: ::flatbuffers::VOffsetT = 8;
+                pub const VT_CC: ::flatbuffers::VOffsetT = 10;
+                pub const VT_BCC: ::flatbuffers::VOffsetT = 12;
+                pub const VT_SUBJECT: ::flatbuffers::VOffsetT = 14;
+                pub const VT_BODY: ::flatbuffers::VOffsetT = 16;
+                pub const VT_ATTACHMENTS: ::flatbuffers::VOffsetT = 18;
 
                 #[inline]
                 pub unsafe fn init_from_table(table: ::flatbuffers::Table<'a>) -> Self {
-                    Email { _tab: table }
+                    Task { _tab: table }
                 }
                 #[allow(unused_mut)]
                 pub fn create<
@@ -520,9 +540,9 @@ pub mod palm {
                     A: ::flatbuffers::Allocator + 'bldr,
                 >(
                     _fbb: &'mut_bldr mut ::flatbuffers::FlatBufferBuilder<'bldr, A>,
-                    args: &'args EmailArgs<'args>,
-                ) -> ::flatbuffers::WIPOffset<Email<'bldr>> {
-                    let mut builder = EmailBuilder::new(_fbb);
+                    args: &'args TaskArgs<'args>,
+                ) -> ::flatbuffers::WIPOffset<Task<'bldr>> {
+                    let mut builder = TaskBuilder::new(_fbb);
                     if let Some(x) = args.attachments {
                         builder.add_attachments(x);
                     }
@@ -538,6 +558,9 @@ pub mod palm {
                     if let Some(x) = args.cc {
                         builder.add_cc(x);
                     }
+                    if let Some(x) = args.reply_to {
+                        builder.add_reply_to(x);
+                    }
                     if let Some(x) = args.to {
                         builder.add_to(x);
                     }
@@ -548,23 +571,35 @@ pub mod palm {
                 }
 
                 #[inline]
-                pub fn from(&self) -> Option<Address<'a>> {
+                pub fn from(&self) -> Address<'a> {
                     // Safety:
                     // Created from valid Table for this object
                     // which contains a valid value in this slot
                     unsafe {
                         self._tab
-                            .get::<::flatbuffers::ForwardsUOffset<Address>>(Email::VT_FROM, None)
+                            .get::<::flatbuffers::ForwardsUOffset<Address>>(Task::VT_FROM, None)
+                            .unwrap()
                     }
                 }
                 #[inline]
-                pub fn to(&self) -> Option<Address<'a>> {
+                pub fn to(&self) -> Address<'a> {
                     // Safety:
                     // Created from valid Table for this object
                     // which contains a valid value in this slot
                     unsafe {
                         self._tab
-                            .get::<::flatbuffers::ForwardsUOffset<Address>>(Email::VT_TO, None)
+                            .get::<::flatbuffers::ForwardsUOffset<Address>>(Task::VT_TO, None)
+                            .unwrap()
+                    }
+                }
+                #[inline]
+                pub fn reply_to(&self) -> Option<Address<'a>> {
+                    // Safety:
+                    // Created from valid Table for this object
+                    // which contains a valid value in this slot
+                    unsafe {
+                        self._tab
+                            .get::<::flatbuffers::ForwardsUOffset<Address>>(Task::VT_REPLY_TO, None)
                     }
                 }
                 #[inline]
@@ -578,7 +613,7 @@ pub mod palm {
                     unsafe {
                         self._tab.get::<::flatbuffers::ForwardsUOffset<
                             ::flatbuffers::Vector<'a, ::flatbuffers::ForwardsUOffset<Address>>,
-                        >>(Email::VT_CC, None)
+                        >>(Task::VT_CC, None)
                     }
                 }
                 #[inline]
@@ -592,27 +627,29 @@ pub mod palm {
                     unsafe {
                         self._tab.get::<::flatbuffers::ForwardsUOffset<
                             ::flatbuffers::Vector<'a, ::flatbuffers::ForwardsUOffset<Address>>,
-                        >>(Email::VT_BCC, None)
+                        >>(Task::VT_BCC, None)
                     }
                 }
                 #[inline]
-                pub fn subject(&self) -> Option<&'a str> {
+                pub fn subject(&self) -> &'a str {
                     // Safety:
                     // Created from valid Table for this object
                     // which contains a valid value in this slot
                     unsafe {
                         self._tab
-                            .get::<::flatbuffers::ForwardsUOffset<&str>>(Email::VT_SUBJECT, None)
+                            .get::<::flatbuffers::ForwardsUOffset<&str>>(Task::VT_SUBJECT, None)
+                            .unwrap()
                     }
                 }
                 #[inline]
-                pub fn body(&self) -> Option<Body<'a>> {
+                pub fn body(&self) -> Body<'a> {
                     // Safety:
                     // Created from valid Table for this object
                     // which contains a valid value in this slot
                     unsafe {
                         self._tab
-                            .get::<::flatbuffers::ForwardsUOffset<Body>>(Email::VT_BODY, None)
+                            .get::<::flatbuffers::ForwardsUOffset<Body>>(Task::VT_BODY, None)
+                            .unwrap()
                     }
                 }
                 #[inline]
@@ -626,12 +663,12 @@ pub mod palm {
                     unsafe {
                         self._tab.get::<::flatbuffers::ForwardsUOffset<
                             ::flatbuffers::Vector<'a, ::flatbuffers::ForwardsUOffset<Attachment>>,
-                        >>(Email::VT_ATTACHMENTS, None)
+                        >>(Task::VT_ATTACHMENTS, None)
                     }
                 }
             }
 
-            impl ::flatbuffers::Verifiable for Email<'_> {
+            impl ::flatbuffers::Verifiable for Task<'_> {
                 #[inline]
                 fn run_verifier(
                     v: &mut ::flatbuffers::Verifier,
@@ -641,11 +678,16 @@ pub mod palm {
                         .visit_field::<::flatbuffers::ForwardsUOffset<Address>>(
                             "from",
                             Self::VT_FROM,
-                            false,
+                            true,
                         )?
                         .visit_field::<::flatbuffers::ForwardsUOffset<Address>>(
                             "to",
                             Self::VT_TO,
+                            true,
+                        )?
+                        .visit_field::<::flatbuffers::ForwardsUOffset<Address>>(
+                            "reply_to",
+                            Self::VT_REPLY_TO,
                             false,
                         )?
                         .visit_field::<::flatbuffers::ForwardsUOffset<
@@ -657,12 +699,12 @@ pub mod palm {
                         .visit_field::<::flatbuffers::ForwardsUOffset<&str>>(
                             "subject",
                             Self::VT_SUBJECT,
-                            false,
+                            true,
                         )?
                         .visit_field::<::flatbuffers::ForwardsUOffset<Body>>(
                             "body",
                             Self::VT_BODY,
-                            false,
+                            true,
                         )?
                         .visit_field::<::flatbuffers::ForwardsUOffset<
                             ::flatbuffers::Vector<'_, ::flatbuffers::ForwardsUOffset<Attachment>>,
@@ -671,9 +713,10 @@ pub mod palm {
                     Ok(())
                 }
             }
-            pub struct EmailArgs<'a> {
+            pub struct TaskArgs<'a> {
                 pub from: Option<::flatbuffers::WIPOffset<Address<'a>>>,
                 pub to: Option<::flatbuffers::WIPOffset<Address<'a>>>,
+                pub reply_to: Option<::flatbuffers::WIPOffset<Address<'a>>>,
                 pub cc: Option<
                     ::flatbuffers::WIPOffset<
                         ::flatbuffers::Vector<'a, ::flatbuffers::ForwardsUOffset<Address<'a>>>,
@@ -692,38 +735,44 @@ pub mod palm {
                     >,
                 >,
             }
-            impl<'a> Default for EmailArgs<'a> {
+            impl<'a> Default for TaskArgs<'a> {
                 #[inline]
                 fn default() -> Self {
-                    EmailArgs {
-                        from: None,
-                        to: None,
+                    TaskArgs {
+                        from: None, // required field
+                        to: None,   // required field
+                        reply_to: None,
                         cc: None,
                         bcc: None,
-                        subject: None,
-                        body: None,
+                        subject: None, // required field
+                        body: None,    // required field
                         attachments: None,
                     }
                 }
             }
 
-            pub struct EmailBuilder<'a: 'b, 'b, A: ::flatbuffers::Allocator + 'a> {
+            pub struct TaskBuilder<'a: 'b, 'b, A: ::flatbuffers::Allocator + 'a> {
                 fbb_: &'b mut ::flatbuffers::FlatBufferBuilder<'a, A>,
                 start_: ::flatbuffers::WIPOffset<::flatbuffers::TableUnfinishedWIPOffset>,
             }
-            impl<'a: 'b, 'b, A: ::flatbuffers::Allocator + 'a> EmailBuilder<'a, 'b, A> {
+            impl<'a: 'b, 'b, A: ::flatbuffers::Allocator + 'a> TaskBuilder<'a, 'b, A> {
                 #[inline]
                 pub fn add_from(&mut self, from: ::flatbuffers::WIPOffset<Address<'b>>) {
                     self.fbb_
-                        .push_slot_always::<::flatbuffers::WIPOffset<Address>>(
-                            Email::VT_FROM,
-                            from,
-                        );
+                        .push_slot_always::<::flatbuffers::WIPOffset<Address>>(Task::VT_FROM, from);
                 }
                 #[inline]
                 pub fn add_to(&mut self, to: ::flatbuffers::WIPOffset<Address<'b>>) {
                     self.fbb_
-                        .push_slot_always::<::flatbuffers::WIPOffset<Address>>(Email::VT_TO, to);
+                        .push_slot_always::<::flatbuffers::WIPOffset<Address>>(Task::VT_TO, to);
+                }
+                #[inline]
+                pub fn add_reply_to(&mut self, reply_to: ::flatbuffers::WIPOffset<Address<'b>>) {
+                    self.fbb_
+                        .push_slot_always::<::flatbuffers::WIPOffset<Address>>(
+                            Task::VT_REPLY_TO,
+                            reply_to,
+                        );
                 }
                 #[inline]
                 pub fn add_cc(
@@ -733,7 +782,7 @@ pub mod palm {
                     >,
                 ) {
                     self.fbb_
-                        .push_slot_always::<::flatbuffers::WIPOffset<_>>(Email::VT_CC, cc);
+                        .push_slot_always::<::flatbuffers::WIPOffset<_>>(Task::VT_CC, cc);
                 }
                 #[inline]
                 pub fn add_bcc(
@@ -743,19 +792,17 @@ pub mod palm {
                     >,
                 ) {
                     self.fbb_
-                        .push_slot_always::<::flatbuffers::WIPOffset<_>>(Email::VT_BCC, bcc);
+                        .push_slot_always::<::flatbuffers::WIPOffset<_>>(Task::VT_BCC, bcc);
                 }
                 #[inline]
                 pub fn add_subject(&mut self, subject: ::flatbuffers::WIPOffset<&'b str>) {
-                    self.fbb_.push_slot_always::<::flatbuffers::WIPOffset<_>>(
-                        Email::VT_SUBJECT,
-                        subject,
-                    );
+                    self.fbb_
+                        .push_slot_always::<::flatbuffers::WIPOffset<_>>(Task::VT_SUBJECT, subject);
                 }
                 #[inline]
                 pub fn add_body(&mut self, body: ::flatbuffers::WIPOffset<Body<'b>>) {
                     self.fbb_
-                        .push_slot_always::<::flatbuffers::WIPOffset<Body>>(Email::VT_BODY, body);
+                        .push_slot_always::<::flatbuffers::WIPOffset<Body>>(Task::VT_BODY, body);
                 }
                 #[inline]
                 pub fn add_attachments(
@@ -765,32 +812,37 @@ pub mod palm {
                     >,
                 ) {
                     self.fbb_.push_slot_always::<::flatbuffers::WIPOffset<_>>(
-                        Email::VT_ATTACHMENTS,
+                        Task::VT_ATTACHMENTS,
                         attachments,
                     );
                 }
                 #[inline]
                 pub fn new(
                     _fbb: &'b mut ::flatbuffers::FlatBufferBuilder<'a, A>,
-                ) -> EmailBuilder<'a, 'b, A> {
+                ) -> TaskBuilder<'a, 'b, A> {
                     let start = _fbb.start_table();
-                    EmailBuilder {
+                    TaskBuilder {
                         fbb_: _fbb,
                         start_: start,
                     }
                 }
                 #[inline]
-                pub fn finish(self) -> ::flatbuffers::WIPOffset<Email<'a>> {
+                pub fn finish(self) -> ::flatbuffers::WIPOffset<Task<'a>> {
                     let o = self.fbb_.end_table(self.start_);
+                    self.fbb_.required(o, Task::VT_FROM, "from");
+                    self.fbb_.required(o, Task::VT_TO, "to");
+                    self.fbb_.required(o, Task::VT_SUBJECT, "subject");
+                    self.fbb_.required(o, Task::VT_BODY, "body");
                     ::flatbuffers::WIPOffset::new(o.value())
                 }
             }
 
-            impl ::core::fmt::Debug for Email<'_> {
+            impl ::core::fmt::Debug for Task<'_> {
                 fn fmt(&self, f: &mut ::core::fmt::Formatter<'_>) -> ::core::fmt::Result {
-                    let mut ds = f.debug_struct("Email");
+                    let mut ds = f.debug_struct("Task");
                     ds.field("from", &self.from());
                     ds.field("to", &self.to());
+                    ds.field("reply_to", &self.reply_to());
                     ds.field("cc", &self.cc());
                     ds.field("bcc", &self.bcc());
                     ds.field("subject", &self.subject());

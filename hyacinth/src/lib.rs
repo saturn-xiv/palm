@@ -38,6 +38,8 @@ mod palm {
     }
 }
 
+pub mod models;
+
 pub use flatbuffers::root as flatbuffers_root;
 pub use flexbuffers::{FlexbufferSerializer, Reader as FlexbufferReader};
 pub use protobuf::{Message as ProtobufMessage, Parse as ProtobufParse};

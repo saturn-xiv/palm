@@ -1,11 +1,7 @@
 use lettre::transport::smtp::authentication::Credentials;
 use serde::{Deserialize, Serialize};
 
-pub use lettre::{
-    Message, SmtpTransport, Transport,
-    address::AddressError,
-    message::{Attachment, Mailbox, MultiPart, SinglePart, header::ContentType},
-};
+use lettre::SmtpTransport;
 
 use super::Result;
 

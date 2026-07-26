@@ -6,149 +6,208 @@ extern crate alloc;
 #[allow(unused_imports, dead_code)]
 pub mod palm {
 
-extern crate alloc;
-#[allow(unused_imports, dead_code)]
-pub mod sms {
+    extern crate alloc;
+    #[allow(unused_imports, dead_code)]
+    pub mod sms {
 
-extern crate alloc;
-#[allow(unused_imports, dead_code)]
-pub mod v_1 {
+        extern crate alloc;
+        #[allow(unused_imports, dead_code)]
+        pub mod v_1 {
 
-extern crate alloc;
+            extern crate alloc;
 
-pub enum TaskOffset {}
-#[derive(Copy, Clone, PartialEq)]
+            pub enum TaskOffset {}
+            #[derive(Copy, Clone, PartialEq)]
 
-pub struct Task<'a> {
-  pub _tab: ::flatbuffers::Table<'a>,
-}
+            pub struct Task<'a> {
+                pub _tab: ::flatbuffers::Table<'a>,
+            }
 
-impl<'a> ::flatbuffers::Follow<'a> for Task<'a> {
-  type Inner = Task<'a>;
-  #[inline]
-  unsafe fn follow(buf: &'a [u8], loc: usize) -> Self::Inner {
-    Self { _tab: unsafe { ::flatbuffers::Table::new(buf, loc) } }
-  }
-}
+            impl<'a> ::flatbuffers::Follow<'a> for Task<'a> {
+                type Inner = Task<'a>;
+                #[inline]
+                unsafe fn follow(buf: &'a [u8], loc: usize) -> Self::Inner {
+                    Self {
+                        _tab: unsafe { ::flatbuffers::Table::new(buf, loc) },
+                    }
+                }
+            }
 
-impl<'a> Task<'a> {
-  pub const VT_BODY: ::flatbuffers::VOffsetT = 4;
-  pub const VT_TO: ::flatbuffers::VOffsetT = 6;
-  pub const VT_STATUS_CALLBACK: ::flatbuffers::VOffsetT = 8;
+            impl<'a> Task<'a> {
+                pub const VT_BODY: ::flatbuffers::VOffsetT = 4;
+                pub const VT_TO: ::flatbuffers::VOffsetT = 6;
+                pub const VT_STATUS_CALLBACK: ::flatbuffers::VOffsetT = 8;
 
-  #[inline]
-  pub unsafe fn init_from_table(table: ::flatbuffers::Table<'a>) -> Self {
-    Task { _tab: table }
-  }
-  #[allow(unused_mut)]
-  pub fn create<'bldr: 'args, 'args: 'mut_bldr, 'mut_bldr, A: ::flatbuffers::Allocator + 'bldr>(
-    _fbb: &'mut_bldr mut ::flatbuffers::FlatBufferBuilder<'bldr, A>,
-    args: &'args TaskArgs<'args>
-  ) -> ::flatbuffers::WIPOffset<Task<'bldr>> {
-    let mut builder = TaskBuilder::new(_fbb);
-    if let Some(x) = args.status_callback { builder.add_status_callback(x); }
-    if let Some(x) = args.to { builder.add_to(x); }
-    if let Some(x) = args.body { builder.add_body(x); }
-    builder.finish()
-  }
+                #[inline]
+                pub unsafe fn init_from_table(table: ::flatbuffers::Table<'a>) -> Self {
+                    Task { _tab: table }
+                }
+                #[allow(unused_mut)]
+                pub fn create<
+                    'bldr: 'args,
+                    'args: 'mut_bldr,
+                    'mut_bldr,
+                    A: ::flatbuffers::Allocator + 'bldr,
+                >(
+                    _fbb: &'mut_bldr mut ::flatbuffers::FlatBufferBuilder<'bldr, A>,
+                    args: &'args TaskArgs<'args>,
+                ) -> ::flatbuffers::WIPOffset<Task<'bldr>> {
+                    let mut builder = TaskBuilder::new(_fbb);
+                    if let Some(x) = args.status_callback {
+                        builder.add_status_callback(x);
+                    }
+                    if let Some(x) = args.to {
+                        builder.add_to(x);
+                    }
+                    if let Some(x) = args.body {
+                        builder.add_body(x);
+                    }
+                    builder.finish()
+                }
 
+                #[inline]
+                pub fn body(&self) -> &'a str {
+                    // Safety:
+                    // Created from valid Table for this object
+                    // which contains a valid value in this slot
+                    unsafe {
+                        self._tab
+                            .get::<::flatbuffers::ForwardsUOffset<&str>>(Task::VT_BODY, None)
+                            .unwrap()
+                    }
+                }
+                #[inline]
+                pub fn to(
+                    &self,
+                ) -> ::flatbuffers::Vector<'a, ::flatbuffers::ForwardsUOffset<&'a str>>
+                {
+                    // Safety:
+                    // Created from valid Table for this object
+                    // which contains a valid value in this slot
+                    unsafe {
+                        self._tab
+                            .get::<::flatbuffers::ForwardsUOffset<
+                                ::flatbuffers::Vector<'a, ::flatbuffers::ForwardsUOffset<&'a str>>,
+                            >>(Task::VT_TO, None)
+                            .unwrap()
+                    }
+                }
+                #[inline]
+                pub fn status_callback(&self) -> Option<&'a str> {
+                    // Safety:
+                    // Created from valid Table for this object
+                    // which contains a valid value in this slot
+                    unsafe {
+                        self._tab.get::<::flatbuffers::ForwardsUOffset<&str>>(
+                            Task::VT_STATUS_CALLBACK,
+                            None,
+                        )
+                    }
+                }
+            }
 
-  #[inline]
-  pub fn body(&self) -> &'a str {
-    // Safety:
-    // Created from valid Table for this object
-    // which contains a valid value in this slot
-    unsafe { self._tab.get::<::flatbuffers::ForwardsUOffset<&str>>(Task::VT_BODY, None).unwrap()}
-  }
-  #[inline]
-  pub fn to(&self) -> ::flatbuffers::Vector<'a, ::flatbuffers::ForwardsUOffset<&'a str>> {
-    // Safety:
-    // Created from valid Table for this object
-    // which contains a valid value in this slot
-    unsafe { self._tab.get::<::flatbuffers::ForwardsUOffset<::flatbuffers::Vector<'a, ::flatbuffers::ForwardsUOffset<&'a str>>>>(Task::VT_TO, None).unwrap()}
-  }
-  #[inline]
-  pub fn status_callback(&self) -> Option<&'a str> {
-    // Safety:
-    // Created from valid Table for this object
-    // which contains a valid value in this slot
-    unsafe { self._tab.get::<::flatbuffers::ForwardsUOffset<&str>>(Task::VT_STATUS_CALLBACK, None)}
-  }
-}
+            impl ::flatbuffers::Verifiable for Task<'_> {
+                #[inline]
+                fn run_verifier(
+                    v: &mut ::flatbuffers::Verifier,
+                    pos: usize,
+                ) -> Result<(), ::flatbuffers::InvalidFlatbuffer> {
+                    v.visit_table(pos)?
+                        .visit_field::<::flatbuffers::ForwardsUOffset<&str>>(
+                            "body",
+                            Self::VT_BODY,
+                            true,
+                        )?
+                        .visit_field::<::flatbuffers::ForwardsUOffset<
+                            ::flatbuffers::Vector<'_, ::flatbuffers::ForwardsUOffset<&'_ str>>,
+                        >>("to", Self::VT_TO, true)?
+                        .visit_field::<::flatbuffers::ForwardsUOffset<&str>>(
+                            "status_callback",
+                            Self::VT_STATUS_CALLBACK,
+                            false,
+                        )?
+                        .finish();
+                    Ok(())
+                }
+            }
+            pub struct TaskArgs<'a> {
+                pub body: Option<::flatbuffers::WIPOffset<&'a str>>,
+                pub to: Option<
+                    ::flatbuffers::WIPOffset<
+                        ::flatbuffers::Vector<'a, ::flatbuffers::ForwardsUOffset<&'a str>>,
+                    >,
+                >,
+                pub status_callback: Option<::flatbuffers::WIPOffset<&'a str>>,
+            }
+            impl<'a> Default for TaskArgs<'a> {
+                #[inline]
+                fn default() -> Self {
+                    TaskArgs {
+                        body: None, // required field
+                        to: None,   // required field
+                        status_callback: None,
+                    }
+                }
+            }
 
-impl ::flatbuffers::Verifiable for Task<'_> {
-  #[inline]
-  fn run_verifier(
-    v: &mut ::flatbuffers::Verifier, pos: usize
-  ) -> Result<(), ::flatbuffers::InvalidFlatbuffer> {
-    v.visit_table(pos)?
-     .visit_field::<::flatbuffers::ForwardsUOffset<&str>>("body", Self::VT_BODY, true)?
-     .visit_field::<::flatbuffers::ForwardsUOffset<::flatbuffers::Vector<'_, ::flatbuffers::ForwardsUOffset<&'_ str>>>>("to", Self::VT_TO, true)?
-     .visit_field::<::flatbuffers::ForwardsUOffset<&str>>("status_callback", Self::VT_STATUS_CALLBACK, false)?
-     .finish();
-    Ok(())
-  }
-}
-pub struct TaskArgs<'a> {
-    pub body: Option<::flatbuffers::WIPOffset<&'a str>>,
-    pub to: Option<::flatbuffers::WIPOffset<::flatbuffers::Vector<'a, ::flatbuffers::ForwardsUOffset<&'a str>>>>,
-    pub status_callback: Option<::flatbuffers::WIPOffset<&'a str>>,
-}
-impl<'a> Default for TaskArgs<'a> {
-  #[inline]
-  fn default() -> Self {
-    TaskArgs {
-      body: None, // required field
-      to: None, // required field
-      status_callback: None,
-    }
-  }
-}
+            pub struct TaskBuilder<'a: 'b, 'b, A: ::flatbuffers::Allocator + 'a> {
+                fbb_: &'b mut ::flatbuffers::FlatBufferBuilder<'a, A>,
+                start_: ::flatbuffers::WIPOffset<::flatbuffers::TableUnfinishedWIPOffset>,
+            }
+            impl<'a: 'b, 'b, A: ::flatbuffers::Allocator + 'a> TaskBuilder<'a, 'b, A> {
+                #[inline]
+                pub fn add_body(&mut self, body: ::flatbuffers::WIPOffset<&'b str>) {
+                    self.fbb_
+                        .push_slot_always::<::flatbuffers::WIPOffset<_>>(Task::VT_BODY, body);
+                }
+                #[inline]
+                pub fn add_to(
+                    &mut self,
+                    to: ::flatbuffers::WIPOffset<
+                        ::flatbuffers::Vector<'b, ::flatbuffers::ForwardsUOffset<&'b str>>,
+                    >,
+                ) {
+                    self.fbb_
+                        .push_slot_always::<::flatbuffers::WIPOffset<_>>(Task::VT_TO, to);
+                }
+                #[inline]
+                pub fn add_status_callback(
+                    &mut self,
+                    status_callback: ::flatbuffers::WIPOffset<&'b str>,
+                ) {
+                    self.fbb_.push_slot_always::<::flatbuffers::WIPOffset<_>>(
+                        Task::VT_STATUS_CALLBACK,
+                        status_callback,
+                    );
+                }
+                #[inline]
+                pub fn new(
+                    _fbb: &'b mut ::flatbuffers::FlatBufferBuilder<'a, A>,
+                ) -> TaskBuilder<'a, 'b, A> {
+                    let start = _fbb.start_table();
+                    TaskBuilder {
+                        fbb_: _fbb,
+                        start_: start,
+                    }
+                }
+                #[inline]
+                pub fn finish(self) -> ::flatbuffers::WIPOffset<Task<'a>> {
+                    let o = self.fbb_.end_table(self.start_);
+                    self.fbb_.required(o, Task::VT_BODY, "body");
+                    self.fbb_.required(o, Task::VT_TO, "to");
+                    ::flatbuffers::WIPOffset::new(o.value())
+                }
+            }
 
-pub struct TaskBuilder<'a: 'b, 'b, A: ::flatbuffers::Allocator + 'a> {
-  fbb_: &'b mut ::flatbuffers::FlatBufferBuilder<'a, A>,
-  start_: ::flatbuffers::WIPOffset<::flatbuffers::TableUnfinishedWIPOffset>,
-}
-impl<'a: 'b, 'b, A: ::flatbuffers::Allocator + 'a> TaskBuilder<'a, 'b, A> {
-  #[inline]
-  pub fn add_body(&mut self, body: ::flatbuffers::WIPOffset<&'b  str>) {
-    self.fbb_.push_slot_always::<::flatbuffers::WIPOffset<_>>(Task::VT_BODY, body);
-  }
-  #[inline]
-  pub fn add_to(&mut self, to: ::flatbuffers::WIPOffset<::flatbuffers::Vector<'b , ::flatbuffers::ForwardsUOffset<&'b  str>>>) {
-    self.fbb_.push_slot_always::<::flatbuffers::WIPOffset<_>>(Task::VT_TO, to);
-  }
-  #[inline]
-  pub fn add_status_callback(&mut self, status_callback: ::flatbuffers::WIPOffset<&'b  str>) {
-    self.fbb_.push_slot_always::<::flatbuffers::WIPOffset<_>>(Task::VT_STATUS_CALLBACK, status_callback);
-  }
-  #[inline]
-  pub fn new(_fbb: &'b mut ::flatbuffers::FlatBufferBuilder<'a, A>) -> TaskBuilder<'a, 'b, A> {
-    let start = _fbb.start_table();
-    TaskBuilder {
-      fbb_: _fbb,
-      start_: start,
-    }
-  }
-  #[inline]
-  pub fn finish(self) -> ::flatbuffers::WIPOffset<Task<'a>> {
-    let o = self.fbb_.end_table(self.start_);
-    self.fbb_.required(o, Task::VT_BODY,"body");
-    self.fbb_.required(o, Task::VT_TO,"to");
-    ::flatbuffers::WIPOffset::new(o.value())
-  }
-}
-
-impl ::core::fmt::Debug for Task<'_> {
-  fn fmt(&self, f: &mut ::core::fmt::Formatter<'_>) -> ::core::fmt::Result {
-    let mut ds = f.debug_struct("Task");
-      ds.field("body", &self.body());
-      ds.field("to", &self.to());
-      ds.field("status_callback", &self.status_callback());
-      ds.finish()
-  }
-}
-}  // pub mod v1
-}  // pub mod sms
-}  // pub mod palm
-
+            impl ::core::fmt::Debug for Task<'_> {
+                fn fmt(&self, f: &mut ::core::fmt::Formatter<'_>) -> ::core::fmt::Result {
+                    let mut ds = f.debug_struct("Task");
+                    ds.field("body", &self.body());
+                    ds.field("to", &self.to());
+                    ds.field("status_callback", &self.status_callback());
+                    ds.finish()
+                }
+            }
+        } // pub mod v1
+    } // pub mod sms
+} // pub mod palm

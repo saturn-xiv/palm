@@ -1,14 +1,20 @@
 namespace palm.cups.v1;
 
-table Task {
-    name: string;
-    content: [ubyte];
-    pages: [uint16];
-    copies: uint16;
-}
-
 enum JobSheet: byte {Standard = 0, Unclassified, Classified, Confidential, Secret, TopSecret}
 enum Media: byte {A4 = 0, A3, Letter} 
 enum Orientation: byte {LandscapeCounterClockwise90 = 0, LandscapeClockwise90, ReversePortrait}
 enum Quality: byte {Draft = 0, Normal, Best}
 enum Sides: byte {One = 0, TwoLong, TwoShort}
+
+table Task {
+    name: string (required);
+    document: [ubyte] (required);
+    number_up: [uint16];
+    copies: uint16;
+    job_sheet: JobSheet;
+    media: Media;
+    orientation: Orientation;
+    quality: Quality;
+    sides: Sides;
+}
+

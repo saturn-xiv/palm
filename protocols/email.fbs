@@ -1,28 +1,29 @@
 namespace palm.email.v1;
 
 table Address {
-    name: string;
-    email: string;
+    name: string (required);
+    email: string (required);
 }
 
 table Body {
     html: bool;
-    content: string;
+    content: string (required);
 }
 
 table Attachment {
-    inline: bool;
-    name: string;
-    body: [ubyte];
-    content_type: string;
+    inline_id: string;
+    name: string (required);
+    body: [ubyte] (required);
+    content_type: string (required);
 }
 
-table Email {
-    from: Address;
-    to: Address;
+table Task {
+    from: Address (required);
+    to: Address (required);
+    reply_to: Address;
     cc: [Address];
     bcc: [Address];
-    subject: string;
-    body: Body;
+    subject: string (required);
+    body: Body (required);
     attachments: [Attachment];
 }

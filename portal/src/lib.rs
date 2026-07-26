@@ -1,6 +1,7 @@
 pub mod aes;
 pub mod cache;
 pub mod content_type;
+pub mod graphql;
 pub mod gravatar;
 pub mod hmac;
 pub mod jwt;
