@@ -4,4 +4,29 @@ version = "2026.7.21"
 edition = "2024"
 
 [dependencies]
+log = "0.4"
+hyper = "1"
 
+[dependencies.belladonna]
+path = "../belladonna"
+
+[dependencies.hyacinth]
+path = "../hyacinth"
+
+[dependencies.portal]
+path = "../portal"
+
+[dependencies.cms]
+path = "../cms"
+
+[dependencies.forum]
+path = "../forum"
+
+[dependencies.curricula]
+path = "../curricula"
+
+[dependencies.questionnaire]
+path = "../questionnaire"
+
+[dependencies.accounting]
+path = "../accounting"

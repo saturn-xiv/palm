@@ -24,6 +24,8 @@ use hyper::StatusCode;
 use serde::de::DeserializeOwned;
 use serde::{Deserialize, Serialize};
 
+pub const XML_HEADER: &str = r#"<?xml version="1.0" encoding="UTF-8"?>"#;
+
 pub type Error = Box<dyn StdError + Send + Sync>;
 pub type Result<T> = StdResult<T, Error>;
 
