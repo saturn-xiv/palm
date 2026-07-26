@@ -28,3 +28,11 @@ Issues = "https://github.com/saturn-xiv/palm/issues"
 
 [project.scripts]
 dahlia = "dahlia:main"
+
+[tool.pyright]
+include = ["src"]
+exclude = ["**/__pycache__", "tmp"]
+venvPath = "."
+venv = "tmp/python"
+pythonVersion = "3.14"
+typeCheckingMode = "basic"

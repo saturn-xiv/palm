@@ -1,5 +1,22 @@
 # DAHLIA
 
+## Setup
+
+- PostgreSql
+
+  ```sql
+  CREATE USER www WITH PASSWORD 'change-me';
+  CREATE DATABASE dahlia_dev WITH OWNER www;
+  ```
+
+- RabbitMq
+
+  ```bash
+  sudo rabbitmqctl add_user www "change-me"
+  sudo rabbitmqctl add_vhost dahlia.dev
+  sudo rabbitmqctl set_permissions -p dahlia.dev www ".*" ".*" ".*"
+  ```
+
 ## Usage
 
 ```bash
@@ -20,10 +37,10 @@ $ source $PWD/tmp/python/bin/activate
 ## Testing
 
 ```bash
-python -m dahlia -d
+PYTHON_GIL=0 python -m dahlia -d -p 11001
 grpcurl -plaintext 127.0.0.1:8080 list
 
-python -m unittest tests.py
+PYTHON_GIL=0 python -m unittest tests.py
 ```
 
 ## Documents

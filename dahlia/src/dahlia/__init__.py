@@ -1,3 +1,4 @@
+import os
 import logging
 import argparse
 import tomllib
@@ -23,7 +24,7 @@ def main():
     parser.add_argument('-c', '--config', default='config.toml')
     parser.add_argument('-p', '--port', type=int, default=8080)
     parser.add_argument('-w', '--workers', type=int,
-                        default=2, help='max of workers')
+                        default=os.cpu_count(), help='max of workers')
     parser.add_argument('-d', '--debug',
                         action='store_true', help='run on debug mode')
     parser.add_argument('-v', '--verbose',
@@ -52,7 +53,8 @@ def launch_grpc_server(config, port, workers):
 
     health_servicer = health.HealthServicer(
         experimental_non_blocking=True,
-        experimental_thread_pool=futures.ThreadPoolExecutor(max_workers=10),
+        experimental_thread_pool=futures.ThreadPoolExecutor(
+            max_workers=workers),
     )
     health_pb2_grpc.add_HealthServicer_to_server(health_servicer, server)
 
@@ -82,6 +84,5 @@ def launch_grpc_server(config, port, workers):
 
 def toggle_grpc_health(health_servicer: health.HealthServicer, service: str):
     while True:
-        # TODO check rabbitmq & postgresql etc
         health_servicer.set(service, health_pb2.HealthCheckResponse.SERVING)
         sleep(5)

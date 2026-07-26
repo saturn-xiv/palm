@@ -49,55 +49,55 @@ class Server(rbac_pb2_grpc.EnforcerServicer):
 
     def GetImplicitRolesForUser(self, request, context):
         res = rbac_pb2.RolesResponse()
-        subject = rbac_pb2.Subject(user=request)
-        for it in self.enforcer.get_implicit_roles_for_user(to_str(subject)):
+        subject = to_str(rbac_pb2.Subject(user=request))
+        for it in self.enforcer.get_implicit_roles_for_user(subject):
             rol = role_from_str(it)
             res.items.extend([rol])
         return res
 
     def GetUsersForRole(self, request, context):
         res = rbac_pb2.UsersResponse()
-        subject = rbac_pb2.Subject(role=request)
-        for it in self.enforcer.get_users_for_role(to_str(subject)):
+        subject = to_str(rbac_pb2.Subject(role=request))
+        for it in self.enforcer.get_users_for_role(subject):
             usr = user_from_str(it)
             res.items.extend([usr])
         return res
 
     def GetImplicitUsersForRole(self, request, context):
         res = rbac_pb2.UsersResponse()
-        subject = rbac_pb2.Subject(role=request)
-        for it in self.enforcer.get_implicit_users_for_role(to_str(subject)):
+        subject = to_str(rbac_pb2.Subject(role=request))
+        for it in self.enforcer.get_implicit_users_for_role(subject):
             usr = user_from_str(it)
             res.items.extend([usr])
         return res
 
     def HasRoleForUser(self, request, context):
-        usr = rbac_pb2.Subject(user=request.user)
-        rol = rbac_pb2.Subject(role=request.role)
-        if not self.enforcer.has_role_for_user(to_str(usr), to_str(rol)):
-            context.abort(StatusCode.NOT_FOUND, "didn't have role")
-        return rbac_pb2.Empty()
+        usr = to_str(rbac_pb2.Subject(user=request.user))
+        rol = to_str(rbac_pb2.Subject(role=request.role))
+        if rol in self.enforcer.get_implicit_roles_for_user(to_str(usr)):
+            return rbac_pb2.Empty()
+        context.abort(StatusCode.NOT_FOUND, "didn't have role")
 
     def AddRoleForUser(self, request, context):
-        usr = rbac_pb2.Subject(user=request.user)
-        rol = rbac_pb2.Subject(role=request.role)
-        self.enforcer.add_role_for_user(to_str(usr), to_str(rol))
+        usr = to_str(rbac_pb2.Subject(user=request.user))
+        rol = to_str(rbac_pb2.Subject(role=request.role))
+        self.enforcer.add_role_for_user(usr, rol)
         return rbac_pb2.Empty()
 
     def DeleteRoleForUser(self, request, context):
-        usr = rbac_pb2.Subject(user=request.user)
-        rol = rbac_pb2.Subject(role=request.role)
-        self.enforcer.delete_role_for_user(to_str(usr), to_str(rol))
+        usr = to_str(rbac_pb2.Subject(user=request.user))
+        rol = to_str(rbac_pb2.Subject(role=request.role))
+        self.enforcer.delete_role_for_user(usr, rol)
         return rbac_pb2.Empty()
 
     def DeleteRole(self, request, context):
-        rol = rbac_pb2.Subject(role=request.role)
-        self.enforcer.delete_role(to_str(rol))
+        rol = to_str(rbac_pb2.Subject(role=request.role))
+        self.enforcer.delete_role(rol)
         return rbac_pb2.Empty()
 
     def DeleteUser(self, request, context):
-        usr = rbac_pb2.Subject(user=request.user)
-        self.enforcer.delete_user(to_str(usr))
+        usr = to_str(rbac_pb2.Subject(user=request.user))
+        self.enforcer.delete_user(usr)
         return rbac_pb2.Empty()
 
     def GetPermissions(self, request, context):
@@ -125,7 +125,10 @@ class Server(rbac_pb2_grpc.EnforcerServicer):
         return rbac_pb2.Empty()
 
     def HasPermission(self, request, context):
-        if not self.enforcer.has_permission_for_user(
-                to_str(request.subject), to_str(request.object), to_str(request.action)):
-            context.abort(StatusCode.NOT_FOUND, "didn't have permission")
-        return rbac_pb2.Empty()
+        sub = to_str(request.subject)
+        obj = to_str(request.object)
+        act = to_str(request.action)
+        for rule in self.enforcer.get_implicit_permissions_for_user(sub):
+            if len(rule) == 3 and obj == rule[1] and act == rule[2]:
+                return rbac_pb2.Empty()
+        context.abort(StatusCode.NOT_FOUND, "didn't have permission")
