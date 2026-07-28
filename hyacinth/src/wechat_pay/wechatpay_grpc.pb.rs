@@ -1,14 +1,14 @@
 /// Generated client implementations.
-pub mod wechat_pay_client {
+pub mod we_chat_pay_client {
     use grpc::client::*;
     use grpc_protobuf::*;
 
     #[derive(Debug, Clone)]
-    pub struct WechatPayClient<T> {
+    pub struct WeChatPayClient<T> {
         channel: T,
     }
 
-    impl<T> WechatPayClient<T>
+    impl<T> WeChatPayClient<T>
     where
         T: grpc::client::Invoke,
     {
@@ -22,7 +22,7 @@ pub mod wechat_pay_client {
         ) -> UnaryCallBuilder<'_, &T, ReqMsgView, super::BillPullResponse>
         where
           ReqMsgView: protobuf::AsView<Proxied = super::BillPullRequest> + Send + Sync {
-          UnaryCallBuilder::new(&self.channel, "/palm.wechatpay.v1.WechatPay/BillPull", request)
+          UnaryCallBuilder::new(&self.channel, "/palm.wechat_pay.v1.WeChatPay/BillPull", request)
         }
     }
 }

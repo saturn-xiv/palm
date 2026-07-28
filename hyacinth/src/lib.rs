@@ -24,10 +24,10 @@ mod palm {
             include!("rbac/rbac_grpc.pb.rs");
         }
     }
-    pub mod wechatpay {
+    pub mod wechat_pay {
         pub mod v1 {
-            include!("wechatpay/generated.rs");
-            include!("wechatpay/wechatpay_grpc.pb.rs");
+            include!("wechat_pay/generated.rs");
+            include!("wechat_pay/wechatpay_grpc.pb.rs");
         }
     }
     pub mod loquat {
@@ -50,7 +50,7 @@ pub use cups::palm::cups::v_1 as cups_v1;
 pub use email::palm::email::v_1 as email_v1;
 pub use palm::loquat::v1 as loquat_v1;
 pub use palm::rbac::v1 as rbac_v1;
-pub use palm::wechatpay::v1 as wechatpay_v1;
+pub use palm::wechat_pay::v1 as wechat_pay_v1;
 pub use sms::palm::sms::v_1 as sms_v1;
 pub use tex::palm::tex::v_1 as tex_v1;
 

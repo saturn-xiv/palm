@@ -32,7 +32,7 @@ use std::str::FromStr;
 
 use chrono::Duration;
 use data_encoding::{BASE64, DecodeError as Base64DecodeError};
-use hyacinth::{GrpcClientChannel, GrpcStatusError, loquat_v1, rbac_v1, wechatpay_v1};
+use hyacinth::{GrpcClientChannel, GrpcStatusError, loquat_v1, rbac_v1, wechat_pay_v1};
 use hyper::StatusCode;
 use serde::de::DeserializeOwned;
 use serde::{Deserialize, Serialize};
@@ -179,13 +179,13 @@ impl Dahlia {
     }
 }
 pub struct Marigold {
-    pub wechat_pay: wechatpay_v1::wechat_pay_client::WechatPayClient<GrpcClientChannel>,
+    pub wechat_pay: wechat_pay_v1::we_chat_pay_client::WeChatPayClient<GrpcClientChannel>,
 }
 
 impl Marigold {
     pub fn new(channel: GrpcClientChannel) -> Self {
         Self {
-            wechat_pay: wechatpay_v1::wechat_pay_client::WechatPayClient::new(channel),
+            wechat_pay: wechat_pay_v1::we_chat_pay_client::WeChatPayClient::new(channel),
         }
     }
 }

@@ -1,8 +1,8 @@
 use std::{pin::Pin, time::Duration};
 
+use chrono::Utc;
 use futures::stream::{Stream, StreamExt as _};
 use juniper::{FieldError, graphql_subscription};
-use chrono::Utc;
 use tokio::time::interval;
 use tokio_stream::wrappers::IntervalStream;
 

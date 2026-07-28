@@ -47,7 +47,7 @@ function generate_grpc() {
     $PROTOBUF_HOME/bin/protoc --rust_opt=experimental-codegen=enabled,kernel=upb --rust-grpc_opt=client_only=true \
         --plugin=protoc-gen-rust-grpc=$PROTOBUF_HOME/bin/protoc-gen-rust-grpc \
         -I $PROTOBUF_HOME/include/ -I $WORK_DIR/marigold/src/main/proto \
-        --rust_out=$HYACINTH_OUTPUT_DIR/wechatpay --rust-grpc_out=$HYACINTH_OUTPUT_DIR/wechatpay \
+        --rust_out=$HYACINTH_OUTPUT_DIR/wechat_pay --rust-grpc_out=$HYACINTH_OUTPUT_DIR/wechat_pay \
         $WORK_DIR/marigold/src/main/proto/wechatpay.proto
     
     $PROTOBUF_HOME/bin/protoc --rust_opt=experimental-codegen=enabled,kernel=upb --rust-grpc_opt=client_only=true \

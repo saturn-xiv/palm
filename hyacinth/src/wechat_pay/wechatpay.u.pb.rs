@@ -1,7 +1,7 @@
 const _: () = ::protobuf::__internal::assert_compatible_gencode_version("4.34.0-release");
 // This variable must not be referenced except by protobuf generated
 // code.
-pub(crate) static mut palm__wechatpay__v1__BillPullRequest_msg_init: ::protobuf::__internal::runtime::MiniTableInitPtr =
+pub(crate) static mut palm__wechat_0pay__v1__BillPullRequest_msg_init: ::protobuf::__internal::runtime::MiniTableInitPtr =
     ::protobuf::__internal::runtime::MiniTableInitPtr(::protobuf::__internal::runtime::MiniTablePtr::dangling());
 #[allow(non_camel_case_types)]
 pub struct BillPullRequest {
@@ -268,11 +268,11 @@ unsafe impl ::protobuf::__internal::runtime::AssociatedMiniTable for BillPullReq
         ::std::sync::OnceLock::new();
     unsafe {
       ONCE_LOCK.get_or_init(|| {
-        super::palm__wechatpay__v1__BillPullRequest_msg_init.0 =
+        super::palm__wechat_0pay__v1__BillPullRequest_msg_init.0 =
             ::protobuf::__internal::runtime::build_mini_table("$");
         ::protobuf::__internal::runtime::link_mini_table(
-            super::palm__wechatpay__v1__BillPullRequest_msg_init.0, &[], &[]);
-        ::protobuf::__internal::runtime::MiniTableInitPtr(super::palm__wechatpay__v1__BillPullRequest_msg_init.0)
+            super::palm__wechat_0pay__v1__BillPullRequest_msg_init.0, &[], &[]);
+        ::protobuf::__internal::runtime::MiniTableInitPtr(super::palm__wechat_0pay__v1__BillPullRequest_msg_init.0)
       }).0
     }
   }
@@ -324,7 +324,7 @@ unsafe impl ::protobuf::__internal::runtime::UpbGetArena for BillPullRequestMut<
 
 // This variable must not be referenced except by protobuf generated
 // code.
-pub(crate) static mut palm__wechatpay__v1__BillPullResponse_msg_init: ::protobuf::__internal::runtime::MiniTableInitPtr =
+pub(crate) static mut palm__wechat_0pay__v1__BillPullResponse_msg_init: ::protobuf::__internal::runtime::MiniTableInitPtr =
     ::protobuf::__internal::runtime::MiniTableInitPtr(::protobuf::__internal::runtime::MiniTablePtr::dangling());
 #[allow(non_camel_case_types)]
 pub struct BillPullResponse {
@@ -591,11 +591,11 @@ unsafe impl ::protobuf::__internal::runtime::AssociatedMiniTable for BillPullRes
         ::std::sync::OnceLock::new();
     unsafe {
       ONCE_LOCK.get_or_init(|| {
-        super::palm__wechatpay__v1__BillPullResponse_msg_init.0 =
+        super::palm__wechat_0pay__v1__BillPullResponse_msg_init.0 =
             ::protobuf::__internal::runtime::build_mini_table("$");
         ::protobuf::__internal::runtime::link_mini_table(
-            super::palm__wechatpay__v1__BillPullResponse_msg_init.0, &[], &[]);
-        ::protobuf::__internal::runtime::MiniTableInitPtr(super::palm__wechatpay__v1__BillPullResponse_msg_init.0)
+            super::palm__wechat_0pay__v1__BillPullResponse_msg_init.0, &[], &[]);
+        ::protobuf::__internal::runtime::MiniTableInitPtr(super::palm__wechat_0pay__v1__BillPullResponse_msg_init.0)
       }).0
     }
   }
