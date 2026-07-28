@@ -17,7 +17,7 @@ use portal::{
 };
 use serde::{Deserialize, Serialize};
 use strum::{Display as EnumDisplay, EnumString};
-use tokio::net::TcpListener;
+use tokio::{net::TcpListener, signal};
 
 use super::super::graphql::{
     context::State, handler as graphql_handler, new as new_schema,
@@ -79,8 +79,30 @@ pub async fn start<P: AsRef<Path>>(config: P, port: u16, _theme: Theme) -> Resul
     let addr = SocketAddr::from(([127, 0, 0, 1], port));
     let listener = TcpListener::bind(addr).await?;
     log::info!("listening on {addr}");
-    axum::serve(listener, app).await?;
+    axum::serve(listener, app)
+        .with_graceful_shutdown(shutdown_signal())
+        .await?;
     Ok(())
+}
+
+async fn shutdown_signal() {
+    let ctrl_c = async {
+        signal::ctrl_c()
+            .await
+            .expect("failed to install Ctrl+C handler");
+    };
+
+    let terminate = async {
+        signal::unix::signal(signal::unix::SignalKind::terminate())
+            .expect("failed to install signal handler")
+            .recv()
+            .await;
+    };
+
+    tokio::select! {
+        _ = ctrl_c => {},
+        _ = terminate => {},
+    }
 }
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
