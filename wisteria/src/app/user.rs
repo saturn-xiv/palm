@@ -1,7 +1,9 @@
 use std::path::Path;
 
-use portal::{Result, parse_toml};
+use portal::{Result, orm::postgresql::Node as PostgreSql, parse_toml};
 use serde::{Deserialize, Serialize};
+
+use super::http::Rpc;
 
 pub fn list<P: AsRef<Path>>(_config: P) -> Result<()> {
     // TODO
@@ -29,4 +31,8 @@ pub async fn delete_role<P: AsRef<Path>>(_config: P, _user: &str, _role: &str) -
 }
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
-struct Config {}
+struct Config {
+    postgresql: PostgreSql,
+    loquat: Rpc,
+    dahlia: Rpc,
+}

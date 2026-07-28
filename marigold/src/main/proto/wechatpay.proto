@@ -8,7 +8,7 @@ option go_package = "./;v2";
 option csharp_namespace = "Palm.Plugins.WechatPay.Grpc";
 package palm.wechatpay.v1;
 
-service Wechat {
+service WechatPay {
   rpc BillPull(BillPullRequest) returns (BillPullResponse) {}
 }
 

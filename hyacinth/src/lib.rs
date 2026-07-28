@@ -39,14 +39,29 @@ mod palm {
 }
 
 pub mod models;
+pub mod schema;
 
 pub use flatbuffers::root as flatbuffers_root;
 pub use flexbuffers::{FlexbufferSerializer, Reader as FlexbufferReader};
+pub use grpc::{StatusError as GrpcStatusError, client::Channel as GrpcClientChannel};
 pub use protobuf::{Message as ProtobufMessage, Parse as ProtobufParse};
 
 pub use cups::palm::cups::v_1 as cups_v1;
 pub use email::palm::email::v_1 as email_v1;
+pub use palm::loquat::v1 as loquat_v1;
 pub use palm::rbac::v1 as rbac_v1;
 pub use palm::wechatpay::v1 as wechatpay_v1;
 pub use sms::palm::sms::v_1 as sms_v1;
 pub use tex::palm::tex::v_1 as tex_v1;
+
+use std::sync::Arc;
+
+use grpc::{client::ChannelOptions, credentials::LocalChannelCredentials};
+
+pub fn open_grpc_channel(host: &str, port: u16) -> GrpcClientChannel {
+    GrpcClientChannel::new(
+        format!("dns:///{host}:{port}"),
+        Arc::new(LocalChannelCredentials::new()),
+        ChannelOptions::default(),
+    )
+}

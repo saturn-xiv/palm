@@ -1,9 +1,11 @@
 pub mod aes;
+pub mod argon2;
 pub mod cache;
 pub mod content_type;
 pub mod graphql;
 pub mod gravatar;
 pub mod hmac;
+pub mod iso4217;
 pub mod jwt;
 pub mod mailer;
 pub mod minio;
@@ -12,6 +14,7 @@ pub mod open_search;
 pub mod orm;
 pub mod queue;
 pub mod random;
+pub mod session;
 pub mod ssha512;
 pub mod twilio;
 
@@ -25,6 +28,7 @@ use std::result::Result as StdResult;
 use std::str::FromStr;
 
 use data_encoding::{BASE64, DecodeError as Base64DecodeError};
+use hyacinth::{GrpcClientChannel, GrpcStatusError, loquat_v1, rbac_v1, wechatpay_v1};
 use hyper::StatusCode;
 use serde::de::DeserializeOwned;
 use serde::{Deserialize, Serialize};
@@ -50,6 +54,15 @@ impl fmt::Display for HttpError {
 impl From<Error> for HttpError {
     fn from(err: Error) -> Self {
         Self(StatusCode::INTERNAL_SERVER_ERROR, Some(err.to_string()))
+    }
+}
+
+impl From<GrpcStatusError> for HttpError {
+    fn from(err: GrpcStatusError) -> Self {
+        Self(
+            StatusCode::INTERNAL_SERVER_ERROR,
+            Some(err.message().to_string()),
+        )
     }
 }
 
@@ -97,5 +110,53 @@ impl FromStr for Key {
             .decode_mut(s.as_bytes(), &mut buf)
             .map_err(|x| x.error)?;
         Ok(Self(buf))
+    }
+}
+
+pub trait SecretBox {
+    fn encrypt(&self, plain: &[u8]) -> impl Future<Output = Result<(Vec<u8>, Vec<u8>)>>;
+    fn decrypt(
+        &self,
+        cipher: &[u8],
+        associated_data: &[u8],
+    ) -> impl Future<Output = Result<Vec<u8>>>;
+}
+
+pub trait PasswordHashing {
+    fn sign(&self, password: &str) -> impl Future<Output = Result<String>>;
+    fn verify(&self, hashed: &str, password: &str) -> impl Future<Output = Result<()>>;
+}
+
+pub struct Loquat {
+    aes: loquat_v1::aes_client::AesClient<GrpcClientChannel>,
+    argon2: loquat_v1::argon2_client::Argon2Client<GrpcClientChannel>,
+}
+impl Loquat {
+    pub fn new(channel: GrpcClientChannel) -> Self {
+        Self {
+            aes: loquat_v1::aes_client::AesClient::new(channel.clone()),
+            argon2: loquat_v1::argon2_client::Argon2Client::new(channel),
+        }
+    }
+}
+pub struct Dahlia {
+    pub enforcer: rbac_v1::enforcer_client::EnforcerClient<GrpcClientChannel>,
+}
+impl Dahlia {
+    pub fn new(channel: GrpcClientChannel) -> Self {
+        Self {
+            enforcer: rbac_v1::enforcer_client::EnforcerClient::new(channel),
+        }
+    }
+}
+pub struct Marigold {
+    pub wechat_pay: wechatpay_v1::wechat_pay_client::WechatPayClient<GrpcClientChannel>,
+}
+
+impl Marigold {
+    pub fn new(channel: GrpcClientChannel) -> Self {
+        Self {
+            wechat_pay: wechatpay_v1::wechat_pay_client::WechatPayClient::new(channel),
+        }
     }
 }

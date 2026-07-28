@@ -16,7 +16,7 @@ diesel::table! {
         public -> Bool,
         uploaded_at -> Nullable<Timestamp>,
         deleted_at -> Nullable<Timestamp>,
-        version -> Int8,
+        version -> Int4,
         updated_at -> Timestamp,
         created_at -> Timestamp,
     }
@@ -29,7 +29,7 @@ diesel::table! {
         code -> Varchar,
         left -> Int4,
         right -> Int4,
-        version -> Int8,
+        version -> Int4,
         updated_at -> Timestamp,
         created_at -> Timestamp,
     }
@@ -66,7 +66,7 @@ diesel::table! {
         confirmed_at -> Nullable<Timestamp>,
         locked_at -> Nullable<Timestamp>,
         deleted_at -> Nullable<Timestamp>,
-        version -> Int8,
+        version -> Int4,
         updated_at -> Timestamp,
         created_at -> Timestamp,
     }
@@ -90,7 +90,7 @@ diesel::table! {
         token -> Varchar,
         locked_at -> Nullable<Timestamp>,
         deleted_at -> Nullable<Timestamp>,
-        version -> Int8,
+        version -> Int4,
         updated_at -> Timestamp,
         created_at -> Timestamp,
     }
@@ -104,7 +104,7 @@ diesel::table! {
         #[max_length = 255]
         code -> Varchar,
         message -> Text,
-        version -> Int8,
+        version -> Int4,
         updated_at -> Timestamp,
         created_at -> Timestamp,
     }
@@ -139,7 +139,7 @@ diesel::table! {
         key -> Varchar,
         value -> Bytea,
         associated_data -> Nullable<Bytea>,
-        version -> Int8,
+        version -> Int4,
         updated_at -> Timestamp,
         created_at -> Timestamp,
     }
@@ -152,7 +152,7 @@ diesel::table! {
         title -> Varchar,
         #[max_length = 127]
         url -> Varchar,
-        version -> Int8,
+        version -> Int4,
         updated_at -> Timestamp,
         created_at -> Timestamp,
     }
@@ -163,7 +163,7 @@ diesel::table! {
         id -> Int8,
         #[max_length = 31]
         code -> Varchar,
-        version -> Int8,
+        version -> Int4,
         updated_at -> Timestamp,
         created_at -> Timestamp,
     }
@@ -191,7 +191,7 @@ diesel::table! {
         code -> Varchar,
         value -> Bytea,
         deleted_at -> Nullable<Timestamp>,
-        version -> Int8,
+        version -> Int4,
         updated_at -> Timestamp,
         created_at -> Timestamp,
     }
@@ -210,7 +210,7 @@ diesel::table! {
         lang -> Varchar,
         #[max_length = 31]
         timezone -> Varchar,
-        sign_in_count -> Int8,
+        sign_in_count -> Int4,
         current_sign_in_at -> Nullable<Timestamp>,
         #[max_length = 45]
         current_sign_in_ip -> Nullable<Varchar>,
@@ -219,7 +219,7 @@ diesel::table! {
         last_sign_in_ip -> Nullable<Varchar>,
         locked_at -> Nullable<Timestamp>,
         deleted_at -> Nullable<Timestamp>,
-        version -> Int8,
+        version -> Int4,
         updated_at -> Timestamp,
         created_at -> Timestamp,
     }
@@ -229,13 +229,13 @@ diesel::table! {
     votes (id) {
         id -> Int8,
         user_id -> Int8,
-        star -> Int4,
+        stars -> Int4,
         comment -> Text,
         #[max_length = 7]
         editor -> Varchar,
         published_at -> Nullable<Timestamp>,
         deleted_at -> Nullable<Timestamp>,
-        version -> Int8,
+        version -> Int4,
         updated_at -> Timestamp,
         created_at -> Timestamp,
     }
@@ -257,7 +257,7 @@ diesel::table! {
         head_img_url -> Nullable<Varchar>,
         locked_at -> Nullable<Timestamp>,
         deleted_at -> Nullable<Timestamp>,
-        version -> Int8,
+        version -> Int4,
         updated_at -> Timestamp,
         created_at -> Timestamp,
     }
@@ -289,7 +289,7 @@ diesel::table! {
         lang -> Varchar,
         locked_at -> Nullable<Timestamp>,
         deleted_at -> Nullable<Timestamp>,
-        version -> Int8,
+        version -> Int4,
         updated_at -> Timestamp,
         created_at -> Timestamp,
     }

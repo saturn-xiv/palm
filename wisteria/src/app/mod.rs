@@ -1,6 +1,5 @@
 pub mod db;
 pub mod http;
-pub mod rpc;
 pub mod user;
 pub mod workers;
 
@@ -115,11 +114,6 @@ enum Commands {
         #[arg(short, long, required = true, help = "Queue name")]
         queue: String,
     },
-    #[command(about = "Start a gRPC server")]
-    Rpc {
-        #[arg(short, long, help = "Port", default_value_t = 8080)]
-        port: u16,
-    },
     #[command(about = "Start a HTTP server")]
     Http {
         #[arg(short, long, help = "Port", default_value_t = 8080)]
@@ -167,6 +161,5 @@ pub async fn run() -> Result<()> {
             ref queue,
         } => workers::tex::start(&args.config, queue, Duration::from_micros(interval)).await,
         Commands::Http { port, theme } => http::start(&args.config, port, theme).await,
-        Commands::Rpc { port } => rpc::start(&args.config, port).await,
     }
 }
