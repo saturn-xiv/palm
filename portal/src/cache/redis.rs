@@ -14,7 +14,7 @@ pub use redis::{Commands, RedisError};
 use super::super::Result;
 
 pub type ClusterClient = Client<RedisClusterConnection, RedisClusterClient>;
-pub type SingleClient = Client<RedisConnection, RedisClient>;
+pub type StandaloneClient = Client<RedisConnection, RedisClient>;
 
 fn set<D: Commands>(db: &mut D, key: &str, value: &[u8], ttl: Option<Duration>) -> RedisResult<()> {
     let _: () = match ttl {
@@ -64,7 +64,7 @@ impl Default for Node {
 }
 
 impl Node {
-    pub fn single(&self) -> Result<SingleClient> {
+    pub fn standalone(&self) -> Result<StandaloneClient> {
         log::debug!("open redis host tcp://{}:{}", self.host, self.port);
         let client = RedisClient::open(self.url())?;
         let pool = Pool::builder()

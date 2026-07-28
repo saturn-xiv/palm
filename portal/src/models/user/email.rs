@@ -1,8 +1,10 @@
+use std::fmt;
+
 use chrono::{NaiveDateTime, Utc};
 use diesel::{insert_into, prelude::*, update};
 use hyacinth::schema::email_users;
 
-use super::super::super::{PasswordHashing, Result, orm::postgresql::Connection};
+use super::super::super::{Result, gravatar, orm::postgresql::Connection};
 use serde::{Deserialize, Serialize};
 
 #[derive(Queryable, Serialize, Deserialize, Clone)]
@@ -20,26 +22,19 @@ pub struct Item {
     pub updated_at: NaiveDateTime,
     pub created_at: NaiveDateTime,
 }
-
+impl fmt::Display for Item {
+    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
+        write!(f, "{}<{}>", self.name, self.email)
+    }
+}
 pub trait Dao {
     fn count(&mut self) -> Result<i64>;
     fn all(&mut self, offset: i64, limit: i64) -> Result<Vec<Item>>;
     fn by_id(&mut self, id: i64) -> Result<Item>;
     fn by_email(&mut self, email: &str) -> Result<Item>;
-    fn create<H: PasswordHashing>(
-        &mut self,
-        hash: &H,
-        name: &str,
-        email: &str,
-        password: &str,
-    ) -> impl Future<Output = Result<()>>;
+    fn create(&mut self, user: i64, name: &str, email: &str, password: &str) -> Result<()>;
     fn set_name(&mut self, id: i64, name: &str) -> Result<()>;
-    fn set_password<H: PasswordHashing>(
-        &mut self,
-        hash: &H,
-        id: i64,
-        password: &str,
-    ) -> impl Future<Output = Result<()>>;
+    fn set_password(&mut self, id: i64, password: &str) -> Result<()>;
     fn confirm(&mut self, id: i64) -> Result<()>;
     fn lock(&mut self, id: i64) -> Result<()>;
     fn unlock(&mut self, id: i64) -> Result<()>;
@@ -71,20 +66,15 @@ impl Dao for Connection {
             .first::<Item>(self)?;
         Ok(it)
     }
-    async fn create<H: PasswordHashing>(
-        &mut self,
-        hash: &H,
-        name: &str,
-        email: &str,
-        password: &str,
-    ) -> Result<()> {
-        let password = hash.sign(password).await?;
+    fn create(&mut self, user: i64, name: &str, email: &str, password: &str) -> Result<()> {
         let now = Utc::now().naive_utc();
         insert_into(email_users::dsl::email_users)
             .values((
+                email_users::dsl::user_id.eq(user),
                 email_users::dsl::name.eq(name),
                 email_users::dsl::email.eq(email),
-                email_users::dsl::password.eq(&password),
+                email_users::dsl::avatar.eq(gravatar::image(email)),
+                email_users::dsl::password.eq(password),
                 email_users::dsl::updated_at.eq(&now),
             ))
             .execute(self)?;
@@ -102,18 +92,12 @@ impl Dao for Connection {
             .execute(self)?;
         Ok(())
     }
-    async fn set_password<H: PasswordHashing>(
-        &mut self,
-        hash: &H,
-        id: i64,
-        password: &str,
-    ) -> Result<()> {
-        let password = hash.sign(password).await?;
+    fn set_password(&mut self, id: i64, password: &str) -> Result<()> {
         let now = Utc::now().naive_utc();
         let it = email_users::dsl::email_users.filter(email_users::dsl::id.eq(id));
         update(it)
             .set((
-                email_users::dsl::password.eq(&password),
+                email_users::dsl::password.eq(password),
                 email_users::dsl::version.eq(email_users::dsl::version + 1),
                 email_users::dsl::updated_at.eq(&now),
             ))

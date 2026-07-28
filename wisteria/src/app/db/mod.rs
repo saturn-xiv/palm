@@ -27,7 +27,7 @@ pub async fn seeds<P: AsRef<Path>>(config: P, locales: Option<Vec<PathBuf>>) -> 
                 found += f;
                 inserted += i;
             }
-            log::info!("sync {}/{} locale items", inserted, found);
+            log::info!("sync {}/{} locale items", found, inserted);
             Ok(())
         })?;
     }

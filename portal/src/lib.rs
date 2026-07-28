@@ -160,3 +160,23 @@ impl Marigold {
         }
     }
 }
+
+pub fn current_user() -> Result<String> {
+    let it = nix::unistd::User::from_uid(nix::unistd::getuid())?.ok_or_else(|| {
+        Box::new(HttpError(
+            StatusCode::INTERNAL_SERVER_ERROR,
+            Some("could't detect current username".to_string()),
+        ))
+    })?;
+    Ok(it.name)
+}
+
+pub fn hostname() -> Result<String> {
+    let it = nix::unistd::gethostname()?.into_string().map_err(|_| {
+        Box::new(HttpError(
+            StatusCode::INTERNAL_SERVER_ERROR,
+            Some("could't detect hostname".to_string()),
+        ))
+    })?;
+    Ok(it)
+}

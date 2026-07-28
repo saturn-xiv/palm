@@ -3,16 +3,17 @@ use std::any::type_name;
 use chrono::NaiveDateTime;
 use diesel::{insert_into, prelude::*};
 use hyacinth::schema::logs;
+use juniper::GraphQLEnum;
 use strum::{Display as StrumDisplay, EnumString};
 
 use super::super::{Result, orm::postgresql::Connection};
 
-#[derive(Debug, PartialEq, EnumString, StrumDisplay)]
+#[derive(Debug, PartialEq, EnumString, StrumDisplay, GraphQLEnum)]
+#[graphql(name = "LogLevel")]
 pub enum Level {
     Debug,
     Info,
     Warning,
-    Error,
 }
 
 #[derive(Queryable)]
@@ -27,7 +28,7 @@ pub struct Item {
 }
 
 pub trait Dao {
-    fn add<M: Into<String>, P>(
+    fn create<P, M: Into<String>>(
         &mut self,
         user: i64,
         level: Level,
@@ -41,7 +42,7 @@ pub trait Dao {
 }
 
 impl Dao for Connection {
-    fn add<M: Into<String>, P>(
+    fn create<P, M: Into<String>>(
         &mut self,
         user: i64,
         level: Level,

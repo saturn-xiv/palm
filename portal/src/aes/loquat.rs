@@ -5,7 +5,7 @@ use super::super::{HttpError, Loquat, Result, SecretBox, random::bytes as random
 impl SecretBox for Loquat {
     async fn encrypt(&self, plain: &[u8]) -> Result<(Vec<u8>, Vec<u8>)> {
         let associated_data = random_bytes(32);
-        let mut req = AesEncryptRequest::new();
+        let mut req = AesEncryptRequest::default();
         req.set_plain(plain);
         req.set_associated_data(&associated_data);
 
@@ -17,7 +17,7 @@ impl SecretBox for Loquat {
         Ok((res.cipher().to_vec(), associated_data))
     }
     async fn decrypt(&self, cipher: &[u8], associated_data: &[u8]) -> Result<Vec<u8>> {
-        let mut req = AesDecryptRequest::new();
+        let mut req = AesDecryptRequest::default();
         req.set_cipher(cipher);
         req.set_associated_data(associated_data);
 

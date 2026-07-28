@@ -132,17 +132,17 @@ pub async fn run() -> Result<()> {
     let args = Cli::parse();
     match args.command {
         Commands::DbSeeds { locales } => db::seeds(&args.config, locales).await,
-        Commands::ListUser => user::list(&args.config),
+        Commands::ListUser => user::list::execute(&args.config),
         Commands::CreateUserByEmail {
             ref name,
             ref email,
             ref password,
-        } => user::create_by_email(&args.config, name, email, password),
+        } => user::create_by_email::execute(&args.config, name, email, password).await,
         Commands::AddRoleForUser { ref role, ref user } => {
-            user::add_role(&args.config, user, role).await
+            user::role::add(&args.config, user, role).await
         }
         Commands::DeleteRoleForUser { ref role, ref user } => {
-            user::delete_role(&args.config, user, role).await
+            user::role::delete(&args.config, user, role).await
         }
         Commands::EmailSendWorker {
             interval,

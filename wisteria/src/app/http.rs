@@ -1,6 +1,7 @@
 use std::path::Path;
 
 use clap::ValueEnum;
+use hyacinth::{GrpcClientChannel, open_grpc_channel};
 use portal::{
     Key, Result, cache::redis::Node as Redis, is_stopped, minio::Node as Minio,
     open_search::Node as OpenSearch, orm::postgresql::Node as PostgreSql, parse_toml,
@@ -93,5 +94,11 @@ pub struct Rpc {
 }
 
 fn rpc_default_host() -> String {
-    "127.0.0.1".to_string()
+    "localhost".to_string()
+}
+
+impl Rpc {
+    pub fn open(&self) -> GrpcClientChannel {
+        open_grpc_channel(&self.host, self.port)
+    }
 }

@@ -99,8 +99,8 @@ def object_by_type(type_: str):
 
 
 def to_str(m: ProtobufMessage):
-    return base64.b85encode(m.SerializeToString())
+    return base64.b85encode(m.SerializeToString()).decode()
 
 
 def from_str(s, m: ProtobufMessage):
-    m.ParseFromString(base64.b85decode(s))
+    m.ParseFromString(base64.b85decode(s.encode()))

@@ -34,10 +34,6 @@ features = ["serde"]
 version = "0.10"
 features = ["serde"]
 
-[dependencies.diesel]
-version = "2"
-default-features = false
-
 [dependencies.rand]
 version = "0.10"
 features = ["thread_rng"]
@@ -50,9 +46,17 @@ features = ["uuid", "url", "chrono", "chrono-tz"]
 version = "0.13"
 features = ["json"]
 
+[dependencies.validator]
+version = "0.21"
+features = ["derive"]
+
 [dependencies.strum]
 version = "0.28"
 features = ["derive"]
+
+[dependencies.nix]
+version = "0.31"
+features = ["user", "hostname"]
 
 [dependencies.quick-xml]
 version = "0.41"
@@ -73,6 +77,10 @@ features = ["full"]
 [dependencies.uuid]
 version = "1"
 features = ["v4", "serde"]
+
+[dependencies.diesel]
+version = "2"
+default-features = false
 
 [dependencies.url]
 version = "2"

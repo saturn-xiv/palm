@@ -58,7 +58,9 @@ use std::sync::Arc;
 
 use grpc::{client::ChannelOptions, credentials::LocalChannelCredentials};
 
+// https://grpc.io/docs/guides/custom-name-resolution/
 pub fn open_grpc_channel(host: &str, port: u16) -> GrpcClientChannel {
+    log::debug!("connect to http://{host}:{port}");
     GrpcClientChannel::new(
         format!("dns:///{host}:{port}"),
         Arc::new(LocalChannelCredentials::new()),

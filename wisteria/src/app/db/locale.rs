@@ -62,7 +62,7 @@ fn load_from_yaml<P: AsRef<Path>>(db: &mut Db, lang: &str, file: P) -> Result<(u
             ))
         })?;
         if !["yaml", "yml"].contains(&it) {
-            log::warn!("ignore file {}", file.display());
+            log::warn!("ignore file {} for lang {}", file.display(), lang);
             return Ok((0, 0));
         }
     }

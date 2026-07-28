@@ -4,7 +4,7 @@ use super::super::{HttpError, Loquat, PasswordHashing, Result};
 
 impl PasswordHashing for Loquat {
     async fn sign(&self, password: &str) -> Result<String> {
-        let mut req = Argon2SignRequest::new();
+        let mut req = Argon2SignRequest::default();
         req.set_password(password);
 
         let res = self
@@ -15,7 +15,7 @@ impl PasswordHashing for Loquat {
         Ok(res.hashed().to_string())
     }
     async fn verify(&self, hashed: &str, password: &str) -> Result<()> {
-        let mut req = Argon2VerifyRequest::new();
+        let mut req = Argon2VerifyRequest::default();
         req.set_hashed(hashed);
         req.set_password(password);
 

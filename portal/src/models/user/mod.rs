@@ -8,9 +8,21 @@ use chrono_tz::Tz;
 use diesel::{insert_into, prelude::*, update};
 use hyacinth::schema::users;
 use icu::locale::Locale;
+use juniper::GraphQLEnum;
+use serde::{Deserialize, Serialize};
+use strum::{Display as StrumDisplay, EnumString};
 
 use super::super::{Result, orm::postgresql::Connection};
-use serde::{Deserialize, Serialize};
+
+#[derive(Debug, PartialEq, EnumString, StrumDisplay, GraphQLEnum)]
+#[graphql(name = "UserType")]
+pub enum Type {
+    Email,
+    Sma,
+    GoogleOauth2,
+    WechatOauth2,
+    WechatMiniProgram,
+}
 
 #[derive(Queryable, Serialize, Deserialize, Clone)]
 pub struct Item {
