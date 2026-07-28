@@ -85,8 +85,13 @@ struct Config {
     marigold: Rpc,
 }
 
-#[derive(Debug, Clone, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, Serialize, Deserialize)]
 pub struct Rpc {
+    #[serde(default = "rpc_default_host")]
     pub host: String,
     pub port: u16,
+}
+
+fn rpc_default_host() -> String {
+    "127.0.0.1".to_string()
 }

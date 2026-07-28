@@ -23,9 +23,9 @@ pub trait Dao {
     fn by_id(&mut self, id: i64) -> Result<Item>;
     fn create(
         &mut self,
-        lang: &str,
+        name: &str,
         code: &str,
-        message: &str,
+        country: &str,
         number: i32,
         units: Option<i32>,
         fund: Option<bool>,

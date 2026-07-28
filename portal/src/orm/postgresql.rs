@@ -15,7 +15,7 @@ pub type Connection = PgConnection;
 pub type Pool = DieselPool<ConnectionManager<PgConnection>>;
 
 // https://www.postgresql.org/docs/current/sql-prepare.html
-#[derive(Debug, Clone, Serialize, Deserialize)]
+#[derive(Debug, Clone, Default, Serialize, Deserialize)]
 pub struct Node {
     #[serde(default = "node_default_host")]
     pub host: String,

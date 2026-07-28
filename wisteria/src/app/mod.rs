@@ -29,7 +29,7 @@ enum Commands {
     #[command(about = "Load data into database, init queues")]
     DbSeeds {
         #[arg(short, long, help = "Load locales from(yaml)")]
-        locales: Option<Vec<String>>,
+        locales: Option<Vec<PathBuf>>,
     },
     #[command(about = "List all users")]
     ListUser,

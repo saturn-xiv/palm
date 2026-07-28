@@ -7,6 +7,7 @@ edition = "2024"
 juniper_axum = "0.3"
 log = "0.4"
 axum = "0.8"
+yaml_serde = "0.10"
 env_logger = "0.11"
 lettre = "0.11"
 hyper = "1"
@@ -23,6 +24,10 @@ features = ["derive"]
 [dependencies.tokio]
 version = "1"
 features = ["full"]
+
+[dependencies.diesel]
+version = "2"
+default-features = false
 
 [dependencies.clap]
 version = "4"
