@@ -14,7 +14,7 @@ pub use lapin::{
     options::{BasicPublishOptions, ExchangeDeclareOptions, QueueBindOptions, QueueDeclareOptions},
 };
 
-use super::super::{Error, HttpError, Result, content_type::*};
+use super::super::{Error, HttpError, Result, content_types::*};
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct Node {

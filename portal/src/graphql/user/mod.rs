@@ -1,6 +1,5 @@
 pub mod email;
 
-use chrono::{NaiveDateTime, Utc};
 use juniper::GraphQLObject;
 
 use super::super::{
@@ -9,19 +8,6 @@ use super::super::{
     orm::postgresql::Connection as Db,
 };
 use super::Pagination;
-
-#[derive(Debug, GraphQLObject)]
-#[graphql(name = "Succeeded")]
-pub struct Succeeded {
-    pub created_at: NaiveDateTime,
-}
-impl Default for Succeeded {
-    fn default() -> Self {
-        Self {
-            created_at: Utc::now().naive_utc(),
-        }
-    }
-}
 
 #[derive(Debug, GraphQLObject)]
 #[graphql(name = "User")]

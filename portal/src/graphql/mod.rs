@@ -1,5 +1,9 @@
+pub mod currency;
+pub mod locale;
 pub mod user;
 
+use axum::http::HeaderMap;
+use chrono::{NaiveDateTime, Utc};
 use hyper::StatusCode;
 use juniper::{GraphQLInputObject, GraphQLObject};
 use serde::{Deserialize, Serialize};
@@ -7,6 +11,7 @@ use serde::{Deserialize, Serialize};
 use super::{
     HttpError, Jwt, Result,
     cache::redis::StandaloneClient as Cache,
+    headers::{AUTHORIZATION, BEARER, X_FORWARDED_FOR, X_REAL_IP},
     models::user::{Dao as UserDao, Type as UserType, email::Dao as EmailUserDao},
     orm::postgresql::Connection as Db,
 };
@@ -18,10 +23,17 @@ pub const QUEUE_CUPS: &str = "cups";
 
 pub struct Session {
     pub client_ip: String,
-    token: Option<String>,
+    pub token: Option<String>,
 }
 
 impl Session {
+    pub fn new(headers: &HeaderMap) -> Self {
+        Self {
+            token: Self::token(headers),
+            client_ip: Self::client_ip(headers).unwrap_or_default(),
+        }
+    }
+
     pub async fn current_user<J: Jwt>(
         &self,
         db: &mut Db,
@@ -34,6 +46,50 @@ impl Session {
             .ok_or_else(|| Box::new(HttpError(StatusCode::NON_AUTHORITATIVE_INFORMATION, None)))?;
 
         CurrentUser::new(db, cache, jwt, token).await
+    }
+
+    fn token(headers: &HeaderMap) -> Option<String> {
+        if let Some(auth) = headers.get(AUTHORIZATION)
+            && let Ok(auth) = auth.to_str()
+            && let Some(token) = auth.strip_prefix(BEARER)
+        {
+            return Some(token.to_string());
+        }
+        None
+    }
+
+    /*
+    nginx.conf
+
+    location / {
+        proxy_pass http://localhost:8080;
+
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header Host $http_host;
+        proxy_set_header X-Forwarded-Proto $scheme;
+    }
+     */
+    fn client_ip(headers: &HeaderMap) -> Option<String> {
+        if let Some(it) = headers.get(X_FORWARDED_FOR)
+            && let Ok(it) = it.to_str()
+        {
+            for it in it.split(",") {
+                let it = it.trim();
+                if !it.is_empty() {
+                    return Some(it.to_string());
+                }
+            }
+        }
+        if let Some(it) = headers.get(X_REAL_IP)
+            && let Ok(it) = it.to_str()
+        {
+            let it = it.trim();
+            if !it.is_empty() {
+                return Some(it.to_string());
+            }
+        }
+        None
     }
 }
 
@@ -131,4 +187,17 @@ pub struct Pagination {
 pub struct Page {
     pub index: i32,
     pub size: i32,
+}
+
+#[derive(Debug, GraphQLObject)]
+#[graphql(name = "Succeeded")]
+pub struct Succeeded {
+    pub created_at: NaiveDateTime,
+}
+impl Default for Succeeded {
+    fn default() -> Self {
+        Self {
+            created_at: Utc::now().naive_utc(),
+        }
+    }
 }

@@ -1,9 +1,11 @@
 pub mod aes;
 pub mod argon2;
 pub mod cache;
-pub mod content_type;
+pub mod content_types;
+pub mod controllers;
 pub mod graphql;
 pub mod gravatar;
+pub mod headers;
 pub mod hmac;
 pub mod iso4217;
 pub mod jwt;

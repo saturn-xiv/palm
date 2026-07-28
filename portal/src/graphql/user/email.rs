@@ -15,7 +15,7 @@ use super::super::super::{
         },
     },
     orm::postgresql::Connection as Db,
-    queue::rabbitmq::Node as RabbitMq,
+    queue::rabbitmq::Client as RabbitMq,
 };
 use super::super::{Plugin, Session};
 
@@ -101,11 +101,12 @@ impl SignUp {
         Ok(())
     }
 
-    pub async fn execute<H: PasswordHashing>(
+    pub async fn execute<J: Jwt, H: PasswordHashing>(
         &self,
+        ss: &Session,
         db: &mut Db,
         queue: &RabbitMq,
-        ss: &Session,
+        jwt: &J,
         hashing: &H,
     ) -> Result<()> {
         let password = hashing.sign(&self.password).await?;
@@ -117,7 +118,7 @@ impl SignUp {
             Ok(it)
         })?;
 
-        send_email(db, queue, &it, CONFIRM_ACTION).await?;
+        send_email(db, queue, jwt, &it, CONFIRM_ACTION).await?;
         Ok(())
     }
 }
@@ -133,9 +134,10 @@ pub struct SignIn {
     pub email: String,
 }
 
-async fn send_email(
+async fn send_email<J: Jwt>(
     _db: &mut Db,
     _queue: &RabbitMq,
+    _jwt: &J,
     _user: &EmailUserItem,
     _action: &str,
 ) -> Result<()> {

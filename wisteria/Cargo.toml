@@ -4,14 +4,25 @@ version = "2026.7.21"
 edition = "2024"
 
 [dependencies]
-juniper_axum = "0.3"
+tokio-stream = "0.1"
+futures = "0.3"
 log = "0.4"
+juniper_graphql_ws = "0.5"
 axum = "0.8"
 yaml_serde = "0.10"
 env_logger = "0.11"
 lettre = "0.11"
+juniper = "0.17"
 hyper = "1"
 tempfile = "3"
+
+[dependencies.juniper_axum]
+version = "0.3"
+features = ["subscriptions"]
+
+[dependencies.chrono]
+version = "0.4"
+features = ["serde"]
 
 [dependencies.strum]
 version = "0.28"
