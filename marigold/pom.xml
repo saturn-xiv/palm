@@ -11,7 +11,7 @@
 	</parent>
 	<groupId>com.github.saturn_xiv.palm</groupId>
 	<artifactId>marigold</artifactId>
-	<version>2026.7.22</version>
+	<version>2026.7.28</version>
 	<name />
 	<description />
 	<url />
@@ -116,6 +116,17 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-jar-plugin</artifactId>
+				<configuration>
+					<archive>
+						<manifestEntries>
+							<Implementation-Title>WeChat Pay services</Implementation-Title>
+						</manifestEntries>
+					</archive>
+				</configuration>
 			</plugin>
 		</plugins>
 	</build>
