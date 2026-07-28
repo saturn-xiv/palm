@@ -14,6 +14,7 @@ pub mod open_search;
 pub mod orm;
 pub mod queue;
 pub mod random;
+pub mod rbac;
 pub mod session;
 pub mod ssha512;
 pub mod twilio;
@@ -27,6 +28,7 @@ use std::path::Path;
 use std::result::Result as StdResult;
 use std::str::FromStr;
 
+use chrono::Duration;
 use data_encoding::{BASE64, DecodeError as Base64DecodeError};
 use hyacinth::{GrpcClientChannel, GrpcStatusError, loquat_v1, rbac_v1, wechatpay_v1};
 use hyper::StatusCode;
@@ -113,6 +115,23 @@ impl FromStr for Key {
     }
 }
 
+pub trait Jwt {
+    fn sign<A: Into<String>, P: Serialize>(
+        &self,
+        issuer: &str,
+        subject: &str,
+        audiences: Vec<A>,
+        ttl: Duration,
+        payload: Option<P>,
+    ) -> impl Future<Output = Result<String>>;
+    fn verify<P: DeserializeOwned>(
+        &self,
+        token: &str,
+        issuer: &str,
+        audience: &str,
+    ) -> impl Future<Output = Result<(String, Option<P>)>>;
+}
+
 pub trait SecretBox {
     fn encrypt(&self, plain: &[u8]) -> impl Future<Output = Result<(Vec<u8>, Vec<u8>)>>;
     fn decrypt(
@@ -122,6 +141,12 @@ pub trait SecretBox {
     ) -> impl Future<Output = Result<Vec<u8>>>;
 }
 
+pub trait Rbac {
+    fn is_root(&self, user: i64) -> impl Future<Output = Result<()>>;
+    fn is_administrator(&self, user: i64) -> impl Future<Output = Result<()>>;
+    fn has_role(&self, user: i64, role: &str) -> impl Future<Output = Result<()>>;
+}
+
 pub trait PasswordHashing {
     fn sign(&self, password: &str) -> impl Future<Output = Result<String>>;
     fn verify(&self, hashed: &str, password: &str) -> impl Future<Output = Result<()>>;
@@ -129,12 +154,14 @@ pub trait PasswordHashing {
 
 pub struct Loquat {
     aes: loquat_v1::aes_client::AesClient<GrpcClientChannel>,
+    jwt: loquat_v1::jwt_client::JwtClient<GrpcClientChannel>,
     argon2: loquat_v1::argon2_client::Argon2Client<GrpcClientChannel>,
 }
 impl Loquat {
     pub fn new(channel: GrpcClientChannel) -> Self {
         Self {
             aes: loquat_v1::aes_client::AesClient::new(channel.clone()),
+            jwt: loquat_v1::jwt_client::JwtClient::new(channel.clone()),
             argon2: loquat_v1::argon2_client::Argon2Client::new(channel),
         }
     }

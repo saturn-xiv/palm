@@ -42,6 +42,13 @@ enum Commands {
         #[arg(short, long, required = true, help = "Password")]
         password: String,
     },
+    #[command(about = "Set password for an email user")]
+    SetPasswordForEmailUser {
+        #[arg(short, long, required = true, help = "Email")]
+        email: String,
+        #[arg(short, long, required = true, help = "Password")]
+        password: String,
+    },
     #[command(about = "Add role for user")]
     AddRoleForUser {
         #[arg(
@@ -138,6 +145,10 @@ pub async fn run() -> Result<()> {
             ref email,
             ref password,
         } => user::create_by_email::execute(&args.config, name, email, password).await,
+        Commands::SetPasswordForEmailUser {
+            ref email,
+            ref password,
+        } => user::set_password_for_email::execute(&args.config, email, password).await,
         Commands::AddRoleForUser { ref role, ref user } => {
             user::role::add(&args.config, user, role).await
         }

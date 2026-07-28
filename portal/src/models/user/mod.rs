@@ -14,7 +14,9 @@ use strum::{Display as StrumDisplay, EnumString};
 
 use super::super::{Result, orm::postgresql::Connection};
 
-#[derive(Debug, PartialEq, EnumString, StrumDisplay, GraphQLEnum)]
+#[derive(
+    Debug, Clone, PartialEq, EnumString, StrumDisplay, Deserialize, Serialize, GraphQLEnum,
+)]
 #[graphql(name = "UserType")]
 pub enum Type {
     Email,

@@ -44,7 +44,7 @@ pub mod schema;
 pub use flatbuffers::root as flatbuffers_root;
 pub use flexbuffers::{FlexbufferSerializer, Reader as FlexbufferReader};
 pub use grpc::{StatusError as GrpcStatusError, client::Channel as GrpcClientChannel};
-pub use protobuf::{Message as ProtobufMessage, Parse as ProtobufParse};
+pub use protobuf::{Message as ProtobufMessage, Parse as ProtobufParse, ProtoString};
 
 pub use cups::palm::cups::v_1 as cups_v1;
 pub use email::palm::email::v_1 as email_v1;

@@ -3,7 +3,7 @@ use std::{ops::DerefMut, path::Path};
 use diesel::Connection as DieselConnection;
 use portal::{
     Error, Loquat, PasswordHashing, Result, current_user,
-    graphql::{Plugin, user::email::SignUp},
+    graphql::{Plugin, user::email::SetPassword},
     hostname,
     models::{
         log::{Dao as LogDao, Level},
@@ -16,21 +16,13 @@ use serde::{Deserialize, Serialize};
 
 use super::super::http::Rpc;
 
-pub async fn execute<P: AsRef<Path>>(
-    config: P,
-    name: &str,
-    email: &str,
-    password: &str,
-) -> Result<()> {
+pub async fn execute<P: AsRef<Path>>(config: P, email: &str, password: &str) -> Result<()> {
     let manager = current_user()?;
     let ip = hostname()?;
 
-    let form = SignUp {
-        name: name.trim().to_string(),
+    let form = SetPassword {
         email: email.trim().to_lowercase(),
         password: password.to_string(),
-        lang: "en-US".to_string(),
-        timezone: "UTC".to_string(),
     };
     let config: Config = parse_toml(config)?;
     let db = config.postgresql.open()?;
@@ -39,18 +31,16 @@ pub async fn execute<P: AsRef<Path>>(
     let hashing = Loquat::new(config.loquat.open());
     let password = hashing.sign(&form.password).await?;
 
-    log::warn!("create user {}<{}>", form.name, form.email);
-
     db.transaction::<_, Error, _>(|tx| {
-        form.create(tx, &password)?;
         let it = EmailUserDao::by_email(tx, &form.email)?;
-        EmailUserDao::confirm(tx, it.id)?;
+        log::warn!("set user {}<{}> password", it.name, it.email);
+        EmailUserDao::set_password(tx, it.id, &password)?;
         LogDao::create::<Plugin, _>(
             tx,
             it.user_id,
             Level::Info,
             &ip,
-            format!("created by system operator({}).", manager),
+            format!("set password by system operator({}).", manager),
         )?;
         Ok(())
     })?;
