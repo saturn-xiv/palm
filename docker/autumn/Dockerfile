@@ -93,8 +93,7 @@ RUN curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
 RUN bash -c "source $HOME/.cargo/env \
     && rustup target add armv7-unknown-linux-gnueabihf \
     && rustup target add aarch64-unknown-linux-gnu \
-    && rustup target add x86_64-unknown-linux-musl \
-    && rustup target add aarch64-unknown-linux-musl \
+    && rustup target add riscv64gc-unknown-linux-gnu \
     && rustup target add loongarch64-unknown-linux-gnu"
 RUN bash -c "source $HOME/.cargo/env && cargo install diesel_cli && cargo install mdbook"
 
