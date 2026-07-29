@@ -1,7 +1,6 @@
 pub mod cms;
 
 use std::ops::{Deref, DerefMut};
-use std::sync::Arc;
 
 use axum::{
     Extension,
@@ -15,7 +14,7 @@ use super::graphql::context::State;
 
 #[axum::debug_handler]
 pub async fn home(
-    Extension(state): Extension<Arc<State>>,
+    Extension(state): Extension<State>,
     headers: HeaderMap,
     jar: CookieJar,
 ) -> HtmlResult {

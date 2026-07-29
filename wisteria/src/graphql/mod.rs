@@ -26,7 +26,7 @@ pub fn new() -> Schema {
 
 pub async fn handler(
     Extension(schema): Extension<Arc<Schema>>,
-    Extension(state): Extension<Arc<context::State>>,
+    Extension(state): Extension<context::State>,
     headers: HeaderMap,
     jar: CookieJar,
     JuniperRequest(request): JuniperRequest,
@@ -47,7 +47,7 @@ pub async fn handler(
 
 pub async fn subscriptions(
     Extension(schema): Extension<Arc<Schema>>,
-    Extension(state): Extension<Arc<context::State>>,
+    Extension(state): Extension<context::State>,
     headers: HeaderMap,
     jar: CookieJar,
     ws: WebSocketUpgrade,
