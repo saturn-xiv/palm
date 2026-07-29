@@ -1,20 +1,25 @@
-use std::{ops::DerefMut, time::Duration};
+use std::ops::{Deref, DerefMut};
+use std::result::Result as StdResult;
+use std::sync::Arc;
+use std::time::Duration;
 
 use hyacinth::{FlexbufferReader, FlexbufferSerializer, ProtobufMessage};
-use r2d2::Pool;
+use r2d2::{
+    Error as R2d2Error, ManageConnection, Pool as R2d2Pool,
+    PooledConnection as R2d2PooledConnection,
+};
 use redis::{
-    Client as RedisClient, Connection as RedisConnection, RedisResult,
+    Client as RedisClient, Commands, Connection as RedisConnection, RedisError, RedisResult,
     cluster::{ClusterClient as RedisClusterClient, ClusterConnection as RedisClusterConnection},
 };
 use serde::{Deserialize, Serialize, de::DeserializeOwned};
 
-pub use r2d2::ManageConnection;
-pub use redis::{Commands, RedisError};
-
 use super::super::Result;
 
-pub type ClusterClient = Client<RedisClusterConnection, RedisClusterClient>;
-pub type StandaloneClient = Client<RedisConnection, RedisClient>;
+pub type ClusterPool = Pool<RedisClusterConnection, RedisClusterClient>;
+pub type ClusterConnection = PooledConnection<RedisClusterConnection, RedisClusterClient>;
+pub type StandalonePool = Pool<RedisConnection, RedisClient>;
+pub type StandaloneConnection = PooledConnection<RedisConnection, RedisClient>;
 
 fn set<D: Commands>(db: &mut D, key: &str, value: &[u8], ttl: Option<Duration>) -> RedisResult<()> {
     let _: () = match ttl {
@@ -64,26 +69,26 @@ impl Default for Node {
 }
 
 impl Node {
-    pub fn standalone(&self) -> Result<StandaloneClient> {
+    pub fn standalone(&self) -> Result<StandalonePool> {
         log::debug!("open redis host tcp://{}:{}", self.host, self.port);
         let client = RedisClient::open(self.url())?;
-        let pool = Pool::builder()
+        let pool = R2d2Pool::builder()
             .max_size(self.pool_size as u32)
             .build(client)?;
-        Ok(Client {
+        Ok(Pool {
             pool,
-            namespace: self.namespace.clone(),
+            namespace: Arc::new(self.namespace.clone()),
         })
     }
-    pub fn cluster(&self) -> Result<ClusterClient> {
+    pub fn cluster(&self) -> Result<ClusterPool> {
         log::debug!("open redis cluster tcp://{}:{}", self.host, self.port);
         let client = RedisClusterClient::new(vec![self.url()])?;
-        let pool = Pool::builder()
+        let pool = R2d2Pool::builder()
             .max_size(self.pool_size as u32)
             .build(client)?;
-        Ok(Client {
+        Ok(Pool {
             pool,
-            namespace: self.namespace.clone(),
+            namespace: Arc::new(self.namespace.clone()),
         })
     }
 
@@ -92,40 +97,54 @@ impl Node {
     }
 }
 
-pub struct Client<C: Commands, T: ManageConnection<Connection = C, Error = RedisError>> {
-    namespace: Option<String>,
-    pub pool: Pool<T>,
+pub struct Pool<C: Commands, T: ManageConnection<Connection = C, Error = RedisError>> {
+    namespace: Arc<Option<String>>,
+    pool: R2d2Pool<T>,
 }
 
-impl<C: Commands, T: ManageConnection<Connection = C, Error = RedisError>> Client<C, T> {
+impl<C: Commands, T: ManageConnection<Connection = C, Error = RedisError>> Pool<C, T> {
+    pub fn get(&self) -> StdResult<PooledConnection<C, T>, R2d2Error> {
+        let connection = self.pool.get()?;
+        Ok(PooledConnection {
+            namespace: self.namespace.clone(),
+            connection,
+        })
+    }
+}
+
+pub struct PooledConnection<C: Commands, T: ManageConnection<Connection = C, Error = RedisError>> {
+    namespace: Arc<Option<String>>,
+    connection: R2d2PooledConnection<T>,
+}
+
+impl<C: Commands, T: ManageConnection<Connection = C, Error = RedisError>> PooledConnection<C, T> {
     fn key<S: AsRef<str>>(&self, k: S) -> String {
-        match self.namespace {
-            Some(ref s) => format!("{}://{}", s, k.as_ref()),
+        let ns = self.namespace.deref();
+        match ns {
+            Some(s) => format!("{}://{}", s, k.as_ref()),
             None => k.as_ref().to_string(),
         }
     }
 }
 
 impl<C: Commands, T: ManageConnection<Connection = C, Error = RedisError>> super::ProtobufCacher
-    for Client<C, T>
+    for PooledConnection<C, T>
 {
     fn set<K: AsRef<str>, V: ProtobufMessage>(
-        &self,
+        &mut self,
         key: K,
         value: &V,
         ttl: Option<Duration>,
     ) -> Result<()> {
         let buf = value.serialize()?;
         let key = self.key(key);
-        let mut db = self.pool.get()?;
-        let db = db.deref_mut();
+        let db = self.connection.deref_mut();
         set(db, &key, &buf, ttl)?;
         Ok(())
     }
-    fn get<K: AsRef<str>, V: ProtobufMessage + Default>(&self, key: K) -> Result<V> {
+    fn get<K: AsRef<str>, V: ProtobufMessage + Default>(&mut self, key: K) -> Result<V> {
         let key = self.key(key);
-        let mut db = self.pool.get()?;
-        let db = db.deref_mut();
+        let db = self.connection.deref_mut();
         let buf = get(db, &key)?;
         let it = V::parse(&buf[..])?;
         Ok(it)
@@ -133,10 +152,10 @@ impl<C: Commands, T: ManageConnection<Connection = C, Error = RedisError>> super
 }
 
 impl<C: Commands, T: ManageConnection<Connection = C, Error = RedisError>> super::FlexBuffersCacher
-    for Client<C, T>
+    for PooledConnection<C, T>
 {
     fn set<K: AsRef<str>, V: Serialize>(
-        &self,
+        &mut self,
         key: K,
         value: &V,
         ttl: Option<Duration>,
@@ -145,15 +164,13 @@ impl<C: Commands, T: ManageConnection<Connection = C, Error = RedisError>> super
         value.serialize(&mut se)?;
         let buf = se.view();
         let key = self.key(key);
-        let mut db = self.pool.get()?;
-        let db = db.deref_mut();
+        let db = self.connection.deref_mut();
         set(db, &key, buf, ttl)?;
         Ok(())
     }
-    fn get<K: AsRef<str>, V: DeserializeOwned>(&self, key: K) -> Result<V> {
+    fn get<K: AsRef<str>, V: DeserializeOwned>(&mut self, key: K) -> Result<V> {
         let key = self.key(key);
-        let mut db = self.pool.get()?;
-        let db = db.deref_mut();
+        let db = self.connection.deref_mut();
         let buf = get(db, &key)?;
         let reader = FlexbufferReader::get_root(&buf[..])?;
         let it = V::deserialize(reader)?;

@@ -3,6 +3,7 @@ pub mod locale;
 pub mod user;
 
 use axum::http::HeaderMap;
+use axum_extra::extract::cookie::CookieJar;
 use chrono::{NaiveDateTime, Utc};
 use hyper::StatusCode;
 use juniper::{GraphQLInputObject, GraphQLObject};
@@ -10,7 +11,7 @@ use serde::{Deserialize, Serialize};
 
 use super::{
     HttpError, Jwt, Result,
-    cache::redis::StandaloneClient as Cache,
+    cache::redis::StandaloneConnection as Cache,
     headers::{AUTHORIZATION, BEARER, X_FORWARDED_FOR, X_REAL_IP},
     models::user::{Dao as UserDao, Type as UserType, email::Dao as EmailUserDao},
     orm::postgresql::Connection as Db,
@@ -21,17 +22,24 @@ pub const QUEUE_TEX: &str = "tex";
 pub const QUEUE_EMAIL_SEND: &str = "email-send";
 pub const QUEUE_CUPS: &str = "cups";
 
+#[derive(Debug, Clone, Default, Serialize, Deserialize)]
 pub struct Session {
-    pub client_ip: String,
+    pub client_ip: Option<String>,
+    pub locale: Option<String>,
     pub token: Option<String>,
 }
 
 impl Session {
-    pub fn new(headers: &HeaderMap) -> Self {
+    pub fn new(headers: &HeaderMap, jar: &CookieJar) -> Self {
         Self {
-            token: Self::token(headers),
-            client_ip: Self::client_ip(headers).unwrap_or_default(),
+            token: Self::detect_token(headers),
+            client_ip: Self::detect_client_ip(headers),
+            locale: Self::detect_locale(jar),
         }
+    }
+
+    pub fn client_ip(&self) -> &str {
+        self.client_ip.as_deref().unwrap_or("")
     }
 
     pub async fn current_user<J: Jwt>(
@@ -48,7 +56,15 @@ impl Session {
         CurrentUser::new(db, cache, jwt, token).await
     }
 
-    fn token(headers: &HeaderMap) -> Option<String> {
+    fn detect_locale(jar: &CookieJar) -> Option<String> {
+        let key = "locale";
+        if let Some(it) = jar.get(key) {
+            return Some(it.value().to_owned());
+        }
+        None
+    }
+
+    fn detect_token(headers: &HeaderMap) -> Option<String> {
         if let Some(auth) = headers.get(AUTHORIZATION)
             && let Ok(auth) = auth.to_str()
             && let Some(token) = auth.strip_prefix(BEARER)
@@ -70,7 +86,7 @@ impl Session {
         proxy_set_header X-Forwarded-Proto $scheme;
     }
      */
-    fn client_ip(headers: &HeaderMap) -> Option<String> {
+    fn detect_client_ip(headers: &HeaderMap) -> Option<String> {
         if let Some(it) = headers.get(X_FORWARDED_FOR)
             && let Ok(it) = it.to_str()
         {

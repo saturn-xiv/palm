@@ -38,6 +38,10 @@ features = ["serde"]
 version = "0.10"
 features = ["thread_rng"]
 
+[dependencies.axum-extra]
+version = "0.12"
+features = ["cookie-private", "cookie-signed"]
+
 [dependencies.juniper]
 version = "0.17"
 features = ["uuid", "url", "chrono", "chrono-tz"]

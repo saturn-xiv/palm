@@ -9,20 +9,20 @@ use super::Result;
 
 pub trait ProtobufCacher {
     fn set<K: AsRef<str>, V: ProtobufMessage>(
-        &self,
+        &mut self,
         key: K,
         value: &V,
         ttl: Option<Duration>,
     ) -> Result<()>;
-    fn get<K: AsRef<str>, V: ProtobufMessage + Default>(&self, key: K) -> Result<V>;
+    fn get<K: AsRef<str>, V: ProtobufMessage + Default>(&mut self, key: K) -> Result<V>;
 }
 
 pub trait FlexBuffersCacher {
     fn set<K: AsRef<str>, V: Serialize>(
-        &self,
+        &mut self,
         key: K,
         value: &V,
         ttl: Option<Duration>,
     ) -> Result<()>;
-    fn get<K: AsRef<str>, V: DeserializeOwned>(&self, key: K) -> Result<V>;
+    fn get<K: AsRef<str>, V: DeserializeOwned>(&mut self, key: K) -> Result<V>;
 }

@@ -6,6 +6,7 @@ pub mod subscription;
 use std::{ops::Deref, sync::Arc};
 
 use axum::{Extension, extract::WebSocketUpgrade, http::HeaderMap, response::Response};
+use axum_extra::extract::cookie::CookieJar;
 use juniper::RootNode;
 use juniper_axum::{
     extract::JuniperRequest, response::JuniperResponse, subscriptions::serve_graphql_transport_ws,
@@ -27,6 +28,7 @@ pub async fn handler(
     Extension(schema): Extension<Arc<Schema>>,
     Extension(state): Extension<Arc<context::State>>,
     headers: HeaderMap,
+    jar: CookieJar,
     JuniperRequest(request): JuniperRequest,
 ) -> JuniperResponse {
     let schema = schema.deref();
@@ -35,8 +37,8 @@ pub async fn handler(
             .execute(
                 schema,
                 &context::Context {
-                    state,
-                    session: Arc::new(Session::new(&headers)),
+                    state: state.0.clone(),
+                    session: Arc::new(Session::new(&headers, &jar)),
                 },
             )
             .await,
@@ -47,6 +49,7 @@ pub async fn subscriptions(
     Extension(schema): Extension<Arc<Schema>>,
     Extension(state): Extension<Arc<context::State>>,
     headers: HeaderMap,
+    jar: CookieJar,
     ws: WebSocketUpgrade,
 ) -> Response {
     ws.protocols(["graphql-transport-ws"])
@@ -58,8 +61,8 @@ pub async fn subscriptions(
                 socket,
                 schema,
                 ConnectionConfig::new(context::Context {
-                    state,
-                    session: Arc::new(Session::new(&headers)),
+                    state: state.0.clone(),
+                    session: Arc::new(Session::new(&headers, &jar)),
                 }),
             )
         })

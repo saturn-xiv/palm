@@ -30,6 +30,7 @@ use std::path::Path;
 use std::result::Result as StdResult;
 use std::str::FromStr;
 
+use axum::response::Html;
 use chrono::Duration;
 use data_encoding::{BASE64, DecodeError as Base64DecodeError};
 use hyacinth::{GrpcClientChannel, GrpcStatusError, loquat_v1, rbac_v1, wechat_pay_v1};
@@ -71,6 +72,18 @@ impl From<GrpcStatusError> for HttpError {
 }
 
 pub type HttpResult<T> = StdResult<T, HttpError>;
+
+#[macro_export]
+macro_rules! web_try {
+    ($x:expr) => {
+        $x.map_err(|x| {
+            log::error!("{}", x);
+            (StatusCode::INTERNAL_SERVER_ERROR, x.to_string())
+        })?
+    };
+}
+
+pub type HtmlResult = StdResult<Html<String>, (StatusCode, String)>;
 
 pub fn is_stopped() -> Result<bool> {
     let dir = current_exe()?;

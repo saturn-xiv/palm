@@ -6,7 +6,7 @@ use validator::Validate;
 
 use super::super::super::{
     Error, HttpError, Jwt, PasswordHashing, Rbac, Result,
-    cache::redis::StandaloneClient as Cache,
+    cache::redis::StandaloneConnection as Cache,
     models::{
         log::{Dao as LogDao, Level},
         user::{
@@ -57,6 +57,7 @@ impl SetPassword {
             it.user_id
         };
         let password = hashing.sign(&self.password).await?;
+        let ip = ss.client_ip();
 
         db.transaction::<_, Error, _>(|tx| {
             self.save(tx, &password)?;
@@ -65,7 +66,7 @@ impl SetPassword {
                 tx,
                 user_id,
                 Level::Info,
-                &ss.client_ip,
+                ip,
                 format!("Reset password by administrator {}.", current_user.name),
             )?;
             Ok(())
@@ -110,11 +111,12 @@ impl SignUp {
         hashing: &H,
     ) -> Result<()> {
         let password = hashing.sign(&self.password).await?;
+        let ip = ss.client_ip();
 
         let it = db.transaction::<_, Error, _>(|tx| {
             self.create(tx, &password)?;
             let it = EmailUserDao::by_email(tx, &self.email)?;
-            LogDao::create::<Plugin, _>(tx, it.user_id, Level::Info, &ss.client_ip, "Sign up.")?;
+            LogDao::create::<Plugin, _>(tx, it.user_id, Level::Info, ip, "Sign up.")?;
             Ok(it)
         })?;
 
