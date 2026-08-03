@@ -19,7 +19,7 @@ use super::super::super::{
 };
 use super::super::{Plugin, Session};
 
-#[derive(Debug, Validate, GraphQLInputObject)]
+#[derive(Clone, Debug, Validate, GraphQLInputObject)]
 #[graphql(name = "SetPasswordForEmailUser")]
 pub struct SetPassword {
     #[validate(length(min = 1), email)]
@@ -39,11 +39,11 @@ impl SetPassword {
 
     pub async fn execute<R: Rbac, J: Jwt, H: PasswordHashing>(
         &self,
+        ss: &Session,
         db: &mut Db,
         cache: &mut Cache,
-        jwt: &J,
         rbac: &R,
-        ss: &Session,
+        jwt: &J,
         hashing: &H,
     ) -> Result<()> {
         let current_user = ss.current_user(db, cache, jwt).await?;
@@ -76,7 +76,7 @@ impl SetPassword {
     }
 }
 
-#[derive(Debug, Validate, GraphQLInputObject)]
+#[derive(Clone, Debug, Validate, GraphQLInputObject)]
 #[graphql(name = "UserSignUpByEmail")]
 pub struct SignUp {
     #[validate(length(min = 1, max = 31))]

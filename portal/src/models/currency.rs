@@ -19,7 +19,7 @@ pub struct Item {
 
 pub trait Dao {
     fn count(&mut self) -> Result<i64>;
-    fn all(&mut self) -> Result<Vec<Item>>;
+    fn index(&mut self) -> Result<Vec<Item>>;
     fn by_id(&mut self, id: i64) -> Result<Item>;
     fn create(
         &mut self,
@@ -38,7 +38,7 @@ impl Dao for Connection {
         Ok(it)
     }
 
-    fn all(&mut self) -> Result<Vec<Item>> {
+    fn index(&mut self) -> Result<Vec<Item>> {
         let items = currencies::dsl::currencies
             .order(currencies::dsl::name.asc())
             .load::<Item>(self)?;

@@ -29,7 +29,7 @@ pub trait Dao {
     fn languages(&mut self) -> Result<Vec<String>>;
     fn count_by_lang(&mut self, lang: &str) -> Result<i64>;
     fn count(&mut self) -> Result<i64>;
-    fn all(&mut self, offset: i64, limit: i64) -> Result<Vec<Item>>;
+    fn index(&mut self, offset: i64, limit: i64) -> Result<Vec<Item>>;
     fn by_lang(&mut self, lang: &str) -> Result<Vec<Item>>;
     fn by_code(&mut self, code: &str) -> Result<Vec<Item>>;
     fn by_id(&mut self, id: i64) -> Result<Item>;
@@ -73,7 +73,7 @@ impl Dao for Connection {
             .load::<Item>(self)?;
         Ok(items)
     }
-    fn all(&mut self, offset: i64, limit: i64) -> Result<Vec<Item>> {
+    fn index(&mut self, offset: i64, limit: i64) -> Result<Vec<Item>> {
         let items = locales::dsl::locales
             .order(locales::dsl::updated_at.desc())
             .offset(offset)

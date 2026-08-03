@@ -193,9 +193,26 @@ pub struct Plugin;
 #[derive(Debug, GraphQLObject)]
 #[graphql(name = "Pagination")]
 pub struct Pagination {
-    pub page: i32,
+    pub index: i32,
     pub size: i32,
     pub total: i32,
+    pub has_next: bool,
+    pub has_previous: bool,
+}
+
+impl Pagination {
+    pub fn new(page: &Page, total: i64) -> Self {
+        let index = page.index(total);
+        let size = page.size();
+
+        Self {
+            index: index as i32,
+            size: size as i32,
+            total: total as i32,
+            has_next: (index * size < total),
+            has_previous: (index > 1),
+        }
+    }
 }
 
 #[derive(Debug, GraphQLInputObject)]
@@ -203,6 +220,38 @@ pub struct Pagination {
 pub struct Page {
     pub index: i32,
     pub size: i32,
+}
+
+impl Page {
+    pub fn offset(&self, total: i64) -> i64 {
+        (self.index(total) - 1) * self.size()
+    }
+
+    pub fn index(&self, total: i64) -> i64 {
+        let size = self.size();
+        if total < size || self.index < 1 {
+            return 1;
+        }
+        let index = self.index as i64;
+        if index * size > total {
+            let it = total / size;
+            return if total % size == 0 { it } else { it + 1 };
+        }
+        index
+    }
+
+    pub fn size(&self) -> i64 {
+        let size = self.size as i64;
+        if size < Self::MIN_SIZE {
+            return Self::MIN_SIZE;
+        }
+        if size > Self::MAX_SIZE {
+            return Self::MAX_SIZE;
+        }
+        size
+    }
+    const MAX_SIZE: i64 = 1 << 12;
+    const MIN_SIZE: i64 = 1 << 2;
 }
 
 #[derive(Debug, GraphQLObject)]
