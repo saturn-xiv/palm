@@ -110,7 +110,7 @@ RUN bash -c "source $HOME/.profile && asdf plugin add erlang && asdf install erl
 RUN bash -c "source $HOME/.profile && asdf plugin add elixir && asdf install elixir 1.20.2-otp-29 && asdf set --home elixir 1.20.2-otp-29"
 RUN echo "export HEX_HTTP_CONCURRENCY=1" >> $HOME/.profile && echo "export HEX_HTTP_TIMEOUT=120" >> $HOME/.profile
 # https://thrift.apache.org/lib/java.html
-RUN bash -c "source $HOME/.profile && asdf plugin add java && asdf install java corretto-25.0.3.9.1 && asdf set --home java corretto-25.0.3.9.1"
+RUN bash -c "source $HOME/.profile && asdf plugin add java && asdf install java corretto-26.0.2.10.1 && asdf set --home java corretto-26.0.2.10.1"
 # https://docs.gradle.org/current/userguide/compatibility.html
 RUN bash -c "source $HOME/.profile && asdf plugin add gradle && asdf install gradle 9.6.1 && asdf set --home gradle 9.6.1"
 RUN bash -c "source $HOME/.profile && asdf plugin add maven && asdf install maven latest && asdf set --home maven latest"

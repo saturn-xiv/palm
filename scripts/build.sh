@@ -108,6 +108,9 @@ build_dashboard wisteria
 build_wisteria_assets
 build_marigold
 
+cd $WORK_DIR/loquat/
+bash build.sh
+
 XZ_OPT=-9 tar -cJf $TARGET_DIR/$PACKAGE.tar.xz --remove-files -C $TARGET_DIR/$PACKAGE .
 md5sum $TARGET_DIR/$PACKAGE.tar.xz > $TARGET_DIR/$PACKAGE.md5
 
