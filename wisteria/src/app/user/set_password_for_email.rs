@@ -3,7 +3,7 @@ use std::{ops::DerefMut, path::Path};
 use diesel::Connection as DieselConnection;
 use portal::{
     Error, Loquat, PasswordHashing, Result, current_user,
-    graphql::{Plugin, user::email::SetPassword},
+    graphql::Plugin,
     hostname,
     models::{
         log::{Dao as LogDao, Level},
@@ -13,6 +13,7 @@ use portal::{
     parse_toml,
 };
 use serde::{Deserialize, Serialize};
+use validator::Validate;
 
 use super::super::http::Rpc;
 
@@ -24,6 +25,8 @@ pub async fn execute<P: AsRef<Path>>(config: P, email: &str, password: &str) -> 
         email: email.trim().to_lowercase(),
         password: password.to_string(),
     };
+    form.validate()?;
+
     let config: Config = parse_toml(config)?;
     let db = config.postgresql.open()?;
     let mut db = db.get()?;
@@ -52,4 +55,12 @@ pub async fn execute<P: AsRef<Path>>(config: P, email: &str, password: &str) -> 
 struct Config {
     postgresql: PostgreSql,
     loquat: Rpc,
+}
+
+#[derive(Clone, Debug, Validate)]
+struct SetPassword {
+    #[validate(length(min = 5, max = 31), email)]
+    email: String,
+    #[validate(length(min = 6, max = 31))]
+    password: String,
 }

@@ -13,6 +13,7 @@ env_logger = "0.11"
 lettre = "0.11"
 juniper = "0.17"
 hyper = "1"
+icu = "2"
 tempfile = "3"
 
 [dependencies.juniper_axum]
@@ -30,6 +31,10 @@ features = ["macros"]
 [dependencies.axum-extra]
 version = "0.12"
 features = ["cookie-private", "cookie-signed"]
+
+[dependencies.validator]
+version = "0.21"
+features = ["derive"]
 
 [dependencies.strum]
 version = "0.28"

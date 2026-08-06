@@ -3,8 +3,9 @@ use std::fmt;
 use chrono::{NaiveDateTime, Utc};
 use diesel::{insert_into, prelude::*, update};
 use hyacinth::schema::email_users;
+use hyper::StatusCode;
 
-use super::super::super::{Result, gravatar, orm::postgresql::Connection};
+use super::super::super::{HttpError, Result, gravatar, orm::postgresql::Connection};
 use serde::{Deserialize, Serialize};
 
 #[derive(Queryable, Serialize, Deserialize, Clone)]
@@ -22,6 +23,31 @@ pub struct Item {
     pub updated_at: NaiveDateTime,
     pub created_at: NaiveDateTime,
 }
+
+impl Item {
+    pub fn is_enable(&self) -> Result<()> {
+        if self.confirmed_at.is_none() {
+            return Err(Box::new(HttpError(
+                StatusCode::PRECONDITION_REQUIRED,
+                Some("User isn't confirmed yet".to_string()),
+            )));
+        }
+        if self.locked_at.is_some() {
+            return Err(Box::new(HttpError(
+                StatusCode::LOCKED,
+                Some("User isn't locked".to_string()),
+            )));
+        }
+        if self.deleted_at.is_some() {
+            return Err(Box::new(HttpError(
+                StatusCode::GONE,
+                Some("User isn't confirmed yet".to_string()),
+            )));
+        }
+        Ok(())
+    }
+}
+
 impl fmt::Display for Item {
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
         write!(f, "{}<{}>", self.name, self.email)

@@ -133,48 +133,21 @@ impl CurrentUser {
         let it = match payload.r#type {
             UserType::Email => {
                 let it = EmailUserDao::by_email(db, &subject)?;
-                if it.locked_at.is_some() {
-                    Err(Box::new(HttpError(
-                        StatusCode::UNAVAILABLE_FOR_LEGAL_REASONS,
-                        Some("User isn't confirmed yet".to_string()),
-                    )))
-                } else if it.deleted_at.is_some() {
-                    Err(Box::new(HttpError(
-                        StatusCode::GONE,
-                        Some("User is locked".to_string()),
-                    )))
-                } else if it.confirmed_at.is_none() {
-                    Err(Box::new(HttpError(
-                        StatusCode::FORBIDDEN,
-                        Some("User is locked".to_string()),
-                    )))
-                } else {
-                    Ok(Self {
-                        id: it.user_id,
-                        name: it.name,
-                    })
-                }
+                it.is_enable()?;
+                Ok(Self {
+                    id: it.user_id,
+                    name: it.name,
+                })
             }
             _ => Err(Box::new(HttpError(
-                StatusCode::FORBIDDEN,
+                StatusCode::NOT_IMPLEMENTED,
                 Some("Invalid user type".to_string()),
             ))),
         }?;
 
         {
             let user = UserDao::by_id(db, it.id)?;
-            if user.locked_at.is_some() {
-                return Err(Box::new(HttpError(
-                    StatusCode::LOCKED,
-                    Some("User is locked".to_string()),
-                )));
-            }
-            if user.deleted_at.is_some() {
-                return Err(Box::new(HttpError(
-                    StatusCode::GONE,
-                    Some("User is locked".to_string()),
-                )));
-            }
+            user.is_enable()?;
         }
         Ok(it)
     }
@@ -184,8 +157,8 @@ impl CurrentUser {
 }
 
 #[derive(Debug, Serialize, Deserialize)]
-struct TokenPayload {
-    r#type: UserType,
+pub struct TokenPayload {
+    pub r#type: UserType,
 }
 
 pub struct Plugin;

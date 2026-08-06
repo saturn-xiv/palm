@@ -7,12 +7,13 @@ use chrono::{NaiveDateTime, Utc};
 use chrono_tz::Tz;
 use diesel::{insert_into, prelude::*, update};
 use hyacinth::schema::users;
+use hyper::StatusCode;
 use icu::locale::Locale;
 use juniper::GraphQLEnum;
 use serde::{Deserialize, Serialize};
 use strum::{Display as StrumDisplay, EnumString};
 
-use super::super::{Result, orm::postgresql::Connection};
+use super::super::{HttpError, Result, orm::postgresql::Connection};
 
 #[derive(
     Debug, Clone, PartialEq, EnumString, StrumDisplay, Deserialize, Serialize, GraphQLEnum,
@@ -20,10 +21,28 @@ use super::super::{Result, orm::postgresql::Connection};
 #[graphql(name = "UserType")]
 pub enum Type {
     Email,
-    Sma,
+    Sms,
     GoogleOauth2,
     WechatOauth2,
     WechatMiniProgram,
+}
+
+impl Item {
+    pub fn is_enable(&self) -> Result<()> {
+        if self.locked_at.is_some() {
+            return Err(Box::new(HttpError(
+                StatusCode::LOCKED,
+                Some("User isn't locked".to_string()),
+            )));
+        }
+        if self.deleted_at.is_some() {
+            return Err(Box::new(HttpError(
+                StatusCode::GONE,
+                Some("User isn't confirmed yet".to_string()),
+            )));
+        }
+        Ok(())
+    }
 }
 
 #[derive(Queryable, Serialize, Deserialize, Clone)]

@@ -4,6 +4,7 @@ use std::path::Path;
 use diesel::prelude::*;
 use hyacinth::schema::locales;
 use hyper::StatusCode;
+use icu::locale::Locale;
 use portal::{
     HttpError, Result, models::locale::Dao as LocaleDao, orm::postgresql::Connection as Db,
 };
@@ -24,12 +25,13 @@ pub fn sync<P: AsRef<Path>>(db: &mut Db, root: P) -> Result<(usize, usize)> {
             && let Some(lang) = it.file_name()
             && let Some(lang) = lang.to_str()
         {
+            let lang = lang.parse()?;
             log::info!("find language {}", lang);
             for it in read_dir(&it)? {
                 let it = it?;
                 let it = it.path();
                 if it.is_file() {
-                    let (f, i) = load_from_yaml(db, lang, it)?;
+                    let (f, i) = load_from_yaml(db, &lang, it)?;
                     found += f;
                     inserted += i;
                 }
@@ -37,12 +39,13 @@ pub fn sync<P: AsRef<Path>>(db: &mut Db, root: P) -> Result<(usize, usize)> {
         }
     }
     for lang in LocaleDao::languages(db)?.iter() {
+        let lang = lang.parse()?;
         for it in read_dir(root)? {
             let it = it?;
             let it = it.path();
 
             if it.is_file() {
-                let (f, i) = load_from_yaml(db, lang, it)?;
+                let (f, i) = load_from_yaml(db, &lang, it)?;
                 found += f;
                 inserted += i;
             }
@@ -52,7 +55,7 @@ pub fn sync<P: AsRef<Path>>(db: &mut Db, root: P) -> Result<(usize, usize)> {
     Ok((inserted, found))
 }
 
-fn load_from_yaml<P: AsRef<Path>>(db: &mut Db, lang: &str, file: P) -> Result<(usize, usize)> {
+fn load_from_yaml<P: AsRef<Path>>(db: &mut Db, lang: &Locale, file: P) -> Result<(usize, usize)> {
     let file = file.as_ref();
     {
         let it = file.extension().and_then(|x| x.to_str()).ok_or_else(|| {
@@ -89,7 +92,7 @@ fn load_from_yaml<P: AsRef<Path>>(db: &mut Db, lang: &str, file: P) -> Result<(u
 
 fn load_from_yaml_mapping(
     db: &mut Db,
-    lang: &str,
+    lang: &Locale,
     section: &str,
     mapping: &YamlMapping,
 ) -> Result<(usize, usize)> {
@@ -126,16 +129,25 @@ fn load_from_yaml_mapping(
     Ok((found, inserted))
 }
 
-fn save_locale_item(db: &mut Db, lang: &str, code: &str, message: &str) -> Result<(usize, usize)> {
+fn save_locale_item(
+    db: &mut Db,
+    lang: &Locale,
+    code: &str,
+    message: &str,
+) -> Result<(usize, usize)> {
     log::debug!("find {lang}.{code}");
-    let cnt: i64 = locales::dsl::locales
-        .count()
-        .filter(locales::dsl::lang.eq(lang))
-        .filter(locales::dsl::code.eq(code))
-        .get_result(db)?;
-    if cnt > 0 {
-        log::debug!("{lang}.{code} already exists!");
-        return Ok((1, 0));
+
+    {
+        let lang = lang.to_string();
+        let cnt: i64 = locales::dsl::locales
+            .count()
+            .filter(locales::dsl::lang.eq(&lang))
+            .filter(locales::dsl::code.eq(code))
+            .get_result(db)?;
+        if cnt > 0 {
+            log::debug!("{lang}.{code} already exists!");
+            return Ok((1, 0));
+        }
     }
     LocaleDao::create(db, lang, code, message)?;
     Ok((1, 1))

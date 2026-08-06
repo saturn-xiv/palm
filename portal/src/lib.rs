@@ -156,12 +156,6 @@ pub trait SecretBox {
     ) -> impl Future<Output = Result<Vec<u8>>>;
 }
 
-pub trait Rbac {
-    fn is_root(&self, user: i64) -> impl Future<Output = Result<()>>;
-    fn is_administrator(&self, user: i64) -> impl Future<Output = Result<()>>;
-    fn has_role(&self, user: i64, role: &str) -> impl Future<Output = Result<()>>;
-}
-
 pub trait PasswordHashing {
     fn sign(&self, password: &str) -> impl Future<Output = Result<String>>;
     fn verify(&self, hashed: &str, password: &str) -> impl Future<Output = Result<()>>;

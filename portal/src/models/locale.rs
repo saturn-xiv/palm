@@ -1,9 +1,10 @@
 use chrono::{NaiveDateTime, Utc};
 use diesel::{delete, insert_into, prelude::*, update};
 use hyacinth::schema::locales;
+use icu::locale::Locale;
+use serde::{Deserialize, Serialize};
 
 use super::super::{Result, orm::postgresql::Connection};
-use serde::{Deserialize, Serialize};
 
 #[derive(Queryable, Serialize, Deserialize, Clone)]
 pub struct Item {
@@ -27,15 +28,15 @@ pub struct New<'a> {
 
 pub trait Dao {
     fn languages(&mut self) -> Result<Vec<String>>;
-    fn count_by_lang(&mut self, lang: &str) -> Result<i64>;
+    fn count_by_lang(&mut self, lang: &Locale) -> Result<i64>;
     fn count(&mut self) -> Result<i64>;
     fn index(&mut self, offset: i64, limit: i64) -> Result<Vec<Item>>;
-    fn by_lang(&mut self, lang: &str) -> Result<Vec<Item>>;
+    fn by_lang(&mut self, lang: &Locale) -> Result<Vec<Item>>;
     fn by_code(&mut self, code: &str) -> Result<Vec<Item>>;
     fn by_id(&mut self, id: i64) -> Result<Item>;
-    fn by_lang_and_code(&mut self, lang: &str, code: &str) -> Result<Item>;
+    fn by_lang_and_code(&mut self, lang: &Locale, code: &str) -> Result<Item>;
     fn delete(&mut self, id: i64) -> Result<()>;
-    fn create(&mut self, lang: &str, code: &str, message: &str) -> Result<()>;
+    fn create(&mut self, lang: &Locale, code: &str, message: &str) -> Result<()>;
     fn update(&mut self, id: i64, message: &str) -> Result<()>;
 }
 
@@ -52,16 +53,18 @@ impl Dao for Connection {
         let it: i64 = locales::dsl::locales.count().get_result(self)?;
         Ok(it)
     }
-    fn count_by_lang(&mut self, lang: &str) -> Result<i64> {
+    fn count_by_lang(&mut self, lang: &Locale) -> Result<i64> {
+        let lang = lang.to_string();
         let cnt: i64 = locales::dsl::locales
             .count()
-            .filter(locales::dsl::lang.eq(lang))
+            .filter(locales::dsl::lang.eq(&lang))
             .get_result(self)?;
         Ok(cnt)
     }
-    fn by_lang(&mut self, lang: &str) -> Result<Vec<Item>> {
+    fn by_lang(&mut self, lang: &Locale) -> Result<Vec<Item>> {
+        let lang = lang.to_string();
         let items = locales::dsl::locales
-            .filter(locales::dsl::lang.eq(lang))
+            .filter(locales::dsl::lang.eq(&lang))
             .order(locales::dsl::code.asc())
             .load::<Item>(self)?;
         Ok(items)
@@ -87,9 +90,10 @@ impl Dao for Connection {
             .first::<Item>(self)?;
         Ok(it)
     }
-    fn by_lang_and_code(&mut self, lang: &str, code: &str) -> Result<Item> {
+    fn by_lang_and_code(&mut self, lang: &Locale, code: &str) -> Result<Item> {
+        let lang = lang.to_string();
         let it = locales::dsl::locales
-            .filter(locales::dsl::lang.eq(lang))
+            .filter(locales::dsl::lang.eq(&lang))
             .filter(locales::dsl::code.eq(code))
             .first::<Item>(self)?;
         Ok(it)
@@ -105,11 +109,12 @@ impl Dao for Connection {
             .execute(self)?;
         Ok(())
     }
-    fn create(&mut self, lang: &str, code: &str, message: &str) -> Result<()> {
+    fn create(&mut self, lang: &Locale, code: &str, message: &str) -> Result<()> {
+        let lang = lang.to_string();
         let now = Utc::now().naive_utc();
         insert_into(locales::dsl::locales)
             .values(&New {
-                lang,
+                lang: &lang,
                 code,
                 message,
                 updated_at: &now,
