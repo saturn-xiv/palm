@@ -1,7 +1,7 @@
 use std::ops::DerefMut;
 
 use juniper::{FieldResult, graphql_object};
-use portal::graphql::{Page, currency as currency_api, locale as locale_api};
+use portal::graphql::{Page, currency as currency_api, locale as locale_api, user as user_api};
 
 use super::super::{BUILD_TIME, GIT_VERSION};
 use super::context::Context;
@@ -18,6 +18,21 @@ impl Query {
         BUILD_TIME
     }
 
+    async fn refresh(ctx: &Context) -> FieldResult<user_api::RefreshResponse> {
+        let mut db = ctx.state.db.get()?;
+        let db = db.deref_mut();
+        let mut cache = ctx.state.cache.get()?;
+        let reply = user_api::RefreshResponse::new(
+            &ctx.session,
+            db,
+            &mut cache,
+            &ctx.state.loquat,
+            &ctx.state.dahlia,
+        )
+        .await?;
+        Ok(reply)
+    }
+
     fn index_currency(ctx: &Context) -> FieldResult<Vec<currency_api::Item>> {
         let mut db = ctx.state.db.get()?;
         let db = db.deref_mut();
@@ -31,6 +46,7 @@ impl Query {
         let reply = locale_api::by_lang(db, &lang)?;
         Ok(reply)
     }
+
     async fn index_locale(page: Page, ctx: &Context) -> FieldResult<locale_api::Index> {
         let mut db = ctx.state.db.get()?;
         let db = db.deref_mut();

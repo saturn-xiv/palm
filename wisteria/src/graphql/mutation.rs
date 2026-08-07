@@ -48,11 +48,12 @@ impl Mutation {
         };
         let mut db = ctx.state.db.get()?;
         let db = db.deref_mut();
-
+        let mut cache = ctx.state.cache.get()?;
         let it = form
             .execute(
                 &ctx.session,
                 db,
+                &mut cache,
                 &ctx.state.dahlia,
                 &ctx.state.loquat,
                 &ctx.state.loquat,

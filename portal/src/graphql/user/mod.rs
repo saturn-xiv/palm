@@ -5,12 +5,14 @@ use juniper::GraphQLObject;
 
 use super::super::{
     Jwt, Result,
-    models::user::{Dao as UserDao, Type as UserType, email::Item as EmailUserItem},
+    cache::redis::StandaloneConnection as Cache,
+    models::user::{
+        Dao as UserDao, Item as UserItem, Type as UserType, email::Item as EmailUserItem,
+    },
     orm::postgresql::Connection as Db,
-    rbac::Permission,
-    rbac::Rbac,
+    rbac::{Permission, Rbac},
 };
-use super::{CurrentUser, Pagination, TokenPayload};
+use super::{CurrentUser, Pagination, Session, TokenPayload, site::Layout as SiteLayout};
 
 #[derive(Debug, GraphQLObject)]
 #[graphql(name = "User")]
@@ -34,51 +36,87 @@ impl Item {
 }
 
 #[derive(Debug, GraphQLObject)]
-#[graphql(name = "UserSignInResponse")]
-pub struct SignInResponse {
-    pub token: String,
+#[graphql(name = "UserLayout")]
+pub struct Layout {
     pub lang: String,
     pub timezone: String,
-    pub name: String,
+    pub name: Option<String>,
     pub avatar: Option<String>,
     pub is_administrator: bool,
     pub roles: Vec<String>,
     pub permissions: Vec<Permission>,
 }
+impl Layout {
+    pub async fn new<R: Rbac>(rbac: &R, user: &UserItem) -> Result<Self> {
+        user.is_enable()?;
+
+        Ok(Self {
+            lang: user.lang.clone(),
+            timezone: user.timezone.clone(),
+            name: user.name.clone(),
+            avatar: user.avatar.clone(),
+            is_administrator: rbac.is_administrator(user.id).await.is_ok(),
+            roles: rbac.roles(user.id).await?,
+            permissions: rbac.permissions(user.id).await?,
+        })
+    }
+}
+#[derive(Debug, GraphQLObject)]
+#[graphql(name = "RefreshResponse")]
+pub struct RefreshResponse {
+    pub user: Layout,
+    pub site: SiteLayout,
+}
+
+impl RefreshResponse {
+    pub async fn new<R: Rbac, J: Jwt>(
+        ss: &Session,
+        db: &mut Db,
+        cache: &mut Cache,
+        jwt: &J,
+        rbac: &R,
+    ) -> Result<Self> {
+        let current_user = ss.current_user(db, cache, jwt).await?;
+        let lang = current_user.lang()?;
+        Ok(Self {
+            user: Layout::new(rbac, &current_user.item).await?,
+            site: SiteLayout::new(db, cache, &lang)?,
+        })
+    }
+}
+
+#[derive(Debug, GraphQLObject)]
+#[graphql(name = "UserSignInResponse")]
+pub struct SignInResponse {
+    pub token: String,
+    pub user: Layout,
+    pub site: SiteLayout,
+}
 
 impl SignInResponse {
     pub async fn new<R: Rbac, J: Jwt>(
         db: &mut Db,
+        cache: &mut Cache,
         rbac: &R,
         jwt: &J,
         user: i64,
         type_: UserType,
-        name: &str,
-        avatar: Option<&str>,
+        subject: &str,
     ) -> Result<Self> {
         let user = UserDao::by_id(db, user)?;
-        user.is_enable()?;
-
+        let lang = user.lang.parse()?;
         Ok(Self {
             token: jwt
                 .sign(
                     CurrentUser::ISSUER,
-                    &user.uid.clone(),
+                    subject,
                     vec![CurrentUser::SIGN_IN_AUDIENCE],
-                    Duration::days(7),
+                    Duration::weeks(1),
                     Some(TokenPayload { r#type: type_ }),
                 )
                 .await?,
-            lang: user.lang.clone(),
-            timezone: user.timezone.clone(),
-            name: name.to_string(),
-            avatar: match avatar {
-                Some(it) => Some(it.to_string()),
-                None => user.avatar.clone(),
-            },
-            is_administrator: rbac.is_administrator(user.id).await.is_ok(),
-            roles: rbac.roles(user.id).await?,
-            permissions: rbac.permissions(user.id).await?,
+            user: Layout::new(rbac, &user).await?,
+            site: SiteLayout::new(db, cache, &lang)?,
         })
     }
 }

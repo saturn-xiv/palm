@@ -104,6 +104,7 @@ impl Dao for Connection {
         update(it)
             .set((
                 locales::dsl::message.eq(message),
+                locales::dsl::version.eq(locales::dsl::version + 1),
                 locales::dsl::updated_at.eq(&now),
             ))
             .execute(self)?;
@@ -125,5 +126,32 @@ impl Dao for Connection {
     fn delete(&mut self, id: i64) -> Result<()> {
         delete(locales::dsl::locales.filter(locales::dsl::id.eq(id))).execute(self)?;
         Ok(())
+    }
+}
+
+pub trait I18n {
+    fn t<S: Serialize>(&mut self, lang: &Locale, code: &str, args: Option<S>) -> String;
+}
+
+impl I18n for Connection {
+    fn t<S: Serialize>(&mut self, lang: &Locale, code: &str, args: Option<S>) -> String {
+        if let Ok(it) = Dao::by_lang_and_code(self, lang, code) {
+            let val = match args {
+                Some(ref args) => {
+                    if let Ok(ref tpl) = mustache::compile_str(&it.message)
+                        && let Ok(val) = tpl.render_to_string(args)
+                    {
+                        Some(val)
+                    } else {
+                        None
+                    }
+                }
+                None => Some(it.message),
+            };
+            if let Some(val) = val {
+                return val;
+            }
+        }
+        format!("{}.{}", lang, code)
     }
 }

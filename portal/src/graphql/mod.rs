@@ -1,11 +1,13 @@
 pub mod currency;
 pub mod locale;
+pub mod site;
 pub mod user;
 
 use axum::http::HeaderMap;
 use axum_extra::extract::cookie::CookieJar;
 use chrono::{NaiveDateTime, Utc};
 use hyper::StatusCode;
+use icu::locale::Locale;
 use juniper::{GraphQLInputObject, GraphQLObject};
 use serde::{Deserialize, Serialize};
 
@@ -13,7 +15,9 @@ use super::{
     HttpError, Jwt, Result,
     cache::redis::StandaloneConnection as Cache,
     headers::{AUTHORIZATION, BEARER, X_FORWARDED_FOR, X_REAL_IP},
-    models::user::{Dao as UserDao, Type as UserType, email::Dao as EmailUserDao},
+    models::user::{
+        Dao as UserDao, Item as UserItem, Type as UserType, email::Dao as EmailUserDao,
+    },
     orm::postgresql::Connection as Db,
 };
 
@@ -110,10 +114,22 @@ impl Session {
 }
 
 pub struct CurrentUser {
-    pub id: i64,
-    pub name: String,
+    pub item: UserItem,
+    pub type_: UserType,
+    pub subject: String,
 }
 impl CurrentUser {
+    pub fn uid(&self) -> &String {
+        &self.item.uid
+    }
+    pub fn id(&self) -> i64 {
+        self.item.id
+    }
+    pub fn lang(&self) -> Result<Locale> {
+        let it = self.item.lang.parse()?;
+        Ok(it)
+    }
+
     pub async fn new<J: Jwt>(
         db: &mut Db,
         _cache: &mut Cache,
@@ -130,14 +146,11 @@ impl CurrentUser {
             ))
         })?;
 
-        let it = match payload.r#type {
+        let user = match payload.r#type {
             UserType::Email => {
                 let it = EmailUserDao::by_email(db, &subject)?;
                 it.is_enable()?;
-                Ok(Self {
-                    id: it.user_id,
-                    name: it.name,
-                })
+                Ok(it.user_id)
             }
             _ => Err(Box::new(HttpError(
                 StatusCode::NOT_IMPLEMENTED,
@@ -145,11 +158,14 @@ impl CurrentUser {
             ))),
         }?;
 
-        {
-            let user = UserDao::by_id(db, it.id)?;
-            user.is_enable()?;
-        }
-        Ok(it)
+        let user = UserDao::by_id(db, user)?;
+        user.is_enable()?;
+
+        Ok(Self {
+            item: user,
+            type_: payload.r#type,
+            subject,
+        })
     }
 
     pub const ISSUER: &str = "Palm";

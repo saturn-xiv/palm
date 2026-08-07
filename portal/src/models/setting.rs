@@ -29,7 +29,11 @@ impl FlatBuffer for Connection {
         enc: &E,
         user: Option<i64>,
     ) -> Result<V> {
-        let buf = Dao::get(self, enc, &type_name::<V>().to_string(), user).await?;
+        let it = Dao::get(self, &type_name::<V>().to_string(), user)?;
+        let buf = match it.associated_data {
+            Some(ref associated_data) => enc.decrypt(&it.value, associated_data).await?,
+            None => it.value,
+        };
         let it = flexbuffers::from_slice(&buf)?;
         Ok(it)
     }
@@ -41,9 +45,13 @@ impl FlatBuffer for Connection {
         value: &V,
         encode: bool,
     ) -> Result<()> {
-        let buf = flexbuffers::to_vec(value)?;
-        Dao::set(self, enc, &type_name::<V>().to_string(), user, &buf, encode).await?;
-        Ok(())
+        let key = type_name::<V>().to_string();
+        let value = flexbuffers::to_vec(value)?;
+        if encode {
+            return Dao::set(self, &key, user, &value, None);
+        }
+        let (value, associated_data) = enc.encrypt(&value).await?;
+        Dao::set(self, &key, user, &value, Some(associated_data.as_ref()))
     }
 }
 
@@ -60,100 +68,65 @@ pub struct Item {
 }
 
 pub trait Dao {
-    fn get<K: Display, E: SecretBox>(
+    fn get<K: Display>(&mut self, key: &K, user: Option<i64>) -> Result<Item>;
+    fn set<K: Display>(
         &mut self,
-        e: &E,
-        k: &K,
-        u: Option<i64>,
-    ) -> impl Future<Output = Result<Vec<u8>>>;
-    fn set<K: Display, E: SecretBox>(
-        &mut self,
-        e: &E,
-        k: &K,
-        u: Option<i64>,
-        v: &[u8],
-        f: bool,
-    ) -> impl Future<Output = Result<()>>;
+        key: &K,
+        user: Option<i64>,
+        value: &[u8],
+        associated_data: Option<&[u8]>,
+    ) -> Result<()>;
     fn delete(&mut self, id: i64) -> Result<()>;
 }
 
 impl Dao for Connection {
-    async fn get<K: Display, E: SecretBox>(
-        &mut self,
-        e: &E,
-        k: &K,
-        u: Option<i64>,
-    ) -> Result<Vec<u8>> {
-        let k = k.to_string();
+    fn get<K: Display>(&mut self, key: &K, user: Option<i64>) -> Result<Item> {
+        let key = key.to_string();
 
-        let it = match u {
-            Some(ref u) => settings::dsl::settings
-                .filter(settings::dsl::key.eq(&k))
-                .filter(settings::dsl::user_id.eq(u))
+        let it = match user {
+            Some(ref user) => settings::dsl::settings
+                .filter(settings::dsl::key.eq(&key))
+                .filter(settings::dsl::user_id.eq(user))
                 .first::<Item>(self)?,
             None => settings::dsl::settings
-                .filter(settings::dsl::key.eq(&k))
+                .filter(settings::dsl::key.eq(&key))
                 .filter(settings::dsl::user_id.is_null())
                 .first::<Item>(self)?,
         };
 
-        let val = match it.associated_data {
-            Some(ref associated_data) => e.decrypt(&it.value, associated_data).await?,
-            None => it.value,
-        };
-        Ok(val)
+        Ok(it)
     }
 
-    async fn set<K: Display, E: SecretBox>(
+    fn set<K: Display>(
         &mut self,
-        e: &E,
-        k: &K,
-        u: Option<i64>,
-        v: &[u8],
-        f: bool,
+        key: &K,
+        user: Option<i64>,
+        value: &[u8],
+        associated_data: Option<&[u8]>,
     ) -> Result<()> {
-        let k = k.to_string();
-
-        let (val, associated_data) = if f {
-            let (val, associated_data) = e.encrypt(v).await?;
-            (val, Some(associated_data))
-        } else {
-            (v.to_vec(), None)
-        };
-
         let now = Utc::now().naive_utc();
 
-        let it = match u {
-            Some(ref u) => settings::dsl::settings
-                .filter(settings::dsl::key.eq(&k))
-                .filter(settings::dsl::user_id.eq(u))
-                .first::<Item>(self),
-            None => settings::dsl::settings
-                .filter(settings::dsl::key.eq(&k))
-                .filter(settings::dsl::user_id.is_null())
-                .first::<Item>(self),
-        };
-
-        match it {
+        match Dao::get(self, key, user) {
             Ok(it) => {
                 let it = settings::dsl::settings.filter(settings::dsl::id.eq(&it.id));
 
                 update(it)
                     .set((
-                        settings::dsl::value.eq(&val),
-                        settings::dsl::user_id.eq(u),
-                        settings::dsl::associated_data.eq(&associated_data),
+                        settings::dsl::value.eq(value),
+                        settings::dsl::associated_data.eq(associated_data),
+                        settings::dsl::version.eq(settings::dsl::version + 1),
                         settings::dsl::updated_at.eq(&now),
                     ))
                     .execute(self)?;
             }
             Err(_) => {
+                let key = key.to_string();
                 insert_into(settings::dsl::settings)
                     .values((
-                        settings::dsl::key.eq(&k),
-                        settings::dsl::user_id.eq(u),
-                        settings::dsl::value.eq(&val),
-                        settings::dsl::associated_data.eq(&associated_data),
+                        settings::dsl::key.eq(&key),
+                        settings::dsl::user_id.eq(user),
+                        settings::dsl::value.eq(value),
+                        settings::dsl::associated_data.eq(associated_data),
                         settings::dsl::updated_at.eq(&now),
                     ))
                     .execute(self)?;

@@ -90,6 +90,10 @@ default-features = false
 version = "2"
 features = ["serde"]
 
+[dependencies.mustache]
+git = "https://github.com/nickel-org/rust-mustache.git"
+rev = "9d1ca3f"
+
 [dependencies.belladonna]
 path = "../belladonna"
 

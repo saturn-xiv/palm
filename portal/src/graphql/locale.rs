@@ -21,7 +21,7 @@ pub async fn destroy<R: Rbac, J: Jwt>(
     id: i32,
 ) -> Result<()> {
     let current_user = ss.current_user(db, cache, jwt).await?;
-    rbac.is_administrator(current_user.id).await?;
+    rbac.is_administrator(current_user.id()).await?;
 
     db.transaction::<_, Error, _>(|tx| {
         LocaleDao::delete(tx, id as i64)?;
@@ -53,7 +53,7 @@ impl Set {
         let lang = self.lang.parse()?;
 
         let current_user = ss.current_user(db, cache, jwt).await?;
-        rbac.is_administrator(current_user.id).await?;
+        rbac.is_administrator(current_user.id()).await?;
 
         db.transaction::<_, Error, _>(|tx| {
             match LocaleDao::by_lang_and_code(tx, &lang, &self.code) {
@@ -113,7 +113,7 @@ impl Index {
     ) -> Result<Self> {
         {
             let current_user = ss.current_user(db, cache, jwt).await?;
-            rbac.is_administrator(current_user.id).await?;
+            rbac.is_administrator(current_user.id()).await?;
         }
 
         let total = LocaleDao::count(db)?;

@@ -41,7 +41,7 @@ impl SetPassword {
         self.validate()?;
 
         let current_user = ss.current_user(db, cache, jwt).await?;
-        rbac.is_administrator(current_user.id).await?;
+        rbac.is_administrator(current_user.id()).await?;
 
         let it = {
             let it = EmailUserDao::by_id(db, self.id as i64)?;
@@ -61,7 +61,7 @@ impl SetPassword {
                 it.user_id,
                 Level::Info,
                 ip,
-                format!("Reset password by administrator {}.", current_user.name),
+                format!("Reset password by administrator {}.", current_user.uid()),
             )?;
             Ok(())
         })?;
@@ -88,11 +88,16 @@ pub struct SignUp {
 impl SignUp {
     pub fn create(&self, db: &mut Db, password: &str) -> Result<()> {
         self.validate()?;
-        let uid = Uuid::new_v4().to_string();
 
-        UserDao::create(db, &uid, &self.lang.parse()?, self.timezone.parse()?)?;
-        let user = UserDao::by_uid(db, &uid)?;
-        EmailUserDao::create(db, user.id, &self.name, &self.email, password)?;
+        let it = {
+            let uid = Uuid::new_v4().to_string();
+            UserDao::create(db, &uid, &self.lang.parse()?, self.timezone.parse()?)?;
+            let user = UserDao::by_uid(db, &uid)?;
+            EmailUserDao::create(db, user.id, &self.name, &self.email, password)?;
+            EmailUserDao::by_email(db, &self.email)?
+        };
+        UserDao::set_name(db, it.user_id, Some(it.name.as_str()))?;
+        UserDao::set_avatar(db, it.user_id, Some(it.avatar.as_str()))?;
         Ok(())
     }
 
@@ -134,6 +139,7 @@ impl SignIn {
         &self,
         ss: &Session,
         db: &mut Db,
+        cache: &mut Cache,
         rbac: &R,
         jwt: &J,
         hashing: &H,
@@ -150,16 +156,7 @@ impl SignIn {
             Ok(())
         })?;
 
-        SignInResponse::new(
-            db,
-            rbac,
-            jwt,
-            it.user_id,
-            UserType::Email,
-            &it.name,
-            Some(it.avatar.as_str()),
-        )
-        .await
+        SignInResponse::new(db, cache, rbac, jwt, it.user_id, UserType::Email, &it.email).await
     }
 }
 
