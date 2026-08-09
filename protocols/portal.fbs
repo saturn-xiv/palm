@@ -1,0 +1,10 @@
+namespace palm.portal.v1;
+
+table Password {
+    plain: string (required);
+    /*
+    JS: Math.random()
+    */
+    salt: double;
+}
+

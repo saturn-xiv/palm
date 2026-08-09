@@ -3,6 +3,8 @@ mod cups;
 #[allow(clippy::missing_safety_doc)]
 mod email;
 #[allow(clippy::missing_safety_doc)]
+mod portal;
+#[allow(clippy::missing_safety_doc)]
 mod sms;
 #[allow(clippy::missing_safety_doc, clippy::extra_unused_lifetimes)]
 mod tex;
@@ -51,6 +53,7 @@ pub use email::palm::email::v_1 as email_v1;
 pub use palm::loquat::v1 as loquat_v1;
 pub use palm::rbac::v1 as rbac_v1;
 pub use palm::wechat_pay::v1 as wechat_pay_v1;
+pub use portal::palm::portal::v_1 as portal_v1;
 pub use sms::palm::sms::v_1 as sms_v1;
 pub use tex::palm::tex::v_1 as tex_v1;
 

@@ -99,11 +99,14 @@ function generate_flatbuffers() {
         "sms"
         "tex"
         "cups"
+        "portal"
     )
     for it in "${items[@]}"
     do
         flatc -o $HYACINTH_OUTPUT_DIR --filename-suffix "" --rust $WORK_DIR/protocols/$it.fbs
     done
+
+    flatc -o $WORK_DIR/wisteria/dashboard/src/protocols --ts $WORK_DIR/protocols/portal.fbs
 }
 
 function generate_diesel() {

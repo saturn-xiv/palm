@@ -13,6 +13,7 @@ npm install --save \
     jose dayjs video.js \
     @reduxjs/toolkit react-redux \
     js-cookie @types/js-cookie \
+    flatbuffers \
     google-protobuf @types/google-protobuf grpc-web
 
 exit 0
