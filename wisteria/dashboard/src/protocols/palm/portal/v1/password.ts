@@ -22,11 +22,19 @@ static getSizePrefixedRootAsPassword(bb:flatbuffers.ByteBuffer, obj?:Password):P
   return (obj || new Password()).__init(bb.readInt32(bb.position()) + bb.position(), bb);
 }
 
-plain():string|null
-plain(optionalEncoding:flatbuffers.Encoding):string|Uint8Array|null
-plain(optionalEncoding?:any):string|Uint8Array|null {
+hash(index: number):number|null {
   const offset = this.bb!.__offset(this.bb_pos, 4);
-  return offset ? this.bb!.__string(this.bb_pos + offset, optionalEncoding) : null;
+  return offset ? this.bb!.readUint8(this.bb!.__vector(this.bb_pos + offset) + index) : 0;
+}
+
+hashLength():number {
+  const offset = this.bb!.__offset(this.bb_pos, 4);
+  return offset ? this.bb!.__vector_len(this.bb_pos + offset) : 0;
+}
+
+hashArray():Uint8Array|null {
+  const offset = this.bb!.__offset(this.bb_pos, 4);
+  return offset ? new Uint8Array(this.bb!.bytes().buffer, this.bb!.bytes().byteOffset + this.bb!.__vector(this.bb_pos + offset), this.bb!.__vector_len(this.bb_pos + offset)) : null;
 }
 
 salt():number {
@@ -38,8 +46,20 @@ static startPassword(builder:flatbuffers.Builder) {
   builder.startObject(2);
 }
 
-static addPlain(builder:flatbuffers.Builder, plainOffset:flatbuffers.Offset) {
-  builder.addFieldOffset(0, plainOffset, 0);
+static addHash(builder:flatbuffers.Builder, hashOffset:flatbuffers.Offset) {
+  builder.addFieldOffset(0, hashOffset, 0);
+}
+
+static createHashVector(builder:flatbuffers.Builder, data:number[]|Uint8Array):flatbuffers.Offset {
+  builder.startVector(1, data.length, 1);
+  for (let i = data.length - 1; i >= 0; i--) {
+    builder.addInt8(data[i]!);
+  }
+  return builder.endVector();
+}
+
+static startHashVector(builder:flatbuffers.Builder, numElems:number) {
+  builder.startVector(1, numElems, 1);
 }
 
 static addSalt(builder:flatbuffers.Builder, salt:number) {
@@ -48,13 +68,13 @@ static addSalt(builder:flatbuffers.Builder, salt:number) {
 
 static endPassword(builder:flatbuffers.Builder):flatbuffers.Offset {
   const offset = builder.endObject();
-  builder.requiredField(offset, 4) // plain
+  builder.requiredField(offset, 4) // hash
   return offset;
 }
 
-static createPassword(builder:flatbuffers.Builder, plainOffset:flatbuffers.Offset, salt:number):flatbuffers.Offset {
+static createPassword(builder:flatbuffers.Builder, hashOffset:flatbuffers.Offset, salt:number):flatbuffers.Offset {
   Password.startPassword(builder);
-  Password.addPlain(builder, plainOffset);
+  Password.addHash(builder, hashOffset);
   Password.addSalt(builder, salt);
   return Password.endPassword(builder);
 }
