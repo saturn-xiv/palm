@@ -13,8 +13,10 @@ env_logger = "0.11"
 lettre = "0.11"
 juniper = "0.17"
 hyper = "1"
+data-encoding = "2"
 icu = "2"
 tempfile = "3"
+flatbuffers = "25"
 
 [dependencies.juniper_axum]
 version = "0.3"

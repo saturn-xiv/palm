@@ -1,6 +1,6 @@
 [package]
 name = "hyacinth"
-version = "2026.8.9"
+version = "2026.8.10"
 edition = "2024"
 description = "Generated protocols"
 
@@ -10,6 +10,7 @@ grpc = "0.9"
 grpc-protobuf = "0.9"
 lettre = "0.11"
 tonic = "0.14"
+data-encoding = "2"
 protobuf = "=4.34.0-release"
 flatbuffers = "25"
 flexbuffers = "25"

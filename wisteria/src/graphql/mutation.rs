@@ -1,6 +1,7 @@
 use std::fmt::Display;
 use std::ops::DerefMut;
 
+use hyacinth::{password as parse_password, portal_v1};
 use juniper::{FieldResult, ScalarValue, graphql_object};
 use portal::graphql::{
     Succeeded, locale as locale_api, user as user_api, user::email as email_user_api,
@@ -21,7 +22,14 @@ impl Mutation {
         password: String,
         ctx: &Context,
     ) -> FieldResult<Succeeded, S> {
-        let form = email_user_api::SetPassword { id, password };
+        let form = email_user_api::SetPassword {
+            id,
+            password: {
+                parse_password!(it, portal_v1::Password, &password);
+                let it = it.payload();
+                it.to_string()
+            },
+        };
         let mut db = ctx.state.db.get()?;
         let db = db.deref_mut();
         let mut cache = ctx.state.cache.get()?;
@@ -44,7 +52,11 @@ impl Mutation {
     ) -> FieldResult<user_api::SignInResponse, S> {
         let form = email_user_api::SignIn {
             email: email.trim().to_lowercase(),
-            password,
+            password: {
+                parse_password!(it, portal_v1::Password, &password);
+                let it = it.payload();
+                it.to_string()
+            },
         };
         let mut db = ctx.state.db.get()?;
         let db = db.deref_mut();
@@ -68,6 +80,11 @@ impl Mutation {
         let form = email_user_api::SignUp {
             name: req.name.trim().to_string(),
             email: req.email.trim().to_lowercase(),
+            password: {
+                parse_password!(it, portal_v1::Password, &req.password);
+                let it = it.payload();
+                it.to_string()
+            },
             ..req.clone()
         };
         let mut db = ctx.state.db.get()?;

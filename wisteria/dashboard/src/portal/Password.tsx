@@ -3,17 +3,30 @@ import * as flatbuffers from "flatbuffers";
 
 import { Password } from "../protocols/palm/portal/v1";
 
-const hash = async (plain: string): Promise<string> => {
+// const sha512_hash = async (plain: string): Promise<string> => {
+//   const builder = new flatbuffers.Builder(1 << 10);
+
+//   const encoder = new TextEncoder();
+//   const data = encoder.encode(plain);
+//   const buffer = await crypto.subtle.digest("SHA-512", data);
+//   const hash = builder.createByteVector(new Uint8Array(buffer));
+
+//   Password.startPassword(builder);
+//   Password.addHash(builder, hash);
+//   Password.addSalt(builder, Math.random());
+//   const offset = Password.endPassword(builder);
+//   builder.finish(offset);
+
+//   const tmp: Uint8Array = builder.asUint8Array();
+//   return (tmp as any).toBase64({ omitPadding: true, alphabet: "base64url" });
+// };
+
+const hash = (payload: string): string => {
   const builder = new flatbuffers.Builder(1 << 10);
 
-  const encoder = new TextEncoder();
-  const data = encoder.encode(plain);
-  const buffer = await crypto.subtle.digest("SHA-512", data);
-  const hash = builder.createByteVector(new Uint8Array(buffer));
-
+  const payload_ = builder.createString(payload);
   Password.startPassword(builder);
-  Password.addHash(builder, hash);
-  console.log(`${Math.random()} ${plain}`);
+  Password.addPayload(builder, payload_);
   Password.addSalt(builder, Math.random());
   const offset = Password.endPassword(builder);
   builder.finish(offset);
@@ -26,7 +39,7 @@ const Widget = () => {
   const [password, setPassword] = useState<string>("");
   useEffect(() => {
     const load = async () => {
-      const it = await hash("palm");
+      const it = hash("palm");
       setPassword(it);
     };
 

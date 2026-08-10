@@ -70,3 +70,11 @@ pub fn open_grpc_channel(host: &str, port: u16) -> GrpcClientChannel {
         ChannelOptions::default(),
     )
 }
+
+#[macro_export]
+macro_rules! password {
+    ($v:ident, $t:ty, $s:expr) => {
+        let buf = data_encoding::BASE64URL_NOPAD.decode($s.as_bytes())?;
+        let $v = flatbuffers::root::<$t>(&buf)?;
+    };
+}

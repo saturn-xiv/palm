@@ -34,7 +34,7 @@ pub mod palm {
             }
 
             impl<'a> Password<'a> {
-                pub const VT_PLAIN: ::flatbuffers::VOffsetT = 4;
+                pub const VT_PAYLOAD: ::flatbuffers::VOffsetT = 4;
                 pub const VT_SALT: ::flatbuffers::VOffsetT = 6;
 
                 #[inline]
@@ -53,20 +53,20 @@ pub mod palm {
                 ) -> ::flatbuffers::WIPOffset<Password<'bldr>> {
                     let mut builder = PasswordBuilder::new(_fbb);
                     builder.add_salt(args.salt);
-                    if let Some(x) = args.plain {
-                        builder.add_plain(x);
+                    if let Some(x) = args.payload {
+                        builder.add_payload(x);
                     }
                     builder.finish()
                 }
 
                 #[inline]
-                pub fn plain(&self) -> &'a str {
+                pub fn payload(&self) -> &'a str {
                     // Safety:
                     // Created from valid Table for this object
                     // which contains a valid value in this slot
                     unsafe {
                         self._tab
-                            .get::<::flatbuffers::ForwardsUOffset<&str>>(Password::VT_PLAIN, None)
+                            .get::<::flatbuffers::ForwardsUOffset<&str>>(Password::VT_PAYLOAD, None)
                             .unwrap()
                     }
                 }
@@ -87,8 +87,8 @@ pub mod palm {
                 ) -> Result<(), ::flatbuffers::InvalidFlatbuffer> {
                     v.visit_table(pos)?
                         .visit_field::<::flatbuffers::ForwardsUOffset<&str>>(
-                            "plain",
-                            Self::VT_PLAIN,
+                            "payload",
+                            Self::VT_PAYLOAD,
                             true,
                         )?
                         .visit_field::<f64>("salt", Self::VT_SALT, false)?
@@ -97,14 +97,14 @@ pub mod palm {
                 }
             }
             pub struct PasswordArgs<'a> {
-                pub plain: Option<::flatbuffers::WIPOffset<&'a str>>,
+                pub payload: Option<::flatbuffers::WIPOffset<&'a str>>,
                 pub salt: f64,
             }
             impl<'a> Default for PasswordArgs<'a> {
                 #[inline]
                 fn default() -> Self {
                     PasswordArgs {
-                        plain: None, // required field
+                        payload: None, // required field
                         salt: 0.0,
                     }
                 }
@@ -116,9 +116,11 @@ pub mod palm {
             }
             impl<'a: 'b, 'b, A: ::flatbuffers::Allocator + 'a> PasswordBuilder<'a, 'b, A> {
                 #[inline]
-                pub fn add_plain(&mut self, plain: ::flatbuffers::WIPOffset<&'b str>) {
-                    self.fbb_
-                        .push_slot_always::<::flatbuffers::WIPOffset<_>>(Password::VT_PLAIN, plain);
+                pub fn add_payload(&mut self, payload: ::flatbuffers::WIPOffset<&'b str>) {
+                    self.fbb_.push_slot_always::<::flatbuffers::WIPOffset<_>>(
+                        Password::VT_PAYLOAD,
+                        payload,
+                    );
                 }
                 #[inline]
                 pub fn add_salt(&mut self, salt: f64) {
@@ -137,7 +139,7 @@ pub mod palm {
                 #[inline]
                 pub fn finish(self) -> ::flatbuffers::WIPOffset<Password<'a>> {
                     let o = self.fbb_.end_table(self.start_);
-                    self.fbb_.required(o, Password::VT_PLAIN, "plain");
+                    self.fbb_.required(o, Password::VT_PAYLOAD, "payload");
                     ::flatbuffers::WIPOffset::new(o.value())
                 }
             }
@@ -145,7 +147,7 @@ pub mod palm {
             impl ::core::fmt::Debug for Password<'_> {
                 fn fmt(&self, f: &mut ::core::fmt::Formatter<'_>) -> ::core::fmt::Result {
                     let mut ds = f.debug_struct("Password");
-                    ds.field("plain", &self.plain());
+                    ds.field("payload", &self.payload());
                     ds.field("salt", &self.salt());
                     ds.finish()
                 }
