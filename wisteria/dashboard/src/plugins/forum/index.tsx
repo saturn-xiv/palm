@@ -1,4 +1,4 @@
-import { type IRouter } from "../portal";
+import { type IRouter } from "..";
 
 const router: IRouter = {
   anonymous: [],

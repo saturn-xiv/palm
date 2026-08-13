@@ -1,10 +1,6 @@
 import { lazy } from "react";
-import { type RouteObject } from "react-router";
 
-export interface IRouter {
-  anonymous: RouteObject[];
-  dashboard: RouteObject[];
-}
+import { type IRouter } from "..";
 
 const router: IRouter = {
   anonymous: [
