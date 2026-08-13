@@ -43,7 +43,11 @@ impl Session {
     }
 
     pub fn client_ip(&self) -> &str {
-        self.client_ip.as_deref().unwrap_or("")
+        self.client_ip.as_deref().unwrap_or("n/a")
+    }
+    pub fn locale(&self) -> Result<Locale> {
+        let it = self.locale.as_deref().unwrap_or("en-US").parse()?;
+        Ok(it)
     }
 
     pub async fn current_user<J: Jwt>(

@@ -38,10 +38,10 @@ impl Layout {
             return Ok(it);
         }
         let it = Self {
-            title: I18n::t(db, locale, Self::TITLE, None::<String>),
-            subhead: I18n::t(db, locale, Self::SUBHEAD, None::<String>),
-            description: I18n::t(db, locale, Self::DESCRIPTION, None::<String>),
-            copyright: I18n::t(db, locale, Self::COPYRIGHT, None::<String>),
+            title: I18n::t(db, locale, Self::TITLE, None::<&String>),
+            subhead: I18n::t(db, locale, Self::SUBHEAD, None::<&String>),
+            description: I18n::t(db, locale, Self::DESCRIPTION, None::<&String>),
+            copyright: I18n::t(db, locale, Self::COPYRIGHT, None::<&String>),
             languages: LocaleDao::languages(db)?,
             author: author::Author::new(db).unwrap_or_default(),
             keywords: keywords::Keywords::new(db).unwrap_or_default().0,

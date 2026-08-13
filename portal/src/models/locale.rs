@@ -130,11 +130,11 @@ impl Dao for Connection {
 }
 
 pub trait I18n {
-    fn t<S: Serialize>(&mut self, lang: &Locale, code: &str, args: Option<S>) -> String;
+    fn t<S: Serialize>(&mut self, lang: &Locale, code: &str, args: Option<&S>) -> String;
 }
 
 impl I18n for Connection {
-    fn t<S: Serialize>(&mut self, lang: &Locale, code: &str, args: Option<S>) -> String {
+    fn t<S: Serialize>(&mut self, lang: &Locale, code: &str, args: Option<&S>) -> String {
         if let Ok(it) = Dao::by_lang_and_code(self, lang, code) {
             let val = match args {
                 Some(ref args) => {

@@ -32,13 +32,13 @@ impl Item {
         if self.locked_at.is_some() {
             return Err(Box::new(HttpError(
                 StatusCode::LOCKED,
-                Some("User isn't locked".to_string()),
+                Some("User is locked".to_string()),
             )));
         }
         if self.deleted_at.is_some() {
             return Err(Box::new(HttpError(
                 StatusCode::GONE,
-                Some("User isn't confirmed yet".to_string()),
+                Some("User is gone".to_string()),
             )));
         }
         Ok(())
