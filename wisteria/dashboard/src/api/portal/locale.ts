@@ -1,5 +1,37 @@
-import graphql, { type Response as GraphqlResponse } from "../../graphql";
-import { type IPagination } from ".";
+import graphql from "../../graphql";
+import { type IPagination, type ISucceeded } from ".";
+
+export const set = async (
+  lang: string,
+  code: string,
+  message: string,
+): Promise<ISucceeded> => {
+  const res: { setLocale: ISucceeded } = await graphql(
+    `
+      mutation call($lang: String!, $code: String!, $message: String!) {
+        setLocale(lang: $lang, code: $code, message: $message) {
+          createdAt
+        }
+      }
+    `,
+    { lang, code, message },
+  );
+  return res.setLocale;
+};
+
+export const destroy = async (id: number): Promise<ISucceeded> => {
+  const res: { destroyLocale: ISucceeded } = await graphql(
+    `
+      mutation call($id: Int!) {
+        destroyLocale(id: $id) {
+          createdAt
+        }
+      }
+    `,
+    { id },
+  );
+  return res.destroyLocale;
+};
 
 interface IItem {
   id: number;
@@ -9,17 +41,15 @@ interface IItem {
 }
 
 interface IIndexResponse {
-  indexLocale: {
-    items: IItem[];
-    pagination: IPagination;
-  };
+  items: IItem[];
+  pagination: IPagination;
 }
 
 export const index = async (
   index: number,
   size: number,
-): Promise<GraphqlResponse<IIndexResponse>> => {
-  return graphql(
+): Promise<IIndexResponse> => {
+  const res: { indexLocale: IIndexResponse } = await graphql(
     `
       query call($page: Page!) {
         index(page: $page) {
@@ -33,15 +63,15 @@ export const index = async (
     `,
     { page: { index, size } },
   );
+  return res.indexLocale;
 };
-interface IByLangResponse {
-  localeByLang: { code: string; message: string }[];
-}
 
 export const by_lang = async (
   lang: string,
-): Promise<GraphqlResponse<IByLangResponse>> => {
-  return graphql(
+): Promise<{ code: string; message: string }[]> => {
+  const res: {
+    localeByLang: { code: string; message: string }[];
+  } = await graphql(
     `
       query call($lang: String!) {
         localeByLang(lang: $lang) {
@@ -52,4 +82,5 @@ export const by_lang = async (
     `,
     { lang },
   );
+  return res.localeByLang;
 };

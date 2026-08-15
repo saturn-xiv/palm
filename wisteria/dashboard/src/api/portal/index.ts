@@ -9,3 +9,7 @@ export interface IPagination {
   index: number;
   size: number;
 }
+
+export interface ISucceeded {
+  createdAt: Date;
+}

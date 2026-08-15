@@ -111,18 +111,18 @@ impl Mutation {
         Ok(it)
     }
     async fn sign_up_by_email<S: ScalarValue + Display>(
-        req: email_user_api::SignUp,
+        request: email_user_api::SignUp,
         ctx: &Context,
     ) -> FieldResult<Succeeded, S> {
         let form = email_user_api::SignUp {
-            name: req.name.trim().to_string(),
-            email: req.email.trim().to_lowercase(),
+            name: request.name.trim().to_string(),
+            email: request.email.trim().to_lowercase(),
             password: {
-                parse_password!(it, portal_v1::Password, &req.password);
+                parse_password!(it, portal_v1::Password, &request.password);
                 let it = it.payload();
                 it.to_string()
             },
-            ..req.clone()
+            ..request.clone()
         };
         let mut db = ctx.state.db.get()?;
         let db = db.deref_mut();

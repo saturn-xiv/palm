@@ -21,6 +21,6 @@ export const slice = createSlice({
 
 export const { refresh } = slice.actions;
 
-export const selectLayout = (state: RootState) => state.layout;
+export const selectLayout = (state: RootState) => state.layout.payload;
 
 export default slice.reducer;

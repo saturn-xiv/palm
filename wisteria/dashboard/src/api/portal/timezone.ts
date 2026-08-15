@@ -1,17 +1,17 @@
-import graphql, { type Response as GraphqlResponse } from "../../graphql";
+import graphql from "../../graphql";
 
 interface IIndexResponse {
   indexTimezone: string[];
 }
 
-export const index = async (): Promise<GraphqlResponse<IIndexResponse>> => {
-  return graphql(
+export const index = async (): Promise<string[]> => {
+  const res: IIndexResponse = await graphql(
     `
-      query call() {
-        indexTimezone() {          
-        }
+      query call {
+        indexTimezone
       }
     `,
     {},
   );
+  return res.indexTimezone;
 };

@@ -41,11 +41,12 @@ export const slice = createSlice({
 export const { refresh, signIn, signOut } = slice.actions;
 
 export const selectRoles = (state: RootState) =>
-  state.currentUser.payload?.roles;
+  state.currentUser.payload?.roles || [];
 export const selectIsAdministrator = (state: RootState) =>
-  state.currentUser.payload?.isAdministrator;
+  state.currentUser.payload?.isAdministrator || false;
 export const selectPermissions = (state: RootState) =>
-  state.currentUser.payload?.permissions;
+  state.currentUser.payload?.permissions || [];
+export const selectLayout = (state: RootState) => state.currentUser.payload;
 
 export default slice.reducer;
 

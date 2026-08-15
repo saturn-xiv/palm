@@ -1,11 +1,6 @@
 const Widget = () => {
   // TODO
-  return (
-    <>
-      <title>Aaa</title>
-      Footer
-    </>
-  );
+  return <>Footer</>;
 };
 
 export default Widget;

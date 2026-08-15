@@ -1,6 +1,6 @@
-import graphql, { type Response as GraphqlResponse } from "../../graphql";
+import graphql from "../../graphql";
 
-interface IItem {
+export interface IItem {
   id: number;
   code: string;
   name: string;
@@ -8,23 +8,28 @@ interface IItem {
   number: number;
   units?: number;
   fund?: boolean;
-  createdAt: Date;
 }
 
 interface IIndexResponse {
   indexCurrency: IItem[];
 }
 
-export const index = async (): Promise<GraphqlResponse<IIndexResponse>> => {
-  return graphql(
+export const index = async (): Promise<IItem[]> => {
+  const res: IIndexResponse = await graphql(
     `
-      query call() {
-        indexCurrency() {
+      query call {
+        indexCurrency {
+          id
           code
-          message
+          name
+          country
+          number
+          units
+          fund
         }
       }
     `,
     {},
   );
+  return res.indexCurrency;
 };

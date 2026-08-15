@@ -1,4 +1,5 @@
 import { type ILayout as ISiteLayout } from "../site";
+import graphql from "../../../graphql";
 
 export interface ISignInResponse {
   token: string;
@@ -10,6 +11,48 @@ export interface IRefreshResponse {
   user: ILayout;
   site: ISiteLayout;
 }
+
+export const refresh = async (): Promise<IRefreshResponse> => {
+  const res: { refresh: IRefreshResponse } = await graphql(
+    `
+      query call {
+        refresh {
+          user {
+            lang
+            timezone
+            name
+            avatar
+            isAdministrator
+            roles
+            permissions {
+              action
+              resource {
+                type
+                id
+              }
+            }
+          }
+          site {
+            favicon
+            title
+            subhead
+            author {
+              name
+              email
+            }
+            keywords
+            description
+            copyright
+            languages
+            version
+          }
+        }
+      }
+    `,
+    {},
+  );
+  return res.refresh;
+};
 
 export interface ILayout {
   lang: string;
