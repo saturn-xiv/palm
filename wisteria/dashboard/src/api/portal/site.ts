@@ -7,6 +7,7 @@ export interface ILayout {
   description: string;
   copyright: string;
   languages: string[];
+  version: string;
 }
 
 export interface IAuthor {

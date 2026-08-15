@@ -30,6 +30,10 @@ features = ["serde"]
 version = "0.8"
 features = ["macros"]
 
+[dependencies.chrono-tz]
+version = "0.10"
+features = ["serde"]
+
 [dependencies.axum-extra]
 version = "0.12"
 features = ["cookie-private", "cookie-signed"]

@@ -24,6 +24,7 @@ pub struct Layout {
     pub description: String,
     pub copyright: String,
     pub languages: Vec<String>,
+    pub version: String,
 }
 
 impl Layout {
@@ -34,7 +35,7 @@ impl Layout {
 
     pub const KEY: &str = "site.layout";
 
-    pub fn new(db: &mut Db, cache: &mut Cache, locale: &Locale) -> Result<Self> {
+    pub fn new(db: &mut Db, cache: &mut Cache, locale: &Locale, version: &str) -> Result<Self> {
         if let Ok(it) = cache.get(Self::KEY) {
             return Ok(it);
         }
@@ -47,6 +48,7 @@ impl Layout {
             languages: LocaleDao::languages(db)?,
             author: author::Author::new(db).unwrap_or_default(),
             keywords: keywords::Keywords::new(db).unwrap_or_default().0,
+            version: version.to_string(),
         };
         cache.set(Self::KEY, &it, None)?;
         Ok(it)

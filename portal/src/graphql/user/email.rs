@@ -150,9 +150,8 @@ impl SignIn {
         ss: &Session,
         db: &mut Db,
         cache: &mut Cache,
-        rbac: &R,
-        jwt: &J,
-        hashing: &H,
+        (rbac, jwt, hashing): (&R, &J, &H),
+        version: &str,
     ) -> Result<SignInResponse> {
         let it = EmailUserDao::by_email(db, &self.email)?;
         hashing.verify(&it.password, &self.password).await?;
@@ -166,7 +165,14 @@ impl SignIn {
             Ok(())
         })?;
 
-        SignInResponse::new(db, cache, rbac, jwt, it.user_id, UserType::Email, &it.email).await
+        SignInResponse::new(
+            db,
+            cache,
+            (rbac, jwt),
+            (it.user_id, UserType::Email, &it.email),
+            version,
+        )
+        .await
     }
 }
 

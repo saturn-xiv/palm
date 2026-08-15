@@ -8,6 +8,7 @@ use portal::graphql::{
     user::{self as user_api, email as email_user_api},
 };
 
+use super::super::GIT_VERSION;
 use super::context::Context;
 
 pub struct Mutation;
@@ -103,9 +104,8 @@ impl Mutation {
                 &ctx.session,
                 db,
                 &mut cache,
-                &ctx.state.dahlia,
-                &ctx.state.loquat,
-                &ctx.state.loquat,
+                (&ctx.state.dahlia, &ctx.state.loquat, &ctx.state.loquat),
+                GIT_VERSION,
             )
             .await?;
         Ok(it)

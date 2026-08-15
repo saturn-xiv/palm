@@ -1,6 +1,7 @@
 use std::fmt::Display;
 use std::ops::DerefMut;
 
+use chrono_tz::TZ_VARIANTS;
 use juniper::{FieldResult, ScalarValue, graphql_object};
 use portal::graphql::{
     Page, Succeeded, currency as currency_api, locale as locale_api,
@@ -20,6 +21,10 @@ impl Query {
     }
     fn build_time() -> &'static str {
         BUILD_TIME
+    }
+
+    fn timezones() -> Vec<String> {
+        TZ_VARIANTS.iter().map(|x| x.name().to_string()).collect()
     }
 
     async fn forgot_password_for_email_user<S: ScalarValue + Display>(
@@ -72,6 +77,7 @@ impl Query {
             &mut cache,
             &ctx.state.loquat,
             &ctx.state.dahlia,
+            GIT_VERSION,
         )
         .await?;
         Ok(reply)

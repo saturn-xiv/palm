@@ -75,12 +75,13 @@ impl RefreshResponse {
         cache: &mut Cache,
         jwt: &J,
         rbac: &R,
+        version: &str,
     ) -> Result<Self> {
         let current_user = ss.current_user(db, cache, jwt).await?;
         let lang = current_user.lang()?;
         Ok(Self {
             user: Layout::new(rbac, &current_user.item).await?,
-            site: SiteLayout::new(db, cache, &lang)?,
+            site: SiteLayout::new(db, cache, &lang, version)?,
         })
     }
 }
@@ -97,11 +98,9 @@ impl SignInResponse {
     pub async fn new<R: Rbac, J: Jwt>(
         db: &mut Db,
         cache: &mut Cache,
-        rbac: &R,
-        jwt: &J,
-        user: i64,
-        type_: UserType,
-        subject: &str,
+        (rbac, jwt): (&R, &J),
+        (user, type_, subject): (i64, UserType, &str),
+        version: &str,
     ) -> Result<Self> {
         let user = UserDao::by_id(db, user)?;
         let lang = user.lang.parse()?;
@@ -116,7 +115,7 @@ impl SignInResponse {
                 )
                 .await?,
             user: Layout::new(rbac, &user).await?,
-            site: SiteLayout::new(db, cache, &lang)?,
+            site: SiteLayout::new(db, cache, &lang, version)?,
         })
     }
 }
