@@ -5,4 +5,10 @@ import react from "@vitejs/plugin-react";
 export default defineConfig({
   plugins: [react()],
   base: "/my/",
+  server: {
+    proxy: {
+      "/graphql": "http://localhost:4000",
+      "/api": "http://localhost:4000",
+    },
+  },
 });

@@ -1,4 +1,5 @@
 pub mod author;
+pub mod favicon;
 pub mod keywords;
 
 use icu::locale::Locale;
@@ -15,6 +16,7 @@ use super::super::{
 #[derive(Debug, Serialize, Deserialize, GraphQLObject)]
 #[graphql(name = "SiteLayout")]
 pub struct Layout {
+    pub favicon: Option<String>,
     pub title: String,
     pub subhead: String,
     pub author: author::Author,
@@ -27,7 +29,6 @@ pub struct Layout {
 impl Layout {
     pub const TITLE: &str = "site.title";
     pub const SUBHEAD: &str = "site.subhead";
-    pub const KEYWORDS: &str = "site.keywords";
     pub const DESCRIPTION: &str = "site.description";
     pub const COPYRIGHT: &str = "site.copyright";
 
@@ -38,6 +39,7 @@ impl Layout {
             return Ok(it);
         }
         let it = Self {
+            favicon: favicon::Favicon::new(db).map(|x| x.0).ok(),
             title: I18n::t(db, locale, Self::TITLE, None::<&String>),
             subhead: I18n::t(db, locale, Self::SUBHEAD, None::<&String>),
             description: I18n::t(db, locale, Self::DESCRIPTION, None::<&String>),

@@ -45,13 +45,10 @@ export const dayjs = (lang: string) => {
   }
 };
 
+export const DEFAULT = import.meta.env.VITE_DEFAULT_LOCALE || "en-US";
+
 export const get = (): string => {
-  return (
-    localStorage.getItem(KEY) ||
-    Cookies.get(KEY) ||
-    import.meta.env.VITE_DEFAULT_LOCALE ||
-    "en-US"
-  );
+  return localStorage.getItem(KEY) || Cookies.get(KEY) || DEFAULT;
 };
 
 export const available_languages: string[] = (

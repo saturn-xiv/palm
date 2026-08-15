@@ -14,7 +14,15 @@ locales_by_lang(lang).then((r) => {
   if (r.data) {
     createRoot(document.getElementById("root")!).render(
       <StrictMode>
-        <App />
+        <App
+          messages={r.data.localeByLang.reduce(
+            (ob, it) => {
+              return { ...ob, [it.code]: it.message };
+            },
+            {} as Record<string, string>,
+          )}
+          locale={lang}
+        />
       </StrictMode>,
     );
   }

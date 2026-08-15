@@ -13,8 +13,7 @@ npm install --save \
     formik yup usehooks-ts \
     jose dayjs video.js \
     @reduxjs/toolkit react-redux \
-    js-cookie @types/js-cookie \
-    flatbuffers \
-    google-protobuf @types/google-protobuf grpc-web
+    js-cookie @types/js-cookie jwt-decode \
+    flatbuffers google-protobuf @types/google-protobuf grpc-web
 
 exit 0
