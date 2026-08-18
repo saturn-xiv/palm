@@ -69,7 +69,6 @@ pub async fn start<P: AsRef<Path>>(config: P, port: u16, _theme: Theme) -> Resul
             type_name::<tex_v1::Task>(),
             type_name::<cups_v1::Task>(),
         ] {
-            log::debug!("declare queue {}", it);
             queue
                 .declare_queue(it, QueueDeclareOptions::default())
                 .await?;

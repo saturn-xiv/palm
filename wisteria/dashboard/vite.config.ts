@@ -11,4 +11,16 @@ export default defineConfig({
       "/api": "http://localhost:4000",
     },
   },
+  build: {
+    chunkSizeWarningLimit: 1000,
+    rollupOptions: {
+      output: {
+        manualChunks(id) {
+          if (id.includes("node_modules")) {
+            return "vendor";
+          }
+        },
+      },
+    },
+  },
 });

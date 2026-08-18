@@ -1,0 +1,59 @@
+[package]
+name = "camellia"
+version = "2026.8.19"
+edition = "2024"
+description = "Tracking the health, uptime, and performance of your hardware and networks."
+
+[dependencies]
+tokio-stream = "0.1"
+futures = "0.3"
+log = "0.4"
+juniper_graphql_ws = "0.5"
+env_logger = "0.11"
+juniper = "0.17"
+hyper = "1"
+toml = "1"
+data-encoding = "2"
+
+[dependencies.juniper_axum]
+version = "0.3"
+features = ["subscriptions"]
+
+[dependencies.chrono]
+version = "0.4"
+features = ["serde"]
+
+[dependencies.axum]
+version = "0.8"
+features = ["macros"]
+
+[dependencies.chrono-tz]
+version = "0.10"
+features = ["serde"]
+
+[dependencies.reqwest]
+version = "0.13"
+features = ["json"]
+
+[dependencies.redis]
+version = "1"
+features = ["r2d2", "cluster"]
+
+[dependencies.serde]
+version = "1"
+features = ["derive"]
+
+[dependencies.tokio]
+version = "1"
+features = ["full"]
+
+[dependencies.uuid]
+version = "1"
+features = ["v4", "serde"]
+
+[dependencies.clap]
+version = "4"
+features = ["derive"]
+
+[dependencies.portal]
+path = "../portal"
