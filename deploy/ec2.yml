@@ -1,0 +1,20 @@
+- name: Setup ec2 hosts
+  hosts:
+    - all
+  roles:
+    - os
+    - ubuntu
+    - random-passwords
+    - docker
+  # environment:
+  #   http_proxy: "http://172.26.176.216:8000"
+  #   https_proxy: "http://172.26.176.216:8000"
+  #   no_proxy: "localhost,127.0.0.1,172.26.176.0/20"
+
+- name: Reboot
+  hosts: all
+  tasks:
+    - name: Reboot system
+      become: true
+      ansible.builtin.reboot:
+        reboot_timeout: 120

@@ -1,0 +1,16 @@
+[Unit]
+Description=A total free education and translation solution(email worker).
+After=network.target
+
+[Service]
+Type=simple
+User=www-data
+Group=www-data
+WorkingDirectory=/var/lib/fig/{{ app_deploy_domain }}/{{ app_deploy_version }}
+ExecStart=/var/lib/fig/{{ app_deploy_domain }}/{{ app_deploy_version }}/bin/fig -c config.toml email-queue-consumer
+Restart=always
+TimeoutStartSec=120s
+Environment="RUST_LOG=info"
+
+[Install]
+WantedBy=multi-user.target

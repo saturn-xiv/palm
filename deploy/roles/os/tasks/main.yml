@@ -1,0 +1,58 @@
+- name: Init system
+  ansible.builtin.include_tasks: init.yml
+- name: Setup sshd
+  ansible.builtin.include_tasks: sshd.yml
+- name: Setup fs ulimits
+  ansible.builtin.include_tasks: ulimits.yml
+
+- name: Set apt proxy
+  become: true
+  ansible.builtin.template:
+    src: apt-proxy.conf.j2
+    dest: /etc/apt/apt.conf.d/01-proxy.conf
+    mode: "0644"
+  when: ansible_facts.distribution == 'Ubuntu' and ansible_facts.env.http_proxy is defined
+
+- name: Update system
+  become: true
+  ansible.builtin.apt:
+    update_cache: true
+    cache_valid_time: 3600
+  when: ansible_facts.distribution == 'Ubuntu' or ansible_facts.distribution == 'Kylin'
+
+- name: Update all packages to their latest version
+  become: true
+  ansible.builtin.apt:
+    upgrade: dist
+  when: ansible_facts.distribution == 'Ubuntu' or ansible_facts.distribution == 'Kylin'
+
+- name: Install dependency packages
+  become: true
+  ansible.builtin.apt:
+    pkg:
+      - pwgen
+      - zsh
+      - git
+      - tmux
+  when: ansible_facts.distribution == 'Ubuntu' or ansible_facts.distribution == 'Kylin'
+
+- name: Setup timezone
+  become: true
+  ansible.builtin.command: timedatectl set-timezone UTC
+  changed_when: false
+
+- name: Setup journald storage
+  become: true
+  ansible.builtin.lineinfile:
+    path: /etc/systemd/journald.conf
+    regexp: "^#Storage="
+    line: Storage=persistent
+
+# https://www.linode.com/docs/quick-answers/linux/how-to-use-journalctl/
+- name: Setup journald storage keep-free
+  become: true
+  ansible.builtin.lineinfile:
+    path: /etc/systemd/journald.conf
+    state: present
+    regexp: "^#SystemKeepFree="
+    line: SystemKeepFree=6%

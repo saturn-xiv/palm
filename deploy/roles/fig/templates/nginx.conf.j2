@@ -1,0 +1,59 @@
+server {
+  listen 80;
+
+  server_name www.{{ app_deploy_domain }};
+  access_log /var/log/nginx/www.{{ app_deploy_domain }}.access.log;
+  error_log  /var/log/nginx/www.{{ app_deploy_domain }}.error.log;
+
+  gzip on;
+  gzip_comp_level 9;
+  gzip_min_length 1k;
+  gzip_types text/plain text/css application/xml application/javascript;
+  gzip_vary on;
+  client_max_body_size 128M;
+
+  location /my/ {
+    alias /var/lib/fig/{{ app_deploy_domain }}/current/dashboard/;
+    try_files $uri $uri/ /my/index.html;
+
+    location ~* \.(css|js|png|jpg|jpeg|gif|gz|svg|mp4|ogg|ogv|webm|htc|xml|woff)$ {
+      access_log off;
+      expires max;
+    }
+  }
+  location /3rd/ {
+    alias /var/lib/fig/{{ app_deploy_domain }}/current/node_modules/;
+
+    location ~* \.(css|js|png|jpg|jpeg|gif|gz|svg|mp4|ogg|ogv|webm|htc|xml|woff)$ {
+      access_log off;
+      expires max;
+    }
+  }
+  location /assets/ {
+    alias /var/lib/fig/{{ app_deploy_domain }}/current/assets/;
+
+    location ~* \.(css|js|png|jpg|jpeg|gif|gz|svg|mp4|ogg|ogv|webm|htc|xml|woff)$ {
+      access_log off;
+      expires max;
+    }
+  }
+  location /themes/ {
+    alias /var/lib/fig/{{ app_deploy_domain }}/current/themes/;
+
+    location ~* \.(css|js|png|jpg|jpeg|gif|gz|svg|mp4|ogg|ogv|webm|htc|xml|woff)$ {
+      access_log off;
+      expires max;
+    }
+  }
+ 
+  location / {
+    proxy_set_header X-Forwarded-Proto http;
+    proxy_set_header X-Real-IP $remote_addr;
+    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    proxy_set_header Host $http_host;
+    proxy_redirect off;
+    proxy_pass http://127.0.0.1:{{ app_fig_http_port }};
+    proxy_set_header Upgrade $http_upgrade;
+    proxy_set_header Connection "upgrade";
+  }
+}

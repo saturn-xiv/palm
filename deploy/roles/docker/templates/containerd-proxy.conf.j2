@@ -1,0 +1,4 @@
+[Service]
+Environment="HTTP_PROXY={{ ansible_facts.env.http_proxy }}"
+Environment="HTTPS_PROXY={{ ansible_facts.env.https_proxy }}"
+Environment="NO_PROXY={{ ansible_facts.env.no_proxy }}"

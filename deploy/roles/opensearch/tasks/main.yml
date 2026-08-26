@@ -1,0 +1,48 @@
+# https://opensearch.org/downloads.html#opensearch
+
+- name: Download opensearch and unarchive it
+  become: true
+  ansible.builtin.unarchive:
+    src: "https://artifacts.opensearch.org/releases/bundle/opensearch/{{ app_opensearch_version }}/opensearch-{{ app_opensearch_version }}-linux-{{ app_opensearch_arch }}.tar.gz"
+    dest: /opt/
+    owner: www-data
+    group: www-data
+    remote_src: true
+
+- name: Setup listen address
+  become: true
+  ansible.builtin.lineinfile:
+    path: "/opt/opensearch-{{ app_opensearch_version }}/config/opensearch.yml"
+    line: "network.host: 0.0.0.0"
+
+- name: Enable single node
+  become: true
+  ansible.builtin.lineinfile:
+    path: "/opt/opensearch-{{ app_opensearch_version }}/config/opensearch.yml"
+    line: "discovery.type: single-node"
+
+- name: Disable security plugin
+  become: true
+  ansible.builtin.lineinfile:
+    path: "/opt/opensearch-{{ app_opensearch_version }}/config/opensearch.yml"
+    line: "plugins.security.disabled: true"
+
+- name: Upload systemd opensearch.service
+  become: true
+  ansible.builtin.template:
+    src: systemd.conf.j2
+    dest: "/usr/lib/systemd/system/opensearch.service"
+    mode: "0644"
+
+- name: Force systemd to reread configs
+  become: true
+  ansible.builtin.systemd:
+    daemon_reload: true
+
+- name: Enable opensearch service
+  become: true
+  ansible.builtin.systemd:
+    name: opensearch
+    enabled: true
+    masked: false
+    state: "restarted"

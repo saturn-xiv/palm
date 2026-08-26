@@ -1,0 +1,91 @@
+- name: Install dependencies packages
+  become: true
+  ansible.builtin.apt:
+    pkg:
+      - espeak-ng
+
+# --------------------------------------------
+
+- name: Enable option 72 for dhclient
+  become: true
+  ansible.builtin.lineinfile:
+    path: /etc/dhcp/dhclient.conf
+    line: "also request www-server;"
+    backup: true
+
+# --------------------------------------------
+
+- name: Delete /etc/systemd/network
+  become: true
+  ansible.builtin.file:
+    path: /etc/systemd/network
+    state: absent
+
+- name: Create /etc/systemd/network folder
+  become: true
+  ansible.builtin.file:
+    path: /etc/systemd/network
+    state: directory
+    mode: "0755"
+
+- name: Create a symbolic link
+  become: true
+  ansible.builtin.file:
+    src: /run/systemd/resolve/resolv.conf
+    dest: /etc/resolv.conf
+    state: link
+
+- name: Disable dnsmasq service
+  become: true
+  ansible.builtin.systemd:
+    name: dnsmasq
+    enabled: false
+    masked: true
+
+- name: Disable NetworkManager service
+  become: true
+  ansible.builtin.systemd:
+    name: NetworkManager
+    enabled: false
+    masked: true
+
+- name: Enable systemd-networkd service
+  become: true
+  ansible.builtin.systemd:
+    name: systemd-networkd
+    enabled: true
+    masked: false
+
+- name: Enable systemd-resolved service
+  become: true
+  ansible.builtin.systemd:
+    name: systemd-resolved
+    enabled: true
+    masked: false
+
+- name: Enable wpa_supplicant@wlan0service
+  become: true
+  ansible.builtin.systemd:
+    name: wpa_supplicant@wlan0
+    enabled: true
+    masked: false
+
+- name: Enable openvpn@client service
+  become: true
+  ansible.builtin.systemd:
+    name: openvpn@client
+    enabled: true
+    masked: false
+
+- name: Enable pulseaudio service
+  become: true
+  ansible.builtin.systemd:
+    name: pulseaudio
+    enabled: true
+    masked: false
+    scope: user
+
+- name: Reboot
+  become: true
+  ansible.builtin.reboot:
+    reboot_timeout: 120

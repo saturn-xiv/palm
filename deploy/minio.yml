@@ -1,0 +1,4 @@
+- name: Minio node
+  hosts: all
+  roles:
+    - minio

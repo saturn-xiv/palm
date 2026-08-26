@@ -1,0 +1,147 @@
+# - name: Add PPA for Ubuntu Toolchain
+#   become: true
+#   ansible.builtin.apt_repository:
+#     repo: ppa:ubuntu-toolchain-r/ppa
+#   when: ansible_facts.distribution == 'Ubuntu'
+
+- name: Install dependicy packages
+  become: true
+  ansible.builtin.apt:
+    pkg:
+      - apt-transport-https
+      - ca-certificates
+      - curl
+      - apache2-utils
+      - gpg
+      - software-properties-common
+      - gnupg
+      - sshpass
+      - wpasupplicant
+      - rsync
+      - at
+      - sysstat
+      - libtool
+      - ethtool
+      - nethogs
+      - dnsutils
+      - dnsmasq
+      - uuid-runtime
+      - lshw
+      - tcpdump
+      - lm-sensors
+      - btop
+      - dmidecode
+      - net-tools
+      - iputils-arping
+      - iputils-ping
+      - telnet
+      - vim
+      - git
+      - pwgen
+      - locales
+      - imagemagick
+      - mpg123
+      - ffmpeg
+      - sqlite3
+      - tree
+      - alsa-utils
+      - pulseaudio
+      - zsh
+      - wget
+      - zip
+      - unzip
+      - socat
+      - systemd-cron
+      - systemd-timesyncd
+      - systemd-journal-remote
+      - screen
+      - tmux
+      - hugo
+      - python3-full
+      - python3-dev
+      - certbot
+      - python3-certbot-nginx
+      - build-essential
+      - pkg-config
+      - cmake
+      - libssl-dev
+      - libpq-dev
+      - libmysqlclient-dev
+      - libsqlite3-dev
+      - libudev-dev
+      - libjpeg-dev
+      - crun
+      - podman
+      - buildah
+      - fuse-overlayfs
+      - nfs-common
+      # - nfs-kernel-server
+      - watchdog
+
+- name: Setup locales
+  ansible.builtin.include_tasks: locales.yml
+
+- name: Set default editor to vim
+  become: true
+  ansible.builtin.command: update-alternatives --set editor /usr/bin/vim.basic
+  changed_when: false
+
+- name: Setup git rebase mode
+  community.general.git_config:
+    name: pull.rebase
+    value: "false"
+    scope: global
+
+- name: Setup git to use http v1.1
+  community.general.git_config:
+    name: http.version
+    value: "HTTP/1.1"
+    scope: global
+
+# ---------------------------------------------------
+
+- name: Check if friendlyelec
+  ansible.builtin.stat:
+    path: /etc/friendlyelec-release
+  register: ubuntu_app_os_friendlyelec
+
+- name: Setup friendlyelec
+  ansible.builtin.include_tasks: friendly-core.yml
+  when: ubuntu_app_os_friendlyelec.stat.islnk is defined and ubuntu_app_os_friendlyelec.stat.isreg
+
+- name: Check if armbian
+  ansible.builtin.stat:
+    path: /etc/armbian-release
+  register: ubuntu_app_os_armbian
+
+- name: Setup armbian
+  ansible.builtin.include_tasks: armbian.yml
+  when: ubuntu_app_os_armbian.stat.islnk is defined and  ubuntu_app_os_armbian.stat.isreg
+
+- name: Run on raspbian
+  ansible.builtin.include_tasks: raspbian.yml
+  when: ansible_facts.distribution == 'Raspbian'
+
+- name: Run on pi
+  ansible.builtin.include_tasks: pi.yml
+  # yamllint disable rule:line-length
+  when: ansible_facts.distribution == 'Raspbian' or (ubuntu_app_os_armbian.stat.islnk is defined and ubuntu_app_os_armbian.stat.isreg) or (ubuntu_app_os_friendlyelec.stat.islnk is defined and ubuntu_app_os_friendlyelec.stat.isreg)
+
+# ---------------------------------------------------
+
+- name: Enable ssh service
+  become: true
+  ansible.builtin.systemd:
+    name: ssh
+    enabled: true
+    masked: false
+
+- name: Enable systemd-timesyncd service
+  become: true
+  ansible.builtin.systemd:
+    name: systemd-timesyncd
+    enabled: true
+    masked: false
+
+- name: Clean system
+  ansible.builtin.include_tasks: clean.yml
