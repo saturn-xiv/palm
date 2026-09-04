@@ -38,8 +38,15 @@ ssh-keygen -t ed25519 -f .ssh/id_ed25519 -C "your-name@change-me.com"
 ## Run a deployment
 
 ```bash
+# Initial python3 virtual env
+$ sudo apt install python3-full python3-dev build-essential
+$ python3 -m venv $PWD/tmp/python
+# Load virtual env vars
+$ source $PWD/tmp/python/bin/activate
+> pip install ansible
+
 # test ssh connections
-ansible-playbook -i clients/CLIENT_ID ping.yml
+> ansible-playbook -i clients/CLIENT_ID ping.yml
 # by group
-ansible-playbook -i clients/CLIENT_ID JOB.yml -l GROUP
+> ansible-playbook -i clients/CLIENT_ID JOB.yml -l GROUP
 ```

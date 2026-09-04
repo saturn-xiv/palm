@@ -88,7 +88,7 @@
     dest: /etc/cni/net.d/05-cilium.conflist
     mode: "0644"
 
-- name: Create downloads folder
+- name: Create containerd config folder
   become: true
   ansible.builtin.file:
     path: /etc/systemd/system/containerd.service.d
@@ -102,6 +102,22 @@
     dest: /etc/systemd/system/containerd.service.d/http-proxy.conf
     mode: "0644"
   when: ansible_facts.env.http_proxy is defined
+
+- name: Create docker config folder
+  become: true
+  ansible.builtin.file:
+    path: /etc/systemd/system/docker.service.d
+    state: directory
+    mode: "0755"
+
+- name: Set docker proxy
+  become: true
+  ansible.builtin.template:
+    src: containerd-proxy.conf.j2
+    dest: /etc/systemd/system/docker.service.d/http-proxy.conf
+    mode: "0644"
+  when: ansible_facts.env.http_proxy is defined
+
 
 # https://kubernetes.io/docs/setup/production-environment/container-runtimes/#prerequisite-ipv4-forwarding-optional
 - name: Enable IPv4 packet forwarding

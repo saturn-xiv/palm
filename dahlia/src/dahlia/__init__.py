@@ -20,7 +20,7 @@ logger = logging.getLogger(__name__)
 
 
 def main():
-    parser = argparse.ArgumentParser(description="A rbac service(gRPC).")
+    parser = argparse.ArgumentParser(description="A rbac service(gRPC).",formatter_class=argparse.ArgumentDefaultsHelpFormatter)
     parser.add_argument('-c', '--config', default='config.toml')
     parser.add_argument('-p', '--port', type=int, default=8080)
     parser.add_argument('-w', '--workers', type=int,
