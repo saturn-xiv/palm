@@ -37,9 +37,13 @@ $ source $PWD/tmp/python/bin/activate
 ## Testing
 
 ```bash
+# start rpc server
 PYTHON_GIL=0 python -m dahlia -d -p 11001
+
+# test by grpcurl
 grpcurl -plaintext 127.0.0.1:8080 list
 
+# run unittests
 PYTHON_GIL=0 python -m unittest tests.py
 ```
 

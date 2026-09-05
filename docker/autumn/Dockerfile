@@ -99,20 +99,20 @@ RUN bash -c "source $HOME/.cargo/env && cargo install diesel_cli && cargo instal
 
 
 # https://github.com/asdf-vm/asdf
-ENV ASDF_VERSION="0.19.0"
+ENV ASDF_VERSION="0.20.0"
 RUN wget -q -P $HOME/downloads https://github.com/asdf-vm/asdf/releases/download/v${ASDF_VERSION}/asdf-v${ASDF_VERSION}-linux-${TARGETARCH}.tar.gz \
     && tar xf $HOME/downloads/asdf-v${ASDF_VERSION}-linux-${TARGETARCH}.tar.gz -C $HOME/downloads \
     && sudo cp $HOME/downloads/asdf /usr/local/bin/ \
     && echo 'export PATH=${ASDF_DATA_DIR:-$HOME/.asdf}/shims:$PATH' >> $HOME/.profile \
     && rm $HOME/downloads/asdf $HOME/downloads/asdf-v${ASDF_VERSION}-linux-${TARGETARCH}.tar.gz
 
-RUN bash -c "source $HOME/.profile && asdf plugin add erlang && asdf install erlang 29.0.3 && asdf set --home erlang 29.0.3"
-RUN bash -c "source $HOME/.profile && asdf plugin add elixir && asdf install elixir 1.20.2-otp-29 && asdf set --home elixir 1.20.2-otp-29"
+RUN bash -c "source $HOME/.profile && asdf plugin add erlang && asdf install erlang 29.0.6 && asdf set --home erlang 29.0.6"
+RUN bash -c "source $HOME/.profile && asdf plugin add elixir && asdf install elixir 1.20.4-otp-29 && asdf set --home elixir 1.20.4-otp-29"
 RUN echo "export HEX_HTTP_CONCURRENCY=1" >> $HOME/.profile && echo "export HEX_HTTP_TIMEOUT=120" >> $HOME/.profile
 # https://thrift.apache.org/lib/java.html
-RUN bash -c "source $HOME/.profile && asdf plugin add java && asdf install java corretto-26.0.2.10.1 && asdf set --home java corretto-26.0.2.10.1"
+RUN bash -c "source $HOME/.profile && asdf plugin add java && asdf install java corretto-26.0.2.11.1 && asdf set --home java corretto-26.0.2.11.1"
 # https://docs.gradle.org/current/userguide/compatibility.html
-RUN bash -c "source $HOME/.profile && asdf plugin add gradle && asdf install gradle 9.6.1 && asdf set --home gradle 9.6.1"
+RUN bash -c "source $HOME/.profile && asdf plugin add gradle && asdf install gradle 9.7.1 && asdf set --home gradle 9.7.1"
 RUN bash -c "source $HOME/.profile && asdf plugin add maven && asdf install maven latest && asdf set --home maven latest"
 
 RUN bash -c "source $HOME/.profile && asdf plugin add golang && asdf install golang latest && asdf set --home golang latest"
@@ -137,7 +137,7 @@ RUN bash -c "source $HOME/.profile && asdf plugin add ruby && asdf install ruby 
 RUN bash -c "source $HOME/.profile && gem install bundler"
 
 RUN bash -c "source $HOME/.profile && asdf plugin add python && asdf install python latest && asdf set --home python latest"
-RUN bash -c "source $HOME/.profile && pip install --upgrade pip && pip install cmake ninja"
+RUN bash -c "source $HOME/.profile && pip install --upgrade pip && pip install cmake ninja autopep8"
 
 RUN bash -c "source $HOME/.profile && cd ~/ && asdf plugin add zig && asdf install zig latest && asdf set --home zig latest"
 
@@ -169,6 +169,9 @@ RUN tar xf $HOME/downloads/opensearch-${OPENSEARCH_VERSION}-linux-${TARGETARCH}.
     && bin/opensearch-plugin install https://github.com/aparo/opensearch-analysis-ik/releases/download/${OPENSEARCH_VERSION}/opensearch-analysis-ik.zip \
     && bin/opensearch-plugin install https://github.com/aparo/opensearch-analysis-stconvert/releases/download/${OPENSEARCH_VERSION}/opensearch-analysis-stconvert.zip \
     && bin/opensearch-plugin install https://github.com/aparo/opensearch-analysis-pinyin/releases/download/${OPENSEARCH_VERSION}/opensearch-analysis-pinyin.zip
+
+# https://code.claude.com/docs/en/setup#install-with-npm
+RUN bash -c "source $HOME/.profile && npm install -g @anthropic-ai/claude-code"
 
 # https://opensearch.org/docs/latest/opensearch/install/tar/
 RUN cd /opt/opensearch/ \

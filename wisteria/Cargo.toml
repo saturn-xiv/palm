@@ -86,3 +86,6 @@ path = "../questionnaire"
 
 [dependencies.accounting]
 path = "../accounting"
+
+[dependencies.lavender]
+path = "../lavender"

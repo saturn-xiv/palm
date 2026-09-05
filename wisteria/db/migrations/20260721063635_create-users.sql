@@ -2,7 +2,7 @@
 CREATE TABLE users(
     id BIGSERIAL PRIMARY KEY,
     uid VARCHAR(36) NOT NULL,
-    name VARCHAR(31),
+    name VARCHAR(31) NOT NULL,
     avatar VARCHAR(127),
     lang VARCHAR(7) NOT NULL DEFAULT 'en-US',
     timezone VARCHAR(31) NOT NULL DEFAULT 'UTC',
@@ -18,6 +18,7 @@ CREATE TABLE users(
     created_at TIMESTAMP WITHOUT TIME ZONE NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
 CREATE UNIQUE INDEX idx_users ON users(uid);
+CREATE INDEX idx_users_name ON users(name);
 CREATE INDEX idx_users_lang ON users(lang);
 CREATE INDEX idx_users_timezone ON users(timezone);
 CREATE INDEX idx_users_name ON users(name) WHERE name IS NOT NULL;
@@ -67,4 +68,3 @@ DROP TABLE logs;
 DROP TABLE user_bans;
 DROP TABLE user_contacts;
 DROP TABLE users;
-

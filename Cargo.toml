@@ -14,5 +14,6 @@ members = [
     "questionnaire",
     "curricula",
     "camellia",
+    "lavender",
     "wisteria",
 ]

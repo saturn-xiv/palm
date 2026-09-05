@@ -1,0 +1,46 @@
+[package]
+name = "lavender"
+version = "2026.9.5"
+edition = "2024"
+description = "Log aggregation and monitoring"
+
+[dependencies]
+log = "0.4"
+git2 = "0.21"
+
+[dependencies.chrono]
+version = "0.4"
+features = ["serde"]
+
+[dependencies.chrono-tz]
+version = "0.10"
+features = ["serde"]
+[dependencies.juniper]
+version = "0.17"
+features = ["uuid", "url", "chrono", "chrono-tz"]
+
+[dependencies.reqwest]
+version = "0.13"
+features = ["json"]
+
+[dependencies.validator]
+version = "0.21"
+features = ["derive"]
+
+[dependencies.uuid]
+version = "1"
+features = ["v4", "serde"]
+
+[dependencies.diesel]
+version = "2"
+default-features = false
+
+[dependencies.url]
+version = "2"
+features = ["serde"]
+
+[dependencies.hyacinth]
+path = "../hyacinth"
+
+[dependencies.portal]
+path = "../portal"
