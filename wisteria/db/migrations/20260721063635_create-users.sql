@@ -21,7 +21,6 @@ CREATE UNIQUE INDEX idx_users ON users(uid);
 CREATE INDEX idx_users_name ON users(name);
 CREATE INDEX idx_users_lang ON users(lang);
 CREATE INDEX idx_users_timezone ON users(timezone);
-CREATE INDEX idx_users_name ON users(name) WHERE name IS NOT NULL;
 CREATE INDEX idx_users_current_sign_in_ip ON users(current_sign_in_ip) WHERE current_sign_in_ip IS NOT NULL;
 CREATE INDEX idx_users_last_sign_in_ip ON users(last_sign_in_ip) WHERE last_sign_in_ip IS NOT NULL;
 

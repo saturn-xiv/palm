@@ -108,7 +108,7 @@ impl SignUp {
             EmailUserDao::create(db, user.id, &self.name, &self.email, password)?;
             EmailUserDao::by_email(db, &self.email)?
         };
-        UserDao::set_name(db, it.user_id, Some(it.name.as_str()))?;
+        UserDao::set_name(db, it.user_id, &it.name)?;
         UserDao::set_avatar(db, it.user_id, Some(it.avatar.as_str()))?;
         Ok(())
     }

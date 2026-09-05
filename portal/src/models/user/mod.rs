@@ -49,7 +49,7 @@ impl Item {
 pub struct Item {
     pub id: i64,
     pub uid: String,
-    pub name: Option<String>,
+    pub name: String,
     pub avatar: Option<String>,
     pub lang: String,
     pub timezone: String,
@@ -73,7 +73,7 @@ pub trait Dao {
     fn create(&mut self, uid: &str, lang: &Locale, timezone: Tz) -> Result<()>;
     fn set_lang(&mut self, id: i64, lang: &Locale) -> Result<()>;
     fn set_timezone(&mut self, id: i64, timezone: Tz) -> Result<()>;
-    fn set_name(&mut self, id: i64, name: Option<&str>) -> Result<()>;
+    fn set_name(&mut self, id: i64, name: &str) -> Result<()>;
     fn set_avatar(&mut self, id: i64, avatar: Option<&str>) -> Result<()>;
     fn sign_in(&mut self, id: i64, ip: &str) -> Result<()>;
     fn lock(&mut self, id: i64) -> Result<()>;
@@ -146,7 +146,7 @@ impl Dao for Connection {
             .execute(self)?;
         Ok(())
     }
-    fn set_name(&mut self, id: i64, name: Option<&str>) -> Result<()> {
+    fn set_name(&mut self, id: i64, name: &str) -> Result<()> {
         let now = Utc::now().naive_utc();
         let it = users::dsl::users.filter(users::dsl::id.eq(id));
         update(it)

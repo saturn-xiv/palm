@@ -203,7 +203,7 @@ diesel::table! {
         #[max_length = 36]
         uid -> Varchar,
         #[max_length = 31]
-        name -> Nullable<Varchar>,
+        name -> Varchar,
         #[max_length = 127]
         avatar -> Nullable<Varchar>,
         #[max_length = 7]

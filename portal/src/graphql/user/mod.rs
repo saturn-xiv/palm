@@ -40,7 +40,7 @@ impl Item {
 pub struct Layout {
     pub lang: String,
     pub timezone: String,
-    pub name: Option<String>,
+    pub name: String,
     pub avatar: Option<String>,
     pub is_administrator: bool,
     pub roles: Vec<String>,
