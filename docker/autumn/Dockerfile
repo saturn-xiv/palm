@@ -3,20 +3,20 @@ LABEL maintainer="Jeremy Zheng"
 
 ENV DEBIAN_FRONTEND="noninteractive"
 
-RUN apt update && apt -y upgrade && apt -y clean
-RUN apt -y install lsb-release apt-utils debian-keyring debian-archive-keyring apt-transport-https software-properties-common curl wget gnupg \
-    && apt -y clean
-RUN apt -y install pwgen git locales locales-all vim tzdata zip unzip tree tmux screen \
+RUN apt update && apt upgrade -y && apt clean -y
+RUN apt install -y lsb-release apt-utils debian-keyring debian-archive-keyring apt-transport-https software-properties-common curl wget gnupg \
+    && apt clean -y
+RUN apt install -y pwgen git locales locales-all vim tzdata zip unzip tree tmux screen \
     curl wget rsync telnet dnsutils netcat-openbsd iputils-ping lftp sudo \
-    openssh-client sshpass \
+    openssh-server sshpass \
     python3-full \
-    && apt -y clean
-RUN apt -y install cmake pkg-config libtool automake autoconf autoconf-archive cpio mold bison flex meson ninja-build debhelper \
+    && apt clean -y
+RUN apt install -y cmake pkg-config libtool automake autoconf autoconf-archive cpio mold bison flex meson ninja-build debhelper \
     build-essential crossbuild-essential-amd64 crossbuild-essential-arm64 crossbuild-essential-armhf crossbuild-essential-riscv64 \
     g++ g++-x86-64-linux-gnu g++-aarch64-linux-gnu g++-riscv64-linux-gnu \
-    && apt -y clean
+    && apt clean -y
 RUN apt install -y dialog asciidoc doxygen imagemagick ffmpeg graphviz pandoc texlive-full \
-    && apt -y clean
+    && apt clean -y
 RUN apt-get install -y fonts-dejavu-extra fonts-opensymbol fonts-lxgw-wenkai fonts-smiley-sans \
     fonts-noto-extra fonts-noto-cjk-extra fonts-noto-color-emoji \
     fonts-arphic-ukai fonts-arphic-uming  \
@@ -26,9 +26,9 @@ RUN apt-get install -y fonts-dejavu-extra fonts-opensymbol fonts-lxgw-wenkai fon
     fonts-ipaexfont fonts-ipafont fonts-konatu fonts-ipafont-nonfree-jisx0208 fonts-ipafont-nonfree-uigothic \
     fonts-mikachan \
     fonts-tibetan-machine fonts-ddc-uchen fonts-monlam fonts-sambhota-tsugring fonts-sambhota-yigchung \
-    && apt -y clean
+    && apt clean -y
 RUN apt install -y postgresql redis rabbitmq-server vsftpd nginx certbot sqlite3 \
-    && apt -y clean
+    && apt clean -y
 
 RUN apt install -y php-fpm \
     php-bz2 php-zip php-xml php-xsl \
@@ -36,11 +36,11 @@ RUN apt install -y php-fpm \
     php-mbstring php-curl php-zmq php-imagick php-gd php-intl php-soap \
     php-odbc php-mysql php-pgsql php-sqlite3 php-redis php-mongodb php-amqp \
     php-snmp \
-    && apt -y clean
-RUN apt install -y libssl-dev libsodium-dev libpq-dev libmysqlclient-dev libsqlite3-dev libyaml-dev libffi-dev libbz2-dev zlib1g-dev libncurses-dev python3-dev && apt -y clean
+    && apt clean -y
+RUN apt install -y libssl-dev libsodium-dev libpq-dev libmysqlclient-dev libsqlite3-dev libyaml-dev libffi-dev libbz2-dev zlib1g-dev libncurses-dev python3-dev && apt clean -y
 # https://apt.llvm.org/
 RUN bash -c "$(wget -O - https://apt.llvm.org/llvm.sh)"
-RUN apt -y clean && apt -y autoremove
+RUN apt clean -y && apt autoremove -y
 
 RUN update-alternatives --install /usr/bin/clang clang /usr/bin/clang-22 100
 RUN update-alternatives --install /usr/bin/clang++ clang++ /usr/bin/clang++-22 100
@@ -192,6 +192,15 @@ RUN echo 'loopback_users = none' | sudo tee -a /etc/rabbitmq/rabbitmq.conf \
 RUN sudo chown www-data:www-data /var/log/nginx
 
 RUN sudo sed -i 's/memory_limit =.*/memory_limit = 1G/' /etc/php/8.5/fpm/php.ini && sudo sed -i 's/^listen = .*/listen = 0.0.0.0:9000/' /etc/php/8.5/fpm/pool.d/www.conf
+# /usr/sbin/sshd -D -4 -p 10022
+# RUN echo -e "" | sudo tee -a /etc/ssh/sshd_config
+RUN sudo tee -a /etc/ssh/sshd_config > /dev/null <<EOF
+UseDNS no
+GSSAPIAuthentication no
+PermitRootLogin no
+PasswordAuthentication no
+AllowUsers ubuntu
+EOF
 
 RUN echo "$(date -u +%4Y%m%d%H%M%S)" | sudo tee /VERSION
 
