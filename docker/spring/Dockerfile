@@ -47,14 +47,14 @@ USER deploy
 RUN mkdir -p $HOME/downloads $HOME/build $HOME/local $HOME/tmp
 
 # https://pkl-lang.org/main/current/pkl-cli/index.html#linux-executable
-ENV PKL_VERSION="0.30.2"
+ENV PKL_VERSION="0.32.1"
 RUN curl -L -o $HOME/downloads/pkl https://github.com/apple/pkl/releases/download/$PKL_VERSION/pkl-linux-amd64 \
     && sudo cp $HOME/downloads/pkl /usr/local/bin/ \
     && sudo chmod +x /usr/local/bin/pkl
 
 
 # https://github.com/envoyproxy/envoy
-ENV ENVOY_VERSION="1.38.0"
+ENV ENVOY_VERSION="1.39.1"
 RUN wget -q -O $HOME/downloads/envoy https://github.com/envoyproxy/envoy/releases/download/v${ENVOY_VERSION}/envoy-${ENVOY_VERSION}-linux-x86_64 \
     && sudo cp $HOME/downloads/envoy /usr/local/bin/ \
     && sudo chmod +x /usr/local/bin/envoy
@@ -86,11 +86,11 @@ RUN curl -fsSL -o $HOME/downloads/dbmate https://github.com/amacneil/dbmate/rele
     && sudo chmod +x /usr/local/bin/dbmate
 
 # https://github.com/fullstorydev/grpcurl?tab=readme-ov-file#from-source
-ENV GRPCURL_VERSION="1.9.3"
+ENV GRPCURL_VERSION="1.9.4"
 RUN wget -q -P $HOME/downloads https://github.com/fullstorydev/grpcurl/releases/download/v${GRPCURL_VERSION}/grpcurl_${GRPCURL_VERSION}_linux_x86_64.tar.gz \
     && tar xf $HOME/downloads/grpcurl_${GRPCURL_VERSION}_linux_x86_64.tar.gz -C $HOME/downloads \
     && sudo cp $HOME/downloads/grpcurl /usr/local/bin/ \
-    && rm $HOME/downloads/grpcurl 
+    && rm $HOME/downloads/grpcurl
 
 # https://aur.archlinux.org/packages/ttf-arphic-tex-extra
 ENV ARPHIC_TTF_VERSION="20161212-1"
@@ -118,7 +118,7 @@ RUN echo 'set-option -g history-limit 102400' > $HOME/.tmux.conf \
 
 # https://github.com/cross-tools/musl-cross
 RUN git clone https://github.com/cross-tools/musl-cross.git $HOME/build/musl-cross
-ENV MUSL_TOOLCHAIN_VERSION=20250929
+ENV MUSL_TOOLCHAIN_VERSION=20260823
 RUN wget -q -P $HOME/downloads https://github.com/cross-tools/musl-cross/releases/download/${MUSL_TOOLCHAIN_VERSION}/x86_64-unknown-linux-musl.tar.xz \
     && tar xf $HOME/downloads/x86_64-unknown-linux-musl.tar.xz -C $HOME/local \
     && echo 'export PATH=$HOME/local/x86_64-unknown-linux-musl/bin:$PATH' >> $HOME/.zshrc
@@ -136,20 +136,20 @@ RUN wget -q -P $HOME/downloads https://github.com/cross-tools/musl-cross/release
 # asdf plugin list --urls
 # asdf plugin list all
 # asdf list all XXX
-ENV ASDF_VERSION="0.19.0"
+ENV ASDF_VERSION="0.20.0"
 RUN wget -q -P $HOME/downloads https://github.com/asdf-vm/asdf/releases/download/v${ASDF_VERSION}/asdf-v${ASDF_VERSION}-linux-amd64.tar.gz \
     && tar xf $HOME/downloads/asdf-v${ASDF_VERSION}-linux-amd64.tar.gz -C $HOME/downloads \
     && sudo cp $HOME/downloads/asdf /usr/local/bin/ \
     && rm $HOME/downloads/asdf \
     && echo 'export PATH=${ASDF_DATA_DIR:-$HOME/.asdf}/shims:$PATH' >> $HOME/.zshrc
 
-RUN zsh -c "source $HOME/.zshrc && asdf plugin add erlang && asdf install erlang 28.5 && asdf set --home erlang 28.5"
-RUN zsh -c "source $HOME/.zshrc && asdf plugin add elixir && asdf install elixir 1.19.5-otp-28 && asdf set --home elixir 1.19.5-otp-28"
+RUN zsh -c "source $HOME/.zshrc && asdf plugin add erlang && asdf install erlang 29.0.6 && asdf set --home erlang 29.0.6"
+RUN zsh -c "source $HOME/.zshrc && asdf plugin add elixir && asdf install elixir 1.20.4-otp-29 && asdf set --home elixir 1.20.4-otp-29"
 RUN echo "export HEX_HTTP_CONCURRENCY=1" >> $HOME/.zshrc && echo "export HEX_HTTP_TIMEOUT=120" >> $HOME/.zshrc
 # https://thrift.apache.org/lib/java.html
-RUN zsh -c "source $HOME/.zshrc && asdf plugin add java && asdf install java corretto-25.0.3.9.1 && asdf set --home java corretto-25.0.3.9.1"
+RUN zsh -c "source $HOME/.zshrc && asdf plugin add java && asdf install java corretto-26.0.2.11.1 && asdf set --home java corretto-26.0.2.11.1"
 # https://docs.gradle.org/current/userguide/compatibility.html
-RUN zsh -c "source $HOME/.zshrc && asdf plugin add gradle && asdf install gradle 9.5.0 && asdf set --home gradle 9.5.0"
+RUN zsh -c "source $HOME/.zshrc && asdf plugin add gradle && asdf install gradle 9.7.1 && asdf set --home gradle 9.7.1"
 RUN zsh -c "source $HOME/.zshrc && asdf plugin add maven && asdf install maven latest && asdf set --home maven latest"
 
 RUN zsh -c "source $HOME/.zshrc && asdf plugin add golang && asdf install golang latest && asdf set --home golang latest"
@@ -235,7 +235,7 @@ RUN tar xf $HOME/downloads/opensearch-${OPENSEARCH_VERSION}-linux-x64.tar.gz -C 
     && bin/opensearch-plugin install https://github.com/aparo/opensearch-analysis-pinyin/releases/download/${OPENSEARCH_VERSION}/opensearch-analysis-pinyin.zip
 
 # https://github.com/grpc/grpc
-ENV GRPC_VERSION="v1.80.0"
+ENV GRPC_VERSION="v1.83.1"
 RUN git clone -b $GRPC_VERSION https://github.com/grpc/grpc.git $HOME/downloads/grpc
 RUN cd $HOME/downloads/grpc/ && git submodule update --init --recursive
 # ENV PROTOBUF_VERSION "v3.21.8"
@@ -252,7 +252,7 @@ RUN zsh -c "source $HOME/.zshrc \
     && rm -r $HOME/build/grpc"
 
 # https://github.com/grpc/grpc-web#code-generator-plugin
-ENV GRPC_WEB_PLUGIN_VERSION="2.0.2"
+ENV GRPC_WEB_PLUGIN_VERSION="2.1.1"
 RUN wget -q -O $HOME/.local/bin/protoc-gen-grpc-web \
     https://github.com/grpc/grpc-web/releases/download/${GRPC_WEB_PLUGIN_VERSION}/protoc-gen-grpc-web-${GRPC_WEB_PLUGIN_VERSION}-linux-x86_64
 RUN chmod +x $HOME/.local/bin/protoc-gen-grpc-web
@@ -267,7 +267,7 @@ RUN mkdir -p $HOME/build/protobuf-javascript \
 
 # https://repo1.maven.org/maven2/io/grpc/protoc-gen-grpc-java/
 # https://github.com/grpc/grpc-java
-ENV GRPC_JAVA_PLUGIN_VERSION="1.81.0"
+ENV GRPC_JAVA_PLUGIN_VERSION="1.84.0"
 RUN wget -q -O $HOME/.local/bin/grpc_java_plugin \
     https://repo1.maven.org/maven2/io/grpc/protoc-gen-grpc-java/${GRPC_JAVA_PLUGIN_VERSION}/protoc-gen-grpc-java-${GRPC_JAVA_PLUGIN_VERSION}-linux-x86_64.exe
 RUN chmod +x $HOME/.local/bin/grpc_java_plugin
