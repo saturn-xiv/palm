@@ -3,8 +3,9 @@ use std::ops::DerefMut;
 
 use chrono_tz::TZ_VARIANTS;
 use juniper::{FieldResult, ScalarValue, graphql_object};
+use lavender::graphql as lavender_graphql;
 use portal::graphql::{
-    Page, Succeeded, currency as currency_api, locale as locale_api,
+    Menu, Page, Succeeded, currency as currency_api, locale as locale_api,
     user::{self as user_api, email as email_user_api},
 };
 
@@ -90,6 +91,21 @@ impl Query {
         Ok(reply)
     }
 
+    async fn dashboard_menus(ctx: &Context) -> FieldResult<Vec<Menu>> {
+        let mut db = ctx.state.db.get()?;
+        let db = db.deref_mut();
+        let mut cache = ctx.state.cache.get()?;
+        let reply = Menu::dashboard(
+            &ctx.session,
+            db,
+            &mut cache,
+            &ctx.state.dahlia,
+            &ctx.state.loquat,
+        )
+        .await?;
+        Ok(reply)
+    }
+
     fn locale_by_lang(lang: String, ctx: &Context) -> FieldResult<Vec<locale_api::Item>> {
         let mut db = ctx.state.db.get()?;
         let db = db.deref_mut();
@@ -108,6 +124,82 @@ impl Query {
             &ctx.state.dahlia,
             &ctx.state.loquat,
             &page,
+        )
+        .await?;
+        Ok(reply)
+    }
+
+    async fn lavender_index_job(ctx: &Context) -> FieldResult<Vec<lavender_graphql::job::Item>> {
+        let mut db = ctx.state.db.get()?;
+        let db = db.deref_mut();
+        let mut cache = ctx.state.cache.get()?;
+        let reply = lavender_graphql::job::Item::index(
+            &ctx.session,
+            db,
+            &mut cache,
+            &ctx.state.dahlia,
+            &ctx.state.loquat,
+            &ctx.state.lavender,
+        )
+        .await?;
+        Ok(reply)
+    }
+
+    async fn lavender_show_job(
+        id: String,
+        ctx: &Context,
+    ) -> FieldResult<lavender_graphql::job::Item> {
+        let mut db = ctx.state.db.get()?;
+        let db = db.deref_mut();
+        let mut cache = ctx.state.cache.get()?;
+        let reply = lavender_graphql::job::Item::by_id(
+            &ctx.session,
+            db,
+            &mut cache,
+            &ctx.state.dahlia,
+            &ctx.state.loquat,
+            &ctx.state.lavender,
+            &id,
+        )
+        .await?;
+        Ok(reply)
+    }
+
+    async fn lavender_index_git_commit(
+        url: String,
+        branch: String,
+        ctx: &Context,
+    ) -> FieldResult<Vec<lavender_graphql::job::git::Commit>> {
+        let mut db = ctx.state.db.get()?;
+        let db = db.deref_mut();
+        let mut cache = ctx.state.cache.get()?;
+        let reply = lavender_graphql::job::git::Commit::index(
+            &ctx.session,
+            db,
+            &mut cache,
+            &ctx.state.dahlia,
+            &ctx.state.loquat,
+            &ctx.state.lavender,
+            (&url, &branch),
+        )
+        .await?;
+        Ok(reply)
+    }
+
+    async fn lavender_k8s_generate_headlamp_token(
+        hours: i32,
+        ctx: &Context,
+    ) -> FieldResult<String> {
+        let mut db = ctx.state.db.get()?;
+        let db = db.deref_mut();
+        let mut cache = ctx.state.cache.get()?;
+        let reply = lavender_graphql::job::k8s::generate_headlamp_token(
+            &ctx.session,
+            db,
+            &mut cache,
+            &ctx.state.dahlia,
+            &ctx.state.loquat,
+            hours as u16,
         )
         .await?;
         Ok(reply)

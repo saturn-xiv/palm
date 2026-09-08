@@ -7,6 +7,6 @@ npm install --save \
     foundation-sites \
     @tabler/core @tabler/icons @tabler/icons-webfont \
     @fortawesome/fontawesome-free dayjs \
-    marked dompurify jsdom
+    marked dompurify jsdom qrcode
 
 exit 0

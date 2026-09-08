@@ -105,15 +105,14 @@ impl SignInResponse {
         let user = UserDao::by_id(db, user)?;
         let lang = user.lang.parse()?;
         Ok(Self {
-            token: jwt
-                .sign(
-                    CurrentUser::ISSUER,
-                    subject,
-                    vec![CurrentUser::SIGN_IN_AUDIENCE],
-                    Duration::weeks(1),
-                    Some(TokenPayload { r#type: type_ }),
-                )
-                .await?,
+            token: CurrentUser::token(
+                jwt,
+                type_,
+                subject,
+                vec![CurrentUser::SIGN_IN_AUDIENCE],
+                Duration::weeks(1),
+            )
+            .await?,
             user: Layout::new(rbac, &user).await?,
             site: SiteLayout::new(db, cache, &lang, version)?,
         })

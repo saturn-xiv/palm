@@ -1,10 +1,9 @@
+use std::any::type_name;
 use std::{path::Path, sync::Arc, time::Duration};
 
 use hyacinth::{flatbuffers_root, sms_v1::Task};
 use portal::{
-    Error, Result,
-    graphql::QUEUE_SMS_BY_TWILIO,
-    is_stopped, parse_toml,
+    Error, Result, is_stopped, parse_toml,
     queue::{
         Consumer as QueueConsumer,
         rabbitmq::{Node as RabbitMq, QueueDeclareOptions},
@@ -14,7 +13,7 @@ use portal::{
 use serde::{Deserialize, Serialize};
 use tokio::time::sleep;
 
-pub async fn start<P: AsRef<Path>>(config: P, queue: &str, interval: Duration) -> Result<()> {
+pub async fn start<P: AsRef<Path>>(config: P, interval: Duration) -> Result<()> {
     if is_stopped()? {
         log::warn!("stopped file exists, exit...");
         return Ok(());
@@ -22,6 +21,7 @@ pub async fn start<P: AsRef<Path>>(config: P, queue: &str, interval: Duration) -
     let config: Config = parse_toml(config)?;
     let twilio = Arc::new(config.twikio);
 
+    let queue = type_name::<Task>();
     let client = config.rabbitmq.open().await?;
     client
         .declare_queue(
@@ -37,12 +37,12 @@ pub async fn start<P: AsRef<Path>>(config: P, queue: &str, interval: Duration) -
     loop {
         if let Err(e) = client
             .consume(
-                QUEUE_SMS_BY_TWILIO,
+                "sms-sender",
                 queue,
                 &Consumer {
                     client: twilio.clone(),
-                    interval,
                 },
+                interval,
             )
             .await
         {
@@ -60,7 +60,6 @@ struct Config {
 
 struct Consumer {
     client: Arc<TwilioConfig>,
-    interval: Duration,
 }
 
 impl QueueConsumer for Consumer {
@@ -75,7 +74,6 @@ impl QueueConsumer for Consumer {
                     task.status_callback().map(|x| x.to_string()),
                 )
                 .await?;
-            sleep(self.interval).await;
         }
         Ok(())
     }

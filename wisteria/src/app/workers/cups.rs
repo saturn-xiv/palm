@@ -1,20 +1,19 @@
+use std::any::type_name;
 use std::{fs::File, io::prelude::*, path::Path, process::Command, time::Duration};
 
 use hyacinth::{cups_v1::Task, flatbuffers_root};
 use portal::{
-    Error, Result,
-    graphql::QUEUE_CUPS,
-    is_stopped, parse_toml,
+    Error, Result, is_stopped, parse_toml,
     queue::{
         Consumer as QueueConsumer,
         rabbitmq::{Node as RabbitMq, QueueDeclareOptions},
     },
 };
 use serde::{Deserialize, Serialize};
-pub use tempfile::tempdir;
+use tempfile::tempdir;
 use tokio::time::sleep;
 
-pub async fn start<P: AsRef<Path>>(config: P, queue: &str, interval: Duration) -> Result<()> {
+pub async fn start<P: AsRef<Path>>(config: P, interval: Duration) -> Result<()> {
     if is_stopped()? {
         log::warn!("stopped file exists, exit...");
         return Ok(());
@@ -26,6 +25,7 @@ pub async fn start<P: AsRef<Path>>(config: P, queue: &str, interval: Duration) -
         log::info!("printer list: {}", std::str::from_utf8(&out.stdout)?);
     }
 
+    let queue = type_name::<Task>();
     let client = config.rabbitmq.open().await?;
     client
         .declare_queue(
@@ -39,10 +39,7 @@ pub async fn start<P: AsRef<Path>>(config: P, queue: &str, interval: Duration) -
         .await?;
 
     loop {
-        if let Err(e) = client
-            .consume(QUEUE_CUPS, queue, &Consumer { interval })
-            .await
-        {
+        if let Err(e) = client.consume("cups", queue, &Consumer {}, interval).await {
             log::error!("{}", e);
         }
         sleep(Duration::from_mins(1)).await;
@@ -54,9 +51,7 @@ struct Config {
     rabbitmq: RabbitMq,
 }
 
-struct Consumer {
-    interval: Duration,
-}
+struct Consumer {}
 
 impl QueueConsumer for Consumer {
     type Error = Error;
@@ -74,7 +69,6 @@ impl QueueConsumer for Consumer {
                 log::debug!("{}", cmd);
                 let out = Command::new("sh").arg("-c").arg(cmd).output()?;
                 log::debug!("{}", std::str::from_utf8(&out.stdout)?);
-                sleep(self.interval).await;
             }
             Err(err) => log::error!("{}", err),
         }

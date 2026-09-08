@@ -27,6 +27,7 @@ use std::fmt;
 use std::fs;
 use std::os::unix::fs::PermissionsExt;
 use std::path::Path;
+use std::process::Command;
 use std::result::Result as StdResult;
 use std::str::FromStr;
 
@@ -215,4 +216,32 @@ pub fn hostname() -> Result<String> {
         ))
     })?;
     Ok(it)
+}
+
+pub fn shell<P: AsRef<Path>, A: Into<String>>(
+    working_dir: P,
+    command: &str,
+    args: Vec<A>,
+) -> Result<String> {
+    // let args: Vec<String> = args.into_iter().map(|x| x.into()).collect();
+    // let output = Command::new("/use/bin/bash")
+    //     .arg("-lc")
+    //     .arg(format!("{} {}", command, args.join(" ")))
+    //     .output()?;
+    let mut command = Command::new(command);
+    command.current_dir(working_dir);
+    for it in args.into_iter() {
+        let it: String = it.into();
+        command.arg(&it);
+    }
+    let output = command.output()?;
+    let stdout = String::from_utf8(output.stdout)?;
+    let stderr = String::from_utf8(output.stderr)?;
+    if output.status.success() {
+        return Ok(stdout);
+    }
+    Err(Box::new(HttpError(
+        StatusCode::INTERNAL_SERVER_ERROR,
+        Some(stderr),
+    )))
 }

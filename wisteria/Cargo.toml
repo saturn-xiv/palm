@@ -18,6 +18,7 @@ data-encoding = "2"
 icu = "2"
 tempfile = "3"
 flatbuffers = "25"
+flexbuffers = "25"
 
 [dependencies.juniper_axum]
 version = "0.3"

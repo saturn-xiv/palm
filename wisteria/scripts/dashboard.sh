@@ -12,6 +12,7 @@ npm install --save \
     @graphiql/react \
     formik yup usehooks-ts \
     jose dayjs video.js \
+    qrcode @types/qrcode \
     @reduxjs/toolkit react-redux \
     js-cookie @types/js-cookie jwt-decode \
     flatbuffers google-protobuf @types/google-protobuf grpc-web

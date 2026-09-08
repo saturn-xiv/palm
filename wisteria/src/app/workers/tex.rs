@@ -1,10 +1,9 @@
+use std::any::type_name;
 use std::{fs::File, io::prelude::*, path::Path, process::Command, sync::Arc, time::Duration};
 
 use hyacinth::{flatbuffers_root, tex_v1::Task};
 use portal::{
-    Error, Result,
-    graphql::QUEUE_TEX,
-    is_stopped,
+    Error, Result, is_stopped,
     minio::{Client as MinioClient, Node as MinioConfig},
     parse_toml,
     queue::{
@@ -16,7 +15,7 @@ use serde::{Deserialize, Serialize};
 use tempfile::tempdir;
 use tokio::time::sleep;
 
-pub async fn start<P: AsRef<Path>>(config: P, queue: &str, interval: Duration) -> Result<()> {
+pub async fn start<P: AsRef<Path>>(config: P, interval: Duration) -> Result<()> {
     if is_stopped()? {
         log::warn!("stopped file exists, exit...");
         return Ok(());
@@ -24,6 +23,7 @@ pub async fn start<P: AsRef<Path>>(config: P, queue: &str, interval: Duration) -
     let config: Config = parse_toml(config)?;
 
     let s3 = Arc::new(config.minio.open()?);
+    let queue = type_name::<Task>();
     let client = config.rabbitmq.open().await?;
     client
         .declare_queue(
@@ -38,14 +38,7 @@ pub async fn start<P: AsRef<Path>>(config: P, queue: &str, interval: Duration) -
 
     loop {
         if let Err(e) = client
-            .consume(
-                QUEUE_TEX,
-                queue,
-                &Consumer {
-                    interval,
-                    s3: s3.clone(),
-                },
-            )
+            .consume("tex-builder", queue, &Consumer { s3: s3.clone() }, interval)
             .await
         {
             log::error!("{}", e);
@@ -61,7 +54,6 @@ struct Config {
 }
 
 struct Consumer {
-    interval: Duration,
     s3: Arc<MinioClient>,
 }
 
@@ -112,7 +104,7 @@ impl QueueConsumer for Consumer {
                 )
                 .await?;
         }
-        sleep(self.interval).await;
+
         Ok(())
     }
 }

@@ -1,3 +1,5 @@
+use std::time::Duration;
+
 use futures_util::StreamExt;
 use hyacinth::{FlexbufferReader, FlexbufferSerializer, ProtobufMessage, ProtobufParse};
 use hyper::StatusCode;
@@ -7,6 +9,7 @@ use lapin::{
     types::FieldTable,
 };
 use serde::{Deserialize, Serialize};
+use tokio::time::sleep;
 use uuid::Uuid;
 
 pub use lapin::{
@@ -171,6 +174,7 @@ impl Client {
         name: &str,
         queue: &str,
         handler: &T,
+        interval: Duration,
     ) -> Result<()> {
         log::info!("start consumer {}", name);
         let channel = self.connection.create_channel().await?;
@@ -213,6 +217,7 @@ impl Client {
                 })?;
 
             delivery.ack(BasicAckOptions::default()).await?;
+            sleep(interval).await;
         }
 
         Ok(())

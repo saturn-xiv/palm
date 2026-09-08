@@ -6,7 +6,7 @@ pub mod workers;
 use std::{path::PathBuf, time::Duration};
 
 use clap::{Parser, Subcommand};
-use portal::Result;
+use portal::{Result, graphql::CurrentUser};
 
 use super::{BANNER, DESCRIPTION, GIT_VERSION, HOMEPAGE, NAME};
 
@@ -49,6 +49,15 @@ enum Commands {
         #[arg(short, long, required = true, help = "Password")]
         password: String,
     },
+    #[command(about = "Generate a token for an email user")]
+    GenerateTokenForEmailUser {
+        #[arg(short, long, required = true, help = format!("Audiences:({}, etc)", CurrentUser::SIGN_IN_AUDIENCE))]
+        audiences: Vec<String>,
+        #[arg(short, long, required = true, help = "Email")]
+        email: String,
+        #[arg(short, long, required = true, help = "Weeks")]
+        weeks: u32,
+    },
     #[command(about = "Add role for user")]
     AddRoleForUser {
         #[arg(
@@ -82,8 +91,6 @@ enum Commands {
             default_value_t = 5_000
         )]
         interval: u64,
-        #[arg(short, long, required = true, help = "Queue name")]
-        queue: String,
     },
     #[command(about = "Start a sms-send worker")]
     SmsSendWorker {
@@ -94,8 +101,6 @@ enum Commands {
             default_value_t = 5_000
         )]
         interval: u64,
-        #[arg(short, long, required = true, help = "Queue name")]
-        queue: String,
     },
     #[command(about = "Start a cups worker")]
     CupsWorker {
@@ -106,8 +111,6 @@ enum Commands {
             default_value_t = 5_000
         )]
         interval: u64,
-        #[arg(short, long, required = true, help = "Queue name")]
-        queue: String,
     },
     #[command(about = "Start a TeX worker")]
     TexWorker {
@@ -118,8 +121,11 @@ enum Commands {
             default_value_t = 5_000
         )]
         interval: u64,
-        #[arg(short, long, required = true, help = "Queue name")]
-        queue: String,
+    },
+    #[command(about = "Start a Lavender job worker")]
+    LavenderJobWorker {
+        #[arg(short, long, help = "Interval by microseconds", default_value_t = 500)]
+        interval: u64,
     },
     #[command(about = "Start a HTTP server")]
     Http {
@@ -149,28 +155,32 @@ pub async fn run() -> Result<()> {
             ref email,
             ref password,
         } => user::set_password_for_email::execute(&args.config, email, password).await,
+        Commands::GenerateTokenForEmailUser {
+            ref email,
+            audiences,
+            weeks,
+        } => user::generate_token::execute(&args.config, email, audiences, weeks).await,
         Commands::AddRoleForUser { ref role, ref user } => {
             user::role::add(&args.config, user, role).await
         }
         Commands::DeleteRoleForUser { ref role, ref user } => {
             user::role::delete(&args.config, user, role).await
         }
-        Commands::EmailSendWorker {
-            interval,
-            ref queue,
-        } => workers::email_send::start(&args.config, queue, Duration::from_micros(interval)).await,
-        Commands::SmsSendWorker {
-            interval,
-            ref queue,
-        } => workers::sms_send::start(&args.config, queue, Duration::from_micros(interval)).await,
-        Commands::CupsWorker {
-            interval,
-            ref queue,
-        } => workers::cups::start(&args.config, queue, Duration::from_micros(interval)).await,
-        Commands::TexWorker {
-            interval,
-            ref queue,
-        } => workers::tex::start(&args.config, queue, Duration::from_micros(interval)).await,
+        Commands::EmailSendWorker { interval } => {
+            workers::email_send::start(&args.config, Duration::from_micros(interval)).await
+        }
+        Commands::SmsSendWorker { interval } => {
+            workers::sms_send::start(&args.config, Duration::from_micros(interval)).await
+        }
+        Commands::CupsWorker { interval } => {
+            workers::cups::start(&args.config, Duration::from_micros(interval)).await
+        }
+        Commands::TexWorker { interval } => {
+            workers::tex::start(&args.config, Duration::from_micros(interval)).await
+        }
+        Commands::LavenderJobWorker { interval } => {
+            workers::lavender_job::start(&args.config, Duration::from_micros(interval)).await
+        }
         Commands::Http { port, theme } => http::start(&args.config, port, theme).await,
     }
 }

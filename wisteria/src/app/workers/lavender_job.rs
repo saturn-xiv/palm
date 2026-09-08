@@ -1,15 +1,12 @@
 use std::any::type_name;
 use std::{path::Path, sync::Arc, time::Duration};
 
-use hyacinth::{email_v1::Task, flatbuffers_root};
-use lettre::{Message, SmtpTransport, Transport};
+use lavender::{Config as Lavender, graphql::job::Task, models::job::Item as Job};
 use portal::{
-    Error, Result, is_stopped,
-    mailer::Smtp,
-    parse_toml,
+    Error, Result, is_stopped, parse_toml,
     queue::{
         Consumer as QueueConsumer,
-        rabbitmq::{Node as RabbitMq, QueueDeclareOptions},
+        rabbitmq::{Client as QueueClient, Node as RabbitMq, QueueDeclareOptions},
     },
 };
 use serde::{Deserialize, Serialize};
@@ -21,7 +18,7 @@ pub async fn start<P: AsRef<Path>>(config: P, interval: Duration) -> Result<()> 
         return Ok(());
     }
     let config: Config = parse_toml(config)?;
-    let mailer = Arc::new(config.smtp.open()?);
+    let lavender = Arc::new(config.lavender);
 
     let queue = type_name::<Task>();
     let client = config.rabbitmq.open().await?;
@@ -39,10 +36,11 @@ pub async fn start<P: AsRef<Path>>(config: P, interval: Duration) -> Result<()> 
     loop {
         if let Err(e) = client
             .consume(
-                "email-sender",
+                "lavender-job-executer",
                 queue,
                 &Consumer {
-                    mailer: mailer.clone(),
+                    queue: config.rabbitmq.open().await?,
+                    config: lavender.clone(),
                 },
                 interval,
             )
@@ -56,21 +54,31 @@ pub async fn start<P: AsRef<Path>>(config: P, interval: Duration) -> Result<()> 
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 struct Config {
-    smtp: Smtp,
+    lavender: Lavender,
     rabbitmq: RabbitMq,
 }
 
 struct Consumer {
-    mailer: Arc<SmtpTransport>,
+    config: Arc<Lavender>,
+    queue: QueueClient,
 }
 
 impl QueueConsumer for Consumer {
     type Error = Error;
     async fn consume(&self, _id: &str, _content_type: &str, payload: &[u8]) -> Result<()> {
-        let task = flatbuffers_root::<Task>(payload)?;
-        log::info!("send email({}) to {:?}", task.subject(), task.to());
-        let mail = Message::try_from(task)?;
-        self.mailer.send(&mail)?;
+        let task: Task = flexbuffers::from_slice(payload)?;
+        let job = Job::new(&self.config.jobs_dir, &task.id)?;
+        let result = job.execute(&self.config.working_dir, task.args);
+        let succeed = result.is_ok();
+        let body = result.unwrap_or_else(|e| e.to_string());
+        job.report(
+            &self.queue,
+            &task.email,
+            self.config.bcc.clone(),
+            &body,
+            succeed,
+        )
+        .await?;
 
         Ok(())
     }

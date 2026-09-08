@@ -22,6 +22,7 @@ pub struct InnerState {
     pub dahlia: Dahlia,
     pub loquat: Loquat,
     pub marigold: Marigold,
+    pub lavender: lavender::Config,
 }
 
 impl Deref for State {

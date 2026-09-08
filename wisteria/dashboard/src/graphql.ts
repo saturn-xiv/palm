@@ -2,9 +2,6 @@ import { post as http_post } from "./request";
 
 const GRAPHQL: string = import.meta.env.VITE_GRAPHQL_PATH || "/graphql";
 
-export const query = () => {};
-export const mutation = () => {};
-
 interface Response<T> {
   data?: T;
   errors?: Array<{ message: string }>;

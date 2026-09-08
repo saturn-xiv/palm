@@ -1,4 +1,3 @@
-use std::any::type_name;
 use std::net::SocketAddr;
 use std::path::Path;
 use std::sync::Arc;
@@ -9,17 +8,12 @@ use axum::{
 };
 use axum_extra::extract::cookie::Key as CookieKey;
 use clap::ValueEnum;
-use hyacinth::{GrpcClientChannel, cups_v1, email_v1, open_grpc_channel, sms_v1, tex_v1};
+use hyacinth::{GrpcClientChannel, open_grpc_channel};
 use juniper_axum::{graphiql, playground};
 use portal::{
-    Dahlia, Key, Loquat, Marigold, Result,
-    cache::redis::Node as Redis,
-    is_stopped,
-    minio::Node as Minio,
-    open_search::Node as OpenSearch,
-    orm::postgresql::Node as PostgreSql,
-    parse_toml,
-    queue::rabbitmq::{Node as RabbitMq, QueueDeclareOptions},
+    Dahlia, Key, Loquat, Marigold, Result, cache::redis::Node as Redis, is_stopped,
+    minio::Node as Minio, open_search::Node as OpenSearch, orm::postgresql::Node as PostgreSql,
+    parse_toml, queue::rabbitmq::Node as RabbitMq,
 };
 use serde::{Deserialize, Serialize};
 use strum::{Display as EnumDisplay, EnumString};
@@ -62,17 +56,8 @@ pub async fn start<P: AsRef<Path>>(config: P, port: u16, _theme: Theme) -> Resul
     let config: Config = parse_toml(config)?;
 
     {
-        let queue = config.rabbitmq.open().await?;
-        for it in [
-            type_name::<email_v1::Task>(),
-            type_name::<sms_v1::Task>(),
-            type_name::<tex_v1::Task>(),
-            type_name::<cups_v1::Task>(),
-        ] {
-            queue
-                .declare_queue(it, QueueDeclareOptions::default())
-                .await?;
-        }
+        log::info!("initialize lavender repos");
+        // TODO
     }
 
     let schema = new_schema();
@@ -83,12 +68,13 @@ pub async fn start<P: AsRef<Path>>(config: P, port: u16, _theme: Theme) -> Resul
         },
         db: config.postgresql.open()?,
         cache: config.redis.standalone()?,
+        queue: config.rabbitmq.open().await?,
         s3: config.minio.open()?,
         search: config.opensearch.single()?,
         loquat: Loquat::new(config.loquat.open()),
         dahlia: Dahlia::new(config.dahlia.open()),
         marigold: Marigold::new(config.marigold.open()),
-        queue: config.rabbitmq.open().await?,
+        lavender: config.lavender.clone(),
     }));
 
     let app = Router::new()
@@ -145,6 +131,7 @@ struct Config {
     loquat: Rpc,
     dahlia: Rpc,
     marigold: Rpc,
+    lavender: lavender::Config,
 }
 
 #[derive(Debug, Clone, Default, Serialize, Deserialize)]

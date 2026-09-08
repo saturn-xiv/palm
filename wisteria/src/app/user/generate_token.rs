@@ -3,12 +3,12 @@ use std::{ops::DerefMut, path::Path};
 use chrono::Duration;
 use diesel::Connection as DieselConnection;
 use portal::{
-    Error, Jwt, Loquat, Result, current_user,
+    Error, Loquat, Result, current_user,
     graphql::{CurrentUser, Plugin},
     hostname,
     models::{
         log::{Dao as LogDao, Level},
-        user::Dao as UserDao,
+        user::{Type as UserType, email::Dao as EmailUserDao},
     },
     orm::postgresql::Node as PostgreSql,
     parse_toml,
@@ -19,7 +19,7 @@ use super::super::http::Rpc;
 
 pub async fn execute<P: AsRef<Path>>(
     config: P,
-    uid: &str,
+    email: &str,
     audiences: Vec<String>,
     weeks: u32,
 ) -> Result<()> {
@@ -32,23 +32,26 @@ pub async fn execute<P: AsRef<Path>>(
     let db = db.deref_mut();
     let loquat = Loquat::new(config.loquat.open());
 
-    let user = UserDao::by_uid(db, uid)?;
-    log::warn!("generate a token({} weeks) for user {}", weeks, user.name);
+    let email_user = EmailUserDao::by_email(db, email)?;
+    log::warn!(
+        "generate a token({} weeks) for user {}",
+        weeks,
+        email_user.name
+    );
 
-    let token = Jwt::sign(
+    let token = CurrentUser::token(
         &loquat,
-        CurrentUser::ISSUER,
-        uid,
+        UserType::Email,
+        &email_user.email,
         audiences.clone(),
-        Duration::weeks(weeks as i64),
-        None::<String>,
+        Duration::weeks(1),
     )
     .await?;
 
     db.transaction::<_, Error, _>(|tx| {
         LogDao::create::<Plugin, _>(
             tx,
-            user.id,
+            email_user.user_id,
             Level::Info,
             &ip,
             format!(

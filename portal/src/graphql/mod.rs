@@ -5,7 +5,7 @@ pub mod user;
 
 use axum::http::HeaderMap;
 use axum_extra::extract::cookie::CookieJar;
-use chrono::{NaiveDateTime, Utc};
+use chrono::{Duration, NaiveDateTime, Utc};
 use hyper::StatusCode;
 use icu::locale::Locale;
 use juniper::{GraphQLInputObject, GraphQLObject};
@@ -19,12 +19,8 @@ use super::{
         Dao as UserDao, Item as UserItem, Type as UserType, email::Dao as EmailUserDao,
     },
     orm::postgresql::Connection as Db,
+    rbac::Rbac,
 };
-
-pub const QUEUE_SMS_BY_TWILIO: &str = "sms-send.twilio";
-pub const QUEUE_TEX: &str = "tex";
-pub const QUEUE_EMAIL_SEND: &str = "email-send";
-pub const QUEUE_CUPS: &str = "cups";
 
 #[derive(Debug, Clone, Default, Serialize, Deserialize)]
 pub struct Session {
@@ -172,6 +168,23 @@ impl CurrentUser {
         })
     }
 
+    pub async fn token<J: Jwt, A: Into<String>>(
+        jwt: &J,
+        type_: UserType,
+        subject: &str,
+        audiences: Vec<A>,
+        ttl: Duration,
+    ) -> Result<String> {
+        jwt.sign(
+            Self::ISSUER,
+            subject,
+            audiences,
+            ttl,
+            Some(TokenPayload { r#type: type_ }),
+        )
+        .await
+    }
+
     pub const ISSUER: &str = "Palm";
     pub const SIGN_IN_AUDIENCE: &str = "user.sign-in";
 }
@@ -257,5 +270,40 @@ impl Default for Succeeded {
         Self {
             created_at: Utc::now().naive_utc(),
         }
+    }
+}
+
+#[derive(Debug, Default, GraphQLObject)]
+#[graphql(name = "Menu")]
+pub struct Menu {
+    pub code: String,
+    pub icon: Option<String>,
+    pub children: Option<Vec<Self>>,
+}
+
+impl Menu {
+    pub async fn dashboard<R: Rbac, J: Jwt>(
+        ss: &Session,
+        db: &mut Db,
+        cache: &mut Cache,
+        rbac: &R,
+        jwt: &J,
+    ) -> Result<Vec<Self>> {
+        let current_user = ss.current_user(db, cache, jwt).await?;
+        let is_administrator = rbac.is_administrator(current_user.id()).await.is_ok();
+        let mut items = vec![Self {
+            code: "personal".to_string(),
+            children: Some(vec![]),
+            ..Default::default()
+        }];
+
+        if is_administrator {
+            items.push(Self {
+                code: "site".to_string(),
+                children: Some(vec![]),
+                ..Default::default()
+            });
+        }
+        Ok(items)
     }
 }
