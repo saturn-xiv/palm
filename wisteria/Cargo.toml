@@ -90,3 +90,6 @@ path = "../accounting"
 
 [dependencies.lavender]
 path = "../lavender"
+
+[dependencies.camellia]
+path = "../camellia"

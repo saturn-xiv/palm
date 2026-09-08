@@ -8,15 +8,15 @@ export VCPKG_DISABLE_METRICS=1
 export VCPKG_DEFAULT_BINARY_CACHE=$PWD/.cache
 
 # https://github.com/grpc/grpc/blob/master/BUILDING.md#pre-requisites
-if [[ "$ID" == "ubuntu" ]]; then
-    apt update
-    apt -y upgrade
-    DEBIAN_FRONTEND=noninteractive apt install -y wget curl git zip \
-        pkg-config build-essential cmake ninja-build flex bison \
-	autoconf autoconf-archive automake libtool \
-	crossbuild-essential-amd64 crossbuild-essential-arm64 crossbuild-essential-riscv64 \
-	g++-x86-64-linux-gnu g++-aarch64-linux-gnu g++-riscv64-linux-gnu
-fi
+# if [[ "$ID" == "ubuntu" ]]; then
+#     apt update
+#     apt -y upgrade
+#     DEBIAN_FRONTEND=noninteractive apt install -y wget curl git zip \
+#         pkg-config build-essential cmake ninja-build flex bison \
+# 	autoconf autoconf-archive automake libtool \
+# 	crossbuild-essential-amd64 crossbuild-essential-arm64 crossbuild-essential-riscv64 \
+# 	g++-x86-64-linux-gnu g++-aarch64-linux-gnu g++-riscv64-linux-gnu
+# fi
 
 mkdir -p $VCPKG_DEFAULT_BINARY_CACHE
 

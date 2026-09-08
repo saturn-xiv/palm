@@ -2,7 +2,7 @@
 name = "lavender"
 version = "2026.9.5"
 edition = "2024"
-description = "Log aggregation and monitoring"
+description = "Aggregating your logs, tracking the health, uptime, and performance of your hardware and networks."
 
 [dependencies]
 log = "0.4"
