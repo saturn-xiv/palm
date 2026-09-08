@@ -192,8 +192,7 @@ RUN echo 'loopback_users = none' | sudo tee -a /etc/rabbitmq/rabbitmq.conf \
 RUN sudo chown www-data:www-data /var/log/nginx
 
 RUN sudo sed -i 's/memory_limit =.*/memory_limit = 1G/' /etc/php/8.5/fpm/php.ini && sudo sed -i 's/^listen = .*/listen = 0.0.0.0:9000/' /etc/php/8.5/fpm/pool.d/www.conf
-# /usr/sbin/sshd -D -4 -p 10022
-# RUN echo -e "" | sudo tee -a /etc/ssh/sshd_config
+# /usr/sbin/sshd -D -e -4 -p 10022
 RUN sudo tee -a /etc/ssh/sshd_config > /dev/null <<EOF
 UseDNS no
 GSSAPIAuthentication no
@@ -205,7 +204,7 @@ EOF
 RUN echo "$(date -u +%4Y%m%d%H%M%S)" | sudo tee /VERSION
 
 EXPOSE 80/tcp 8080/tcp 9000/tcp 5432/tcp 6379/tcp 16379/tcp 5672/tcp 9200/tcp 9300/tcp 9600/tcp
-VOLUME /srv
-WORKDIR /srv
+VOLUME /mnt
+WORKDIR /mnt
 
 CMD ["/bin/bash", "-l"]
