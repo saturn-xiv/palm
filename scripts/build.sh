@@ -72,7 +72,7 @@ function build_marigold() {
     mvn --quiet clean
     mvn --quiet package -Dmaven.test.skip=true
 
-    local target ${TARGET_DIR}/${PACKAGE}/marigold
+    local target=${TARGET_DIR}/${PACKAGE}/marigold
     mkdir -p $target
     cp target/marigold-*.jar README.md $target/
 }
