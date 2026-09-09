@@ -80,8 +80,9 @@
     $HOME/local/vcpkg/vcpkg upgrade --no-dry-run
     ```
 
+- swift override the system clang `$HOME/.zprofile`
+
 ## Issues
 
 <!-- TODO -->
-
 - Xdebug:[Step Debug] could not connect to debugging client. Tried:0.0.0.0:9003(through xdebug.client host/xdebug.client port).

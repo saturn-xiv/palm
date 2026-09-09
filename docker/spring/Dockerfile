@@ -206,19 +206,21 @@ RUN zsh -c "source $HOME/.zshrc \
 
 # FIXME Unable to find release information from file /etc/os-release
 # https://www.swift.org/install/linux/
-# RUN wget -q -P $HOME/downloads/ https://download.swift.org/swiftly/linux/swiftly-x86_64.tar.gz \
-#     && mkdir -p $HOME/local/swift \
-#     && tar xf $HOME/downloads/swiftly-x86_64.tar.gz -C $HOME/local/swift \
-#     && cd $HOME/local/swift/ \
-#     && ./swiftly init --quiet-shell-followup -y \
-#     && echo '. "${SWIFTLY_HOME_DIR:-$HOME/.local/share/swiftly}/env.sh"' >> $HOME/.zshrc
+# https://www.swift.org/swiftly/documentation/swiftly/swiftly-cli-reference/
+RUN wget -q -P $HOME/downloads/ https://download.swift.org/swiftly/linux/swiftly-$(uname -m).tar.gz \
+    && mkdir -p $HOME/local/swift \
+    && tar zxf $HOME/downloads/swiftly-$(uname -m).tar.gz -C $HOME/local/swift \
+    && cd $HOME/local/swift/ \
+    && ./swiftly init --quiet-shell-followup --platform "ubuntu24.04" --assume-yes
 
 
 # https://xmake.io/#/guide/installation?id=via-curl
 RUN curl -fsSL https://xmake.io/shget.text | bash
 
 # https://github.com/microsoft/vcpkg
-RUN echo 'export VCPKG_DISABLE_METRICS=1' >> $HOME/.zshrc
+RUN git clone https://github.com/microsoft/vcpkg.git $HOME/local/vcpkg && echo 'export VCPKG_DISABLE_METRICS=1' >> $HOME/.zshrc
+RUN git clone https://github.com/buildroot/buildroot.git $HOME/downloads/vcpkg
+RUN git clone https://github.com/openwrt/openwrt.git $HOME/downloads/openwrt
 
 # https://opensearch.org/downloads.html#opensearch
 # https://github.com/aparo/opensearch-analysis-ik?tab=readme-ov-file#install
@@ -370,7 +372,7 @@ RUN sudo sed -i 's/memory_limit =.*/memory_limit = 1G/' /etc/php/php.ini \
 # && sudo sed -i 's/;xdebug.mode=debug/xdebug.mode=develop,profile,coverage,debug/' /etc/php/conf.d/xdebug.ini \
 
 RUN mkdir -p $HOME/.ssh \
-    && touch $HOME/.ssh/authorized_keys \
+    && chmod 700 $HOME/.ssh \
     && echo 'GSSAPIAuthentication no' | sudo tee -a /etc/ssh/sshd_config \
     && echo 'UseDNS no' | sudo tee -a /etc/ssh/sshd_config \
     && echo 'PasswordAuthentication no' | sudo tee -a /etc/ssh/sshd_config \
@@ -389,4 +391,4 @@ RUN echo "$(date -u +%4Y%m%d%H%M%S)" | sudo tee /VERSION
 VOLUME /mnt
 WORKDIR /mnt
 
-CMD ["/bin/zsh", "-l"]
+CMD ["/opt/bin/start.sh"]

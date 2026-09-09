@@ -18,11 +18,11 @@ export CODE="palm-spring"
 
 docker pull archlinux:latest
 docker build --network host --platform=linux/amd64 --provenance false -t $CODE .
-docker save -o $CODE-$VERSION.tar $CODE
-md5sum $CODE-$VERSION.tar* >>$CODE-$VERSION.md5
+# docker save -o $CODE-$VERSION.tar $CODE
+# md5sum $CODE-$VERSION.tar* >>$CODE-$VERSION.md5
 
 # cat $CODE-$VERSION.tar.?? >$CODE-$VERSION.tar
 
-echo "done($CODE-$VERSION.tar)."
+echo "done($CODE-$VERSION)."
 
 exit 0
