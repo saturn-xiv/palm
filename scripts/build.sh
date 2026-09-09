@@ -81,9 +81,10 @@ function build_marigold() {
 }
 
 function generate_etc() {
-    mkdir -p $TARGET_DIR/etc/systemd $TARGET_DIR/etc/nginx
+    local target= ${TARGET_DIR}/${PACKAGE}/etc
+    mkdir -p $target/systemd $target/nginx
 
-    cat <<EOF > $TARGET_DIR/etc/systemd/loquat.service
+    cat <<EOF > $target/systemd/loquat.service
 [Unit]
 Description=A cryptographic rpc service(by Google Tink).
 Documentation=https://github.com/saturn-xiv/palm/tree/main/loquat
@@ -102,7 +103,7 @@ Restart=always
 WantedBy=multi-user.target
 EOF
 
-    cat <<EOF > $TARGET_DIR/etc/dahlia.toml
+    cat <<EOF > $target/dahlia.toml
 [postgresql]
 host = '127.0.0.1'
 port = 5432
@@ -117,7 +118,7 @@ user = 'www'
 password = 'change-me'
 virtual-host = 'dahlia.dev'
 EOF
-    cat <<EOF > $TARGET_DIR/etc/systemd/dahlia.service
+    cat <<EOF > $target/systemd/dahlia.service
 [Unit]
 Description=RBAC services.
 Documentation=https://github.com/saturn-xiv/palm/tree/main/dahlia
@@ -136,9 +137,9 @@ Restart=always
 WantedBy=multi-user.target
 EOF
 
-    cat <<EOF > $TARGET_DIR/etc/marigold.yaml
+    cat <<EOF > $target/marigold.yaml
 EOF
-    cat <<EOF > $TARGET_DIR/etc/systemd/marigold.service
+    cat <<EOF > $target/systemd/marigold.service
 [Unit]
 Description=WechatPay services.
 Documentation=https://github.com/saturn-xiv/palm/tree/main/marigold
@@ -157,7 +158,7 @@ Restart=always
 WantedBy=multi-user.target
 EOF
 
-    cat <<EOF > $TARGET_DIR/etc/wisteria.toml
+    cat <<EOF > $target/wisteria.toml
 cookie-key = "openssl rand -base64 128"
 
 [postgresql]
@@ -195,7 +196,7 @@ jobs-dir = "/var/lib/lavender/jobs"
 work-dir = "/var/lib/lavender/cache"
 bcc = []
 EOF
-    cat <<EOF > $TARGET_DIR/etc/systemd/wisteria.service
+    cat <<EOF > $target/systemd/wisteria.service
 [Unit]
 Description=An online education solution.
 Documentation=https://github.com/saturn-xiv/palm/tree/main/wisteria
@@ -215,7 +216,7 @@ Environment=RUST_LOG=info
 [Install]
 WantedBy=multi-user.target
 EOF
-    cat <<EOF > $TARGET_DIR/etc/nginx/wisteria.conf
+    cat <<EOF > $target/nginx/wisteria.conf
 server {
     listen 80;
     server_name www.change-me.org;
