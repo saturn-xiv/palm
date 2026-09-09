@@ -1,4 +1,4 @@
-# LOQUAT
+# LOQUAT - A cryptographic rpc service(by Google Tink)
 
 - Building
 

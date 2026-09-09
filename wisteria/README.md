@@ -1,4 +1,4 @@
-# WISTERIA
+# WISTERIA - An online education solution
 
 - RabbitMq
 

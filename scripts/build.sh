@@ -5,9 +5,8 @@ set -e
 source /etc/os-release
 
 export WORK_DIR=$PWD
-export PACKAGE=palm-$VERSION_CODENAME-$(uname -m)-$(git describe --tags --always --dirty)
+export PACKAGE=palm-$VERSION_CODENAME-$(git describe --tags --always --dirty)
 export TARGET_DIR=$WORK_DIR/tmp
-
 
 # ---------------------------------------------------------
 
@@ -81,6 +80,168 @@ function build_marigold() {
     cp target/marigold-*.jar README.md $TARGET_DIR/$PACKAGE/marigold/
 }
 
+function generate_etc() {
+    mkdir -p $TARGET_DIR/etc/systemd $TARGET_DIR/etc/nginx
+
+    cat <<EOF > $TARGET_DIR/etc/systemd/loquat.service
+[Unit]
+Description=A cryptographic rpc service(by Google Tink).
+Documentation=https://github.com/saturn-xiv/palm/tree/main/loquat
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+Type=simple
+User=nobody
+Group=nogroup
+ExecStart=/usr/local/bin/loquat rpc -p 10011
+WorkingDirectory=/var/lib/loquat
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
+EOF
+
+    cat <<EOF > $TARGET_DIR/etc/dahlia.toml
+[postgresql]
+host = '127.0.0.1'
+port = 5432
+user = 'www'
+password = 'change-me'
+db-name = 'dahlia_dev'
+
+[rabbitmq]
+host = '127.0.0.1'
+port = 5672
+user = 'www'
+password = 'change-me'
+virtual-host = 'dahlia.dev'
+EOF
+    cat <<EOF > $TARGET_DIR/etc/systemd/dahlia.service
+[Unit]
+Description=RBAC services.
+Documentation=https://github.com/saturn-xiv/palm/tree/main/dahlia
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+Type=simple
+User=nobody
+Group=nogroup
+ExecStart=source /opt/python3/bin/activate && dahlia -p 11002
+WorkingDirectory=/var/lib/dahlia
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
+EOF
+
+    cat <<EOF > $TARGET_DIR/etc/marigold.yaml
+EOF
+    cat <<EOF > $TARGET_DIR/etc/systemd/marigold.service
+[Unit]
+Description=WechatPay services.
+Documentation=https://github.com/saturn-xiv/palm/tree/main/marigold
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+Type=simple
+User=nobody
+Group=nogroup
+ExecStart=/opt/jdk/bin/java -jar marigold-2026.7.28.jar --spring.config.name=production
+WorkingDirectory=/var/lib/marigold
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
+EOF
+
+    cat <<EOF > $TARGET_DIR/etc/wisteria.toml
+cookie-key = "openssl rand -base64 128"
+
+[postgresql]
+user = "www"
+password = "change-me"
+db-name = "wisteria_dev"
+
+[redis]
+
+[rabbitmq]
+user = "www"
+password = "change-me"
+virtual-host = "wisteria.dev"
+
+[opensearch]
+namespace = "wisteria.dev"
+
+[minio]
+endpoint = "https://assets.change-me.org"
+access-key = ""
+secret-key = ""
+namespace = "wisteria.dev"
+
+[loquat]
+port = 11001
+
+[dahlia]
+port = 11002
+
+[marigold]
+port = 11003
+
+[lavender]
+jobs-dir = "/var/lib/lavender/jobs"
+work-dir = "/var/lib/lavender/cache"
+bcc = []
+EOF
+    cat <<EOF > $TARGET_DIR/etc/systemd/wisteria.service
+[Unit]
+Description=An online education solution.
+Documentation=https://github.com/saturn-xiv/palm/tree/main/wisteria
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+Type=simple
+User=ubuntu
+Group=ubuntu
+ExecStart=/usr/local/bin/wisteria http -p 8080
+WorkingDirectory=/var/lib/wisteria
+Restart=always
+
+Environment=RUST_LOG=info
+
+[Install]
+WantedBy=multi-user.target
+EOF
+    cat <<EOF > $TARGET_DIR/etc/nginx/wisteria.conf
+server {
+    listen 80;
+    server_name www.change-me.org;
+    charset utf-8;
+
+    location / {
+        proxy_pass http://localhost:8080;
+
+        proxy_set_header Host \$host;
+        proxy_set_header X-Real-IP \$remote_addr;
+        proxy_set_header X-Forwarded-For \$proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto \$scheme;
+
+        client_max_body_size 512M;
+    }
+
+    location /my/ {
+        alias /var/lib/wisteria/dashboard/;
+        index index.html;
+        try_files \$uri \$uri/ /my/index.html;
+    }
+}
+EOF
+
+}
+
 # ---------------------------------------------------------
 
 if [ -f $TARGET_DIR/$PACKAGE.md5 ]
@@ -110,6 +271,8 @@ build_marigold
 
 cd $WORK_DIR/loquat/
 bash build.sh
+
+generate_etc
 
 XZ_OPT=-9 tar -cJf $TARGET_DIR/$PACKAGE.tar.xz --remove-files -C $TARGET_DIR/$PACKAGE .
 md5sum $TARGET_DIR/$PACKAGE.tar.xz > $TARGET_DIR/$PACKAGE.md5

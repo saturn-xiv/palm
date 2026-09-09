@@ -1,4 +1,4 @@
-# MARIGOLD
+# MARIGOLD - WechatPay services
 
 - Usage
 
