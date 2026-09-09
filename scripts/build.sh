@@ -11,16 +11,12 @@ export TARGET_DIR=$WORK_DIR/tmp
 # ---------------------------------------------------------
 
 function build_dashboard() {
-    cd $WORK_DIR/$1/dashboard/
+    cd $WORK_DIR/${1}/dashboard/
     if [ ! -d node_modules ]
     then
-        npm install
+        npm install --silent
     fi
-
-    npm run build
-
-    mkdir -p $TARGET_DIR/$PACKAGE/$1
-    cp -r dist $TARGET_DIR/$PACKAGE/$1/dashboard
+    npm run build -- --outDir ${TARGET_DIR}/${PACKAGE}/${1}/dashboard --logLevel silent
 }
 
 function build_wisteria_backend() {
@@ -28,20 +24,20 @@ function build_wisteria_backend() {
 
     local target="$1-unknown-linux-gnu"
     echo "building wisteria for $target"
-    cargo build --release --target $target
+    cargo build --release --quiet --target $target
 
-    mkdir -p $TARGET_DIR/$PACKAGE/bin/$1
-    cp $WORK_DIR/target/$target/release/wisteria $TARGET_DIR/$PACKAGE/bin/$1/
+    mkdir -p ${TARGET_DIR}/${PACKAGE}/bin/${1}
+    cp ${WORK_DIR}/target/${target}/release/wisteria ${TARGET_DIR}/${PACKAGE}/bin/${1}/
 }
 
 function build_wisteria_assets() {
     cd $WORK_DIR/wisteria/
     if [ ! -d node_modules ]
     then
-        npm install
+        npm install --silent
     fi
 
-    local target=$TARGET_DIR/$PACKAGE/$1
+    local target=${TARGET_DIR}/${PACKAGE}/${1}
     mkdir -p $target
 
     local -a items=(
@@ -73,15 +69,16 @@ function build_wisteria_assets() {
 
 function build_marigold() {
     cd $WORK_DIR/marigold/
-    mvn clean
-    mvn package -Dmaven.test.skip=true
+    mvn --quiet clean
+    mvn --quiet package -Dmaven.test.skip=true
 
-    mkdir -p $TARGET_DIR/$PACKAGE/marigold
-    cp target/marigold-*.jar README.md $TARGET_DIR/$PACKAGE/marigold/
+    local target ${TARGET_DIR}/${PACKAGE}/marigold
+    mkdir -p $target
+    cp target/marigold-*.jar README.md $target/
 }
 
 function generate_etc() {
-    local target= ${TARGET_DIR}/${PACKAGE}/etc
+    local target=${TARGET_DIR}/${PACKAGE}/etc
     mkdir -p $target/systemd $target/nginx
 
     cat <<EOF > $target/systemd/loquat.service
@@ -245,20 +242,20 @@ EOF
 
 # ---------------------------------------------------------
 
-if [ -f $TARGET_DIR/$PACKAGE.md5 ]
+if [ -f ${TARGET_DIR}/${PACKAGE}.md5 ]
 then
     echo "release $PACKAGE already exists."
     exit 1
 fi
 
-if [ -f $TARGET_DIR/$PACKAGE.tar.xz ]
+if [ -f ${TARGET_DIR}/${PACKAGE}.tar.xz ]
 then
-    rm $TARGET_DIR/$PACKAGE.tar.xz
+    rm ${TARGET_DIR}/${PACKAGE}.tar.xz
 fi
 
-if [ -d $TARGET_DIR/$PACKAGE ]
+if [ -d ${TARGET_DIR}/${PACKAGE} ]
 then
-    rm -r $TARGET_DIR/$PACKAGE
+    rm -r ${TARGET_DIR}/${PACKAGE}
 fi
 
 declare -a targets=("x86_64" "aarch64" "riscv64gc")
@@ -275,8 +272,8 @@ bash build.sh
 
 generate_etc
 
-XZ_OPT=-9 tar -cJf $TARGET_DIR/$PACKAGE.tar.xz --remove-files -C $TARGET_DIR/$PACKAGE .
-md5sum $TARGET_DIR/$PACKAGE.tar.xz > $TARGET_DIR/$PACKAGE.md5
+XZ_OPT=-9 tar -cJf ${TARGET_DIR}/${PACKAGE}.tar.xz --remove-files -C ${TARGET_DIR}/${PACKAGE} .
+md5sum ${TARGET_DIR}/${PACKAGE}.tar.xz > ${TARGET_DIR}/${PACKAGE}.md5
 
-echo "done($PACKAGE.tar.xz)."
+echo "done(${PACKAGE}.tar.xz)."
 exit 0
