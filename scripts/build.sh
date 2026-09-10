@@ -152,7 +152,7 @@ Restart=always
 WantedBy=multi-user.target
 EOF
 
-    cat <<EOF > $target/marigold/application-production.yaml
+    cat <<EOF > $target/marigold/production.yaml
 server:
     port: 11003
 spring:
@@ -178,7 +178,7 @@ After=network-online.target
 [Service]
 Type=simple
 DynamicUser=yes
-ExecStart=/opt/amazon-corretto-26.0.2.11.1-linux-aarch64/bin/java -jar marigold-*.jar --spring.config.name=production
+ExecStart=/opt/amazon-corretto-26.0.2.11.1-linux-aarch64/bin/java -jar marigold-2026.9.10.jar --spring.config.name=production
 WorkingDirectory=/var/lib/palm/marigold
 Restart=always
 
