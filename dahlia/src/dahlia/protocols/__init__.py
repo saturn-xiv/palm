@@ -1,5 +1,4 @@
-import base64
-
+import base58
 from google.protobuf.message import Message as ProtobufMessage
 from google.protobuf.empty_pb2 import Empty
 
@@ -99,8 +98,8 @@ def object_by_type(type_: str):
 
 
 def to_str(m: ProtobufMessage):
-    return base64.b85encode(m.SerializeToString()).decode()
+    return base58.b58encode(m.SerializeToString()).decode()
 
 
 def from_str(s, m: ProtobufMessage):
-    m.ParseFromString(base64.b85decode(s.encode()))
+    m.ParseFromString(base58.b58decode(s.encode()))
