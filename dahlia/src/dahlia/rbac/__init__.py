@@ -1,6 +1,6 @@
 from pathlib import Path
 import logging
-import os
+from importlib import resources
 
 import casbin
 import sqlalchemy_adapter
@@ -29,8 +29,9 @@ def open_enforcer(db, rabbitmq):
     watcher.set_update_callback(update_callback_func)
 
     # https://casbin.apache.org/docs/supported-models/
-    model_file = Path(__file__).parent / 'rbac_model.conf'
+    model_file = resources.files("dahlia.assets").joinpath('rbac_model.conf')
     logger.debug('load casbin model from %s', model_file)
-    enforcer = casbin.Enforcer(os.path.abspath(model_file), adapter)
-    enforcer.set_watcher(watcher)
-    return enforcer
+    with resources.as_file(model_file) as model:
+        enforcer = casbin.Enforcer(model.as_posix(), adapter)
+        enforcer.set_watcher(watcher)
+        return enforcer
