@@ -4,7 +4,7 @@
     <refs>
         <ref type="branch">
             <pattern>.+</pattern>
-            <version>v${describe.tag.version}-${commit.short}${dirty}</version>
+            <version>${describe.tag.version}-${commit.short}${dirty}</version>
         </ref>
     </refs>
 </configuration>
