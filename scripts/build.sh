@@ -37,7 +37,7 @@ function build_wisteria_assets() {
         npm install --silent
     fi
 
-    local target=${TARGET_DIR}/${PACKAGE}/${1}
+    local target=${TARGET_DIR}/${PACKAGE}/wisteria
     mkdir -p $target
 
     local -a items=(
@@ -67,6 +67,25 @@ function build_wisteria_assets() {
     cp -r db assets $target/
 }
 
+function build_dahlia() {
+    local target=${TARGET_DIR}/${PACKAGE}/dahlia
+    mkdir -p $target
+
+    cd $WORK_DIR/dahlia/
+    cp -r README.md src pyproject.toml $target/
+}
+
+function build_loquat() {
+    local target=${TARGET_DIR}/${PACKAGE}/bin
+
+    cd $WORK_DIR/loquat/
+    bash build.sh
+
+    cp build/x86_64/loquat $target/x86_64/
+    cp build/aarch64/loquat $target/aarch64/
+    cp build/riscv64/loquat $target/riscv64gc/
+}
+
 function build_marigold() {
     cd $WORK_DIR/marigold/
     mvn --quiet clean
@@ -78,10 +97,7 @@ function build_marigold() {
 }
 
 function generate_etc() {
-    local target=${TARGET_DIR}/${PACKAGE}/etc
-    mkdir -p $target/systemd $target/nginx
-
-    cat <<EOF > $target/systemd/loquat.service
+    cat <<EOF > $target/loquat/rpc.service
 [Unit]
 Description=A cryptographic rpc service(by Google Tink).
 Documentation=https://github.com/saturn-xiv/palm/tree/main/loquat
@@ -100,7 +116,7 @@ Restart=always
 WantedBy=multi-user.target
 EOF
 
-    cat <<EOF > $target/dahlia.toml
+    cat <<EOF > $target/dahlia/config.toml
 [postgresql]
 host = '127.0.0.1'
 port = 5432
@@ -115,7 +131,7 @@ user = 'www'
 password = 'change-me'
 virtual-host = 'dahlia.dev'
 EOF
-    cat <<EOF > $target/systemd/dahlia.service
+    cat <<EOF > $target/dahlia/rpc.service
 [Unit]
 Description=RBAC services.
 Documentation=https://github.com/saturn-xiv/palm/tree/main/dahlia
@@ -134,9 +150,23 @@ Restart=always
 WantedBy=multi-user.target
 EOF
 
-    cat <<EOF > $target/marigold.yaml
+    cat <<EOF > $target/marigold/application-production.yaml
+server:
+    port: 11003
+spring:
+    grpc:
+    server:
+        port: 11004
+    datasource:
+    url: jdbc:postgresql://localhost:5432/marigold_dev
+    username: www
+    password: "change-me"
+    driver-class-name: org.postgresql.Driver
+    hikari:
+        maximum-pool-size: 10
+        minimum-idle: 5
 EOF
-    cat <<EOF > $target/systemd/marigold.service
+    cat <<EOF > $target/marigold/rpc.service
 [Unit]
 Description=WechatPay services.
 Documentation=https://github.com/saturn-xiv/palm/tree/main/marigold
@@ -155,7 +185,7 @@ Restart=always
 WantedBy=multi-user.target
 EOF
 
-    cat <<EOF > $target/wisteria.toml
+    cat <<EOF > $target/wisteria/config.toml
 cookie-key = "openssl rand -base64 128"
 
 [postgresql]
@@ -179,6 +209,12 @@ access-key = ""
 secret-key = ""
 namespace = "wisteria.dev"
 
+[smtp]
+host = "smtp.gmail.com"
+port = 465
+user = "change-me@gmail.com"
+password = "change-me"
+
 [loquat]
 port = 11001
 
@@ -193,7 +229,7 @@ jobs-dir = "/var/lib/lavender/jobs"
 work-dir = "/var/lib/lavender/cache"
 bcc = []
 EOF
-    cat <<EOF > $target/systemd/wisteria.service
+    cat <<EOF > $target/wisteria/http.service
 [Unit]
 Description=An online education solution.
 Documentation=https://github.com/saturn-xiv/palm/tree/main/wisteria
@@ -213,7 +249,7 @@ Environment=RUST_LOG=info
 [Install]
 WantedBy=multi-user.target
 EOF
-    cat <<EOF > $target/nginx/wisteria.conf
+    cat <<EOF > $target/wisteria/nginx.conf
 server {
     listen 80;
     server_name www.change-me.org;
@@ -266,9 +302,8 @@ done
 build_dashboard wisteria
 build_wisteria_assets
 build_marigold
-
-cd $WORK_DIR/loquat/
-bash build.sh
+build_dahlia
+build_loquat
 
 generate_etc
 

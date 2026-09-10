@@ -28,5 +28,4 @@ do
     cmake --build build/$i
 done
 
-echo 'done.'
 exit 0
