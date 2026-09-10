@@ -7,7 +7,7 @@ source .env
 set +o allexport
 
 function graphql_call() {
-    curl -v -X POST -H "Content-Type: application/json" -H "Authorization: Bearer $AUTH_TOKEN" -d $1 $API_HOST
+    curl -v -X POST -H "Content-Type: application/json" -H "Authorization: Bearer $LAVENDER_AUTH_TOKEN" -d $1 $LAVENDER_API_HOST
 }
 
 if [ "$#" -eq 1 && "$1" == "generate-headlam-token" ]; then

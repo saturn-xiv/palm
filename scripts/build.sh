@@ -64,7 +64,7 @@ function build_wisteria_assets() {
         cp -r node_modules/$it $d/
     done
 
-    cp -r README.md db assets $target/
+    cp -r README.md db assets locales $target/
 }
 
 function build_dahlia() {
@@ -190,24 +190,31 @@ EOF
 cookie-key = "openssl rand -base64 128"
 
 [postgresql]
+host = "127.0.0.1"
+port = 5432
 user = "www"
 password = "change-me"
 db-name = "wisteria_dev"
 
 [redis]
+host = "127.0.0.1"
+port = 6379
 
 [rabbitmq]
+host = "127.0.0.1"
+port = 5672
 user = "www"
 password = "change-me"
 virtual-host = "wisteria.dev"
 
 [opensearch]
+host = "http://127.0.0.1:9200"
 namespace = "wisteria.dev"
 
 [minio]
 endpoint = "https://assets.change-me.org"
-access-key = ""
-secret-key = ""
+access-key = "change-me"
+secret-key = "change-me"
 namespace = "wisteria.dev"
 
 [smtp]

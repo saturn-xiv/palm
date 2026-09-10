@@ -70,7 +70,7 @@ pub trait Dao {
     fn all(&mut self, offset: i64, limit: i64) -> Result<Vec<Item>>;
     fn by_id(&mut self, id: i64) -> Result<Item>;
     fn by_uid(&mut self, uid: &str) -> Result<Item>;
-    fn create(&mut self, uid: &str, lang: &Locale, timezone: Tz) -> Result<()>;
+    fn create(&mut self, uid: &str, name: &str, lang: &Locale, timezone: Tz) -> Result<()>;
     fn set_lang(&mut self, id: i64, lang: &Locale) -> Result<()>;
     fn set_timezone(&mut self, id: i64, timezone: Tz) -> Result<()>;
     fn set_name(&mut self, id: i64, name: &str) -> Result<()>;
@@ -106,13 +106,14 @@ impl Dao for Connection {
             .first::<Item>(self)?;
         Ok(it)
     }
-    fn create(&mut self, uid: &str, lang: &Locale, timezone: Tz) -> Result<()> {
+    fn create(&mut self, uid: &str, name: &str, lang: &Locale, timezone: Tz) -> Result<()> {
         let timezone = timezone.to_string();
         let lang = lang.to_string();
         let now = Utc::now().naive_utc();
         insert_into(users::dsl::users)
             .values((
                 users::dsl::uid.eq(uid),
+                users::dsl::name.eq(&name),
                 users::dsl::lang.eq(&lang),
                 users::dsl::timezone.eq(&timezone),
                 users::dsl::updated_at.eq(&now),

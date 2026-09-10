@@ -34,9 +34,11 @@ pub async fn execute<P: AsRef<Path>>(
 
     let email_user = EmailUserDao::by_email(db, email)?;
     log::warn!(
-        "generate a token({} weeks) for user {}",
+        "generate a token({} weeks, audiences: '{}') for user {}<{}>",
         weeks,
-        email_user.name
+        audiences.join(","),
+        email_user.name,
+        email_user.email
     );
 
     let token = CurrentUser::token(

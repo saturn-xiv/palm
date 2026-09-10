@@ -55,7 +55,7 @@ enum Commands {
         audiences: Vec<String>,
         #[arg(short, long, required = true, help = "Email")]
         email: String,
-        #[arg(short, long, required = true, help = "Weeks")]
+        #[arg(short, long, required = true, help = "Weeks", default_value_t = 1)]
         weeks: u32,
     },
     #[command(about = "Add role for user")]

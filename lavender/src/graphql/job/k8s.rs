@@ -7,7 +7,6 @@ use portal::{
 use super::super::ROLE as OPERATOR;
 
 // kubectl create token headlamp-admin --duration 8h -n kube-system
-
 pub async fn generate_headlamp_token<R: Rbac, J: Jwt>(
     ss: &Session,
     db: &mut Db,

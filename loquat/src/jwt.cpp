@@ -33,7 +33,7 @@ std::optional<std::string> loquat::Jwt::sign(
   }
   if (payload) {
     raw_rb =
-        raw_rb.AddJsonObjectClaim(loquat::Jwt::PAYLOAD_KEY, payload.value());
+        raw_rb.AddStringClaim(loquat::Jwt::PAYLOAD_KEY, payload.value());
   }
 
   auto raw_r = raw_rb.Build();
@@ -116,8 +116,8 @@ loquat::Jwt::verify(const std::string& token, const std::string& issuer,
   }
 
   std::optional<std::string> payload_ = std::nullopt;
-  if (payload.HasJsonObjectClaim(loquat::Jwt::PAYLOAD_KEY)) {
-    auto ir = payload.GetJsonObjectClaim(loquat::Jwt::PAYLOAD_KEY);
+  if (payload.HasStringClaim(loquat::Jwt::PAYLOAD_KEY)) {
+    auto ir = payload.GetStringClaim(loquat::Jwt::PAYLOAD_KEY);
     {
       const auto status = ir.status();
       if (!status.ok()) {

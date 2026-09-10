@@ -103,7 +103,13 @@ impl SignUp {
 
         let it = {
             let uid = Uuid::new_v4().to_string();
-            UserDao::create(db, &uid, &self.lang.parse()?, self.timezone.parse()?)?;
+            UserDao::create(
+                db,
+                &uid,
+                &self.name,
+                &self.lang.parse()?,
+                self.timezone.parse()?,
+            )?;
             let user = UserDao::by_uid(db, &uid)?;
             EmailUserDao::create(db, user.id, &self.name, &self.email, password)?;
             EmailUserDao::by_email(db, &self.email)?
