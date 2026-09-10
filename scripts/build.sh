@@ -64,7 +64,7 @@ function build_wisteria_assets() {
         cp -r node_modules/$it $d/
     done
 
-    cp -r db assets $target/
+    cp -r README.md db assets $target/
 }
 
 function build_dahlia() {
@@ -76,14 +76,16 @@ function build_dahlia() {
 }
 
 function build_loquat() {
-    local target=${TARGET_DIR}/${PACKAGE}/bin
+    local target=${TARGET_DIR}/${PACKAGE}
+    mkdir -p $target/loquat
 
     cd $WORK_DIR/loquat/
     bash build.sh
 
-    cp build/x86_64/loquat $target/x86_64/
-    cp build/aarch64/loquat $target/aarch64/
-    cp build/riscv64/loquat $target/riscv64gc/
+    cp build/x86_64/loquat $target/bin/x86_64/
+    cp build/aarch64/loquat $target/bin/aarch64/
+    cp build/riscv64/loquat $target/bin/riscv64gc/
+    cp README.md $target/loquat/
 }
 
 function build_marigold() {
@@ -97,6 +99,8 @@ function build_marigold() {
 }
 
 function generate_etc() {
+    local target=${TARGET_DIR}/${PACKAGE}
+
     cat <<EOF > $target/loquat/rpc.service
 [Unit]
 Description=A cryptographic rpc service(by Google Tink).
@@ -106,10 +110,9 @@ After=network-online.target
 
 [Service]
 Type=simple
-User=nobody
-Group=nogroup
-ExecStart=/usr/local/bin/loquat rpc -p 10011
-WorkingDirectory=/var/lib/loquat
+DynamicUser=yes
+ExecStart=/usr/local/bin/loquat rpc -p 11011
+WorkingDirectory=/var/lib/palm/loquat
 Restart=always
 
 [Install]
@@ -140,10 +143,9 @@ After=network-online.target
 
 [Service]
 Type=simple
-User=nobody
-Group=nogroup
-ExecStart=source /opt/python3/bin/activate && dahlia -p 11002
-WorkingDirectory=/var/lib/dahlia
+DynamicUser=yes
+ExecStart=/bin/bash -c "source /opt/python3/bin/activate && dahlia -p 11002"
+WorkingDirectory=/var/lib/palm/dahlia
 Restart=always
 
 [Install]
@@ -175,10 +177,9 @@ After=network-online.target
 
 [Service]
 Type=simple
-User=nobody
-Group=nogroup
-ExecStart=/opt/jdk/bin/java -jar marigold-2026.7.28.jar --spring.config.name=production
-WorkingDirectory=/var/lib/marigold
+DynamicUser=yes
+ExecStart=/opt/amazon-corretto-26.0.2.11.1-linux-aarch64/bin/java -jar marigold-2026.7.28.jar --spring.config.name=production
+WorkingDirectory=/var/lib/palm/marigold
 Restart=always
 
 [Install]
@@ -225,8 +226,8 @@ port = 11002
 port = 11003
 
 [lavender]
-jobs-dir = "/var/lib/lavender/jobs"
-work-dir = "/var/lib/lavender/cache"
+jobs-dir = "/var/lib/palm/lavender/jobs"
+work-dir = "/var/lib/palm/lavender/cache"
 bcc = []
 EOF
     cat <<EOF > $target/wisteria/http.service
@@ -240,7 +241,7 @@ After=network-online.target
 Type=simple
 User=ubuntu
 Group=ubuntu
-ExecStart=/usr/local/bin/wisteria http -p 8080
+ExecStart=/usr/local/bin/wisteria http -p 11005
 WorkingDirectory=/var/lib/wisteria
 Restart=always
 
@@ -256,7 +257,7 @@ server {
     charset utf-8;
 
     location / {
-        proxy_pass http://localhost:8080;
+        proxy_pass http://localhost:11005;
 
         proxy_set_header Host \$host;
         proxy_set_header X-Real-IP \$remote_addr;
@@ -267,7 +268,7 @@ server {
     }
 
     location /my/ {
-        alias /var/lib/wisteria/dashboard/;
+        alias /var/lib/palm/wisteria/dashboard/;
         index index.html;
         try_files \$uri \$uri/ /my/index.html;
     }

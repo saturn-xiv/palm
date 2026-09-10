@@ -6,6 +6,7 @@ import signal
 import threading
 from concurrent import futures
 from time import sleep
+from importlib.metadata import version
 
 import grpc
 from grpc_reflection.v1alpha import reflection
@@ -29,7 +30,7 @@ def main():
     parser.add_argument('-d', '--debug',
                         action='store_true', help='run on debug mode')
     parser.add_argument('-v', '--verbose',
-                        action='version', version='2026.5.7')
+                        action='version', version=version(__package__))
     args = parser.parse_args()
     logging.basicConfig(
         format='%(asctime)s %(levelname).1s %(message)s', level=logging.DEBUG if args.debug else logging.INFO)

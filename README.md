@@ -26,6 +26,7 @@ git submodule update --init --recursive
 - [Modified Preorder Tree Traversal](https://gist.github.com/tmilos/f2f999b5839e2d42d751)
 - [Media Types](https://www.iana.org/assignments/media-types/media-types.xhtml)
 - [Protobuf Version Support](https://protobuf.dev/support/version-support/)
+- [Amazon Corretto Downloads](https://downloads.corretto.aws/#/overview)
 
 ### UI
 
