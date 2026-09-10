@@ -178,7 +178,7 @@ After=network-online.target
 [Service]
 Type=simple
 DynamicUser=yes
-ExecStart=/opt/amazon-corretto-26.0.2.11.1-linux-aarch64/bin/java -jar marigold-2026.7.28.jar --spring.config.name=production
+ExecStart=/opt/amazon-corretto-26.0.2.11.1-linux-aarch64/bin/java -jar marigold-v*.jar --spring.config.name=production
 WorkingDirectory=/var/lib/palm/marigold
 Restart=always
 
