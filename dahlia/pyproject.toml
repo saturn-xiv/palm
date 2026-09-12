@@ -43,6 +43,7 @@ source = "vcs"
 
 [tool.hatch.version.raw-options]
 root = ".."
+version_scheme = "no-guess-dev"
 
 [tool.pyright]
 include = ["src"]
