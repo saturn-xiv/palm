@@ -1,5 +1,7 @@
 use std::any::type_name;
-use std::{path::Path, sync::Arc, time::Duration};
+use std::path::Path;
+use std::sync::Arc;
+use std::time::{Duration, Instant};
 
 use lavender::{Config as Lavender, graphql::job::Task, models::job::Item as Job};
 use portal::{
@@ -71,18 +73,19 @@ struct Consumer {
 impl QueueConsumer for Consumer {
     type Error = Error;
     async fn consume(&self, _id: &str, _content_type: &str, payload: &[u8]) -> Result<()> {
+        let start = Instant::now();
         let task: Task = flexbuffers::from_slice(payload)?;
         let job = Job::new(&self.config.jobs_dir, &task.id)?;
         let result = job.execute(&self.config.working_dir, task.args);
         let succeed = result.is_ok();
         let body = result.unwrap_or_else(|e| e.to_string());
+        let duration = start.elapsed();
         job.report(
             &self.queue,
             &self.from,
             &task.email,
             self.config.bcc.clone(),
-            &body,
-            succeed,
+            (&body, succeed, duration),
         )
         .await?;
 

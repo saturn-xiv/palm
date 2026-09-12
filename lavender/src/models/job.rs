@@ -3,6 +3,7 @@ use std::collections::BTreeMap;
 use std::fs::read_dir;
 use std::fs::read_to_string;
 use std::path::Path;
+use std::time::Duration;
 
 use flatbuffers::FlatBufferBuilder;
 use hyacinth::email_v1::{
@@ -52,17 +53,17 @@ impl Item {
         from: &str,
         to: &str,
         bcc: Vec<A>,
-        body: &str,
-        succeed: bool,
+        (body, succeed, duration): (&str, bool, Duration),
     ) -> Result<()> {
         log::debug!("report to {to}: {body}");
         let mut builder = FlatBufferBuilder::new();
         {
             let subject = builder.create_string(&format!(
-                "{}({}) {}",
+                "Execute {}({}) {} in {} µs",
                 self.name,
                 self.version,
-                if succeed { "succeed" } else { "failed" }
+                if succeed { "succeed" } else { "failed" },
+                duration.as_micros()
             ));
             let body_content = builder.create_string(body);
             let to_email = builder.create_string(to);
