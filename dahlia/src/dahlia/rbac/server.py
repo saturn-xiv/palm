@@ -35,7 +35,7 @@ class Server(rbac_pb2_grpc.EnforcerServicer):
     def GetAllRoles(self, request, context):
         res = rbac_pb2.RolesResponse()
         for it in self.enforcer.get_all_roles():
-            rol = role_from_str(it, rol)
+            rol = role_from_str(it)
             res.items.extend([rol])
         return res
 
@@ -74,7 +74,7 @@ class Server(rbac_pb2_grpc.EnforcerServicer):
     def HasRoleForUser(self, request, context):
         usr = to_str(rbac_pb2.Subject(user=request.user))
         rol = to_str(rbac_pb2.Subject(role=request.role))
-        if rol in self.enforcer.get_implicit_roles_for_user(to_str(usr)):
+        if rol in self.enforcer.get_implicit_roles_for_user(usr):
             return rbac_pb2.Empty()
         context.abort(StatusCode.NOT_FOUND, "didn't have role")
 

@@ -154,6 +154,7 @@ impl Client {
     ) -> Result<()> {
         let channel = self.connection.create_channel().await?;
         let id = Uuid::new_v4().to_string();
+        log::info!("publish message ({id}, {content_type}) to ({exchange}, {routing_key})");
         channel
             .basic_publish(
                 exchange.into(),

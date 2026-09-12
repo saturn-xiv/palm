@@ -1,5 +1,4 @@
 pub mod git;
-pub mod k8s;
 
 use std::any::type_name;
 
@@ -19,7 +18,7 @@ use serde::{Deserialize, Serialize};
 use super::super::{Config, models::job::Item as Job};
 use super::ROLE as OPERATOR;
 
-pub async fn launch<R: Rbac, J: Jwt, A: Into<String>>(
+pub async fn launch<R: Rbac, J: Jwt, A: Into<String> + Clone>(
     ss: &Session,
     (db, cache, queue): (&mut Db, &mut Cache, &RabbitMq),
     (rbac, jwt): (&R, &J),
@@ -28,15 +27,14 @@ pub async fn launch<R: Rbac, J: Jwt, A: Into<String>>(
 ) -> Result<()> {
     let current_user = ss.current_user(db, cache, jwt).await?;
     rbac.has_role(current_user.id(), OPERATOR).await?;
+
     if current_user.type_ != UserType::Email {
         return Err(Box::new(HttpError(StatusCode::FORBIDDEN, None)));
     }
 
     {
         let job = Job::new(&config.jobs_dir, id)?;
-        if args.len() != job.args.len() {
-            return Err(Box::new(HttpError(StatusCode::BAD_REQUEST, None)));
-        }
+        job.validate(args.clone())?;
     }
 
     let task = Task {

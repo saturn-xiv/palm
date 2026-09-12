@@ -1,6 +1,8 @@
 use std::any::type_name;
+use std::collections::BTreeMap;
+use std::fs::read_dir;
+use std::fs::read_to_string;
 use std::path::Path;
-use std::{collections::BTreeMap, fs::read_dir};
 
 use flatbuffers::FlatBufferBuilder;
 use hyacinth::email_v1::{
@@ -11,7 +13,6 @@ use hyper::StatusCode;
 use portal::{
     HttpError, Result,
     content_types::APPLICATION_X_FLATBUFFERS,
-    parse_toml,
     queue::rabbitmq::{BasicPublishOptions, Client as RabbitMq},
     shell,
 };
@@ -23,20 +24,25 @@ pub struct Item {
     pub version: String,
     pub command: String,
     pub description: String,
-    pub args: Vec<Arg>,
+    pub args: BTreeMap<String, Arg>,
 }
 
 impl Item {
     const CONFIG_FILE: &str = "config.toml";
 
-    pub fn execute<P: AsRef<Path>, A: Into<String>>(
+    pub fn validate<A: Into<String>>(&self, args: Vec<A>) -> Result<()> {
+        if args.len() != self.args.len() {
+            return Err(Box::new(HttpError(StatusCode::BAD_REQUEST, None)));
+        }
+        Ok(())
+    }
+
+    pub fn execute<P: AsRef<Path>, A: Into<String> + Clone>(
         &self,
         working_dir: P,
         args: Vec<A>,
     ) -> Result<String> {
-        if args.len() != self.args.len() {
-            return Err(Box::new(HttpError(StatusCode::BAD_REQUEST, None)));
-        }
+        self.validate(args.clone())?;
         shell(working_dir, &self.command, args)
     }
 
@@ -116,10 +122,11 @@ impl Item {
     }
 
     pub fn new<P: AsRef<Path>>(root: P, id: &str) -> Result<Self> {
-        parse_toml({
+        let it = toml::from_str(&read_to_string({
             let it = root.as_ref();
             it.join(id).join(Self::CONFIG_FILE)
-        })
+        })?)?;
+        Ok(it)
     }
     pub fn load<P: AsRef<Path>>(root: P) -> Result<BTreeMap<String, Self>> {
         let mut items = BTreeMap::new();
@@ -130,7 +137,8 @@ impl Item {
                 && let Some(id) = path.file_name()
                 && let Some(id) = id.to_str()
             {
-                items.insert(id.to_string(), parse_toml(path.join(Self::CONFIG_FILE))?);
+                let it = toml::from_str(&read_to_string(path.join(Self::CONFIG_FILE))?)?;
+                items.insert(id.to_string(), it);
             }
         }
         Ok(items)
@@ -139,17 +147,15 @@ impl Item {
 
 #[derive(Debug, Serialize, Deserialize, Clone)]
 pub enum Arg {
-    Text {
-        id: String,
-        label: String,
-    },
+    #[serde(rename = "text")]
+    Text { label: String },
+    #[serde(rename = "select")]
     Select {
-        id: String,
         label: String,
-        options: Vec<String>,
+        options: BTreeMap<String, String>,
     },
+    #[serde(rename = "git")]
     Git {
-        id: String,
         label: String,
         url: String,
         branch: String,

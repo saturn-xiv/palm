@@ -185,23 +185,4 @@ impl Query {
         .await?;
         Ok(reply)
     }
-
-    async fn lavender_k8s_generate_headlamp_token(
-        hours: i32,
-        ctx: &Context,
-    ) -> FieldResult<String> {
-        let mut db = ctx.state.db.get()?;
-        let db = db.deref_mut();
-        let mut cache = ctx.state.cache.get()?;
-        let reply = lavender_graphql::job::k8s::generate_headlamp_token(
-            &ctx.session,
-            db,
-            &mut cache,
-            &ctx.state.dahlia,
-            &ctx.state.loquat,
-            hours as u16,
-        )
-        .await?;
-        Ok(reply)
-    }
 }

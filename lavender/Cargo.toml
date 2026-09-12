@@ -8,6 +8,7 @@ description = "Aggregating your logs, tracking the health, uptime, and performan
 log = "0.4"
 git2 = "0.21"
 hyper = "1"
+toml = "1"
 flatbuffers = "25"
 
 [dependencies.chrono]

@@ -7,18 +7,32 @@ source .env
 set +o allexport
 
 function graphql_call() {
-    curl -v -X POST -H "Content-Type: application/json" -H "Authorization: Bearer $LAVENDER_AUTH_TOKEN" -d $1 $LAVENDER_API_HOST
+    curl -4 -X POST "$LAVENDER_HOST/graphql" -H "Content-Type: application/json; charset=utf-8" -H "Authorization: Bearer $LAVENDER_AUTH_TOKEN" -d "$1"
 }
 
-if [ "$#" -eq 1 && "$1" == "generate-headlam-token" ]; then
-    graphql_call '{
-    "query": "query call($hours: Int!) { lavender_k8s_generate_headlamp_token(hours: $hours){} }",
-    "variables": {"hours": 8}
+if [[ "$#" -eq 1 && "$1" == "headlamp-token" ]]; then
+    graphql_call '
+{
+    "query": "mutation call($id: String!, $args: [String!]!){ lavenderLaunchJob(id: $id, args: $args){createdAt} }",
+    "variables": {"id": "'generate-headlamp-token'", "args": ["8"]}
 }'
-if [ "$#" -eq 3 && "$1" == "run-job" ]; then
-    graphql_call '{
-    "query": "mutation call($id: String!, $args: [String!]!){ lavender_launch_job(id: $id, args: $args){createdAt} }",
-    "variables": {"id": "'$2'", "args": ["'$3'"]}
+elif [[ "$#" -eq 3 && "$1" == "run-deployment" ]]; then
+    graphql_call '
+{
+    "query": "mutation call($id: String!, $args: [String!]!){ lavenderLaunchJob(id: $id, args: $args){createdAt} }",
+    "variables": {"id": "'deployment'", "args": ["'$2'", "'$3'"]}
+}'
+elif [[ "$#" -eq 2 && "$1" == "echo" ]]; then
+    graphql_call '
+{
+    "query": "mutation call($id: String!, $args: [String!]!){ lavenderLaunchJob(id: $id, args: $args){createdAt} }",
+    "variables": {"id": "'echo'", "args": ["'$2'"]}
+}'
+elif [[ "$#" -eq 1 && "$1" == "version" ]]; then
+    graphql_call '
+{
+    "query": "query call{ apiVersion }",
+    "variables": {}
 }'
 else
     echo "Unsupported $@"
