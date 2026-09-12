@@ -117,7 +117,7 @@ pub struct SelectOption {
 
 #[derive(Debug, Serialize, Deserialize, Clone)]
 pub struct Task {
-    pub email: String,
     pub id: String,
+    pub email: String,
     pub args: Vec<String>,
 }

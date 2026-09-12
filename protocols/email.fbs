@@ -1,7 +1,7 @@
 namespace palm.email.v1;
 
 table Address {
-    name: string (required);
+    name: string;
     email: string (required);
 }
 

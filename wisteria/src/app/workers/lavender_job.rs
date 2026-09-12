@@ -3,7 +3,9 @@ use std::{path::Path, sync::Arc, time::Duration};
 
 use lavender::{Config as Lavender, graphql::job::Task, models::job::Item as Job};
 use portal::{
-    Error, Result, is_stopped, parse_toml,
+    Error, Result, is_stopped,
+    mailer::Smtp,
+    parse_toml,
     queue::{
         Consumer as QueueConsumer,
         rabbitmq::{Client as QueueClient, Node as RabbitMq, QueueDeclareOptions},
@@ -41,6 +43,7 @@ pub async fn start<P: AsRef<Path>>(config: P, interval: Duration) -> Result<()> 
                 &Consumer {
                     queue: config.rabbitmq.open().await?,
                     config: lavender.clone(),
+                    from: config.smtp.user.clone(),
                 },
                 interval,
             )
@@ -54,6 +57,7 @@ pub async fn start<P: AsRef<Path>>(config: P, interval: Duration) -> Result<()> 
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 struct Config {
+    smtp: Smtp,
     lavender: Lavender,
     rabbitmq: RabbitMq,
 }
@@ -61,6 +65,7 @@ struct Config {
 struct Consumer {
     config: Arc<Lavender>,
     queue: QueueClient,
+    from: String,
 }
 
 impl QueueConsumer for Consumer {
@@ -73,6 +78,7 @@ impl QueueConsumer for Consumer {
         let body = result.unwrap_or_else(|e| e.to_string());
         job.report(
             &self.queue,
+            &self.from,
             &task.email,
             self.config.bcc.clone(),
             &body,

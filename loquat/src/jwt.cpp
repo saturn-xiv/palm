@@ -32,8 +32,7 @@ std::optional<std::string> loquat::Jwt::sign(
     raw_rb = raw_rb.AddAudience(it);
   }
   if (payload) {
-    raw_rb =
-        raw_rb.AddStringClaim(loquat::Jwt::PAYLOAD_KEY, payload.value());
+    raw_rb = raw_rb.AddStringClaim(loquat::Jwt::PAYLOAD_KEY, payload.value());
   }
 
   auto raw_r = raw_rb.Build();

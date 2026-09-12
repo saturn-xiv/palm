@@ -234,7 +234,7 @@ port = 11003
 
 [lavender]
 jobs-dir = "/var/lib/palm/lavender/jobs"
-work-dir = "/var/lib/palm/lavender/cache"
+working-dir = "/var/lib/palm/lavender/cache"
 bcc = []
 EOF
     cat <<EOF > $target/wisteria/http.service

@@ -88,7 +88,7 @@ impl<'a> TryFrom<Address<'a>> for Mailbox {
 
     fn try_from(it: Address<'a>) -> StdResult<Self, Self::Error> {
         Ok(Self {
-            name: Some(it.name().to_string()),
+            name: it.name().map(|x| x.to_string()),
             email: it.email().parse()?,
         })
     }

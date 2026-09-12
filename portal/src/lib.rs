@@ -228,6 +228,8 @@ pub fn shell<P: AsRef<Path>, A: Into<String>>(
     //     .arg("-lc")
     //     .arg(format!("{} {}", command, args.join(" ")))
     //     .output()?;
+    let working_dir = working_dir.as_ref();
+    log::info!("execute {} in {}", command, working_dir.display());
     let mut command = Command::new(command);
     command.current_dir(working_dir);
     for it in args.into_iter() {

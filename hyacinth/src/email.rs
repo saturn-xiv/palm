@@ -62,14 +62,13 @@ pub mod palm {
                 }
 
                 #[inline]
-                pub fn name(&self) -> &'a str {
+                pub fn name(&self) -> Option<&'a str> {
                     // Safety:
                     // Created from valid Table for this object
                     // which contains a valid value in this slot
                     unsafe {
                         self._tab
                             .get::<::flatbuffers::ForwardsUOffset<&str>>(Address::VT_NAME, None)
-                            .unwrap()
                     }
                 }
                 #[inline]
@@ -95,7 +94,7 @@ pub mod palm {
                         .visit_field::<::flatbuffers::ForwardsUOffset<&str>>(
                             "name",
                             Self::VT_NAME,
-                            true,
+                            false,
                         )?
                         .visit_field::<::flatbuffers::ForwardsUOffset<&str>>(
                             "email",
@@ -114,7 +113,7 @@ pub mod palm {
                 #[inline]
                 fn default() -> Self {
                     AddressArgs {
-                        name: None,  // required field
+                        name: None,
                         email: None, // required field
                     }
                 }
@@ -148,7 +147,6 @@ pub mod palm {
                 #[inline]
                 pub fn finish(self) -> ::flatbuffers::WIPOffset<Address<'a>> {
                     let o = self.fbb_.end_table(self.start_);
-                    self.fbb_.required(o, Address::VT_NAME, "name");
                     self.fbb_.required(o, Address::VT_EMAIL, "email");
                     ::flatbuffers::WIPOffset::new(o.value())
                 }

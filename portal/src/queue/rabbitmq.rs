@@ -154,7 +154,7 @@ impl Client {
     ) -> Result<()> {
         let channel = self.connection.create_channel().await?;
         let id = Uuid::new_v4().to_string();
-        log::info!("publish message ({id}, {content_type}) to ({exchange}, {routing_key})");
+        log::info!("publish message ({id},{content_type}) to ({exchange},{routing_key})");
         channel
             .basic_publish(
                 exchange.into(),
@@ -177,7 +177,7 @@ impl Client {
         handler: &T,
         interval: Duration,
     ) -> Result<()> {
-        log::info!("start consumer {}", name);
+        log::info!("start consumer {name} for queue {queue}");
         let channel = self.connection.create_channel().await?;
 
         let mut consumer = channel
@@ -204,11 +204,11 @@ impl Client {
                 )
             })?;
             log::info!(
-                "received message({},{}): {} {}",
+                "received message({},{}) from ({},{})",
+                id,
+                content_type,
                 delivery.exchange,
                 delivery.routing_key,
-                id,
-                content_type
             );
             handler
                 .consume(id.as_str(), content_type.as_str(), &delivery.data)

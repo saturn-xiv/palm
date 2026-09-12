@@ -49,11 +49,13 @@ impl Item {
     pub async fn report<A: Into<String>>(
         &self,
         queue: &RabbitMq,
+        from: &str,
         to: &str,
         bcc: Vec<A>,
         body: &str,
         succeed: bool,
     ) -> Result<()> {
+        log::debug!("report to {to}: {body}");
         let mut builder = FlatBufferBuilder::new();
         {
             let subject = builder.create_string(&format!(
@@ -64,6 +66,7 @@ impl Item {
             ));
             let body_content = builder.create_string(body);
             let to_email = builder.create_string(to);
+            let from_email = builder.create_string(from);
             let mut bcc_offsets = Vec::new();
             for it in bcc.into_iter() {
                 let email: String = it.into();
@@ -94,10 +97,17 @@ impl Item {
                     email: Some(to_email),
                 },
             );
-
+            let from = EmailAddress::create(
+                &mut builder,
+                &EmailAddressArgs {
+                    name: None,
+                    email: Some(from_email),
+                },
+            );
             let task = EmailTask::create(
                 &mut builder,
                 &EmailTaskArgs {
+                    from: Some(from),
                     to: Some(to),
                     subject: Some(subject),
                     body: Some(body),
