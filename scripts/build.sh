@@ -68,11 +68,25 @@ function build_wisteria_assets() {
 }
 
 function build_dahlia() {
-    local target=${TARGET_DIR}/${PACKAGE}/dahlia
-    mkdir -p $target
+    local python_home=$WORK_DIR/tmp/python3
+    if [ ! -d $python_home ]
+    then
+        python3 -m venv $python_home
+    fi
+    source $python_home/bin/activate
+    pip install build
 
     cd $WORK_DIR/dahlia/
-    cp -r README.md src pyproject.toml $target/
+    if [ -d dist ]
+    then
+        rm -r dist
+    fi
+    python3 -m build
+    deactivate
+
+    local target=${TARGET_DIR}/${PACKAGE}/dahlia
+    mkdir -p $target
+    cp README.md dist/dahlia-*-py3-none-any.whl $target/
 }
 
 function build_loquat() {

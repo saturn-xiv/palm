@@ -25,14 +25,14 @@ $ sudo apt install python3-full python3-dev build-essential
 $ python3 -m venv $PWD/tmp/python
 
 # Load virtual env vars
-$ source $PWD/tmp/python/bin/activate
+$ source3 $PWD/tmp/python/bin/activate
 
 # Install dependencies for develpoment
-> python -m pip install -e .
+> python3 -m pip install -e .
 
 # Install for production
-> python -m pip install .
-
+> python3 -m build
+> pip install dist/dahlia-0.1.0.post1.dev13+g46de0b167-py3-none-any.whl
 > dahlia -h
 ```
 
@@ -40,13 +40,13 @@ $ source $PWD/tmp/python/bin/activate
 
 ```bash
 # start rpc server
-PYTHON_GIL=0 python -m dahlia -d -p 11001
+PYTHON_GIL=0 python3 -m dahlia -d -p 11001
 
 # test by grpcurl
 grpcurl -plaintext 127.0.0.1:8080 list
 
 # run unittests
-PYTHON_GIL=0 python -m unittest tests.py
+PYTHON_GIL=0 python3 -m unittest tests.py
 ```
 
 ## Documents
