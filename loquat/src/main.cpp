@@ -14,6 +14,8 @@ int main(int argc, char** argv) {
   loquat::Application app;
   try {
     return app.launch(argc, argv);
+  } catch (const std::exception& e) {
+    BOOST_LOG_TRIVIAL(error) << e.what();
   } catch (...) {
     spdlog::error(boost::current_exception_diagnostic_information());
   }
