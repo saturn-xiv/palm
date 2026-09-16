@@ -14,6 +14,7 @@ RUN apt install -y pwgen git locales locales-all vim tzdata zip unzip tree tmux 
 RUN apt install -y cmake pkg-config libtool automake autoconf autoconf-archive cpio mold bison flex meson ninja-build debhelper \
     build-essential crossbuild-essential-amd64 crossbuild-essential-arm64 crossbuild-essential-armhf crossbuild-essential-riscv64 \
     g++ g++-x86-64-linux-gnu g++-aarch64-linux-gnu g++-riscv64-linux-gnu \
+    mingw-w64 \
     && apt clean -y
 RUN apt install -y dialog asciidoc doxygen imagemagick ffmpeg graphviz pandoc texlive-full \
     && apt clean -y
