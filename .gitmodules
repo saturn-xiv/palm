@@ -3,7 +3,7 @@
 	url = https://github.com/microsoft/vcpkg.git
 [submodule "vendors/tipitaka-xml"]
 	path = vendors/tipitaka-xml
-	url = https://github.com/VipassanaTech/tipitaka-xml
+	url = https://github.com/VipassanaTech/tipitaka-xml.git
 [submodule "vendors/cbeta-xml-p5"]
 	path = vendors/cbeta-xml-p5
-	url = https://github.com/cbeta-org/xml-p5
+	url = https://github.com/cbeta-org/xml-p5.git
