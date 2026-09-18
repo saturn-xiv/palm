@@ -2,10 +2,8 @@
 
 export CODE="palm-spring"
 export NAME="spring"
-export WORK_DIR="$PWD/mnt"
 
-
-if [ ! -f $WORK_DIR/authorized_keys ]
+if [ ! -f $PWD/authorized_keys ]
 then
     echo "Couldn't found authorized_keys file"
     exit 1
@@ -21,4 +19,4 @@ if [ -n "$(docker ps -a -q -f name="^${NAME}$")" ] ; then
     exit 0
 fi
 
-docker run -d --name $NAME --hostname=palm --network host -v $WORK_DIR:/mnt:z $CODE /mnt/start.sh
+docker run -d --name $NAME --hostname=palm --network host -v $PWD:/mnt:z $CODE
