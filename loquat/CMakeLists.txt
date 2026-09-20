@@ -26,11 +26,13 @@ find_package(OpenSSL REQUIRED)
 find_package(gRPC CONFIG REQUIRED)
 find_package(unofficial-sodium CONFIG REQUIRED)
 find_package(spdlog CONFIG REQUIRED)
-find_package(boost_exception CONFIG REQUIRED)
+find_package(Boost CONFIG REQUIRED COMPONENTS exception)
 # --------------------------------------------------------
 # https://github.com/tink-crypto/tink-cc
 FetchContent_Declare(tink
   GIT_REPOSITORY  "https://github.com/tink-crypto/tink-cc.git"
+  # https://github.com/tink-crypto/tink-cc/blob/main/cmake/TinkWorkspace.cmake#L107C75-L107C94
+  # abseil-cpp-20260526
   GIT_TAG         "v2.8.0"
 )
 
@@ -48,7 +50,7 @@ target_link_libraries(loquat gourd
   Boost::exception
   argparse::argparse
   pantor::inja nlohmann_json::nlohmann_json
-  spdlog::spdlog_header_only 
+  spdlog::spdlog_header_only
   OpenSSL::SSL OpenSSL::Crypto unofficial-sodium::sodium
   tink::static tink::jwt::jwt_key_templates tink::jwt::jwt_mac tink::jwt::jwt_mac_config
 )
