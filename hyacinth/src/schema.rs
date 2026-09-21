@@ -97,6 +97,22 @@ diesel::table! {
 }
 
 diesel::table! {
+    lavender_tasks (id) {
+        id -> Int8,
+        #[max_length = 36]
+        uid -> Varchar,
+        #[max_length = 63]
+        email -> Varchar,
+        job -> Jsonb,
+        args -> Jsonb,
+        output -> Nullable<Jsonb>,
+        version -> Int4,
+        updated_at -> Timestamp,
+        created_at -> Timestamp,
+    }
+}
+
+diesel::table! {
     locales (id) {
         id -> Int8,
         #[max_length = 7]
@@ -311,6 +327,7 @@ diesel::allow_tables_to_appear_in_same_query!(
     currencies,
     email_users,
     google_users,
+    lavender_tasks,
     locales,
     logs,
     schema_migrations,

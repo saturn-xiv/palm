@@ -1,4 +1,5 @@
-use std::{ops::DerefMut, path::Path};
+use std::ops::DerefMut;
+use std::path::Path;
 
 use diesel::Connection as DieselConnection;
 use portal::{

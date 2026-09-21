@@ -186,7 +186,7 @@ impl Mutation {
     }
 
     async fn lavender_launch_job(
-        id: String,
+        name: String,
         args: Vec<String>,
         ctx: &Context,
     ) -> FieldResult<Succeeded> {
@@ -198,7 +198,7 @@ impl Mutation {
             (db, &mut cache, &ctx.state.queue),
             (&ctx.state.dahlia, &ctx.state.loquat),
             &ctx.state.lavender,
-            (&id, args),
+            (&name, args),
         )
         .await?;
         Ok(Succeeded::default())

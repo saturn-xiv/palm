@@ -18,11 +18,11 @@ function generate_belladonna() {
             -i https://raw.githubusercontent.com/twilio/twilio-oai/main/spec/json/twilio_api_v2010.json \
             -o $target \
             --additional-properties=useSingleRequestParameter=true,packageName=belladonna,packageVersion=$(date +"%Y.%-m.%-d")
-        
+
         find $target/src -type f -exec sed -i 's/models::models::/models::/g' {} +
         find $target/src -type f -exec sed -i '/\/\/\/$/d' {} +
         sed -i 's/models::serde_json::/serde_json::/g' $target/src/apis/api20100401_payment_api.rs
-        
+
         cd $WORK_DIR/
         git apply patches/twilio.patch
         cargo clippy --fix --lib --allow-dirty --allow-staged -p belladonna
@@ -49,7 +49,7 @@ function generate_grpc() {
         -I $PROTOBUF_HOME/include/ -I $WORK_DIR/marigold/src/main/proto \
         --rust_out=$HYACINTH_OUTPUT_DIR/wechat_pay --rust-grpc_out=$HYACINTH_OUTPUT_DIR/wechat_pay \
         $WORK_DIR/marigold/src/main/proto/wechatpay.proto
-    
+
     $PROTOBUF_HOME/bin/protoc --rust_opt=experimental-codegen=enabled,kernel=upb --rust-grpc_opt=client_only=true \
         --plugin=protoc-gen-rust-grpc=$PROTOBUF_HOME/bin/protoc-gen-rust-grpc \
         -I $PROTOBUF_HOME/include/ -I $WORK_DIR/dahlia/proto/ \
@@ -61,11 +61,11 @@ function generate_grpc() {
         -I $PROTOBUF_HOME/include/ -I $WORK_DIR/loquat/proto/ \
         --rust_out=$HYACINTH_OUTPUT_DIR/loquat --rust-grpc_out=$HYACINTH_OUTPUT_DIR/loquat \
         $WORK_DIR/loquat/proto/loquat.proto
-    
+
     # pip install 'grpcio-tools~=1.82'
     cd $WORK_DIR/dahlia/src/
-    
-    rm dahlia/protocols/*_pb2*
+
+    rm -f dahlia/protocols/*_pb2*
 
     PYTHON_GIL=0 python -m grpc_tools.protoc \
         -Idahlia/protocols=$WORK_DIR/dahlia/proto -I $PROTOBUF_HOME/include/google/protobuf \
@@ -80,9 +80,9 @@ function generate_grpc() {
     #     $PROTOBUF_HOME/include/google/protobuf/timestamp.proto \
     #     $PROTOBUF_HOME/include/google/protobuf/duration.proto \
     #     $PROTOBUF_HOME/include/google/protobuf/any.proto
-    
 
-    # TODO 
+
+    # TODO
     # $PROTOBUF_HOME/bin/protoc --rust_opt=experimental-codegen=enabled,kernel=upb --rust-grpc_opt=client_only=true \
     #     --rust-grpc_opt=extern_path=.google.protobuf=::crate::google::protobuf \
     #     --plugin=protoc-gen-rust-grpc=$PROTOBUF_HOME/bin/protoc-gen-rust-grpc \
@@ -123,7 +123,7 @@ function generate_diesel() {
 #     mkdir include src
 #     thrift -out src --gen cpp:no_skeleton -r $WORK_DIR/protocols/loquat.thrift
 #     mv src/*.h include/
-    
+
 #     thrift -out $HYACINTH_OUTPUT_DIR --gen rs -r $WORK_DIR/protocols/loquat.thrift
 # }
 

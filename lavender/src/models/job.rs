@@ -3,6 +3,7 @@ use std::collections::BTreeMap;
 use std::fs::read_dir;
 use std::fs::read_to_string;
 use std::path::Path;
+use std::process::Output as ProcessOutput;
 use std::time::Duration;
 
 use flatbuffers::FlatBufferBuilder;
@@ -21,7 +22,6 @@ use serde::{Deserialize, Serialize};
 
 #[derive(Debug, Serialize, Deserialize, Clone)]
 pub struct Item {
-    pub name: String,
     pub version: String,
     pub command: String,
     pub description: String,
@@ -42,13 +42,14 @@ impl Item {
         &self,
         working_dir: P,
         args: Vec<A>,
-    ) -> Result<String> {
+    ) -> Result<ProcessOutput> {
         self.validate(args.clone())?;
         shell(working_dir, &self.command, args)
     }
 
     pub async fn report<A: Into<String>>(
         &self,
+        name: &str,
         queue: &RabbitMq,
         from: &str,
         to: &str,
@@ -60,12 +61,12 @@ impl Item {
         {
             let subject = builder.create_string(&format!(
                 "Execute {}({}) {} in {} µs",
-                self.name,
+                name,
                 self.version,
                 if succeed { "succeed" } else { "failed" },
                 duration.as_micros()
             ));
-            let body_content = builder.create_string(body);
+            let body_content = builder.create_string(&format!("{}\n{}", self.description, body));
             let to_email = builder.create_string(to);
             let from_email = builder.create_string(from);
             let mut bcc_offsets = Vec::new();
@@ -132,10 +133,10 @@ impl Item {
         Ok(())
     }
 
-    pub fn new<P: AsRef<Path>>(root: P, id: &str) -> Result<Self> {
+    pub fn new<P: AsRef<Path>>(root: P, name: &str) -> Result<Self> {
         let it = toml::from_str(&read_to_string({
             let it = root.as_ref();
-            it.join(id).join(Self::CONFIG_FILE)
+            it.join(name).join(Self::CONFIG_FILE)
         })?)?;
         Ok(it)
     }
