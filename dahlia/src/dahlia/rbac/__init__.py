@@ -3,6 +3,7 @@ import logging
 from importlib import resources
 
 import casbin
+import sqlalchemy
 import sqlalchemy_adapter
 import casbin_rabbitmq_watcher
 
@@ -19,8 +20,12 @@ def update_callback_func(msg):
 def open_enforcer(db, rabbitmq):
     logger.debug("open sqlalchemy adapter postgresql://%s@%s:%d/%s",
                  db['user'], db['host'], db['port'], db['db-name'])
-    adapter = sqlalchemy_adapter.Adapter(
-        f"postgresql+psycopg://{db['user']}:{db['password']}@{db['host']}:{db['port']}/{db['db-name']}?sslmode=disable")
+    engine = sqlalchemy.create_engine(
+        f"postgresql+psycopg://{db['user']}:{db['password']}@{db['host']}:{db['port']}/{db['db-name']}?sslmode=disable",
+        pool_size=int(db['pool-size']),
+        pool_pre_ping=True
+    )
+    adapter = sqlalchemy_adapter.Adapter(engine=engine)
 
     logger.debug("open rabbitmq watcher %s@%s:%d/%s",
                  rabbitmq['user'], rabbitmq['host'], rabbitmq['port'], rabbitmq['virtual-host'])

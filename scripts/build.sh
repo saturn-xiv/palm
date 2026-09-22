@@ -106,7 +106,7 @@ After=network-online.target
 
 [Service]
 Type=simple
-DynamicUser=yes
+User=ubuntu
 ExecStart=/usr/bin/loquat rpc -p 11011
 WorkingDirectory=/var/lib/palm/loquat
 Restart=always
@@ -122,6 +122,7 @@ port = 5432
 user = 'www'
 password = 'change-me'
 db-name = 'dahlia_dev'
+pool-size = 16
 
 [rabbitmq]
 host = '127.0.0.1'
@@ -140,7 +141,7 @@ After=network-online.target
 [Service]
 Type=simple
 DynamicUser=yes
-ExecStart=/bin/bash -c "source /opt/python3/bin/activate && dahlia -p 11002"
+ExecStart=/bin/bash -c "source /opt/python3/bin/activate && dahlia -c /etc/palm/dahlia.toml -p 11002"
 WorkingDirectory=/var/lib/palm/dahlia
 Restart=always
 
@@ -161,7 +162,7 @@ spring:
     password: "change-me"
     driver-class-name: org.postgresql.Driver
     hikari:
-        maximum-pool-size: 10
+        maximum-pool-size: 16
         minimum-idle: 5
 EOF
     cat <<EOF > $1/marigold/rpc.service
@@ -191,10 +192,12 @@ port = 5432
 user = "www"
 password = "change-me"
 db-name = "wisteria_dev"
+pool-size = 16
 
 [redis]
 host = "127.0.0.1"
 port = 6379
+pool-size = 16
 
 [rabbitmq]
 host = "127.0.0.1"
@@ -244,7 +247,7 @@ After=network-online.target
 Type=simple
 User=ubuntu
 Group=ubuntu
-ExecStart=/usr/bin/wisteria http -p 11005
+ExecStart=/usr/bin/wisteria -c /etc/palm/wisteria.toml http -p 11005
 WorkingDirectory=/var/lib/wisteria
 Restart=always
 
@@ -287,14 +290,14 @@ function build_deb() {
     local package=${PACKAGE_NAME}_$1
     echo "building $package"
 
-    cd ${TARGET_DIR}/
-    mkdir DEBIAN
+    cd ${TARGET_DIR}/${package}
+    mkdir -p DEBIAN
     cat <<EOF > DEBIAN/control
 Package: palm
-Version: $(git describe --tags --always --dirty)
+Version: $(date +"%Y.%m.%d")-$(git rev-parse --short HEAD)
 Architecture: ${1}
-Maintainer: "$(git log -1 --pretty=format:'%an')" <"$(git log -1 --pretty=format:'%ae')">
-Depends: bash (>= 4.0)
+Maintainer: "$(git log -1 --pretty=format:'%an') <$(git log -1 --pretty=format:'%ae')">
+Depends: python3 (>= 3.14)
 Section: net
 Priority: optional
 Description: An open-source online education solution
@@ -302,7 +305,7 @@ Description: An open-source online education solution
 EOF
 
     cd ${TARGET_DIR}/
-    dpkg-deb --build $package ${package}.deb
+    dpkg-deb --root-owner-group --build $package ${package}.deb
     md5sum ${package}.deb > ${package}.md5
 }
 
@@ -314,7 +317,7 @@ build_dahlia
 build_marigold
 
 declare -a architectures=("amd64" "arm64" "riscv64")
-for $a in "${architectures[@]}"; do
+for a in "${architectures[@]}"; do
     target=${TARGET_DIR}/${PACKAGE_NAME}_$a
 
     mkdir -p $target/usr/share/palm/wisteria
@@ -323,7 +326,7 @@ for $a in "${architectures[@]}"; do
 
     cd $WORK_DIR/dahlia/
     mkdir -p $target/usr/share/palm/dahlia
-    cp README.md dist/dahlia-*-py3-none-any.whl $target/usr/share/palm/wisteria/dahlia/
+    cp README.md dist/dahlia-*-py3-none-any.whl $target/usr/share/palm/dahlia/
 
     cd $WORK_DIR/loquat/
     mkdir -p $target/usr/share/palm/loquat
@@ -334,23 +337,24 @@ for $a in "${architectures[@]}"; do
     cp target/marigold-*.jar README.md $target/usr/share/palm/marigold/
 
     generate_etc $target/usr/share/palm
+    mkdir -p $target/etc/palm $target/usr/bin $target/var/lib/palm/{loquat,dahlia,marigold,wisteria}
 done
 
 
 cd $WORK_DIR/loquat/
 bash build.sh
-cp build/x86_64/loquat $${TARGET_DIR}/${PACKAGE_NAME}_amd64/usr/bin/
-cp build/aarch64/loquat $${TARGET_DIR}/${PACKAGE_NAME}_arm64/usr/bin/
-cp build/riscv64/loquat $${TARGET_DIR}/${PACKAGE_NAME}_riscv64/usr/bin/
+cp build/x86_64/loquat ${TARGET_DIR}/${PACKAGE_NAME}_amd64/usr/bin/
+cp build/aarch64/loquat ${TARGET_DIR}/${PACKAGE_NAME}_arm64/usr/bin/
+cp build/riscv64/loquat ${TARGET_DIR}/${PACKAGE_NAME}_riscv64/usr/bin/
 
 build_wisteria_backend
-cd $WORK_DIR/wisteria/target/
-cp x86_64-unknown-linux-gnu/release/wisteria $${TARGET_DIR}/${PACKAGE_NAME}_amd64/usr/bin/
-cp aarch64-unknown-linux-gnu/release/wisteria $${TARGET_DIR}/${PACKAGE_NAME}_arm64/usr/bin/
-cp riscv64gc-unknown-linux-gnu/release/wisteria $${TARGET_DIR}/${PACKAGE_NAME}_riscv64/usr/bin/
+cd $WORK_DIR/target/
+cp x86_64-unknown-linux-gnu/release/wisteria ${TARGET_DIR}/${PACKAGE_NAME}_amd64/usr/bin/
+cp aarch64-unknown-linux-gnu/release/wisteria ${TARGET_DIR}/${PACKAGE_NAME}_arm64/usr/bin/
+cp riscv64gc-unknown-linux-gnu/release/wisteria ${TARGET_DIR}/${PACKAGE_NAME}_riscv64/usr/bin/
 
-for $a in "${architectures[@]}"; do
-    build_deb $1
+for a in "${architectures[@]}"; do
+    build_deb $a
 done
 
 # -----------------------------------------------------------------------------
