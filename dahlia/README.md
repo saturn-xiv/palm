@@ -25,7 +25,7 @@ $ sudo apt install python3-full python3-dev build-essential
 $ python3 -m venv $PWD/tmp/python
 
 # Load virtual env vars
-$ source3 $PWD/tmp/python/bin/activate
+$ source $PWD/tmp/python/bin/activate
 
 # Install dependencies for develpoment
 > python3 -m pip install -e .

@@ -13,32 +13,32 @@ function graphql_call() {
 if [[ "$#" -eq 1 && "$1" == "headlamp-token-generate" ]]; then
     graphql_call '
 {
-    "query": "mutation call($id: String!, $args: [String!]!){ lavenderLaunchJob(id: $id, args: $args){createdAt} }",
-    "variables": {"id": "'headlamp-token-generate'", "args": []}
+    "query": "mutation call($name: String!, $args: [String!]!){ lavenderLaunchJob(name: $name, args: $args){createdAt} }",
+    "variables": {"name": "'headlamp-token-generate'", "args": []}
 }'
 elif [[ "$#" -eq 3 && "$1" == "mint-deployment" ]]; then
     graphql_call '
 {
-    "query": "mutation call($id: String!, $args: [String!]!){ lavenderLaunchJob(id: $id, args: $args){createdAt} }",
-    "variables": {"id": "'mint-deployment'", "args": ["'$2'", "'$3'"]}
+    "query": "mutation call($name: String!, $args: [String!]!){ lavenderLaunchJob(name: $name, args: $args){createdAt} }",
+    "variables": {"name": "'mint-deployment'", "args": ["'$2'", "'$3'"]}
 }'
 elif [[ "$#" -eq 1 && "$1" == "redis-keys-export" ]]; then
     graphql_call '
 {
-    "query": "mutation call($id: String!, $args: [String!]!){ lavenderLaunchJob(id: $id, args: $args){createdAt} }",
-    "variables": {"id": "'export-redis-keys'", "args": []}
+    "query": "mutation call($name: String!, $args: [String!]!){ lavenderLaunchJob(name: $name, args: $args){createdAt} }",
+    "variables": {"name": "'export-redis-keys'", "args": []}
 }'
 elif [[ "$#" -eq 1 && "$1" == "pali-synonyms-export" ]]; then
     graphql_call '
 {
-    "query": "mutation call($id: String!, $args: [String!]!){ lavenderLaunchJob(id: $id, args: $args){createdAt} }",
-    "variables": {"id": "'pali-synonyms-export'", "args": []}
+    "query": "mutation call($name: String!, $args: [String!]!){ lavenderLaunchJob(name: $name, args: $args){createdAt} }",
+    "variables": {"name": "'pali-synonyms-export'", "args": []}
 }'
 elif [[ "$#" -eq 2 && "$1" == "echo" ]]; then
     graphql_call '
 {
-    "query": "mutation call($id: String!, $args: [String!]!){ lavenderLaunchJob(id: $id, args: $args){createdAt} }",
-    "variables": {"id": "'echo'", "args": ["'$2'"]}
+    "query": "mutation call($name: String!, $args: [String!]!){ lavenderLaunchJob(name: $name, args: $args){createdAt} }",
+    "variables": {"name": "'echo'", "args": ["'$2'"]}
 }'
 elif [[ "$#" -eq 1 && "$1" == "version" ]]; then
     graphql_call '

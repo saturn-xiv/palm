@@ -80,8 +80,8 @@ pub async fn launch<R: Rbac, J: Jwt, A: Into<String> + Clone>(
 #[derive(Debug, GraphQLObject)]
 #[graphql(name = "LavenderJob")]
 pub struct Item {
-    pub id: String,
     pub name: String,
+    pub version: String,
     pub description: String,
     pub inputs: Vec<Input>,
 }

@@ -66,7 +66,7 @@ impl Item {
                 if succeed { "succeed" } else { "failed" },
                 duration.as_micros()
             ));
-            let body_content = builder.create_string(&format!("{}\n{}", self.description, body));
+            let body_content = builder.create_string(&format!("{}:\n{}", self.description, body));
             let to_email = builder.create_string(to);
             let from_email = builder.create_string(from);
             let mut bcc_offsets = Vec::new();
@@ -87,7 +87,7 @@ impl Item {
             let body = EmailBody::create(
                 &mut builder,
                 &EmailBodyArgs {
-                    html: true,
+                    html: false,
                     content: Some(body_content),
                 },
             );
