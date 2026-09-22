@@ -4,30 +4,38 @@ set -e
 
 source /etc/os-release
 
+if [[ "$ID" != "ubuntu" ]]
+then
+    echo "Unsupported system: $PRETTY_NAME"
+    exit 1
+fi
+
 export WORK_DIR=$PWD
-export PACKAGE=palm-$VERSION_CODENAME-$(git describe --tags --always --dirty)
+export PACKAGE_NAME=palm_"$(git describe --tags --always --dirty)+${VERSION_CODENAME}"
 export TARGET_DIR=$WORK_DIR/tmp
 
-# ---------------------------------------------------------
+# -----------------------------------------------------------------------------
 
 function build_dashboard() {
     cd $WORK_DIR/${1}/dashboard/
+
     if [ ! -d node_modules ]
     then
         npm install --silent
     fi
-    npm run build -- --outDir ${TARGET_DIR}/${PACKAGE}/${1}/dashboard --logLevel silent
+    npm run build -- --logLevel silent
 }
+
 
 function build_wisteria_backend() {
     cd $WORK_DIR/
 
-    local target="$1-unknown-linux-gnu"
-    echo "building wisteria for $target"
-    cargo build --release --quiet --target $target
-
-    mkdir -p ${TARGET_DIR}/${PACKAGE}/bin/${1}
-    cp ${WORK_DIR}/target/${target}/release/wisteria ${TARGET_DIR}/${PACKAGE}/bin/${1}/
+    local -a targets=("x86_64" "aarch64" "riscv64gc")
+    for t in "${targets[@]}"; do
+        local target="$t-unknown-linux-gnu"
+        echo "building wisteria for $target"
+        cargo build --release --quiet --target $target
+    done
 }
 
 function build_wisteria_assets() {
@@ -36,9 +44,6 @@ function build_wisteria_assets() {
     then
         npm install --silent
     fi
-
-    local target=${TARGET_DIR}/${PACKAGE}/wisteria
-    mkdir -p $target
 
     local -a items=(
         "@popperjs/core/dist/umd"
@@ -59,12 +64,12 @@ function build_wisteria_assets() {
     )
     for it in "${items[@]}"
     do
-        local d=$(dirname $target/node_modules/$it)
+        local d=$(dirname $1/node_modules/$it)
         mkdir -p $d
         cp -r node_modules/$it $d/
     done
 
-    cp -r README.md db assets locales $target/
+    cp -r README.md db assets locales $1/
 }
 
 function build_dahlia() {
@@ -83,39 +88,16 @@ function build_dahlia() {
     fi
     python3 -m build
     deactivate
-
-    local target=${TARGET_DIR}/${PACKAGE}/dahlia
-    mkdir -p $target
-    cp README.md dist/dahlia-*-py3-none-any.whl $target/
-}
-
-function build_loquat() {
-    local target=${TARGET_DIR}/${PACKAGE}
-    mkdir -p $target/loquat
-
-    cd $WORK_DIR/loquat/
-    bash build.sh
-
-    cp build/x86_64/loquat $target/bin/x86_64/
-    cp build/aarch64/loquat $target/bin/aarch64/
-    cp build/riscv64/loquat $target/bin/riscv64gc/
-    cp README.md $target/loquat/
 }
 
 function build_marigold() {
     cd $WORK_DIR/marigold/
     mvn --quiet clean
     mvn --quiet package -Dmaven.test.skip=true
-
-    local target=${TARGET_DIR}/${PACKAGE}/marigold
-    mkdir -p $target
-    cp target/marigold-*.jar README.md $target/
 }
 
 function generate_etc() {
-    local target=${TARGET_DIR}/${PACKAGE}
-
-    cat <<EOF > $target/loquat/rpc.service
+    cat <<EOF > $1/loquat/rpc.service
 [Unit]
 Description=A cryptographic rpc service(by Google Tink).
 Documentation=https://github.com/saturn-xiv/palm/tree/main/loquat
@@ -125,7 +107,7 @@ After=network-online.target
 [Service]
 Type=simple
 DynamicUser=yes
-ExecStart=/usr/local/bin/loquat rpc -p 11011
+ExecStart=/usr/bin/loquat rpc -p 11011
 WorkingDirectory=/var/lib/palm/loquat
 Restart=always
 
@@ -133,7 +115,7 @@ Restart=always
 WantedBy=multi-user.target
 EOF
 
-    cat <<EOF > $target/dahlia/config.toml
+    cat <<EOF > $1/dahlia/config.toml
 [postgresql]
 host = '127.0.0.1'
 port = 5432
@@ -148,7 +130,7 @@ user = 'www'
 password = 'change-me'
 virtual-host = 'dahlia.dev'
 EOF
-    cat <<EOF > $target/dahlia/rpc.service
+    cat <<EOF > $1/dahlia/rpc.service
 [Unit]
 Description=RBAC services.
 Documentation=https://github.com/saturn-xiv/palm/tree/main/dahlia
@@ -166,7 +148,7 @@ Restart=always
 WantedBy=multi-user.target
 EOF
 
-    cat <<EOF > $target/marigold/production.yaml
+    cat <<EOF > $1/marigold/production.yaml
 server:
     port: 11003
 spring:
@@ -182,7 +164,7 @@ spring:
         maximum-pool-size: 10
         minimum-idle: 5
 EOF
-    cat <<EOF > $target/marigold/rpc.service
+    cat <<EOF > $1/marigold/rpc.service
 [Unit]
 Description=WechatPay services.
 Documentation=https://github.com/saturn-xiv/palm/tree/main/marigold
@@ -192,7 +174,7 @@ After=network-online.target
 [Service]
 Type=simple
 DynamicUser=yes
-ExecStart=/opt/amazon-corretto-26.0.2.11.1-linux-aarch64/bin/java -jar marigold-2026.9.10.jar --spring.config.name=production
+ExecStart=/opt/amazon-corretto-26.0.2.11.1-linux-aarch64/bin/java -jar marigold-$(git describe --tags --abbrev=7 --always | sed 's/-g/-/')*.jar --spring.config.name=production
 WorkingDirectory=/var/lib/palm/marigold
 Restart=always
 
@@ -200,7 +182,7 @@ Restart=always
 WantedBy=multi-user.target
 EOF
 
-    cat <<EOF > $target/wisteria/config.toml
+    cat <<EOF > $1/wisteria/config.toml
 cookie-key = "openssl rand -base64 128"
 
 [postgresql]
@@ -251,7 +233,7 @@ jobs-dir = "/var/lib/palm/lavender/jobs"
 working-dir = "/var/lib/palm/lavender/cache"
 bcc = []
 EOF
-    cat <<EOF > $target/wisteria/http.service
+    cat <<EOF > $1/wisteria/http.service
 [Unit]
 Description=An online education solution.
 Documentation=https://github.com/saturn-xiv/palm/tree/main/wisteria
@@ -262,7 +244,7 @@ After=network-online.target
 Type=simple
 User=ubuntu
 Group=ubuntu
-ExecStart=/usr/local/bin/wisteria http -p 11005
+ExecStart=/usr/bin/wisteria http -p 11005
 WorkingDirectory=/var/lib/wisteria
 Restart=always
 
@@ -271,11 +253,14 @@ Environment=RUST_LOG=info
 [Install]
 WantedBy=multi-user.target
 EOF
-    cat <<EOF > $target/wisteria/nginx.conf
+    cat <<EOF > $1/wisteria/nginx.conf
 server {
     listen 80;
     server_name www.change-me.org;
     charset utf-8;
+
+    access_log /var/log/nginx/\$server_name.access.log;
+    error_log /var/log/nginx/\$server_name.error.log warn;
 
     location / {
         proxy_pass http://localhost:11005;
@@ -298,39 +283,77 @@ EOF
 
 }
 
-# ---------------------------------------------------------
+function build_deb() {
+    local package=${PACKAGE_NAME}_$1
+    echo "building $package"
 
-if [ -f ${TARGET_DIR}/${PACKAGE}.md5 ]
-then
-    echo "release $PACKAGE already exists."
-    exit 1
-fi
+    cd ${TARGET_DIR}/
+    mkdir DEBIAN
+    cat <<EOF > DEBIAN/control
+Package: palm
+Version: $(git describe --tags --always --dirty)
+Architecture: ${1}
+Maintainer: "$(git log -1 --pretty=format:'%an')" <"$(git log -1 --pretty=format:'%ae')">
+Depends: bash (>= 4.0)
+Section: net
+Priority: optional
+Description: An open-source online education solution
+    This package need jvm & python3 runtime.
+EOF
 
-if [ -f ${TARGET_DIR}/${PACKAGE}.tar.xz ]
-then
-    rm ${TARGET_DIR}/${PACKAGE}.tar.xz
-fi
+    cd ${TARGET_DIR}/
+    dpkg-deb --build $package ${package}.deb
+    md5sum ${package}.deb > ${package}.md5
+}
 
-if [ -d ${TARGET_DIR}/${PACKAGE} ]
-then
-    rm -r ${TARGET_DIR}/${PACKAGE}
-fi
+# -----------------------------------------------------------------------------
 
-declare -a targets=("x86_64" "aarch64" "riscv64gc")
-for t in "${targets[@]}"; do
-    build_wisteria_backend $t
-done
 
 build_dashboard wisteria
-build_wisteria_assets
-build_marigold
 build_dahlia
-build_loquat
+build_marigold
 
-generate_etc
+declare -a architectures=("amd64" "arm64" "riscv64")
+for $a in "${architectures[@]}"; do
+    target=${TARGET_DIR}/${PACKAGE_NAME}_$a
 
-XZ_OPT=-9 tar -cJf ${TARGET_DIR}/${PACKAGE}.tar.xz --remove-files -C ${TARGET_DIR}/${PACKAGE} .
-md5sum ${TARGET_DIR}/${PACKAGE}.tar.xz > ${TARGET_DIR}/${PACKAGE}.md5
+    mkdir -p $target/usr/share/palm/wisteria
+    build_wisteria_assets $target/usr/share/palm/wisteria
+    cp -r $WORK_DIR/wisteria/dashboard/dist $target/usr/share/palm/wisteria/dashboard
 
-echo "done(${PACKAGE}.tar.xz)."
+    cd $WORK_DIR/dahlia/
+    mkdir -p $target/usr/share/palm/dahlia
+    cp README.md dist/dahlia-*-py3-none-any.whl $target/usr/share/palm/wisteria/dahlia/
+
+    cd $WORK_DIR/loquat/
+    mkdir -p $target/usr/share/palm/loquat
+    cp README.md $target/usr/share/palm/loquat/
+
+    cd $WORK_DIR/marigold/
+    mkdir -p $target/usr/share/palm/marigold
+    cp target/marigold-*.jar README.md $target/usr/share/palm/marigold/
+
+    generate_etc $target/usr/share/palm
+done
+
+
+cd $WORK_DIR/loquat/
+bash build.sh
+cp build/x86_64/loquat $${TARGET_DIR}/${PACKAGE_NAME}_amd64/usr/bin/
+cp build/aarch64/loquat $${TARGET_DIR}/${PACKAGE_NAME}_arm64/usr/bin/
+cp build/riscv64/loquat $${TARGET_DIR}/${PACKAGE_NAME}_riscv64/usr/bin/
+
+build_wisteria_backend
+cd $WORK_DIR/wisteria/target/
+cp x86_64-unknown-linux-gnu/release/wisteria $${TARGET_DIR}/${PACKAGE_NAME}_amd64/usr/bin/
+cp aarch64-unknown-linux-gnu/release/wisteria $${TARGET_DIR}/${PACKAGE_NAME}_arm64/usr/bin/
+cp riscv64gc-unknown-linux-gnu/release/wisteria $${TARGET_DIR}/${PACKAGE_NAME}_riscv64/usr/bin/
+
+for $a in "${architectures[@]}"; do
+    build_deb $1
+done
+
+# -----------------------------------------------------------------------------
+
+echo "done(${PACKAGE_NAME})."
 exit 0

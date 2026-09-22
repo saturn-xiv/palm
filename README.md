@@ -1,4 +1,4 @@
-# PALM - An online education &amp; translation solution
+# PALM - An open-source online education solution
 
 ## Usage
 
