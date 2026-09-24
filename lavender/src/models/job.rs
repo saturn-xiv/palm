@@ -20,7 +20,7 @@ use portal::{
 };
 use serde::{Deserialize, Serialize};
 
-#[derive(Debug, Serialize, Deserialize, Clone)]
+#[derive(Debug, Serialize, Deserialize, Clone, PartialEq, Eq)]
 pub struct Item {
     pub version: String,
     pub command: String,
@@ -35,6 +35,8 @@ impl Item {
         if args.len() != self.args.len() {
             return Err(Box::new(HttpError(StatusCode::BAD_REQUEST, None)));
         }
+        // TODO: check select options
+        // TODO: check git commit id
         Ok(())
     }
 
@@ -157,7 +159,7 @@ impl Item {
     }
 }
 
-#[derive(Debug, Serialize, Deserialize, Clone)]
+#[derive(Debug, Serialize, Deserialize, Clone, PartialEq, Eq)]
 pub enum Arg {
     #[serde(rename = "text")]
     Text { label: String },

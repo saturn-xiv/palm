@@ -25,11 +25,7 @@ elif [[ "$#" -eq 1 && "$1" == "version" ]]; then
 else
     echo "USAGE:
 $0 version
-$0 echo MESSAGE
-
-$0 pali-synonyms-export
-$0 redis-keys-export
-$0 headlamp-token-generate DOMAIN GIT_COMMIT_ID"
+$0 echo MESSAGE"
     exit 1
 fi
 exit 0

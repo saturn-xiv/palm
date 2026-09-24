@@ -42,4 +42,9 @@ fn job_sample() {
 
     let buf = toml::to_string(&it).unwrap();
     println!("{buf}");
+
+    for _ in 1..10 {
+        let tmp: Job = toml::from_str(&buf).unwrap();
+        assert_eq!(it, tmp);
+    }
 }
