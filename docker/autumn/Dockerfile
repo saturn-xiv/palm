@@ -192,7 +192,11 @@ RUN echo 'loopback_users = none' | sudo tee -a /etc/rabbitmq/rabbitmq.conf \
 
 RUN sudo chown www-data:www-data /var/log/nginx
 
-RUN sudo sed -i 's/memory_limit =.*/memory_limit = 1G/' /etc/php/8.5/fpm/php.ini && sudo sed -i 's/^listen = .*/listen = 0.0.0.0:9000/' /etc/php/8.5/fpm/pool.d/www.conf
+ENV PHP_VERSION="8.5"
+RUN sudo sed -i 's/memory_limit =.*/memory_limit = 1G/' /etc/php/${PHP_VERSION}/fpm/php.ini \
+    && sudo sed -i 's/^listen = .*/listen = 0.0.0.0:9000/' /etc/php/${PHP_VERSION}/fpm/pool.d/www.conf \
+    && sudo sed -i 's/^;*\(pm.max_requests\s*=\s*\).*/\1500/' /etc/php/${PHP_VERSION}/fpm/pool.d/www.conf
+
 # /usr/sbin/sshd -D -e -4 -p 10022
 RUN sudo tee -a /etc/ssh/sshd_config > /dev/null <<EOF
 UseDNS no
