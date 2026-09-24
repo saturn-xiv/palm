@@ -16,10 +16,8 @@ impl<'a> TryFrom<Task<'a>> for Message {
     fn try_from(task: Task<'a>) -> StdResult<Self, Self::Error> {
         let mut builder = Message::builder()
             .subject(task.subject())
-            .reply_to(
-                Mailbox::try_from(task.to())
-                    .map_err(|e| LettreError::Io(IoError::other(e.to_string())))?,
-            )
+            .to(Mailbox::try_from(task.to())
+                .map_err(|e| LettreError::Io(IoError::other(e.to_string())))?)
             .from(
                 Mailbox::try_from(task.from())
                     .map_err(|e| LettreError::Io(IoError::other(e.to_string())))?,

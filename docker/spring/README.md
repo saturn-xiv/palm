@@ -86,3 +86,4 @@
 
 <!-- TODO -->
 - Xdebug:[Step Debug] could not connect to debugging client. Tried:0.0.0.0:9003(through xdebug.client host/xdebug.client port).
+- [RabbitMQ and Erlang/OTP Compatibility Matrix](https://www.rabbitmq.com/docs/which-erlang#compatibility-matrix)
