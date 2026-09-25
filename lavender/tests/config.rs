@@ -52,7 +52,6 @@ fn job_sample() {
         );
         Job {
             version: "v2026.9.12".to_string(),
-            command: "/bin/bash run.sh".to_string(),
             description: "Echo your message".to_string(),
             args: args,
         }

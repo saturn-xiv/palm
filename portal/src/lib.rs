@@ -222,13 +222,14 @@ pub fn hostname() -> Result<String> {
     Ok(it)
 }
 
-pub fn shell<P: AsRef<Path>, A: Into<String>>(
-    working_dir: P,
-    command: &str,
+pub fn shell<W: AsRef<Path>, C: AsRef<Path>, A: Into<String>>(
+    working_dir: W,
+    command: C,
     args: Vec<A>,
 ) -> Result<ProcessOutput> {
     let working_dir = working_dir.as_ref();
-    log::info!("execute {} in {}", command, working_dir.display());
+    let command = command.as_ref();
+    log::info!("execute {} in {}", command.display(), working_dir.display());
     let mut command = Command::new(command);
     command.current_dir(working_dir);
     for it in args.into_iter() {

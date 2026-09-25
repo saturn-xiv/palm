@@ -3,7 +3,6 @@ use std::collections::BTreeMap;
 use std::fs::read_dir;
 use std::fs::read_to_string;
 use std::path::Path;
-use std::process::Output as ProcessOutput;
 use std::time::Duration;
 
 use diesel::Connection as DieselConnection;
@@ -19,17 +18,15 @@ use portal::{
     models::log::{Dao as LogDao, Level},
     orm::postgresql::Connection as Db,
     queue::rabbitmq::{BasicPublishOptions, Client as RabbitMq, FlexBuffersMessageSender},
-    shell,
 };
 use serde::{Deserialize, Serialize};
 
-use super::super::graphql::Plugin;
+use super::super::Plugin;
 use super::task::Dao as TaskDao;
 
 #[derive(Debug, Serialize, Deserialize, Clone, PartialEq, Eq)]
 pub struct Item {
     pub version: String,
-    pub command: String,
     pub description: String,
     pub args: BTreeMap<String, Arg>,
 }
@@ -44,15 +41,6 @@ impl Item {
         // TODO: check select options
         // TODO: check git commit id
         Ok(())
-    }
-
-    pub fn execute<P: AsRef<Path>, A: Into<String> + Clone>(
-        &self,
-        working_dir: P,
-        args: Vec<A>,
-    ) -> Result<ProcessOutput> {
-        self.validate(args.clone())?;
-        shell(working_dir, &self.command, args)
     }
 
     pub async fn report<A: Into<String>>(

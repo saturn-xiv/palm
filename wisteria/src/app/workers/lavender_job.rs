@@ -21,6 +21,7 @@ use portal::{
         Consumer as QueueConsumer,
         rabbitmq::{Client as QueueClient, Node as RabbitMq, QueueDeclareOptions},
     },
+    shell,
 };
 use serde::{Deserialize, Serialize};
 use tokio::time::sleep;
@@ -89,7 +90,12 @@ impl QueueConsumer for Consumer {
         let start = Instant::now();
         let task: Message = flexbuffers::from_slice(payload)?;
         let job = Job::new(&self.config.jobs_dir, &task.name)?;
-        let output = job.execute(&self.config.working_dir, task.args)?;
+        job.validate(task.args.clone())?;
+        let output = shell(
+            &self.config.working_dir,
+            self.config.jobs_dir.join(&task.name).join("run.sh"),
+            task.args,
+        )?;
         let duration = start.elapsed();
         let output = Output::new(&output, duration)?;
         {
