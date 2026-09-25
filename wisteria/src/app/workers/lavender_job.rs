@@ -93,7 +93,7 @@ impl QueueConsumer for Consumer {
         job.validate(task.args.clone())?;
         let output = shell(
             &self.config.working_dir,
-            self.config.jobs_dir.join(&task.name).join("run.sh"),
+            Job::script(&self.config.jobs_dir, &task.name),
             task.args,
         )?;
         let duration = start.elapsed();

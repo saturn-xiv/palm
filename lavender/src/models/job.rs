@@ -1,8 +1,7 @@
 use std::any::type_name;
 use std::collections::BTreeMap;
-use std::fs::read_dir;
-use std::fs::read_to_string;
-use std::path::Path;
+use std::fs::{read_dir, read_to_string};
+use std::path::{Path, PathBuf};
 use std::time::Duration;
 
 use diesel::Connection as DieselConnection;
@@ -52,7 +51,7 @@ impl Item {
         bcc: Vec<A>,
         (body, succeed, duration): (&str, bool, Duration),
     ) -> Result<()> {
-        log::debug!("report to {to}: {body}");
+        log::debug!("report {name} to {to}: {body}");
         let mut builder = FlatBufferBuilder::new();
         {
             let subject = builder.create_string(&format!(
@@ -62,7 +61,7 @@ impl Item {
                 if succeed { "succeed" } else { "failed" },
                 duration.as_micros()
             ));
-            let body_content = builder.create_string(&format!("{}:\n{}", self.description, body));
+            let body_content = builder.create_string(&format!("{}:\n\n{}", self.description, body));
             let to_email = builder.create_string(to);
             let from_email = builder.create_string(from);
             let mut bcc_offsets = Vec::new();
@@ -152,6 +151,11 @@ impl Item {
         Ok(items)
     }
 
+    pub fn script<P: AsRef<Path>>(jobs_dir: P, name: &str) -> PathBuf {
+        let jobs_dir = jobs_dir.as_ref();
+        jobs_dir.join(name).join("run.sh")
+    }
+
     pub async fn publish<P: AsRef<Path>, A: Into<String> + Clone>(
         db: &mut Db,
         queue: &RabbitMq,
@@ -159,14 +163,16 @@ impl Item {
         (user_id, email): (i64, &str),
         (jobs_dir, name, args): (P, &str, Vec<A>),
     ) -> Result<()> {
+        let jobs_dir = jobs_dir.as_ref();
         let job = {
             let it = Self::new(jobs_dir, name)?;
             it.validate(args.clone())?;
             it
         };
+        let script = read_to_string(Self::script(jobs_dir, name))?;
 
         let uid = db.transaction::<_, Error, _>(|tx| {
-            let it = TaskDao::create(tx, email, &job, args.clone())?;
+            let it = TaskDao::create(tx, email, &job, &script, args.clone())?;
             LogDao::create::<Plugin, _>(
                 tx,
                 user_id,

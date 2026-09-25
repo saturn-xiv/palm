@@ -104,6 +104,7 @@ diesel::table! {
         #[max_length = 63]
         email -> Varchar,
         job -> Jsonb,
+        script -> Text,
         args -> Jsonb,
         output -> Nullable<Jsonb>,
         version -> Int4,

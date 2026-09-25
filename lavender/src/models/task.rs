@@ -40,6 +40,7 @@ pub struct Item {
     pub uid: String,
     pub email: String,
     pub job: Value,
+    pub script: String,
     pub args: Value,
     pub output: Option<Value>,
     pub version: i32,
@@ -50,7 +51,13 @@ pub struct Item {
 pub trait Dao {
     fn count(&mut self) -> Result<i64>;
     fn index(&mut self, offset: i64, limit: i64) -> Result<Vec<Item>>;
-    fn create<A: Into<String>>(&mut self, email: &str, job: &Job, args: Vec<A>) -> Result<String>;
+    fn create<A: Into<String>>(
+        &mut self,
+        email: &str,
+        job: &Job,
+        script: &str,
+        args: Vec<A>,
+    ) -> Result<String>;
     fn set_output(&mut self, id: i64, output: &Output) -> Result<()>;
     fn by_id(&mut self, id: i64) -> Result<Item>;
     fn by_uid(&mut self, uid: &str) -> Result<Item>;
@@ -71,7 +78,13 @@ impl Dao for Connection {
             .load::<Item>(self)?;
         Ok(items)
     }
-    fn create<A: Into<String>>(&mut self, email: &str, job: &Job, args: Vec<A>) -> Result<String> {
+    fn create<A: Into<String>>(
+        &mut self,
+        email: &str,
+        job: &Job,
+        script: &str,
+        args: Vec<A>,
+    ) -> Result<String> {
         let uid = Uuid::new_v4().to_string();
         let job = to_value(job)?;
         let args = {
@@ -84,6 +97,7 @@ impl Dao for Connection {
                 lavender_tasks::dsl::uid.eq(&uid),
                 lavender_tasks::dsl::email.eq(email),
                 lavender_tasks::dsl::job.eq(&job),
+                lavender_tasks::dsl::script.eq(script),
                 lavender_tasks::dsl::args.eq(&args),
                 lavender_tasks::dsl::updated_at.eq(&now),
             ))

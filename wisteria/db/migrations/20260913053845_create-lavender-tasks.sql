@@ -4,6 +4,7 @@ CREATE TABLE lavender_tasks(
     uid VARCHAR(36) NOT NULL,
     email VARCHAR(63) NOT NULL,
     job JSONB NOT NULL,
+    script TEXT NOT NULL,
     args JSONB NOT NULL,
     output JSONB NULL,
     version INTEGER NOT NULL DEFAULT 0,
