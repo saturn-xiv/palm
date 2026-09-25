@@ -10,7 +10,7 @@ use portal::graphql::{
 };
 
 use super::super::{BUILD_TIME, GIT_VERSION};
-use super::context::Context;
+use super::{context::Context, menus::dashboard as dashboard_menus};
 
 pub struct Query;
 
@@ -95,7 +95,8 @@ impl Query {
         let mut db = ctx.state.db.get()?;
         let db = db.deref_mut();
         let mut cache = ctx.state.cache.get()?;
-        let reply = Menu::dashboard(
+
+        let reply = dashboard_menus(
             &ctx.session,
             db,
             &mut cache,

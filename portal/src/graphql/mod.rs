@@ -19,7 +19,6 @@ use super::{
         Dao as UserDao, Item as UserItem, Type as UserType, email::Dao as EmailUserDao,
     },
     orm::postgresql::Connection as Db,
-    rbac::Rbac,
 };
 
 #[derive(Debug, Clone, Default, Serialize, Deserialize)]
@@ -279,31 +278,4 @@ pub struct Menu {
     pub code: String,
     pub icon: Option<String>,
     pub children: Option<Vec<Self>>,
-}
-
-impl Menu {
-    pub async fn dashboard<R: Rbac, J: Jwt>(
-        ss: &Session,
-        db: &mut Db,
-        cache: &mut Cache,
-        rbac: &R,
-        jwt: &J,
-    ) -> Result<Vec<Self>> {
-        let current_user = ss.current_user(db, cache, jwt).await?;
-        let is_administrator = rbac.is_administrator(current_user.id()).await.is_ok();
-        let mut items = vec![Self {
-            code: "personal".to_string(),
-            children: Some(vec![]),
-            ..Default::default()
-        }];
-
-        if is_administrator {
-            items.push(Self {
-                code: "site".to_string(),
-                children: Some(vec![]),
-                ..Default::default()
-            });
-        }
-        Ok(items)
-    }
 }

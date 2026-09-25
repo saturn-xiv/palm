@@ -1,4 +1,5 @@
 pub mod context;
+pub mod menus;
 pub mod mutation;
 pub mod query;
 pub mod subscription;

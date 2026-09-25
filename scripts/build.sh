@@ -312,10 +312,10 @@ EOF
     cd ${TARGET_DIR}/
     dpkg-deb --root-owner-group --build $package ${package}.deb
     md5sum ${package}.deb > ${package}.md5
+    rm -r $package
 }
 
 # -----------------------------------------------------------------------------
-
 
 build_dashboard wisteria
 build_dahlia
@@ -324,6 +324,10 @@ build_marigold
 declare -a architectures=("amd64" "arm64" "riscv64")
 for a in "${architectures[@]}"; do
     target=${TARGET_DIR}/${PACKAGE_NAME}_$a
+    if [ -d $target ]
+    then
+        rm -r $target
+    fi
 
     mkdir -p $target/usr/share/palm/wisteria
     build_wisteria_assets $target/usr/share/palm/wisteria
