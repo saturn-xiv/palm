@@ -236,7 +236,7 @@ jobs-dir = "/var/lib/palm/lavender/jobs"
 working-dir = "/var/lib/palm/lavender/cache"
 bcc = []
 
-[web-hooks.www-change-org.gogs]
+[lavender.web-hooks.www-change-org.gogs]
 email = "who-am-i"
 secret = "openssl rand -base64 32"
 
@@ -299,7 +299,7 @@ function build_deb() {
     mkdir -p DEBIAN
     cat <<EOF > DEBIAN/control
 Package: palm
-Version: $(date +"%Y.%m.%d")-$(git rev-parse --short HEAD)
+Version: $(date +"%Y.%-m.%-d")-$(git rev-parse --short HEAD)
 Architecture: ${1}
 Maintainer: "$(git log -1 --pretty=format:'%an') <$(git log -1 --pretty=format:'%ae')">
 Depends: python3 (>= 3.14)

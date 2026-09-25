@@ -97,7 +97,10 @@ RUN bash -c "source $HOME/.cargo/env \
     && rustup target add aarch64-unknown-linux-gnu \
     && rustup target add riscv64gc-unknown-linux-gnu \
     && rustup target add loongarch64-unknown-linux-gnu"
-RUN bash -c "source $HOME/.cargo/env && cargo install diesel_cli && cargo install mdbook"
+RUN bash -c "source $HOME/.cargo/env \
+    && cargo install diesel_cli \
+    && cargo install mdbook \
+    && cargo install curlgenerator"
 
 
 # https://github.com/asdf-vm/asdf

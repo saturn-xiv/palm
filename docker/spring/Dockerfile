@@ -203,6 +203,7 @@ RUN zsh -c "source $HOME/.cargo/env \
 RUN zsh -c "source $HOME/.zshrc \
     && cargo install diesel_cli \
     && cargo install mdbook \
+    && cargo install curlgenerator \
     && cargo install cross"
 
 # FIXME Unable to find release information from file /etc/os-release

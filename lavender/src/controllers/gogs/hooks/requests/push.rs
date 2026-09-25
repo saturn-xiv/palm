@@ -1,4 +1,3 @@
-use chrono::NaiveDateTime;
 use serde::{Deserialize, Serialize};
 
 #[derive(Debug, Serialize, Deserialize, Clone)]
@@ -21,7 +20,10 @@ pub struct Commit {
     pub url: String,
     pub author: CommitAuthor,
     pub committer: CommitCommitter,
-    pub timestamp: NaiveDateTime,
+    pub added: Option<Vec<String>>,
+    pub removed: Option<Vec<String>>,
+    pub modified: Option<Vec<String>>,
+    pub timestamp: String,
 }
 #[derive(Debug, Serialize, Deserialize, Clone)]
 pub struct CommitAuthor {
@@ -45,17 +47,21 @@ pub struct Repository {
     pub description: String,
     pub private: bool,
     pub fork: bool,
+    pub parent: Option<String>,
+    pub empty: bool,
+    pub mirror: bool,
+    pub size: usize,
     pub html_url: String,
     pub ssh_url: String,
     pub clone_url: String,
     pub website: String,
-    pub starts_count: u16,
+    pub stars_count: u16,
     pub forks_count: u16,
     pub watchers_count: u16,
     pub open_issues_count: u16,
     pub default_branch: String,
-    pub created_at: NaiveDateTime,
-    pub updated_at: NaiveDateTime,
+    pub created_at: String,
+    pub updated_at: String,
 }
 #[derive(Debug, Serialize, Deserialize, Clone)]
 pub struct RepositoryOwner {

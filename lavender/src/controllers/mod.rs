@@ -8,7 +8,6 @@ use portal::{
     Result, models::user::email::Dao as EmailUserDao, orm::postgresql::Connection as Db,
     queue::rabbitmq::Client as RabbitMq,
 };
-use serde_json::from_str as json_from_str;
 
 use super::models::job::Item as Job;
 
@@ -34,7 +33,7 @@ impl super::WebHook {
                     body
                 );
                 header.verify(secret, body)?;
-                let _: gogs::hooks::request::Item = json_from_str(body)?;
+                let _: gogs::hooks::requests::push::Item = serde_json::from_str(body)?;
 
                 let args = vec![header.delivery, header.event];
 

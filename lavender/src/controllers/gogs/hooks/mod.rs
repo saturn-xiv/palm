@@ -1,4 +1,4 @@
-pub mod request;
+pub mod requests;
 
 use axum::http::HeaderMap;
 use data_encoding::HEXLOWER;
