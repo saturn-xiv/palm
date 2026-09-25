@@ -6,6 +6,7 @@ use std::path::Path;
 use std::process::Output as ProcessOutput;
 use std::time::Duration;
 
+use diesel::Connection as DieselConnection;
 use flatbuffers::FlatBufferBuilder;
 use hyacinth::email_v1::{
     Address as EmailAddress, AddressArgs as EmailAddressArgs, Body as EmailBody,
@@ -13,12 +14,17 @@ use hyacinth::email_v1::{
 };
 use hyper::StatusCode;
 use portal::{
-    HttpError, Result,
+    Error, HttpError, Result,
     content_types::APPLICATION_X_FLATBUFFERS,
-    queue::rabbitmq::{BasicPublishOptions, Client as RabbitMq},
+    models::log::{Dao as LogDao, Level},
+    orm::postgresql::Connection as Db,
+    queue::rabbitmq::{BasicPublishOptions, Client as RabbitMq, FlexBuffersMessageSender},
     shell,
 };
 use serde::{Deserialize, Serialize};
+
+use super::super::graphql::Plugin;
+use super::task::{Dao as TaskDao, Item as Task};
 
 #[derive(Debug, Serialize, Deserialize, Clone, PartialEq, Eq)]
 pub struct Item {
@@ -157,6 +163,58 @@ impl Item {
         }
         Ok(items)
     }
+
+    pub async fn publish<P: AsRef<Path>, A: Into<String> + Clone>(
+        db: &mut Db,
+        queue: &RabbitMq,
+        ip: &str,
+        (user_id, email): (i64, &str),
+        (jobs_dir, name, args): (P, &str, Vec<A>),
+    ) -> Result<()> {
+        let job = {
+            let it = Self::new(jobs_dir, name)?;
+            it.validate(args.clone())?;
+            it
+        };
+
+        let uid = db.transaction::<_, Error, _>(|tx| {
+            let it = TaskDao::create(tx, email, &job, args.clone())?;
+            LogDao::create::<Plugin, _>(
+                tx,
+                user_id,
+                Level::Info,
+                ip,
+                format!("Run job {}.", name),
+            )?;
+            Ok(it)
+        })?;
+
+        let task = Message {
+            uid,
+            name: name.to_string(),
+            email: email.to_string(),
+            args: args.into_iter().map(|x| x.into()).collect(),
+        };
+
+        FlexBuffersMessageSender::publish(
+            queue,
+            "",
+            type_name::<Task>(),
+            &task,
+            BasicPublishOptions::default(),
+        )
+        .await?;
+
+        Ok(())
+    }
+}
+
+#[derive(Debug, Serialize, Deserialize, Clone)]
+pub struct Message {
+    pub uid: String,
+    pub name: String,
+    pub email: String,
+    pub args: Vec<String>,
 }
 
 #[derive(Debug, Serialize, Deserialize, Clone, PartialEq, Eq)]

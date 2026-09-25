@@ -90,7 +90,7 @@ impl Session {
         proxy_set_header X-Forwarded-Proto $scheme;
     }
      */
-    fn detect_client_ip(headers: &HeaderMap) -> Option<String> {
+    pub fn detect_client_ip(headers: &HeaderMap) -> Option<String> {
         if let Some(it) = headers.get(X_FORWARDED_FOR)
             && let Ok(it) = it.to_str()
         {
@@ -260,7 +260,7 @@ impl Page {
     const MIN_SIZE: i64 = 1 << 2;
 }
 
-#[derive(Debug, GraphQLObject)]
+#[derive(Debug, GraphQLObject, Serialize, Deserialize)]
 #[graphql(name = "Succeeded")]
 pub struct Succeeded {
     pub created_at: NaiveDateTime,

@@ -62,6 +62,7 @@ RUN git config --global core.quotepath false \
     && git config --global pull.rebase false \
     && git config --global url."https://".insteadOf git://
 RUN echo 'set-option -g history-limit 102400' > $HOME/.tmux.conf && echo 'set-option -g default-shell "/bin/bash"' >> $HOME/.tmux.conf
+RUN echo 'term xterm-256color' >> $HOME/.screenrc
 RUN echo 'set nobackup' >>$HOME/.vimrc && echo 'set nowritebackup' >> $HOME/.vimrc
 
 ARG TARGETARCH
@@ -184,7 +185,8 @@ RUN cd /opt/opensearch/ \
     && cp -r config/opensearch-analysis-ik plugins/opensearch-analysis-ik/config
 
 # https://www.rabbitmq.com/access-control.html#loopback-users
-RUN echo 'loopback_users = none' | sudo tee -a /etc/rabbitmq/rabbitmq.conf \
+RUN sudo chown -R rabbitmq:rabbitmq /var/lib/rabbitmq \
+    && echo 'loopback_users = none' | sudo tee -a /etc/rabbitmq/rabbitmq.conf \
     && echo 'NODE_IP_ADDRESS=0.0.0.0' |sudo tee -a /etc/rabbitmq/rabbitmq-env.conf \
     && sudo rabbitmq-plugins enable rabbitmq_mqtt \
     && sudo rabbitmq-plugins enable rabbitmq_stream \

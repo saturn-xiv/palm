@@ -4,7 +4,7 @@ use std::sync::Arc;
 
 use axum::{
     Extension, Router,
-    routing::{MethodFilter, get, on},
+    routing::{MethodFilter, get, on, post},
 };
 use axum_extra::extract::cookie::Key as CookieKey;
 use clap::ValueEnum;
@@ -85,6 +85,10 @@ pub async fn start<P: AsRef<Path>>(config: P, port: u16, _theme: Theme) -> Resul
         .route("/subscriptions", get(graphql_subscriptions))
         .route("/graphiql", get(graphiql("/graphql", "/subscriptions")))
         .route("/playground", get(playground("/graphql", "/subscriptions")))
+        .route(
+            "/lavender/gogs/hooks/{name}",
+            post(controllers::lavender::gogs_web_hook),
+        )
         .route("/", get(controllers::home))
         .layer(Extension(Arc::new(schema)))
         .layer(Extension(state.clone()))

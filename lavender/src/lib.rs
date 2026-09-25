@@ -1,5 +1,8 @@
+pub mod controllers;
 pub mod graphql;
 pub mod models;
+
+use std::collections::BTreeMap;
 
 use serde::{Deserialize, Serialize};
 
@@ -10,6 +13,8 @@ pub struct Config {
     #[serde(rename = "working-dir", default = "working_dir")]
     pub working_dir: String,
     pub bcc: Vec<String>,
+    #[serde(rename = "web-hooks")]
+    pub web_hooks: BTreeMap<String, WebHook>,
 }
 
 fn jobs_dir() -> String {
@@ -18,4 +23,10 @@ fn jobs_dir() -> String {
 
 fn working_dir() -> String {
     "/var/tmp/lavender".to_string()
+}
+
+#[derive(Debug, Clone, Serialize, Deserialize)]
+pub enum WebHook {
+    #[serde(rename = "gogs")]
+    Gogs { email: String, secret: String },
 }

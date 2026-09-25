@@ -31,7 +31,7 @@ use std::process::{Command, Output as ProcessOutput};
 use std::result::Result as StdResult;
 use std::str::FromStr;
 
-use axum::response::Html;
+use axum::{Json, http::HeaderMap as HttpHeaderMap, response::Html};
 use chrono::Duration;
 use data_encoding::{BASE64, DecodeError as Base64DecodeError};
 use hyacinth::{GrpcClientChannel, GrpcStatusError, loquat_v1, rbac_v1, wechat_pay_v1};
@@ -73,6 +73,8 @@ impl From<GrpcStatusError> for HttpError {
 }
 
 pub type HttpResult<T> = StdResult<T, HttpError>;
+pub type HtmlResult = StdResult<Html<String>, (StatusCode, String)>;
+pub type JsonResult<T> = StdResult<Json<T>, (StatusCode, String)>;
 
 #[macro_export]
 macro_rules! web_try {
@@ -83,8 +85,6 @@ macro_rules! web_try {
         })?
     };
 }
-
-pub type HtmlResult = StdResult<Html<String>, (StatusCode, String)>;
 
 pub fn is_stopped() -> Result<bool> {
     let dir = current_exe()?;
@@ -109,6 +109,10 @@ pub fn parse_toml<P: AsRef<Path>, T: DeserializeOwned>(file: P) -> Result<T> {
     check_permission(cfg)?;
     let it: T = toml::from_str(&fs::read_to_string(cfg)?)?;
     Ok(it)
+}
+
+pub fn get_http_header<'a>(headers: &'a HttpHeaderMap, key: &str) -> Option<&'a str> {
+    headers.get(key).and_then(|it| it.to_str().ok())
 }
 
 #[derive(Debug, Clone, Serialize, Deserialize)]

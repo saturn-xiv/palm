@@ -1,6 +1,24 @@
 use std::collections::BTreeMap;
 
-use lavender::models::job::{Arg, Item as Job};
+use lavender::{
+    Config, WebHook,
+    models::job::{Arg, Item as Job},
+};
+
+#[test]
+fn lavender_sample() {
+    let mut it = Config::default();
+    it.web_hooks.insert(
+        "www-change-org".to_string(),
+        WebHook::Gogs {
+            email: "who-am-i".to_string(),
+            secret: "openssl rand -base64 32".to_string(),
+        },
+    );
+
+    let buf = toml::to_string(&it).unwrap();
+    println!("{buf}");
+}
 
 #[test]
 fn job_sample() {

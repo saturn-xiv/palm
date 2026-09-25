@@ -6,10 +6,10 @@ use openssl::{
     sign::Signer,
 };
 
-pub struct HmacSha512 {
+pub struct HmacSha256 {
     key: PKey<Private>,
 }
-impl HmacSha512 {
+impl HmacSha256 {
     pub fn new(key: &[u8]) -> Result<Self, ErrorStack> {
         let it = Self {
             key: PKey::hmac(key)?,
@@ -17,7 +17,7 @@ impl HmacSha512 {
         Ok(it)
     }
     pub fn sign(&self, data: &[u8]) -> Result<Vec<u8>, ErrorStack> {
-        let mut signer = Signer::new(MessageDigest::sha512(), &self.key)?;
+        let mut signer = Signer::new(MessageDigest::sha256(), &self.key)?;
         signer.update(data)?;
         let it = signer.sign_to_vec()?;
         Ok(it)

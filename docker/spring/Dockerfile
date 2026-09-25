@@ -115,6 +115,7 @@ RUN git config --global core.quotepath false \
 
 RUN echo 'set-option -g history-limit 102400' > $HOME/.tmux.conf \
     && echo 'set-option -g default-shell "/bin/zsh"' >> $HOME/.tmux.conf
+RUN echo 'term xterm-256color' >> $HOME/.screenrc
 
 # https://github.com/cross-tools/musl-cross
 RUN git clone https://github.com/cross-tools/musl-cross.git $HOME/build/musl-cross
@@ -299,6 +300,7 @@ RUN cd /opt/opensearch/ \
 RUN sudo mkdir -p /var/lib/minio/data && sudo chown -R nobody:nobody /var/lib/minio
 
 # https://www.rabbitmq.com/access-control.html#loopback-users
+# https://www.rabbitmq.com/docs/download
 RUN echo 'loopback_users = none' | sudo tee -a /etc/rabbitmq/rabbitmq.conf \
     && sudo sed -i "s/NODENAME.*/NODENAME=palm/g" /etc/rabbitmq/rabbitmq-env.conf \
     && sudo rabbitmq-plugins enable rabbitmq_mqtt \

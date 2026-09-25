@@ -30,3 +30,27 @@ fn ssha512() {
         println!("SSHA512({}): doveadm pw -t '{}' -p '{}'", i, code, password);
     }
 }
+
+#[test]
+fn hmac256() {
+    let data = "Hello, Palm!";
+    let key = portal::random::bytes(128);
+    for _ in 1..=3 {
+        let md = portal::hmac::sha256::HmacSha256::new(&key).unwrap();
+        let hash = md.sign(data.as_bytes()).unwrap();
+        println!("hmac-256({}): {}", data, BASE64_NOPAD.encode(&hash));
+        assert!(md.verify(&hash, data.as_bytes()).unwrap());
+    }
+}
+
+#[test]
+fn hmac512() {
+    let data = "Hello, Palm!";
+    let key = portal::random::bytes(128);
+    for _ in 1..=3 {
+        let md = portal::hmac::sha512::HmacSha512::new(&key).unwrap();
+        let hash = md.sign(data.as_bytes()).unwrap();
+        println!("hmac-512({}): {}", data, BASE64_NOPAD.encode(&hash));
+        assert!(md.verify(&hash, data.as_bytes()).unwrap());
+    }
+}

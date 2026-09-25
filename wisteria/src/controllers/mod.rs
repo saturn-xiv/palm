@@ -1,4 +1,5 @@
 pub mod cms;
+pub mod lavender;
 
 use std::ops::{Deref, DerefMut};
 

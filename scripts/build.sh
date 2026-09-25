@@ -235,6 +235,11 @@ port = 11003
 jobs-dir = "/var/lib/palm/lavender/jobs"
 working-dir = "/var/lib/palm/lavender/cache"
 bcc = []
+
+[web-hooks.www-change-org.gogs]
+email = "who-am-i"
+secret = "openssl rand -base64 32"
+
 EOF
     cat <<EOF > $1/wisteria/http.service
 [Unit]

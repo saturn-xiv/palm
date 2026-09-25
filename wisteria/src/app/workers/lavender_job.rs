@@ -7,9 +7,8 @@ use std::time::{Duration, Instant};
 use diesel::Connection as DieselConnection;
 use lavender::{
     Config as Lavender,
-    graphql::job::Task,
     models::{
-        job::Item as Job,
+        job::{Item as Job, Message},
         task::{Dao as TaskDao, Output},
     },
 };
@@ -35,7 +34,7 @@ pub async fn start<P: AsRef<Path>>(config: P, interval: Duration) -> Result<()> 
     let db = config.postgresql.open()?;
     let lavender = Arc::new(config.lavender);
 
-    let queue = type_name::<Task>();
+    let queue = type_name::<Message>();
     let client = config.rabbitmq.open().await?;
     client
         .declare_queue(
@@ -88,7 +87,7 @@ impl QueueConsumer for Consumer {
     type Error = Error;
     async fn consume(&self, _id: &str, _content_type: &str, payload: &[u8]) -> Result<()> {
         let start = Instant::now();
-        let task: Task = flexbuffers::from_slice(payload)?;
+        let task: Message = flexbuffers::from_slice(payload)?;
         let job = Job::new(&self.config.jobs_dir, &task.name)?;
         let output = job.execute(&self.config.working_dir, task.args)?;
         let duration = start.elapsed();
