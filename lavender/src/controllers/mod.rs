@@ -1,6 +1,3 @@
-pub mod github;
-pub mod gogs;
-
 use std::path::Path;
 
 use axum::http::HeaderMap;
@@ -9,7 +6,10 @@ use portal::{
     queue::rabbitmq::Client as RabbitMq,
 };
 
-use super::models::job::Item as Job;
+use super::models::{
+    gogs::{hooks::Header as GogsHeader, hooks::requests::push::Item as GogsPushRequest},
+    job::Item as Job,
+};
 
 // https://gogs.io/advancing/webhooks
 impl super::WebHook {
@@ -24,7 +24,7 @@ impl super::WebHook {
     ) -> Result<()> {
         match self {
             Self::Gogs { email, secret } => {
-                let header = gogs::hooks::Header::new(headers);
+                let header = GogsHeader::new(headers);
                 log::debug!(
                     "receive gogs hook request: {} {} {}\n{}",
                     header.delivery,
@@ -33,7 +33,7 @@ impl super::WebHook {
                     body
                 );
                 header.verify(secret, body)?;
-                let _: gogs::hooks::requests::push::Item = serde_json::from_str(body)?;
+                let _: GogsPushRequest = serde_json::from_str(body)?;
 
                 let args = vec![header.delivery, header.event];
 

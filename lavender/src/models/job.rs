@@ -24,7 +24,7 @@ use portal::{
 use serde::{Deserialize, Serialize};
 
 use super::super::graphql::Plugin;
-use super::task::{Dao as TaskDao, Item as Task};
+use super::task::Dao as TaskDao;
 
 #[derive(Debug, Serialize, Deserialize, Clone, PartialEq, Eq)]
 pub struct Item {
@@ -199,7 +199,7 @@ impl Item {
         FlexBuffersMessageSender::publish(
             queue,
             "",
-            type_name::<Task>(),
+            type_name::<Message>(),
             &task,
             BasicPublishOptions::default(),
         )
