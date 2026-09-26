@@ -7,6 +7,11 @@ use std::path::Path;
 use super::Result;
 
 pub trait Provider {
-    fn upload<P: AsRef<Path>>(&self, file: P, id: &str) -> impl Future<Output = Result<()>>;
-    fn download(id: &str) -> impl Future<Output = Result<Vec<u8>>>;
+    fn upload<P: AsRef<Path>>(
+        &self,
+        file: P,
+        bucket: &str,
+        object: &str,
+    ) -> impl Future<Output = Result<()>>;
+    // fn download(id: &str) -> impl Future<Output = Result<Vec<u8>>>;
 }

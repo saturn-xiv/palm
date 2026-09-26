@@ -1,14 +1,25 @@
 use std::any::type_name;
-use std::{fs::File, io::prelude::*, path::Path, process::Command, sync::Arc, time::Duration};
+use std::fs::File;
+use std::io::prelude::*;
+use std::ops::Deref;
+use std::path::Path;
+use std::process::Command;
+use std::sync::Arc;
+use std::time::Duration;
 
 use hyacinth::{flatbuffers_root, tex_v1::Task};
 use portal::{
-    Error, Result, is_stopped, parse_toml,
+    Error, Result, is_stopped,
+    orm::postgresql::Node as PostgreSql,
+    parse_toml,
     queue::{
         Consumer as QueueConsumer,
         rabbitmq::{Node as RabbitMq, QueueDeclareOptions},
     },
-    s3::seaweedfs::{Client as S3, Config as SeaweedFs},
+    s3::{
+        Provider as S3Provider,
+        seaweedfs::{Client as S3, Config as SeaweedFs},
+    },
 };
 use serde::{Deserialize, Serialize};
 use tempfile::tempdir;
@@ -21,7 +32,8 @@ pub async fn start<P: AsRef<Path>>(config: P, interval: Duration) -> Result<()> 
     }
     let config: Config = parse_toml(config)?;
 
-    let s3 = Arc::new(config.seaweedfs.open()?);
+    let db = config.postgresql.open()?;
+    let s3 = Arc::new(config.seaweedfs.open(db).await?);
     let queue = type_name::<Task>();
     let client = config.rabbitmq.open().await?;
     client
@@ -48,6 +60,7 @@ pub async fn start<P: AsRef<Path>>(config: P, interval: Duration) -> Result<()> 
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 struct Config {
+    postgresql: PostgreSql,
     rabbitmq: RabbitMq,
     seaweedfs: SeaweedFs,
 }
@@ -95,7 +108,14 @@ impl QueueConsumer for Consumer {
             log::debug!("{}", std::str::from_utf8(&out.stdout)?);
         }
         {
-            self.s3.upload(&work_dir.join(&entry_pdf), "").await?;
+            let s3 = self.s3.deref();
+            S3Provider::upload(
+                s3,
+                &work_dir.join(&entry_pdf),
+                task.output().bucket(),
+                task.output().object(),
+            )
+            .await?;
         }
 
         Ok(())

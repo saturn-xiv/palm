@@ -61,20 +61,21 @@ pub async fn start<P: AsRef<Path>>(config: P, port: u16, _theme: Theme) -> Resul
     }
 
     let schema = new_schema();
+    let db = config.postgresql.open()?;
     let state = State(Arc::new(InnerState {
         cookie_key: {
             let it: Key = config.cookie_key.parse()?;
             CookieKey::from(&it.0)
         },
-        db: config.postgresql.open()?,
+        s3: config.seaweedfs.open(db.clone()).await?,
         cache: config.redis.standalone()?,
         queue: config.rabbitmq.open().await?,
-        s3: config.seaweedfs.open()?,
         search: config.opensearch.single()?,
         loquat: Loquat::new(config.loquat.open()),
         dahlia: Dahlia::new(config.dahlia.open()),
         marigold: Marigold::new(config.marigold.open()),
         lavender: config.lavender.clone(),
+        db,
     }));
 
     let app = Router::new()
