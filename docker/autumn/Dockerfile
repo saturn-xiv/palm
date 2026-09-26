@@ -67,15 +67,14 @@ RUN echo 'set nobackup' >>$HOME/.vimrc && echo 'set nowritebackup' >> $HOME/.vim
 
 ARG TARGETARCH
 
-# https://min.io/download#/linux
-RUN wget -q -P $HOME/downloads/ https://dl.min.io/aistor/minio/release/linux-${TARGETARCH}/minio \
-    && chmod +x $HOME/downloads/minio \
-    && sudo cp $HOME/downloads/minio /usr/local/bin/ \
-    && rm $HOME/downloads/minio \
-    && wget -q -P $HOME/downloads/ https://dl.min.io/aistor/mc/release/linux-${TARGETARCH}/mc \
-    && chmod +x $HOME/downloads/mc \
-    && sudo cp $HOME/downloads/mc /usr/local/bin/ \
-    && rm $HOME/downloads/mc
+# https://github.com/seaweedfs/seaweedfs/tags
+# https://github.com/seaweedfs/seaweedfs/wiki/Quick-Start-with-weed-mini
+ENV SEAWEEDFS_VERSION="4.47"
+RUN wget -q -P $HOME/downloads/ https://github.com/seaweedfs/seaweedfs/releases/download/${SEAWEEDFS_VERSION}/linux_${TARGETARCH}.tar.gz \
+    && cd $HOME/downloads/ \
+    && tar xf linux_${TARGETARCH}.tar.gz \
+    && sudo cp $HOME/downloads/weed /usr/local/bin/ \
+    && rm $HOME/downloads/linux_${TARGETARCH}.tar.gz
 
 # https://github.com/amacneil/dbmate
 RUN curl -fsSL -o $HOME/downloads/dbmate https://github.com/amacneil/dbmate/releases/latest/download/dbmate-linux-${TARGETARCH} \
@@ -104,20 +103,20 @@ RUN bash -c "source $HOME/.cargo/env \
 
 
 # https://github.com/asdf-vm/asdf
-ENV ASDF_VERSION="0.20.0"
+ENV ASDF_VERSION="0.20.2"
 RUN wget -q -P $HOME/downloads https://github.com/asdf-vm/asdf/releases/download/v${ASDF_VERSION}/asdf-v${ASDF_VERSION}-linux-${TARGETARCH}.tar.gz \
     && tar xf $HOME/downloads/asdf-v${ASDF_VERSION}-linux-${TARGETARCH}.tar.gz -C $HOME/downloads \
     && sudo cp $HOME/downloads/asdf /usr/local/bin/ \
     && echo 'export PATH=${ASDF_DATA_DIR:-$HOME/.asdf}/shims:$PATH' >> $HOME/.profile \
     && rm $HOME/downloads/asdf $HOME/downloads/asdf-v${ASDF_VERSION}-linux-${TARGETARCH}.tar.gz
 
-RUN bash -c "source $HOME/.profile && asdf plugin add erlang && asdf install erlang 29.0.6 && asdf set --home erlang 29.0.6"
+RUN bash -c "source $HOME/.profile && asdf plugin add erlang && asdf install erlang 29.1.1 && asdf set --home erlang 29.1.1"
 RUN bash -c "source $HOME/.profile && asdf plugin add elixir && asdf install elixir 1.20.4-otp-29 && asdf set --home elixir 1.20.4-otp-29"
 RUN echo "export HEX_HTTP_CONCURRENCY=1" >> $HOME/.profile && echo "export HEX_HTTP_TIMEOUT=120" >> $HOME/.profile
 # https://thrift.apache.org/lib/java.html
-RUN bash -c "source $HOME/.profile && asdf plugin add java && asdf install java corretto-26.0.2.11.1 && asdf set --home java corretto-26.0.2.11.1"
+RUN bash -c "source $HOME/.profile && asdf plugin add java && asdf install java corretto-27.0.0.35.1 && asdf set --home java corretto-27.0.0.35.1"
 # https://docs.gradle.org/current/userguide/compatibility.html
-RUN bash -c "source $HOME/.profile && asdf plugin add gradle && asdf install gradle 9.7.1 && asdf set --home gradle 9.7.1"
+RUN bash -c "source $HOME/.profile && asdf plugin add gradle && asdf install gradle 9.8.0 && asdf set --home gradle 9.8.0"
 RUN bash -c "source $HOME/.profile && asdf plugin add maven && asdf install maven latest && asdf set --home maven latest"
 
 RUN bash -c "source $HOME/.profile && asdf plugin add golang && asdf install golang latest && asdf set --home golang latest"

@@ -72,13 +72,14 @@ RUN wget -q -O $HOME/downloads/bazel https://github.com/bazelbuild/bazelisk/rele
     && sudo cp $HOME/downloads/bazel /usr/local/bin && sudo chmod +x /usr/local/bin/bazel
 
 
-# https://min.io/download#/linux
-RUN wget -q -P $HOME/downloads/ https://dl.min.io/aistor/minio/release/linux-amd64/minio \
-    && chmod +x $HOME/downloads/minio \
-    && sudo cp $HOME/downloads/minio /usr/local/bin/ \
-    && wget -q -P $HOME/downloads/ https://dl.min.io/aistor/mc/release/linux-amd64/mc \
-    && chmod +x $HOME/downloads/mc \
-    && sudo cp $HOME/downloads/mc /usr/local/bin/
+# https://github.com/seaweedfs/seaweedfs/tags
+# https://github.com/seaweedfs/seaweedfs/wiki/Quick-Start-with-weed-mini
+ENV SEAWEEDFS_VERSION="4.47"
+RUN wget -q -P $HOME/downloads/ https://github.com/seaweedfs/seaweedfs/releases/download/${SEAWEEDFS_VERSION}/linux_amd64.tar.gz \
+    && cd $HOME/downloads/ \
+    && tar xf linux_amd64.tar.gz \
+    && sudo cp $HOME/downloads/weed /usr/local/bin/ \
+    && rm $HOME/downloads/linux_amd64.tar.gz
 
 # https://github.com/amacneil/dbmate
 RUN curl -fsSL -o $HOME/downloads/dbmate https://github.com/amacneil/dbmate/releases/latest/download/dbmate-linux-amd64 \
@@ -137,20 +138,20 @@ RUN wget -q -P $HOME/downloads https://github.com/cross-tools/musl-cross/release
 # asdf plugin list --urls
 # asdf plugin list all
 # asdf list all XXX
-ENV ASDF_VERSION="0.20.0"
+ENV ASDF_VERSION="0.20.2"
 RUN wget -q -P $HOME/downloads https://github.com/asdf-vm/asdf/releases/download/v${ASDF_VERSION}/asdf-v${ASDF_VERSION}-linux-amd64.tar.gz \
     && tar xf $HOME/downloads/asdf-v${ASDF_VERSION}-linux-amd64.tar.gz -C $HOME/downloads \
     && sudo cp $HOME/downloads/asdf /usr/local/bin/ \
     && rm $HOME/downloads/asdf \
     && echo 'export PATH=${ASDF_DATA_DIR:-$HOME/.asdf}/shims:$PATH' >> $HOME/.zshrc
 
-RUN zsh -c "source $HOME/.zshrc && asdf plugin add erlang && asdf install erlang 29.0.6 && asdf set --home erlang 29.0.6"
+RUN zsh -c "source $HOME/.zshrc && asdf plugin add erlang && asdf install erlang 29.1.1 && asdf set --home erlang 29.1.1"
 RUN zsh -c "source $HOME/.zshrc && asdf plugin add elixir && asdf install elixir 1.20.4-otp-29 && asdf set --home elixir 1.20.4-otp-29"
 RUN echo "export HEX_HTTP_CONCURRENCY=1" >> $HOME/.zshrc && echo "export HEX_HTTP_TIMEOUT=120" >> $HOME/.zshrc
 # https://thrift.apache.org/lib/java.html
-RUN zsh -c "source $HOME/.zshrc && asdf plugin add java && asdf install java corretto-26.0.2.11.1 && asdf set --home java corretto-26.0.2.11.1"
+RUN zsh -c "source $HOME/.zshrc && asdf plugin add java && asdf install java corretto-27.0.0.35.1 && asdf set --home java corretto-27.0.0.35.1"
 # https://docs.gradle.org/current/userguide/compatibility.html
-RUN zsh -c "source $HOME/.zshrc && asdf plugin add gradle && asdf install gradle 9.7.1 && asdf set --home gradle 9.7.1"
+RUN zsh -c "source $HOME/.zshrc && asdf plugin add gradle && asdf install gradle 9.8.0 && asdf set --home gradle 9.8.0"
 RUN zsh -c "source $HOME/.zshrc && asdf plugin add maven && asdf install maven latest && asdf set --home maven latest"
 
 RUN zsh -c "source $HOME/.zshrc && asdf plugin add golang && asdf install golang latest && asdf set --home golang latest"
@@ -239,7 +240,7 @@ RUN tar xf $HOME/downloads/opensearch-${OPENSEARCH_VERSION}-linux-x64.tar.gz -C 
     && bin/opensearch-plugin install https://github.com/aparo/opensearch-analysis-pinyin/releases/download/${OPENSEARCH_VERSION}/opensearch-analysis-pinyin.zip
 
 # https://github.com/grpc/grpc
-ENV GRPC_VERSION="v1.83.1"
+ENV GRPC_VERSION="v1.84.1"
 RUN git clone -b $GRPC_VERSION https://github.com/grpc/grpc.git $HOME/downloads/grpc
 RUN cd $HOME/downloads/grpc/ && git submodule update --init --recursive
 # ENV PROTOBUF_VERSION "v3.21.8"
@@ -262,7 +263,7 @@ RUN wget -q -O $HOME/.local/bin/protoc-gen-grpc-web \
 RUN chmod +x $HOME/.local/bin/protoc-gen-grpc-web
 
 # https://github.com/protocolbuffers/protobuf-javascript
-ENV GRPC_JS_PLUGIN_VERSION="4.0.2"
+ENV GRPC_JS_PLUGIN_VERSION="4.0.3"
 RUN wget -q -P $HOME/downloads \
     https://github.com/protocolbuffers/protobuf-javascript/releases/download/v${GRPC_JS_PLUGIN_VERSION}/protobuf-javascript-${GRPC_JS_PLUGIN_VERSION}-linux-x86_64.tar.gz
 RUN mkdir -p $HOME/build/protobuf-javascript \
@@ -298,7 +299,7 @@ RUN cd /opt/opensearch/ \
     && touch config/opensearch-performance-analyzer/plugin-stats-metadata \
     && cp -r config/opensearch-analysis-ik plugins/opensearch-analysis-ik/config
 
-RUN sudo mkdir -p /var/lib/minio/data && sudo chown -R nobody:nobody /var/lib/minio
+RUN sudo mkdir -p /var/lib/seaweedfs/data && sudo chown -R nobody:nobody /var/lib/seaweedfs
 
 # https://www.rabbitmq.com/access-control.html#loopback-users
 # https://www.rabbitmq.com/docs/download
