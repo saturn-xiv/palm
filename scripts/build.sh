@@ -346,6 +346,7 @@ for a in "${architectures[@]}"; do
     cp target/marigold-*.jar README.md $target/usr/share/palm/marigold/
 
     generate_etc $target/usr/share/palm
+    cp -r docker README.md LICENSE $target/usr/share/palm/
     mkdir -p $target/etc/palm $target/usr/bin $target/var/lib/palm/{loquat,dahlia,marigold,wisteria}
 done
 
