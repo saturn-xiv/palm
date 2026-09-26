@@ -12,8 +12,8 @@ use hyacinth::{GrpcClientChannel, open_grpc_channel};
 use juniper_axum::{graphiql, playground};
 use portal::{
     Dahlia, Key, Loquat, Marigold, Result, cache::redis::Node as Redis, is_stopped,
-    minio::Node as Minio, open_search::Node as OpenSearch, orm::postgresql::Node as PostgreSql,
-    parse_toml, queue::rabbitmq::Node as RabbitMq,
+    open_search::Node as OpenSearch, orm::postgresql::Node as PostgreSql, parse_toml,
+    queue::rabbitmq::Node as RabbitMq, s3::seaweedfs::Config as SeaweedFs,
 };
 use serde::{Deserialize, Serialize};
 use strum::{Display as EnumDisplay, EnumString};
@@ -69,7 +69,7 @@ pub async fn start<P: AsRef<Path>>(config: P, port: u16, _theme: Theme) -> Resul
         db: config.postgresql.open()?,
         cache: config.redis.standalone()?,
         queue: config.rabbitmq.open().await?,
-        s3: config.minio.open()?,
+        s3: config.seaweedfs.open()?,
         search: config.opensearch.single()?,
         loquat: Loquat::new(config.loquat.open()),
         dahlia: Dahlia::new(config.dahlia.open()),
@@ -130,7 +130,7 @@ struct Config {
     postgresql: PostgreSql,
     redis: Redis,
     rabbitmq: RabbitMq,
-    minio: Minio,
+    seaweedfs: SeaweedFs,
     opensearch: OpenSearch,
     loquat: Rpc,
     dahlia: Rpc,

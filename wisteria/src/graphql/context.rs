@@ -5,8 +5,8 @@ use axum::extract::FromRef;
 use axum_extra::extract::cookie::Key;
 use portal::{
     Dahlia, Loquat, Marigold, cache::redis::StandalonePool as Cache, graphql::Session,
-    minio::Client as S3, open_search::Client as Search, orm::postgresql::Pool as Db,
-    queue::rabbitmq::Client as RabbitMq,
+    open_search::Client as Search, orm::postgresql::Pool as Db,
+    queue::rabbitmq::Client as RabbitMq, s3::seaweedfs::Client as S3,
 };
 
 #[derive(Clone)]

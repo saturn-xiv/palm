@@ -3,13 +3,12 @@ use std::{fs::File, io::prelude::*, path::Path, process::Command, sync::Arc, tim
 
 use hyacinth::{flatbuffers_root, tex_v1::Task};
 use portal::{
-    Error, Result, is_stopped,
-    minio::{Client as MinioClient, Node as MinioConfig},
-    parse_toml,
+    Error, Result, is_stopped, parse_toml,
     queue::{
         Consumer as QueueConsumer,
         rabbitmq::{Node as RabbitMq, QueueDeclareOptions},
     },
+    s3::seaweedfs::{Client as S3, Config as SeaweedFs},
 };
 use serde::{Deserialize, Serialize};
 use tempfile::tempdir;
@@ -22,7 +21,7 @@ pub async fn start<P: AsRef<Path>>(config: P, interval: Duration) -> Result<()> 
     }
     let config: Config = parse_toml(config)?;
 
-    let s3 = Arc::new(config.minio.open()?);
+    let s3 = Arc::new(config.seaweedfs.open()?);
     let queue = type_name::<Task>();
     let client = config.rabbitmq.open().await?;
     client
@@ -50,11 +49,11 @@ pub async fn start<P: AsRef<Path>>(config: P, interval: Duration) -> Result<()> 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 struct Config {
     rabbitmq: RabbitMq,
-    minio: MinioConfig,
+    seaweedfs: SeaweedFs,
 }
 
 struct Consumer {
-    s3: Arc<MinioClient>,
+    s3: Arc<S3>,
 }
 
 impl QueueConsumer for Consumer {
@@ -96,13 +95,7 @@ impl QueueConsumer for Consumer {
             log::debug!("{}", std::str::from_utf8(&out.stdout)?);
         }
         {
-            self.s3
-                .upload(
-                    task.output().bucket(),
-                    task.output().object(),
-                    &work_dir.join(&entry_pdf),
-                )
-                .await?;
+            self.s3.upload(&work_dir.join(&entry_pdf), "").await?;
         }
 
         Ok(())
