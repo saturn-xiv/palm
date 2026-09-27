@@ -115,11 +115,7 @@ impl QueueConsumer for Consumer {
             &self.from,
             &task.email,
             self.config.bcc.clone(),
-            if let Some(0) = output.code {
-                (&output.stdout, true, duration)
-            } else {
-                (&output.stderr, false, duration)
-            },
+            &output,
         )
         .await?;
 

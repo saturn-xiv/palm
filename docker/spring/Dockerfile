@@ -240,7 +240,7 @@ RUN tar xf $HOME/downloads/opensearch-${OPENSEARCH_VERSION}-linux-x64.tar.gz -C 
     && bin/opensearch-plugin install https://github.com/aparo/opensearch-analysis-pinyin/releases/download/${OPENSEARCH_VERSION}/opensearch-analysis-pinyin.zip
 
 # https://github.com/grpc/grpc
-ENV GRPC_VERSION="v1.84.1"
+ENV GRPC_VERSION="v1.84.0"
 RUN git clone -b $GRPC_VERSION https://github.com/grpc/grpc.git $HOME/downloads/grpc
 RUN cd $HOME/downloads/grpc/ && git submodule update --init --recursive
 # ENV PROTOBUF_VERSION "v3.21.8"

@@ -16,7 +16,7 @@ pub struct Output {
     pub code: Option<i32>,
     pub stdout: String,
     pub stderr: String,
-    pub elapsed: u128,
+    pub elapsed: Duration,
 }
 
 impl Output {
@@ -27,10 +27,13 @@ impl Output {
             code: it.status.code(),
             stdout: stdout.to_string(),
             stderr: stderr.to_string(),
-            elapsed: elapsed.as_micros(),
+            elapsed,
         };
 
         Ok(it)
+    }
+    pub fn succeed(&self) -> bool {
+        matches!(self.code, Some(0))
     }
 }
 

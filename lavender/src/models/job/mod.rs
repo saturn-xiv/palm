@@ -1,8 +1,10 @@
+pub mod email;
+
+use askama::Template;
 use std::any::type_name;
 use std::collections::BTreeMap;
 use std::fs::{read_dir, read_to_string};
 use std::path::{Path, PathBuf};
-use std::time::Duration;
 
 use diesel::Connection as DieselConnection;
 use flatbuffers::FlatBufferBuilder;
@@ -21,7 +23,7 @@ use portal::{
 use serde::{Deserialize, Serialize};
 
 use super::super::Plugin;
-use super::task::Dao as TaskDao;
+use super::task::{Dao as TaskDao, Output};
 
 #[derive(Debug, Serialize, Deserialize, Clone, PartialEq, Eq)]
 pub struct Item {
@@ -49,19 +51,28 @@ impl Item {
         from: &str,
         to: &str,
         bcc: Vec<A>,
-        (body, succeed, duration): (&str, bool, Duration),
+        output: &Output,
     ) -> Result<()> {
-        log::debug!("report {name} to {to}: {body}");
+        log::debug!("report {}({}) to {}", name, self.version, to);
         let mut builder = FlatBufferBuilder::new();
         {
-            let subject = builder.create_string(&format!(
-                "Execute {}({}) {} in {} µs",
-                name,
-                self.version,
-                if succeed { "succeed" } else { "failed" },
-                duration.as_micros()
-            ));
-            let body_content = builder.create_string(&format!("{}:\n\n{}", self.description, body));
+            let subject = {
+                let it = email::Subject {
+                    output,
+                    name,
+                    version: &self.version,
+                };
+                builder.create_string(&it.render()?)
+            };
+            let body_content = {
+                let it = email::Body {
+                    output,
+                    name,
+                    version: &self.version,
+                    description: &self.description,
+                };
+                builder.create_string(&it.render()?)
+            };
             let to_email = builder.create_string(to);
             let from_email = builder.create_string(from);
             let mut bcc_offsets = Vec::new();
