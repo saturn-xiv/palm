@@ -210,10 +210,9 @@ virtual-host = "wisteria.dev"
 host = "http://127.0.0.1:9200"
 namespace = "wisteria.dev"
 
-[minio]
-endpoint = "https://assets.change-me.org"
-access-key = "change-me"
-secret-key = "change-me"
+[seaweedfs]
+host = "127.0.0.1"
+port = 9333
 namespace = "wisteria.dev"
 
 [smtp]
