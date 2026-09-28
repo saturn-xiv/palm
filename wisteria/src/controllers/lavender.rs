@@ -14,7 +14,7 @@ use portal::{
 use super::super::graphql::context::State;
 
 #[axum::debug_handler]
-pub async fn gogs_web_hook(
+pub async fn web_hooks(
     Extension(state): Extension<State>,
     Path(name): Path<String>,
     headers: HeaderMap,

@@ -6,6 +6,7 @@ use hyper::StatusCode;
 use portal::{HttpError, Result, get_http_header, hmac::sha256::HmacSha256};
 use serde::{Deserialize, Serialize};
 
+// https://gogs.io/advancing/webhooks
 #[derive(Debug, Serialize, Deserialize, Clone)]
 pub struct Header {
     pub delivery: String,

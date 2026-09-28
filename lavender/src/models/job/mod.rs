@@ -37,8 +37,12 @@ impl Item {
 
     pub fn validate<A: Into<String>>(&self, args: Vec<A>) -> Result<()> {
         if args.len() != self.args.len() {
-            return Err(Box::new(HttpError(StatusCode::BAD_REQUEST, None)));
+            return Err(Box::new(HttpError(
+                StatusCode::BAD_REQUEST,
+                Some("invalid args length".to_string()),
+            )));
         }
+
         // TODO: check select options
         // TODO: check git commit id
         Ok(())

@@ -34,4 +34,6 @@ fn working_dir() -> PathBuf {
 pub enum WebHook {
     #[serde(rename = "gogs")]
     Gogs { email: String, secret: String },
+    #[serde(rename = "github")]
+    Github { email: String, secret: String },
 }
