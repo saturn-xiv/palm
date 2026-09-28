@@ -3,7 +3,7 @@ use std::path::PathBuf;
 use portal::git::Host;
 
 #[test]
-fn git() {
+fn git_by_https() {
     let repo = {
         let it = Host::Http {
             url: "https://github.com/saturn-xiv/pansy.git".to_string(),
@@ -20,8 +20,8 @@ fn git() {
 
     for it in repo.commit_logs().unwrap() {
         println!(
-            "{} {}<{}> {} {}",
-            it.id, it.created_at, it.username, it.email, it.message
+            "{} {} {}<{}> {}",
+            it.short_id, it.created_at, it.username, it.email, it.message
         )
     }
 }

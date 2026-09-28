@@ -37,6 +37,7 @@ impl Git {
 #[serde(rename_all = "camelCase")]
 pub struct CommitLog {
     pub id: String,
+    pub short_id: String,
     pub username: String,
     pub email: String,
     pub message: String,
@@ -49,6 +50,7 @@ impl CommitLog {
         let created_at = commit.time().seconds();
         let it = Self {
             id: commit.id().to_string(),
+
             username: author.name().unwrap_or_default().to_string(),
             email: author.email().unwrap_or_default().to_string(),
             message: commit.message().unwrap_or_default().trim().to_string(),
@@ -60,6 +62,12 @@ impl CommitLog {
                     ))
                 })?
                 .naive_utc(),
+            short_id: {
+                let obj = commit.as_object();
+                let buf = obj.short_id()?;
+                let it = buf.as_str()?;
+                it.to_string()
+            },
         };
         Ok(it)
     }
