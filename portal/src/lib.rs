@@ -3,6 +3,7 @@ pub mod argon2;
 pub mod cache;
 pub mod content_types;
 pub mod controllers;
+pub mod git;
 pub mod graphql;
 pub mod gravatar;
 pub mod headers;

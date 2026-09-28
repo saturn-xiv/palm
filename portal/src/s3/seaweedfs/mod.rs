@@ -1,5 +1,6 @@
 pub mod responses;
 
+use std::fmt;
 use std::ops::DerefMut;
 use std::path::Path;
 
@@ -20,6 +21,11 @@ pub struct Config {
     #[serde(default = "node_default_port")]
     pub port: u16,
 }
+impl fmt::Display for Config {
+    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
+        write!(f, "http://{}:{}", self.host, self.port)
+    }
+}
 
 fn node_default_host() -> String {
     "127.0.0.1".to_string()
@@ -31,8 +37,10 @@ fn node_default_port() -> u16 {
 
 impl Config {
     pub async fn open(&self, db: DbPool) -> Result<Client> {
+        let url = self.to_string();
+        log::debug!("open SeaweedFS {}", url);
         let it = Client {
-            master_host: format!("http://{}:{}", self.host, self.port),
+            master_host: url,
             db,
         };
         it.ping().await?;

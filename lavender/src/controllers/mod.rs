@@ -33,9 +33,15 @@ impl super::WebHook {
                     body
                 );
                 header.verify(secret, body)?;
-                let _: GogsPushRequest = serde_json::from_str(body)?;
+                let req: GogsPushRequest = serde_json::from_str(body)?;
 
-                let args = vec![header.delivery, header.event];
+                let args = vec![
+                    header.delivery,
+                    header.event,
+                    req.r#ref,
+                    req.before,
+                    req.after,
+                ];
 
                 let email_user = EmailUserDao::by_email(db, email)?;
                 Job::publish(

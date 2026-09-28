@@ -25,7 +25,7 @@ use serde::{Deserialize, Serialize};
 use super::super::Plugin;
 use super::task::{Dao as TaskDao, Output};
 
-#[derive(Debug, Serialize, Deserialize, Clone, PartialEq, Eq)]
+#[derive(Debug, Clone, PartialEq, Eq, Serialize, Deserialize)]
 pub struct Item {
     pub version: String,
     pub description: String,
@@ -62,7 +62,7 @@ impl Item {
                     name,
                     version: &self.version,
                 };
-                builder.create_string(&it.render()?)
+                builder.create_string(it.render()?.trim())
             };
             let body_content = {
                 let it = email::Body {
@@ -71,7 +71,7 @@ impl Item {
                     version: &self.version,
                     description: &self.description,
                 };
-                builder.create_string(&it.render()?)
+                builder.create_string(it.render()?.trim())
             };
             let to_email = builder.create_string(to);
             let from_email = builder.create_string(from);
