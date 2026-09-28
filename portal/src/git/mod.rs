@@ -3,7 +3,7 @@ use std::path::{Path, PathBuf};
 
 use chrono::{DateTime, NaiveDateTime};
 use git2::{
-    Commit, Cred, FetchOptions, RemoteCallbacks, Repository, Sort,
+    Commit, Cred, FetchOptions, RemoteCallbacks, Repository, Signature, Sort,
     build::{CheckoutBuilder, RepoBuilder},
 };
 use hyper::StatusCode;
@@ -38,36 +38,55 @@ impl Git {
 pub struct CommitLog {
     pub id: String,
     pub short_id: String,
-    pub username: String,
-    pub email: String,
     pub message: String,
     pub created_at: NaiveDateTime,
+    pub author: Author,
 }
 
 impl CommitLog {
     pub fn new(commit: &Commit) -> Result<Self> {
-        let author = commit.author();
-        let created_at = commit.time().seconds();
         let it = Self {
             id: commit.id().to_string(),
-
-            username: author.name().unwrap_or_default().to_string(),
-            email: author.email().unwrap_or_default().to_string(),
-            message: commit.message().unwrap_or_default().trim().to_string(),
-            created_at: DateTime::from_timestamp(created_at, 0)
-                .ok_or_else(|| {
-                    Box::new(HttpError(
-                        StatusCode::INTERNAL_SERVER_ERROR,
-                        Some(format!("invalid timestamp {created_at}")),
-                    ))
-                })?
-                .naive_utc(),
+            author: Author::new(&commit.author())?,
+            message: commit.message()?.trim().to_string(),
+            created_at: {
+                let t = commit.time().seconds();
+                DateTime::from_timestamp(t, 0)
+                    .ok_or_else(|| {
+                        Box::new(HttpError(
+                            StatusCode::INTERNAL_SERVER_ERROR,
+                            Some(format!("invalid timestamp {t}")),
+                        ))
+                    })?
+                    .naive_utc()
+            },
             short_id: {
                 let obj = commit.as_object();
                 let buf = obj.short_id()?;
                 let it = buf.as_str()?;
                 it.to_string()
             },
+        };
+        Ok(it)
+    }
+}
+
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub struct Author {
+    pub name: String,
+    pub email: String,
+}
+impl fmt::Display for Author {
+    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
+        write!(f, "{}<{}>", self.name, self.email)
+    }
+}
+impl Author {
+    pub fn new(signature: &Signature) -> Result<Self> {
+        let it = Self {
+            name: signature.name()?.to_string(),
+            email: signature.email()?.to_string(),
         };
         Ok(it)
     }

@@ -20,8 +20,8 @@ fn git_by_https() {
 
     for it in repo.commit_logs().unwrap() {
         println!(
-            "{} {} {}<{}> {}",
-            it.short_id, it.created_at, it.username, it.email, it.message
+            "{} {} {} {}",
+            it.short_id, it.created_at, it.author, it.message
         )
     }
 }
