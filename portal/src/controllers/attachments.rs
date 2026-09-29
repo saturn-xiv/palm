@@ -18,6 +18,7 @@ pub async fn show<J: Jwt>(
     s3: &S3,
     token: &str,
     uid: &str,
+    download: bool,
 ) -> Result<HttpResponse<HttpBody>> {
     let (bucket, object) = Attachment::from_uid(uid)?;
     let it = AttachmentDao::by_bucket_and_object(db, &bucket, &object)?;
@@ -29,7 +30,8 @@ pub async fn show<J: Jwt>(
         return Err(Box::new(HttpError(StatusCode::GONE, None)));
     }
 
-    s3.show(&it.bucket, &it.object).await
+    s3.show(&it.bucket, &it.object, &it.title, download || !it.online())
+        .await
 }
 // The `Multipart` extractor must be the LAST argument in your handler if you use other extractors (like State or Json).
 pub async fn upload<J: Jwt>(

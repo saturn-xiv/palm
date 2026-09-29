@@ -49,6 +49,16 @@ impl Item {
     pub fn content_type<P: AsRef<Path>>(file: P) -> Mime {
         mime_guess::from_path(file).first_or_octet_stream()
     }
+    pub fn online(&self) -> bool {
+        if let Some(x) = Path::new(&self.title).extension().and_then(|x| x.to_str()) {
+            return vec![
+                "txt", "html", "htm", "css", "js", "json", "xml", "png", "svg", "jpb", "jpeg",
+                "bmp", "pdf",
+            ]
+            .contains(&x);
+        }
+        false
+    }
     pub fn uid(&self) -> String {
         let mut builder = FlatBufferBuilder::new();
         let mut offsets = Vec::new();

@@ -67,14 +67,29 @@ pub async fn attachments_upload(
     Ok(Json(Succeeded::default()))
 }
 
+#[derive(Deserialize)]
+pub struct AttachmentShowQuery {
+    pub download: Option<bool>,
+}
 #[axum::debug_handler]
 pub async fn attachments_show(
     Extension(state): Extension<State>,
     Path((token, uid)): Path<(String, String)>,
+    Query(query): Query<AttachmentShowQuery>,
 ) -> StdResult<Response<Body>, (StatusCode, String)> {
     let state = state.deref();
     let mut db = web_try!(state.db.get());
     let db = db.deref_mut();
-    let it = web_try!(attachment_api::show(db, &state.loquat, &state.s3, &token, &uid).await);
+    let it = web_try!(
+        attachment_api::show(
+            db,
+            &state.loquat,
+            &state.s3,
+            &token,
+            &uid,
+            query.download.unwrap_or(false)
+        )
+        .await
+    );
     Ok(it)
 }

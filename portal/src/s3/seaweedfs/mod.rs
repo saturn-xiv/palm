@@ -9,12 +9,13 @@ use axum::{
     body::Body as AxumBody,
     http::{
         Response as AxumResponse,
-        header::{CONTENT_LENGTH, CONTENT_TYPE},
+        header::{CONTENT_DISPOSITION, CONTENT_LENGTH, CONTENT_TYPE},
     },
 };
 use diesel::Connection as DieselConnection;
 use hyper::StatusCode;
 use mime_guess::Mime;
+use percent_encoding::{NON_ALPHANUMERIC, utf8_percent_encode};
 use reqwest::{
     Client as HttpClient, Response as HttpResponse,
     multipart::{Form as MultipartForm, Part as MultipartPart},
@@ -67,8 +68,14 @@ pub struct Client {
 }
 
 impl Client {
-    pub async fn show(&self, volume: &str, fid: &str) -> Result<AxumResponse<AxumBody>> {
-        log::debug!("get file ({volume}, {fid})");
+    pub async fn show(
+        &self,
+        volume: &str,
+        fid: &str,
+        title: &str,
+        download: bool,
+    ) -> Result<AxumResponse<AxumBody>> {
+        log::debug!("get file ({title}, {volume}, {fid})");
         let url = Self::url(volume, fid);
         let client = reqwest::Client::new();
         let res = client.get(&url).send().await?;
@@ -101,6 +108,17 @@ impl Client {
 
         if let Some(len) = content_length {
             builder = builder.header(CONTENT_LENGTH, len);
+        }
+        // https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/Content-Disposition
+        if download {
+            let title = utf8_percent_encode(title, NON_ALPHANUMERIC).to_string();
+            log::debug!("download {title}");
+            builder = builder.header(
+                CONTENT_DISPOSITION,
+                format!("attachment; filename*=UTF-8''{}", title),
+            );
+        } else {
+            builder = builder.header(CONTENT_DISPOSITION, "inline");
         }
 
         Ok(builder.body(body)?)

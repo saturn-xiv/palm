@@ -76,7 +76,7 @@ impl Node {
                 "amqp://{}:{}@{}:{}/{}",
                 self.user, self.password, self.host, self.port, self.virtual_host
             ),
-            ConnectionProperties::default(),
+            ConnectionProperties::default().enable_auto_recover(),
         )
         .await?;
         Ok(Client { connection: con })
