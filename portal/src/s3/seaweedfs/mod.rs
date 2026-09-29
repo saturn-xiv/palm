@@ -1,11 +1,24 @@
 pub mod responses;
 
 use std::fmt;
+use std::fs;
 use std::ops::DerefMut;
 use std::path::Path;
 
+use axum::{
+    body::Body as AxumBody,
+    http::{
+        Response as AxumResponse,
+        header::{CONTENT_LENGTH, CONTENT_TYPE},
+    },
+};
 use diesel::Connection as DieselConnection;
-use reqwest::Client as HttpClient;
+use hyper::StatusCode;
+use mime_guess::Mime;
+use reqwest::{
+    Client as HttpClient, Response as HttpResponse,
+    multipart::{Form as MultipartForm, Part as MultipartPart},
+};
 use serde::{Deserialize, Serialize};
 use tokio::fs::File;
 
@@ -54,18 +67,51 @@ pub struct Client {
 }
 
 impl Client {
+    pub async fn show(&self, volume: &str, fid: &str) -> Result<AxumResponse<AxumBody>> {
+        log::debug!("get file ({volume}, {fid})");
+        let url = Self::url(volume, fid);
+        let client = reqwest::Client::new();
+        let res = client.get(&url).send().await?;
+
+        if !res.status().is_success() {
+            return Err(Box::new(HttpError(StatusCode::NOT_FOUND, None)));
+        }
+
+        // Extract headers to pass along to the client
+        let content_type = res
+            .headers()
+            .get(CONTENT_TYPE)
+            .and_then(|x| x.to_str().ok())
+            .unwrap_or("application/octet-stream")
+            .to_string();
+
+        let content_length = res
+            .headers()
+            .get(CONTENT_LENGTH)
+            .and_then(|x| x.to_str().ok())
+            .map(|x| x.to_string());
+
+        let stream = res.bytes_stream();
+
+        let body = AxumBody::from_stream(stream);
+
+        let mut builder = AxumResponse::builder()
+            .status(StatusCode::OK)
+            .header(CONTENT_TYPE, content_type);
+
+        if let Some(len) = content_length {
+            builder = builder.header(CONTENT_LENGTH, len);
+        }
+
+        Ok(builder.body(body)?)
+    }
     pub async fn ping(&self) -> Result<()> {
         let client = reqwest::Client::new();
         let res = client
             .get(format!("{}/cluster/status", self.master_host))
             .send()
             .await?;
-        let status = res.status();
-        let res_body = res.text().await?;
-        log::debug!("SeaweedFS health: {status} {res_body}");
-        if !status.is_success() {
-            return Err(Box::new(HttpError(status, Some(res_body))));
-        }
+        Self::check(res).await?;
         Ok(())
     }
     pub async fn assign(&self) -> Result<(String, String)> {
@@ -76,31 +122,76 @@ impl Client {
             .await?
             .json::<responses::AssignResponse>()
             .await?;
-        Ok((res.fid, res.url))
+        log::debug!("{:?}", res);
+        Ok((res.url, res.fid))
     }
-    pub async fn upload<P: AsRef<Path>>(&self, file: P, url: &str, fid: &str) -> Result<()> {
+
+    pub async fn write(
+        &self,
+        name: &str,
+        content_type: &Mime,
+        (chunk, index): (Vec<u8>, usize),
+        volume: &str,
+        fid: &str,
+    ) -> Result<()> {
+        let content_type = content_type.to_string();
+        let url = {
+            let mut it = Self::url(volume, fid);
+            if index != 0 {
+                it = format!("{}_{}", it, index);
+            }
+            it
+        };
+        log::debug!("uploading ({name},{content_type}) => ({volume},{fid},{index})");
+        let form = MultipartForm::new().part(
+            "file",
+            MultipartPart::bytes(chunk)
+                .file_name(name.to_string())
+                .mime_str(&content_type)?,
+        );
+        let client = HttpClient::new();
+        let res = client.post(url).multipart(form).send().await?;
+        Self::check(res).await?;
+        Ok(())
+    }
+
+    pub async fn upload<P: AsRef<Path>>(&self, file: P, volume: &str, fid: &str) -> Result<()> {
         let file = file.as_ref();
-        log::info!("upload file {} to volumn {}/{}", file.display(), url, fid);
+        log::info!("upload file {} to ({},{})", file.display(), volume, fid);
 
         let client = HttpClient::new();
         let res = client
-            .post(format!("http://{}/{}", url, fid))
+            .post(Self::url(volume, fid))
             .body(File::open(file).await?)
             .send()
             .await?;
 
-        let status = res.status();
-        let res_body = res.text().await?;
-        log::debug!("{status} {res_body}");
-        if !status.is_success() {
-            return Err(Box::new(HttpError(status, Some(res_body))));
-        }
+        Self::check(res).await?;
         Ok(())
+    }
+
+    fn url(volume: &str, fid: &str) -> String {
+        format!("http://{volume}/{fid}")
+    }
+
+    async fn check(res: HttpResponse) -> Result<String> {
+        let status = res.status();
+        let body = res.text().await?;
+        log::debug!("{status} {body}");
+        if !status.is_success() {
+            return Err(Box::new(HttpError(status, Some(body))));
+        }
+        Ok(body)
     }
 }
 
 impl super::Provider for Client {
     async fn upload<P: AsRef<Path>>(&self, file: P, bucket: &str, object: &str) -> Result<()> {
+        let file = file.as_ref();
+        let size = {
+            let md = fs::metadata(file)?;
+            md.len()
+        };
         self.upload(file, bucket, object).await?;
         {
             let mut db = self.db.get()?;
@@ -108,7 +199,7 @@ impl super::Provider for Client {
 
             db.transaction::<_, Error, _>(|tx| {
                 let it = AttachmentDao::by_bucket_and_object(tx, bucket, object)?;
-                AttachmentDao::set_uploaded_at(tx, it.id)?;
+                AttachmentDao::set_uploaded_at(tx, it.id, size as usize)?;
                 Ok(())
             })?;
         }

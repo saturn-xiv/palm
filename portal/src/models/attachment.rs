@@ -1,11 +1,17 @@
+use std::path::Path;
+
 use chrono::{NaiveDateTime, Utc};
+use data_encoding::BASE64URL_NOPAD;
 use diesel::{insert_into, prelude::*, update};
+use flatbuffers::{FlatBufferBuilder, ForwardsUOffset, Vector};
 use hyacinth::schema::attachments;
+use hyper::StatusCode;
+use mime_guess::Mime;
 use serde::{Deserialize, Serialize};
 
-use super::super::{Result, orm::postgresql::Connection};
+use super::super::{HttpError, Result, orm::postgresql::Connection};
 
-#[derive(Queryable, Serialize, Deserialize, Clone)]
+#[derive(Debug, Clone, Default, Queryable, Serialize, Deserialize)]
 pub struct Item {
     pub id: i64,
     pub user_id: i64,
@@ -22,6 +28,42 @@ pub struct Item {
     pub created_at: NaiveDateTime,
 }
 
+impl Item {
+    pub fn content_type<P: AsRef<Path>>(file: P) -> Mime {
+        mime_guess::from_path(file).first_or_octet_stream()
+    }
+    pub fn uid(&self) -> String {
+        let mut builder = FlatBufferBuilder::new();
+        let mut offsets = Vec::new();
+        {
+            let it = builder.create_string(&self.bucket);
+            offsets.push(it);
+        };
+        {
+            let it = builder.create_string(&self.object);
+            offsets.push(it);
+        };
+        let root = builder.create_vector(&offsets);
+        builder.finish(root, None);
+        let buf = builder.finished_data();
+        BASE64URL_NOPAD.encode(buf)
+    }
+
+    pub fn from_uid(uid: &str) -> Result<(String, String)> {
+        let buf = BASE64URL_NOPAD.decode(uid.as_bytes())?;
+        let tmp = flatbuffers::root::<Vector<ForwardsUOffset<&str>>>(&buf)?;
+        if tmp.len() != 2 {
+            return Err(Box::new(HttpError(
+                StatusCode::BAD_REQUEST,
+                Some("invalid attachment uid".to_string()),
+            )));
+        }
+        Ok((tmp.get(0).to_string(), tmp.get(1).to_string()))
+    }
+
+    pub const AUDIENCE: &str = "attachment.show";
+}
+
 pub trait Dao {
     fn count_by_user(&mut self, user: i64) -> Result<i64>;
     fn count(&mut self) -> Result<i64>;
@@ -30,8 +72,8 @@ pub trait Dao {
     fn by_id(&mut self, id: i64) -> Result<Item>;
     fn by_bucket_and_object(&mut self, bucket: &str, object: &str) -> Result<Item>;
     fn delete(&mut self, id: i64) -> Result<()>;
-    fn create(&mut self, user: i64, file: (&str, &str, i64), s3: (&str, &str, bool)) -> Result<()>;
-    fn set_uploaded_at(&mut self, id: i64) -> Result<()>;
+    fn create(&mut self, user: i64, file: (&str, &Mime), s3: (&str, &str, bool)) -> Result<()>;
+    fn set_uploaded_at(&mut self, id: i64, size: usize) -> Result<()>;
 }
 
 impl Dao for Connection {
@@ -91,16 +133,16 @@ impl Dao for Connection {
     fn create(
         &mut self,
         user: i64,
-        (title, content_type, size): (&str, &str, i64),
+        (title, content_type): (&str, &Mime),
         (bucket, object, public): (&str, &str, bool),
     ) -> Result<()> {
+        let content_type = content_type.to_string();
         let now = Utc::now().naive_utc();
         insert_into(attachments::dsl::attachments)
             .values((
                 attachments::dsl::user_id.eq(user),
                 attachments::dsl::title.eq(title),
-                attachments::dsl::content_type.eq(content_type),
-                attachments::dsl::size.eq(size),
+                attachments::dsl::content_type.eq(&content_type),
                 attachments::dsl::bucket.eq(bucket),
                 attachments::dsl::object.eq(object),
                 attachments::dsl::public.eq(public),
@@ -109,13 +151,14 @@ impl Dao for Connection {
             .execute(self)?;
         Ok(())
     }
-    fn set_uploaded_at(&mut self, id: i64) -> Result<()> {
+    fn set_uploaded_at(&mut self, id: i64, size: usize) -> Result<()> {
         let now = Utc::now().naive_utc();
         let it = attachments::dsl::attachments.filter(attachments::dsl::id.eq(id));
         update(it)
             .set((
-                attachments::dsl::version.eq(attachments::dsl::version + 1),
+                attachments::dsl::size.eq(size as i64),
                 attachments::dsl::uploaded_at.eq(&now),
+                attachments::dsl::version.eq(attachments::dsl::version + 1),
                 attachments::dsl::updated_at.eq(&now),
             ))
             .execute(self)?;

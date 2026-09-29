@@ -1,3 +1,5 @@
+pub mod attachments;
+
 use super::{
     Result, cache::redis::StandaloneConnection as Cache, graphql::Session,
     orm::postgresql::Connection as Db,

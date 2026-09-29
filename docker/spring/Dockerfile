@@ -202,6 +202,7 @@ RUN zsh -c "source $HOME/.cargo/env \
     && rustup target add aarch64-unknown-linux-musl \
     && rustup target add loongarch64-unknown-linux-gnu"
 RUN zsh -c "source $HOME/.zshrc \
+    && cargo install cargo-outdated \
     && cargo install diesel_cli \
     && cargo install mdbook \
     && cargo install curlgenerator \

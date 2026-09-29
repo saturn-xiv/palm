@@ -4,6 +4,7 @@ use std::sync::Arc;
 
 use axum::{
     Extension, Router,
+    extract::DefaultBodyLimit,
     routing::{MethodFilter, get, on, post},
 };
 use axum_extra::extract::cookie::Key as CookieKey;
@@ -80,17 +81,26 @@ pub async fn start<P: AsRef<Path>>(config: P, port: u16, _theme: Theme) -> Resul
 
     let app = Router::new()
         .route(
+            "/lavender/web-hooks/{name}",
+            post(controllers::lavender::web_hooks),
+        )
+        .route(
+            "/attachments/{token}/{uid}",
+            get(controllers::portal::attachments_show),
+        )
+        .route(
+            "/attachments",
+            post(controllers::portal::attachments_upload),
+        )
+        .route(
             "/graphql",
             on(MethodFilter::GET.or(MethodFilter::POST), graphql_handler),
         )
         .route("/subscriptions", get(graphql_subscriptions))
         .route("/graphiql", get(graphiql("/graphql", "/subscriptions")))
         .route("/playground", get(playground("/graphql", "/subscriptions")))
-        .route(
-            "/lavender/web-hooks/{name}",
-            post(controllers::lavender::web_hooks),
-        )
-        .route("/", get(controllers::home))
+        .route("/", get(controllers::portal::home))
+        .layer(DefaultBodyLimit::disable())
         .layer(Extension(Arc::new(schema)))
         .layer(Extension(state.clone()))
         .with_state(state);
