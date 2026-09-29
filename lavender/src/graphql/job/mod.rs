@@ -9,7 +9,7 @@ use portal::{
 };
 
 use super::super::{Config, models::job::Item as Job};
-use super::ROLE as OPERATOR;
+use super::can;
 
 pub async fn launch<R: Rbac, J: Jwt, A: Into<String> + Clone>(
     ss: &Session,
@@ -20,7 +20,7 @@ pub async fn launch<R: Rbac, J: Jwt, A: Into<String> + Clone>(
 ) -> Result<()> {
     let ip = ss.client_ip();
     let current_user = ss.current_user(db, cache, jwt).await?;
-    rbac.has_role(current_user.id(), OPERATOR).await?;
+    can(rbac, current_user.id()).await?;
 
     if current_user.type_ != UserType::Email {
         return Err(Box::new(HttpError(StatusCode::FORBIDDEN, None)));
@@ -56,7 +56,7 @@ impl Item {
         _config: &Config,
     ) -> Result<Vec<Self>> {
         let current_user = ss.current_user(db, cache, jwt).await?;
-        rbac.has_role(current_user.id(), OPERATOR).await?;
+        can(rbac, current_user.id()).await?;
         // TODO
         todo!()
     }
@@ -70,7 +70,7 @@ impl Item {
         _id: &str,
     ) -> Result<Self> {
         let current_user = ss.current_user(db, cache, jwt).await?;
-        rbac.has_role(current_user.id(), OPERATOR).await?;
+        can(rbac, current_user.id()).await?;
         // TODO
         todo!()
     }

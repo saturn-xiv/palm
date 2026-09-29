@@ -10,7 +10,7 @@ diesel::table! {
         object -> Varchar,
         #[max_length = 127]
         title -> Varchar,
-        size -> Int8,
+        size -> Nullable<Int8>,
         #[max_length = 63]
         content_type -> Varchar,
         public -> Bool,

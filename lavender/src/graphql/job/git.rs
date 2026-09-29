@@ -6,7 +6,7 @@ use portal::{
 };
 
 use super::super::super::Config;
-use super::super::ROLE as OPERATOR;
+use super::super::can;
 
 #[derive(Debug, GraphQLObject)]
 #[graphql(name = "LavenderGitCommit")]
@@ -27,7 +27,7 @@ impl Commit {
         (_url, _branch): (&str, &str),
     ) -> Result<Vec<Self>> {
         let current_user = ss.current_user(db, cache, jwt).await?;
-        rbac.has_role(current_user.id(), OPERATOR).await?;
+        can(rbac, current_user.id()).await?;
         // TODO
         todo!()
     }

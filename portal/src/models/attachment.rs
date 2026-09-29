@@ -1,6 +1,6 @@
 use std::path::Path;
 
-use chrono::{NaiveDateTime, Utc};
+use chrono::{Duration, NaiveDateTime, Utc};
 use data_encoding::BASE64URL_NOPAD;
 use diesel::{insert_into, prelude::*, update};
 use flatbuffers::{FlatBufferBuilder, ForwardsUOffset, Vector};
@@ -8,8 +8,9 @@ use hyacinth::schema::attachments;
 use hyper::StatusCode;
 use mime_guess::Mime;
 use serde::{Deserialize, Serialize};
+use serde_json::Value as JsonValue;
 
-use super::super::{HttpError, Result, orm::postgresql::Connection};
+use super::super::{HttpError, Jwt, Result, graphql::CurrentUser, orm::postgresql::Connection};
 
 #[derive(Debug, Clone, Default, Queryable, Serialize, Deserialize)]
 pub struct Item {
@@ -18,7 +19,7 @@ pub struct Item {
     pub bucket: String,
     pub object: String,
     pub title: String,
-    pub size: i64,
+    pub size: Option<i64>,
     pub content_type: String,
     pub public: bool,
     pub uploaded_at: Option<NaiveDateTime>,
@@ -29,6 +30,22 @@ pub struct Item {
 }
 
 impl Item {
+    pub async fn url<J: Jwt>(&self, jwt: &J, ttl: Duration) -> Result<String> {
+        let uid = self.uid();
+        let token = if self.public {
+            "_".to_string()
+        } else {
+            jwt.sign(
+                CurrentUser::ISSUER,
+                "",
+                vec![Self::AUDIENCE],
+                ttl,
+                None::<JsonValue>,
+            )
+            .await?
+        };
+        Ok(format!("/attachments/{token}/{uid}"))
+    }
     pub fn content_type<P: AsRef<Path>>(file: P) -> Mime {
         mime_guess::from_path(file).first_or_octet_stream()
     }

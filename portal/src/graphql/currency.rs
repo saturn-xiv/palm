@@ -9,12 +9,7 @@ use super::super::{
 
 pub fn index(db: &mut Db) -> Result<Vec<Item>> {
     let items = CurrencyDao::index(db)?;
-
-    let mut reply = Vec::new();
-    for it in items {
-        reply.push(it.into());
-    }
-    Ok(reply)
+    Ok(items.into_iter().map(|x| x.into()).collect())
 }
 
 #[derive(Debug, GraphQLObject)]

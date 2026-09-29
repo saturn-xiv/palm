@@ -5,7 +5,7 @@ use hyacinth::{password as parse_password, portal_v1};
 use juniper::{FieldResult, ScalarValue, graphql_object};
 use lavender::graphql as lavender_graphql;
 use portal::graphql::{
-    Succeeded, locale as locale_api,
+    Succeeded, attachment as attachment_api, locale as locale_api,
     user::{self as user_api, email as email_user_api},
 };
 
@@ -134,6 +134,26 @@ impl Mutation {
             &ctx.state.queue,
             &ctx.state.loquat,
             &ctx.state.loquat,
+        )
+        .await?;
+        Ok(Succeeded::default())
+    }
+
+    async fn desctoy_attachment<S: ScalarValue + Display>(
+        id: i32,
+        ctx: &Context,
+    ) -> FieldResult<Succeeded, S> {
+        let mut db = ctx.state.db.get()?;
+        let db = db.deref_mut();
+        let mut cache = ctx.state.cache.get()?;
+
+        attachment_api::destroy(
+            &ctx.session,
+            db,
+            &mut cache,
+            &ctx.state.dahlia,
+            &ctx.state.loquat,
+            id,
         )
         .await?;
         Ok(Succeeded::default())

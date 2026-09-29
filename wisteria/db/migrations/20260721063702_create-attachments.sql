@@ -5,7 +5,7 @@ CREATE TABLE attachments(
     bucket VARCHAR(63) NOT NULL,
     object VARCHAR(63) NOT NULL,
     title VARCHAR(127) NOT NULL,
-    size BIGINT NOT NULL,
+    size BIGINT,
     content_type VARCHAR(63) NOT NULL,
     public BOOLEAN NOT NULL DEFAULT FALSE,
     uploaded_at TIMESTAMP WITHOUT TIME ZONE,

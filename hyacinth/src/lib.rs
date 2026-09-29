@@ -78,3 +78,9 @@ macro_rules! password {
         let $v = flatbuffers::root::<$t>(&buf)?;
     };
 }
+
+pub trait Role {
+    fn administrator() -> Self;
+    fn root() -> Self;
+    fn new(code: &str) -> Self;
+}

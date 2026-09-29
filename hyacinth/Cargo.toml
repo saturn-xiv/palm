@@ -1,6 +1,6 @@
 [package]
 name = "hyacinth"
-version = "2026.9.25"
+version = "2026.9.29"
 edition = "2024"
 description = "Generated protocols"
 

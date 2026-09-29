@@ -29,11 +29,7 @@ pub async fn dashboard<R: Rbac, J: Jwt>(
             ..Default::default()
         });
     }
-    if rbac
-        .has_role(current_user.id(), LavenderOperator)
-        .await
-        .is_ok()
-    {
+    if rbac.has(current_user.id(), LavenderOperator).await.is_ok() {
         items.push(Menu {
             code: "lavender".to_string(),
             children: Some(vec![]),

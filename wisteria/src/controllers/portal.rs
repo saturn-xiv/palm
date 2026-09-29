@@ -12,7 +12,7 @@ use axum::{
 use axum_extra::extract::cookie::CookieJar;
 use portal::{
     HtmlResult, JsonResult,
-    controllers::{attachments as attachment_controllers, home as home_},
+    controllers::{attachments as attachment_api, home as home_},
     graphql::{Session, Succeeded},
     web_try,
 };
@@ -52,7 +52,7 @@ pub async fn attachments_upload(
     let mut cache = web_try!(state.cache.get());
 
     web_try!(
-        attachment_controllers::upload(
+        attachment_api::upload(
             &Session::new(&headers, &jar),
             db,
             &mut cache,
@@ -75,7 +75,6 @@ pub async fn attachments_show(
     let state = state.deref();
     let mut db = web_try!(state.db.get());
     let db = db.deref_mut();
-    let it =
-        web_try!(attachment_controllers::show(db, &state.loquat, &state.s3, &token, &uid).await);
+    let it = web_try!(attachment_api::show(db, &state.loquat, &state.s3, &token, &uid).await);
     Ok(it)
 }

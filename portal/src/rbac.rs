@@ -1,5 +1,9 @@
+use std::any::type_name;
+
 use hyacinth::rbac_v1::{
-    PermissionView, Subject, UserRoleRequest,
+    Action as CasbinAction, Object, Permission as CasbinPermission, PermissionView, Subject,
+    UserRoleRequest,
+    action::{Read, Write},
     subject::{
         Role, User,
         role::{Administrator, Root},
@@ -13,9 +17,12 @@ use super::{Dahlia, HttpError, Result};
 pub trait Rbac {
     fn is_root(&self, user: i64) -> impl Future<Output = Result<()>>;
     fn is_administrator(&self, user: i64) -> impl Future<Output = Result<()>>;
-    fn has_role(&self, user: i64, role: &str) -> impl Future<Output = Result<()>>;
+    fn has(&self, user: i64, role: &str) -> impl Future<Output = Result<()>>;
     fn roles(&self, user: i64) -> impl Future<Output = Result<Vec<String>>>;
     fn permissions(&self, user: i64) -> impl Future<Output = Result<Vec<Permission>>>;
+    fn can_read<T>(&self, user: i64, object: i64) -> impl Future<Output = Result<()>>;
+    fn can_write<T>(&self, user: i64, object: i64) -> impl Future<Output = Result<()>>;
+    fn can<T>(&self, user: i64, action: &str, object: i64) -> impl Future<Output = Result<()>>;
 }
 
 impl Rbac for Dahlia {
@@ -29,7 +36,7 @@ impl Rbac for Dahlia {
         it.set_administrator(Administrator::default());
         self.has(user, it).await
     }
-    async fn has_role(&self, user: i64, role: &str) -> Result<()> {
+    async fn has(&self, user: i64, role: &str) -> Result<()> {
         let mut it = Role::default();
         it.set_code(role);
         self.has(user, it).await
@@ -73,9 +80,61 @@ impl Rbac for Dahlia {
 
         Ok(items)
     }
+    async fn can<T>(&self, user: i64, action: &str, object: i64) -> Result<()> {
+        let action = {
+            let mut it = CasbinAction::default();
+            it.set_code(action);
+            it
+        };
+        self.can::<T>(user, action, object).await
+    }
+    async fn can_read<T>(&self, user: i64, object: i64) -> Result<()> {
+        let action = {
+            let mut it = CasbinAction::default();
+            it.set_read(Read::default());
+            it
+        };
+        self.can::<T>(user, action, object).await
+    }
+
+    async fn can_write<T>(&self, user: i64, object: i64) -> Result<()> {
+        let action = {
+            let mut it = CasbinAction::default();
+            it.set_write(Write::default());
+            it
+        };
+        self.can::<T>(user, action, object).await
+    }
 }
 
 impl Dahlia {
+    async fn can<T>(&self, user: i64, action: CasbinAction, object: i64) -> Result<()> {
+        let subject = {
+            let user = {
+                let mut it = User::default();
+                it.set_id(user);
+                it
+            };
+            let mut it = Subject::default();
+            it.set_user(user);
+            it
+        };
+        let object = {
+            let mut it = Object::default();
+            it.set_id(object);
+            it.set_type(type_name::<T>().to_string());
+            it
+        };
+        let mut req = CasbinPermission::default();
+        req.set_subject(subject);
+        req.set_action(action);
+        req.set_object(object);
+        self.enforcer
+            .has_permission(req)
+            .await
+            .map_err(|x| Box::<HttpError>::new(x.into()))?;
+        Ok(())
+    }
     async fn has(&self, user: i64, role: Role) -> Result<()> {
         let mut req = UserRoleRequest::default();
         req.set_role(role);

@@ -5,7 +5,8 @@ use chrono_tz::TZ_VARIANTS;
 use juniper::{FieldResult, ScalarValue, graphql_object};
 use lavender::graphql as lavender_graphql;
 use portal::graphql::{
-    Menu, Page, Succeeded, currency as currency_api, locale as locale_api,
+    Menu, Page, Succeeded, attachment as attachment_api, currency as currency_api,
+    locale as locale_api,
     user::{self as user_api, email as email_user_api},
 };
 
@@ -79,6 +80,32 @@ impl Query {
             &ctx.state.loquat,
             &ctx.state.dahlia,
             GIT_VERSION,
+        )
+        .await?;
+        Ok(reply)
+    }
+
+    async fn index_attachment(page: Page, ctx: &Context) -> FieldResult<attachment_api::Index> {
+        let mut db = ctx.state.db.get()?;
+        let db = db.deref_mut();
+        let mut cache = ctx.state.cache.get()?;
+        let reply =
+            attachment_api::Index::new(&ctx.session, db, &mut cache, &ctx.state.loquat, &page)
+                .await?;
+        Ok(reply)
+    }
+
+    async fn show_attachment(id: i32, ctx: &Context) -> FieldResult<attachment_api::Item> {
+        let mut db = ctx.state.db.get()?;
+        let db = db.deref_mut();
+        let mut cache = ctx.state.cache.get()?;
+        let reply = attachment_api::Item::new(
+            &ctx.session,
+            db,
+            &mut cache,
+            &ctx.state.dahlia,
+            &ctx.state.loquat,
+            id,
         )
         .await?;
         Ok(reply)
