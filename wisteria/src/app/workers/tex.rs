@@ -1,16 +1,18 @@
 use std::any::type_name;
 use std::fs::File;
 use std::io::prelude::*;
-use std::ops::Deref;
+use std::ops::{Deref, DerefMut};
 use std::path::Path;
 use std::process::Command;
 use std::sync::Arc;
 use std::time::Duration;
 
+use diesel::Connection as DieselConnection;
 use hyacinth::{flatbuffers_root, tex_v1::Task};
 use portal::{
     Error, Result, is_stopped,
-    orm::postgresql::Node as PostgreSql,
+    models::attachment::Dao as AttachmentDao,
+    orm::postgresql::{Node as PostgreSql, Pool as DbPool},
     parse_toml,
     queue::{
         Consumer as QueueConsumer,
@@ -33,7 +35,11 @@ pub async fn start<P: AsRef<Path>>(config: P, interval: Duration) -> Result<()> 
     let config: Config = parse_toml(config)?;
 
     let db = config.postgresql.open()?;
-    let s3 = Arc::new(config.seaweedfs.open(db).await?);
+    let s3 = Arc::new({
+        let it = config.seaweedfs.open();
+        it.cluster_status().await?;
+        it
+    });
     let queue = type_name::<Task>();
     let client = config.rabbitmq.open().await?;
     client
@@ -49,7 +55,15 @@ pub async fn start<P: AsRef<Path>>(config: P, interval: Duration) -> Result<()> 
 
     loop {
         if let Err(e) = client
-            .consume("tex-builder", queue, &Consumer { s3: s3.clone() }, interval)
+            .consume(
+                "tex-builder",
+                queue,
+                &Consumer {
+                    s3: s3.clone(),
+                    db: db.clone(),
+                },
+                interval,
+            )
             .await
         {
             log::error!("{}", e);
@@ -67,6 +81,7 @@ struct Config {
 
 struct Consumer {
     s3: Arc<S3>,
+    db: DbPool,
 }
 
 impl QueueConsumer for Consumer {
@@ -116,6 +131,21 @@ impl QueueConsumer for Consumer {
                 task.output().object(),
             )
             .await?;
+            {
+                let size = S3::file_size(&entry_pdf)?;
+                let mut db = self.db.get()?;
+                let db = db.deref_mut();
+
+                db.transaction::<_, Error, _>(|tx| {
+                    let it = AttachmentDao::by_bucket_and_object(
+                        tx,
+                        task.output().bucket(),
+                        task.output().object(),
+                    )?;
+                    AttachmentDao::set_uploaded_at(tx, it.id, size as usize)?;
+                    Ok(())
+                })?;
+            }
         }
 
         Ok(())

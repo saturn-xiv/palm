@@ -1,8 +1,7 @@
+pub mod requests;
 pub mod responses;
 
 use std::fmt;
-use std::fs;
-use std::ops::DerefMut;
 use std::path::Path;
 
 use axum::{
@@ -12,7 +11,6 @@ use axum::{
         header::{CONTENT_DISPOSITION, CONTENT_LENGTH, CONTENT_TYPE},
     },
 };
-use diesel::Connection as DieselConnection;
 use hyper::StatusCode;
 use mime_guess::Mime;
 use percent_encoding::{NON_ALPHANUMERIC, utf8_percent_encode};
@@ -21,14 +19,10 @@ use reqwest::{
     multipart::{Form as MultipartForm, Part as MultipartPart},
 };
 use serde::{Deserialize, Serialize};
-use tokio::fs::File;
 
-use super::super::{
-    Error, HttpError, Result, models::attachment::Dao as AttachmentDao,
-    orm::postgresql::Pool as DbPool,
-};
+use super::super::{HttpError, Result};
 
-#[derive(Debug, Clone, Default, Serialize, Deserialize)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct Config {
     #[serde(default = "node_default_host")]
     pub host: String,
@@ -41,6 +35,15 @@ impl fmt::Display for Config {
     }
 }
 
+impl Default for Config {
+    fn default() -> Self {
+        Self {
+            host: node_default_host(),
+            port: node_default_port(),
+        }
+    }
+}
+
 fn node_default_host() -> String {
     "127.0.0.1".to_string()
 }
@@ -50,24 +53,19 @@ fn node_default_port() -> u16 {
 }
 
 impl Config {
-    pub async fn open(&self, db: DbPool) -> Result<Client> {
+    pub fn open(&self) -> Client {
         let url = self.to_string();
         log::debug!("open SeaweedFS {}", url);
-        let it = Client {
-            master_host: url,
-            db,
-        };
-        it.ping().await?;
-        Ok(it)
+        Client { master_host: url }
     }
 }
 
 pub struct Client {
-    db: DbPool,
     master_host: String,
 }
 
 impl Client {
+    // curl http://0.0.0.0:9340/1,0cc0afa344
     pub async fn show(
         &self,
         volume: &str,
@@ -123,25 +121,44 @@ impl Client {
 
         Ok(builder.body(body)?)
     }
-    pub async fn ping(&self) -> Result<()> {
+    // curl http://127.0.0.1:9333/cluster/status
+    pub async fn cluster_status(&self) -> Result<responses::ClusterStatus> {
         let client = reqwest::Client::new();
         let res = client
             .get(format!("{}/cluster/status", self.master_host))
             .send()
+            .await?
+            .json::<responses::ClusterStatus>()
             .await?;
-        Self::check(res).await?;
-        Ok(())
+        log::debug!("{:?}", res);
+        Ok(res)
     }
-    pub async fn assign(&self) -> Result<(String, String)> {
+    // curl http://127.0.0.1:9333/dir/lookup?volumeId=1
+    pub async fn lookup_volume_by_id(&self, fid: &str) -> Result<responses::LookupVolumeById> {
+        let client = reqwest::Client::new();
+        let res = client
+            .get(format!("{}/dir/lookup", self.master_host))
+            .query(&requests::LookupVolumeByIdQuery {
+                volume_id: Self::volume_id_from_fid(fid)?,
+            })
+            .send()
+            .await?
+            .json::<responses::LookupVolumeById>()
+            .await?;
+        log::debug!("{:?}", res);
+        Ok(res)
+    }
+    // curl http://127.0.0.1:9333/dir/assign
+    pub async fn assign(&self) -> Result<responses::Assign> {
         let client = reqwest::Client::new();
         let res = client
             .get(format!("{}/dir/assign", self.master_host))
             .send()
             .await?
-            .json::<responses::AssignResponse>()
+            .json::<responses::Assign>()
             .await?;
         log::debug!("{:?}", res);
-        Ok((res.url, res.fid))
+        Ok(res)
     }
 
     pub async fn write(
@@ -173,23 +190,52 @@ impl Client {
         Ok(())
     }
 
-    pub async fn upload<P: AsRef<Path>>(&self, file: P, volume: &str, fid: &str) -> Result<()> {
+    // curl http://127.0.0.1:9333/dir/assign
+    // curl -F "file=@README.md" http://0.0.0.0:9340/1,108aa6f6ac
+    pub async fn upload<P: AsRef<Path>>(
+        &self,
+        file: P,
+        volume: &str,
+        fid: &str,
+    ) -> Result<responses::UploadFile> {
         let file = file.as_ref();
-        log::info!("upload file {} to ({},{})", file.display(), volume, fid);
+        let mime = mime_guess::from_path(file)
+            .first_or_octet_stream()
+            .to_string();
+        log::info!(
+            "upload file ({}, {}) to ({},{})",
+            file.display(),
+            mime,
+            volume,
+            fid
+        );
+
+        let part = MultipartPart::file(file).await?;
+        let form = MultipartForm::new().part("file", part);
 
         let client = HttpClient::new();
         let res = client
             .post(Self::url(volume, fid))
-            .body(File::open(file).await?)
+            .multipart(form)
             .send()
+            .await?
+            .json::<responses::UploadFile>()
             .await?;
-
-        Self::check(res).await?;
-        Ok(())
+        Ok(res)
     }
 
     fn url(volume: &str, fid: &str) -> String {
         format!("http://{volume}/{fid}")
+    }
+    fn volume_id_from_fid(fid: &str) -> Result<String> {
+        let items: Vec<&str> = fid.split(',').collect();
+        if items.len() != 2 {
+            return Err(Box::new(HttpError(
+                StatusCode::BAD_REQUEST,
+                Some(format!("invalid fid {fid}")),
+            )));
+        }
+        Ok(items[0].to_string())
     }
 
     async fn check(res: HttpResponse) -> Result<String> {
@@ -205,22 +251,8 @@ impl Client {
 
 impl super::Provider for Client {
     async fn upload<P: AsRef<Path>>(&self, file: P, bucket: &str, object: &str) -> Result<()> {
-        let file = file.as_ref();
-        let size = {
-            let md = fs::metadata(file)?;
-            md.len()
-        };
         self.upload(file, bucket, object).await?;
-        {
-            let mut db = self.db.get()?;
-            let db = db.deref_mut();
 
-            db.transaction::<_, Error, _>(|tx| {
-                let it = AttachmentDao::by_bucket_and_object(tx, bucket, object)?;
-                AttachmentDao::set_uploaded_at(tx, it.id, size as usize)?;
-                Ok(())
-            })?;
-        }
         Ok(())
     }
 }

@@ -56,14 +56,14 @@ pub async fn upload<J: Jwt>(
             })?
             .to_string();
         let content_type = Attachment::content_type(&name);
-        let (url, fid) = s3.assign().await?;
-        log::info!("uploading file {name} to {url}/{fid}");
+        let target = s3.assign().await?;
+        log::info!("uploading file {} to {}/{}", name, target.url, target.fid);
         db.transaction::<_, Error, _>(|tx| {
             AttachmentDao::create(
                 tx,
                 current_user.id(),
                 (&name, &content_type),
-                (&url, &fid, public),
+                (&target.url, &target.fid, public),
             )?;
             Ok(())
         })?;
@@ -74,13 +74,13 @@ pub async fn upload<J: Jwt>(
             let l = chunk.len();
             size += l;
             let buf = chunk.to_vec();
-            s3.write(&name, &content_type, (buf, index), &url, &fid)
+            s3.write(&name, &content_type, (buf, index), &target.url, &target.fid)
                 .await?;
             log::debug!("uploaded {l} bytes for chunk-{index}");
             index += 1;
         }
         db.transaction::<_, Error, _>(|tx| {
-            let it = AttachmentDao::by_bucket_and_object(tx, &url, &fid)?;
+            let it = AttachmentDao::by_bucket_and_object(tx, &target.url, &target.fid)?;
             AttachmentDao::set_uploaded_at(tx, it.id, size)?;
             Ok(())
         })?;

@@ -213,7 +213,6 @@ namespace = "wisteria.dev"
 [seaweedfs]
 host = "127.0.0.1"
 port = 9333
-namespace = "wisteria.dev"
 
 [smtp]
 host = "smtp.gmail.com"

@@ -68,7 +68,11 @@ pub async fn start<P: AsRef<Path>>(config: P, port: u16, _theme: Theme) -> Resul
             let it: Key = config.cookie_key.parse()?;
             CookieKey::from(&it.0)
         },
-        s3: config.seaweedfs.open(db.clone()).await?,
+        s3: {
+            let it = config.seaweedfs.open();
+            it.cluster_status().await?;
+            it
+        },
         cache: config.redis.standalone()?,
         queue: config.rabbitmq.open().await?,
         search: config.opensearch.single()?,
