@@ -14,9 +14,9 @@ pub use diesel::{Connection as TransactionConnection, QueryResult};
 #[derive(Debug, Clone, Serialize, Deserialize, QueryableByName)]
 pub struct Heartbeat {
     #[diesel(column_name=version, sql_type=Text)]
-    version: String,
+    pub version: String,
     #[diesel(column_name=now, sql_type=Timestamp)]
-    created_at: NaiveDateTime,
+    pub created_at: NaiveDateTime,
 }
 
 pub trait Dao {

@@ -11,6 +11,7 @@ use r2d2::{
 use redis::{
     Client as RedisClient, Commands, Connection as RedisConnection, RedisError, RedisResult,
     cluster::{ClusterClient as RedisClusterClient, ClusterConnection as RedisClusterConnection},
+    cmd,
 };
 use serde::{Deserialize, Serialize, de::DeserializeOwned};
 
@@ -124,6 +125,12 @@ impl<C: Commands, T: ManageConnection<Connection = C, Error = RedisError>> Poole
             Some(s) => format!("{}://{}", s, k.as_ref()),
             None => k.as_ref().to_string(),
         }
+    }
+
+    pub fn info(&mut self) -> Result<String> {
+        let db = self.connection.deref_mut();
+        let it: String = cmd("INFO").query(db)?;
+        Ok(it)
     }
 }
 

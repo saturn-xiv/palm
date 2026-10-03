@@ -5,7 +5,8 @@ use futures_util::StreamExt;
 use hyacinth::{FlexbufferReader, FlexbufferSerializer, ProtobufMessage, ProtobufParse};
 use hyper::StatusCode;
 use lapin::{
-    BasicProperties, Connection, ConnectionProperties, Result as LapinResult,
+    BasicProperties, Configuration, Connection, ConnectionProperties, ConnectionStatus,
+    Result as LapinResult,
     options::{BasicAckOptions, BasicConsumeOptions},
     types::FieldTable,
 };
@@ -100,6 +101,12 @@ pub struct Client {
 }
 
 impl Client {
+    pub fn configuration(&self) -> &Configuration {
+        self.connection.configuration()
+    }
+    pub fn status(&self) -> &ConnectionStatus {
+        self.connection.status()
+    }
     pub async fn bind_queue(
         &self,
         queue: &str,
