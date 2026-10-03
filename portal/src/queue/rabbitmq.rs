@@ -1,3 +1,4 @@
+use std::any::type_name;
 use std::time::Duration;
 
 use futures_util::StreamExt;
@@ -17,7 +18,7 @@ pub use lapin::{
     options::{BasicPublishOptions, ExchangeDeclareOptions, QueueBindOptions, QueueDeclareOptions},
 };
 
-use super::super::{Error, HttpError, Result, content_types::*};
+use super::super::{Error, HttpError, Result, content_types::*, hostname, pid};
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct Node {
@@ -76,9 +77,20 @@ impl Node {
                 "amqp://{}:{}@{}:{}/{}",
                 self.user, self.password, self.host, self.port, self.virtual_host
             ),
-            ConnectionProperties::default().enable_auto_recover(),
+            ConnectionProperties::default()
+                .with_connection_name(
+                    format!(
+                        "{}.{}.{}",
+                        hostname().unwrap_or_default(),
+                        type_name::<Client>(),
+                        pid()
+                    )
+                    .into(),
+                )
+                .enable_auto_recover(),
         )
         .await?;
+        log::debug!("{:?}", con.configuration());
         Ok(Client { connection: con })
     }
 }

@@ -235,7 +235,11 @@ working-dir = "/var/lib/palm/lavender/cache"
 bcc = []
 
 [lavender.web-hooks.www-change-org.gogs]
-email = "who-am-i"
+email = "who-am-i@qq.com"
+secret = "openssl rand -base64 32"
+
+[lavender.web-hooks.next-change-org.github]
+email = "who-am-i@gmail.com"
 secret = "openssl rand -base64 32"
 
 EOF

@@ -11,3 +11,11 @@ cargo test -p lavender job_sample -- --exact --show-output
 RUST_LOG=debug,h2=info,lapin=info ./target/debug/wisteria -c wisteria/config.toml lavender-job-worker -i 10000
 RUST_LOG=debug,h2=info,lapin=info ./target/debug/wisteria -c wisteria/config.toml email-send-worker -i 60000
 ```
+
+## Webhooks
+
+`Content type: application/json` AND `Send me everything`
+
+
+- [Gogs](https://gogs.io/advancing/webhooks)
+- [Github](https://docs.github.com/en/webhooks)

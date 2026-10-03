@@ -9,7 +9,7 @@ pub struct Organization {
     pub login: String,
     pub node_id: String,
     pub avatar_url: String,
-    pub description: String,
+    pub description: Option<String>,
 }
 
 #[derive(Debug, Serialize, Deserialize, Clone)]

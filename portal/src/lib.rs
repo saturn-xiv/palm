@@ -223,6 +223,12 @@ pub fn hostname() -> Result<String> {
     Ok(it)
 }
 
+pub fn pid() -> i32 {
+    let it = nix::unistd::getpid();
+    let it: i32 = it.as_raw();
+    it
+}
+
 pub fn shell<W: AsRef<Path>, C: AsRef<Path>, A: Into<String>>(
     working_dir: W,
     command: C,
