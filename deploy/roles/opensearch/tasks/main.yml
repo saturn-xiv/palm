@@ -31,7 +31,7 @@
   become: true
   ansible.builtin.template:
     src: systemd.conf.j2
-    dest: "/usr/lib/systemd/system/opensearch.service"
+    dest: "/etc/systemd/system/opensearch.service"
     mode: "0644"
 
 - name: Force systemd to reread configs

@@ -33,7 +33,7 @@
   become: true
   ansible.builtin.template:
     src: server.service.j2
-    dest: "/usr/lib/systemd/system/redis-cluster-node-{{ app_redis_port }}.service"
+    dest: "/etc/systemd/system/redis-cluster-node-{{ app_redis_port }}.service"
     mode: "0644"
 
 - name: Force systemd to reread configs
