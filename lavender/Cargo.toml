@@ -5,6 +5,7 @@ edition = "2024"
 description = "Aggregating your logs, tracking the health, uptime, and performance of your hardware and networks."
 
 [dependencies]
+jiff = "0.2"
 log = "0.4"
 axum = "0.8"
 askama = "0.16"

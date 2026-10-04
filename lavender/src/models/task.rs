@@ -4,6 +4,7 @@ use std::time::Duration;
 use chrono::{NaiveDateTime, Utc};
 use diesel::{insert_into, prelude::*, update};
 use hyacinth::schema::lavender_tasks;
+use jiff::SignedDuration;
 use portal::{Result, orm::postgresql::Connection};
 use serde::{Deserialize, Serialize};
 use serde_json::{Value, to_value};
@@ -34,6 +35,10 @@ impl Output {
     }
     pub fn succeed(&self) -> bool {
         matches!(self.code, Some(0))
+    }
+    pub fn elapsed(&self) -> Result<String> {
+        let it = SignedDuration::try_from(self.elapsed)?;
+        Ok(format!("{:#}", it))
     }
 }
 
