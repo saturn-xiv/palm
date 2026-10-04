@@ -144,6 +144,7 @@ impl Item {
     }
 
     pub fn new<P: AsRef<Path>>(root: P, name: &str) -> Result<Self> {
+        log::debug!("load job {name}");
         let it = toml::from_str(&read_to_string({
             let it = root.as_ref();
             it.join(name).join(Self::CONFIG_FILE)
@@ -156,11 +157,12 @@ impl Item {
             let entry = entry?;
             let path = entry.path();
             if path.is_dir()
-                && let Some(id) = path.file_name()
-                && let Some(id) = id.to_str()
+                && let Some(name) = path.file_name()
+                && let Some(name) = name.to_str()
             {
+                log::debug!("found job {name}");
                 let it = toml::from_str(&read_to_string(path.join(Self::CONFIG_FILE))?)?;
-                items.insert(id.to_string(), it);
+                items.insert(name.to_string(), it);
             }
         }
         Ok(items)

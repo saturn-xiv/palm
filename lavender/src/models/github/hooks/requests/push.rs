@@ -30,7 +30,7 @@ pub struct Pusher {
 pub struct Commit {
     pub added: Option<Vec<String>>,
     pub author: User,
-    pub commiter: User,
+    pub committer: User,
     pub distinct: bool,
     pub id: String,
     pub message: String,

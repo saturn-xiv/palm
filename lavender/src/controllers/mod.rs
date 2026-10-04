@@ -62,7 +62,13 @@ impl WebHook {
                     match header.event.as_str() {
                         "ping" => {
                             let req: github_requests::ping::Item = serde_json::from_str(body)?;
-                            Ok(vec![header.delivery, header.event, req.zen])
+                            Ok(vec![
+                                header.delivery,
+                                header.event,
+                                req.zen,
+                                "".to_string(),
+                                "".to_string(),
+                            ])
                         }
                         "push" => {
                             let req: github_requests::push::Item = serde_json::from_str(body)?;
@@ -74,10 +80,18 @@ impl WebHook {
                                 req.after,
                             ])
                         }
-                        ev => Err(Box::new(HttpError(
-                            StatusCode::BAD_REQUEST,
-                            Some(format!("unsupported github event {ev}")),
-                        ))),
+                        "create" => {
+                            let _: github_requests::create::Item = serde_json::from_str(body)?;
+                            return Ok(());
+                        }
+                        ev => {
+                            // Err(Box::new(HttpError(
+                            //     StatusCode::BAD_REQUEST,
+                            //     Some(format!("unsupported github event {ev}")),
+                            // )));
+                            log::warn!("unsupported github event {ev}");
+                            return Ok(());
+                        }
                     },
                 )
             }
