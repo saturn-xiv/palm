@@ -13,7 +13,7 @@ use hyacinth::{GrpcClientChannel, open_grpc_channel};
 use juniper_axum::{graphiql, playground};
 use portal::{
     Dahlia, Key, Loquat, Marigold, Result, cache::redis::Node as Redis, is_stopped,
-    open_search::Node as OpenSearch, orm::postgresql::Node as PostgreSql, parse_toml,
+    opensearch::Node as OpenSearch, orm::postgresql::Node as PostgreSql, parse_toml,
     queue::rabbitmq::Node as RabbitMq, s3::seaweedfs::Config as SeaweedFs,
 };
 use serde::{Deserialize, Serialize};

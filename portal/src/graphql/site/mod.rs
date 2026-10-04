@@ -1,6 +1,7 @@
 pub mod author;
 pub mod favicon;
 pub mod keywords;
+pub mod status;
 
 use icu::locale::Locale;
 use juniper::GraphQLObject;

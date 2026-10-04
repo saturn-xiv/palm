@@ -12,7 +12,7 @@ pub mod iso4217;
 pub mod jwt;
 pub mod mailer;
 pub mod models;
-pub mod open_search;
+pub mod opensearch;
 pub mod orm;
 pub mod queue;
 pub mod random;

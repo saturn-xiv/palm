@@ -5,8 +5,8 @@ use chrono_tz::TZ_VARIANTS;
 use juniper::{FieldResult, ScalarValue, graphql_object};
 use lavender::graphql as lavender_graphql;
 use portal::graphql::{
-    Heartbeat, Menu, Page, Succeeded, attachment as attachment_api, currency as currency_api,
-    locale as locale_api,
+    Menu, Page, Succeeded, attachment as attachment_api, currency as currency_api,
+    locale as locale_api, site as site_api,
     user::{self as user_api, email as email_user_api},
 };
 
@@ -23,25 +23,6 @@ impl Query {
     }
     fn build_time() -> &'static str {
         BUILD_TIME
-    }
-    async fn heartbeat(ctx: &Context) -> FieldResult<Heartbeat> {
-        let mut db = ctx.state.db.get()?;
-        let db = db.deref_mut();
-        let mut cache = ctx.state.cache.get()?;
-
-        let it = Heartbeat::new(
-            &ctx.session,
-            (
-                db,
-                &mut cache,
-                &ctx.state.queue,
-                &ctx.state.search,
-                &ctx.state.s3,
-            ),
-            (&ctx.state.dahlia, &ctx.state.loquat),
-        )
-        .await?;
-        Ok(it)
     }
 
     fn timezones() -> Vec<String> {
@@ -174,6 +155,27 @@ impl Query {
         )
         .await?;
         Ok(reply)
+    }
+
+    async fn site_status(ctx: &Context) -> FieldResult<site_api::status::Item> {
+        let mut db = ctx.state.db.get()?;
+        let db = db.deref_mut();
+        let mut cache = ctx.state.cache.get()?;
+
+        let it = site_api::status::Item::new(
+            &ctx.session,
+            (
+                db,
+                &mut cache,
+                &ctx.state.queue,
+                &ctx.state.search,
+                &ctx.state.s3,
+            ),
+            (&ctx.state.dahlia, &ctx.state.loquat),
+            (GIT_VERSION, BUILD_TIME),
+        )
+        .await?;
+        Ok(it)
     }
 
     async fn lavender_index_job(ctx: &Context) -> FieldResult<Vec<lavender_graphql::job::Item>> {

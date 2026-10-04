@@ -1,10 +1,12 @@
 use serde::{Deserialize, Serialize};
 
 #[derive(Debug, Clone, Default, Serialize, Deserialize)]
-#[serde(rename_all = "camelCase")]
 pub struct ClusterStatus {
+    #[serde(rename = "IsLeader")]
     pub is_leader: bool,
+    #[serde(rename = "Leader")]
     pub leader: String,
+    #[serde(rename = "MaxVolumeId")]
     pub max_volume_id: usize,
 }
 

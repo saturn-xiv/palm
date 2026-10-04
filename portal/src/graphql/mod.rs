@@ -19,11 +19,7 @@ use super::{
     models::user::{
         Dao as UserDao, Item as UserItem, Type as UserType, email::Dao as EmailUserDao,
     },
-    open_search::Client as OpenSearch,
-    orm::{Dao as DbHeartbeatDao, postgresql::Connection as Db},
-    queue::rabbitmq::Client as RabbitMq,
-    rbac::Rbac,
-    s3::seaweedfs::{Client as SeaweedFsClient, responses::ClusterStatus as SeaweedFSStatus},
+    orm::postgresql::Connection as Db,
 };
 
 #[derive(Debug, Clone, Default, Serialize, Deserialize)]
@@ -283,79 +279,4 @@ pub struct Menu {
     pub code: String,
     pub icon: Option<String>,
     pub children: Option<Vec<Self>>,
-}
-
-#[derive(Debug, Default, GraphQLObject)]
-#[graphql(name = "Heartbeat")]
-pub struct Heartbeat {
-    pub rabbitmq: bool,
-    pub postgresql: String,
-    pub redis: String,
-    pub seaweedfs: SeaweedFSClusterStatus,
-    pub open_search: OpenSearchStatus,
-    pub client_ip: Option<String>,
-    pub created_at: NaiveDateTime,
-}
-
-impl Heartbeat {
-    pub async fn new<R: Rbac, J: Jwt>(
-        ss: &Session,
-        (db, cache, queue, search, s3): (
-            &mut Db,
-            &mut Cache,
-            &RabbitMq,
-            &OpenSearch,
-            &SeaweedFsClient,
-        ),
-        (rbac, jwt): (&R, &J),
-    ) -> Result<Self> {
-        let current_user = ss.current_user(db, cache, jwt).await?;
-        rbac.is_administrator(current_user.id()).await?;
-        let it = Self {
-            postgresql: {
-                let it = DbHeartbeatDao::heartbeat(db)?;
-                it.version
-            },
-            rabbitmq: queue.status().connected(),
-            redis: cache.info()?,
-            seaweedfs: {
-                let it = s3.cluster_status().await?;
-                SeaweedFSClusterStatus::new(&it)
-            },
-            open_search: {
-                let _ = search.info().await?;
-                OpenSearchStatus {
-                    // TODO
-                    version: "".to_string(),
-                }
-            },
-            client_ip: ss.client_ip.clone(),
-            created_at: Utc::now().naive_utc(),
-        };
-        Ok(it)
-    }
-}
-
-#[derive(Debug, Default, GraphQLObject)]
-#[graphql(name = "OpenSearchStatus")]
-pub struct OpenSearchStatus {
-    pub version: String,
-}
-
-#[derive(Debug, Default, GraphQLObject)]
-#[graphql(name = "SeaweedFSClusterStatus")]
-pub struct SeaweedFSClusterStatus {
-    pub is_leader: bool,
-    pub leader: String,
-    pub max_volume_id: i32,
-}
-
-impl SeaweedFSClusterStatus {
-    pub fn new(it: &SeaweedFSStatus) -> Self {
-        Self {
-            is_leader: it.is_leader,
-            leader: it.leader.clone(),
-            max_volume_id: it.max_volume_id as i32,
-        }
-    }
 }
