@@ -13,7 +13,7 @@ message Timestamp {
     int32 nanos = 2;
 }
 
-service StorageService {
+service Storage {
   rpc Report(ReportRequest) returns (Empty) {}
 }
 

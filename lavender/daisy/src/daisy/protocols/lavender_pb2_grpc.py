@@ -25,7 +25,7 @@ if _version_not_supported:
     )
 
 
-class StorageServiceStub:
+class StorageStub:
     """Missing associated documentation comment in .proto file."""
 
     def __init__(self, channel):
@@ -35,13 +35,13 @@ class StorageServiceStub:
             channel: A grpc.Channel.
         """
         self.Report = channel.unary_unary(
-                '/palm.lavender.v1.StorageService/Report',
+                '/palm.lavender.v1.Storage/Report',
                 request_serializer=daisy_dot_protocols_dot_lavender__pb2.ReportRequest.SerializeToString,
                 response_deserializer=daisy_dot_protocols_dot_lavender__pb2.Empty.FromString,
                 _registered_method=True)
 
 
-class StorageServiceServicer:
+class StorageServicer:
     """Missing associated documentation comment in .proto file."""
 
     def Report(self, request, context):
@@ -51,7 +51,7 @@ class StorageServiceServicer:
         raise NotImplementedError('Method not implemented!')
 
 
-def add_StorageServiceServicer_to_server(servicer, server):
+def add_StorageServicer_to_server(servicer, server):
     rpc_method_handlers = {
             'Report': grpc.unary_unary_rpc_method_handler(
                     servicer.Report,
@@ -60,13 +60,13 @@ def add_StorageServiceServicer_to_server(servicer, server):
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
-            'palm.lavender.v1.StorageService', rpc_method_handlers)
+            'palm.lavender.v1.Storage', rpc_method_handlers)
     server.add_generic_rpc_handlers((generic_handler,))
-    server.add_registered_method_handlers('palm.lavender.v1.StorageService', rpc_method_handlers)
+    server.add_registered_method_handlers('palm.lavender.v1.Storage', rpc_method_handlers)
 
 
  # This class is part of an EXPERIMENTAL API.
-class StorageService:
+class Storage:
     """Missing associated documentation comment in .proto file."""
 
     @staticmethod
@@ -83,7 +83,7 @@ class StorageService:
         return grpc.experimental.unary_unary(
             request,
             target,
-            '/palm.lavender.v1.StorageService/Report',
+            '/palm.lavender.v1.Storage/Report',
             daisy_dot_protocols_dot_lavender__pb2.ReportRequest.SerializeToString,
             daisy_dot_protocols_dot_lavender__pb2.Empty.FromString,
             options,

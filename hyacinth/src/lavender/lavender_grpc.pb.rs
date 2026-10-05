@@ -1,14 +1,14 @@
 /// Generated client implementations.
-pub mod storage_service_client {
+pub mod storage_client {
     use grpc::client::*;
     use grpc_protobuf::*;
 
     #[derive(Debug, Clone)]
-    pub struct StorageServiceClient<T> {
+    pub struct StorageClient<T> {
         channel: T,
     }
 
-    impl<T> StorageServiceClient<T>
+    impl<T> StorageClient<T>
     where
         T: grpc::client::Invoke,
     {
@@ -22,7 +22,7 @@ pub mod storage_service_client {
         ) -> UnaryCallBuilder<'_, &T, ReqMsgView, super::Empty>
         where
           ReqMsgView: protobuf::AsView<Proxied = super::ReportRequest> + Send + Sync {
-          UnaryCallBuilder::new(&self.channel, "/palm.lavender.v1.StorageService/Report", request)
+          UnaryCallBuilder::new(&self.channel, "/palm.lavender.v1.Storage/Report", request)
         }
     }
 }

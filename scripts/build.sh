@@ -157,11 +157,16 @@ Restart=always
 WantedBy=multi-user.target
 EOF
 
-    cat <<EOF > $1/lavender/daisy.toml
+    cat <<EOF > $1/lavender/daisy-server.toml
 [opensearch]
 host = "127.0.0.1"
 port = 9200
-namespace = "palm.dev"
+namespace = "wisteria.dev"
+EOF
+    cat <<EOF > $1/lavender/daisy-worker.toml
+[server]
+host = "127.0.0.1"
+port = 11006
 EOF
     cat <<EOF > $1/lavender/daisy-server.service
 [Unit]
