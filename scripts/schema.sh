@@ -49,28 +49,36 @@ function generate_grpc() {
         -I $PROTOBUF_HOME/include/ -I $WORK_DIR/marigold/src/main/proto \
         --rust_out=$HYACINTH_OUTPUT_DIR/wechat_pay --rust-grpc_out=$HYACINTH_OUTPUT_DIR/wechat_pay \
         $WORK_DIR/marigold/src/main/proto/wechatpay.proto
-
     $PROTOBUF_HOME/bin/protoc --rust_opt=experimental-codegen=enabled,kernel=upb --rust-grpc_opt=client_only=true \
         --plugin=protoc-gen-rust-grpc=$PROTOBUF_HOME/bin/protoc-gen-rust-grpc \
         -I $PROTOBUF_HOME/include/ -I $WORK_DIR/dahlia/proto/ \
         --rust_out=$HYACINTH_OUTPUT_DIR/rbac --rust-grpc_out=$HYACINTH_OUTPUT_DIR/rbac \
         $WORK_DIR/dahlia/proto/rbac.proto
-
     $PROTOBUF_HOME/bin/protoc --rust_opt=experimental-codegen=enabled,kernel=upb --rust-grpc_opt=client_only=true \
         --plugin=protoc-gen-rust-grpc=$PROTOBUF_HOME/bin/protoc-gen-rust-grpc \
         -I $PROTOBUF_HOME/include/ -I $WORK_DIR/loquat/proto/ \
         --rust_out=$HYACINTH_OUTPUT_DIR/loquat --rust-grpc_out=$HYACINTH_OUTPUT_DIR/loquat \
         $WORK_DIR/loquat/proto/loquat.proto
+    $PROTOBUF_HOME/bin/protoc --rust_opt=experimental-codegen=enabled,kernel=upb --rust-grpc_opt=client_only=true \
+        --plugin=protoc-gen-rust-grpc=$PROTOBUF_HOME/bin/protoc-gen-rust-grpc \
+        -I $PROTOBUF_HOME/include/ -I $WORK_DIR/lavender/proto/ \
+        --rust_out=$HYACINTH_OUTPUT_DIR/lavender --rust-grpc_out=$HYACINTH_OUTPUT_DIR/lavender \
+        $WORK_DIR/lavender/proto/lavender.proto
 
     # pip install 'grpcio-tools~=1.82'
     cd $WORK_DIR/dahlia/src/
-
     rm -f dahlia/protocols/*_pb2*
-
     PYTHON_GIL=0 python -m grpc_tools.protoc \
         -Idahlia/protocols=$WORK_DIR/dahlia/proto -I $PROTOBUF_HOME/include/google/protobuf \
         --python_out=. --pyi_out=. --grpc_python_out=. \
         $WORK_DIR/dahlia/proto/*.proto
+
+    cd $WORK_DIR/lavender/daisy/src/
+    rm -f daisy/protocols/*_pb2*
+    PYTHON_GIL=0 python -m grpc_tools.protoc \
+        -Idaisy/protocols=$WORK_DIR/lavender/proto -I $PROTOBUF_HOME/include/google/protobuf \
+        --python_out=. --pyi_out=. --grpc_python_out=. \
+        $WORK_DIR/lavender/proto/*.proto
 
     # $PROTOBUF_HOME/bin/protoc --rust_opt=experimental-codegen=enabled,kernel=upb --rust-grpc_opt=client_only=true \
     #     --plugin=protoc-gen-rust-grpc=$PROTOBUF_HOME/bin/protoc-gen-rust-grpc \
@@ -140,7 +148,9 @@ cargo fmt
 cd $WORK_DIR/loquat/
 clang-format -i include/loquat/*.hpp src/*.cpp
 cd $WORK_DIR/dahlia/
-autopep8 --in-place --recursive src --exclude="src/dahlia/protocols/*,tmp/*"
+autopep8 --in-place --recursive src --exclude="src/dahlia/protocols/*"
+cd $WORK_DIR/lavender/daisy/
+autopep8 --in-place --recursive src --exclude="src/daisy/protocols/*"
 
 echo 'done.'
 exit 0

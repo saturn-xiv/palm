@@ -38,6 +38,12 @@ mod palm {
             include!("loquat/loquat_grpc.pb.rs");
         }
     }
+    pub mod lavender {
+        pub mod v1 {
+            include!("lavender/generated.rs");
+            include!("lavender/lavender_grpc.pb.rs");
+        }
+    }
 }
 
 pub mod models;

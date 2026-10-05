@@ -7,11 +7,14 @@ option go_package = "./;v2";
 option csharp_namespace = "Palm.Plugins.Lavender.Grpc";
 package palm.lavender.v1;
 
-import "google/protobuf/empty.proto";
-import "google/protobuf/timestamp.proto";
+message Empty {}
+message Timestamp {
+    int64 seconds = 1;
+    int32 nanos = 2;
+}
 
 service StorageService {
-  rpc Report(ReportRequest) returns (google.protobuf.Empty) {}
+  rpc Report(ReportRequest) returns (Empty) {}
 }
 
 message Http {
@@ -43,7 +46,7 @@ message Snmp {
 
 message ReportRequest{
     message Item{
-        google.protobuf.Timestamp timestamp = 1;
+        Timestamp timestamp = 1;
         oneof payload{
             Http http = 11;
             PostgreSql postgresql = 12;
@@ -52,4 +55,5 @@ message ReportRequest{
             Snmp snmp = 15;
         }
     }
+    repeated Item items = 1;
 }
