@@ -25,6 +25,8 @@ def main():
         description="A rbac service(gRPC).", formatter_class=argparse.ArgumentDefaultsHelpFormatter)
     parser.add_argument(
         '-c', '--config', default='config.toml', help="config file path")
+    parser.add_argument('-s', '--tls',
+                        action='store_true', help='with mutal-TLS mode')
     parser.add_argument('-p', '--port', type=int,
                         default=8080, help="port to listen")
     parser.add_argument('-w', '--workers', type=int,
@@ -41,10 +43,10 @@ def main():
     logger.debug("load configuration from %s", args.config)
     with open(args.config, "rb") as file:
         config = tomllib.load(file)
-        launch_grpc_server(config, args.port, args.workers)
+    launch_grpc_server(config, args.port, args.workers, args.tls)
 
 
-def launch_grpc_server(config, port, workers):
+def launch_grpc_server(config, port, workers, tls):
     server = grpc.server(futures.ThreadPoolExecutor(max_workers=workers))
 
     enforcer = rbac.open_enforcer(config['postgresql'], config['rabbitmq'])
@@ -70,9 +72,27 @@ def launch_grpc_server(config, port, workers):
     toggle_health_status_thread.start()
 
     addr = f"0.0.0.0:{port}"
-    logger.info(
-        "start gRPC server on tcp://%s with %d workers", addr, workers)
-    server.add_insecure_port(addr)
+    if tls:
+        with open("server.key", "rb") as f:
+            server_private_key = f.read()
+        with open("server.crt", "rb") as f:
+            server_cert_chain = f.read()
+        with open("ca.crt", "rb") as f:
+            ca_cert = f.read()
+        credentials = grpc.ssl_server_credentials(
+            private_key_certificate_chain_pairs=[
+                (server_private_key, server_cert_chain)],
+            root_certificates=ca_cert,
+            require_client_auth=True
+        )
+        logger.info(
+            "start gRPC server on tcp://%s with %d workers mTLS mode", addr, workers)
+        server.add_secure_port(addr, credentials)
+    else:
+        logger.info(
+            "start gRPC server on tcp://%s with %d workers", addr, workers)
+        server.add_insecure_port(addr)
+
     server.start()
 
     def handle_shutdown(signum, frame):

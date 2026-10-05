@@ -12,6 +12,10 @@ message Timestamp {
     int64 seconds = 1;
     int32 nanos = 2;
 }
+message Duration {
+    int64 seconds = 1;
+    int32 nanos = 2;
+}
 
 service Storage {
   rpc Report(ReportRequest) returns (Empty) {}
@@ -47,6 +51,7 @@ message Snmp {
 message ReportRequest{
     message Item{
         Timestamp timestamp = 1;
+        Duration curation = 2;
         oneof payload{
             Http http = 11;
             PostgreSql postgresql = 12;

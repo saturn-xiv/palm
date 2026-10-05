@@ -18,6 +18,14 @@ class Timestamp(_message.Message):
     nanos: int
     def __init__(self, seconds: _Optional[int] = ..., nanos: _Optional[int] = ...) -> None: ...
 
+class Duration(_message.Message):
+    __slots__ = ("seconds", "nanos")
+    SECONDS_FIELD_NUMBER: _ClassVar[int]
+    NANOS_FIELD_NUMBER: _ClassVar[int]
+    seconds: int
+    nanos: int
+    def __init__(self, seconds: _Optional[int] = ..., nanos: _Optional[int] = ...) -> None: ...
+
 class Http(_message.Message):
     __slots__ = ("status_code", "content_type", "response_body")
     STATUS_CODE_FIELD_NUMBER: _ClassVar[int]
@@ -68,20 +76,22 @@ class Snmp(_message.Message):
 class ReportRequest(_message.Message):
     __slots__ = ("items",)
     class Item(_message.Message):
-        __slots__ = ("timestamp", "http", "postgresql", "mysql", "redis", "snmp")
+        __slots__ = ("timestamp", "curation", "http", "postgresql", "mysql", "redis", "snmp")
         TIMESTAMP_FIELD_NUMBER: _ClassVar[int]
+        CURATION_FIELD_NUMBER: _ClassVar[int]
         HTTP_FIELD_NUMBER: _ClassVar[int]
         POSTGRESQL_FIELD_NUMBER: _ClassVar[int]
         MYSQL_FIELD_NUMBER: _ClassVar[int]
         REDIS_FIELD_NUMBER: _ClassVar[int]
         SNMP_FIELD_NUMBER: _ClassVar[int]
         timestamp: Timestamp
+        curation: Duration
         http: Http
         postgresql: PostgreSql
         mysql: MySql
         redis: Redis
         snmp: Snmp
-        def __init__(self, timestamp: _Optional[_Union[Timestamp, _Mapping]] = ..., http: _Optional[_Union[Http, _Mapping]] = ..., postgresql: _Optional[_Union[PostgreSql, _Mapping]] = ..., mysql: _Optional[_Union[MySql, _Mapping]] = ..., redis: _Optional[_Union[Redis, _Mapping]] = ..., snmp: _Optional[_Union[Snmp, _Mapping]] = ...) -> None: ...
+        def __init__(self, timestamp: _Optional[_Union[Timestamp, _Mapping]] = ..., curation: _Optional[_Union[Duration, _Mapping]] = ..., http: _Optional[_Union[Http, _Mapping]] = ..., postgresql: _Optional[_Union[PostgreSql, _Mapping]] = ..., mysql: _Optional[_Union[MySql, _Mapping]] = ..., redis: _Optional[_Union[Redis, _Mapping]] = ..., snmp: _Optional[_Union[Snmp, _Mapping]] = ...) -> None: ...
     ITEMS_FIELD_NUMBER: _ClassVar[int]
     items: _containers.RepeatedCompositeFieldContainer[ReportRequest.Item]
     def __init__(self, items: _Optional[_Iterable[_Union[ReportRequest.Item, _Mapping]]] = ...) -> None: ...

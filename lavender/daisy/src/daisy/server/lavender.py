@@ -13,5 +13,6 @@ class StorageServer(lavender_pb2_grpc.StorageServicer):
         self.namespace = namespace
 
     def Report(self, request, context):
+        logger.info("receive %d items", len(request.items))
         # TODO
         return lavender_pb2.Empty()

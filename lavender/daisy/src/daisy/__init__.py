@@ -19,6 +19,8 @@ def main():
         '-c', '--config', default='config.toml', help="config file path")
     parser.add_argument('-d', '--debug',
                         action='store_true', help='run on debug mode')
+    parser.add_argument('-s', '--tls',
+                        action='store_true', help='with mutal-TLS mode')
     parser.add_argument('-v', '--verbose',
                         action='version', version=version(__package__))
 
@@ -44,7 +46,7 @@ def main():
     logger.debug("load configuration from %s", args.config)
     with open(args.config, "rb") as file:
         config = tomllib.load(file)
-        if args.command == "server":
-            launch_grpc_server(config, args.port, args.workers)
-        elif args.command == "worker":
-            launch_worker(config)
+    if args.command == "server":
+        launch_grpc_server(config, args.port, args.workers, args.tls)
+    elif args.command == "worker":
+        launch_worker(config, args.tls)

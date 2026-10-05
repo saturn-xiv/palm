@@ -781,6 +781,463 @@ unsafe impl ::protobuf::__internal::runtime::UpbGetArena for TimestampMut<'_> {
 
 // This variable must not be referenced except by protobuf generated
 // code.
+pub(crate) static mut palm__lavender__v1__Duration_msg_init: ::protobuf::__internal::runtime::MiniTableInitPtr =
+    ::protobuf::__internal::runtime::MiniTableInitPtr(::protobuf::__internal::runtime::MiniTablePtr::dangling());
+#[allow(non_camel_case_types)]
+pub struct Duration {
+  inner: ::protobuf::__internal::runtime::OwnedMessageInner<Duration>
+}
+
+impl ::protobuf::Message for Duration {}
+
+impl ::std::default::Default for Duration {
+  fn default() -> Self {
+    Self::new()
+  }
+}
+
+impl ::std::fmt::Debug for Duration {
+  fn fmt(&self, f: &mut ::std::fmt::Formatter<'_>) -> ::std::fmt::Result {
+    write!(f, "{}", ::protobuf::__internal::runtime::debug_string(self))
+  }
+}
+
+// SAFETY:
+// - `Duration` is `Sync` because it does not implement interior mutability.
+//    Neither does `DurationMut`.
+unsafe impl Sync for Duration {}
+
+// SAFETY:
+// - `Duration` is `Send` because it uniquely owns its arena and does
+//   not use thread-local data.
+unsafe impl Send for Duration {}
+
+impl ::protobuf::Proxied for Duration {
+  type View<'msg> = DurationView<'msg>;
+}
+
+impl ::protobuf::__internal::SealedInternal for Duration {}
+
+impl ::protobuf::MutProxied for Duration {
+  type Mut<'msg> = DurationMut<'msg>;
+}
+
+#[derive(Copy, Clone)]
+#[allow(dead_code)]
+pub struct DurationView<'msg> {
+  inner: ::protobuf::__internal::runtime::MessageViewInner<'msg, Duration>,
+}
+
+impl<'msg> ::protobuf::__internal::SealedInternal for DurationView<'msg> {}
+
+impl<'msg> ::protobuf::MessageView<'msg> for DurationView<'msg> {
+  type Message = Duration;
+}
+
+impl ::std::fmt::Debug for DurationView<'_> {
+  fn fmt(&self, f: &mut ::std::fmt::Formatter<'_>) -> ::std::fmt::Result {
+    write!(f, "{}", ::protobuf::__internal::runtime::debug_string(self))
+  }
+}
+
+impl ::std::default::Default for DurationView<'_> {
+  fn default() -> DurationView<'static> {
+    ::protobuf::__internal::runtime::MessageViewInner::default().into()
+  }
+}
+
+impl<'msg> From<::protobuf::__internal::runtime::MessageViewInner<'msg, Duration>> for DurationView<'msg> {
+  fn from(inner: ::protobuf::__internal::runtime::MessageViewInner<'msg, Duration>) -> Self {
+    Self { inner }
+  }
+}
+
+#[allow(dead_code)]
+impl<'msg> DurationView<'msg> {
+
+  pub fn to_owned(&self) -> Duration {
+    ::protobuf::IntoProxied::into_proxied(*self, ::protobuf::__internal::Private)
+  }
+
+  // seconds: optional int64
+  pub fn seconds(self) -> i64 {
+    unsafe {
+      // TODO: b/361751487: This .into() and .try_into() is only
+      // here for the enum<->i32 case, we should avoid it for
+      // other primitives where the types naturally match
+      // perfectly (and do an unchecked conversion for
+      // i32->enum types, since even for closed enums we trust
+      // upb to only return one of the named values).
+      self.inner.ptr().get_i64_at_index(
+        0, (0i64).into()
+      ).try_into().unwrap()
+    }
+  }
+
+  // nanos: optional int32
+  pub fn nanos(self) -> i32 {
+    unsafe {
+      // TODO: b/361751487: This .into() and .try_into() is only
+      // here for the enum<->i32 case, we should avoid it for
+      // other primitives where the types naturally match
+      // perfectly (and do an unchecked conversion for
+      // i32->enum types, since even for closed enums we trust
+      // upb to only return one of the named values).
+      self.inner.ptr().get_i32_at_index(
+        1, (0i32).into()
+      ).try_into().unwrap()
+    }
+  }
+
+}
+
+// SAFETY:
+// - `DurationView` is `Sync` because it does not support mutation.
+unsafe impl Sync for DurationView<'_> {}
+
+// SAFETY:
+// - `DurationView` is `Send` because while its alive a `DurationMut` cannot.
+// - `DurationView` does not use thread-local data.
+unsafe impl Send for DurationView<'_> {}
+
+impl<'msg> ::protobuf::AsView for DurationView<'msg> {
+  type Proxied = Duration;
+  fn as_view(&self) -> ::protobuf::View<'msg, Duration> {
+    *self
+  }
+}
+
+impl<'msg> ::protobuf::IntoView<'msg> for DurationView<'msg> {
+  fn into_view<'shorter>(self) -> DurationView<'shorter>
+  where
+      'msg: 'shorter {
+    self
+  }
+}
+
+impl<'msg> ::protobuf::IntoProxied<Duration> for DurationView<'msg> {
+  fn into_proxied(self, _private: ::protobuf::__internal::Private) -> Duration {
+    let mut dst = Duration::new();
+    assert!(unsafe {
+      dst.inner.ptr_mut().deep_copy(self.inner.ptr(), dst.inner.arena())
+    });
+    dst
+  }
+}
+
+impl<'msg> ::protobuf::IntoProxied<Duration> for DurationMut<'msg> {
+  fn into_proxied(self, _private: ::protobuf::__internal::Private) -> Duration {
+    ::protobuf::IntoProxied::into_proxied(::protobuf::IntoView::into_view(self), _private)
+  }
+}
+
+impl ::protobuf::__internal::runtime::EntityType for Duration {
+    type Tag = ::protobuf::__internal::runtime::MessageTag;
+}
+
+impl<'msg> ::protobuf::__internal::runtime::EntityType for DurationView<'msg> {
+    type Tag = ::protobuf::__internal::runtime::ViewProxyTag;
+}
+
+impl<'msg> ::protobuf::__internal::runtime::EntityType for DurationMut<'msg> {
+    type Tag = ::protobuf::__internal::runtime::MutProxyTag;
+}
+
+#[allow(dead_code)]
+#[allow(non_camel_case_types)]
+pub struct DurationMut<'msg> {
+  inner: ::protobuf::__internal::runtime::MessageMutInner<'msg, Duration>,
+}
+
+impl<'msg> ::protobuf::__internal::SealedInternal for DurationMut<'msg> {}
+
+impl<'msg> ::protobuf::MessageMut<'msg> for DurationMut<'msg> {
+  type Message = Duration;
+}
+
+impl ::std::fmt::Debug for DurationMut<'_> {
+  fn fmt(&self, f: &mut ::std::fmt::Formatter<'_>) -> ::std::fmt::Result {
+    write!(f, "{}", ::protobuf::__internal::runtime::debug_string(self))
+  }
+}
+
+impl<'msg> From<::protobuf::__internal::runtime::MessageMutInner<'msg, Duration>> for DurationMut<'msg> {
+  fn from(inner: ::protobuf::__internal::runtime::MessageMutInner<'msg, Duration>) -> Self {
+    Self { inner }
+  }
+}
+
+#[allow(dead_code)]
+impl<'msg> DurationMut<'msg> {
+
+  #[doc(hidden)]
+  pub fn as_message_mut_inner(&mut self, _private: ::protobuf::__internal::Private)
+    -> ::protobuf::__internal::runtime::MessageMutInner<'msg, Duration> {
+    self.inner
+  }
+
+  pub fn to_owned(&self) -> Duration {
+    ::protobuf::AsView::as_view(self).to_owned()
+  }
+
+  // seconds: optional int64
+  pub fn seconds(&self) -> i64 {
+    unsafe {
+      // TODO: b/361751487: This .into() and .try_into() is only
+      // here for the enum<->i32 case, we should avoid it for
+      // other primitives where the types naturally match
+      // perfectly (and do an unchecked conversion for
+      // i32->enum types, since even for closed enums we trust
+      // upb to only return one of the named values).
+      self.inner.ptr().get_i64_at_index(
+        0, (0i64).into()
+      ).try_into().unwrap()
+    }
+  }
+  pub fn set_seconds(&mut self, val: i64) {
+    unsafe {
+      // TODO: b/361751487: This .into() is only here
+      // here for the enum<->i32 case, we should avoid it for
+      // other primitives where the types naturally match
+      //perfectly.
+      self.inner.ptr_mut().set_base_field_i64_at_index(
+        0, val.into()
+      )
+    }
+  }
+
+  // nanos: optional int32
+  pub fn nanos(&self) -> i32 {
+    unsafe {
+      // TODO: b/361751487: This .into() and .try_into() is only
+      // here for the enum<->i32 case, we should avoid it for
+      // other primitives where the types naturally match
+      // perfectly (and do an unchecked conversion for
+      // i32->enum types, since even for closed enums we trust
+      // upb to only return one of the named values).
+      self.inner.ptr().get_i32_at_index(
+        1, (0i32).into()
+      ).try_into().unwrap()
+    }
+  }
+  pub fn set_nanos(&mut self, val: i32) {
+    unsafe {
+      // TODO: b/361751487: This .into() is only here
+      // here for the enum<->i32 case, we should avoid it for
+      // other primitives where the types naturally match
+      //perfectly.
+      self.inner.ptr_mut().set_base_field_i32_at_index(
+        1, val.into()
+      )
+    }
+  }
+
+}
+
+// SAFETY:
+// - `DurationMut` does not perform any shared mutation.
+unsafe impl Send for DurationMut<'_> {}
+
+// SAFETY:
+// - `DurationMut` does not perform any shared mutation.
+unsafe impl Sync for DurationMut<'_> {}
+
+impl<'msg> ::protobuf::AsView for DurationMut<'msg> {
+  type Proxied = Duration;
+  fn as_view(&self) -> ::protobuf::View<'_, Duration> {
+    DurationView {
+      inner: ::protobuf::__internal::runtime::MessageViewInner::view_of_mut(self.inner)
+    }
+  }
+}
+
+impl<'msg> ::protobuf::IntoView<'msg> for DurationMut<'msg> {
+  fn into_view<'shorter>(self) -> ::protobuf::View<'shorter, Duration>
+  where
+      'msg: 'shorter {
+    DurationView {
+      inner: ::protobuf::__internal::runtime::MessageViewInner::view_of_mut(self.inner)
+    }
+  }
+}
+
+impl<'msg> ::protobuf::AsMut for DurationMut<'msg> {
+  type MutProxied = Duration;
+  fn as_mut(&mut self) -> DurationMut<'msg> {
+    DurationMut { inner: self.inner }
+  }
+}
+
+impl<'msg> ::protobuf::IntoMut<'msg> for DurationMut<'msg> {
+  fn into_mut<'shorter>(self) -> DurationMut<'shorter>
+  where
+      'msg: 'shorter {
+    self
+  }
+}
+
+#[allow(dead_code)]
+impl Duration {
+  pub fn new() -> Self {
+    Self { inner: ::protobuf::__internal::runtime::OwnedMessageInner::<Self>::new() }
+  }
+
+
+  #[doc(hidden)]
+  pub fn as_message_mut_inner(&mut self, _private: ::protobuf::__internal::Private) -> ::protobuf::__internal::runtime::MessageMutInner<'_, Duration> {
+    ::protobuf::__internal::runtime::MessageMutInner::mut_of_owned(&mut self.inner)
+  }
+
+  pub fn as_view(&self) -> DurationView<'_> {
+    ::protobuf::__internal::runtime::MessageViewInner::view_of_owned(&self.inner).into()
+  }
+
+  pub fn as_mut(&mut self) -> DurationMut<'_> {
+    ::protobuf::__internal::runtime::MessageMutInner::mut_of_owned(&mut self.inner).into()
+  }
+
+  // seconds: optional int64
+  pub fn seconds(&self) -> i64 {
+    unsafe {
+      // TODO: b/361751487: This .into() and .try_into() is only
+      // here for the enum<->i32 case, we should avoid it for
+      // other primitives where the types naturally match
+      // perfectly (and do an unchecked conversion for
+      // i32->enum types, since even for closed enums we trust
+      // upb to only return one of the named values).
+      self.inner.ptr().get_i64_at_index(
+        0, (0i64).into()
+      ).try_into().unwrap()
+    }
+  }
+  pub fn set_seconds(&mut self, val: i64) {
+    unsafe {
+      // TODO: b/361751487: This .into() is only here
+      // here for the enum<->i32 case, we should avoid it for
+      // other primitives where the types naturally match
+      //perfectly.
+      self.inner.ptr_mut().set_base_field_i64_at_index(
+        0, val.into()
+      )
+    }
+  }
+
+  // nanos: optional int32
+  pub fn nanos(&self) -> i32 {
+    unsafe {
+      // TODO: b/361751487: This .into() and .try_into() is only
+      // here for the enum<->i32 case, we should avoid it for
+      // other primitives where the types naturally match
+      // perfectly (and do an unchecked conversion for
+      // i32->enum types, since even for closed enums we trust
+      // upb to only return one of the named values).
+      self.inner.ptr().get_i32_at_index(
+        1, (0i32).into()
+      ).try_into().unwrap()
+    }
+  }
+  pub fn set_nanos(&mut self, val: i32) {
+    unsafe {
+      // TODO: b/361751487: This .into() is only here
+      // here for the enum<->i32 case, we should avoid it for
+      // other primitives where the types naturally match
+      //perfectly.
+      self.inner.ptr_mut().set_base_field_i32_at_index(
+        1, val.into()
+      )
+    }
+  }
+
+}  // impl Duration
+
+impl ::std::ops::Drop for Duration {
+  #[inline]
+  fn drop(&mut self) {
+  }
+}
+
+impl ::std::clone::Clone for Duration {
+  fn clone(&self) -> Self {
+    self.as_view().to_owned()
+  }
+}
+
+impl ::protobuf::AsView for Duration {
+  type Proxied = Self;
+  fn as_view(&self) -> DurationView<'_> {
+    self.as_view()
+  }
+}
+
+impl ::protobuf::AsMut for Duration {
+  type MutProxied = Self;
+  fn as_mut(&mut self) -> DurationMut<'_> {
+    self.as_mut()
+  }
+}
+
+unsafe impl ::protobuf::__internal::runtime::AssociatedMiniTable for Duration {
+  fn mini_table() -> ::protobuf::__internal::runtime::MiniTablePtr {
+    static ONCE_LOCK: ::std::sync::OnceLock<::protobuf::__internal::runtime::MiniTableInitPtr> =
+        ::std::sync::OnceLock::new();
+    unsafe {
+      ONCE_LOCK.get_or_init(|| {
+        super::palm__lavender__v1__Duration_msg_init.0 =
+            ::protobuf::__internal::runtime::build_mini_table("$+P(P");
+        ::protobuf::__internal::runtime::link_mini_table(
+            super::palm__lavender__v1__Duration_msg_init.0, &[], &[]);
+        ::protobuf::__internal::runtime::MiniTableInitPtr(super::palm__lavender__v1__Duration_msg_init.0)
+      }).0
+    }
+  }
+}
+unsafe impl ::protobuf::__internal::runtime::UpbGetArena for Duration {
+  fn get_arena(&mut self, _private: ::protobuf::__internal::Private) -> &::protobuf::__internal::runtime::Arena {
+    self.inner.arena()
+  }
+}
+
+unsafe impl ::protobuf::__internal::runtime::UpbGetMessagePtrMut for Duration {
+  type Msg = Duration;
+  fn get_ptr_mut(&mut self, _private: ::protobuf::__internal::Private) -> ::protobuf::__internal::runtime::MessagePtr<Duration> {
+    self.inner.ptr_mut()
+  }
+}
+unsafe impl ::protobuf::__internal::runtime::UpbGetMessagePtr for Duration {
+  type Msg = Duration;
+  fn get_ptr(&self, _private: ::protobuf::__internal::Private) -> ::protobuf::__internal::runtime::MessagePtr<Duration> {
+    self.inner.ptr()
+  }
+}
+unsafe impl ::protobuf::__internal::runtime::UpbGetMessagePtrMut for DurationMut<'_> {
+  type Msg = Duration;
+  fn get_ptr_mut(&mut self, _private: ::protobuf::__internal::Private) -> ::protobuf::__internal::runtime::MessagePtr<Duration> {
+    self.inner.ptr_mut()
+  }
+}
+unsafe impl ::protobuf::__internal::runtime::UpbGetMessagePtr for DurationMut<'_> {
+  type Msg = Duration;
+  fn get_ptr(&self, _private: ::protobuf::__internal::Private) -> ::protobuf::__internal::runtime::MessagePtr<Duration> {
+    self.inner.ptr()
+  }
+}
+unsafe impl ::protobuf::__internal::runtime::UpbGetMessagePtr for DurationView<'_> {
+  type Msg = Duration;
+  fn get_ptr(&self, _private: ::protobuf::__internal::Private) -> ::protobuf::__internal::runtime::MessagePtr<Duration> {
+    self.inner.ptr()
+  }
+}
+
+unsafe impl ::protobuf::__internal::runtime::UpbGetArena for DurationMut<'_> {
+  fn get_arena(&mut self, _private: ::protobuf::__internal::Private) -> &::protobuf::__internal::runtime::Arena {
+    self.inner.arena()
+  }
+}
+
+
+
+// This variable must not be referenced except by protobuf generated
+// code.
 pub(crate) static mut palm__lavender__v1__Http_msg_init: ::protobuf::__internal::runtime::MiniTableInitPtr =
     ::protobuf::__internal::runtime::MiniTableInitPtr(::protobuf::__internal::runtime::MiniTablePtr::dangling());
 #[allow(non_camel_case_types)]
@@ -4154,10 +4611,28 @@ impl<'msg> ItemView<'msg> {
        .unwrap_or(super::super::TimestampView::default())
   }
 
+  // curation: optional message palm.lavender.v1.Duration
+  pub fn has_curation(self) -> bool {
+    unsafe {
+      self.inner.ptr().has_field_at_index(1)
+    }
+  }
+  pub fn curation_opt(self) -> ::protobuf::Optional<super::super::DurationView<'msg>> {
+        ::protobuf::Optional::new(self.curation(), self.has_curation())
+  }
+  pub fn curation(self) -> super::super::DurationView<'msg> {
+    let submsg = unsafe {
+      self.inner.ptr().get_message_at_index(1)
+    };
+    submsg
+        .map(|ptr| unsafe { ::protobuf::__internal::runtime::MessageViewInner::wrap(ptr).into() })
+       .unwrap_or(super::super::DurationView::default())
+  }
+
   // http: optional message palm.lavender.v1.Http
   pub fn has_http(self) -> bool {
     unsafe {
-      self.inner.ptr().has_field_at_index(1)
+      self.inner.ptr().has_field_at_index(2)
     }
   }
   pub fn http_opt(self) -> ::protobuf::Optional<super::super::HttpView<'msg>> {
@@ -4165,7 +4640,7 @@ impl<'msg> ItemView<'msg> {
   }
   pub fn http(self) -> super::super::HttpView<'msg> {
     let submsg = unsafe {
-      self.inner.ptr().get_message_at_index(1)
+      self.inner.ptr().get_message_at_index(2)
     };
     submsg
         .map(|ptr| unsafe { ::protobuf::__internal::runtime::MessageViewInner::wrap(ptr).into() })
@@ -4175,7 +4650,7 @@ impl<'msg> ItemView<'msg> {
   // postgresql: optional message palm.lavender.v1.PostgreSql
   pub fn has_postgresql(self) -> bool {
     unsafe {
-      self.inner.ptr().has_field_at_index(2)
+      self.inner.ptr().has_field_at_index(3)
     }
   }
   pub fn postgresql_opt(self) -> ::protobuf::Optional<super::super::PostgreSqlView<'msg>> {
@@ -4183,7 +4658,7 @@ impl<'msg> ItemView<'msg> {
   }
   pub fn postgresql(self) -> super::super::PostgreSqlView<'msg> {
     let submsg = unsafe {
-      self.inner.ptr().get_message_at_index(2)
+      self.inner.ptr().get_message_at_index(3)
     };
     submsg
         .map(|ptr| unsafe { ::protobuf::__internal::runtime::MessageViewInner::wrap(ptr).into() })
@@ -4193,7 +4668,7 @@ impl<'msg> ItemView<'msg> {
   // mysql: optional message palm.lavender.v1.MySql
   pub fn has_mysql(self) -> bool {
     unsafe {
-      self.inner.ptr().has_field_at_index(3)
+      self.inner.ptr().has_field_at_index(4)
     }
   }
   pub fn mysql_opt(self) -> ::protobuf::Optional<super::super::MySqlView<'msg>> {
@@ -4201,7 +4676,7 @@ impl<'msg> ItemView<'msg> {
   }
   pub fn mysql(self) -> super::super::MySqlView<'msg> {
     let submsg = unsafe {
-      self.inner.ptr().get_message_at_index(3)
+      self.inner.ptr().get_message_at_index(4)
     };
     submsg
         .map(|ptr| unsafe { ::protobuf::__internal::runtime::MessageViewInner::wrap(ptr).into() })
@@ -4211,7 +4686,7 @@ impl<'msg> ItemView<'msg> {
   // redis: optional message palm.lavender.v1.Redis
   pub fn has_redis(self) -> bool {
     unsafe {
-      self.inner.ptr().has_field_at_index(4)
+      self.inner.ptr().has_field_at_index(5)
     }
   }
   pub fn redis_opt(self) -> ::protobuf::Optional<super::super::RedisView<'msg>> {
@@ -4219,7 +4694,7 @@ impl<'msg> ItemView<'msg> {
   }
   pub fn redis(self) -> super::super::RedisView<'msg> {
     let submsg = unsafe {
-      self.inner.ptr().get_message_at_index(4)
+      self.inner.ptr().get_message_at_index(5)
     };
     submsg
         .map(|ptr| unsafe { ::protobuf::__internal::runtime::MessageViewInner::wrap(ptr).into() })
@@ -4229,7 +4704,7 @@ impl<'msg> ItemView<'msg> {
   // snmp: optional message palm.lavender.v1.Snmp
   pub fn has_snmp(self) -> bool {
     unsafe {
-      self.inner.ptr().has_field_at_index(5)
+      self.inner.ptr().has_field_at_index(6)
     }
   }
   pub fn snmp_opt(self) -> ::protobuf::Optional<super::super::SnmpView<'msg>> {
@@ -4237,7 +4712,7 @@ impl<'msg> ItemView<'msg> {
   }
   pub fn snmp(self) -> super::super::SnmpView<'msg> {
     let submsg = unsafe {
-      self.inner.ptr().get_message_at_index(5)
+      self.inner.ptr().get_message_at_index(6)
     };
     submsg
         .map(|ptr| unsafe { ::protobuf::__internal::runtime::MessageViewInner::wrap(ptr).into() })
@@ -4264,7 +4739,7 @@ impl<'msg> ItemView<'msg> {
     unsafe {
       let field_num = <Self as ::protobuf::__internal::runtime::UpbGetMessagePtr>::get_ptr(
           &self, ::protobuf::__internal::Private)
-          .which_oneof_field_number_by_index(1);
+          .which_oneof_field_number_by_index(2);
       super::super::report_request::item::PayloadCase::try_from(field_num).unwrap_unchecked()
     }
   }
@@ -4406,16 +4881,63 @@ impl<'msg> ItemMut<'msg> {
     }
   }
 
+  // curation: optional message palm.lavender.v1.Duration
+  pub fn has_curation(&self) -> bool {
+    unsafe {
+      self.inner.ptr().has_field_at_index(1)
+    }
+  }
+  pub fn clear_curation(&mut self) {
+    unsafe {
+      self.inner.ptr().clear_field_at_index(
+        1
+      );
+    }
+  }
+  pub fn curation_opt(&self) -> ::protobuf::Optional<super::super::DurationView<'_>> {
+        ::protobuf::Optional::new(self.curation(), self.has_curation())
+  }
+  pub fn curation(&self) -> super::super::DurationView<'_> {
+    let submsg = unsafe {
+      self.inner.ptr().get_message_at_index(1)
+    };
+    submsg
+        .map(|ptr| unsafe { ::protobuf::__internal::runtime::MessageViewInner::wrap(ptr).into() })
+       .unwrap_or(super::super::DurationView::default())
+  }
+  pub fn curation_mut(&mut self) -> super::super::DurationMut<'_> {
+     let ptr = unsafe {
+       self.inner.ptr_mut().get_or_create_mutable_message_at_index(
+         1, self.inner.arena()
+       ).unwrap()
+     };
+     ::protobuf::__internal::runtime::MessageMutInner::from_parent(
+         self.as_message_mut_inner(::protobuf::__internal::Private),
+         ptr
+     ).into()
+  }
+  pub fn set_curation(&mut self,
+    val: impl ::protobuf::IntoProxied<super::super::Duration>) {
+
+    unsafe {
+      ::protobuf::__internal::runtime::message_set_sub_message(
+        ::protobuf::AsMut::as_mut(self).inner,
+        1,
+        val
+      );
+    }
+  }
+
   // http: optional message palm.lavender.v1.Http
   pub fn has_http(&self) -> bool {
     unsafe {
-      self.inner.ptr().has_field_at_index(1)
+      self.inner.ptr().has_field_at_index(2)
     }
   }
   pub fn clear_http(&mut self) {
     unsafe {
       self.inner.ptr().clear_field_at_index(
-        1
+        2
       );
     }
   }
@@ -4424,7 +4946,7 @@ impl<'msg> ItemMut<'msg> {
   }
   pub fn http(&self) -> super::super::HttpView<'_> {
     let submsg = unsafe {
-      self.inner.ptr().get_message_at_index(1)
+      self.inner.ptr().get_message_at_index(2)
     };
     submsg
         .map(|ptr| unsafe { ::protobuf::__internal::runtime::MessageViewInner::wrap(ptr).into() })
@@ -4433,7 +4955,7 @@ impl<'msg> ItemMut<'msg> {
   pub fn http_mut(&mut self) -> super::super::HttpMut<'_> {
      let ptr = unsafe {
        self.inner.ptr_mut().get_or_create_mutable_message_at_index(
-         1, self.inner.arena()
+         2, self.inner.arena()
        ).unwrap()
      };
      ::protobuf::__internal::runtime::MessageMutInner::from_parent(
@@ -4447,7 +4969,7 @@ impl<'msg> ItemMut<'msg> {
     unsafe {
       ::protobuf::__internal::runtime::message_set_sub_message(
         ::protobuf::AsMut::as_mut(self).inner,
-        1,
+        2,
         val
       );
     }
@@ -4456,13 +4978,13 @@ impl<'msg> ItemMut<'msg> {
   // postgresql: optional message palm.lavender.v1.PostgreSql
   pub fn has_postgresql(&self) -> bool {
     unsafe {
-      self.inner.ptr().has_field_at_index(2)
+      self.inner.ptr().has_field_at_index(3)
     }
   }
   pub fn clear_postgresql(&mut self) {
     unsafe {
       self.inner.ptr().clear_field_at_index(
-        2
+        3
       );
     }
   }
@@ -4471,7 +4993,7 @@ impl<'msg> ItemMut<'msg> {
   }
   pub fn postgresql(&self) -> super::super::PostgreSqlView<'_> {
     let submsg = unsafe {
-      self.inner.ptr().get_message_at_index(2)
+      self.inner.ptr().get_message_at_index(3)
     };
     submsg
         .map(|ptr| unsafe { ::protobuf::__internal::runtime::MessageViewInner::wrap(ptr).into() })
@@ -4480,7 +5002,7 @@ impl<'msg> ItemMut<'msg> {
   pub fn postgresql_mut(&mut self) -> super::super::PostgreSqlMut<'_> {
      let ptr = unsafe {
        self.inner.ptr_mut().get_or_create_mutable_message_at_index(
-         2, self.inner.arena()
+         3, self.inner.arena()
        ).unwrap()
      };
      ::protobuf::__internal::runtime::MessageMutInner::from_parent(
@@ -4494,7 +5016,7 @@ impl<'msg> ItemMut<'msg> {
     unsafe {
       ::protobuf::__internal::runtime::message_set_sub_message(
         ::protobuf::AsMut::as_mut(self).inner,
-        2,
+        3,
         val
       );
     }
@@ -4503,13 +5025,13 @@ impl<'msg> ItemMut<'msg> {
   // mysql: optional message palm.lavender.v1.MySql
   pub fn has_mysql(&self) -> bool {
     unsafe {
-      self.inner.ptr().has_field_at_index(3)
+      self.inner.ptr().has_field_at_index(4)
     }
   }
   pub fn clear_mysql(&mut self) {
     unsafe {
       self.inner.ptr().clear_field_at_index(
-        3
+        4
       );
     }
   }
@@ -4518,7 +5040,7 @@ impl<'msg> ItemMut<'msg> {
   }
   pub fn mysql(&self) -> super::super::MySqlView<'_> {
     let submsg = unsafe {
-      self.inner.ptr().get_message_at_index(3)
+      self.inner.ptr().get_message_at_index(4)
     };
     submsg
         .map(|ptr| unsafe { ::protobuf::__internal::runtime::MessageViewInner::wrap(ptr).into() })
@@ -4527,7 +5049,7 @@ impl<'msg> ItemMut<'msg> {
   pub fn mysql_mut(&mut self) -> super::super::MySqlMut<'_> {
      let ptr = unsafe {
        self.inner.ptr_mut().get_or_create_mutable_message_at_index(
-         3, self.inner.arena()
+         4, self.inner.arena()
        ).unwrap()
      };
      ::protobuf::__internal::runtime::MessageMutInner::from_parent(
@@ -4541,7 +5063,7 @@ impl<'msg> ItemMut<'msg> {
     unsafe {
       ::protobuf::__internal::runtime::message_set_sub_message(
         ::protobuf::AsMut::as_mut(self).inner,
-        3,
+        4,
         val
       );
     }
@@ -4550,13 +5072,13 @@ impl<'msg> ItemMut<'msg> {
   // redis: optional message palm.lavender.v1.Redis
   pub fn has_redis(&self) -> bool {
     unsafe {
-      self.inner.ptr().has_field_at_index(4)
+      self.inner.ptr().has_field_at_index(5)
     }
   }
   pub fn clear_redis(&mut self) {
     unsafe {
       self.inner.ptr().clear_field_at_index(
-        4
+        5
       );
     }
   }
@@ -4565,7 +5087,7 @@ impl<'msg> ItemMut<'msg> {
   }
   pub fn redis(&self) -> super::super::RedisView<'_> {
     let submsg = unsafe {
-      self.inner.ptr().get_message_at_index(4)
+      self.inner.ptr().get_message_at_index(5)
     };
     submsg
         .map(|ptr| unsafe { ::protobuf::__internal::runtime::MessageViewInner::wrap(ptr).into() })
@@ -4574,7 +5096,7 @@ impl<'msg> ItemMut<'msg> {
   pub fn redis_mut(&mut self) -> super::super::RedisMut<'_> {
      let ptr = unsafe {
        self.inner.ptr_mut().get_or_create_mutable_message_at_index(
-         4, self.inner.arena()
+         5, self.inner.arena()
        ).unwrap()
      };
      ::protobuf::__internal::runtime::MessageMutInner::from_parent(
@@ -4588,7 +5110,7 @@ impl<'msg> ItemMut<'msg> {
     unsafe {
       ::protobuf::__internal::runtime::message_set_sub_message(
         ::protobuf::AsMut::as_mut(self).inner,
-        4,
+        5,
         val
       );
     }
@@ -4597,13 +5119,13 @@ impl<'msg> ItemMut<'msg> {
   // snmp: optional message palm.lavender.v1.Snmp
   pub fn has_snmp(&self) -> bool {
     unsafe {
-      self.inner.ptr().has_field_at_index(5)
+      self.inner.ptr().has_field_at_index(6)
     }
   }
   pub fn clear_snmp(&mut self) {
     unsafe {
       self.inner.ptr().clear_field_at_index(
-        5
+        6
       );
     }
   }
@@ -4612,7 +5134,7 @@ impl<'msg> ItemMut<'msg> {
   }
   pub fn snmp(&self) -> super::super::SnmpView<'_> {
     let submsg = unsafe {
-      self.inner.ptr().get_message_at_index(5)
+      self.inner.ptr().get_message_at_index(6)
     };
     submsg
         .map(|ptr| unsafe { ::protobuf::__internal::runtime::MessageViewInner::wrap(ptr).into() })
@@ -4621,7 +5143,7 @@ impl<'msg> ItemMut<'msg> {
   pub fn snmp_mut(&mut self) -> super::super::SnmpMut<'_> {
      let ptr = unsafe {
        self.inner.ptr_mut().get_or_create_mutable_message_at_index(
-         5, self.inner.arena()
+         6, self.inner.arena()
        ).unwrap()
      };
      ::protobuf::__internal::runtime::MessageMutInner::from_parent(
@@ -4635,7 +5157,7 @@ impl<'msg> ItemMut<'msg> {
     unsafe {
       ::protobuf::__internal::runtime::message_set_sub_message(
         ::protobuf::AsMut::as_mut(self).inner,
-        5,
+        6,
         val
       );
     }
@@ -4661,7 +5183,7 @@ impl<'msg> ItemMut<'msg> {
     unsafe {
       let field_num = <Self as ::protobuf::__internal::runtime::UpbGetMessagePtr>::get_ptr(
           &self, ::protobuf::__internal::Private)
-          .which_oneof_field_number_by_index(1);
+          .which_oneof_field_number_by_index(2);
       super::super::report_request::item::PayloadCase::try_from(field_num).unwrap_unchecked()
     }
   }
@@ -4776,16 +5298,63 @@ impl Item {
     }
   }
 
+  // curation: optional message palm.lavender.v1.Duration
+  pub fn has_curation(&self) -> bool {
+    unsafe {
+      self.inner.ptr().has_field_at_index(1)
+    }
+  }
+  pub fn clear_curation(&mut self) {
+    unsafe {
+      self.inner.ptr().clear_field_at_index(
+        1
+      );
+    }
+  }
+  pub fn curation_opt(&self) -> ::protobuf::Optional<super::super::DurationView<'_>> {
+        ::protobuf::Optional::new(self.curation(), self.has_curation())
+  }
+  pub fn curation(&self) -> super::super::DurationView<'_> {
+    let submsg = unsafe {
+      self.inner.ptr().get_message_at_index(1)
+    };
+    submsg
+        .map(|ptr| unsafe { ::protobuf::__internal::runtime::MessageViewInner::wrap(ptr).into() })
+       .unwrap_or(super::super::DurationView::default())
+  }
+  pub fn curation_mut(&mut self) -> super::super::DurationMut<'_> {
+     let ptr = unsafe {
+       self.inner.ptr_mut().get_or_create_mutable_message_at_index(
+         1, self.inner.arena()
+       ).unwrap()
+     };
+     ::protobuf::__internal::runtime::MessageMutInner::from_parent(
+         self.as_message_mut_inner(::protobuf::__internal::Private),
+         ptr
+     ).into()
+  }
+  pub fn set_curation(&mut self,
+    val: impl ::protobuf::IntoProxied<super::super::Duration>) {
+
+    unsafe {
+      ::protobuf::__internal::runtime::message_set_sub_message(
+        ::protobuf::AsMut::as_mut(self).inner,
+        1,
+        val
+      );
+    }
+  }
+
   // http: optional message palm.lavender.v1.Http
   pub fn has_http(&self) -> bool {
     unsafe {
-      self.inner.ptr().has_field_at_index(1)
+      self.inner.ptr().has_field_at_index(2)
     }
   }
   pub fn clear_http(&mut self) {
     unsafe {
       self.inner.ptr().clear_field_at_index(
-        1
+        2
       );
     }
   }
@@ -4794,7 +5363,7 @@ impl Item {
   }
   pub fn http(&self) -> super::super::HttpView<'_> {
     let submsg = unsafe {
-      self.inner.ptr().get_message_at_index(1)
+      self.inner.ptr().get_message_at_index(2)
     };
     submsg
         .map(|ptr| unsafe { ::protobuf::__internal::runtime::MessageViewInner::wrap(ptr).into() })
@@ -4803,7 +5372,7 @@ impl Item {
   pub fn http_mut(&mut self) -> super::super::HttpMut<'_> {
      let ptr = unsafe {
        self.inner.ptr_mut().get_or_create_mutable_message_at_index(
-         1, self.inner.arena()
+         2, self.inner.arena()
        ).unwrap()
      };
      ::protobuf::__internal::runtime::MessageMutInner::from_parent(
@@ -4817,7 +5386,7 @@ impl Item {
     unsafe {
       ::protobuf::__internal::runtime::message_set_sub_message(
         ::protobuf::AsMut::as_mut(self).inner,
-        1,
+        2,
         val
       );
     }
@@ -4826,13 +5395,13 @@ impl Item {
   // postgresql: optional message palm.lavender.v1.PostgreSql
   pub fn has_postgresql(&self) -> bool {
     unsafe {
-      self.inner.ptr().has_field_at_index(2)
+      self.inner.ptr().has_field_at_index(3)
     }
   }
   pub fn clear_postgresql(&mut self) {
     unsafe {
       self.inner.ptr().clear_field_at_index(
-        2
+        3
       );
     }
   }
@@ -4841,7 +5410,7 @@ impl Item {
   }
   pub fn postgresql(&self) -> super::super::PostgreSqlView<'_> {
     let submsg = unsafe {
-      self.inner.ptr().get_message_at_index(2)
+      self.inner.ptr().get_message_at_index(3)
     };
     submsg
         .map(|ptr| unsafe { ::protobuf::__internal::runtime::MessageViewInner::wrap(ptr).into() })
@@ -4850,7 +5419,7 @@ impl Item {
   pub fn postgresql_mut(&mut self) -> super::super::PostgreSqlMut<'_> {
      let ptr = unsafe {
        self.inner.ptr_mut().get_or_create_mutable_message_at_index(
-         2, self.inner.arena()
+         3, self.inner.arena()
        ).unwrap()
      };
      ::protobuf::__internal::runtime::MessageMutInner::from_parent(
@@ -4864,7 +5433,7 @@ impl Item {
     unsafe {
       ::protobuf::__internal::runtime::message_set_sub_message(
         ::protobuf::AsMut::as_mut(self).inner,
-        2,
+        3,
         val
       );
     }
@@ -4873,13 +5442,13 @@ impl Item {
   // mysql: optional message palm.lavender.v1.MySql
   pub fn has_mysql(&self) -> bool {
     unsafe {
-      self.inner.ptr().has_field_at_index(3)
+      self.inner.ptr().has_field_at_index(4)
     }
   }
   pub fn clear_mysql(&mut self) {
     unsafe {
       self.inner.ptr().clear_field_at_index(
-        3
+        4
       );
     }
   }
@@ -4888,7 +5457,7 @@ impl Item {
   }
   pub fn mysql(&self) -> super::super::MySqlView<'_> {
     let submsg = unsafe {
-      self.inner.ptr().get_message_at_index(3)
+      self.inner.ptr().get_message_at_index(4)
     };
     submsg
         .map(|ptr| unsafe { ::protobuf::__internal::runtime::MessageViewInner::wrap(ptr).into() })
@@ -4897,7 +5466,7 @@ impl Item {
   pub fn mysql_mut(&mut self) -> super::super::MySqlMut<'_> {
      let ptr = unsafe {
        self.inner.ptr_mut().get_or_create_mutable_message_at_index(
-         3, self.inner.arena()
+         4, self.inner.arena()
        ).unwrap()
      };
      ::protobuf::__internal::runtime::MessageMutInner::from_parent(
@@ -4911,7 +5480,7 @@ impl Item {
     unsafe {
       ::protobuf::__internal::runtime::message_set_sub_message(
         ::protobuf::AsMut::as_mut(self).inner,
-        3,
+        4,
         val
       );
     }
@@ -4920,13 +5489,13 @@ impl Item {
   // redis: optional message palm.lavender.v1.Redis
   pub fn has_redis(&self) -> bool {
     unsafe {
-      self.inner.ptr().has_field_at_index(4)
+      self.inner.ptr().has_field_at_index(5)
     }
   }
   pub fn clear_redis(&mut self) {
     unsafe {
       self.inner.ptr().clear_field_at_index(
-        4
+        5
       );
     }
   }
@@ -4935,7 +5504,7 @@ impl Item {
   }
   pub fn redis(&self) -> super::super::RedisView<'_> {
     let submsg = unsafe {
-      self.inner.ptr().get_message_at_index(4)
+      self.inner.ptr().get_message_at_index(5)
     };
     submsg
         .map(|ptr| unsafe { ::protobuf::__internal::runtime::MessageViewInner::wrap(ptr).into() })
@@ -4944,7 +5513,7 @@ impl Item {
   pub fn redis_mut(&mut self) -> super::super::RedisMut<'_> {
      let ptr = unsafe {
        self.inner.ptr_mut().get_or_create_mutable_message_at_index(
-         4, self.inner.arena()
+         5, self.inner.arena()
        ).unwrap()
      };
      ::protobuf::__internal::runtime::MessageMutInner::from_parent(
@@ -4958,7 +5527,7 @@ impl Item {
     unsafe {
       ::protobuf::__internal::runtime::message_set_sub_message(
         ::protobuf::AsMut::as_mut(self).inner,
-        4,
+        5,
         val
       );
     }
@@ -4967,13 +5536,13 @@ impl Item {
   // snmp: optional message palm.lavender.v1.Snmp
   pub fn has_snmp(&self) -> bool {
     unsafe {
-      self.inner.ptr().has_field_at_index(5)
+      self.inner.ptr().has_field_at_index(6)
     }
   }
   pub fn clear_snmp(&mut self) {
     unsafe {
       self.inner.ptr().clear_field_at_index(
-        5
+        6
       );
     }
   }
@@ -4982,7 +5551,7 @@ impl Item {
   }
   pub fn snmp(&self) -> super::super::SnmpView<'_> {
     let submsg = unsafe {
-      self.inner.ptr().get_message_at_index(5)
+      self.inner.ptr().get_message_at_index(6)
     };
     submsg
         .map(|ptr| unsafe { ::protobuf::__internal::runtime::MessageViewInner::wrap(ptr).into() })
@@ -4991,7 +5560,7 @@ impl Item {
   pub fn snmp_mut(&mut self) -> super::super::SnmpMut<'_> {
      let ptr = unsafe {
        self.inner.ptr_mut().get_or_create_mutable_message_at_index(
-         5, self.inner.arena()
+         6, self.inner.arena()
        ).unwrap()
      };
      ::protobuf::__internal::runtime::MessageMutInner::from_parent(
@@ -5005,7 +5574,7 @@ impl Item {
     unsafe {
       ::protobuf::__internal::runtime::message_set_sub_message(
         ::protobuf::AsMut::as_mut(self).inner,
-        5,
+        6,
         val
       );
     }
@@ -5031,7 +5600,7 @@ impl Item {
     unsafe {
       let field_num = <Self as ::protobuf::__internal::runtime::UpbGetMessagePtr>::get_ptr(
           &self, ::protobuf::__internal::Private)
-          .which_oneof_field_number_by_index(1);
+          .which_oneof_field_number_by_index(2);
       super::super::report_request::item::PayloadCase::try_from(field_num).unwrap_unchecked()
     }
   }
@@ -5070,9 +5639,10 @@ unsafe impl ::protobuf::__internal::runtime::AssociatedMiniTable for Item {
     unsafe {
       ONCE_LOCK.get_or_init(|| {
         super::super::report_request::palm__lavender__v1__ReportRequest__Item_msg_init.0 =
-            ::protobuf::__internal::runtime::build_mini_table("$3i33333^-|.|/|0|1");
+            ::protobuf::__internal::runtime::build_mini_table("$33h33333^-|.|/|0|1");
         ::protobuf::__internal::runtime::link_mini_table(
             super::super::report_request::palm__lavender__v1__ReportRequest__Item_msg_init.0, &[<super::super::Timestamp as ::protobuf::__internal::runtime::AssociatedMiniTable>::mini_table(),
+            <super::super::Duration as ::protobuf::__internal::runtime::AssociatedMiniTable>::mini_table(),
             <super::super::Http as ::protobuf::__internal::runtime::AssociatedMiniTable>::mini_table(),
             <super::super::PostgreSql as ::protobuf::__internal::runtime::AssociatedMiniTable>::mini_table(),
             <super::super::MySql as ::protobuf::__internal::runtime::AssociatedMiniTable>::mini_table(),

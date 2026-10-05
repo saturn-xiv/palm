@@ -15,7 +15,7 @@ from .lavender import StorageServer as LavenderStorageServer
 logger = logging.getLogger(__name__)
 
 
-def launch(config, port, workers):
+def launch(config, port, workers, tls):
     server = grpc.server(futures.ThreadPoolExecutor(max_workers=workers))
 
     db = open_opensearch(config['opensearch']['host'],
@@ -43,9 +43,26 @@ def launch(config, port, workers):
     toggle_health_status_thread.start()
 
     addr = f"0.0.0.0:{port}"
-    logger.info(
-        "start gRPC server on tcp://%s with %d workers", addr, workers)
-    server.add_insecure_port(addr)
+    if tls:
+        with open("server.key", "rb") as f:
+            server_private_key = f.read()
+        with open("server.crt", "rb") as f:
+            server_cert_chain = f.read()
+        with open("ca.crt", "rb") as f:
+            ca_cert = f.read()
+        credentials = grpc.ssl_server_credentials(
+            private_key_certificate_chain_pairs=[
+                (server_private_key, server_cert_chain)],
+            root_certificates=ca_cert,
+            require_client_auth=True
+        )
+        logger.info(
+            "start gRPC server on tcp://%s with %d workers mTLS mode", addr, workers)
+        server.add_secure_port(addr, credentials)
+    else:
+        logger.info(
+            "start gRPC server on tcp://%s with %d workers", addr, workers)
+        server.add_insecure_port(addr)
     server.start()
 
     def handle_shutdown(signum, frame):
