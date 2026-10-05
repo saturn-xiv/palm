@@ -34,6 +34,11 @@ class StorageStub:
         Args:
             channel: A grpc.Channel.
         """
+        self.Systemd = channel.unary_unary(
+                '/palm.lavender.v1.Storage/Systemd',
+                request_serializer=daisy_dot_protocols_dot_lavender__pb2.SystemdRequest.SerializeToString,
+                response_deserializer=daisy_dot_protocols_dot_lavender__pb2.Empty.FromString,
+                _registered_method=True)
         self.Report = channel.unary_unary(
                 '/palm.lavender.v1.Storage/Report',
                 request_serializer=daisy_dot_protocols_dot_lavender__pb2.ReportRequest.SerializeToString,
@@ -44,6 +49,12 @@ class StorageStub:
 class StorageServicer:
     """Missing associated documentation comment in .proto file."""
 
+    def Systemd(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
     def Report(self, request, context):
         """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
@@ -53,6 +64,11 @@ class StorageServicer:
 
 def add_StorageServicer_to_server(servicer, server):
     rpc_method_handlers = {
+            'Systemd': grpc.unary_unary_rpc_method_handler(
+                    servicer.Systemd,
+                    request_deserializer=daisy_dot_protocols_dot_lavender__pb2.SystemdRequest.FromString,
+                    response_serializer=daisy_dot_protocols_dot_lavender__pb2.Empty.SerializeToString,
+            ),
             'Report': grpc.unary_unary_rpc_method_handler(
                     servicer.Report,
                     request_deserializer=daisy_dot_protocols_dot_lavender__pb2.ReportRequest.FromString,
@@ -68,6 +84,33 @@ def add_StorageServicer_to_server(servicer, server):
  # This class is part of an EXPERIMENTAL API.
 class Storage:
     """Missing associated documentation comment in .proto file."""
+
+    @staticmethod
+    def Systemd(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(
+            request,
+            target,
+            '/palm.lavender.v1.Storage/Systemd',
+            daisy_dot_protocols_dot_lavender__pb2.SystemdRequest.SerializeToString,
+            daisy_dot_protocols_dot_lavender__pb2.Empty.FromString,
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True)
 
     @staticmethod
     def Report(request,

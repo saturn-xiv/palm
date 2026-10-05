@@ -18,7 +18,19 @@ message Duration {
 }
 
 service Storage {
+  rpc Systemd(SystemdRequest) returns (Empty) {}
   rpc Report(ReportRequest) returns (Empty) {}
+}
+
+message SystemdRequest {
+    message Item {
+        string host = 1;
+        string name = 2;
+        uint32 pid = 3;
+        string message = 4;
+        Timestamp created_at = 5;
+    }
+    repeated Item items = 1;
 }
 
 message Http {
@@ -47,18 +59,39 @@ message Snmp {
     }
     repeated Item items = 1;
 }
+message OpenSearch {
+    string cluster_name = 1;
+    string status = 2;
+    bool timed_out = 3;
+    uint32 number_of_nodes = 4;
+    uint32 number_of_data_nodes = 5;
+    bool discovered_master = 6;
+    bool discovered_cluster_manager = 7;
+    uint32 active_primary_shards = 8;
+    uint32 active_shards = 9;
+    uint32 relocating_shards = 10;
+    uint32 initializing_shards = 11;
+    uint32 unassigned_shards = 12;
+    uint32 delayed_unassigned_shards = 13;
+    uint32 number_of_pending_tasks = 14;
+    uint32 number_of_in_flight_fetch = 15;
+    uint32 task_max_waiting_in_queue_millis = 16;
+    float active_shards_percent_as_number = 17;
+}
 
 message ReportRequest{
     message Item{
-        Timestamp timestamp = 1;
-        Duration curation = 2;
-        oneof payload{
+        Duration curation = 1;
+        oneof node {
             Http http = 11;
             PostgreSql postgresql = 12;
             MySql mysql = 13;
             Redis redis = 14;
             Snmp snmp = 15;
+            OpenSearch opensearch = 16;
         }
     }
-    repeated Item items = 1;
+    string host = 1;
+    Timestamp timestamp = 2;
+    repeated Item items = 9;
 }

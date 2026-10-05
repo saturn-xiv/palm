@@ -1,8 +1,11 @@
 import logging
+import threading
 
 import grpc
 
 from .protocols import lavender_pb2, lavender_pb2_grpc
+from .models.systemd import service as systemd_service
+from .models.kubernetes import namespace as kubernetes_namespace
 
 logger = logging.getLogger(__name__)
 
@@ -11,6 +14,20 @@ def launch(config, tls):
     channel = open_channel(
         config["server"]["host"], config["server"]["port"], tls)
     stub = lavender_pb2_grpc.StorageStub(channel)
+    threads = []
+
+    for name in config["systemd"]["services"]:
+        t = threading.Thread(target=systemd_service, args=(stub, name))
+        threads.append(t)
+        t.start()
+
+    for name in config["kubernetes"]["namespaces"]:
+        t = threading.Thread(target=kubernetes_namespace, args=(stub, name))
+        threads.append(t)
+        t.start()
+
+    for it in threads:
+        it.join()
     request = lavender_pb2.ReportRequest(items=[])
     stub.Report(request)
     logger.info("done.")

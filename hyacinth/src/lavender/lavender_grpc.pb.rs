@@ -16,6 +16,15 @@ pub mod storage_client {
             Self { channel }
         }
 
+        pub fn systemd<ReqMsgView>(
+            &self,
+            request: ReqMsgView,
+        ) -> UnaryCallBuilder<'_, &T, ReqMsgView, super::Empty>
+        where
+          ReqMsgView: protobuf::AsView<Proxied = super::SystemdRequest> + Send + Sync {
+          UnaryCallBuilder::new(&self.channel, "/palm.lavender.v1.Storage/Systemd", request)
+        }
+
         pub fn report<ReqMsgView>(
             &self,
             request: ReqMsgView,

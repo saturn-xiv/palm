@@ -1238,6 +1238,1067 @@ unsafe impl ::protobuf::__internal::runtime::UpbGetArena for DurationMut<'_> {
 
 // This variable must not be referenced except by protobuf generated
 // code.
+pub(crate) static mut palm__lavender__v1__SystemdRequest_msg_init: ::protobuf::__internal::runtime::MiniTableInitPtr =
+    ::protobuf::__internal::runtime::MiniTableInitPtr(::protobuf::__internal::runtime::MiniTablePtr::dangling());
+#[allow(non_camel_case_types)]
+pub struct SystemdRequest {
+  inner: ::protobuf::__internal::runtime::OwnedMessageInner<SystemdRequest>
+}
+
+impl ::protobuf::Message for SystemdRequest {}
+
+impl ::std::default::Default for SystemdRequest {
+  fn default() -> Self {
+    Self::new()
+  }
+}
+
+impl ::std::fmt::Debug for SystemdRequest {
+  fn fmt(&self, f: &mut ::std::fmt::Formatter<'_>) -> ::std::fmt::Result {
+    write!(f, "{}", ::protobuf::__internal::runtime::debug_string(self))
+  }
+}
+
+// SAFETY:
+// - `SystemdRequest` is `Sync` because it does not implement interior mutability.
+//    Neither does `SystemdRequestMut`.
+unsafe impl Sync for SystemdRequest {}
+
+// SAFETY:
+// - `SystemdRequest` is `Send` because it uniquely owns its arena and does
+//   not use thread-local data.
+unsafe impl Send for SystemdRequest {}
+
+impl ::protobuf::Proxied for SystemdRequest {
+  type View<'msg> = SystemdRequestView<'msg>;
+}
+
+impl ::protobuf::__internal::SealedInternal for SystemdRequest {}
+
+impl ::protobuf::MutProxied for SystemdRequest {
+  type Mut<'msg> = SystemdRequestMut<'msg>;
+}
+
+#[derive(Copy, Clone)]
+#[allow(dead_code)]
+pub struct SystemdRequestView<'msg> {
+  inner: ::protobuf::__internal::runtime::MessageViewInner<'msg, SystemdRequest>,
+}
+
+impl<'msg> ::protobuf::__internal::SealedInternal for SystemdRequestView<'msg> {}
+
+impl<'msg> ::protobuf::MessageView<'msg> for SystemdRequestView<'msg> {
+  type Message = SystemdRequest;
+}
+
+impl ::std::fmt::Debug for SystemdRequestView<'_> {
+  fn fmt(&self, f: &mut ::std::fmt::Formatter<'_>) -> ::std::fmt::Result {
+    write!(f, "{}", ::protobuf::__internal::runtime::debug_string(self))
+  }
+}
+
+impl ::std::default::Default for SystemdRequestView<'_> {
+  fn default() -> SystemdRequestView<'static> {
+    ::protobuf::__internal::runtime::MessageViewInner::default().into()
+  }
+}
+
+impl<'msg> From<::protobuf::__internal::runtime::MessageViewInner<'msg, SystemdRequest>> for SystemdRequestView<'msg> {
+  fn from(inner: ::protobuf::__internal::runtime::MessageViewInner<'msg, SystemdRequest>) -> Self {
+    Self { inner }
+  }
+}
+
+#[allow(dead_code)]
+impl<'msg> SystemdRequestView<'msg> {
+
+  pub fn to_owned(&self) -> SystemdRequest {
+    ::protobuf::IntoProxied::into_proxied(*self, ::protobuf::__internal::Private)
+  }
+
+  // items: repeated message palm.lavender.v1.SystemdRequest.Item
+  pub fn items(self) -> ::protobuf::RepeatedView<'msg, super::systemd_request::Item> {
+    unsafe {
+      self.inner.ptr().get_array_at_index(
+        0
+      )
+    }.map_or_else(
+        ::protobuf::__internal::runtime::empty_array::<super::systemd_request::Item>,
+        |raw| unsafe {
+          ::protobuf::RepeatedView::from_raw(::protobuf::__internal::Private, raw)
+        }
+      )
+  }
+
+}
+
+// SAFETY:
+// - `SystemdRequestView` is `Sync` because it does not support mutation.
+unsafe impl Sync for SystemdRequestView<'_> {}
+
+// SAFETY:
+// - `SystemdRequestView` is `Send` because while its alive a `SystemdRequestMut` cannot.
+// - `SystemdRequestView` does not use thread-local data.
+unsafe impl Send for SystemdRequestView<'_> {}
+
+impl<'msg> ::protobuf::AsView for SystemdRequestView<'msg> {
+  type Proxied = SystemdRequest;
+  fn as_view(&self) -> ::protobuf::View<'msg, SystemdRequest> {
+    *self
+  }
+}
+
+impl<'msg> ::protobuf::IntoView<'msg> for SystemdRequestView<'msg> {
+  fn into_view<'shorter>(self) -> SystemdRequestView<'shorter>
+  where
+      'msg: 'shorter {
+    self
+  }
+}
+
+impl<'msg> ::protobuf::IntoProxied<SystemdRequest> for SystemdRequestView<'msg> {
+  fn into_proxied(self, _private: ::protobuf::__internal::Private) -> SystemdRequest {
+    let mut dst = SystemdRequest::new();
+    assert!(unsafe {
+      dst.inner.ptr_mut().deep_copy(self.inner.ptr(), dst.inner.arena())
+    });
+    dst
+  }
+}
+
+impl<'msg> ::protobuf::IntoProxied<SystemdRequest> for SystemdRequestMut<'msg> {
+  fn into_proxied(self, _private: ::protobuf::__internal::Private) -> SystemdRequest {
+    ::protobuf::IntoProxied::into_proxied(::protobuf::IntoView::into_view(self), _private)
+  }
+}
+
+impl ::protobuf::__internal::runtime::EntityType for SystemdRequest {
+    type Tag = ::protobuf::__internal::runtime::MessageTag;
+}
+
+impl<'msg> ::protobuf::__internal::runtime::EntityType for SystemdRequestView<'msg> {
+    type Tag = ::protobuf::__internal::runtime::ViewProxyTag;
+}
+
+impl<'msg> ::protobuf::__internal::runtime::EntityType for SystemdRequestMut<'msg> {
+    type Tag = ::protobuf::__internal::runtime::MutProxyTag;
+}
+
+#[allow(dead_code)]
+#[allow(non_camel_case_types)]
+pub struct SystemdRequestMut<'msg> {
+  inner: ::protobuf::__internal::runtime::MessageMutInner<'msg, SystemdRequest>,
+}
+
+impl<'msg> ::protobuf::__internal::SealedInternal for SystemdRequestMut<'msg> {}
+
+impl<'msg> ::protobuf::MessageMut<'msg> for SystemdRequestMut<'msg> {
+  type Message = SystemdRequest;
+}
+
+impl ::std::fmt::Debug for SystemdRequestMut<'_> {
+  fn fmt(&self, f: &mut ::std::fmt::Formatter<'_>) -> ::std::fmt::Result {
+    write!(f, "{}", ::protobuf::__internal::runtime::debug_string(self))
+  }
+}
+
+impl<'msg> From<::protobuf::__internal::runtime::MessageMutInner<'msg, SystemdRequest>> for SystemdRequestMut<'msg> {
+  fn from(inner: ::protobuf::__internal::runtime::MessageMutInner<'msg, SystemdRequest>) -> Self {
+    Self { inner }
+  }
+}
+
+#[allow(dead_code)]
+impl<'msg> SystemdRequestMut<'msg> {
+
+  #[doc(hidden)]
+  pub fn as_message_mut_inner(&mut self, _private: ::protobuf::__internal::Private)
+    -> ::protobuf::__internal::runtime::MessageMutInner<'msg, SystemdRequest> {
+    self.inner
+  }
+
+  pub fn to_owned(&self) -> SystemdRequest {
+    ::protobuf::AsView::as_view(self).to_owned()
+  }
+
+  // items: repeated message palm.lavender.v1.SystemdRequest.Item
+  pub fn items(&self) -> ::protobuf::RepeatedView<'_, super::systemd_request::Item> {
+    unsafe {
+      self.inner.ptr().get_array_at_index(
+        0
+      )
+    }.map_or_else(
+        ::protobuf::__internal::runtime::empty_array::<super::systemd_request::Item>,
+        |raw| unsafe {
+          ::protobuf::RepeatedView::from_raw(::protobuf::__internal::Private, raw)
+        }
+      )
+  }
+  pub fn items_mut(&mut self) -> ::protobuf::RepeatedMut<'_, super::systemd_request::Item> {
+    unsafe {
+      let raw_array = self.inner.ptr_mut().get_or_create_mutable_array_at_index(
+        0,
+        self.inner.arena()
+      ).expect("alloc should not fail");
+      ::protobuf::RepeatedMut::from_inner(
+        ::protobuf::__internal::Private,
+        ::protobuf::__internal::runtime::InnerRepeatedMut::new(
+          raw_array, self.inner.arena(),
+        ),
+      )
+    }
+  }
+  pub fn set_items(&mut self, src: impl ::protobuf::IntoProxied<::protobuf::Repeated<super::systemd_request::Item>>) {
+    unsafe {
+      ::protobuf::__internal::runtime::message_set_repeated_field(
+        ::protobuf::AsMut::as_mut(self).inner,
+        0,
+        src);
+    }
+  }
+
+}
+
+// SAFETY:
+// - `SystemdRequestMut` does not perform any shared mutation.
+unsafe impl Send for SystemdRequestMut<'_> {}
+
+// SAFETY:
+// - `SystemdRequestMut` does not perform any shared mutation.
+unsafe impl Sync for SystemdRequestMut<'_> {}
+
+impl<'msg> ::protobuf::AsView for SystemdRequestMut<'msg> {
+  type Proxied = SystemdRequest;
+  fn as_view(&self) -> ::protobuf::View<'_, SystemdRequest> {
+    SystemdRequestView {
+      inner: ::protobuf::__internal::runtime::MessageViewInner::view_of_mut(self.inner)
+    }
+  }
+}
+
+impl<'msg> ::protobuf::IntoView<'msg> for SystemdRequestMut<'msg> {
+  fn into_view<'shorter>(self) -> ::protobuf::View<'shorter, SystemdRequest>
+  where
+      'msg: 'shorter {
+    SystemdRequestView {
+      inner: ::protobuf::__internal::runtime::MessageViewInner::view_of_mut(self.inner)
+    }
+  }
+}
+
+impl<'msg> ::protobuf::AsMut for SystemdRequestMut<'msg> {
+  type MutProxied = SystemdRequest;
+  fn as_mut(&mut self) -> SystemdRequestMut<'msg> {
+    SystemdRequestMut { inner: self.inner }
+  }
+}
+
+impl<'msg> ::protobuf::IntoMut<'msg> for SystemdRequestMut<'msg> {
+  fn into_mut<'shorter>(self) -> SystemdRequestMut<'shorter>
+  where
+      'msg: 'shorter {
+    self
+  }
+}
+
+#[allow(dead_code)]
+impl SystemdRequest {
+  pub fn new() -> Self {
+    Self { inner: ::protobuf::__internal::runtime::OwnedMessageInner::<Self>::new() }
+  }
+
+
+  #[doc(hidden)]
+  pub fn as_message_mut_inner(&mut self, _private: ::protobuf::__internal::Private) -> ::protobuf::__internal::runtime::MessageMutInner<'_, SystemdRequest> {
+    ::protobuf::__internal::runtime::MessageMutInner::mut_of_owned(&mut self.inner)
+  }
+
+  pub fn as_view(&self) -> SystemdRequestView<'_> {
+    ::protobuf::__internal::runtime::MessageViewInner::view_of_owned(&self.inner).into()
+  }
+
+  pub fn as_mut(&mut self) -> SystemdRequestMut<'_> {
+    ::protobuf::__internal::runtime::MessageMutInner::mut_of_owned(&mut self.inner).into()
+  }
+
+  // items: repeated message palm.lavender.v1.SystemdRequest.Item
+  pub fn items(&self) -> ::protobuf::RepeatedView<'_, super::systemd_request::Item> {
+    unsafe {
+      self.inner.ptr().get_array_at_index(
+        0
+      )
+    }.map_or_else(
+        ::protobuf::__internal::runtime::empty_array::<super::systemd_request::Item>,
+        |raw| unsafe {
+          ::protobuf::RepeatedView::from_raw(::protobuf::__internal::Private, raw)
+        }
+      )
+  }
+  pub fn items_mut(&mut self) -> ::protobuf::RepeatedMut<'_, super::systemd_request::Item> {
+    unsafe {
+      let raw_array = self.inner.ptr_mut().get_or_create_mutable_array_at_index(
+        0,
+        self.inner.arena()
+      ).expect("alloc should not fail");
+      ::protobuf::RepeatedMut::from_inner(
+        ::protobuf::__internal::Private,
+        ::protobuf::__internal::runtime::InnerRepeatedMut::new(
+          raw_array, self.inner.arena(),
+        ),
+      )
+    }
+  }
+  pub fn set_items(&mut self, src: impl ::protobuf::IntoProxied<::protobuf::Repeated<super::systemd_request::Item>>) {
+    unsafe {
+      ::protobuf::__internal::runtime::message_set_repeated_field(
+        ::protobuf::AsMut::as_mut(self).inner,
+        0,
+        src);
+    }
+  }
+
+}  // impl SystemdRequest
+
+impl ::std::ops::Drop for SystemdRequest {
+  #[inline]
+  fn drop(&mut self) {
+  }
+}
+
+impl ::std::clone::Clone for SystemdRequest {
+  fn clone(&self) -> Self {
+    self.as_view().to_owned()
+  }
+}
+
+impl ::protobuf::AsView for SystemdRequest {
+  type Proxied = Self;
+  fn as_view(&self) -> SystemdRequestView<'_> {
+    self.as_view()
+  }
+}
+
+impl ::protobuf::AsMut for SystemdRequest {
+  type MutProxied = Self;
+  fn as_mut(&mut self) -> SystemdRequestMut<'_> {
+    self.as_mut()
+  }
+}
+
+unsafe impl ::protobuf::__internal::runtime::AssociatedMiniTable for SystemdRequest {
+  fn mini_table() -> ::protobuf::__internal::runtime::MiniTablePtr {
+    static ONCE_LOCK: ::std::sync::OnceLock<::protobuf::__internal::runtime::MiniTableInitPtr> =
+        ::std::sync::OnceLock::new();
+    unsafe {
+      ONCE_LOCK.get_or_init(|| {
+        super::palm__lavender__v1__SystemdRequest_msg_init.0 =
+            ::protobuf::__internal::runtime::build_mini_table("$G");
+        ::protobuf::__internal::runtime::link_mini_table(
+            super::palm__lavender__v1__SystemdRequest_msg_init.0, &[<super::systemd_request::Item as ::protobuf::__internal::runtime::AssociatedMiniTable>::mini_table(),
+            ], &[]);
+        ::protobuf::__internal::runtime::MiniTableInitPtr(super::palm__lavender__v1__SystemdRequest_msg_init.0)
+      }).0
+    }
+  }
+}
+unsafe impl ::protobuf::__internal::runtime::UpbGetArena for SystemdRequest {
+  fn get_arena(&mut self, _private: ::protobuf::__internal::Private) -> &::protobuf::__internal::runtime::Arena {
+    self.inner.arena()
+  }
+}
+
+unsafe impl ::protobuf::__internal::runtime::UpbGetMessagePtrMut for SystemdRequest {
+  type Msg = SystemdRequest;
+  fn get_ptr_mut(&mut self, _private: ::protobuf::__internal::Private) -> ::protobuf::__internal::runtime::MessagePtr<SystemdRequest> {
+    self.inner.ptr_mut()
+  }
+}
+unsafe impl ::protobuf::__internal::runtime::UpbGetMessagePtr for SystemdRequest {
+  type Msg = SystemdRequest;
+  fn get_ptr(&self, _private: ::protobuf::__internal::Private) -> ::protobuf::__internal::runtime::MessagePtr<SystemdRequest> {
+    self.inner.ptr()
+  }
+}
+unsafe impl ::protobuf::__internal::runtime::UpbGetMessagePtrMut for SystemdRequestMut<'_> {
+  type Msg = SystemdRequest;
+  fn get_ptr_mut(&mut self, _private: ::protobuf::__internal::Private) -> ::protobuf::__internal::runtime::MessagePtr<SystemdRequest> {
+    self.inner.ptr_mut()
+  }
+}
+unsafe impl ::protobuf::__internal::runtime::UpbGetMessagePtr for SystemdRequestMut<'_> {
+  type Msg = SystemdRequest;
+  fn get_ptr(&self, _private: ::protobuf::__internal::Private) -> ::protobuf::__internal::runtime::MessagePtr<SystemdRequest> {
+    self.inner.ptr()
+  }
+}
+unsafe impl ::protobuf::__internal::runtime::UpbGetMessagePtr for SystemdRequestView<'_> {
+  type Msg = SystemdRequest;
+  fn get_ptr(&self, _private: ::protobuf::__internal::Private) -> ::protobuf::__internal::runtime::MessagePtr<SystemdRequest> {
+    self.inner.ptr()
+  }
+}
+
+unsafe impl ::protobuf::__internal::runtime::UpbGetArena for SystemdRequestMut<'_> {
+  fn get_arena(&mut self, _private: ::protobuf::__internal::Private) -> &::protobuf::__internal::runtime::Arena {
+    self.inner.arena()
+  }
+}
+
+pub mod systemd_request {// This variable must not be referenced except by protobuf generated
+// code.
+pub(crate) static mut palm__lavender__v1__SystemdRequest__Item_msg_init: ::protobuf::__internal::runtime::MiniTableInitPtr =
+    ::protobuf::__internal::runtime::MiniTableInitPtr(::protobuf::__internal::runtime::MiniTablePtr::dangling());
+#[allow(non_camel_case_types)]
+pub struct Item {
+  inner: ::protobuf::__internal::runtime::OwnedMessageInner<Item>
+}
+
+impl ::protobuf::Message for Item {}
+
+impl ::std::default::Default for Item {
+  fn default() -> Self {
+    Self::new()
+  }
+}
+
+impl ::std::fmt::Debug for Item {
+  fn fmt(&self, f: &mut ::std::fmt::Formatter<'_>) -> ::std::fmt::Result {
+    write!(f, "{}", ::protobuf::__internal::runtime::debug_string(self))
+  }
+}
+
+// SAFETY:
+// - `Item` is `Sync` because it does not implement interior mutability.
+//    Neither does `ItemMut`.
+unsafe impl Sync for Item {}
+
+// SAFETY:
+// - `Item` is `Send` because it uniquely owns its arena and does
+//   not use thread-local data.
+unsafe impl Send for Item {}
+
+impl ::protobuf::Proxied for Item {
+  type View<'msg> = ItemView<'msg>;
+}
+
+impl ::protobuf::__internal::SealedInternal for Item {}
+
+impl ::protobuf::MutProxied for Item {
+  type Mut<'msg> = ItemMut<'msg>;
+}
+
+#[derive(Copy, Clone)]
+#[allow(dead_code)]
+pub struct ItemView<'msg> {
+  inner: ::protobuf::__internal::runtime::MessageViewInner<'msg, Item>,
+}
+
+impl<'msg> ::protobuf::__internal::SealedInternal for ItemView<'msg> {}
+
+impl<'msg> ::protobuf::MessageView<'msg> for ItemView<'msg> {
+  type Message = Item;
+}
+
+impl ::std::fmt::Debug for ItemView<'_> {
+  fn fmt(&self, f: &mut ::std::fmt::Formatter<'_>) -> ::std::fmt::Result {
+    write!(f, "{}", ::protobuf::__internal::runtime::debug_string(self))
+  }
+}
+
+impl ::std::default::Default for ItemView<'_> {
+  fn default() -> ItemView<'static> {
+    ::protobuf::__internal::runtime::MessageViewInner::default().into()
+  }
+}
+
+impl<'msg> From<::protobuf::__internal::runtime::MessageViewInner<'msg, Item>> for ItemView<'msg> {
+  fn from(inner: ::protobuf::__internal::runtime::MessageViewInner<'msg, Item>) -> Self {
+    Self { inner }
+  }
+}
+
+#[allow(dead_code)]
+impl<'msg> ItemView<'msg> {
+
+  pub fn to_owned(&self) -> Item {
+    ::protobuf::IntoProxied::into_proxied(*self, ::protobuf::__internal::Private)
+  }
+
+  // host: optional string
+  pub fn host(self) -> ::protobuf::View<'msg, ::protobuf::ProtoString> {
+    let str_view = unsafe {
+      self.inner.ptr().get_string_at_index(
+        0, (b"").into()
+      )
+    };
+    // SAFETY: The runtime doesn't require ProtoStr to be UTF-8.
+    unsafe { ::protobuf::ProtoStr::from_utf8_unchecked(str_view.as_ref()) }
+  }
+
+  // name: optional string
+  pub fn name(self) -> ::protobuf::View<'msg, ::protobuf::ProtoString> {
+    let str_view = unsafe {
+      self.inner.ptr().get_string_at_index(
+        1, (b"").into()
+      )
+    };
+    // SAFETY: The runtime doesn't require ProtoStr to be UTF-8.
+    unsafe { ::protobuf::ProtoStr::from_utf8_unchecked(str_view.as_ref()) }
+  }
+
+  // pid: optional uint32
+  pub fn pid(self) -> u32 {
+    unsafe {
+      // TODO: b/361751487: This .into() and .try_into() is only
+      // here for the enum<->i32 case, we should avoid it for
+      // other primitives where the types naturally match
+      // perfectly (and do an unchecked conversion for
+      // i32->enum types, since even for closed enums we trust
+      // upb to only return one of the named values).
+      self.inner.ptr().get_u32_at_index(
+        2, (0u32).into()
+      ).try_into().unwrap()
+    }
+  }
+
+  // message: optional string
+  pub fn message(self) -> ::protobuf::View<'msg, ::protobuf::ProtoString> {
+    let str_view = unsafe {
+      self.inner.ptr().get_string_at_index(
+        3, (b"").into()
+      )
+    };
+    // SAFETY: The runtime doesn't require ProtoStr to be UTF-8.
+    unsafe { ::protobuf::ProtoStr::from_utf8_unchecked(str_view.as_ref()) }
+  }
+
+  // created_at: optional message palm.lavender.v1.Timestamp
+  pub fn has_created_at(self) -> bool {
+    unsafe {
+      self.inner.ptr().has_field_at_index(4)
+    }
+  }
+  pub fn created_at_opt(self) -> ::protobuf::Optional<super::super::TimestampView<'msg>> {
+        ::protobuf::Optional::new(self.created_at(), self.has_created_at())
+  }
+  pub fn created_at(self) -> super::super::TimestampView<'msg> {
+    let submsg = unsafe {
+      self.inner.ptr().get_message_at_index(4)
+    };
+    submsg
+        .map(|ptr| unsafe { ::protobuf::__internal::runtime::MessageViewInner::wrap(ptr).into() })
+       .unwrap_or(super::super::TimestampView::default())
+  }
+
+}
+
+// SAFETY:
+// - `ItemView` is `Sync` because it does not support mutation.
+unsafe impl Sync for ItemView<'_> {}
+
+// SAFETY:
+// - `ItemView` is `Send` because while its alive a `ItemMut` cannot.
+// - `ItemView` does not use thread-local data.
+unsafe impl Send for ItemView<'_> {}
+
+impl<'msg> ::protobuf::AsView for ItemView<'msg> {
+  type Proxied = Item;
+  fn as_view(&self) -> ::protobuf::View<'msg, Item> {
+    *self
+  }
+}
+
+impl<'msg> ::protobuf::IntoView<'msg> for ItemView<'msg> {
+  fn into_view<'shorter>(self) -> ItemView<'shorter>
+  where
+      'msg: 'shorter {
+    self
+  }
+}
+
+impl<'msg> ::protobuf::IntoProxied<Item> for ItemView<'msg> {
+  fn into_proxied(self, _private: ::protobuf::__internal::Private) -> Item {
+    let mut dst = Item::new();
+    assert!(unsafe {
+      dst.inner.ptr_mut().deep_copy(self.inner.ptr(), dst.inner.arena())
+    });
+    dst
+  }
+}
+
+impl<'msg> ::protobuf::IntoProxied<Item> for ItemMut<'msg> {
+  fn into_proxied(self, _private: ::protobuf::__internal::Private) -> Item {
+    ::protobuf::IntoProxied::into_proxied(::protobuf::IntoView::into_view(self), _private)
+  }
+}
+
+impl ::protobuf::__internal::runtime::EntityType for Item {
+    type Tag = ::protobuf::__internal::runtime::MessageTag;
+}
+
+impl<'msg> ::protobuf::__internal::runtime::EntityType for ItemView<'msg> {
+    type Tag = ::protobuf::__internal::runtime::ViewProxyTag;
+}
+
+impl<'msg> ::protobuf::__internal::runtime::EntityType for ItemMut<'msg> {
+    type Tag = ::protobuf::__internal::runtime::MutProxyTag;
+}
+
+#[allow(dead_code)]
+#[allow(non_camel_case_types)]
+pub struct ItemMut<'msg> {
+  inner: ::protobuf::__internal::runtime::MessageMutInner<'msg, Item>,
+}
+
+impl<'msg> ::protobuf::__internal::SealedInternal for ItemMut<'msg> {}
+
+impl<'msg> ::protobuf::MessageMut<'msg> for ItemMut<'msg> {
+  type Message = Item;
+}
+
+impl ::std::fmt::Debug for ItemMut<'_> {
+  fn fmt(&self, f: &mut ::std::fmt::Formatter<'_>) -> ::std::fmt::Result {
+    write!(f, "{}", ::protobuf::__internal::runtime::debug_string(self))
+  }
+}
+
+impl<'msg> From<::protobuf::__internal::runtime::MessageMutInner<'msg, Item>> for ItemMut<'msg> {
+  fn from(inner: ::protobuf::__internal::runtime::MessageMutInner<'msg, Item>) -> Self {
+    Self { inner }
+  }
+}
+
+#[allow(dead_code)]
+impl<'msg> ItemMut<'msg> {
+
+  #[doc(hidden)]
+  pub fn as_message_mut_inner(&mut self, _private: ::protobuf::__internal::Private)
+    -> ::protobuf::__internal::runtime::MessageMutInner<'msg, Item> {
+    self.inner
+  }
+
+  pub fn to_owned(&self) -> Item {
+    ::protobuf::AsView::as_view(self).to_owned()
+  }
+
+  // host: optional string
+  pub fn host(&self) -> ::protobuf::View<'_, ::protobuf::ProtoString> {
+    let str_view = unsafe {
+      self.inner.ptr().get_string_at_index(
+        0, (b"").into()
+      )
+    };
+    // SAFETY: The runtime doesn't require ProtoStr to be UTF-8.
+    unsafe { ::protobuf::ProtoStr::from_utf8_unchecked(str_view.as_ref()) }
+  }
+  pub fn set_host(&mut self, val: impl ::protobuf::IntoProxied<::protobuf::ProtoString>) {
+    unsafe {
+      ::protobuf::__internal::runtime::message_set_string_field(
+        ::protobuf::AsMut::as_mut(self).inner,
+        0,
+        val);
+    }
+  }
+
+  // name: optional string
+  pub fn name(&self) -> ::protobuf::View<'_, ::protobuf::ProtoString> {
+    let str_view = unsafe {
+      self.inner.ptr().get_string_at_index(
+        1, (b"").into()
+      )
+    };
+    // SAFETY: The runtime doesn't require ProtoStr to be UTF-8.
+    unsafe { ::protobuf::ProtoStr::from_utf8_unchecked(str_view.as_ref()) }
+  }
+  pub fn set_name(&mut self, val: impl ::protobuf::IntoProxied<::protobuf::ProtoString>) {
+    unsafe {
+      ::protobuf::__internal::runtime::message_set_string_field(
+        ::protobuf::AsMut::as_mut(self).inner,
+        1,
+        val);
+    }
+  }
+
+  // pid: optional uint32
+  pub fn pid(&self) -> u32 {
+    unsafe {
+      // TODO: b/361751487: This .into() and .try_into() is only
+      // here for the enum<->i32 case, we should avoid it for
+      // other primitives where the types naturally match
+      // perfectly (and do an unchecked conversion for
+      // i32->enum types, since even for closed enums we trust
+      // upb to only return one of the named values).
+      self.inner.ptr().get_u32_at_index(
+        2, (0u32).into()
+      ).try_into().unwrap()
+    }
+  }
+  pub fn set_pid(&mut self, val: u32) {
+    unsafe {
+      // TODO: b/361751487: This .into() is only here
+      // here for the enum<->i32 case, we should avoid it for
+      // other primitives where the types naturally match
+      //perfectly.
+      self.inner.ptr_mut().set_base_field_u32_at_index(
+        2, val.into()
+      )
+    }
+  }
+
+  // message: optional string
+  pub fn message(&self) -> ::protobuf::View<'_, ::protobuf::ProtoString> {
+    let str_view = unsafe {
+      self.inner.ptr().get_string_at_index(
+        3, (b"").into()
+      )
+    };
+    // SAFETY: The runtime doesn't require ProtoStr to be UTF-8.
+    unsafe { ::protobuf::ProtoStr::from_utf8_unchecked(str_view.as_ref()) }
+  }
+  pub fn set_message(&mut self, val: impl ::protobuf::IntoProxied<::protobuf::ProtoString>) {
+    unsafe {
+      ::protobuf::__internal::runtime::message_set_string_field(
+        ::protobuf::AsMut::as_mut(self).inner,
+        3,
+        val);
+    }
+  }
+
+  // created_at: optional message palm.lavender.v1.Timestamp
+  pub fn has_created_at(&self) -> bool {
+    unsafe {
+      self.inner.ptr().has_field_at_index(4)
+    }
+  }
+  pub fn clear_created_at(&mut self) {
+    unsafe {
+      self.inner.ptr().clear_field_at_index(
+        4
+      );
+    }
+  }
+  pub fn created_at_opt(&self) -> ::protobuf::Optional<super::super::TimestampView<'_>> {
+        ::protobuf::Optional::new(self.created_at(), self.has_created_at())
+  }
+  pub fn created_at(&self) -> super::super::TimestampView<'_> {
+    let submsg = unsafe {
+      self.inner.ptr().get_message_at_index(4)
+    };
+    submsg
+        .map(|ptr| unsafe { ::protobuf::__internal::runtime::MessageViewInner::wrap(ptr).into() })
+       .unwrap_or(super::super::TimestampView::default())
+  }
+  pub fn created_at_mut(&mut self) -> super::super::TimestampMut<'_> {
+     let ptr = unsafe {
+       self.inner.ptr_mut().get_or_create_mutable_message_at_index(
+         4, self.inner.arena()
+       ).unwrap()
+     };
+     ::protobuf::__internal::runtime::MessageMutInner::from_parent(
+         self.as_message_mut_inner(::protobuf::__internal::Private),
+         ptr
+     ).into()
+  }
+  pub fn set_created_at(&mut self,
+    val: impl ::protobuf::IntoProxied<super::super::Timestamp>) {
+
+    unsafe {
+      ::protobuf::__internal::runtime::message_set_sub_message(
+        ::protobuf::AsMut::as_mut(self).inner,
+        4,
+        val
+      );
+    }
+  }
+
+}
+
+// SAFETY:
+// - `ItemMut` does not perform any shared mutation.
+unsafe impl Send for ItemMut<'_> {}
+
+// SAFETY:
+// - `ItemMut` does not perform any shared mutation.
+unsafe impl Sync for ItemMut<'_> {}
+
+impl<'msg> ::protobuf::AsView for ItemMut<'msg> {
+  type Proxied = Item;
+  fn as_view(&self) -> ::protobuf::View<'_, Item> {
+    ItemView {
+      inner: ::protobuf::__internal::runtime::MessageViewInner::view_of_mut(self.inner)
+    }
+  }
+}
+
+impl<'msg> ::protobuf::IntoView<'msg> for ItemMut<'msg> {
+  fn into_view<'shorter>(self) -> ::protobuf::View<'shorter, Item>
+  where
+      'msg: 'shorter {
+    ItemView {
+      inner: ::protobuf::__internal::runtime::MessageViewInner::view_of_mut(self.inner)
+    }
+  }
+}
+
+impl<'msg> ::protobuf::AsMut for ItemMut<'msg> {
+  type MutProxied = Item;
+  fn as_mut(&mut self) -> ItemMut<'msg> {
+    ItemMut { inner: self.inner }
+  }
+}
+
+impl<'msg> ::protobuf::IntoMut<'msg> for ItemMut<'msg> {
+  fn into_mut<'shorter>(self) -> ItemMut<'shorter>
+  where
+      'msg: 'shorter {
+    self
+  }
+}
+
+#[allow(dead_code)]
+impl Item {
+  pub fn new() -> Self {
+    Self { inner: ::protobuf::__internal::runtime::OwnedMessageInner::<Self>::new() }
+  }
+
+
+  #[doc(hidden)]
+  pub fn as_message_mut_inner(&mut self, _private: ::protobuf::__internal::Private) -> ::protobuf::__internal::runtime::MessageMutInner<'_, Item> {
+    ::protobuf::__internal::runtime::MessageMutInner::mut_of_owned(&mut self.inner)
+  }
+
+  pub fn as_view(&self) -> ItemView<'_> {
+    ::protobuf::__internal::runtime::MessageViewInner::view_of_owned(&self.inner).into()
+  }
+
+  pub fn as_mut(&mut self) -> ItemMut<'_> {
+    ::protobuf::__internal::runtime::MessageMutInner::mut_of_owned(&mut self.inner).into()
+  }
+
+  // host: optional string
+  pub fn host(&self) -> ::protobuf::View<'_, ::protobuf::ProtoString> {
+    let str_view = unsafe {
+      self.inner.ptr().get_string_at_index(
+        0, (b"").into()
+      )
+    };
+    // SAFETY: The runtime doesn't require ProtoStr to be UTF-8.
+    unsafe { ::protobuf::ProtoStr::from_utf8_unchecked(str_view.as_ref()) }
+  }
+  pub fn set_host(&mut self, val: impl ::protobuf::IntoProxied<::protobuf::ProtoString>) {
+    unsafe {
+      ::protobuf::__internal::runtime::message_set_string_field(
+        ::protobuf::AsMut::as_mut(self).inner,
+        0,
+        val);
+    }
+  }
+
+  // name: optional string
+  pub fn name(&self) -> ::protobuf::View<'_, ::protobuf::ProtoString> {
+    let str_view = unsafe {
+      self.inner.ptr().get_string_at_index(
+        1, (b"").into()
+      )
+    };
+    // SAFETY: The runtime doesn't require ProtoStr to be UTF-8.
+    unsafe { ::protobuf::ProtoStr::from_utf8_unchecked(str_view.as_ref()) }
+  }
+  pub fn set_name(&mut self, val: impl ::protobuf::IntoProxied<::protobuf::ProtoString>) {
+    unsafe {
+      ::protobuf::__internal::runtime::message_set_string_field(
+        ::protobuf::AsMut::as_mut(self).inner,
+        1,
+        val);
+    }
+  }
+
+  // pid: optional uint32
+  pub fn pid(&self) -> u32 {
+    unsafe {
+      // TODO: b/361751487: This .into() and .try_into() is only
+      // here for the enum<->i32 case, we should avoid it for
+      // other primitives where the types naturally match
+      // perfectly (and do an unchecked conversion for
+      // i32->enum types, since even for closed enums we trust
+      // upb to only return one of the named values).
+      self.inner.ptr().get_u32_at_index(
+        2, (0u32).into()
+      ).try_into().unwrap()
+    }
+  }
+  pub fn set_pid(&mut self, val: u32) {
+    unsafe {
+      // TODO: b/361751487: This .into() is only here
+      // here for the enum<->i32 case, we should avoid it for
+      // other primitives where the types naturally match
+      //perfectly.
+      self.inner.ptr_mut().set_base_field_u32_at_index(
+        2, val.into()
+      )
+    }
+  }
+
+  // message: optional string
+  pub fn message(&self) -> ::protobuf::View<'_, ::protobuf::ProtoString> {
+    let str_view = unsafe {
+      self.inner.ptr().get_string_at_index(
+        3, (b"").into()
+      )
+    };
+    // SAFETY: The runtime doesn't require ProtoStr to be UTF-8.
+    unsafe { ::protobuf::ProtoStr::from_utf8_unchecked(str_view.as_ref()) }
+  }
+  pub fn set_message(&mut self, val: impl ::protobuf::IntoProxied<::protobuf::ProtoString>) {
+    unsafe {
+      ::protobuf::__internal::runtime::message_set_string_field(
+        ::protobuf::AsMut::as_mut(self).inner,
+        3,
+        val);
+    }
+  }
+
+  // created_at: optional message palm.lavender.v1.Timestamp
+  pub fn has_created_at(&self) -> bool {
+    unsafe {
+      self.inner.ptr().has_field_at_index(4)
+    }
+  }
+  pub fn clear_created_at(&mut self) {
+    unsafe {
+      self.inner.ptr().clear_field_at_index(
+        4
+      );
+    }
+  }
+  pub fn created_at_opt(&self) -> ::protobuf::Optional<super::super::TimestampView<'_>> {
+        ::protobuf::Optional::new(self.created_at(), self.has_created_at())
+  }
+  pub fn created_at(&self) -> super::super::TimestampView<'_> {
+    let submsg = unsafe {
+      self.inner.ptr().get_message_at_index(4)
+    };
+    submsg
+        .map(|ptr| unsafe { ::protobuf::__internal::runtime::MessageViewInner::wrap(ptr).into() })
+       .unwrap_or(super::super::TimestampView::default())
+  }
+  pub fn created_at_mut(&mut self) -> super::super::TimestampMut<'_> {
+     let ptr = unsafe {
+       self.inner.ptr_mut().get_or_create_mutable_message_at_index(
+         4, self.inner.arena()
+       ).unwrap()
+     };
+     ::protobuf::__internal::runtime::MessageMutInner::from_parent(
+         self.as_message_mut_inner(::protobuf::__internal::Private),
+         ptr
+     ).into()
+  }
+  pub fn set_created_at(&mut self,
+    val: impl ::protobuf::IntoProxied<super::super::Timestamp>) {
+
+    unsafe {
+      ::protobuf::__internal::runtime::message_set_sub_message(
+        ::protobuf::AsMut::as_mut(self).inner,
+        4,
+        val
+      );
+    }
+  }
+
+}  // impl Item
+
+impl ::std::ops::Drop for Item {
+  #[inline]
+  fn drop(&mut self) {
+  }
+}
+
+impl ::std::clone::Clone for Item {
+  fn clone(&self) -> Self {
+    self.as_view().to_owned()
+  }
+}
+
+impl ::protobuf::AsView for Item {
+  type Proxied = Self;
+  fn as_view(&self) -> ItemView<'_> {
+    self.as_view()
+  }
+}
+
+impl ::protobuf::AsMut for Item {
+  type MutProxied = Self;
+  fn as_mut(&mut self) -> ItemMut<'_> {
+    self.as_mut()
+  }
+}
+
+unsafe impl ::protobuf::__internal::runtime::AssociatedMiniTable for Item {
+  fn mini_table() -> ::protobuf::__internal::runtime::MiniTablePtr {
+    static ONCE_LOCK: ::std::sync::OnceLock<::protobuf::__internal::runtime::MiniTableInitPtr> =
+        ::std::sync::OnceLock::new();
+    unsafe {
+      ONCE_LOCK.get_or_init(|| {
+        super::super::systemd_request::palm__lavender__v1__SystemdRequest__Item_msg_init.0 =
+            ::protobuf::__internal::runtime::build_mini_table("$1X1X)P1X3");
+        ::protobuf::__internal::runtime::link_mini_table(
+            super::super::systemd_request::palm__lavender__v1__SystemdRequest__Item_msg_init.0, &[<super::super::Timestamp as ::protobuf::__internal::runtime::AssociatedMiniTable>::mini_table(),
+            ], &[]);
+        ::protobuf::__internal::runtime::MiniTableInitPtr(super::super::systemd_request::palm__lavender__v1__SystemdRequest__Item_msg_init.0)
+      }).0
+    }
+  }
+}
+unsafe impl ::protobuf::__internal::runtime::UpbGetArena for Item {
+  fn get_arena(&mut self, _private: ::protobuf::__internal::Private) -> &::protobuf::__internal::runtime::Arena {
+    self.inner.arena()
+  }
+}
+
+unsafe impl ::protobuf::__internal::runtime::UpbGetMessagePtrMut for Item {
+  type Msg = Item;
+  fn get_ptr_mut(&mut self, _private: ::protobuf::__internal::Private) -> ::protobuf::__internal::runtime::MessagePtr<Item> {
+    self.inner.ptr_mut()
+  }
+}
+unsafe impl ::protobuf::__internal::runtime::UpbGetMessagePtr for Item {
+  type Msg = Item;
+  fn get_ptr(&self, _private: ::protobuf::__internal::Private) -> ::protobuf::__internal::runtime::MessagePtr<Item> {
+    self.inner.ptr()
+  }
+}
+unsafe impl ::protobuf::__internal::runtime::UpbGetMessagePtrMut for ItemMut<'_> {
+  type Msg = Item;
+  fn get_ptr_mut(&mut self, _private: ::protobuf::__internal::Private) -> ::protobuf::__internal::runtime::MessagePtr<Item> {
+    self.inner.ptr_mut()
+  }
+}
+unsafe impl ::protobuf::__internal::runtime::UpbGetMessagePtr for ItemMut<'_> {
+  type Msg = Item;
+  fn get_ptr(&self, _private: ::protobuf::__internal::Private) -> ::protobuf::__internal::runtime::MessagePtr<Item> {
+    self.inner.ptr()
+  }
+}
+unsafe impl ::protobuf::__internal::runtime::UpbGetMessagePtr for ItemView<'_> {
+  type Msg = Item;
+  fn get_ptr(&self, _private: ::protobuf::__internal::Private) -> ::protobuf::__internal::runtime::MessagePtr<Item> {
+    self.inner.ptr()
+  }
+}
+
+unsafe impl ::protobuf::__internal::runtime::UpbGetArena for ItemMut<'_> {
+  fn get_arena(&mut self, _private: ::protobuf::__internal::Private) -> &::protobuf::__internal::runtime::Arena {
+    self.inner.arena()
+  }
+}
+
+
+
+}  // pub mod systemd_request
+
+
+// This variable must not be referenced except by protobuf generated
+// code.
 pub(crate) static mut palm__lavender__v1__Http_msg_init: ::protobuf::__internal::runtime::MiniTableInitPtr =
     ::protobuf::__internal::runtime::MiniTableInitPtr(::protobuf::__internal::runtime::MiniTablePtr::dangling());
 #[allow(non_camel_case_types)]
@@ -4107,6 +5168,1432 @@ impl ValueCase {
 
 // This variable must not be referenced except by protobuf generated
 // code.
+pub(crate) static mut palm__lavender__v1__OpenSearch_msg_init: ::protobuf::__internal::runtime::MiniTableInitPtr =
+    ::protobuf::__internal::runtime::MiniTableInitPtr(::protobuf::__internal::runtime::MiniTablePtr::dangling());
+#[allow(non_camel_case_types)]
+pub struct OpenSearch {
+  inner: ::protobuf::__internal::runtime::OwnedMessageInner<OpenSearch>
+}
+
+impl ::protobuf::Message for OpenSearch {}
+
+impl ::std::default::Default for OpenSearch {
+  fn default() -> Self {
+    Self::new()
+  }
+}
+
+impl ::std::fmt::Debug for OpenSearch {
+  fn fmt(&self, f: &mut ::std::fmt::Formatter<'_>) -> ::std::fmt::Result {
+    write!(f, "{}", ::protobuf::__internal::runtime::debug_string(self))
+  }
+}
+
+// SAFETY:
+// - `OpenSearch` is `Sync` because it does not implement interior mutability.
+//    Neither does `OpenSearchMut`.
+unsafe impl Sync for OpenSearch {}
+
+// SAFETY:
+// - `OpenSearch` is `Send` because it uniquely owns its arena and does
+//   not use thread-local data.
+unsafe impl Send for OpenSearch {}
+
+impl ::protobuf::Proxied for OpenSearch {
+  type View<'msg> = OpenSearchView<'msg>;
+}
+
+impl ::protobuf::__internal::SealedInternal for OpenSearch {}
+
+impl ::protobuf::MutProxied for OpenSearch {
+  type Mut<'msg> = OpenSearchMut<'msg>;
+}
+
+#[derive(Copy, Clone)]
+#[allow(dead_code)]
+pub struct OpenSearchView<'msg> {
+  inner: ::protobuf::__internal::runtime::MessageViewInner<'msg, OpenSearch>,
+}
+
+impl<'msg> ::protobuf::__internal::SealedInternal for OpenSearchView<'msg> {}
+
+impl<'msg> ::protobuf::MessageView<'msg> for OpenSearchView<'msg> {
+  type Message = OpenSearch;
+}
+
+impl ::std::fmt::Debug for OpenSearchView<'_> {
+  fn fmt(&self, f: &mut ::std::fmt::Formatter<'_>) -> ::std::fmt::Result {
+    write!(f, "{}", ::protobuf::__internal::runtime::debug_string(self))
+  }
+}
+
+impl ::std::default::Default for OpenSearchView<'_> {
+  fn default() -> OpenSearchView<'static> {
+    ::protobuf::__internal::runtime::MessageViewInner::default().into()
+  }
+}
+
+impl<'msg> From<::protobuf::__internal::runtime::MessageViewInner<'msg, OpenSearch>> for OpenSearchView<'msg> {
+  fn from(inner: ::protobuf::__internal::runtime::MessageViewInner<'msg, OpenSearch>) -> Self {
+    Self { inner }
+  }
+}
+
+#[allow(dead_code)]
+impl<'msg> OpenSearchView<'msg> {
+
+  pub fn to_owned(&self) -> OpenSearch {
+    ::protobuf::IntoProxied::into_proxied(*self, ::protobuf::__internal::Private)
+  }
+
+  // cluster_name: optional string
+  pub fn cluster_name(self) -> ::protobuf::View<'msg, ::protobuf::ProtoString> {
+    let str_view = unsafe {
+      self.inner.ptr().get_string_at_index(
+        0, (b"").into()
+      )
+    };
+    // SAFETY: The runtime doesn't require ProtoStr to be UTF-8.
+    unsafe { ::protobuf::ProtoStr::from_utf8_unchecked(str_view.as_ref()) }
+  }
+
+  // status: optional string
+  pub fn status(self) -> ::protobuf::View<'msg, ::protobuf::ProtoString> {
+    let str_view = unsafe {
+      self.inner.ptr().get_string_at_index(
+        1, (b"").into()
+      )
+    };
+    // SAFETY: The runtime doesn't require ProtoStr to be UTF-8.
+    unsafe { ::protobuf::ProtoStr::from_utf8_unchecked(str_view.as_ref()) }
+  }
+
+  // timed_out: optional bool
+  pub fn timed_out(self) -> bool {
+    unsafe {
+      // TODO: b/361751487: This .into() and .try_into() is only
+      // here for the enum<->i32 case, we should avoid it for
+      // other primitives where the types naturally match
+      // perfectly (and do an unchecked conversion for
+      // i32->enum types, since even for closed enums we trust
+      // upb to only return one of the named values).
+      self.inner.ptr().get_bool_at_index(
+        2, (false).into()
+      ).try_into().unwrap()
+    }
+  }
+
+  // number_of_nodes: optional uint32
+  pub fn number_of_nodes(self) -> u32 {
+    unsafe {
+      // TODO: b/361751487: This .into() and .try_into() is only
+      // here for the enum<->i32 case, we should avoid it for
+      // other primitives where the types naturally match
+      // perfectly (and do an unchecked conversion for
+      // i32->enum types, since even for closed enums we trust
+      // upb to only return one of the named values).
+      self.inner.ptr().get_u32_at_index(
+        3, (0u32).into()
+      ).try_into().unwrap()
+    }
+  }
+
+  // number_of_data_nodes: optional uint32
+  pub fn number_of_data_nodes(self) -> u32 {
+    unsafe {
+      // TODO: b/361751487: This .into() and .try_into() is only
+      // here for the enum<->i32 case, we should avoid it for
+      // other primitives where the types naturally match
+      // perfectly (and do an unchecked conversion for
+      // i32->enum types, since even for closed enums we trust
+      // upb to only return one of the named values).
+      self.inner.ptr().get_u32_at_index(
+        4, (0u32).into()
+      ).try_into().unwrap()
+    }
+  }
+
+  // discovered_master: optional bool
+  pub fn discovered_master(self) -> bool {
+    unsafe {
+      // TODO: b/361751487: This .into() and .try_into() is only
+      // here for the enum<->i32 case, we should avoid it for
+      // other primitives where the types naturally match
+      // perfectly (and do an unchecked conversion for
+      // i32->enum types, since even for closed enums we trust
+      // upb to only return one of the named values).
+      self.inner.ptr().get_bool_at_index(
+        5, (false).into()
+      ).try_into().unwrap()
+    }
+  }
+
+  // discovered_cluster_manager: optional bool
+  pub fn discovered_cluster_manager(self) -> bool {
+    unsafe {
+      // TODO: b/361751487: This .into() and .try_into() is only
+      // here for the enum<->i32 case, we should avoid it for
+      // other primitives where the types naturally match
+      // perfectly (and do an unchecked conversion for
+      // i32->enum types, since even for closed enums we trust
+      // upb to only return one of the named values).
+      self.inner.ptr().get_bool_at_index(
+        6, (false).into()
+      ).try_into().unwrap()
+    }
+  }
+
+  // active_primary_shards: optional uint32
+  pub fn active_primary_shards(self) -> u32 {
+    unsafe {
+      // TODO: b/361751487: This .into() and .try_into() is only
+      // here for the enum<->i32 case, we should avoid it for
+      // other primitives where the types naturally match
+      // perfectly (and do an unchecked conversion for
+      // i32->enum types, since even for closed enums we trust
+      // upb to only return one of the named values).
+      self.inner.ptr().get_u32_at_index(
+        7, (0u32).into()
+      ).try_into().unwrap()
+    }
+  }
+
+  // active_shards: optional uint32
+  pub fn active_shards(self) -> u32 {
+    unsafe {
+      // TODO: b/361751487: This .into() and .try_into() is only
+      // here for the enum<->i32 case, we should avoid it for
+      // other primitives where the types naturally match
+      // perfectly (and do an unchecked conversion for
+      // i32->enum types, since even for closed enums we trust
+      // upb to only return one of the named values).
+      self.inner.ptr().get_u32_at_index(
+        8, (0u32).into()
+      ).try_into().unwrap()
+    }
+  }
+
+  // relocating_shards: optional uint32
+  pub fn relocating_shards(self) -> u32 {
+    unsafe {
+      // TODO: b/361751487: This .into() and .try_into() is only
+      // here for the enum<->i32 case, we should avoid it for
+      // other primitives where the types naturally match
+      // perfectly (and do an unchecked conversion for
+      // i32->enum types, since even for closed enums we trust
+      // upb to only return one of the named values).
+      self.inner.ptr().get_u32_at_index(
+        9, (0u32).into()
+      ).try_into().unwrap()
+    }
+  }
+
+  // initializing_shards: optional uint32
+  pub fn initializing_shards(self) -> u32 {
+    unsafe {
+      // TODO: b/361751487: This .into() and .try_into() is only
+      // here for the enum<->i32 case, we should avoid it for
+      // other primitives where the types naturally match
+      // perfectly (and do an unchecked conversion for
+      // i32->enum types, since even for closed enums we trust
+      // upb to only return one of the named values).
+      self.inner.ptr().get_u32_at_index(
+        10, (0u32).into()
+      ).try_into().unwrap()
+    }
+  }
+
+  // unassigned_shards: optional uint32
+  pub fn unassigned_shards(self) -> u32 {
+    unsafe {
+      // TODO: b/361751487: This .into() and .try_into() is only
+      // here for the enum<->i32 case, we should avoid it for
+      // other primitives where the types naturally match
+      // perfectly (and do an unchecked conversion for
+      // i32->enum types, since even for closed enums we trust
+      // upb to only return one of the named values).
+      self.inner.ptr().get_u32_at_index(
+        11, (0u32).into()
+      ).try_into().unwrap()
+    }
+  }
+
+  // delayed_unassigned_shards: optional uint32
+  pub fn delayed_unassigned_shards(self) -> u32 {
+    unsafe {
+      // TODO: b/361751487: This .into() and .try_into() is only
+      // here for the enum<->i32 case, we should avoid it for
+      // other primitives where the types naturally match
+      // perfectly (and do an unchecked conversion for
+      // i32->enum types, since even for closed enums we trust
+      // upb to only return one of the named values).
+      self.inner.ptr().get_u32_at_index(
+        12, (0u32).into()
+      ).try_into().unwrap()
+    }
+  }
+
+  // number_of_pending_tasks: optional uint32
+  pub fn number_of_pending_tasks(self) -> u32 {
+    unsafe {
+      // TODO: b/361751487: This .into() and .try_into() is only
+      // here for the enum<->i32 case, we should avoid it for
+      // other primitives where the types naturally match
+      // perfectly (and do an unchecked conversion for
+      // i32->enum types, since even for closed enums we trust
+      // upb to only return one of the named values).
+      self.inner.ptr().get_u32_at_index(
+        13, (0u32).into()
+      ).try_into().unwrap()
+    }
+  }
+
+  // number_of_in_flight_fetch: optional uint32
+  pub fn number_of_in_flight_fetch(self) -> u32 {
+    unsafe {
+      // TODO: b/361751487: This .into() and .try_into() is only
+      // here for the enum<->i32 case, we should avoid it for
+      // other primitives where the types naturally match
+      // perfectly (and do an unchecked conversion for
+      // i32->enum types, since even for closed enums we trust
+      // upb to only return one of the named values).
+      self.inner.ptr().get_u32_at_index(
+        14, (0u32).into()
+      ).try_into().unwrap()
+    }
+  }
+
+  // task_max_waiting_in_queue_millis: optional uint32
+  pub fn task_max_waiting_in_queue_millis(self) -> u32 {
+    unsafe {
+      // TODO: b/361751487: This .into() and .try_into() is only
+      // here for the enum<->i32 case, we should avoid it for
+      // other primitives where the types naturally match
+      // perfectly (and do an unchecked conversion for
+      // i32->enum types, since even for closed enums we trust
+      // upb to only return one of the named values).
+      self.inner.ptr().get_u32_at_index(
+        15, (0u32).into()
+      ).try_into().unwrap()
+    }
+  }
+
+  // active_shards_percent_as_number: optional float
+  pub fn active_shards_percent_as_number(self) -> f32 {
+    unsafe {
+      // TODO: b/361751487: This .into() and .try_into() is only
+      // here for the enum<->i32 case, we should avoid it for
+      // other primitives where the types naturally match
+      // perfectly (and do an unchecked conversion for
+      // i32->enum types, since even for closed enums we trust
+      // upb to only return one of the named values).
+      self.inner.ptr().get_f32_at_index(
+        16, (0f32).into()
+      ).try_into().unwrap()
+    }
+  }
+
+}
+
+// SAFETY:
+// - `OpenSearchView` is `Sync` because it does not support mutation.
+unsafe impl Sync for OpenSearchView<'_> {}
+
+// SAFETY:
+// - `OpenSearchView` is `Send` because while its alive a `OpenSearchMut` cannot.
+// - `OpenSearchView` does not use thread-local data.
+unsafe impl Send for OpenSearchView<'_> {}
+
+impl<'msg> ::protobuf::AsView for OpenSearchView<'msg> {
+  type Proxied = OpenSearch;
+  fn as_view(&self) -> ::protobuf::View<'msg, OpenSearch> {
+    *self
+  }
+}
+
+impl<'msg> ::protobuf::IntoView<'msg> for OpenSearchView<'msg> {
+  fn into_view<'shorter>(self) -> OpenSearchView<'shorter>
+  where
+      'msg: 'shorter {
+    self
+  }
+}
+
+impl<'msg> ::protobuf::IntoProxied<OpenSearch> for OpenSearchView<'msg> {
+  fn into_proxied(self, _private: ::protobuf::__internal::Private) -> OpenSearch {
+    let mut dst = OpenSearch::new();
+    assert!(unsafe {
+      dst.inner.ptr_mut().deep_copy(self.inner.ptr(), dst.inner.arena())
+    });
+    dst
+  }
+}
+
+impl<'msg> ::protobuf::IntoProxied<OpenSearch> for OpenSearchMut<'msg> {
+  fn into_proxied(self, _private: ::protobuf::__internal::Private) -> OpenSearch {
+    ::protobuf::IntoProxied::into_proxied(::protobuf::IntoView::into_view(self), _private)
+  }
+}
+
+impl ::protobuf::__internal::runtime::EntityType for OpenSearch {
+    type Tag = ::protobuf::__internal::runtime::MessageTag;
+}
+
+impl<'msg> ::protobuf::__internal::runtime::EntityType for OpenSearchView<'msg> {
+    type Tag = ::protobuf::__internal::runtime::ViewProxyTag;
+}
+
+impl<'msg> ::protobuf::__internal::runtime::EntityType for OpenSearchMut<'msg> {
+    type Tag = ::protobuf::__internal::runtime::MutProxyTag;
+}
+
+#[allow(dead_code)]
+#[allow(non_camel_case_types)]
+pub struct OpenSearchMut<'msg> {
+  inner: ::protobuf::__internal::runtime::MessageMutInner<'msg, OpenSearch>,
+}
+
+impl<'msg> ::protobuf::__internal::SealedInternal for OpenSearchMut<'msg> {}
+
+impl<'msg> ::protobuf::MessageMut<'msg> for OpenSearchMut<'msg> {
+  type Message = OpenSearch;
+}
+
+impl ::std::fmt::Debug for OpenSearchMut<'_> {
+  fn fmt(&self, f: &mut ::std::fmt::Formatter<'_>) -> ::std::fmt::Result {
+    write!(f, "{}", ::protobuf::__internal::runtime::debug_string(self))
+  }
+}
+
+impl<'msg> From<::protobuf::__internal::runtime::MessageMutInner<'msg, OpenSearch>> for OpenSearchMut<'msg> {
+  fn from(inner: ::protobuf::__internal::runtime::MessageMutInner<'msg, OpenSearch>) -> Self {
+    Self { inner }
+  }
+}
+
+#[allow(dead_code)]
+impl<'msg> OpenSearchMut<'msg> {
+
+  #[doc(hidden)]
+  pub fn as_message_mut_inner(&mut self, _private: ::protobuf::__internal::Private)
+    -> ::protobuf::__internal::runtime::MessageMutInner<'msg, OpenSearch> {
+    self.inner
+  }
+
+  pub fn to_owned(&self) -> OpenSearch {
+    ::protobuf::AsView::as_view(self).to_owned()
+  }
+
+  // cluster_name: optional string
+  pub fn cluster_name(&self) -> ::protobuf::View<'_, ::protobuf::ProtoString> {
+    let str_view = unsafe {
+      self.inner.ptr().get_string_at_index(
+        0, (b"").into()
+      )
+    };
+    // SAFETY: The runtime doesn't require ProtoStr to be UTF-8.
+    unsafe { ::protobuf::ProtoStr::from_utf8_unchecked(str_view.as_ref()) }
+  }
+  pub fn set_cluster_name(&mut self, val: impl ::protobuf::IntoProxied<::protobuf::ProtoString>) {
+    unsafe {
+      ::protobuf::__internal::runtime::message_set_string_field(
+        ::protobuf::AsMut::as_mut(self).inner,
+        0,
+        val);
+    }
+  }
+
+  // status: optional string
+  pub fn status(&self) -> ::protobuf::View<'_, ::protobuf::ProtoString> {
+    let str_view = unsafe {
+      self.inner.ptr().get_string_at_index(
+        1, (b"").into()
+      )
+    };
+    // SAFETY: The runtime doesn't require ProtoStr to be UTF-8.
+    unsafe { ::protobuf::ProtoStr::from_utf8_unchecked(str_view.as_ref()) }
+  }
+  pub fn set_status(&mut self, val: impl ::protobuf::IntoProxied<::protobuf::ProtoString>) {
+    unsafe {
+      ::protobuf::__internal::runtime::message_set_string_field(
+        ::protobuf::AsMut::as_mut(self).inner,
+        1,
+        val);
+    }
+  }
+
+  // timed_out: optional bool
+  pub fn timed_out(&self) -> bool {
+    unsafe {
+      // TODO: b/361751487: This .into() and .try_into() is only
+      // here for the enum<->i32 case, we should avoid it for
+      // other primitives where the types naturally match
+      // perfectly (and do an unchecked conversion for
+      // i32->enum types, since even for closed enums we trust
+      // upb to only return one of the named values).
+      self.inner.ptr().get_bool_at_index(
+        2, (false).into()
+      ).try_into().unwrap()
+    }
+  }
+  pub fn set_timed_out(&mut self, val: bool) {
+    unsafe {
+      // TODO: b/361751487: This .into() is only here
+      // here for the enum<->i32 case, we should avoid it for
+      // other primitives where the types naturally match
+      //perfectly.
+      self.inner.ptr_mut().set_base_field_bool_at_index(
+        2, val.into()
+      )
+    }
+  }
+
+  // number_of_nodes: optional uint32
+  pub fn number_of_nodes(&self) -> u32 {
+    unsafe {
+      // TODO: b/361751487: This .into() and .try_into() is only
+      // here for the enum<->i32 case, we should avoid it for
+      // other primitives where the types naturally match
+      // perfectly (and do an unchecked conversion for
+      // i32->enum types, since even for closed enums we trust
+      // upb to only return one of the named values).
+      self.inner.ptr().get_u32_at_index(
+        3, (0u32).into()
+      ).try_into().unwrap()
+    }
+  }
+  pub fn set_number_of_nodes(&mut self, val: u32) {
+    unsafe {
+      // TODO: b/361751487: This .into() is only here
+      // here for the enum<->i32 case, we should avoid it for
+      // other primitives where the types naturally match
+      //perfectly.
+      self.inner.ptr_mut().set_base_field_u32_at_index(
+        3, val.into()
+      )
+    }
+  }
+
+  // number_of_data_nodes: optional uint32
+  pub fn number_of_data_nodes(&self) -> u32 {
+    unsafe {
+      // TODO: b/361751487: This .into() and .try_into() is only
+      // here for the enum<->i32 case, we should avoid it for
+      // other primitives where the types naturally match
+      // perfectly (and do an unchecked conversion for
+      // i32->enum types, since even for closed enums we trust
+      // upb to only return one of the named values).
+      self.inner.ptr().get_u32_at_index(
+        4, (0u32).into()
+      ).try_into().unwrap()
+    }
+  }
+  pub fn set_number_of_data_nodes(&mut self, val: u32) {
+    unsafe {
+      // TODO: b/361751487: This .into() is only here
+      // here for the enum<->i32 case, we should avoid it for
+      // other primitives where the types naturally match
+      //perfectly.
+      self.inner.ptr_mut().set_base_field_u32_at_index(
+        4, val.into()
+      )
+    }
+  }
+
+  // discovered_master: optional bool
+  pub fn discovered_master(&self) -> bool {
+    unsafe {
+      // TODO: b/361751487: This .into() and .try_into() is only
+      // here for the enum<->i32 case, we should avoid it for
+      // other primitives where the types naturally match
+      // perfectly (and do an unchecked conversion for
+      // i32->enum types, since even for closed enums we trust
+      // upb to only return one of the named values).
+      self.inner.ptr().get_bool_at_index(
+        5, (false).into()
+      ).try_into().unwrap()
+    }
+  }
+  pub fn set_discovered_master(&mut self, val: bool) {
+    unsafe {
+      // TODO: b/361751487: This .into() is only here
+      // here for the enum<->i32 case, we should avoid it for
+      // other primitives where the types naturally match
+      //perfectly.
+      self.inner.ptr_mut().set_base_field_bool_at_index(
+        5, val.into()
+      )
+    }
+  }
+
+  // discovered_cluster_manager: optional bool
+  pub fn discovered_cluster_manager(&self) -> bool {
+    unsafe {
+      // TODO: b/361751487: This .into() and .try_into() is only
+      // here for the enum<->i32 case, we should avoid it for
+      // other primitives where the types naturally match
+      // perfectly (and do an unchecked conversion for
+      // i32->enum types, since even for closed enums we trust
+      // upb to only return one of the named values).
+      self.inner.ptr().get_bool_at_index(
+        6, (false).into()
+      ).try_into().unwrap()
+    }
+  }
+  pub fn set_discovered_cluster_manager(&mut self, val: bool) {
+    unsafe {
+      // TODO: b/361751487: This .into() is only here
+      // here for the enum<->i32 case, we should avoid it for
+      // other primitives where the types naturally match
+      //perfectly.
+      self.inner.ptr_mut().set_base_field_bool_at_index(
+        6, val.into()
+      )
+    }
+  }
+
+  // active_primary_shards: optional uint32
+  pub fn active_primary_shards(&self) -> u32 {
+    unsafe {
+      // TODO: b/361751487: This .into() and .try_into() is only
+      // here for the enum<->i32 case, we should avoid it for
+      // other primitives where the types naturally match
+      // perfectly (and do an unchecked conversion for
+      // i32->enum types, since even for closed enums we trust
+      // upb to only return one of the named values).
+      self.inner.ptr().get_u32_at_index(
+        7, (0u32).into()
+      ).try_into().unwrap()
+    }
+  }
+  pub fn set_active_primary_shards(&mut self, val: u32) {
+    unsafe {
+      // TODO: b/361751487: This .into() is only here
+      // here for the enum<->i32 case, we should avoid it for
+      // other primitives where the types naturally match
+      //perfectly.
+      self.inner.ptr_mut().set_base_field_u32_at_index(
+        7, val.into()
+      )
+    }
+  }
+
+  // active_shards: optional uint32
+  pub fn active_shards(&self) -> u32 {
+    unsafe {
+      // TODO: b/361751487: This .into() and .try_into() is only
+      // here for the enum<->i32 case, we should avoid it for
+      // other primitives where the types naturally match
+      // perfectly (and do an unchecked conversion for
+      // i32->enum types, since even for closed enums we trust
+      // upb to only return one of the named values).
+      self.inner.ptr().get_u32_at_index(
+        8, (0u32).into()
+      ).try_into().unwrap()
+    }
+  }
+  pub fn set_active_shards(&mut self, val: u32) {
+    unsafe {
+      // TODO: b/361751487: This .into() is only here
+      // here for the enum<->i32 case, we should avoid it for
+      // other primitives where the types naturally match
+      //perfectly.
+      self.inner.ptr_mut().set_base_field_u32_at_index(
+        8, val.into()
+      )
+    }
+  }
+
+  // relocating_shards: optional uint32
+  pub fn relocating_shards(&self) -> u32 {
+    unsafe {
+      // TODO: b/361751487: This .into() and .try_into() is only
+      // here for the enum<->i32 case, we should avoid it for
+      // other primitives where the types naturally match
+      // perfectly (and do an unchecked conversion for
+      // i32->enum types, since even for closed enums we trust
+      // upb to only return one of the named values).
+      self.inner.ptr().get_u32_at_index(
+        9, (0u32).into()
+      ).try_into().unwrap()
+    }
+  }
+  pub fn set_relocating_shards(&mut self, val: u32) {
+    unsafe {
+      // TODO: b/361751487: This .into() is only here
+      // here for the enum<->i32 case, we should avoid it for
+      // other primitives where the types naturally match
+      //perfectly.
+      self.inner.ptr_mut().set_base_field_u32_at_index(
+        9, val.into()
+      )
+    }
+  }
+
+  // initializing_shards: optional uint32
+  pub fn initializing_shards(&self) -> u32 {
+    unsafe {
+      // TODO: b/361751487: This .into() and .try_into() is only
+      // here for the enum<->i32 case, we should avoid it for
+      // other primitives where the types naturally match
+      // perfectly (and do an unchecked conversion for
+      // i32->enum types, since even for closed enums we trust
+      // upb to only return one of the named values).
+      self.inner.ptr().get_u32_at_index(
+        10, (0u32).into()
+      ).try_into().unwrap()
+    }
+  }
+  pub fn set_initializing_shards(&mut self, val: u32) {
+    unsafe {
+      // TODO: b/361751487: This .into() is only here
+      // here for the enum<->i32 case, we should avoid it for
+      // other primitives where the types naturally match
+      //perfectly.
+      self.inner.ptr_mut().set_base_field_u32_at_index(
+        10, val.into()
+      )
+    }
+  }
+
+  // unassigned_shards: optional uint32
+  pub fn unassigned_shards(&self) -> u32 {
+    unsafe {
+      // TODO: b/361751487: This .into() and .try_into() is only
+      // here for the enum<->i32 case, we should avoid it for
+      // other primitives where the types naturally match
+      // perfectly (and do an unchecked conversion for
+      // i32->enum types, since even for closed enums we trust
+      // upb to only return one of the named values).
+      self.inner.ptr().get_u32_at_index(
+        11, (0u32).into()
+      ).try_into().unwrap()
+    }
+  }
+  pub fn set_unassigned_shards(&mut self, val: u32) {
+    unsafe {
+      // TODO: b/361751487: This .into() is only here
+      // here for the enum<->i32 case, we should avoid it for
+      // other primitives where the types naturally match
+      //perfectly.
+      self.inner.ptr_mut().set_base_field_u32_at_index(
+        11, val.into()
+      )
+    }
+  }
+
+  // delayed_unassigned_shards: optional uint32
+  pub fn delayed_unassigned_shards(&self) -> u32 {
+    unsafe {
+      // TODO: b/361751487: This .into() and .try_into() is only
+      // here for the enum<->i32 case, we should avoid it for
+      // other primitives where the types naturally match
+      // perfectly (and do an unchecked conversion for
+      // i32->enum types, since even for closed enums we trust
+      // upb to only return one of the named values).
+      self.inner.ptr().get_u32_at_index(
+        12, (0u32).into()
+      ).try_into().unwrap()
+    }
+  }
+  pub fn set_delayed_unassigned_shards(&mut self, val: u32) {
+    unsafe {
+      // TODO: b/361751487: This .into() is only here
+      // here for the enum<->i32 case, we should avoid it for
+      // other primitives where the types naturally match
+      //perfectly.
+      self.inner.ptr_mut().set_base_field_u32_at_index(
+        12, val.into()
+      )
+    }
+  }
+
+  // number_of_pending_tasks: optional uint32
+  pub fn number_of_pending_tasks(&self) -> u32 {
+    unsafe {
+      // TODO: b/361751487: This .into() and .try_into() is only
+      // here for the enum<->i32 case, we should avoid it for
+      // other primitives where the types naturally match
+      // perfectly (and do an unchecked conversion for
+      // i32->enum types, since even for closed enums we trust
+      // upb to only return one of the named values).
+      self.inner.ptr().get_u32_at_index(
+        13, (0u32).into()
+      ).try_into().unwrap()
+    }
+  }
+  pub fn set_number_of_pending_tasks(&mut self, val: u32) {
+    unsafe {
+      // TODO: b/361751487: This .into() is only here
+      // here for the enum<->i32 case, we should avoid it for
+      // other primitives where the types naturally match
+      //perfectly.
+      self.inner.ptr_mut().set_base_field_u32_at_index(
+        13, val.into()
+      )
+    }
+  }
+
+  // number_of_in_flight_fetch: optional uint32
+  pub fn number_of_in_flight_fetch(&self) -> u32 {
+    unsafe {
+      // TODO: b/361751487: This .into() and .try_into() is only
+      // here for the enum<->i32 case, we should avoid it for
+      // other primitives where the types naturally match
+      // perfectly (and do an unchecked conversion for
+      // i32->enum types, since even for closed enums we trust
+      // upb to only return one of the named values).
+      self.inner.ptr().get_u32_at_index(
+        14, (0u32).into()
+      ).try_into().unwrap()
+    }
+  }
+  pub fn set_number_of_in_flight_fetch(&mut self, val: u32) {
+    unsafe {
+      // TODO: b/361751487: This .into() is only here
+      // here for the enum<->i32 case, we should avoid it for
+      // other primitives where the types naturally match
+      //perfectly.
+      self.inner.ptr_mut().set_base_field_u32_at_index(
+        14, val.into()
+      )
+    }
+  }
+
+  // task_max_waiting_in_queue_millis: optional uint32
+  pub fn task_max_waiting_in_queue_millis(&self) -> u32 {
+    unsafe {
+      // TODO: b/361751487: This .into() and .try_into() is only
+      // here for the enum<->i32 case, we should avoid it for
+      // other primitives where the types naturally match
+      // perfectly (and do an unchecked conversion for
+      // i32->enum types, since even for closed enums we trust
+      // upb to only return one of the named values).
+      self.inner.ptr().get_u32_at_index(
+        15, (0u32).into()
+      ).try_into().unwrap()
+    }
+  }
+  pub fn set_task_max_waiting_in_queue_millis(&mut self, val: u32) {
+    unsafe {
+      // TODO: b/361751487: This .into() is only here
+      // here for the enum<->i32 case, we should avoid it for
+      // other primitives where the types naturally match
+      //perfectly.
+      self.inner.ptr_mut().set_base_field_u32_at_index(
+        15, val.into()
+      )
+    }
+  }
+
+  // active_shards_percent_as_number: optional float
+  pub fn active_shards_percent_as_number(&self) -> f32 {
+    unsafe {
+      // TODO: b/361751487: This .into() and .try_into() is only
+      // here for the enum<->i32 case, we should avoid it for
+      // other primitives where the types naturally match
+      // perfectly (and do an unchecked conversion for
+      // i32->enum types, since even for closed enums we trust
+      // upb to only return one of the named values).
+      self.inner.ptr().get_f32_at_index(
+        16, (0f32).into()
+      ).try_into().unwrap()
+    }
+  }
+  pub fn set_active_shards_percent_as_number(&mut self, val: f32) {
+    unsafe {
+      // TODO: b/361751487: This .into() is only here
+      // here for the enum<->i32 case, we should avoid it for
+      // other primitives where the types naturally match
+      //perfectly.
+      self.inner.ptr_mut().set_base_field_f32_at_index(
+        16, val.into()
+      )
+    }
+  }
+
+}
+
+// SAFETY:
+// - `OpenSearchMut` does not perform any shared mutation.
+unsafe impl Send for OpenSearchMut<'_> {}
+
+// SAFETY:
+// - `OpenSearchMut` does not perform any shared mutation.
+unsafe impl Sync for OpenSearchMut<'_> {}
+
+impl<'msg> ::protobuf::AsView for OpenSearchMut<'msg> {
+  type Proxied = OpenSearch;
+  fn as_view(&self) -> ::protobuf::View<'_, OpenSearch> {
+    OpenSearchView {
+      inner: ::protobuf::__internal::runtime::MessageViewInner::view_of_mut(self.inner)
+    }
+  }
+}
+
+impl<'msg> ::protobuf::IntoView<'msg> for OpenSearchMut<'msg> {
+  fn into_view<'shorter>(self) -> ::protobuf::View<'shorter, OpenSearch>
+  where
+      'msg: 'shorter {
+    OpenSearchView {
+      inner: ::protobuf::__internal::runtime::MessageViewInner::view_of_mut(self.inner)
+    }
+  }
+}
+
+impl<'msg> ::protobuf::AsMut for OpenSearchMut<'msg> {
+  type MutProxied = OpenSearch;
+  fn as_mut(&mut self) -> OpenSearchMut<'msg> {
+    OpenSearchMut { inner: self.inner }
+  }
+}
+
+impl<'msg> ::protobuf::IntoMut<'msg> for OpenSearchMut<'msg> {
+  fn into_mut<'shorter>(self) -> OpenSearchMut<'shorter>
+  where
+      'msg: 'shorter {
+    self
+  }
+}
+
+#[allow(dead_code)]
+impl OpenSearch {
+  pub fn new() -> Self {
+    Self { inner: ::protobuf::__internal::runtime::OwnedMessageInner::<Self>::new() }
+  }
+
+
+  #[doc(hidden)]
+  pub fn as_message_mut_inner(&mut self, _private: ::protobuf::__internal::Private) -> ::protobuf::__internal::runtime::MessageMutInner<'_, OpenSearch> {
+    ::protobuf::__internal::runtime::MessageMutInner::mut_of_owned(&mut self.inner)
+  }
+
+  pub fn as_view(&self) -> OpenSearchView<'_> {
+    ::protobuf::__internal::runtime::MessageViewInner::view_of_owned(&self.inner).into()
+  }
+
+  pub fn as_mut(&mut self) -> OpenSearchMut<'_> {
+    ::protobuf::__internal::runtime::MessageMutInner::mut_of_owned(&mut self.inner).into()
+  }
+
+  // cluster_name: optional string
+  pub fn cluster_name(&self) -> ::protobuf::View<'_, ::protobuf::ProtoString> {
+    let str_view = unsafe {
+      self.inner.ptr().get_string_at_index(
+        0, (b"").into()
+      )
+    };
+    // SAFETY: The runtime doesn't require ProtoStr to be UTF-8.
+    unsafe { ::protobuf::ProtoStr::from_utf8_unchecked(str_view.as_ref()) }
+  }
+  pub fn set_cluster_name(&mut self, val: impl ::protobuf::IntoProxied<::protobuf::ProtoString>) {
+    unsafe {
+      ::protobuf::__internal::runtime::message_set_string_field(
+        ::protobuf::AsMut::as_mut(self).inner,
+        0,
+        val);
+    }
+  }
+
+  // status: optional string
+  pub fn status(&self) -> ::protobuf::View<'_, ::protobuf::ProtoString> {
+    let str_view = unsafe {
+      self.inner.ptr().get_string_at_index(
+        1, (b"").into()
+      )
+    };
+    // SAFETY: The runtime doesn't require ProtoStr to be UTF-8.
+    unsafe { ::protobuf::ProtoStr::from_utf8_unchecked(str_view.as_ref()) }
+  }
+  pub fn set_status(&mut self, val: impl ::protobuf::IntoProxied<::protobuf::ProtoString>) {
+    unsafe {
+      ::protobuf::__internal::runtime::message_set_string_field(
+        ::protobuf::AsMut::as_mut(self).inner,
+        1,
+        val);
+    }
+  }
+
+  // timed_out: optional bool
+  pub fn timed_out(&self) -> bool {
+    unsafe {
+      // TODO: b/361751487: This .into() and .try_into() is only
+      // here for the enum<->i32 case, we should avoid it for
+      // other primitives where the types naturally match
+      // perfectly (and do an unchecked conversion for
+      // i32->enum types, since even for closed enums we trust
+      // upb to only return one of the named values).
+      self.inner.ptr().get_bool_at_index(
+        2, (false).into()
+      ).try_into().unwrap()
+    }
+  }
+  pub fn set_timed_out(&mut self, val: bool) {
+    unsafe {
+      // TODO: b/361751487: This .into() is only here
+      // here for the enum<->i32 case, we should avoid it for
+      // other primitives where the types naturally match
+      //perfectly.
+      self.inner.ptr_mut().set_base_field_bool_at_index(
+        2, val.into()
+      )
+    }
+  }
+
+  // number_of_nodes: optional uint32
+  pub fn number_of_nodes(&self) -> u32 {
+    unsafe {
+      // TODO: b/361751487: This .into() and .try_into() is only
+      // here for the enum<->i32 case, we should avoid it for
+      // other primitives where the types naturally match
+      // perfectly (and do an unchecked conversion for
+      // i32->enum types, since even for closed enums we trust
+      // upb to only return one of the named values).
+      self.inner.ptr().get_u32_at_index(
+        3, (0u32).into()
+      ).try_into().unwrap()
+    }
+  }
+  pub fn set_number_of_nodes(&mut self, val: u32) {
+    unsafe {
+      // TODO: b/361751487: This .into() is only here
+      // here for the enum<->i32 case, we should avoid it for
+      // other primitives where the types naturally match
+      //perfectly.
+      self.inner.ptr_mut().set_base_field_u32_at_index(
+        3, val.into()
+      )
+    }
+  }
+
+  // number_of_data_nodes: optional uint32
+  pub fn number_of_data_nodes(&self) -> u32 {
+    unsafe {
+      // TODO: b/361751487: This .into() and .try_into() is only
+      // here for the enum<->i32 case, we should avoid it for
+      // other primitives where the types naturally match
+      // perfectly (and do an unchecked conversion for
+      // i32->enum types, since even for closed enums we trust
+      // upb to only return one of the named values).
+      self.inner.ptr().get_u32_at_index(
+        4, (0u32).into()
+      ).try_into().unwrap()
+    }
+  }
+  pub fn set_number_of_data_nodes(&mut self, val: u32) {
+    unsafe {
+      // TODO: b/361751487: This .into() is only here
+      // here for the enum<->i32 case, we should avoid it for
+      // other primitives where the types naturally match
+      //perfectly.
+      self.inner.ptr_mut().set_base_field_u32_at_index(
+        4, val.into()
+      )
+    }
+  }
+
+  // discovered_master: optional bool
+  pub fn discovered_master(&self) -> bool {
+    unsafe {
+      // TODO: b/361751487: This .into() and .try_into() is only
+      // here for the enum<->i32 case, we should avoid it for
+      // other primitives where the types naturally match
+      // perfectly (and do an unchecked conversion for
+      // i32->enum types, since even for closed enums we trust
+      // upb to only return one of the named values).
+      self.inner.ptr().get_bool_at_index(
+        5, (false).into()
+      ).try_into().unwrap()
+    }
+  }
+  pub fn set_discovered_master(&mut self, val: bool) {
+    unsafe {
+      // TODO: b/361751487: This .into() is only here
+      // here for the enum<->i32 case, we should avoid it for
+      // other primitives where the types naturally match
+      //perfectly.
+      self.inner.ptr_mut().set_base_field_bool_at_index(
+        5, val.into()
+      )
+    }
+  }
+
+  // discovered_cluster_manager: optional bool
+  pub fn discovered_cluster_manager(&self) -> bool {
+    unsafe {
+      // TODO: b/361751487: This .into() and .try_into() is only
+      // here for the enum<->i32 case, we should avoid it for
+      // other primitives where the types naturally match
+      // perfectly (and do an unchecked conversion for
+      // i32->enum types, since even for closed enums we trust
+      // upb to only return one of the named values).
+      self.inner.ptr().get_bool_at_index(
+        6, (false).into()
+      ).try_into().unwrap()
+    }
+  }
+  pub fn set_discovered_cluster_manager(&mut self, val: bool) {
+    unsafe {
+      // TODO: b/361751487: This .into() is only here
+      // here for the enum<->i32 case, we should avoid it for
+      // other primitives where the types naturally match
+      //perfectly.
+      self.inner.ptr_mut().set_base_field_bool_at_index(
+        6, val.into()
+      )
+    }
+  }
+
+  // active_primary_shards: optional uint32
+  pub fn active_primary_shards(&self) -> u32 {
+    unsafe {
+      // TODO: b/361751487: This .into() and .try_into() is only
+      // here for the enum<->i32 case, we should avoid it for
+      // other primitives where the types naturally match
+      // perfectly (and do an unchecked conversion for
+      // i32->enum types, since even for closed enums we trust
+      // upb to only return one of the named values).
+      self.inner.ptr().get_u32_at_index(
+        7, (0u32).into()
+      ).try_into().unwrap()
+    }
+  }
+  pub fn set_active_primary_shards(&mut self, val: u32) {
+    unsafe {
+      // TODO: b/361751487: This .into() is only here
+      // here for the enum<->i32 case, we should avoid it for
+      // other primitives where the types naturally match
+      //perfectly.
+      self.inner.ptr_mut().set_base_field_u32_at_index(
+        7, val.into()
+      )
+    }
+  }
+
+  // active_shards: optional uint32
+  pub fn active_shards(&self) -> u32 {
+    unsafe {
+      // TODO: b/361751487: This .into() and .try_into() is only
+      // here for the enum<->i32 case, we should avoid it for
+      // other primitives where the types naturally match
+      // perfectly (and do an unchecked conversion for
+      // i32->enum types, since even for closed enums we trust
+      // upb to only return one of the named values).
+      self.inner.ptr().get_u32_at_index(
+        8, (0u32).into()
+      ).try_into().unwrap()
+    }
+  }
+  pub fn set_active_shards(&mut self, val: u32) {
+    unsafe {
+      // TODO: b/361751487: This .into() is only here
+      // here for the enum<->i32 case, we should avoid it for
+      // other primitives where the types naturally match
+      //perfectly.
+      self.inner.ptr_mut().set_base_field_u32_at_index(
+        8, val.into()
+      )
+    }
+  }
+
+  // relocating_shards: optional uint32
+  pub fn relocating_shards(&self) -> u32 {
+    unsafe {
+      // TODO: b/361751487: This .into() and .try_into() is only
+      // here for the enum<->i32 case, we should avoid it for
+      // other primitives where the types naturally match
+      // perfectly (and do an unchecked conversion for
+      // i32->enum types, since even for closed enums we trust
+      // upb to only return one of the named values).
+      self.inner.ptr().get_u32_at_index(
+        9, (0u32).into()
+      ).try_into().unwrap()
+    }
+  }
+  pub fn set_relocating_shards(&mut self, val: u32) {
+    unsafe {
+      // TODO: b/361751487: This .into() is only here
+      // here for the enum<->i32 case, we should avoid it for
+      // other primitives where the types naturally match
+      //perfectly.
+      self.inner.ptr_mut().set_base_field_u32_at_index(
+        9, val.into()
+      )
+    }
+  }
+
+  // initializing_shards: optional uint32
+  pub fn initializing_shards(&self) -> u32 {
+    unsafe {
+      // TODO: b/361751487: This .into() and .try_into() is only
+      // here for the enum<->i32 case, we should avoid it for
+      // other primitives where the types naturally match
+      // perfectly (and do an unchecked conversion for
+      // i32->enum types, since even for closed enums we trust
+      // upb to only return one of the named values).
+      self.inner.ptr().get_u32_at_index(
+        10, (0u32).into()
+      ).try_into().unwrap()
+    }
+  }
+  pub fn set_initializing_shards(&mut self, val: u32) {
+    unsafe {
+      // TODO: b/361751487: This .into() is only here
+      // here for the enum<->i32 case, we should avoid it for
+      // other primitives where the types naturally match
+      //perfectly.
+      self.inner.ptr_mut().set_base_field_u32_at_index(
+        10, val.into()
+      )
+    }
+  }
+
+  // unassigned_shards: optional uint32
+  pub fn unassigned_shards(&self) -> u32 {
+    unsafe {
+      // TODO: b/361751487: This .into() and .try_into() is only
+      // here for the enum<->i32 case, we should avoid it for
+      // other primitives where the types naturally match
+      // perfectly (and do an unchecked conversion for
+      // i32->enum types, since even for closed enums we trust
+      // upb to only return one of the named values).
+      self.inner.ptr().get_u32_at_index(
+        11, (0u32).into()
+      ).try_into().unwrap()
+    }
+  }
+  pub fn set_unassigned_shards(&mut self, val: u32) {
+    unsafe {
+      // TODO: b/361751487: This .into() is only here
+      // here for the enum<->i32 case, we should avoid it for
+      // other primitives where the types naturally match
+      //perfectly.
+      self.inner.ptr_mut().set_base_field_u32_at_index(
+        11, val.into()
+      )
+    }
+  }
+
+  // delayed_unassigned_shards: optional uint32
+  pub fn delayed_unassigned_shards(&self) -> u32 {
+    unsafe {
+      // TODO: b/361751487: This .into() and .try_into() is only
+      // here for the enum<->i32 case, we should avoid it for
+      // other primitives where the types naturally match
+      // perfectly (and do an unchecked conversion for
+      // i32->enum types, since even for closed enums we trust
+      // upb to only return one of the named values).
+      self.inner.ptr().get_u32_at_index(
+        12, (0u32).into()
+      ).try_into().unwrap()
+    }
+  }
+  pub fn set_delayed_unassigned_shards(&mut self, val: u32) {
+    unsafe {
+      // TODO: b/361751487: This .into() is only here
+      // here for the enum<->i32 case, we should avoid it for
+      // other primitives where the types naturally match
+      //perfectly.
+      self.inner.ptr_mut().set_base_field_u32_at_index(
+        12, val.into()
+      )
+    }
+  }
+
+  // number_of_pending_tasks: optional uint32
+  pub fn number_of_pending_tasks(&self) -> u32 {
+    unsafe {
+      // TODO: b/361751487: This .into() and .try_into() is only
+      // here for the enum<->i32 case, we should avoid it for
+      // other primitives where the types naturally match
+      // perfectly (and do an unchecked conversion for
+      // i32->enum types, since even for closed enums we trust
+      // upb to only return one of the named values).
+      self.inner.ptr().get_u32_at_index(
+        13, (0u32).into()
+      ).try_into().unwrap()
+    }
+  }
+  pub fn set_number_of_pending_tasks(&mut self, val: u32) {
+    unsafe {
+      // TODO: b/361751487: This .into() is only here
+      // here for the enum<->i32 case, we should avoid it for
+      // other primitives where the types naturally match
+      //perfectly.
+      self.inner.ptr_mut().set_base_field_u32_at_index(
+        13, val.into()
+      )
+    }
+  }
+
+  // number_of_in_flight_fetch: optional uint32
+  pub fn number_of_in_flight_fetch(&self) -> u32 {
+    unsafe {
+      // TODO: b/361751487: This .into() and .try_into() is only
+      // here for the enum<->i32 case, we should avoid it for
+      // other primitives where the types naturally match
+      // perfectly (and do an unchecked conversion for
+      // i32->enum types, since even for closed enums we trust
+      // upb to only return one of the named values).
+      self.inner.ptr().get_u32_at_index(
+        14, (0u32).into()
+      ).try_into().unwrap()
+    }
+  }
+  pub fn set_number_of_in_flight_fetch(&mut self, val: u32) {
+    unsafe {
+      // TODO: b/361751487: This .into() is only here
+      // here for the enum<->i32 case, we should avoid it for
+      // other primitives where the types naturally match
+      //perfectly.
+      self.inner.ptr_mut().set_base_field_u32_at_index(
+        14, val.into()
+      )
+    }
+  }
+
+  // task_max_waiting_in_queue_millis: optional uint32
+  pub fn task_max_waiting_in_queue_millis(&self) -> u32 {
+    unsafe {
+      // TODO: b/361751487: This .into() and .try_into() is only
+      // here for the enum<->i32 case, we should avoid it for
+      // other primitives where the types naturally match
+      // perfectly (and do an unchecked conversion for
+      // i32->enum types, since even for closed enums we trust
+      // upb to only return one of the named values).
+      self.inner.ptr().get_u32_at_index(
+        15, (0u32).into()
+      ).try_into().unwrap()
+    }
+  }
+  pub fn set_task_max_waiting_in_queue_millis(&mut self, val: u32) {
+    unsafe {
+      // TODO: b/361751487: This .into() is only here
+      // here for the enum<->i32 case, we should avoid it for
+      // other primitives where the types naturally match
+      //perfectly.
+      self.inner.ptr_mut().set_base_field_u32_at_index(
+        15, val.into()
+      )
+    }
+  }
+
+  // active_shards_percent_as_number: optional float
+  pub fn active_shards_percent_as_number(&self) -> f32 {
+    unsafe {
+      // TODO: b/361751487: This .into() and .try_into() is only
+      // here for the enum<->i32 case, we should avoid it for
+      // other primitives where the types naturally match
+      // perfectly (and do an unchecked conversion for
+      // i32->enum types, since even for closed enums we trust
+      // upb to only return one of the named values).
+      self.inner.ptr().get_f32_at_index(
+        16, (0f32).into()
+      ).try_into().unwrap()
+    }
+  }
+  pub fn set_active_shards_percent_as_number(&mut self, val: f32) {
+    unsafe {
+      // TODO: b/361751487: This .into() is only here
+      // here for the enum<->i32 case, we should avoid it for
+      // other primitives where the types naturally match
+      //perfectly.
+      self.inner.ptr_mut().set_base_field_f32_at_index(
+        16, val.into()
+      )
+    }
+  }
+
+}  // impl OpenSearch
+
+impl ::std::ops::Drop for OpenSearch {
+  #[inline]
+  fn drop(&mut self) {
+  }
+}
+
+impl ::std::clone::Clone for OpenSearch {
+  fn clone(&self) -> Self {
+    self.as_view().to_owned()
+  }
+}
+
+impl ::protobuf::AsView for OpenSearch {
+  type Proxied = Self;
+  fn as_view(&self) -> OpenSearchView<'_> {
+    self.as_view()
+  }
+}
+
+impl ::protobuf::AsMut for OpenSearch {
+  type MutProxied = Self;
+  fn as_mut(&mut self) -> OpenSearchMut<'_> {
+    self.as_mut()
+  }
+}
+
+unsafe impl ::protobuf::__internal::runtime::AssociatedMiniTable for OpenSearch {
+  fn mini_table() -> ::protobuf::__internal::runtime::MiniTablePtr {
+    static ONCE_LOCK: ::std::sync::OnceLock<::protobuf::__internal::runtime::MiniTableInitPtr> =
+        ::std::sync::OnceLock::new();
+    unsafe {
+      ONCE_LOCK.get_or_init(|| {
+        super::palm__lavender__v1__OpenSearch_msg_init.0 =
+            ::protobuf::__internal::runtime::build_mini_table("$1X1X/P)P)P/P/P)P)P)P)P)P)P)P)P)P!P");
+        ::protobuf::__internal::runtime::link_mini_table(
+            super::palm__lavender__v1__OpenSearch_msg_init.0, &[], &[]);
+        ::protobuf::__internal::runtime::MiniTableInitPtr(super::palm__lavender__v1__OpenSearch_msg_init.0)
+      }).0
+    }
+  }
+}
+unsafe impl ::protobuf::__internal::runtime::UpbGetArena for OpenSearch {
+  fn get_arena(&mut self, _private: ::protobuf::__internal::Private) -> &::protobuf::__internal::runtime::Arena {
+    self.inner.arena()
+  }
+}
+
+unsafe impl ::protobuf::__internal::runtime::UpbGetMessagePtrMut for OpenSearch {
+  type Msg = OpenSearch;
+  fn get_ptr_mut(&mut self, _private: ::protobuf::__internal::Private) -> ::protobuf::__internal::runtime::MessagePtr<OpenSearch> {
+    self.inner.ptr_mut()
+  }
+}
+unsafe impl ::protobuf::__internal::runtime::UpbGetMessagePtr for OpenSearch {
+  type Msg = OpenSearch;
+  fn get_ptr(&self, _private: ::protobuf::__internal::Private) -> ::protobuf::__internal::runtime::MessagePtr<OpenSearch> {
+    self.inner.ptr()
+  }
+}
+unsafe impl ::protobuf::__internal::runtime::UpbGetMessagePtrMut for OpenSearchMut<'_> {
+  type Msg = OpenSearch;
+  fn get_ptr_mut(&mut self, _private: ::protobuf::__internal::Private) -> ::protobuf::__internal::runtime::MessagePtr<OpenSearch> {
+    self.inner.ptr_mut()
+  }
+}
+unsafe impl ::protobuf::__internal::runtime::UpbGetMessagePtr for OpenSearchMut<'_> {
+  type Msg = OpenSearch;
+  fn get_ptr(&self, _private: ::protobuf::__internal::Private) -> ::protobuf::__internal::runtime::MessagePtr<OpenSearch> {
+    self.inner.ptr()
+  }
+}
+unsafe impl ::protobuf::__internal::runtime::UpbGetMessagePtr for OpenSearchView<'_> {
+  type Msg = OpenSearch;
+  fn get_ptr(&self, _private: ::protobuf::__internal::Private) -> ::protobuf::__internal::runtime::MessagePtr<OpenSearch> {
+    self.inner.ptr()
+  }
+}
+
+unsafe impl ::protobuf::__internal::runtime::UpbGetArena for OpenSearchMut<'_> {
+  fn get_arena(&mut self, _private: ::protobuf::__internal::Private) -> &::protobuf::__internal::runtime::Arena {
+    self.inner.arena()
+  }
+}
+
+
+
+// This variable must not be referenced except by protobuf generated
+// code.
 pub(crate) static mut palm__lavender__v1__ReportRequest_msg_init: ::protobuf::__internal::runtime::MiniTableInitPtr =
     ::protobuf::__internal::runtime::MiniTableInitPtr(::protobuf::__internal::runtime::MiniTablePtr::dangling());
 #[allow(non_camel_case_types)]
@@ -4185,11 +6672,40 @@ impl<'msg> ReportRequestView<'msg> {
     ::protobuf::IntoProxied::into_proxied(*self, ::protobuf::__internal::Private)
   }
 
+  // host: optional string
+  pub fn host(self) -> ::protobuf::View<'msg, ::protobuf::ProtoString> {
+    let str_view = unsafe {
+      self.inner.ptr().get_string_at_index(
+        0, (b"").into()
+      )
+    };
+    // SAFETY: The runtime doesn't require ProtoStr to be UTF-8.
+    unsafe { ::protobuf::ProtoStr::from_utf8_unchecked(str_view.as_ref()) }
+  }
+
+  // timestamp: optional message palm.lavender.v1.Timestamp
+  pub fn has_timestamp(self) -> bool {
+    unsafe {
+      self.inner.ptr().has_field_at_index(1)
+    }
+  }
+  pub fn timestamp_opt(self) -> ::protobuf::Optional<super::TimestampView<'msg>> {
+        ::protobuf::Optional::new(self.timestamp(), self.has_timestamp())
+  }
+  pub fn timestamp(self) -> super::TimestampView<'msg> {
+    let submsg = unsafe {
+      self.inner.ptr().get_message_at_index(1)
+    };
+    submsg
+        .map(|ptr| unsafe { ::protobuf::__internal::runtime::MessageViewInner::wrap(ptr).into() })
+       .unwrap_or(super::TimestampView::default())
+  }
+
   // items: repeated message palm.lavender.v1.ReportRequest.Item
   pub fn items(self) -> ::protobuf::RepeatedView<'msg, super::report_request::Item> {
     unsafe {
       self.inner.ptr().get_array_at_index(
-        0
+        2
       )
     }.map_or_else(
         ::protobuf::__internal::runtime::empty_array::<super::report_request::Item>,
@@ -4290,11 +6806,77 @@ impl<'msg> ReportRequestMut<'msg> {
     ::protobuf::AsView::as_view(self).to_owned()
   }
 
+  // host: optional string
+  pub fn host(&self) -> ::protobuf::View<'_, ::protobuf::ProtoString> {
+    let str_view = unsafe {
+      self.inner.ptr().get_string_at_index(
+        0, (b"").into()
+      )
+    };
+    // SAFETY: The runtime doesn't require ProtoStr to be UTF-8.
+    unsafe { ::protobuf::ProtoStr::from_utf8_unchecked(str_view.as_ref()) }
+  }
+  pub fn set_host(&mut self, val: impl ::protobuf::IntoProxied<::protobuf::ProtoString>) {
+    unsafe {
+      ::protobuf::__internal::runtime::message_set_string_field(
+        ::protobuf::AsMut::as_mut(self).inner,
+        0,
+        val);
+    }
+  }
+
+  // timestamp: optional message palm.lavender.v1.Timestamp
+  pub fn has_timestamp(&self) -> bool {
+    unsafe {
+      self.inner.ptr().has_field_at_index(1)
+    }
+  }
+  pub fn clear_timestamp(&mut self) {
+    unsafe {
+      self.inner.ptr().clear_field_at_index(
+        1
+      );
+    }
+  }
+  pub fn timestamp_opt(&self) -> ::protobuf::Optional<super::TimestampView<'_>> {
+        ::protobuf::Optional::new(self.timestamp(), self.has_timestamp())
+  }
+  pub fn timestamp(&self) -> super::TimestampView<'_> {
+    let submsg = unsafe {
+      self.inner.ptr().get_message_at_index(1)
+    };
+    submsg
+        .map(|ptr| unsafe { ::protobuf::__internal::runtime::MessageViewInner::wrap(ptr).into() })
+       .unwrap_or(super::TimestampView::default())
+  }
+  pub fn timestamp_mut(&mut self) -> super::TimestampMut<'_> {
+     let ptr = unsafe {
+       self.inner.ptr_mut().get_or_create_mutable_message_at_index(
+         1, self.inner.arena()
+       ).unwrap()
+     };
+     ::protobuf::__internal::runtime::MessageMutInner::from_parent(
+         self.as_message_mut_inner(::protobuf::__internal::Private),
+         ptr
+     ).into()
+  }
+  pub fn set_timestamp(&mut self,
+    val: impl ::protobuf::IntoProxied<super::Timestamp>) {
+
+    unsafe {
+      ::protobuf::__internal::runtime::message_set_sub_message(
+        ::protobuf::AsMut::as_mut(self).inner,
+        1,
+        val
+      );
+    }
+  }
+
   // items: repeated message palm.lavender.v1.ReportRequest.Item
   pub fn items(&self) -> ::protobuf::RepeatedView<'_, super::report_request::Item> {
     unsafe {
       self.inner.ptr().get_array_at_index(
-        0
+        2
       )
     }.map_or_else(
         ::protobuf::__internal::runtime::empty_array::<super::report_request::Item>,
@@ -4306,7 +6888,7 @@ impl<'msg> ReportRequestMut<'msg> {
   pub fn items_mut(&mut self) -> ::protobuf::RepeatedMut<'_, super::report_request::Item> {
     unsafe {
       let raw_array = self.inner.ptr_mut().get_or_create_mutable_array_at_index(
-        0,
+        2,
         self.inner.arena()
       ).expect("alloc should not fail");
       ::protobuf::RepeatedMut::from_inner(
@@ -4321,7 +6903,7 @@ impl<'msg> ReportRequestMut<'msg> {
     unsafe {
       ::protobuf::__internal::runtime::message_set_repeated_field(
         ::protobuf::AsMut::as_mut(self).inner,
-        0,
+        2,
         src);
     }
   }
@@ -4390,11 +6972,77 @@ impl ReportRequest {
     ::protobuf::__internal::runtime::MessageMutInner::mut_of_owned(&mut self.inner).into()
   }
 
+  // host: optional string
+  pub fn host(&self) -> ::protobuf::View<'_, ::protobuf::ProtoString> {
+    let str_view = unsafe {
+      self.inner.ptr().get_string_at_index(
+        0, (b"").into()
+      )
+    };
+    // SAFETY: The runtime doesn't require ProtoStr to be UTF-8.
+    unsafe { ::protobuf::ProtoStr::from_utf8_unchecked(str_view.as_ref()) }
+  }
+  pub fn set_host(&mut self, val: impl ::protobuf::IntoProxied<::protobuf::ProtoString>) {
+    unsafe {
+      ::protobuf::__internal::runtime::message_set_string_field(
+        ::protobuf::AsMut::as_mut(self).inner,
+        0,
+        val);
+    }
+  }
+
+  // timestamp: optional message palm.lavender.v1.Timestamp
+  pub fn has_timestamp(&self) -> bool {
+    unsafe {
+      self.inner.ptr().has_field_at_index(1)
+    }
+  }
+  pub fn clear_timestamp(&mut self) {
+    unsafe {
+      self.inner.ptr().clear_field_at_index(
+        1
+      );
+    }
+  }
+  pub fn timestamp_opt(&self) -> ::protobuf::Optional<super::TimestampView<'_>> {
+        ::protobuf::Optional::new(self.timestamp(), self.has_timestamp())
+  }
+  pub fn timestamp(&self) -> super::TimestampView<'_> {
+    let submsg = unsafe {
+      self.inner.ptr().get_message_at_index(1)
+    };
+    submsg
+        .map(|ptr| unsafe { ::protobuf::__internal::runtime::MessageViewInner::wrap(ptr).into() })
+       .unwrap_or(super::TimestampView::default())
+  }
+  pub fn timestamp_mut(&mut self) -> super::TimestampMut<'_> {
+     let ptr = unsafe {
+       self.inner.ptr_mut().get_or_create_mutable_message_at_index(
+         1, self.inner.arena()
+       ).unwrap()
+     };
+     ::protobuf::__internal::runtime::MessageMutInner::from_parent(
+         self.as_message_mut_inner(::protobuf::__internal::Private),
+         ptr
+     ).into()
+  }
+  pub fn set_timestamp(&mut self,
+    val: impl ::protobuf::IntoProxied<super::Timestamp>) {
+
+    unsafe {
+      ::protobuf::__internal::runtime::message_set_sub_message(
+        ::protobuf::AsMut::as_mut(self).inner,
+        1,
+        val
+      );
+    }
+  }
+
   // items: repeated message palm.lavender.v1.ReportRequest.Item
   pub fn items(&self) -> ::protobuf::RepeatedView<'_, super::report_request::Item> {
     unsafe {
       self.inner.ptr().get_array_at_index(
-        0
+        2
       )
     }.map_or_else(
         ::protobuf::__internal::runtime::empty_array::<super::report_request::Item>,
@@ -4406,7 +7054,7 @@ impl ReportRequest {
   pub fn items_mut(&mut self) -> ::protobuf::RepeatedMut<'_, super::report_request::Item> {
     unsafe {
       let raw_array = self.inner.ptr_mut().get_or_create_mutable_array_at_index(
-        0,
+        2,
         self.inner.arena()
       ).expect("alloc should not fail");
       ::protobuf::RepeatedMut::from_inner(
@@ -4421,7 +7069,7 @@ impl ReportRequest {
     unsafe {
       ::protobuf::__internal::runtime::message_set_repeated_field(
         ::protobuf::AsMut::as_mut(self).inner,
-        0,
+        2,
         src);
     }
   }
@@ -4461,9 +7109,10 @@ unsafe impl ::protobuf::__internal::runtime::AssociatedMiniTable for ReportReque
     unsafe {
       ONCE_LOCK.get_or_init(|| {
         super::palm__lavender__v1__ReportRequest_msg_init.0 =
-            ::protobuf::__internal::runtime::build_mini_table("$G");
+            ::protobuf::__internal::runtime::build_mini_table("$1X3fG");
         ::protobuf::__internal::runtime::link_mini_table(
-            super::palm__lavender__v1__ReportRequest_msg_init.0, &[<super::report_request::Item as ::protobuf::__internal::runtime::AssociatedMiniTable>::mini_table(),
+            super::palm__lavender__v1__ReportRequest_msg_init.0, &[<super::Timestamp as ::protobuf::__internal::runtime::AssociatedMiniTable>::mini_table(),
+            <super::report_request::Item as ::protobuf::__internal::runtime::AssociatedMiniTable>::mini_table(),
             ], &[]);
         ::protobuf::__internal::runtime::MiniTableInitPtr(super::palm__lavender__v1__ReportRequest_msg_init.0)
       }).0
@@ -4593,28 +7242,10 @@ impl<'msg> ItemView<'msg> {
     ::protobuf::IntoProxied::into_proxied(*self, ::protobuf::__internal::Private)
   }
 
-  // timestamp: optional message palm.lavender.v1.Timestamp
-  pub fn has_timestamp(self) -> bool {
-    unsafe {
-      self.inner.ptr().has_field_at_index(0)
-    }
-  }
-  pub fn timestamp_opt(self) -> ::protobuf::Optional<super::super::TimestampView<'msg>> {
-        ::protobuf::Optional::new(self.timestamp(), self.has_timestamp())
-  }
-  pub fn timestamp(self) -> super::super::TimestampView<'msg> {
-    let submsg = unsafe {
-      self.inner.ptr().get_message_at_index(0)
-    };
-    submsg
-        .map(|ptr| unsafe { ::protobuf::__internal::runtime::MessageViewInner::wrap(ptr).into() })
-       .unwrap_or(super::super::TimestampView::default())
-  }
-
   // curation: optional message palm.lavender.v1.Duration
   pub fn has_curation(self) -> bool {
     unsafe {
-      self.inner.ptr().has_field_at_index(1)
+      self.inner.ptr().has_field_at_index(0)
     }
   }
   pub fn curation_opt(self) -> ::protobuf::Optional<super::super::DurationView<'msg>> {
@@ -4622,7 +7253,7 @@ impl<'msg> ItemView<'msg> {
   }
   pub fn curation(self) -> super::super::DurationView<'msg> {
     let submsg = unsafe {
-      self.inner.ptr().get_message_at_index(1)
+      self.inner.ptr().get_message_at_index(0)
     };
     submsg
         .map(|ptr| unsafe { ::protobuf::__internal::runtime::MessageViewInner::wrap(ptr).into() })
@@ -4632,7 +7263,7 @@ impl<'msg> ItemView<'msg> {
   // http: optional message palm.lavender.v1.Http
   pub fn has_http(self) -> bool {
     unsafe {
-      self.inner.ptr().has_field_at_index(2)
+      self.inner.ptr().has_field_at_index(1)
     }
   }
   pub fn http_opt(self) -> ::protobuf::Optional<super::super::HttpView<'msg>> {
@@ -4640,7 +7271,7 @@ impl<'msg> ItemView<'msg> {
   }
   pub fn http(self) -> super::super::HttpView<'msg> {
     let submsg = unsafe {
-      self.inner.ptr().get_message_at_index(2)
+      self.inner.ptr().get_message_at_index(1)
     };
     submsg
         .map(|ptr| unsafe { ::protobuf::__internal::runtime::MessageViewInner::wrap(ptr).into() })
@@ -4650,7 +7281,7 @@ impl<'msg> ItemView<'msg> {
   // postgresql: optional message palm.lavender.v1.PostgreSql
   pub fn has_postgresql(self) -> bool {
     unsafe {
-      self.inner.ptr().has_field_at_index(3)
+      self.inner.ptr().has_field_at_index(2)
     }
   }
   pub fn postgresql_opt(self) -> ::protobuf::Optional<super::super::PostgreSqlView<'msg>> {
@@ -4658,7 +7289,7 @@ impl<'msg> ItemView<'msg> {
   }
   pub fn postgresql(self) -> super::super::PostgreSqlView<'msg> {
     let submsg = unsafe {
-      self.inner.ptr().get_message_at_index(3)
+      self.inner.ptr().get_message_at_index(2)
     };
     submsg
         .map(|ptr| unsafe { ::protobuf::__internal::runtime::MessageViewInner::wrap(ptr).into() })
@@ -4668,7 +7299,7 @@ impl<'msg> ItemView<'msg> {
   // mysql: optional message palm.lavender.v1.MySql
   pub fn has_mysql(self) -> bool {
     unsafe {
-      self.inner.ptr().has_field_at_index(4)
+      self.inner.ptr().has_field_at_index(3)
     }
   }
   pub fn mysql_opt(self) -> ::protobuf::Optional<super::super::MySqlView<'msg>> {
@@ -4676,7 +7307,7 @@ impl<'msg> ItemView<'msg> {
   }
   pub fn mysql(self) -> super::super::MySqlView<'msg> {
     let submsg = unsafe {
-      self.inner.ptr().get_message_at_index(4)
+      self.inner.ptr().get_message_at_index(3)
     };
     submsg
         .map(|ptr| unsafe { ::protobuf::__internal::runtime::MessageViewInner::wrap(ptr).into() })
@@ -4686,7 +7317,7 @@ impl<'msg> ItemView<'msg> {
   // redis: optional message palm.lavender.v1.Redis
   pub fn has_redis(self) -> bool {
     unsafe {
-      self.inner.ptr().has_field_at_index(5)
+      self.inner.ptr().has_field_at_index(4)
     }
   }
   pub fn redis_opt(self) -> ::protobuf::Optional<super::super::RedisView<'msg>> {
@@ -4694,7 +7325,7 @@ impl<'msg> ItemView<'msg> {
   }
   pub fn redis(self) -> super::super::RedisView<'msg> {
     let submsg = unsafe {
-      self.inner.ptr().get_message_at_index(5)
+      self.inner.ptr().get_message_at_index(4)
     };
     submsg
         .map(|ptr| unsafe { ::protobuf::__internal::runtime::MessageViewInner::wrap(ptr).into() })
@@ -4704,7 +7335,7 @@ impl<'msg> ItemView<'msg> {
   // snmp: optional message palm.lavender.v1.Snmp
   pub fn has_snmp(self) -> bool {
     unsafe {
-      self.inner.ptr().has_field_at_index(6)
+      self.inner.ptr().has_field_at_index(5)
     }
   }
   pub fn snmp_opt(self) -> ::protobuf::Optional<super::super::SnmpView<'msg>> {
@@ -4712,35 +7343,55 @@ impl<'msg> ItemView<'msg> {
   }
   pub fn snmp(self) -> super::super::SnmpView<'msg> {
     let submsg = unsafe {
-      self.inner.ptr().get_message_at_index(6)
+      self.inner.ptr().get_message_at_index(5)
     };
     submsg
         .map(|ptr| unsafe { ::protobuf::__internal::runtime::MessageViewInner::wrap(ptr).into() })
        .unwrap_or(super::super::SnmpView::default())
   }
 
-  pub fn payload(self) -> super::super::report_request::item::PayloadOneof<'msg> {
-    match self.payload_case() {
-      super::super::report_request::item::PayloadCase::Http =>
-          super::super::report_request::item::PayloadOneof::Http(self.http()),
-      super::super::report_request::item::PayloadCase::Postgresql =>
-          super::super::report_request::item::PayloadOneof::Postgresql(self.postgresql()),
-      super::super::report_request::item::PayloadCase::Mysql =>
-          super::super::report_request::item::PayloadOneof::Mysql(self.mysql()),
-      super::super::report_request::item::PayloadCase::Redis =>
-          super::super::report_request::item::PayloadOneof::Redis(self.redis()),
-      super::super::report_request::item::PayloadCase::Snmp =>
-          super::super::report_request::item::PayloadOneof::Snmp(self.snmp()),
-      _ => super::super::report_request::item::PayloadOneof::not_set(std::marker::PhantomData)
+  // opensearch: optional message palm.lavender.v1.OpenSearch
+  pub fn has_opensearch(self) -> bool {
+    unsafe {
+      self.inner.ptr().has_field_at_index(6)
+    }
+  }
+  pub fn opensearch_opt(self) -> ::protobuf::Optional<super::super::OpenSearchView<'msg>> {
+        ::protobuf::Optional::new(self.opensearch(), self.has_opensearch())
+  }
+  pub fn opensearch(self) -> super::super::OpenSearchView<'msg> {
+    let submsg = unsafe {
+      self.inner.ptr().get_message_at_index(6)
+    };
+    submsg
+        .map(|ptr| unsafe { ::protobuf::__internal::runtime::MessageViewInner::wrap(ptr).into() })
+       .unwrap_or(super::super::OpenSearchView::default())
+  }
+
+  pub fn node(self) -> super::super::report_request::item::NodeOneof<'msg> {
+    match self.node_case() {
+      super::super::report_request::item::NodeCase::Http =>
+          super::super::report_request::item::NodeOneof::Http(self.http()),
+      super::super::report_request::item::NodeCase::Postgresql =>
+          super::super::report_request::item::NodeOneof::Postgresql(self.postgresql()),
+      super::super::report_request::item::NodeCase::Mysql =>
+          super::super::report_request::item::NodeOneof::Mysql(self.mysql()),
+      super::super::report_request::item::NodeCase::Redis =>
+          super::super::report_request::item::NodeOneof::Redis(self.redis()),
+      super::super::report_request::item::NodeCase::Snmp =>
+          super::super::report_request::item::NodeOneof::Snmp(self.snmp()),
+      super::super::report_request::item::NodeCase::Opensearch =>
+          super::super::report_request::item::NodeOneof::Opensearch(self.opensearch()),
+      _ => super::super::report_request::item::NodeOneof::not_set(std::marker::PhantomData)
     }
   }
 
-  pub fn payload_case(self) -> super::super::report_request::item::PayloadCase {
+  pub fn node_case(self) -> super::super::report_request::item::NodeCase {
     unsafe {
       let field_num = <Self as ::protobuf::__internal::runtime::UpbGetMessagePtr>::get_ptr(
           &self, ::protobuf::__internal::Private)
-          .which_oneof_field_number_by_index(2);
-      super::super::report_request::item::PayloadCase::try_from(field_num).unwrap_unchecked()
+          .which_oneof_field_number_by_index(1);
+      super::super::report_request::item::NodeCase::try_from(field_num).unwrap_unchecked()
     }
   }
 }
@@ -4834,63 +7485,16 @@ impl<'msg> ItemMut<'msg> {
     ::protobuf::AsView::as_view(self).to_owned()
   }
 
-  // timestamp: optional message palm.lavender.v1.Timestamp
-  pub fn has_timestamp(&self) -> bool {
-    unsafe {
-      self.inner.ptr().has_field_at_index(0)
-    }
-  }
-  pub fn clear_timestamp(&mut self) {
-    unsafe {
-      self.inner.ptr().clear_field_at_index(
-        0
-      );
-    }
-  }
-  pub fn timestamp_opt(&self) -> ::protobuf::Optional<super::super::TimestampView<'_>> {
-        ::protobuf::Optional::new(self.timestamp(), self.has_timestamp())
-  }
-  pub fn timestamp(&self) -> super::super::TimestampView<'_> {
-    let submsg = unsafe {
-      self.inner.ptr().get_message_at_index(0)
-    };
-    submsg
-        .map(|ptr| unsafe { ::protobuf::__internal::runtime::MessageViewInner::wrap(ptr).into() })
-       .unwrap_or(super::super::TimestampView::default())
-  }
-  pub fn timestamp_mut(&mut self) -> super::super::TimestampMut<'_> {
-     let ptr = unsafe {
-       self.inner.ptr_mut().get_or_create_mutable_message_at_index(
-         0, self.inner.arena()
-       ).unwrap()
-     };
-     ::protobuf::__internal::runtime::MessageMutInner::from_parent(
-         self.as_message_mut_inner(::protobuf::__internal::Private),
-         ptr
-     ).into()
-  }
-  pub fn set_timestamp(&mut self,
-    val: impl ::protobuf::IntoProxied<super::super::Timestamp>) {
-
-    unsafe {
-      ::protobuf::__internal::runtime::message_set_sub_message(
-        ::protobuf::AsMut::as_mut(self).inner,
-        0,
-        val
-      );
-    }
-  }
-
   // curation: optional message palm.lavender.v1.Duration
   pub fn has_curation(&self) -> bool {
     unsafe {
-      self.inner.ptr().has_field_at_index(1)
+      self.inner.ptr().has_field_at_index(0)
     }
   }
   pub fn clear_curation(&mut self) {
     unsafe {
       self.inner.ptr().clear_field_at_index(
-        1
+        0
       );
     }
   }
@@ -4899,7 +7503,7 @@ impl<'msg> ItemMut<'msg> {
   }
   pub fn curation(&self) -> super::super::DurationView<'_> {
     let submsg = unsafe {
-      self.inner.ptr().get_message_at_index(1)
+      self.inner.ptr().get_message_at_index(0)
     };
     submsg
         .map(|ptr| unsafe { ::protobuf::__internal::runtime::MessageViewInner::wrap(ptr).into() })
@@ -4908,7 +7512,7 @@ impl<'msg> ItemMut<'msg> {
   pub fn curation_mut(&mut self) -> super::super::DurationMut<'_> {
      let ptr = unsafe {
        self.inner.ptr_mut().get_or_create_mutable_message_at_index(
-         1, self.inner.arena()
+         0, self.inner.arena()
        ).unwrap()
      };
      ::protobuf::__internal::runtime::MessageMutInner::from_parent(
@@ -4922,7 +7526,7 @@ impl<'msg> ItemMut<'msg> {
     unsafe {
       ::protobuf::__internal::runtime::message_set_sub_message(
         ::protobuf::AsMut::as_mut(self).inner,
-        1,
+        0,
         val
       );
     }
@@ -4931,13 +7535,13 @@ impl<'msg> ItemMut<'msg> {
   // http: optional message palm.lavender.v1.Http
   pub fn has_http(&self) -> bool {
     unsafe {
-      self.inner.ptr().has_field_at_index(2)
+      self.inner.ptr().has_field_at_index(1)
     }
   }
   pub fn clear_http(&mut self) {
     unsafe {
       self.inner.ptr().clear_field_at_index(
-        2
+        1
       );
     }
   }
@@ -4946,7 +7550,7 @@ impl<'msg> ItemMut<'msg> {
   }
   pub fn http(&self) -> super::super::HttpView<'_> {
     let submsg = unsafe {
-      self.inner.ptr().get_message_at_index(2)
+      self.inner.ptr().get_message_at_index(1)
     };
     submsg
         .map(|ptr| unsafe { ::protobuf::__internal::runtime::MessageViewInner::wrap(ptr).into() })
@@ -4955,7 +7559,7 @@ impl<'msg> ItemMut<'msg> {
   pub fn http_mut(&mut self) -> super::super::HttpMut<'_> {
      let ptr = unsafe {
        self.inner.ptr_mut().get_or_create_mutable_message_at_index(
-         2, self.inner.arena()
+         1, self.inner.arena()
        ).unwrap()
      };
      ::protobuf::__internal::runtime::MessageMutInner::from_parent(
@@ -4969,7 +7573,7 @@ impl<'msg> ItemMut<'msg> {
     unsafe {
       ::protobuf::__internal::runtime::message_set_sub_message(
         ::protobuf::AsMut::as_mut(self).inner,
-        2,
+        1,
         val
       );
     }
@@ -4978,13 +7582,13 @@ impl<'msg> ItemMut<'msg> {
   // postgresql: optional message palm.lavender.v1.PostgreSql
   pub fn has_postgresql(&self) -> bool {
     unsafe {
-      self.inner.ptr().has_field_at_index(3)
+      self.inner.ptr().has_field_at_index(2)
     }
   }
   pub fn clear_postgresql(&mut self) {
     unsafe {
       self.inner.ptr().clear_field_at_index(
-        3
+        2
       );
     }
   }
@@ -4993,7 +7597,7 @@ impl<'msg> ItemMut<'msg> {
   }
   pub fn postgresql(&self) -> super::super::PostgreSqlView<'_> {
     let submsg = unsafe {
-      self.inner.ptr().get_message_at_index(3)
+      self.inner.ptr().get_message_at_index(2)
     };
     submsg
         .map(|ptr| unsafe { ::protobuf::__internal::runtime::MessageViewInner::wrap(ptr).into() })
@@ -5002,7 +7606,7 @@ impl<'msg> ItemMut<'msg> {
   pub fn postgresql_mut(&mut self) -> super::super::PostgreSqlMut<'_> {
      let ptr = unsafe {
        self.inner.ptr_mut().get_or_create_mutable_message_at_index(
-         3, self.inner.arena()
+         2, self.inner.arena()
        ).unwrap()
      };
      ::protobuf::__internal::runtime::MessageMutInner::from_parent(
@@ -5016,7 +7620,7 @@ impl<'msg> ItemMut<'msg> {
     unsafe {
       ::protobuf::__internal::runtime::message_set_sub_message(
         ::protobuf::AsMut::as_mut(self).inner,
-        3,
+        2,
         val
       );
     }
@@ -5025,13 +7629,13 @@ impl<'msg> ItemMut<'msg> {
   // mysql: optional message palm.lavender.v1.MySql
   pub fn has_mysql(&self) -> bool {
     unsafe {
-      self.inner.ptr().has_field_at_index(4)
+      self.inner.ptr().has_field_at_index(3)
     }
   }
   pub fn clear_mysql(&mut self) {
     unsafe {
       self.inner.ptr().clear_field_at_index(
-        4
+        3
       );
     }
   }
@@ -5040,7 +7644,7 @@ impl<'msg> ItemMut<'msg> {
   }
   pub fn mysql(&self) -> super::super::MySqlView<'_> {
     let submsg = unsafe {
-      self.inner.ptr().get_message_at_index(4)
+      self.inner.ptr().get_message_at_index(3)
     };
     submsg
         .map(|ptr| unsafe { ::protobuf::__internal::runtime::MessageViewInner::wrap(ptr).into() })
@@ -5049,7 +7653,7 @@ impl<'msg> ItemMut<'msg> {
   pub fn mysql_mut(&mut self) -> super::super::MySqlMut<'_> {
      let ptr = unsafe {
        self.inner.ptr_mut().get_or_create_mutable_message_at_index(
-         4, self.inner.arena()
+         3, self.inner.arena()
        ).unwrap()
      };
      ::protobuf::__internal::runtime::MessageMutInner::from_parent(
@@ -5063,7 +7667,7 @@ impl<'msg> ItemMut<'msg> {
     unsafe {
       ::protobuf::__internal::runtime::message_set_sub_message(
         ::protobuf::AsMut::as_mut(self).inner,
-        4,
+        3,
         val
       );
     }
@@ -5072,13 +7676,13 @@ impl<'msg> ItemMut<'msg> {
   // redis: optional message palm.lavender.v1.Redis
   pub fn has_redis(&self) -> bool {
     unsafe {
-      self.inner.ptr().has_field_at_index(5)
+      self.inner.ptr().has_field_at_index(4)
     }
   }
   pub fn clear_redis(&mut self) {
     unsafe {
       self.inner.ptr().clear_field_at_index(
-        5
+        4
       );
     }
   }
@@ -5087,7 +7691,7 @@ impl<'msg> ItemMut<'msg> {
   }
   pub fn redis(&self) -> super::super::RedisView<'_> {
     let submsg = unsafe {
-      self.inner.ptr().get_message_at_index(5)
+      self.inner.ptr().get_message_at_index(4)
     };
     submsg
         .map(|ptr| unsafe { ::protobuf::__internal::runtime::MessageViewInner::wrap(ptr).into() })
@@ -5096,7 +7700,7 @@ impl<'msg> ItemMut<'msg> {
   pub fn redis_mut(&mut self) -> super::super::RedisMut<'_> {
      let ptr = unsafe {
        self.inner.ptr_mut().get_or_create_mutable_message_at_index(
-         5, self.inner.arena()
+         4, self.inner.arena()
        ).unwrap()
      };
      ::protobuf::__internal::runtime::MessageMutInner::from_parent(
@@ -5110,7 +7714,7 @@ impl<'msg> ItemMut<'msg> {
     unsafe {
       ::protobuf::__internal::runtime::message_set_sub_message(
         ::protobuf::AsMut::as_mut(self).inner,
-        5,
+        4,
         val
       );
     }
@@ -5119,13 +7723,13 @@ impl<'msg> ItemMut<'msg> {
   // snmp: optional message palm.lavender.v1.Snmp
   pub fn has_snmp(&self) -> bool {
     unsafe {
-      self.inner.ptr().has_field_at_index(6)
+      self.inner.ptr().has_field_at_index(5)
     }
   }
   pub fn clear_snmp(&mut self) {
     unsafe {
       self.inner.ptr().clear_field_at_index(
-        6
+        5
       );
     }
   }
@@ -5134,7 +7738,7 @@ impl<'msg> ItemMut<'msg> {
   }
   pub fn snmp(&self) -> super::super::SnmpView<'_> {
     let submsg = unsafe {
-      self.inner.ptr().get_message_at_index(6)
+      self.inner.ptr().get_message_at_index(5)
     };
     submsg
         .map(|ptr| unsafe { ::protobuf::__internal::runtime::MessageViewInner::wrap(ptr).into() })
@@ -5143,7 +7747,7 @@ impl<'msg> ItemMut<'msg> {
   pub fn snmp_mut(&mut self) -> super::super::SnmpMut<'_> {
      let ptr = unsafe {
        self.inner.ptr_mut().get_or_create_mutable_message_at_index(
-         6, self.inner.arena()
+         5, self.inner.arena()
        ).unwrap()
      };
      ::protobuf::__internal::runtime::MessageMutInner::from_parent(
@@ -5157,34 +7761,83 @@ impl<'msg> ItemMut<'msg> {
     unsafe {
       ::protobuf::__internal::runtime::message_set_sub_message(
         ::protobuf::AsMut::as_mut(self).inner,
+        5,
+        val
+      );
+    }
+  }
+
+  // opensearch: optional message palm.lavender.v1.OpenSearch
+  pub fn has_opensearch(&self) -> bool {
+    unsafe {
+      self.inner.ptr().has_field_at_index(6)
+    }
+  }
+  pub fn clear_opensearch(&mut self) {
+    unsafe {
+      self.inner.ptr().clear_field_at_index(
+        6
+      );
+    }
+  }
+  pub fn opensearch_opt(&self) -> ::protobuf::Optional<super::super::OpenSearchView<'_>> {
+        ::protobuf::Optional::new(self.opensearch(), self.has_opensearch())
+  }
+  pub fn opensearch(&self) -> super::super::OpenSearchView<'_> {
+    let submsg = unsafe {
+      self.inner.ptr().get_message_at_index(6)
+    };
+    submsg
+        .map(|ptr| unsafe { ::protobuf::__internal::runtime::MessageViewInner::wrap(ptr).into() })
+       .unwrap_or(super::super::OpenSearchView::default())
+  }
+  pub fn opensearch_mut(&mut self) -> super::super::OpenSearchMut<'_> {
+     let ptr = unsafe {
+       self.inner.ptr_mut().get_or_create_mutable_message_at_index(
+         6, self.inner.arena()
+       ).unwrap()
+     };
+     ::protobuf::__internal::runtime::MessageMutInner::from_parent(
+         self.as_message_mut_inner(::protobuf::__internal::Private),
+         ptr
+     ).into()
+  }
+  pub fn set_opensearch(&mut self,
+    val: impl ::protobuf::IntoProxied<super::super::OpenSearch>) {
+
+    unsafe {
+      ::protobuf::__internal::runtime::message_set_sub_message(
+        ::protobuf::AsMut::as_mut(self).inner,
         6,
         val
       );
     }
   }
 
-  pub fn payload(&self) -> super::super::report_request::item::PayloadOneof<'_> {
-    match &self.payload_case() {
-      super::super::report_request::item::PayloadCase::Http =>
-          super::super::report_request::item::PayloadOneof::Http(self.http()),
-      super::super::report_request::item::PayloadCase::Postgresql =>
-          super::super::report_request::item::PayloadOneof::Postgresql(self.postgresql()),
-      super::super::report_request::item::PayloadCase::Mysql =>
-          super::super::report_request::item::PayloadOneof::Mysql(self.mysql()),
-      super::super::report_request::item::PayloadCase::Redis =>
-          super::super::report_request::item::PayloadOneof::Redis(self.redis()),
-      super::super::report_request::item::PayloadCase::Snmp =>
-          super::super::report_request::item::PayloadOneof::Snmp(self.snmp()),
-      _ => super::super::report_request::item::PayloadOneof::not_set(std::marker::PhantomData)
+  pub fn node(&self) -> super::super::report_request::item::NodeOneof<'_> {
+    match &self.node_case() {
+      super::super::report_request::item::NodeCase::Http =>
+          super::super::report_request::item::NodeOneof::Http(self.http()),
+      super::super::report_request::item::NodeCase::Postgresql =>
+          super::super::report_request::item::NodeOneof::Postgresql(self.postgresql()),
+      super::super::report_request::item::NodeCase::Mysql =>
+          super::super::report_request::item::NodeOneof::Mysql(self.mysql()),
+      super::super::report_request::item::NodeCase::Redis =>
+          super::super::report_request::item::NodeOneof::Redis(self.redis()),
+      super::super::report_request::item::NodeCase::Snmp =>
+          super::super::report_request::item::NodeOneof::Snmp(self.snmp()),
+      super::super::report_request::item::NodeCase::Opensearch =>
+          super::super::report_request::item::NodeOneof::Opensearch(self.opensearch()),
+      _ => super::super::report_request::item::NodeOneof::not_set(std::marker::PhantomData)
     }
   }
 
-  pub fn payload_case(&self) -> super::super::report_request::item::PayloadCase {
+  pub fn node_case(&self) -> super::super::report_request::item::NodeCase {
     unsafe {
       let field_num = <Self as ::protobuf::__internal::runtime::UpbGetMessagePtr>::get_ptr(
           &self, ::protobuf::__internal::Private)
-          .which_oneof_field_number_by_index(2);
-      super::super::report_request::item::PayloadCase::try_from(field_num).unwrap_unchecked()
+          .which_oneof_field_number_by_index(1);
+      super::super::report_request::item::NodeCase::try_from(field_num).unwrap_unchecked()
     }
   }
 }
@@ -5251,63 +7904,16 @@ impl Item {
     ::protobuf::__internal::runtime::MessageMutInner::mut_of_owned(&mut self.inner).into()
   }
 
-  // timestamp: optional message palm.lavender.v1.Timestamp
-  pub fn has_timestamp(&self) -> bool {
-    unsafe {
-      self.inner.ptr().has_field_at_index(0)
-    }
-  }
-  pub fn clear_timestamp(&mut self) {
-    unsafe {
-      self.inner.ptr().clear_field_at_index(
-        0
-      );
-    }
-  }
-  pub fn timestamp_opt(&self) -> ::protobuf::Optional<super::super::TimestampView<'_>> {
-        ::protobuf::Optional::new(self.timestamp(), self.has_timestamp())
-  }
-  pub fn timestamp(&self) -> super::super::TimestampView<'_> {
-    let submsg = unsafe {
-      self.inner.ptr().get_message_at_index(0)
-    };
-    submsg
-        .map(|ptr| unsafe { ::protobuf::__internal::runtime::MessageViewInner::wrap(ptr).into() })
-       .unwrap_or(super::super::TimestampView::default())
-  }
-  pub fn timestamp_mut(&mut self) -> super::super::TimestampMut<'_> {
-     let ptr = unsafe {
-       self.inner.ptr_mut().get_or_create_mutable_message_at_index(
-         0, self.inner.arena()
-       ).unwrap()
-     };
-     ::protobuf::__internal::runtime::MessageMutInner::from_parent(
-         self.as_message_mut_inner(::protobuf::__internal::Private),
-         ptr
-     ).into()
-  }
-  pub fn set_timestamp(&mut self,
-    val: impl ::protobuf::IntoProxied<super::super::Timestamp>) {
-
-    unsafe {
-      ::protobuf::__internal::runtime::message_set_sub_message(
-        ::protobuf::AsMut::as_mut(self).inner,
-        0,
-        val
-      );
-    }
-  }
-
   // curation: optional message palm.lavender.v1.Duration
   pub fn has_curation(&self) -> bool {
     unsafe {
-      self.inner.ptr().has_field_at_index(1)
+      self.inner.ptr().has_field_at_index(0)
     }
   }
   pub fn clear_curation(&mut self) {
     unsafe {
       self.inner.ptr().clear_field_at_index(
-        1
+        0
       );
     }
   }
@@ -5316,7 +7922,7 @@ impl Item {
   }
   pub fn curation(&self) -> super::super::DurationView<'_> {
     let submsg = unsafe {
-      self.inner.ptr().get_message_at_index(1)
+      self.inner.ptr().get_message_at_index(0)
     };
     submsg
         .map(|ptr| unsafe { ::protobuf::__internal::runtime::MessageViewInner::wrap(ptr).into() })
@@ -5325,7 +7931,7 @@ impl Item {
   pub fn curation_mut(&mut self) -> super::super::DurationMut<'_> {
      let ptr = unsafe {
        self.inner.ptr_mut().get_or_create_mutable_message_at_index(
-         1, self.inner.arena()
+         0, self.inner.arena()
        ).unwrap()
      };
      ::protobuf::__internal::runtime::MessageMutInner::from_parent(
@@ -5339,7 +7945,7 @@ impl Item {
     unsafe {
       ::protobuf::__internal::runtime::message_set_sub_message(
         ::protobuf::AsMut::as_mut(self).inner,
-        1,
+        0,
         val
       );
     }
@@ -5348,13 +7954,13 @@ impl Item {
   // http: optional message palm.lavender.v1.Http
   pub fn has_http(&self) -> bool {
     unsafe {
-      self.inner.ptr().has_field_at_index(2)
+      self.inner.ptr().has_field_at_index(1)
     }
   }
   pub fn clear_http(&mut self) {
     unsafe {
       self.inner.ptr().clear_field_at_index(
-        2
+        1
       );
     }
   }
@@ -5363,7 +7969,7 @@ impl Item {
   }
   pub fn http(&self) -> super::super::HttpView<'_> {
     let submsg = unsafe {
-      self.inner.ptr().get_message_at_index(2)
+      self.inner.ptr().get_message_at_index(1)
     };
     submsg
         .map(|ptr| unsafe { ::protobuf::__internal::runtime::MessageViewInner::wrap(ptr).into() })
@@ -5372,7 +7978,7 @@ impl Item {
   pub fn http_mut(&mut self) -> super::super::HttpMut<'_> {
      let ptr = unsafe {
        self.inner.ptr_mut().get_or_create_mutable_message_at_index(
-         2, self.inner.arena()
+         1, self.inner.arena()
        ).unwrap()
      };
      ::protobuf::__internal::runtime::MessageMutInner::from_parent(
@@ -5386,7 +7992,7 @@ impl Item {
     unsafe {
       ::protobuf::__internal::runtime::message_set_sub_message(
         ::protobuf::AsMut::as_mut(self).inner,
-        2,
+        1,
         val
       );
     }
@@ -5395,13 +8001,13 @@ impl Item {
   // postgresql: optional message palm.lavender.v1.PostgreSql
   pub fn has_postgresql(&self) -> bool {
     unsafe {
-      self.inner.ptr().has_field_at_index(3)
+      self.inner.ptr().has_field_at_index(2)
     }
   }
   pub fn clear_postgresql(&mut self) {
     unsafe {
       self.inner.ptr().clear_field_at_index(
-        3
+        2
       );
     }
   }
@@ -5410,7 +8016,7 @@ impl Item {
   }
   pub fn postgresql(&self) -> super::super::PostgreSqlView<'_> {
     let submsg = unsafe {
-      self.inner.ptr().get_message_at_index(3)
+      self.inner.ptr().get_message_at_index(2)
     };
     submsg
         .map(|ptr| unsafe { ::protobuf::__internal::runtime::MessageViewInner::wrap(ptr).into() })
@@ -5419,7 +8025,7 @@ impl Item {
   pub fn postgresql_mut(&mut self) -> super::super::PostgreSqlMut<'_> {
      let ptr = unsafe {
        self.inner.ptr_mut().get_or_create_mutable_message_at_index(
-         3, self.inner.arena()
+         2, self.inner.arena()
        ).unwrap()
      };
      ::protobuf::__internal::runtime::MessageMutInner::from_parent(
@@ -5433,7 +8039,7 @@ impl Item {
     unsafe {
       ::protobuf::__internal::runtime::message_set_sub_message(
         ::protobuf::AsMut::as_mut(self).inner,
-        3,
+        2,
         val
       );
     }
@@ -5442,13 +8048,13 @@ impl Item {
   // mysql: optional message palm.lavender.v1.MySql
   pub fn has_mysql(&self) -> bool {
     unsafe {
-      self.inner.ptr().has_field_at_index(4)
+      self.inner.ptr().has_field_at_index(3)
     }
   }
   pub fn clear_mysql(&mut self) {
     unsafe {
       self.inner.ptr().clear_field_at_index(
-        4
+        3
       );
     }
   }
@@ -5457,7 +8063,7 @@ impl Item {
   }
   pub fn mysql(&self) -> super::super::MySqlView<'_> {
     let submsg = unsafe {
-      self.inner.ptr().get_message_at_index(4)
+      self.inner.ptr().get_message_at_index(3)
     };
     submsg
         .map(|ptr| unsafe { ::protobuf::__internal::runtime::MessageViewInner::wrap(ptr).into() })
@@ -5466,7 +8072,7 @@ impl Item {
   pub fn mysql_mut(&mut self) -> super::super::MySqlMut<'_> {
      let ptr = unsafe {
        self.inner.ptr_mut().get_or_create_mutable_message_at_index(
-         4, self.inner.arena()
+         3, self.inner.arena()
        ).unwrap()
      };
      ::protobuf::__internal::runtime::MessageMutInner::from_parent(
@@ -5480,7 +8086,7 @@ impl Item {
     unsafe {
       ::protobuf::__internal::runtime::message_set_sub_message(
         ::protobuf::AsMut::as_mut(self).inner,
-        4,
+        3,
         val
       );
     }
@@ -5489,13 +8095,13 @@ impl Item {
   // redis: optional message palm.lavender.v1.Redis
   pub fn has_redis(&self) -> bool {
     unsafe {
-      self.inner.ptr().has_field_at_index(5)
+      self.inner.ptr().has_field_at_index(4)
     }
   }
   pub fn clear_redis(&mut self) {
     unsafe {
       self.inner.ptr().clear_field_at_index(
-        5
+        4
       );
     }
   }
@@ -5504,7 +8110,7 @@ impl Item {
   }
   pub fn redis(&self) -> super::super::RedisView<'_> {
     let submsg = unsafe {
-      self.inner.ptr().get_message_at_index(5)
+      self.inner.ptr().get_message_at_index(4)
     };
     submsg
         .map(|ptr| unsafe { ::protobuf::__internal::runtime::MessageViewInner::wrap(ptr).into() })
@@ -5513,7 +8119,7 @@ impl Item {
   pub fn redis_mut(&mut self) -> super::super::RedisMut<'_> {
      let ptr = unsafe {
        self.inner.ptr_mut().get_or_create_mutable_message_at_index(
-         5, self.inner.arena()
+         4, self.inner.arena()
        ).unwrap()
      };
      ::protobuf::__internal::runtime::MessageMutInner::from_parent(
@@ -5527,7 +8133,7 @@ impl Item {
     unsafe {
       ::protobuf::__internal::runtime::message_set_sub_message(
         ::protobuf::AsMut::as_mut(self).inner,
-        5,
+        4,
         val
       );
     }
@@ -5536,13 +8142,13 @@ impl Item {
   // snmp: optional message palm.lavender.v1.Snmp
   pub fn has_snmp(&self) -> bool {
     unsafe {
-      self.inner.ptr().has_field_at_index(6)
+      self.inner.ptr().has_field_at_index(5)
     }
   }
   pub fn clear_snmp(&mut self) {
     unsafe {
       self.inner.ptr().clear_field_at_index(
-        6
+        5
       );
     }
   }
@@ -5551,7 +8157,7 @@ impl Item {
   }
   pub fn snmp(&self) -> super::super::SnmpView<'_> {
     let submsg = unsafe {
-      self.inner.ptr().get_message_at_index(6)
+      self.inner.ptr().get_message_at_index(5)
     };
     submsg
         .map(|ptr| unsafe { ::protobuf::__internal::runtime::MessageViewInner::wrap(ptr).into() })
@@ -5560,7 +8166,7 @@ impl Item {
   pub fn snmp_mut(&mut self) -> super::super::SnmpMut<'_> {
      let ptr = unsafe {
        self.inner.ptr_mut().get_or_create_mutable_message_at_index(
-         6, self.inner.arena()
+         5, self.inner.arena()
        ).unwrap()
      };
      ::protobuf::__internal::runtime::MessageMutInner::from_parent(
@@ -5574,34 +8180,83 @@ impl Item {
     unsafe {
       ::protobuf::__internal::runtime::message_set_sub_message(
         ::protobuf::AsMut::as_mut(self).inner,
+        5,
+        val
+      );
+    }
+  }
+
+  // opensearch: optional message palm.lavender.v1.OpenSearch
+  pub fn has_opensearch(&self) -> bool {
+    unsafe {
+      self.inner.ptr().has_field_at_index(6)
+    }
+  }
+  pub fn clear_opensearch(&mut self) {
+    unsafe {
+      self.inner.ptr().clear_field_at_index(
+        6
+      );
+    }
+  }
+  pub fn opensearch_opt(&self) -> ::protobuf::Optional<super::super::OpenSearchView<'_>> {
+        ::protobuf::Optional::new(self.opensearch(), self.has_opensearch())
+  }
+  pub fn opensearch(&self) -> super::super::OpenSearchView<'_> {
+    let submsg = unsafe {
+      self.inner.ptr().get_message_at_index(6)
+    };
+    submsg
+        .map(|ptr| unsafe { ::protobuf::__internal::runtime::MessageViewInner::wrap(ptr).into() })
+       .unwrap_or(super::super::OpenSearchView::default())
+  }
+  pub fn opensearch_mut(&mut self) -> super::super::OpenSearchMut<'_> {
+     let ptr = unsafe {
+       self.inner.ptr_mut().get_or_create_mutable_message_at_index(
+         6, self.inner.arena()
+       ).unwrap()
+     };
+     ::protobuf::__internal::runtime::MessageMutInner::from_parent(
+         self.as_message_mut_inner(::protobuf::__internal::Private),
+         ptr
+     ).into()
+  }
+  pub fn set_opensearch(&mut self,
+    val: impl ::protobuf::IntoProxied<super::super::OpenSearch>) {
+
+    unsafe {
+      ::protobuf::__internal::runtime::message_set_sub_message(
+        ::protobuf::AsMut::as_mut(self).inner,
         6,
         val
       );
     }
   }
 
-  pub fn payload(&self) -> super::super::report_request::item::PayloadOneof<'_> {
-    match &self.payload_case() {
-      super::super::report_request::item::PayloadCase::Http =>
-          super::super::report_request::item::PayloadOneof::Http(self.http()),
-      super::super::report_request::item::PayloadCase::Postgresql =>
-          super::super::report_request::item::PayloadOneof::Postgresql(self.postgresql()),
-      super::super::report_request::item::PayloadCase::Mysql =>
-          super::super::report_request::item::PayloadOneof::Mysql(self.mysql()),
-      super::super::report_request::item::PayloadCase::Redis =>
-          super::super::report_request::item::PayloadOneof::Redis(self.redis()),
-      super::super::report_request::item::PayloadCase::Snmp =>
-          super::super::report_request::item::PayloadOneof::Snmp(self.snmp()),
-      _ => super::super::report_request::item::PayloadOneof::not_set(std::marker::PhantomData)
+  pub fn node(&self) -> super::super::report_request::item::NodeOneof<'_> {
+    match &self.node_case() {
+      super::super::report_request::item::NodeCase::Http =>
+          super::super::report_request::item::NodeOneof::Http(self.http()),
+      super::super::report_request::item::NodeCase::Postgresql =>
+          super::super::report_request::item::NodeOneof::Postgresql(self.postgresql()),
+      super::super::report_request::item::NodeCase::Mysql =>
+          super::super::report_request::item::NodeOneof::Mysql(self.mysql()),
+      super::super::report_request::item::NodeCase::Redis =>
+          super::super::report_request::item::NodeOneof::Redis(self.redis()),
+      super::super::report_request::item::NodeCase::Snmp =>
+          super::super::report_request::item::NodeOneof::Snmp(self.snmp()),
+      super::super::report_request::item::NodeCase::Opensearch =>
+          super::super::report_request::item::NodeOneof::Opensearch(self.opensearch()),
+      _ => super::super::report_request::item::NodeOneof::not_set(std::marker::PhantomData)
     }
   }
 
-  pub fn payload_case(&self) -> super::super::report_request::item::PayloadCase {
+  pub fn node_case(&self) -> super::super::report_request::item::NodeCase {
     unsafe {
       let field_num = <Self as ::protobuf::__internal::runtime::UpbGetMessagePtr>::get_ptr(
           &self, ::protobuf::__internal::Private)
-          .which_oneof_field_number_by_index(2);
-      super::super::report_request::item::PayloadCase::try_from(field_num).unwrap_unchecked()
+          .which_oneof_field_number_by_index(1);
+      super::super::report_request::item::NodeCase::try_from(field_num).unwrap_unchecked()
     }
   }
 }  // impl Item
@@ -5639,15 +8294,15 @@ unsafe impl ::protobuf::__internal::runtime::AssociatedMiniTable for Item {
     unsafe {
       ONCE_LOCK.get_or_init(|| {
         super::super::report_request::palm__lavender__v1__ReportRequest__Item_msg_init.0 =
-            ::protobuf::__internal::runtime::build_mini_table("$33h33333^-|.|/|0|1");
+            ::protobuf::__internal::runtime::build_mini_table("$3i333333^-|.|/|0|1|2");
         ::protobuf::__internal::runtime::link_mini_table(
-            super::super::report_request::palm__lavender__v1__ReportRequest__Item_msg_init.0, &[<super::super::Timestamp as ::protobuf::__internal::runtime::AssociatedMiniTable>::mini_table(),
-            <super::super::Duration as ::protobuf::__internal::runtime::AssociatedMiniTable>::mini_table(),
+            super::super::report_request::palm__lavender__v1__ReportRequest__Item_msg_init.0, &[<super::super::Duration as ::protobuf::__internal::runtime::AssociatedMiniTable>::mini_table(),
             <super::super::Http as ::protobuf::__internal::runtime::AssociatedMiniTable>::mini_table(),
             <super::super::PostgreSql as ::protobuf::__internal::runtime::AssociatedMiniTable>::mini_table(),
             <super::super::MySql as ::protobuf::__internal::runtime::AssociatedMiniTable>::mini_table(),
             <super::super::Redis as ::protobuf::__internal::runtime::AssociatedMiniTable>::mini_table(),
             <super::super::Snmp as ::protobuf::__internal::runtime::AssociatedMiniTable>::mini_table(),
+            <super::super::OpenSearch as ::protobuf::__internal::runtime::AssociatedMiniTable>::mini_table(),
             ], &[]);
         ::protobuf::__internal::runtime::MiniTableInitPtr(super::super::report_request::palm__lavender__v1__ReportRequest__Item_msg_init.0)
       }).0
@@ -5703,12 +8358,13 @@ pub mod item {
 #[derive(Debug, Clone, Copy)]
 #[allow(dead_code)]
 #[repr(u32)]
-pub enum PayloadOneof<'msg> {
+pub enum NodeOneof<'msg> {
   Http(::protobuf::View<'msg, super::super::super::Http>) = 11,
   Postgresql(::protobuf::View<'msg, super::super::super::PostgreSql>) = 12,
   Mysql(::protobuf::View<'msg, super::super::super::MySql>) = 13,
   Redis(::protobuf::View<'msg, super::super::super::Redis>) = 14,
   Snmp(::protobuf::View<'msg, super::super::super::Snmp>) = 15,
+  Opensearch(::protobuf::View<'msg, super::super::super::OpenSearch>) = 16,
 
   not_set(std::marker::PhantomData<&'msg ()>) = 0
 }
@@ -5716,26 +8372,28 @@ pub enum PayloadOneof<'msg> {
 #[derive(Debug, Copy, Clone, PartialEq, Eq)]
 #[non_exhaustive]
 #[allow(dead_code)]
-pub enum PayloadCase {
+pub enum NodeCase {
   Http = 11,
   Postgresql = 12,
   Mysql = 13,
   Redis = 14,
   Snmp = 15,
+  Opensearch = 16,
 
   not_set = 0
 }
 
-impl PayloadCase {
+impl NodeCase {
   #[allow(dead_code)]
-  pub(crate) fn try_from(v: u32) -> ::std::option::Option<PayloadCase> {
+  pub(crate) fn try_from(v: u32) -> ::std::option::Option<NodeCase> {
     match v {
-      0 => Some(PayloadCase::not_set),
-      11 => Some(PayloadCase::Http),
-      12 => Some(PayloadCase::Postgresql),
-      13 => Some(PayloadCase::Mysql),
-      14 => Some(PayloadCase::Redis),
-      15 => Some(PayloadCase::Snmp),
+      0 => Some(NodeCase::not_set),
+      11 => Some(NodeCase::Http),
+      12 => Some(NodeCase::Postgresql),
+      13 => Some(NodeCase::Mysql),
+      14 => Some(NodeCase::Redis),
+      15 => Some(NodeCase::Snmp),
+      16 => Some(NodeCase::Opensearch),
       _ => None
     }
   }

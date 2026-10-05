@@ -38,9 +38,9 @@ int loquat::Application::launch(int argc, char** argv) const {
     rpc_command.add_argument("-p", "--port")
         .default_value(9999)
         .scan<'i', int>();
-    rpc_command.add_argument("-s", "--ssl")
+    rpc_command.add_argument("-s", "--tls")
         .default_value(false)
-        .help("enable mutual tls mode")
+        .help("with mutual-TLS mode")
         .implicit_value(true);
     rpc_command.add_argument("--cert-file")
         .default_value("server.crt")
@@ -89,7 +89,7 @@ int loquat::Application::launch(int argc, char** argv) const {
 
     this->launch_rpc_server(
         static_cast<uint16_t>(port),
-        rpc_command.get<bool>("--ssl") ? ssl : std::nullopt);
+        rpc_command.get<bool>("--tls") ? ssl : std::nullopt);
 
   } else if (program.is_subcommand_used(generate_token_command)) {
     const int years = generate_token_command.get<int>("--years");

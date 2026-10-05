@@ -20,6 +20,9 @@ dependencies = [
     "redis[hiredis]",
     "pika",
     "opensearch-py",
+    "systemd-python",
+    "kubernetes",
+    "pysnmp",
 ]
 dynamic = ["version"]
 

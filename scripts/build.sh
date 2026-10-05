@@ -167,6 +167,13 @@ EOF
 [server]
 host = "127.0.0.1"
 port = 11006
+
+[systemd]
+services = ["sshd"]
+
+[kubernetes]
+namespaces = []
+
 EOF
     cat <<EOF > $1/lavender/daisy-server.service
 [Unit]
