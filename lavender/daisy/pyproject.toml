@@ -1,6 +1,6 @@
 [project]
 name = "daisy"
-# version = "2026.9.10"
+# version = "2026.10.5"
 authors = [{ name = "Jeremy Zheng", email = "jitang.zheng@gmail.com" }]
 description = "gRPC services for Lavender"
 readme = "README.md"
@@ -17,6 +17,9 @@ dependencies = [
     "grpcio-health-checking",
     "psycopg[c,pool]",
     "mysql-connector-python",
+    "redis[hiredis]",
+    "pika",
+    "opensearch-py",
 ]
 dynamic = ["version"]
 
@@ -38,7 +41,7 @@ packages = ["src/daisy"]
 source = "vcs"
 
 [tool.hatch.version.raw-options]
-root = ".."
+root = "../.."
 version_scheme = "no-guess-dev"
 
 [tool.pyright]

@@ -13,8 +13,8 @@ from grpc_reflection.v1alpha import reflection
 from grpc_health.v1 import health, health_pb2, health_pb2_grpc
 
 
-from . import rbac
-from .rbac.server import Server as RbacServer
+# from . import rbac
+# from .rbac.server import Server as RbacServer
 # from dahlia.protocols import rbac_pb2_grpc, rbac_pb2
 
 logger = logging.getLogger(__name__)

@@ -1,0 +1,55 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "com.github.saturn_xiv.palm.plugins.lavender.v1";
+option java_outer_classname = "LavenderProto";
+option go_package = "./;v2";
+option csharp_namespace = "Palm.Plugins.Lavender.Grpc";
+package palm.lavender.v1;
+
+import "google/protobuf/empty.proto";
+import "google/protobuf/timestamp.proto";
+
+service StorageService {
+  rpc Report(ReportRequest) returns (google.protobuf.Empty) {}
+}
+
+message Http {
+    uint32 status_code = 1;
+    string content_type = 2;
+    string response_body = 3;
+}
+message PostgreSql {
+    string version = 1;
+}
+message MySql{
+    string version = 1;
+}
+message Redis {
+    string info = 1;
+    optional string cluster = 2;
+}
+message Snmp {
+    message Item{
+        string oid = 1;
+        oneof value{
+            int64 i = 11;
+            string s = 12;
+            double d = 13;
+        }
+    }
+    repeated Item items = 1;
+}
+
+message ReportRequest{
+    message Item{
+        google.protobuf.Timestamp timestamp = 1;
+        oneof payload{
+            Http http = 11;
+            PostgreSql postgresql = 12;
+            MySql mysql = 13;
+            Redis redis = 14;
+            Snmp snmp = 15;
+        }
+    }
+}

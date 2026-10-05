@@ -72,7 +72,7 @@ function build_wisteria_assets() {
     cp -r README.md db assets locales $1/
 }
 
-function build_dahlia() {
+function build_python3() {
     local python_home=$WORK_DIR/tmp/python3
     if [ ! -d $python_home ]
     then
@@ -87,6 +87,14 @@ function build_dahlia() {
         rm -r dist
     fi
     python3 -m build
+
+    cd $WORK_DIR/lavender/daisy/
+    if [ -d dist ]
+    then
+        rm -r dist
+    fi
+    python3 -m build
+
     deactivate
 }
 
@@ -147,6 +155,57 @@ Restart=always
 
 [Install]
 WantedBy=multi-user.target
+EOF
+
+    cat <<EOF > $1/lavender/daisy.toml
+[opensearch]
+host = "127.0.0.1"
+port = 9200
+namespace = "palm.dev"
+EOF
+    cat <<EOF > $1/lavender/daisy-server.service
+[Unit]
+Description=gRPC services for Lavender.
+Documentation=https://github.com/saturn-xiv/palm/tree/main/daisy
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+Type=simple
+DynamicUser=yes
+ExecStart=/bin/bash -c "source /opt/python3/bin/activate && daisy server -c /etc/palm/lavender-daisy-server.toml -p 11006"
+WorkingDirectory=/var/lib/palm/lavender
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
+EOF
+    cat <<EOF > $1/lavender/daisy-worker.service
+[Unit]
+Description=Clawers for Lavender.
+Documentation=https://github.com/saturn-xiv/palm/tree/main/daisy
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+Type=oneshot
+DynamicUser=yes
+ExecStart=/bin/bash -c "source /opt/python3/bin/activate && daisy client worker -c /etc/palm/lavender-daisy-worker.toml"
+WorkingDirectory=/var/lib/palm/lavender
+
+[Install]
+WantedBy=multi-user.target
+EOF
+    cat <<EOF > $1/lavender/daisy-worker.timer
+[Unit]
+Description=Run daisy service every five minutes.
+
+[Timer]
+OnBootSec=10min
+OnUnitActiveSec=5min
+
+[Install]
+WantedBy=timers.target
 EOF
 
     cat <<EOF > $1/marigold/production.yaml
@@ -320,7 +379,7 @@ EOF
 # -----------------------------------------------------------------------------
 
 build_dashboard wisteria
-build_dahlia
+build_python3
 build_marigold
 
 declare -a architectures=("amd64" "arm64" "riscv64")
@@ -339,6 +398,10 @@ for a in "${architectures[@]}"; do
     mkdir -p $target/usr/share/palm/dahlia
     cp README.md dist/dahlia-*-py3-none-any.whl $target/usr/share/palm/dahlia/
 
+    cd $WORK_DIR/lavender/daisy/
+    mkdir -p $target/usr/share/palm/lavender
+    cp README.md dist/daisy-*-py3-none-any.whl $target/usr/share/palm/lavender/
+
     cd $WORK_DIR/loquat/
     mkdir -p $target/usr/share/palm/loquat
     cp README.md $target/usr/share/palm/loquat/
@@ -350,7 +413,7 @@ for a in "${architectures[@]}"; do
     generate_etc $target/usr/share/palm
     cd $WORK_DIR/
     cp -r docker README.md LICENSE $target/usr/share/palm/
-    mkdir -p $target/etc/palm $target/usr/bin $target/var/lib/palm/{loquat,dahlia,marigold,wisteria}
+    mkdir -p $target/etc/palm $target/usr/bin $target/var/lib/palm/{loquat,dahlia,lavender,marigold,wisteria}
 done
 
 
