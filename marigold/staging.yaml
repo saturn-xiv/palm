@@ -4,6 +4,12 @@ spring:
   grpc:
     server:
       port: 11004
+      # security:
+      #   enabled: true
+      #   certificate-chain: file:certs/server.crt
+      #   private-key: file:certs/server.key
+      #   trust-cert-collection: file:certs/ca.crt
+      #   client-auth: REQUIRE
   datasource:
     url: jdbc:postgresql://localhost:5432/marigold_dev
     username: www

@@ -215,19 +215,25 @@ EOF
 
     cat <<EOF > $1/marigold/production.yaml
 server:
-    port: 11003
+  port: 11003
 spring:
-    grpc:
+  grpc:
     server:
-        port: 11004
-    datasource:
-    url: jdbc:postgresql://localhost:5432/marigold_dev
-    username: www
-    password: "change-me"
-    driver-class-name: org.postgresql.Driver
-    hikari:
-        maximum-pool-size: 16
-        minimum-idle: 5
+      port: 11004
+      security:
+        enabled: true
+        certificate-chain: file:certs/server.crt
+        private-key: file:certs/server.key
+        trust-cert-collection: file:certs/ca.crt
+        client-auth: REQUIRE
+  datasource:
+  url: jdbc:postgresql://localhost:5432/marigold_dev
+  username: www
+  password: "change-me"
+  driver-class-name: org.postgresql.Driver
+  hikari:
+    maximum-pool-size: 16
+    minimum-idle: 5
 EOF
     cat <<EOF > $1/marigold/rpc.service
 [Unit]
