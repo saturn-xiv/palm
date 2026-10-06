@@ -34,9 +34,10 @@ message SystemdResponse {
     uint32 chunk_count = 1;
 }
 message KubernetesRequest{
-    string pod = 1;
-    string container = 2;
-    string message = 3;
+    string node = 1;
+    string pod = 2;
+    string container = 3;
+    string message = 4;
     Timestamp created_at = 9;
 }
 message KubernetesResponse{

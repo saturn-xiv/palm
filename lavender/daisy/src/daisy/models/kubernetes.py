@@ -34,6 +34,8 @@ def _load_logs_for_namespace(db, namespace):
 
     for pod in pods.items:
         pod_name = pod.metadata.name
+        node_name = pod.spec.node_name
+
         for container in pod.spec.containers:
             container_name = container.name
             # if state.waiting and state.waiting.reason == "ContainerCreating":
@@ -50,7 +52,6 @@ def _load_logs_for_namespace(db, namespace):
                                                  namespace=namespace,
                                                  container=container_name,
                                                  timestamps=True,
-                                                 previous=True,
                                                  since_seconds=round(
                                                      (now-since).total_seconds()),
                                                  _preload_content=False,
@@ -62,7 +63,7 @@ def _load_logs_for_namespace(db, namespace):
                         continue
                     # UserWarning: no explicit representation of timezones available for np.datetime64
                     cur = numpy.datetime64(items[0][:-1])
-                    yield lavender_pb2.KubernetesRequest(pod=pod_name, container=container_name, created_at=to_timestamp(cur), message=items[1])
+                    yield lavender_pb2.KubernetesRequest(node=node_name, pod=pod_name, container=container_name, created_at=to_timestamp(cur), message=items[1])
                     db[key] = pickle.dumps(cur.astype(
                         'datetime64[us]').item().replace(tzinfo=UTC))
             except ApiException as e:

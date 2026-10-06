@@ -2356,11 +2356,22 @@ impl<'msg> KubernetesRequestView<'msg> {
     ::protobuf::IntoProxied::into_proxied(*self, ::protobuf::__internal::Private)
   }
 
+  // node: optional string
+  pub fn node(self) -> ::protobuf::View<'msg, ::protobuf::ProtoString> {
+    let str_view = unsafe {
+      self.inner.ptr().get_string_at_index(
+        0, (b"").into()
+      )
+    };
+    // SAFETY: The runtime doesn't require ProtoStr to be UTF-8.
+    unsafe { ::protobuf::ProtoStr::from_utf8_unchecked(str_view.as_ref()) }
+  }
+
   // pod: optional string
   pub fn pod(self) -> ::protobuf::View<'msg, ::protobuf::ProtoString> {
     let str_view = unsafe {
       self.inner.ptr().get_string_at_index(
-        0, (b"").into()
+        1, (b"").into()
       )
     };
     // SAFETY: The runtime doesn't require ProtoStr to be UTF-8.
@@ -2371,7 +2382,7 @@ impl<'msg> KubernetesRequestView<'msg> {
   pub fn container(self) -> ::protobuf::View<'msg, ::protobuf::ProtoString> {
     let str_view = unsafe {
       self.inner.ptr().get_string_at_index(
-        1, (b"").into()
+        2, (b"").into()
       )
     };
     // SAFETY: The runtime doesn't require ProtoStr to be UTF-8.
@@ -2382,7 +2393,7 @@ impl<'msg> KubernetesRequestView<'msg> {
   pub fn message(self) -> ::protobuf::View<'msg, ::protobuf::ProtoString> {
     let str_view = unsafe {
       self.inner.ptr().get_string_at_index(
-        2, (b"").into()
+        3, (b"").into()
       )
     };
     // SAFETY: The runtime doesn't require ProtoStr to be UTF-8.
@@ -2392,7 +2403,7 @@ impl<'msg> KubernetesRequestView<'msg> {
   // created_at: optional message palm.lavender.v1.Timestamp
   pub fn has_created_at(self) -> bool {
     unsafe {
-      self.inner.ptr().has_field_at_index(3)
+      self.inner.ptr().has_field_at_index(4)
     }
   }
   pub fn created_at_opt(self) -> ::protobuf::Optional<super::TimestampView<'msg>> {
@@ -2400,7 +2411,7 @@ impl<'msg> KubernetesRequestView<'msg> {
   }
   pub fn created_at(self) -> super::TimestampView<'msg> {
     let submsg = unsafe {
-      self.inner.ptr().get_message_at_index(3)
+      self.inner.ptr().get_message_at_index(4)
     };
     submsg
         .map(|ptr| unsafe { ::protobuf::__internal::runtime::MessageViewInner::wrap(ptr).into() })
@@ -2498,11 +2509,30 @@ impl<'msg> KubernetesRequestMut<'msg> {
     ::protobuf::AsView::as_view(self).to_owned()
   }
 
+  // node: optional string
+  pub fn node(&self) -> ::protobuf::View<'_, ::protobuf::ProtoString> {
+    let str_view = unsafe {
+      self.inner.ptr().get_string_at_index(
+        0, (b"").into()
+      )
+    };
+    // SAFETY: The runtime doesn't require ProtoStr to be UTF-8.
+    unsafe { ::protobuf::ProtoStr::from_utf8_unchecked(str_view.as_ref()) }
+  }
+  pub fn set_node(&mut self, val: impl ::protobuf::IntoProxied<::protobuf::ProtoString>) {
+    unsafe {
+      ::protobuf::__internal::runtime::message_set_string_field(
+        ::protobuf::AsMut::as_mut(self).inner,
+        0,
+        val);
+    }
+  }
+
   // pod: optional string
   pub fn pod(&self) -> ::protobuf::View<'_, ::protobuf::ProtoString> {
     let str_view = unsafe {
       self.inner.ptr().get_string_at_index(
-        0, (b"").into()
+        1, (b"").into()
       )
     };
     // SAFETY: The runtime doesn't require ProtoStr to be UTF-8.
@@ -2512,7 +2542,7 @@ impl<'msg> KubernetesRequestMut<'msg> {
     unsafe {
       ::protobuf::__internal::runtime::message_set_string_field(
         ::protobuf::AsMut::as_mut(self).inner,
-        0,
+        1,
         val);
     }
   }
@@ -2521,7 +2551,7 @@ impl<'msg> KubernetesRequestMut<'msg> {
   pub fn container(&self) -> ::protobuf::View<'_, ::protobuf::ProtoString> {
     let str_view = unsafe {
       self.inner.ptr().get_string_at_index(
-        1, (b"").into()
+        2, (b"").into()
       )
     };
     // SAFETY: The runtime doesn't require ProtoStr to be UTF-8.
@@ -2531,7 +2561,7 @@ impl<'msg> KubernetesRequestMut<'msg> {
     unsafe {
       ::protobuf::__internal::runtime::message_set_string_field(
         ::protobuf::AsMut::as_mut(self).inner,
-        1,
+        2,
         val);
     }
   }
@@ -2540,7 +2570,7 @@ impl<'msg> KubernetesRequestMut<'msg> {
   pub fn message(&self) -> ::protobuf::View<'_, ::protobuf::ProtoString> {
     let str_view = unsafe {
       self.inner.ptr().get_string_at_index(
-        2, (b"").into()
+        3, (b"").into()
       )
     };
     // SAFETY: The runtime doesn't require ProtoStr to be UTF-8.
@@ -2550,7 +2580,7 @@ impl<'msg> KubernetesRequestMut<'msg> {
     unsafe {
       ::protobuf::__internal::runtime::message_set_string_field(
         ::protobuf::AsMut::as_mut(self).inner,
-        2,
+        3,
         val);
     }
   }
@@ -2558,13 +2588,13 @@ impl<'msg> KubernetesRequestMut<'msg> {
   // created_at: optional message palm.lavender.v1.Timestamp
   pub fn has_created_at(&self) -> bool {
     unsafe {
-      self.inner.ptr().has_field_at_index(3)
+      self.inner.ptr().has_field_at_index(4)
     }
   }
   pub fn clear_created_at(&mut self) {
     unsafe {
       self.inner.ptr().clear_field_at_index(
-        3
+        4
       );
     }
   }
@@ -2573,7 +2603,7 @@ impl<'msg> KubernetesRequestMut<'msg> {
   }
   pub fn created_at(&self) -> super::TimestampView<'_> {
     let submsg = unsafe {
-      self.inner.ptr().get_message_at_index(3)
+      self.inner.ptr().get_message_at_index(4)
     };
     submsg
         .map(|ptr| unsafe { ::protobuf::__internal::runtime::MessageViewInner::wrap(ptr).into() })
@@ -2582,7 +2612,7 @@ impl<'msg> KubernetesRequestMut<'msg> {
   pub fn created_at_mut(&mut self) -> super::TimestampMut<'_> {
      let ptr = unsafe {
        self.inner.ptr_mut().get_or_create_mutable_message_at_index(
-         3, self.inner.arena()
+         4, self.inner.arena()
        ).unwrap()
      };
      ::protobuf::__internal::runtime::MessageMutInner::from_parent(
@@ -2596,7 +2626,7 @@ impl<'msg> KubernetesRequestMut<'msg> {
     unsafe {
       ::protobuf::__internal::runtime::message_set_sub_message(
         ::protobuf::AsMut::as_mut(self).inner,
-        3,
+        4,
         val
       );
     }
@@ -2666,11 +2696,30 @@ impl KubernetesRequest {
     ::protobuf::__internal::runtime::MessageMutInner::mut_of_owned(&mut self.inner).into()
   }
 
+  // node: optional string
+  pub fn node(&self) -> ::protobuf::View<'_, ::protobuf::ProtoString> {
+    let str_view = unsafe {
+      self.inner.ptr().get_string_at_index(
+        0, (b"").into()
+      )
+    };
+    // SAFETY: The runtime doesn't require ProtoStr to be UTF-8.
+    unsafe { ::protobuf::ProtoStr::from_utf8_unchecked(str_view.as_ref()) }
+  }
+  pub fn set_node(&mut self, val: impl ::protobuf::IntoProxied<::protobuf::ProtoString>) {
+    unsafe {
+      ::protobuf::__internal::runtime::message_set_string_field(
+        ::protobuf::AsMut::as_mut(self).inner,
+        0,
+        val);
+    }
+  }
+
   // pod: optional string
   pub fn pod(&self) -> ::protobuf::View<'_, ::protobuf::ProtoString> {
     let str_view = unsafe {
       self.inner.ptr().get_string_at_index(
-        0, (b"").into()
+        1, (b"").into()
       )
     };
     // SAFETY: The runtime doesn't require ProtoStr to be UTF-8.
@@ -2680,7 +2729,7 @@ impl KubernetesRequest {
     unsafe {
       ::protobuf::__internal::runtime::message_set_string_field(
         ::protobuf::AsMut::as_mut(self).inner,
-        0,
+        1,
         val);
     }
   }
@@ -2689,7 +2738,7 @@ impl KubernetesRequest {
   pub fn container(&self) -> ::protobuf::View<'_, ::protobuf::ProtoString> {
     let str_view = unsafe {
       self.inner.ptr().get_string_at_index(
-        1, (b"").into()
+        2, (b"").into()
       )
     };
     // SAFETY: The runtime doesn't require ProtoStr to be UTF-8.
@@ -2699,7 +2748,7 @@ impl KubernetesRequest {
     unsafe {
       ::protobuf::__internal::runtime::message_set_string_field(
         ::protobuf::AsMut::as_mut(self).inner,
-        1,
+        2,
         val);
     }
   }
@@ -2708,7 +2757,7 @@ impl KubernetesRequest {
   pub fn message(&self) -> ::protobuf::View<'_, ::protobuf::ProtoString> {
     let str_view = unsafe {
       self.inner.ptr().get_string_at_index(
-        2, (b"").into()
+        3, (b"").into()
       )
     };
     // SAFETY: The runtime doesn't require ProtoStr to be UTF-8.
@@ -2718,7 +2767,7 @@ impl KubernetesRequest {
     unsafe {
       ::protobuf::__internal::runtime::message_set_string_field(
         ::protobuf::AsMut::as_mut(self).inner,
-        2,
+        3,
         val);
     }
   }
@@ -2726,13 +2775,13 @@ impl KubernetesRequest {
   // created_at: optional message palm.lavender.v1.Timestamp
   pub fn has_created_at(&self) -> bool {
     unsafe {
-      self.inner.ptr().has_field_at_index(3)
+      self.inner.ptr().has_field_at_index(4)
     }
   }
   pub fn clear_created_at(&mut self) {
     unsafe {
       self.inner.ptr().clear_field_at_index(
-        3
+        4
       );
     }
   }
@@ -2741,7 +2790,7 @@ impl KubernetesRequest {
   }
   pub fn created_at(&self) -> super::TimestampView<'_> {
     let submsg = unsafe {
-      self.inner.ptr().get_message_at_index(3)
+      self.inner.ptr().get_message_at_index(4)
     };
     submsg
         .map(|ptr| unsafe { ::protobuf::__internal::runtime::MessageViewInner::wrap(ptr).into() })
@@ -2750,7 +2799,7 @@ impl KubernetesRequest {
   pub fn created_at_mut(&mut self) -> super::TimestampMut<'_> {
      let ptr = unsafe {
        self.inner.ptr_mut().get_or_create_mutable_message_at_index(
-         3, self.inner.arena()
+         4, self.inner.arena()
        ).unwrap()
      };
      ::protobuf::__internal::runtime::MessageMutInner::from_parent(
@@ -2764,7 +2813,7 @@ impl KubernetesRequest {
     unsafe {
       ::protobuf::__internal::runtime::message_set_sub_message(
         ::protobuf::AsMut::as_mut(self).inner,
-        3,
+        4,
         val
       );
     }
@@ -2805,7 +2854,7 @@ unsafe impl ::protobuf::__internal::runtime::AssociatedMiniTable for KubernetesR
     unsafe {
       ONCE_LOCK.get_or_init(|| {
         super::palm__lavender__v1__KubernetesRequest_msg_init.0 =
-            ::protobuf::__internal::runtime::build_mini_table("$1X1X1Xe3");
+            ::protobuf::__internal::runtime::build_mini_table("$1X1X1X1Xd3");
         ::protobuf::__internal::runtime::link_mini_table(
             super::palm__lavender__v1__KubernetesRequest_msg_init.0, &[<super::Timestamp as ::protobuf::__internal::runtime::AssociatedMiniTable>::mini_table(),
             ], &[]);

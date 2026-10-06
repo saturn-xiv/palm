@@ -47,16 +47,18 @@ class SystemdResponse(_message.Message):
     def __init__(self, chunk_count: _Optional[int] = ...) -> None: ...
 
 class KubernetesRequest(_message.Message):
-    __slots__ = ("pod", "container", "message", "created_at")
+    __slots__ = ("node", "pod", "container", "message", "created_at")
+    NODE_FIELD_NUMBER: _ClassVar[int]
     POD_FIELD_NUMBER: _ClassVar[int]
     CONTAINER_FIELD_NUMBER: _ClassVar[int]
     MESSAGE_FIELD_NUMBER: _ClassVar[int]
     CREATED_AT_FIELD_NUMBER: _ClassVar[int]
+    node: str
     pod: str
     container: str
     message: str
     created_at: Timestamp
-    def __init__(self, pod: _Optional[str] = ..., container: _Optional[str] = ..., message: _Optional[str] = ..., created_at: _Optional[_Union[Timestamp, _Mapping]] = ...) -> None: ...
+    def __init__(self, node: _Optional[str] = ..., pod: _Optional[str] = ..., container: _Optional[str] = ..., message: _Optional[str] = ..., created_at: _Optional[_Union[Timestamp, _Mapping]] = ...) -> None: ...
 
 class KubernetesResponse(_message.Message):
     __slots__ = ("chunk_count",)
