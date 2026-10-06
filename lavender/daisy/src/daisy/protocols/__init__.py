@@ -3,7 +3,7 @@ from functools import singledispatch
 
 import numpy
 
-from .lavender_pb2 import Timestamp
+from .lavender_pb2 import Timestamp,Duration
 
 @singledispatch
 def to_timestamp(dt) -> None:
@@ -17,3 +17,6 @@ def _(dt: datetime) -> Timestamp:
 def _(dt: numpy.datetime64) -> Timestamp:
     ns = dt.astype("datetime64[ns]").astype(numpy.int64)
     return Timestamp(seconds=int(ns / 1_000_000_000),nanos = int(ns % 1_000_000_000))
+
+def to_duration(pt: float) -> Duration:
+    return Duration(seconds=int(pt), nanos=int((pt - pt) * 1e9))

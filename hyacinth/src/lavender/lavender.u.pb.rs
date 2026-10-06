@@ -3378,11 +3378,22 @@ impl<'msg> HttpRequestView<'msg> {
     ::protobuf::IntoProxied::into_proxied(*self, ::protobuf::__internal::Private)
   }
 
+  // host: optional string
+  pub fn host(self) -> ::protobuf::View<'msg, ::protobuf::ProtoString> {
+    let str_view = unsafe {
+      self.inner.ptr().get_string_at_index(
+        0, (b"").into()
+      )
+    };
+    // SAFETY: The runtime doesn't require ProtoStr to be UTF-8.
+    unsafe { ::protobuf::ProtoStr::from_utf8_unchecked(str_view.as_ref()) }
+  }
+
   // items: repeated message palm.lavender.v1.HttpRequest.Item
   pub fn items(self) -> ::protobuf::RepeatedView<'msg, super::http_request::Item> {
     unsafe {
       self.inner.ptr().get_array_at_index(
-        0
+        1
       )
     }.map_or_else(
         ::protobuf::__internal::runtime::empty_array::<super::http_request::Item>,
@@ -3483,11 +3494,30 @@ impl<'msg> HttpRequestMut<'msg> {
     ::protobuf::AsView::as_view(self).to_owned()
   }
 
+  // host: optional string
+  pub fn host(&self) -> ::protobuf::View<'_, ::protobuf::ProtoString> {
+    let str_view = unsafe {
+      self.inner.ptr().get_string_at_index(
+        0, (b"").into()
+      )
+    };
+    // SAFETY: The runtime doesn't require ProtoStr to be UTF-8.
+    unsafe { ::protobuf::ProtoStr::from_utf8_unchecked(str_view.as_ref()) }
+  }
+  pub fn set_host(&mut self, val: impl ::protobuf::IntoProxied<::protobuf::ProtoString>) {
+    unsafe {
+      ::protobuf::__internal::runtime::message_set_string_field(
+        ::protobuf::AsMut::as_mut(self).inner,
+        0,
+        val);
+    }
+  }
+
   // items: repeated message palm.lavender.v1.HttpRequest.Item
   pub fn items(&self) -> ::protobuf::RepeatedView<'_, super::http_request::Item> {
     unsafe {
       self.inner.ptr().get_array_at_index(
-        0
+        1
       )
     }.map_or_else(
         ::protobuf::__internal::runtime::empty_array::<super::http_request::Item>,
@@ -3499,7 +3529,7 @@ impl<'msg> HttpRequestMut<'msg> {
   pub fn items_mut(&mut self) -> ::protobuf::RepeatedMut<'_, super::http_request::Item> {
     unsafe {
       let raw_array = self.inner.ptr_mut().get_or_create_mutable_array_at_index(
-        0,
+        1,
         self.inner.arena()
       ).expect("alloc should not fail");
       ::protobuf::RepeatedMut::from_inner(
@@ -3514,7 +3544,7 @@ impl<'msg> HttpRequestMut<'msg> {
     unsafe {
       ::protobuf::__internal::runtime::message_set_repeated_field(
         ::protobuf::AsMut::as_mut(self).inner,
-        0,
+        1,
         src);
     }
   }
@@ -3583,11 +3613,30 @@ impl HttpRequest {
     ::protobuf::__internal::runtime::MessageMutInner::mut_of_owned(&mut self.inner).into()
   }
 
+  // host: optional string
+  pub fn host(&self) -> ::protobuf::View<'_, ::protobuf::ProtoString> {
+    let str_view = unsafe {
+      self.inner.ptr().get_string_at_index(
+        0, (b"").into()
+      )
+    };
+    // SAFETY: The runtime doesn't require ProtoStr to be UTF-8.
+    unsafe { ::protobuf::ProtoStr::from_utf8_unchecked(str_view.as_ref()) }
+  }
+  pub fn set_host(&mut self, val: impl ::protobuf::IntoProxied<::protobuf::ProtoString>) {
+    unsafe {
+      ::protobuf::__internal::runtime::message_set_string_field(
+        ::protobuf::AsMut::as_mut(self).inner,
+        0,
+        val);
+    }
+  }
+
   // items: repeated message palm.lavender.v1.HttpRequest.Item
   pub fn items(&self) -> ::protobuf::RepeatedView<'_, super::http_request::Item> {
     unsafe {
       self.inner.ptr().get_array_at_index(
-        0
+        1
       )
     }.map_or_else(
         ::protobuf::__internal::runtime::empty_array::<super::http_request::Item>,
@@ -3599,7 +3648,7 @@ impl HttpRequest {
   pub fn items_mut(&mut self) -> ::protobuf::RepeatedMut<'_, super::http_request::Item> {
     unsafe {
       let raw_array = self.inner.ptr_mut().get_or_create_mutable_array_at_index(
-        0,
+        1,
         self.inner.arena()
       ).expect("alloc should not fail");
       ::protobuf::RepeatedMut::from_inner(
@@ -3614,7 +3663,7 @@ impl HttpRequest {
     unsafe {
       ::protobuf::__internal::runtime::message_set_repeated_field(
         ::protobuf::AsMut::as_mut(self).inner,
-        0,
+        1,
         src);
     }
   }
@@ -3654,7 +3703,7 @@ unsafe impl ::protobuf::__internal::runtime::AssociatedMiniTable for HttpRequest
     unsafe {
       ONCE_LOCK.get_or_init(|| {
         super::palm__lavender__v1__HttpRequest_msg_init.0 =
-            ::protobuf::__internal::runtime::build_mini_table("$G");
+            ::protobuf::__internal::runtime::build_mini_table("$1XgG");
         ::protobuf::__internal::runtime::link_mini_table(
             super::palm__lavender__v1__HttpRequest_msg_init.0, &[<super::http_request::Item as ::protobuf::__internal::runtime::AssociatedMiniTable>::mini_table(),
             ], &[]);
@@ -3812,8 +3861,8 @@ impl<'msg> ItemView<'msg> {
     unsafe { ::protobuf::ProtoStr::from_utf8_unchecked(str_view.as_ref()) }
   }
 
-  // response_body: optional string
-  pub fn response_body(self) -> ::protobuf::View<'msg, ::protobuf::ProtoString> {
+  // body: optional string
+  pub fn body(self) -> ::protobuf::View<'msg, ::protobuf::ProtoString> {
     let str_view = unsafe {
       self.inner.ptr().get_string_at_index(
         2, (b"").into()
@@ -3995,8 +4044,8 @@ impl<'msg> ItemMut<'msg> {
     }
   }
 
-  // response_body: optional string
-  pub fn response_body(&self) -> ::protobuf::View<'_, ::protobuf::ProtoString> {
+  // body: optional string
+  pub fn body(&self) -> ::protobuf::View<'_, ::protobuf::ProtoString> {
     let str_view = unsafe {
       self.inner.ptr().get_string_at_index(
         2, (b"").into()
@@ -4005,7 +4054,7 @@ impl<'msg> ItemMut<'msg> {
     // SAFETY: The runtime doesn't require ProtoStr to be UTF-8.
     unsafe { ::protobuf::ProtoStr::from_utf8_unchecked(str_view.as_ref()) }
   }
-  pub fn set_response_body(&mut self, val: impl ::protobuf::IntoProxied<::protobuf::ProtoString>) {
+  pub fn set_body(&mut self, val: impl ::protobuf::IntoProxied<::protobuf::ProtoString>) {
     unsafe {
       ::protobuf::__internal::runtime::message_set_string_field(
         ::protobuf::AsMut::as_mut(self).inner,
@@ -4217,8 +4266,8 @@ impl Item {
     }
   }
 
-  // response_body: optional string
-  pub fn response_body(&self) -> ::protobuf::View<'_, ::protobuf::ProtoString> {
+  // body: optional string
+  pub fn body(&self) -> ::protobuf::View<'_, ::protobuf::ProtoString> {
     let str_view = unsafe {
       self.inner.ptr().get_string_at_index(
         2, (b"").into()
@@ -4227,7 +4276,7 @@ impl Item {
     // SAFETY: The runtime doesn't require ProtoStr to be UTF-8.
     unsafe { ::protobuf::ProtoStr::from_utf8_unchecked(str_view.as_ref()) }
   }
-  pub fn set_response_body(&mut self, val: impl ::protobuf::IntoProxied<::protobuf::ProtoString>) {
+  pub fn set_body(&mut self, val: impl ::protobuf::IntoProxied<::protobuf::ProtoString>) {
     unsafe {
       ::protobuf::__internal::runtime::message_set_string_field(
         ::protobuf::AsMut::as_mut(self).inner,

@@ -1,6 +1,5 @@
 import logging
 from datetime import UTC
-import socket
 import pickle
 
 from systemd import journal
@@ -11,7 +10,7 @@ from daisy.protocols import lavender_pb2, to_timestamp
 logger = logging.getLogger(__name__)
 
 
-def logs_by_unit(stub, name, db):
+def launch(stub, name, db):
     logger.info("load systemd unit %s", name)
     try:
         stub.Systemd(_load_logs_for_unit(db, name))
@@ -20,7 +19,6 @@ def logs_by_unit(stub, name, db):
 
 
 def _load_logs_for_unit(db, name):
-    hostname = socket.gethostname()
     key = f"systemd.{name}.last-fetch"
 
     reader = journal.Reader()
@@ -39,7 +37,7 @@ def _load_logs_for_unit(db, name):
     for entry in reader:
         cur = entry.get('__REALTIME_TIMESTAMP')
         yield lavender_pb2.SystemdRequest(
-            host=hostname,
+            host=entry.get('_HOSTNAME'),
             unit=entry.get('_SYSTEMD_UNIT'),
             created_at=to_timestamp(cur),
             priority=int(entry.get('PRIORITY', '0')),

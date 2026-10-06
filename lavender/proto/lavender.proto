@@ -48,11 +48,12 @@ message HttpRequest {
     message Item{
         uint32 status_code = 1;
         string content_type = 2;
-        string response_body = 3;
+        string body = 3;
         Duration elapsed = 8;
         Timestamp created_at = 9;
     }
-    repeated Item items = 1;
+    string host = 1;
+    repeated Item items = 9;
 }
 message PostgreSql {
     string version = 1;

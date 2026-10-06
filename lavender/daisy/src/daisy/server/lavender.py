@@ -38,3 +38,9 @@ class Reporter(lavender_pb2_grpc.ReporterServicer):
         logger.debug(
             "finished receiving kubernetes stream, total %d chunks", chunk_count)
         return lavender_pb2.SystemdResponse(chunk_count=chunk_count)
+
+    def Http(self, request, context):
+        logger.debug("receive http record(%d) from %s",
+                     len(request.items), request.host)
+
+        return lavender_pb2.Empty()

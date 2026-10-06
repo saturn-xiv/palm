@@ -7,8 +7,9 @@ import pickle
 import grpc
 
 from .protocols import lavender_pb2_grpc
-from .models.systemd import logs_by_unit as systemd_logs_by_unit
-from .models.kubernetes import logs_by_namespace as kubernetes_logs_by_namespace
+from .models.systemd import launch as systemd_logs_by_unit
+from .models.kubernetes import launch as kubernetes_logs_by_namespace
+from .models.http import launch as http_by_url
 
 logger = logging.getLogger(__name__)
 
@@ -25,6 +26,8 @@ def launch(config, tls, max_workers):
                 executor.submit(systemd_logs_by_unit, stub, name, db)
             for name in config["kubernetes"]["namespaces"]:
                 executor.submit(kubernetes_logs_by_namespace, stub, name, db)
+            for url in config["http"]["urls"]:
+                executor.submit(http_by_url, stub, url)
 
         logger.info("done.")
 

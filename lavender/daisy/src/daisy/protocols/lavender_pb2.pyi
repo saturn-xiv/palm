@@ -67,23 +67,25 @@ class KubernetesResponse(_message.Message):
     def __init__(self, chunk_count: _Optional[int] = ...) -> None: ...
 
 class HttpRequest(_message.Message):
-    __slots__ = ("items",)
+    __slots__ = ("host", "items")
     class Item(_message.Message):
-        __slots__ = ("status_code", "content_type", "response_body", "elapsed", "created_at")
+        __slots__ = ("status_code", "content_type", "body", "elapsed", "created_at")
         STATUS_CODE_FIELD_NUMBER: _ClassVar[int]
         CONTENT_TYPE_FIELD_NUMBER: _ClassVar[int]
-        RESPONSE_BODY_FIELD_NUMBER: _ClassVar[int]
+        BODY_FIELD_NUMBER: _ClassVar[int]
         ELAPSED_FIELD_NUMBER: _ClassVar[int]
         CREATED_AT_FIELD_NUMBER: _ClassVar[int]
         status_code: int
         content_type: str
-        response_body: str
+        body: str
         elapsed: Duration
         created_at: Timestamp
-        def __init__(self, status_code: _Optional[int] = ..., content_type: _Optional[str] = ..., response_body: _Optional[str] = ..., elapsed: _Optional[_Union[Duration, _Mapping]] = ..., created_at: _Optional[_Union[Timestamp, _Mapping]] = ...) -> None: ...
+        def __init__(self, status_code: _Optional[int] = ..., content_type: _Optional[str] = ..., body: _Optional[str] = ..., elapsed: _Optional[_Union[Duration, _Mapping]] = ..., created_at: _Optional[_Union[Timestamp, _Mapping]] = ...) -> None: ...
+    HOST_FIELD_NUMBER: _ClassVar[int]
     ITEMS_FIELD_NUMBER: _ClassVar[int]
+    host: str
     items: _containers.RepeatedCompositeFieldContainer[HttpRequest.Item]
-    def __init__(self, items: _Optional[_Iterable[_Union[HttpRequest.Item, _Mapping]]] = ...) -> None: ...
+    def __init__(self, host: _Optional[str] = ..., items: _Optional[_Iterable[_Union[HttpRequest.Item, _Mapping]]] = ...) -> None: ...
 
 class PostgreSql(_message.Message):
     __slots__ = ("version",)

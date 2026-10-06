@@ -169,10 +169,13 @@ host = "127.0.0.1"
 port = 11006
 
 [systemd]
-units = ["sshd.service"]
+units = ["sshd.service", "nginx.service"]
 
 [kubernetes]
 namespaces = ["change-me"]
+
+[http]
+urls = ["https://www.change-me.org/api/health-check"]
 
 EOF
     cat <<EOF > $1/lavender/daisy-server.service

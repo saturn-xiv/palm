@@ -12,7 +12,7 @@ from daisy.protocols import lavender_pb2, to_timestamp
 logger = logging.getLogger(__name__)
 
 
-def logs_by_namespace(stub, name, db):
+def launch(stub, name, db):
     logger.info("load kubernetes namespace %s", name)
     try:
         config.load_kube_config()
