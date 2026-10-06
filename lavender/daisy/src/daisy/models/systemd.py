@@ -1,5 +1,5 @@
 import logging
-from datetime import datetime,  UTC
+from datetime import UTC
 import socket
 import pickle
 
@@ -26,13 +26,13 @@ def _load_logs_for_unit(db, name):
 
         if key in db:
             since = pickle.loads(db[key])
-            logger.debug("fetch logs for %s since %s", name, since)
+            logger.debug("fetch systemd logs for %s since %s", name, since)
             reader.seek_realtime(since)
         else:
-            logger.debug("fetch logs for %s since last-boot", name)
+            logger.debug("fetch systemd logs for %s since last-boot", name)
             reader.this_boot()
 
-        reader.add_match(_SYSTEMD_UNIT="sshd.service")
+        reader.add_match(_SYSTEMD_UNIT=name)
 
         for entry in reader:
             cur = entry.get('__REALTIME_TIMESTAMP')

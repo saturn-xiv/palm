@@ -22,5 +22,19 @@ class Reporter(lavender_pb2_grpc.ReporterServicer):
             #              chunk_count, req.unit, req.created_at, req.message)
             # TODO
 
-        logger.debug("finished receiving stream, total %d chunks", chunk_count)
+        logger.debug(
+            "finished receiving systemd stream, total %d chunks", chunk_count)
+        return lavender_pb2.SystemdResponse(chunk_count=chunk_count)
+
+    def Kubernetes(self, request_iterator, context):
+        logger.debug("start to receiving kubernetes data stream")
+        chunk_count = 0
+        for req in request_iterator:
+            chunk_count += 1
+            # logger.debug("receive chunk(%s): %s %s %s",
+            #              chunk_count, req.unit, req.created_at, req.message)
+            # TODO
+
+        logger.debug(
+            "finished receiving kubernetes stream, total %d chunks", chunk_count)
         return lavender_pb2.SystemdResponse(chunk_count=chunk_count)

@@ -39,6 +39,11 @@ class ReporterStub:
                 request_serializer=daisy_dot_protocols_dot_lavender__pb2.SystemdRequest.SerializeToString,
                 response_deserializer=daisy_dot_protocols_dot_lavender__pb2.SystemdResponse.FromString,
                 _registered_method=True)
+        self.Kubernetes = channel.stream_unary(
+                '/palm.lavender.v1.Reporter/Kubernetes',
+                request_serializer=daisy_dot_protocols_dot_lavender__pb2.KubernetesRequest.SerializeToString,
+                response_deserializer=daisy_dot_protocols_dot_lavender__pb2.KubernetesResponse.FromString,
+                _registered_method=True)
         self.Http = channel.unary_unary(
                 '/palm.lavender.v1.Reporter/Http',
                 request_serializer=daisy_dot_protocols_dot_lavender__pb2.HttpRequest.SerializeToString,
@@ -50,6 +55,12 @@ class ReporterServicer:
     """Missing associated documentation comment in .proto file."""
 
     def Systemd(self, request_iterator, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def Kubernetes(self, request_iterator, context):
         """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -68,6 +79,11 @@ def add_ReporterServicer_to_server(servicer, server):
                     servicer.Systemd,
                     request_deserializer=daisy_dot_protocols_dot_lavender__pb2.SystemdRequest.FromString,
                     response_serializer=daisy_dot_protocols_dot_lavender__pb2.SystemdResponse.SerializeToString,
+            ),
+            'Kubernetes': grpc.stream_unary_rpc_method_handler(
+                    servicer.Kubernetes,
+                    request_deserializer=daisy_dot_protocols_dot_lavender__pb2.KubernetesRequest.FromString,
+                    response_serializer=daisy_dot_protocols_dot_lavender__pb2.KubernetesResponse.SerializeToString,
             ),
             'Http': grpc.unary_unary_rpc_method_handler(
                     servicer.Http,
@@ -102,6 +118,33 @@ class Reporter:
             '/palm.lavender.v1.Reporter/Systemd',
             daisy_dot_protocols_dot_lavender__pb2.SystemdRequest.SerializeToString,
             daisy_dot_protocols_dot_lavender__pb2.SystemdResponse.FromString,
+            options,
+            channel_credentials,
+            insecure,
+            call_credentials,
+            compression,
+            wait_for_ready,
+            timeout,
+            metadata,
+            _registered_method=True)
+
+    @staticmethod
+    def Kubernetes(request_iterator,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.stream_unary(
+            request_iterator,
+            target,
+            '/palm.lavender.v1.Reporter/Kubernetes',
+            daisy_dot_protocols_dot_lavender__pb2.KubernetesRequest.SerializeToString,
+            daisy_dot_protocols_dot_lavender__pb2.KubernetesResponse.FromString,
             options,
             channel_credentials,
             insecure,

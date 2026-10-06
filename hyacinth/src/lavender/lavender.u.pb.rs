@@ -1832,7 +1832,7 @@ unsafe impl ::protobuf::__internal::runtime::AssociatedMiniTable for SystemdRequ
     unsafe {
       ONCE_LOCK.get_or_init(|| {
         super::palm__lavender__v1__SystemdRequest_msg_init.0 =
-            ::protobuf::__internal::runtime::build_mini_table("$1X1X)P1X3");
+            ::protobuf::__internal::runtime::build_mini_table("$1X1X)P1Xd3");
         ::protobuf::__internal::runtime::link_mini_table(
             super::palm__lavender__v1__SystemdRequest_msg_init.0, &[<super::Timestamp as ::protobuf::__internal::runtime::AssociatedMiniTable>::mini_table(),
             ], &[]);
@@ -2269,6 +2269,979 @@ unsafe impl ::protobuf::__internal::runtime::UpbGetMessagePtr for SystemdRespons
 }
 
 unsafe impl ::protobuf::__internal::runtime::UpbGetArena for SystemdResponseMut<'_> {
+  fn get_arena(&mut self, _private: ::protobuf::__internal::Private) -> &::protobuf::__internal::runtime::Arena {
+    self.inner.arena()
+  }
+}
+
+
+
+// This variable must not be referenced except by protobuf generated
+// code.
+pub(crate) static mut palm__lavender__v1__KubernetesRequest_msg_init: ::protobuf::__internal::runtime::MiniTableInitPtr =
+    ::protobuf::__internal::runtime::MiniTableInitPtr(::protobuf::__internal::runtime::MiniTablePtr::dangling());
+#[allow(non_camel_case_types)]
+pub struct KubernetesRequest {
+  inner: ::protobuf::__internal::runtime::OwnedMessageInner<KubernetesRequest>
+}
+
+impl ::protobuf::Message for KubernetesRequest {}
+
+impl ::std::default::Default for KubernetesRequest {
+  fn default() -> Self {
+    Self::new()
+  }
+}
+
+impl ::std::fmt::Debug for KubernetesRequest {
+  fn fmt(&self, f: &mut ::std::fmt::Formatter<'_>) -> ::std::fmt::Result {
+    write!(f, "{}", ::protobuf::__internal::runtime::debug_string(self))
+  }
+}
+
+// SAFETY:
+// - `KubernetesRequest` is `Sync` because it does not implement interior mutability.
+//    Neither does `KubernetesRequestMut`.
+unsafe impl Sync for KubernetesRequest {}
+
+// SAFETY:
+// - `KubernetesRequest` is `Send` because it uniquely owns its arena and does
+//   not use thread-local data.
+unsafe impl Send for KubernetesRequest {}
+
+impl ::protobuf::Proxied for KubernetesRequest {
+  type View<'msg> = KubernetesRequestView<'msg>;
+}
+
+impl ::protobuf::__internal::SealedInternal for KubernetesRequest {}
+
+impl ::protobuf::MutProxied for KubernetesRequest {
+  type Mut<'msg> = KubernetesRequestMut<'msg>;
+}
+
+#[derive(Copy, Clone)]
+#[allow(dead_code)]
+pub struct KubernetesRequestView<'msg> {
+  inner: ::protobuf::__internal::runtime::MessageViewInner<'msg, KubernetesRequest>,
+}
+
+impl<'msg> ::protobuf::__internal::SealedInternal for KubernetesRequestView<'msg> {}
+
+impl<'msg> ::protobuf::MessageView<'msg> for KubernetesRequestView<'msg> {
+  type Message = KubernetesRequest;
+}
+
+impl ::std::fmt::Debug for KubernetesRequestView<'_> {
+  fn fmt(&self, f: &mut ::std::fmt::Formatter<'_>) -> ::std::fmt::Result {
+    write!(f, "{}", ::protobuf::__internal::runtime::debug_string(self))
+  }
+}
+
+impl ::std::default::Default for KubernetesRequestView<'_> {
+  fn default() -> KubernetesRequestView<'static> {
+    ::protobuf::__internal::runtime::MessageViewInner::default().into()
+  }
+}
+
+impl<'msg> From<::protobuf::__internal::runtime::MessageViewInner<'msg, KubernetesRequest>> for KubernetesRequestView<'msg> {
+  fn from(inner: ::protobuf::__internal::runtime::MessageViewInner<'msg, KubernetesRequest>) -> Self {
+    Self { inner }
+  }
+}
+
+#[allow(dead_code)]
+impl<'msg> KubernetesRequestView<'msg> {
+
+  pub fn to_owned(&self) -> KubernetesRequest {
+    ::protobuf::IntoProxied::into_proxied(*self, ::protobuf::__internal::Private)
+  }
+
+  // pod: optional string
+  pub fn pod(self) -> ::protobuf::View<'msg, ::protobuf::ProtoString> {
+    let str_view = unsafe {
+      self.inner.ptr().get_string_at_index(
+        0, (b"").into()
+      )
+    };
+    // SAFETY: The runtime doesn't require ProtoStr to be UTF-8.
+    unsafe { ::protobuf::ProtoStr::from_utf8_unchecked(str_view.as_ref()) }
+  }
+
+  // container: optional string
+  pub fn container(self) -> ::protobuf::View<'msg, ::protobuf::ProtoString> {
+    let str_view = unsafe {
+      self.inner.ptr().get_string_at_index(
+        1, (b"").into()
+      )
+    };
+    // SAFETY: The runtime doesn't require ProtoStr to be UTF-8.
+    unsafe { ::protobuf::ProtoStr::from_utf8_unchecked(str_view.as_ref()) }
+  }
+
+  // message: optional string
+  pub fn message(self) -> ::protobuf::View<'msg, ::protobuf::ProtoString> {
+    let str_view = unsafe {
+      self.inner.ptr().get_string_at_index(
+        2, (b"").into()
+      )
+    };
+    // SAFETY: The runtime doesn't require ProtoStr to be UTF-8.
+    unsafe { ::protobuf::ProtoStr::from_utf8_unchecked(str_view.as_ref()) }
+  }
+
+  // created_at: optional message palm.lavender.v1.Timestamp
+  pub fn has_created_at(self) -> bool {
+    unsafe {
+      self.inner.ptr().has_field_at_index(3)
+    }
+  }
+  pub fn created_at_opt(self) -> ::protobuf::Optional<super::TimestampView<'msg>> {
+        ::protobuf::Optional::new(self.created_at(), self.has_created_at())
+  }
+  pub fn created_at(self) -> super::TimestampView<'msg> {
+    let submsg = unsafe {
+      self.inner.ptr().get_message_at_index(3)
+    };
+    submsg
+        .map(|ptr| unsafe { ::protobuf::__internal::runtime::MessageViewInner::wrap(ptr).into() })
+       .unwrap_or(super::TimestampView::default())
+  }
+
+}
+
+// SAFETY:
+// - `KubernetesRequestView` is `Sync` because it does not support mutation.
+unsafe impl Sync for KubernetesRequestView<'_> {}
+
+// SAFETY:
+// - `KubernetesRequestView` is `Send` because while its alive a `KubernetesRequestMut` cannot.
+// - `KubernetesRequestView` does not use thread-local data.
+unsafe impl Send for KubernetesRequestView<'_> {}
+
+impl<'msg> ::protobuf::AsView for KubernetesRequestView<'msg> {
+  type Proxied = KubernetesRequest;
+  fn as_view(&self) -> ::protobuf::View<'msg, KubernetesRequest> {
+    *self
+  }
+}
+
+impl<'msg> ::protobuf::IntoView<'msg> for KubernetesRequestView<'msg> {
+  fn into_view<'shorter>(self) -> KubernetesRequestView<'shorter>
+  where
+      'msg: 'shorter {
+    self
+  }
+}
+
+impl<'msg> ::protobuf::IntoProxied<KubernetesRequest> for KubernetesRequestView<'msg> {
+  fn into_proxied(self, _private: ::protobuf::__internal::Private) -> KubernetesRequest {
+    let mut dst = KubernetesRequest::new();
+    assert!(unsafe {
+      dst.inner.ptr_mut().deep_copy(self.inner.ptr(), dst.inner.arena())
+    });
+    dst
+  }
+}
+
+impl<'msg> ::protobuf::IntoProxied<KubernetesRequest> for KubernetesRequestMut<'msg> {
+  fn into_proxied(self, _private: ::protobuf::__internal::Private) -> KubernetesRequest {
+    ::protobuf::IntoProxied::into_proxied(::protobuf::IntoView::into_view(self), _private)
+  }
+}
+
+impl ::protobuf::__internal::runtime::EntityType for KubernetesRequest {
+    type Tag = ::protobuf::__internal::runtime::MessageTag;
+}
+
+impl<'msg> ::protobuf::__internal::runtime::EntityType for KubernetesRequestView<'msg> {
+    type Tag = ::protobuf::__internal::runtime::ViewProxyTag;
+}
+
+impl<'msg> ::protobuf::__internal::runtime::EntityType for KubernetesRequestMut<'msg> {
+    type Tag = ::protobuf::__internal::runtime::MutProxyTag;
+}
+
+#[allow(dead_code)]
+#[allow(non_camel_case_types)]
+pub struct KubernetesRequestMut<'msg> {
+  inner: ::protobuf::__internal::runtime::MessageMutInner<'msg, KubernetesRequest>,
+}
+
+impl<'msg> ::protobuf::__internal::SealedInternal for KubernetesRequestMut<'msg> {}
+
+impl<'msg> ::protobuf::MessageMut<'msg> for KubernetesRequestMut<'msg> {
+  type Message = KubernetesRequest;
+}
+
+impl ::std::fmt::Debug for KubernetesRequestMut<'_> {
+  fn fmt(&self, f: &mut ::std::fmt::Formatter<'_>) -> ::std::fmt::Result {
+    write!(f, "{}", ::protobuf::__internal::runtime::debug_string(self))
+  }
+}
+
+impl<'msg> From<::protobuf::__internal::runtime::MessageMutInner<'msg, KubernetesRequest>> for KubernetesRequestMut<'msg> {
+  fn from(inner: ::protobuf::__internal::runtime::MessageMutInner<'msg, KubernetesRequest>) -> Self {
+    Self { inner }
+  }
+}
+
+#[allow(dead_code)]
+impl<'msg> KubernetesRequestMut<'msg> {
+
+  #[doc(hidden)]
+  pub fn as_message_mut_inner(&mut self, _private: ::protobuf::__internal::Private)
+    -> ::protobuf::__internal::runtime::MessageMutInner<'msg, KubernetesRequest> {
+    self.inner
+  }
+
+  pub fn to_owned(&self) -> KubernetesRequest {
+    ::protobuf::AsView::as_view(self).to_owned()
+  }
+
+  // pod: optional string
+  pub fn pod(&self) -> ::protobuf::View<'_, ::protobuf::ProtoString> {
+    let str_view = unsafe {
+      self.inner.ptr().get_string_at_index(
+        0, (b"").into()
+      )
+    };
+    // SAFETY: The runtime doesn't require ProtoStr to be UTF-8.
+    unsafe { ::protobuf::ProtoStr::from_utf8_unchecked(str_view.as_ref()) }
+  }
+  pub fn set_pod(&mut self, val: impl ::protobuf::IntoProxied<::protobuf::ProtoString>) {
+    unsafe {
+      ::protobuf::__internal::runtime::message_set_string_field(
+        ::protobuf::AsMut::as_mut(self).inner,
+        0,
+        val);
+    }
+  }
+
+  // container: optional string
+  pub fn container(&self) -> ::protobuf::View<'_, ::protobuf::ProtoString> {
+    let str_view = unsafe {
+      self.inner.ptr().get_string_at_index(
+        1, (b"").into()
+      )
+    };
+    // SAFETY: The runtime doesn't require ProtoStr to be UTF-8.
+    unsafe { ::protobuf::ProtoStr::from_utf8_unchecked(str_view.as_ref()) }
+  }
+  pub fn set_container(&mut self, val: impl ::protobuf::IntoProxied<::protobuf::ProtoString>) {
+    unsafe {
+      ::protobuf::__internal::runtime::message_set_string_field(
+        ::protobuf::AsMut::as_mut(self).inner,
+        1,
+        val);
+    }
+  }
+
+  // message: optional string
+  pub fn message(&self) -> ::protobuf::View<'_, ::protobuf::ProtoString> {
+    let str_view = unsafe {
+      self.inner.ptr().get_string_at_index(
+        2, (b"").into()
+      )
+    };
+    // SAFETY: The runtime doesn't require ProtoStr to be UTF-8.
+    unsafe { ::protobuf::ProtoStr::from_utf8_unchecked(str_view.as_ref()) }
+  }
+  pub fn set_message(&mut self, val: impl ::protobuf::IntoProxied<::protobuf::ProtoString>) {
+    unsafe {
+      ::protobuf::__internal::runtime::message_set_string_field(
+        ::protobuf::AsMut::as_mut(self).inner,
+        2,
+        val);
+    }
+  }
+
+  // created_at: optional message palm.lavender.v1.Timestamp
+  pub fn has_created_at(&self) -> bool {
+    unsafe {
+      self.inner.ptr().has_field_at_index(3)
+    }
+  }
+  pub fn clear_created_at(&mut self) {
+    unsafe {
+      self.inner.ptr().clear_field_at_index(
+        3
+      );
+    }
+  }
+  pub fn created_at_opt(&self) -> ::protobuf::Optional<super::TimestampView<'_>> {
+        ::protobuf::Optional::new(self.created_at(), self.has_created_at())
+  }
+  pub fn created_at(&self) -> super::TimestampView<'_> {
+    let submsg = unsafe {
+      self.inner.ptr().get_message_at_index(3)
+    };
+    submsg
+        .map(|ptr| unsafe { ::protobuf::__internal::runtime::MessageViewInner::wrap(ptr).into() })
+       .unwrap_or(super::TimestampView::default())
+  }
+  pub fn created_at_mut(&mut self) -> super::TimestampMut<'_> {
+     let ptr = unsafe {
+       self.inner.ptr_mut().get_or_create_mutable_message_at_index(
+         3, self.inner.arena()
+       ).unwrap()
+     };
+     ::protobuf::__internal::runtime::MessageMutInner::from_parent(
+         self.as_message_mut_inner(::protobuf::__internal::Private),
+         ptr
+     ).into()
+  }
+  pub fn set_created_at(&mut self,
+    val: impl ::protobuf::IntoProxied<super::Timestamp>) {
+
+    unsafe {
+      ::protobuf::__internal::runtime::message_set_sub_message(
+        ::protobuf::AsMut::as_mut(self).inner,
+        3,
+        val
+      );
+    }
+  }
+
+}
+
+// SAFETY:
+// - `KubernetesRequestMut` does not perform any shared mutation.
+unsafe impl Send for KubernetesRequestMut<'_> {}
+
+// SAFETY:
+// - `KubernetesRequestMut` does not perform any shared mutation.
+unsafe impl Sync for KubernetesRequestMut<'_> {}
+
+impl<'msg> ::protobuf::AsView for KubernetesRequestMut<'msg> {
+  type Proxied = KubernetesRequest;
+  fn as_view(&self) -> ::protobuf::View<'_, KubernetesRequest> {
+    KubernetesRequestView {
+      inner: ::protobuf::__internal::runtime::MessageViewInner::view_of_mut(self.inner)
+    }
+  }
+}
+
+impl<'msg> ::protobuf::IntoView<'msg> for KubernetesRequestMut<'msg> {
+  fn into_view<'shorter>(self) -> ::protobuf::View<'shorter, KubernetesRequest>
+  where
+      'msg: 'shorter {
+    KubernetesRequestView {
+      inner: ::protobuf::__internal::runtime::MessageViewInner::view_of_mut(self.inner)
+    }
+  }
+}
+
+impl<'msg> ::protobuf::AsMut for KubernetesRequestMut<'msg> {
+  type MutProxied = KubernetesRequest;
+  fn as_mut(&mut self) -> KubernetesRequestMut<'msg> {
+    KubernetesRequestMut { inner: self.inner }
+  }
+}
+
+impl<'msg> ::protobuf::IntoMut<'msg> for KubernetesRequestMut<'msg> {
+  fn into_mut<'shorter>(self) -> KubernetesRequestMut<'shorter>
+  where
+      'msg: 'shorter {
+    self
+  }
+}
+
+#[allow(dead_code)]
+impl KubernetesRequest {
+  pub fn new() -> Self {
+    Self { inner: ::protobuf::__internal::runtime::OwnedMessageInner::<Self>::new() }
+  }
+
+
+  #[doc(hidden)]
+  pub fn as_message_mut_inner(&mut self, _private: ::protobuf::__internal::Private) -> ::protobuf::__internal::runtime::MessageMutInner<'_, KubernetesRequest> {
+    ::protobuf::__internal::runtime::MessageMutInner::mut_of_owned(&mut self.inner)
+  }
+
+  pub fn as_view(&self) -> KubernetesRequestView<'_> {
+    ::protobuf::__internal::runtime::MessageViewInner::view_of_owned(&self.inner).into()
+  }
+
+  pub fn as_mut(&mut self) -> KubernetesRequestMut<'_> {
+    ::protobuf::__internal::runtime::MessageMutInner::mut_of_owned(&mut self.inner).into()
+  }
+
+  // pod: optional string
+  pub fn pod(&self) -> ::protobuf::View<'_, ::protobuf::ProtoString> {
+    let str_view = unsafe {
+      self.inner.ptr().get_string_at_index(
+        0, (b"").into()
+      )
+    };
+    // SAFETY: The runtime doesn't require ProtoStr to be UTF-8.
+    unsafe { ::protobuf::ProtoStr::from_utf8_unchecked(str_view.as_ref()) }
+  }
+  pub fn set_pod(&mut self, val: impl ::protobuf::IntoProxied<::protobuf::ProtoString>) {
+    unsafe {
+      ::protobuf::__internal::runtime::message_set_string_field(
+        ::protobuf::AsMut::as_mut(self).inner,
+        0,
+        val);
+    }
+  }
+
+  // container: optional string
+  pub fn container(&self) -> ::protobuf::View<'_, ::protobuf::ProtoString> {
+    let str_view = unsafe {
+      self.inner.ptr().get_string_at_index(
+        1, (b"").into()
+      )
+    };
+    // SAFETY: The runtime doesn't require ProtoStr to be UTF-8.
+    unsafe { ::protobuf::ProtoStr::from_utf8_unchecked(str_view.as_ref()) }
+  }
+  pub fn set_container(&mut self, val: impl ::protobuf::IntoProxied<::protobuf::ProtoString>) {
+    unsafe {
+      ::protobuf::__internal::runtime::message_set_string_field(
+        ::protobuf::AsMut::as_mut(self).inner,
+        1,
+        val);
+    }
+  }
+
+  // message: optional string
+  pub fn message(&self) -> ::protobuf::View<'_, ::protobuf::ProtoString> {
+    let str_view = unsafe {
+      self.inner.ptr().get_string_at_index(
+        2, (b"").into()
+      )
+    };
+    // SAFETY: The runtime doesn't require ProtoStr to be UTF-8.
+    unsafe { ::protobuf::ProtoStr::from_utf8_unchecked(str_view.as_ref()) }
+  }
+  pub fn set_message(&mut self, val: impl ::protobuf::IntoProxied<::protobuf::ProtoString>) {
+    unsafe {
+      ::protobuf::__internal::runtime::message_set_string_field(
+        ::protobuf::AsMut::as_mut(self).inner,
+        2,
+        val);
+    }
+  }
+
+  // created_at: optional message palm.lavender.v1.Timestamp
+  pub fn has_created_at(&self) -> bool {
+    unsafe {
+      self.inner.ptr().has_field_at_index(3)
+    }
+  }
+  pub fn clear_created_at(&mut self) {
+    unsafe {
+      self.inner.ptr().clear_field_at_index(
+        3
+      );
+    }
+  }
+  pub fn created_at_opt(&self) -> ::protobuf::Optional<super::TimestampView<'_>> {
+        ::protobuf::Optional::new(self.created_at(), self.has_created_at())
+  }
+  pub fn created_at(&self) -> super::TimestampView<'_> {
+    let submsg = unsafe {
+      self.inner.ptr().get_message_at_index(3)
+    };
+    submsg
+        .map(|ptr| unsafe { ::protobuf::__internal::runtime::MessageViewInner::wrap(ptr).into() })
+       .unwrap_or(super::TimestampView::default())
+  }
+  pub fn created_at_mut(&mut self) -> super::TimestampMut<'_> {
+     let ptr = unsafe {
+       self.inner.ptr_mut().get_or_create_mutable_message_at_index(
+         3, self.inner.arena()
+       ).unwrap()
+     };
+     ::protobuf::__internal::runtime::MessageMutInner::from_parent(
+         self.as_message_mut_inner(::protobuf::__internal::Private),
+         ptr
+     ).into()
+  }
+  pub fn set_created_at(&mut self,
+    val: impl ::protobuf::IntoProxied<super::Timestamp>) {
+
+    unsafe {
+      ::protobuf::__internal::runtime::message_set_sub_message(
+        ::protobuf::AsMut::as_mut(self).inner,
+        3,
+        val
+      );
+    }
+  }
+
+}  // impl KubernetesRequest
+
+impl ::std::ops::Drop for KubernetesRequest {
+  #[inline]
+  fn drop(&mut self) {
+  }
+}
+
+impl ::std::clone::Clone for KubernetesRequest {
+  fn clone(&self) -> Self {
+    self.as_view().to_owned()
+  }
+}
+
+impl ::protobuf::AsView for KubernetesRequest {
+  type Proxied = Self;
+  fn as_view(&self) -> KubernetesRequestView<'_> {
+    self.as_view()
+  }
+}
+
+impl ::protobuf::AsMut for KubernetesRequest {
+  type MutProxied = Self;
+  fn as_mut(&mut self) -> KubernetesRequestMut<'_> {
+    self.as_mut()
+  }
+}
+
+unsafe impl ::protobuf::__internal::runtime::AssociatedMiniTable for KubernetesRequest {
+  fn mini_table() -> ::protobuf::__internal::runtime::MiniTablePtr {
+    static ONCE_LOCK: ::std::sync::OnceLock<::protobuf::__internal::runtime::MiniTableInitPtr> =
+        ::std::sync::OnceLock::new();
+    unsafe {
+      ONCE_LOCK.get_or_init(|| {
+        super::palm__lavender__v1__KubernetesRequest_msg_init.0 =
+            ::protobuf::__internal::runtime::build_mini_table("$1X1X1Xe3");
+        ::protobuf::__internal::runtime::link_mini_table(
+            super::palm__lavender__v1__KubernetesRequest_msg_init.0, &[<super::Timestamp as ::protobuf::__internal::runtime::AssociatedMiniTable>::mini_table(),
+            ], &[]);
+        ::protobuf::__internal::runtime::MiniTableInitPtr(super::palm__lavender__v1__KubernetesRequest_msg_init.0)
+      }).0
+    }
+  }
+}
+unsafe impl ::protobuf::__internal::runtime::UpbGetArena for KubernetesRequest {
+  fn get_arena(&mut self, _private: ::protobuf::__internal::Private) -> &::protobuf::__internal::runtime::Arena {
+    self.inner.arena()
+  }
+}
+
+unsafe impl ::protobuf::__internal::runtime::UpbGetMessagePtrMut for KubernetesRequest {
+  type Msg = KubernetesRequest;
+  fn get_ptr_mut(&mut self, _private: ::protobuf::__internal::Private) -> ::protobuf::__internal::runtime::MessagePtr<KubernetesRequest> {
+    self.inner.ptr_mut()
+  }
+}
+unsafe impl ::protobuf::__internal::runtime::UpbGetMessagePtr for KubernetesRequest {
+  type Msg = KubernetesRequest;
+  fn get_ptr(&self, _private: ::protobuf::__internal::Private) -> ::protobuf::__internal::runtime::MessagePtr<KubernetesRequest> {
+    self.inner.ptr()
+  }
+}
+unsafe impl ::protobuf::__internal::runtime::UpbGetMessagePtrMut for KubernetesRequestMut<'_> {
+  type Msg = KubernetesRequest;
+  fn get_ptr_mut(&mut self, _private: ::protobuf::__internal::Private) -> ::protobuf::__internal::runtime::MessagePtr<KubernetesRequest> {
+    self.inner.ptr_mut()
+  }
+}
+unsafe impl ::protobuf::__internal::runtime::UpbGetMessagePtr for KubernetesRequestMut<'_> {
+  type Msg = KubernetesRequest;
+  fn get_ptr(&self, _private: ::protobuf::__internal::Private) -> ::protobuf::__internal::runtime::MessagePtr<KubernetesRequest> {
+    self.inner.ptr()
+  }
+}
+unsafe impl ::protobuf::__internal::runtime::UpbGetMessagePtr for KubernetesRequestView<'_> {
+  type Msg = KubernetesRequest;
+  fn get_ptr(&self, _private: ::protobuf::__internal::Private) -> ::protobuf::__internal::runtime::MessagePtr<KubernetesRequest> {
+    self.inner.ptr()
+  }
+}
+
+unsafe impl ::protobuf::__internal::runtime::UpbGetArena for KubernetesRequestMut<'_> {
+  fn get_arena(&mut self, _private: ::protobuf::__internal::Private) -> &::protobuf::__internal::runtime::Arena {
+    self.inner.arena()
+  }
+}
+
+
+
+// This variable must not be referenced except by protobuf generated
+// code.
+pub(crate) static mut palm__lavender__v1__KubernetesResponse_msg_init: ::protobuf::__internal::runtime::MiniTableInitPtr =
+    ::protobuf::__internal::runtime::MiniTableInitPtr(::protobuf::__internal::runtime::MiniTablePtr::dangling());
+#[allow(non_camel_case_types)]
+pub struct KubernetesResponse {
+  inner: ::protobuf::__internal::runtime::OwnedMessageInner<KubernetesResponse>
+}
+
+impl ::protobuf::Message for KubernetesResponse {}
+
+impl ::std::default::Default for KubernetesResponse {
+  fn default() -> Self {
+    Self::new()
+  }
+}
+
+impl ::std::fmt::Debug for KubernetesResponse {
+  fn fmt(&self, f: &mut ::std::fmt::Formatter<'_>) -> ::std::fmt::Result {
+    write!(f, "{}", ::protobuf::__internal::runtime::debug_string(self))
+  }
+}
+
+// SAFETY:
+// - `KubernetesResponse` is `Sync` because it does not implement interior mutability.
+//    Neither does `KubernetesResponseMut`.
+unsafe impl Sync for KubernetesResponse {}
+
+// SAFETY:
+// - `KubernetesResponse` is `Send` because it uniquely owns its arena and does
+//   not use thread-local data.
+unsafe impl Send for KubernetesResponse {}
+
+impl ::protobuf::Proxied for KubernetesResponse {
+  type View<'msg> = KubernetesResponseView<'msg>;
+}
+
+impl ::protobuf::__internal::SealedInternal for KubernetesResponse {}
+
+impl ::protobuf::MutProxied for KubernetesResponse {
+  type Mut<'msg> = KubernetesResponseMut<'msg>;
+}
+
+#[derive(Copy, Clone)]
+#[allow(dead_code)]
+pub struct KubernetesResponseView<'msg> {
+  inner: ::protobuf::__internal::runtime::MessageViewInner<'msg, KubernetesResponse>,
+}
+
+impl<'msg> ::protobuf::__internal::SealedInternal for KubernetesResponseView<'msg> {}
+
+impl<'msg> ::protobuf::MessageView<'msg> for KubernetesResponseView<'msg> {
+  type Message = KubernetesResponse;
+}
+
+impl ::std::fmt::Debug for KubernetesResponseView<'_> {
+  fn fmt(&self, f: &mut ::std::fmt::Formatter<'_>) -> ::std::fmt::Result {
+    write!(f, "{}", ::protobuf::__internal::runtime::debug_string(self))
+  }
+}
+
+impl ::std::default::Default for KubernetesResponseView<'_> {
+  fn default() -> KubernetesResponseView<'static> {
+    ::protobuf::__internal::runtime::MessageViewInner::default().into()
+  }
+}
+
+impl<'msg> From<::protobuf::__internal::runtime::MessageViewInner<'msg, KubernetesResponse>> for KubernetesResponseView<'msg> {
+  fn from(inner: ::protobuf::__internal::runtime::MessageViewInner<'msg, KubernetesResponse>) -> Self {
+    Self { inner }
+  }
+}
+
+#[allow(dead_code)]
+impl<'msg> KubernetesResponseView<'msg> {
+
+  pub fn to_owned(&self) -> KubernetesResponse {
+    ::protobuf::IntoProxied::into_proxied(*self, ::protobuf::__internal::Private)
+  }
+
+  // chunk_count: optional uint32
+  pub fn chunk_count(self) -> u32 {
+    unsafe {
+      // TODO: b/361751487: This .into() and .try_into() is only
+      // here for the enum<->i32 case, we should avoid it for
+      // other primitives where the types naturally match
+      // perfectly (and do an unchecked conversion for
+      // i32->enum types, since even for closed enums we trust
+      // upb to only return one of the named values).
+      self.inner.ptr().get_u32_at_index(
+        0, (0u32).into()
+      ).try_into().unwrap()
+    }
+  }
+
+}
+
+// SAFETY:
+// - `KubernetesResponseView` is `Sync` because it does not support mutation.
+unsafe impl Sync for KubernetesResponseView<'_> {}
+
+// SAFETY:
+// - `KubernetesResponseView` is `Send` because while its alive a `KubernetesResponseMut` cannot.
+// - `KubernetesResponseView` does not use thread-local data.
+unsafe impl Send for KubernetesResponseView<'_> {}
+
+impl<'msg> ::protobuf::AsView for KubernetesResponseView<'msg> {
+  type Proxied = KubernetesResponse;
+  fn as_view(&self) -> ::protobuf::View<'msg, KubernetesResponse> {
+    *self
+  }
+}
+
+impl<'msg> ::protobuf::IntoView<'msg> for KubernetesResponseView<'msg> {
+  fn into_view<'shorter>(self) -> KubernetesResponseView<'shorter>
+  where
+      'msg: 'shorter {
+    self
+  }
+}
+
+impl<'msg> ::protobuf::IntoProxied<KubernetesResponse> for KubernetesResponseView<'msg> {
+  fn into_proxied(self, _private: ::protobuf::__internal::Private) -> KubernetesResponse {
+    let mut dst = KubernetesResponse::new();
+    assert!(unsafe {
+      dst.inner.ptr_mut().deep_copy(self.inner.ptr(), dst.inner.arena())
+    });
+    dst
+  }
+}
+
+impl<'msg> ::protobuf::IntoProxied<KubernetesResponse> for KubernetesResponseMut<'msg> {
+  fn into_proxied(self, _private: ::protobuf::__internal::Private) -> KubernetesResponse {
+    ::protobuf::IntoProxied::into_proxied(::protobuf::IntoView::into_view(self), _private)
+  }
+}
+
+impl ::protobuf::__internal::runtime::EntityType for KubernetesResponse {
+    type Tag = ::protobuf::__internal::runtime::MessageTag;
+}
+
+impl<'msg> ::protobuf::__internal::runtime::EntityType for KubernetesResponseView<'msg> {
+    type Tag = ::protobuf::__internal::runtime::ViewProxyTag;
+}
+
+impl<'msg> ::protobuf::__internal::runtime::EntityType for KubernetesResponseMut<'msg> {
+    type Tag = ::protobuf::__internal::runtime::MutProxyTag;
+}
+
+#[allow(dead_code)]
+#[allow(non_camel_case_types)]
+pub struct KubernetesResponseMut<'msg> {
+  inner: ::protobuf::__internal::runtime::MessageMutInner<'msg, KubernetesResponse>,
+}
+
+impl<'msg> ::protobuf::__internal::SealedInternal for KubernetesResponseMut<'msg> {}
+
+impl<'msg> ::protobuf::MessageMut<'msg> for KubernetesResponseMut<'msg> {
+  type Message = KubernetesResponse;
+}
+
+impl ::std::fmt::Debug for KubernetesResponseMut<'_> {
+  fn fmt(&self, f: &mut ::std::fmt::Formatter<'_>) -> ::std::fmt::Result {
+    write!(f, "{}", ::protobuf::__internal::runtime::debug_string(self))
+  }
+}
+
+impl<'msg> From<::protobuf::__internal::runtime::MessageMutInner<'msg, KubernetesResponse>> for KubernetesResponseMut<'msg> {
+  fn from(inner: ::protobuf::__internal::runtime::MessageMutInner<'msg, KubernetesResponse>) -> Self {
+    Self { inner }
+  }
+}
+
+#[allow(dead_code)]
+impl<'msg> KubernetesResponseMut<'msg> {
+
+  #[doc(hidden)]
+  pub fn as_message_mut_inner(&mut self, _private: ::protobuf::__internal::Private)
+    -> ::protobuf::__internal::runtime::MessageMutInner<'msg, KubernetesResponse> {
+    self.inner
+  }
+
+  pub fn to_owned(&self) -> KubernetesResponse {
+    ::protobuf::AsView::as_view(self).to_owned()
+  }
+
+  // chunk_count: optional uint32
+  pub fn chunk_count(&self) -> u32 {
+    unsafe {
+      // TODO: b/361751487: This .into() and .try_into() is only
+      // here for the enum<->i32 case, we should avoid it for
+      // other primitives where the types naturally match
+      // perfectly (and do an unchecked conversion for
+      // i32->enum types, since even for closed enums we trust
+      // upb to only return one of the named values).
+      self.inner.ptr().get_u32_at_index(
+        0, (0u32).into()
+      ).try_into().unwrap()
+    }
+  }
+  pub fn set_chunk_count(&mut self, val: u32) {
+    unsafe {
+      // TODO: b/361751487: This .into() is only here
+      // here for the enum<->i32 case, we should avoid it for
+      // other primitives where the types naturally match
+      //perfectly.
+      self.inner.ptr_mut().set_base_field_u32_at_index(
+        0, val.into()
+      )
+    }
+  }
+
+}
+
+// SAFETY:
+// - `KubernetesResponseMut` does not perform any shared mutation.
+unsafe impl Send for KubernetesResponseMut<'_> {}
+
+// SAFETY:
+// - `KubernetesResponseMut` does not perform any shared mutation.
+unsafe impl Sync for KubernetesResponseMut<'_> {}
+
+impl<'msg> ::protobuf::AsView for KubernetesResponseMut<'msg> {
+  type Proxied = KubernetesResponse;
+  fn as_view(&self) -> ::protobuf::View<'_, KubernetesResponse> {
+    KubernetesResponseView {
+      inner: ::protobuf::__internal::runtime::MessageViewInner::view_of_mut(self.inner)
+    }
+  }
+}
+
+impl<'msg> ::protobuf::IntoView<'msg> for KubernetesResponseMut<'msg> {
+  fn into_view<'shorter>(self) -> ::protobuf::View<'shorter, KubernetesResponse>
+  where
+      'msg: 'shorter {
+    KubernetesResponseView {
+      inner: ::protobuf::__internal::runtime::MessageViewInner::view_of_mut(self.inner)
+    }
+  }
+}
+
+impl<'msg> ::protobuf::AsMut for KubernetesResponseMut<'msg> {
+  type MutProxied = KubernetesResponse;
+  fn as_mut(&mut self) -> KubernetesResponseMut<'msg> {
+    KubernetesResponseMut { inner: self.inner }
+  }
+}
+
+impl<'msg> ::protobuf::IntoMut<'msg> for KubernetesResponseMut<'msg> {
+  fn into_mut<'shorter>(self) -> KubernetesResponseMut<'shorter>
+  where
+      'msg: 'shorter {
+    self
+  }
+}
+
+#[allow(dead_code)]
+impl KubernetesResponse {
+  pub fn new() -> Self {
+    Self { inner: ::protobuf::__internal::runtime::OwnedMessageInner::<Self>::new() }
+  }
+
+
+  #[doc(hidden)]
+  pub fn as_message_mut_inner(&mut self, _private: ::protobuf::__internal::Private) -> ::protobuf::__internal::runtime::MessageMutInner<'_, KubernetesResponse> {
+    ::protobuf::__internal::runtime::MessageMutInner::mut_of_owned(&mut self.inner)
+  }
+
+  pub fn as_view(&self) -> KubernetesResponseView<'_> {
+    ::protobuf::__internal::runtime::MessageViewInner::view_of_owned(&self.inner).into()
+  }
+
+  pub fn as_mut(&mut self) -> KubernetesResponseMut<'_> {
+    ::protobuf::__internal::runtime::MessageMutInner::mut_of_owned(&mut self.inner).into()
+  }
+
+  // chunk_count: optional uint32
+  pub fn chunk_count(&self) -> u32 {
+    unsafe {
+      // TODO: b/361751487: This .into() and .try_into() is only
+      // here for the enum<->i32 case, we should avoid it for
+      // other primitives where the types naturally match
+      // perfectly (and do an unchecked conversion for
+      // i32->enum types, since even for closed enums we trust
+      // upb to only return one of the named values).
+      self.inner.ptr().get_u32_at_index(
+        0, (0u32).into()
+      ).try_into().unwrap()
+    }
+  }
+  pub fn set_chunk_count(&mut self, val: u32) {
+    unsafe {
+      // TODO: b/361751487: This .into() is only here
+      // here for the enum<->i32 case, we should avoid it for
+      // other primitives where the types naturally match
+      //perfectly.
+      self.inner.ptr_mut().set_base_field_u32_at_index(
+        0, val.into()
+      )
+    }
+  }
+
+}  // impl KubernetesResponse
+
+impl ::std::ops::Drop for KubernetesResponse {
+  #[inline]
+  fn drop(&mut self) {
+  }
+}
+
+impl ::std::clone::Clone for KubernetesResponse {
+  fn clone(&self) -> Self {
+    self.as_view().to_owned()
+  }
+}
+
+impl ::protobuf::AsView for KubernetesResponse {
+  type Proxied = Self;
+  fn as_view(&self) -> KubernetesResponseView<'_> {
+    self.as_view()
+  }
+}
+
+impl ::protobuf::AsMut for KubernetesResponse {
+  type MutProxied = Self;
+  fn as_mut(&mut self) -> KubernetesResponseMut<'_> {
+    self.as_mut()
+  }
+}
+
+unsafe impl ::protobuf::__internal::runtime::AssociatedMiniTable for KubernetesResponse {
+  fn mini_table() -> ::protobuf::__internal::runtime::MiniTablePtr {
+    static ONCE_LOCK: ::std::sync::OnceLock<::protobuf::__internal::runtime::MiniTableInitPtr> =
+        ::std::sync::OnceLock::new();
+    unsafe {
+      ONCE_LOCK.get_or_init(|| {
+        super::palm__lavender__v1__KubernetesResponse_msg_init.0 =
+            ::protobuf::__internal::runtime::build_mini_table("$)P");
+        ::protobuf::__internal::runtime::link_mini_table(
+            super::palm__lavender__v1__KubernetesResponse_msg_init.0, &[], &[]);
+        ::protobuf::__internal::runtime::MiniTableInitPtr(super::palm__lavender__v1__KubernetesResponse_msg_init.0)
+      }).0
+    }
+  }
+}
+unsafe impl ::protobuf::__internal::runtime::UpbGetArena for KubernetesResponse {
+  fn get_arena(&mut self, _private: ::protobuf::__internal::Private) -> &::protobuf::__internal::runtime::Arena {
+    self.inner.arena()
+  }
+}
+
+unsafe impl ::protobuf::__internal::runtime::UpbGetMessagePtrMut for KubernetesResponse {
+  type Msg = KubernetesResponse;
+  fn get_ptr_mut(&mut self, _private: ::protobuf::__internal::Private) -> ::protobuf::__internal::runtime::MessagePtr<KubernetesResponse> {
+    self.inner.ptr_mut()
+  }
+}
+unsafe impl ::protobuf::__internal::runtime::UpbGetMessagePtr for KubernetesResponse {
+  type Msg = KubernetesResponse;
+  fn get_ptr(&self, _private: ::protobuf::__internal::Private) -> ::protobuf::__internal::runtime::MessagePtr<KubernetesResponse> {
+    self.inner.ptr()
+  }
+}
+unsafe impl ::protobuf::__internal::runtime::UpbGetMessagePtrMut for KubernetesResponseMut<'_> {
+  type Msg = KubernetesResponse;
+  fn get_ptr_mut(&mut self, _private: ::protobuf::__internal::Private) -> ::protobuf::__internal::runtime::MessagePtr<KubernetesResponse> {
+    self.inner.ptr_mut()
+  }
+}
+unsafe impl ::protobuf::__internal::runtime::UpbGetMessagePtr for KubernetesResponseMut<'_> {
+  type Msg = KubernetesResponse;
+  fn get_ptr(&self, _private: ::protobuf::__internal::Private) -> ::protobuf::__internal::runtime::MessagePtr<KubernetesResponse> {
+    self.inner.ptr()
+  }
+}
+unsafe impl ::protobuf::__internal::runtime::UpbGetMessagePtr for KubernetesResponseView<'_> {
+  type Msg = KubernetesResponse;
+  fn get_ptr(&self, _private: ::protobuf::__internal::Private) -> ::protobuf::__internal::runtime::MessagePtr<KubernetesResponse> {
+    self.inner.ptr()
+  }
+}
+
+unsafe impl ::protobuf::__internal::runtime::UpbGetArena for KubernetesResponseMut<'_> {
   fn get_arena(&mut self, _private: ::protobuf::__internal::Private) -> &::protobuf::__internal::runtime::Arena {
     self.inner.arena()
   }

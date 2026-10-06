@@ -20,6 +20,10 @@ pub mod reporter_client {
           ClientStreamingCallBuilder::new(&self.channel, "/palm.lavender.v1.Reporter/Systemd")
         }
 
+        pub fn kubernetes(&self) -> ClientStreamingCallBuilder<'_, &T, super::KubernetesRequest, super::KubernetesResponse> {
+          ClientStreamingCallBuilder::new(&self.channel, "/palm.lavender.v1.Reporter/Kubernetes")
+        }
+
         pub fn http<ReqMsgView>(
             &self,
             request: ReqMsgView,

@@ -23,6 +23,7 @@ dependencies = [
     "systemd-python",
     "kubernetes",
     "pysnmp",
+    "psutil",
 ]
 dynamic = ["version"]
 

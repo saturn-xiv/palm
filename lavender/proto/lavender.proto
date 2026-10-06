@@ -19,6 +19,7 @@ message Duration {
 
 service Reporter {
   rpc Systemd(stream SystemdRequest) returns (SystemdResponse) {}
+  rpc Kubernetes(stream KubernetesRequest) returns (KubernetesResponse) {}
   rpc Http(HttpRequest) returns (Empty) {}
 }
 
@@ -27,9 +28,18 @@ message SystemdRequest {
     string unit = 2;
     uint32 priority = 3;
     string message = 4;
-    Timestamp created_at = 5;
+    Timestamp created_at = 9;
 }
 message SystemdResponse {
+    uint32 chunk_count = 1;
+}
+message KubernetesRequest{
+    string pod = 1;
+    string container = 2;
+    string message = 3;
+    Timestamp created_at = 9;
+}
+message KubernetesResponse{
     uint32 chunk_count = 1;
 }
 

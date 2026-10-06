@@ -24,7 +24,7 @@ _sym_db = _symbol_database.Default()
 
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x1e\x64\x61isy/protocols/lavender.proto\x12\x10palm.lavender.v1\"\x07\n\x05\x45mpty\"+\n\tTimestamp\x12\x0f\n\x07seconds\x18\x01 \x01(\x03\x12\r\n\x05nanos\x18\x02 \x01(\x05\"*\n\x08\x44uration\x12\x0f\n\x07seconds\x18\x01 \x01(\x03\x12\r\n\x05nanos\x18\x02 \x01(\x05\"\x80\x01\n\x0eSystemdRequest\x12\x0c\n\x04host\x18\x01 \x01(\t\x12\x0c\n\x04unit\x18\x02 \x01(\t\x12\x10\n\x08priority\x18\x03 \x01(\r\x12\x0f\n\x07message\x18\x04 \x01(\t\x12/\n\ncreated_at\x18\x05 \x01(\x0b\x32\x1b.palm.lavender.v1.Timestamp\"&\n\x0fSystemdResponse\x12\x13\n\x0b\x63hunk_count\x18\x01 \x01(\r\"\xe9\x01\n\x0bHttpRequest\x12\x31\n\x05items\x18\x01 \x03(\x0b\x32\".palm.lavender.v1.HttpRequest.Item\x1a\xa6\x01\n\x04Item\x12\x13\n\x0bstatus_code\x18\x01 \x01(\r\x12\x14\n\x0c\x63ontent_type\x18\x02 \x01(\t\x12\x15\n\rresponse_body\x18\x03 \x01(\t\x12+\n\x07\x65lapsed\x18\x08 \x01(\x0b\x32\x1a.palm.lavender.v1.Duration\x12/\n\ncreated_at\x18\t \x01(\x0b\x32\x1b.palm.lavender.v1.Timestamp\"\x1d\n\nPostgreSql\x12\x0f\n\x07version\x18\x01 \x01(\t\"\x18\n\x05MySql\x12\x0f\n\x07version\x18\x01 \x01(\t\"7\n\x05Redis\x12\x0c\n\x04info\x18\x01 \x01(\t\x12\x14\n\x07\x63luster\x18\x02 \x01(\tH\x00\x88\x01\x01\x42\n\n\x08_cluster\"w\n\x04Snmp\x12*\n\x05items\x18\x01 \x03(\x0b\x32\x1b.palm.lavender.v1.Snmp.Item\x1a\x43\n\x04Item\x12\x0b\n\x03oid\x18\x01 \x01(\t\x12\x0b\n\x01i\x18\x0b \x01(\x03H\x00\x12\x0b\n\x01s\x18\x0c \x01(\tH\x00\x12\x0b\n\x01\x64\x18\r \x01(\x01H\x00\x42\x07\n\x05value\"\xfe\x03\n\nOpenSearch\x12\x14\n\x0c\x63luster_name\x18\x01 \x01(\t\x12\x0e\n\x06status\x18\x02 \x01(\t\x12\x11\n\ttimed_out\x18\x03 \x01(\x08\x12\x17\n\x0fnumber_of_nodes\x18\x04 \x01(\r\x12\x1c\n\x14number_of_data_nodes\x18\x05 \x01(\r\x12\x19\n\x11\x64iscovered_master\x18\x06 \x01(\x08\x12\"\n\x1a\x64iscovered_cluster_manager\x18\x07 \x01(\x08\x12\x1d\n\x15\x61\x63tive_primary_shards\x18\x08 \x01(\r\x12\x15\n\ractive_shards\x18\t \x01(\r\x12\x19\n\x11relocating_shards\x18\n \x01(\r\x12\x1b\n\x13initializing_shards\x18\x0b \x01(\r\x12\x19\n\x11unassigned_shards\x18\x0c \x01(\r\x12!\n\x19\x64\x65layed_unassigned_shards\x18\r \x01(\r\x12\x1f\n\x17number_of_pending_tasks\x18\x0e \x01(\r\x12!\n\x19number_of_in_flight_fetch\x18\x0f \x01(\r\x12(\n task_max_waiting_in_queue_millis\x18\x10 \x01(\r\x12\'\n\x1f\x61\x63tive_shards_percent_as_number\x18\x11 \x01(\x02\x32\xa0\x01\n\x08Reporter\x12R\n\x07Systemd\x12 .palm.lavender.v1.SystemdRequest\x1a!.palm.lavender.v1.SystemdResponse\"\x00(\x01\x12@\n\x04Http\x12\x1d.palm.lavender.v1.HttpRequest\x1a\x17.palm.lavender.v1.Empty\"\x00\x42\x65\n.com.github.saturn_xiv.palm.plugins.lavender.v1B\rLavenderProtoP\x01Z\x05./;v2\xaa\x02\x1aPalm.Plugins.Lavender.Grpcb\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x1e\x64\x61isy/protocols/lavender.proto\x12\x10palm.lavender.v1\"\x07\n\x05\x45mpty\"+\n\tTimestamp\x12\x0f\n\x07seconds\x18\x01 \x01(\x03\x12\r\n\x05nanos\x18\x02 \x01(\x05\"*\n\x08\x44uration\x12\x0f\n\x07seconds\x18\x01 \x01(\x03\x12\r\n\x05nanos\x18\x02 \x01(\x05\"\x80\x01\n\x0eSystemdRequest\x12\x0c\n\x04host\x18\x01 \x01(\t\x12\x0c\n\x04unit\x18\x02 \x01(\t\x12\x10\n\x08priority\x18\x03 \x01(\r\x12\x0f\n\x07message\x18\x04 \x01(\t\x12/\n\ncreated_at\x18\t \x01(\x0b\x32\x1b.palm.lavender.v1.Timestamp\"&\n\x0fSystemdResponse\x12\x13\n\x0b\x63hunk_count\x18\x01 \x01(\r\"u\n\x11KubernetesRequest\x12\x0b\n\x03pod\x18\x01 \x01(\t\x12\x11\n\tcontainer\x18\x02 \x01(\t\x12\x0f\n\x07message\x18\x03 \x01(\t\x12/\n\ncreated_at\x18\t \x01(\x0b\x32\x1b.palm.lavender.v1.Timestamp\")\n\x12KubernetesResponse\x12\x13\n\x0b\x63hunk_count\x18\x01 \x01(\r\"\xe9\x01\n\x0bHttpRequest\x12\x31\n\x05items\x18\x01 \x03(\x0b\x32\".palm.lavender.v1.HttpRequest.Item\x1a\xa6\x01\n\x04Item\x12\x13\n\x0bstatus_code\x18\x01 \x01(\r\x12\x14\n\x0c\x63ontent_type\x18\x02 \x01(\t\x12\x15\n\rresponse_body\x18\x03 \x01(\t\x12+\n\x07\x65lapsed\x18\x08 \x01(\x0b\x32\x1a.palm.lavender.v1.Duration\x12/\n\ncreated_at\x18\t \x01(\x0b\x32\x1b.palm.lavender.v1.Timestamp\"\x1d\n\nPostgreSql\x12\x0f\n\x07version\x18\x01 \x01(\t\"\x18\n\x05MySql\x12\x0f\n\x07version\x18\x01 \x01(\t\"7\n\x05Redis\x12\x0c\n\x04info\x18\x01 \x01(\t\x12\x14\n\x07\x63luster\x18\x02 \x01(\tH\x00\x88\x01\x01\x42\n\n\x08_cluster\"w\n\x04Snmp\x12*\n\x05items\x18\x01 \x03(\x0b\x32\x1b.palm.lavender.v1.Snmp.Item\x1a\x43\n\x04Item\x12\x0b\n\x03oid\x18\x01 \x01(\t\x12\x0b\n\x01i\x18\x0b \x01(\x03H\x00\x12\x0b\n\x01s\x18\x0c \x01(\tH\x00\x12\x0b\n\x01\x64\x18\r \x01(\x01H\x00\x42\x07\n\x05value\"\xfe\x03\n\nOpenSearch\x12\x14\n\x0c\x63luster_name\x18\x01 \x01(\t\x12\x0e\n\x06status\x18\x02 \x01(\t\x12\x11\n\ttimed_out\x18\x03 \x01(\x08\x12\x17\n\x0fnumber_of_nodes\x18\x04 \x01(\r\x12\x1c\n\x14number_of_data_nodes\x18\x05 \x01(\r\x12\x19\n\x11\x64iscovered_master\x18\x06 \x01(\x08\x12\"\n\x1a\x64iscovered_cluster_manager\x18\x07 \x01(\x08\x12\x1d\n\x15\x61\x63tive_primary_shards\x18\x08 \x01(\r\x12\x15\n\ractive_shards\x18\t \x01(\r\x12\x19\n\x11relocating_shards\x18\n \x01(\r\x12\x1b\n\x13initializing_shards\x18\x0b \x01(\r\x12\x19\n\x11unassigned_shards\x18\x0c \x01(\r\x12!\n\x19\x64\x65layed_unassigned_shards\x18\r \x01(\r\x12\x1f\n\x17number_of_pending_tasks\x18\x0e \x01(\r\x12!\n\x19number_of_in_flight_fetch\x18\x0f \x01(\r\x12(\n task_max_waiting_in_queue_millis\x18\x10 \x01(\r\x12\'\n\x1f\x61\x63tive_shards_percent_as_number\x18\x11 \x01(\x02\x32\xfd\x01\n\x08Reporter\x12R\n\x07Systemd\x12 .palm.lavender.v1.SystemdRequest\x1a!.palm.lavender.v1.SystemdResponse\"\x00(\x01\x12[\n\nKubernetes\x12#.palm.lavender.v1.KubernetesRequest\x1a$.palm.lavender.v1.KubernetesResponse\"\x00(\x01\x12@\n\x04Http\x12\x1d.palm.lavender.v1.HttpRequest\x1a\x17.palm.lavender.v1.Empty\"\x00\x42\x65\n.com.github.saturn_xiv.palm.plugins.lavender.v1B\rLavenderProtoP\x01Z\x05./;v2\xaa\x02\x1aPalm.Plugins.Lavender.Grpcb\x06proto3')
 
 _globals = globals()
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, _globals)
@@ -42,22 +42,26 @@ if not _descriptor._USE_C_DESCRIPTORS:
   _globals['_SYSTEMDREQUEST']._serialized_end=279
   _globals['_SYSTEMDRESPONSE']._serialized_start=281
   _globals['_SYSTEMDRESPONSE']._serialized_end=319
-  _globals['_HTTPREQUEST']._serialized_start=322
-  _globals['_HTTPREQUEST']._serialized_end=555
-  _globals['_HTTPREQUEST_ITEM']._serialized_start=389
-  _globals['_HTTPREQUEST_ITEM']._serialized_end=555
-  _globals['_POSTGRESQL']._serialized_start=557
-  _globals['_POSTGRESQL']._serialized_end=586
-  _globals['_MYSQL']._serialized_start=588
-  _globals['_MYSQL']._serialized_end=612
-  _globals['_REDIS']._serialized_start=614
-  _globals['_REDIS']._serialized_end=669
-  _globals['_SNMP']._serialized_start=671
-  _globals['_SNMP']._serialized_end=790
-  _globals['_SNMP_ITEM']._serialized_start=723
-  _globals['_SNMP_ITEM']._serialized_end=790
-  _globals['_OPENSEARCH']._serialized_start=793
-  _globals['_OPENSEARCH']._serialized_end=1303
-  _globals['_REPORTER']._serialized_start=1306
-  _globals['_REPORTER']._serialized_end=1466
+  _globals['_KUBERNETESREQUEST']._serialized_start=321
+  _globals['_KUBERNETESREQUEST']._serialized_end=438
+  _globals['_KUBERNETESRESPONSE']._serialized_start=440
+  _globals['_KUBERNETESRESPONSE']._serialized_end=481
+  _globals['_HTTPREQUEST']._serialized_start=484
+  _globals['_HTTPREQUEST']._serialized_end=717
+  _globals['_HTTPREQUEST_ITEM']._serialized_start=551
+  _globals['_HTTPREQUEST_ITEM']._serialized_end=717
+  _globals['_POSTGRESQL']._serialized_start=719
+  _globals['_POSTGRESQL']._serialized_end=748
+  _globals['_MYSQL']._serialized_start=750
+  _globals['_MYSQL']._serialized_end=774
+  _globals['_REDIS']._serialized_start=776
+  _globals['_REDIS']._serialized_end=831
+  _globals['_SNMP']._serialized_start=833
+  _globals['_SNMP']._serialized_end=952
+  _globals['_SNMP_ITEM']._serialized_start=885
+  _globals['_SNMP_ITEM']._serialized_end=952
+  _globals['_OPENSEARCH']._serialized_start=955
+  _globals['_OPENSEARCH']._serialized_end=1465
+  _globals['_REPORTER']._serialized_start=1468
+  _globals['_REPORTER']._serialized_end=1721
 # @@protoc_insertion_point(module_scope)
