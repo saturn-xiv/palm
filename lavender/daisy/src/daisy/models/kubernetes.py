@@ -3,6 +3,7 @@ from datetime import datetime, UTC
 import pickle
 
 from kubernetes import client, config, watch
+from kubernetes.client.rest import ApiException
 import psutil
 import numpy
 
@@ -30,34 +31,40 @@ def _load_logs_for_namespace(db, namespace):
     if not pods.items:
         logger.warning("didn't have any pods")
         return
+
     for pod in pods.items:
         pod_name = pod.metadata.name
-        containers = [x.name for x in pod.spec.containers]
-
-        for container_name in containers:
+        for container in pod.spec.containers:
+            container_name = container.name
+            # if state.waiting and state.waiting.reason == "ContainerCreating":
             key = f"kubernetes.{namespace}.{pod_name}.{container_name}.last-fetch"
             since = datetime.fromtimestamp(psutil.boot_time(), tz=UTC)
             if key in db:
                 since = pickle.loads(db[key])
             logger.debug("fetch kubernetes logs for %s@%s/%s since %s",
                          container_name, namespace, pod_name, since)
-            # https://github.com/kubernetes-client/python/issues/1351
-            # TODO since_time not support
-            now = datetime.now(tz=UTC)
-            res = v1.read_namespaced_pod_log(name=pod_name,
-                                             namespace=namespace,
-                                             container=container_name,
-                                             timestamps=True,
-                                             _preload_content=False,
-                                             since_seconds=round(
-                                                 (now-since).total_seconds()),
-                                             )
-            for line in watch.watch.iter_resp_lines(res):
-                items = line.split(" ", maxsplit=1)
-                if len(items) != 2:
-                    logger.warning("ignore message: %s", line)
-                    continue
-                # UserWarning: no explicit representation of timezones available for np.datetime64
-                cur = numpy.datetime64(items[0][:-1])
-                yield lavender_pb2.KubernetesRequest(pod=pod_name, container=container_name, created_at=to_timestamp(cur), message=items[1])
-                db[key] = pickle.dumps(cur.astype('datetime64[us]').item())
+            try:
+                # since_time not support: https://github.com/kubernetes-client/python/issues/1351
+                now = datetime.now(tz=UTC)
+                res = v1.read_namespaced_pod_log(name=pod_name,
+                                                 namespace=namespace,
+                                                 container=container_name,
+                                                 timestamps=True,
+                                                 previous=True,
+                                                 since_seconds=round(
+                                                     (now-since).total_seconds()),
+                                                 _preload_content=False,
+                                                 )
+                for line in watch.watch.iter_resp_lines(res):
+                    items = line.split(" ", maxsplit=1)
+                    if len(items) != 2:
+                        logger.warning("ignore message: %s", line)
+                        continue
+                    # UserWarning: no explicit representation of timezones available for np.datetime64
+                    cur = numpy.datetime64(items[0][:-1])
+                    yield lavender_pb2.KubernetesRequest(pod=pod_name, container=container_name, created_at=to_timestamp(cur), message=items[1])
+                    db[key] = pickle.dumps(cur.astype(
+                        'datetime64[us]').item().replace(tzinfo=UTC))
+            except ApiException as e:
+                logger.error("%s@%s/%s %d %s: %s", container_name,
+                             namespace, pod_name, e.status, e.reason, e.body)
