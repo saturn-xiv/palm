@@ -13,37 +13,36 @@ logger = logging.getLogger(__name__)
 
 def logs_by_unit(stub, name, db):
     logger.info("load systemd unit %s", name)
-    stub.Systemd(_load_logs_for_unit(db, name))
+    try:
+        stub.Systemd(_load_logs_for_unit(db, name))
+    except Exception:
+        logger.exception("fetch systemd logs")
 
 
 def _load_logs_for_unit(db, name):
     hostname = socket.gethostname()
     key = f"systemd.{name}.last-fetch"
 
-    try:
-        reader = journal.Reader()
-        reader.log_level(journal.LOG_INFO)
+    reader = journal.Reader()
+    reader.log_level(journal.LOG_INFO)
 
-        if key in db:
-            since = pickle.loads(db[key])
-            logger.debug("fetch systemd logs for %s since %s", name, since)
-            reader.seek_realtime(since)
-        else:
-            logger.debug("fetch systemd logs for %s since last-boot", name)
-            reader.this_boot()
+    if key in db:
+        since = pickle.loads(db[key])
+        logger.debug("fetch systemd logs for %s since %s", name, since)
+        reader.seek_realtime(since)
+    else:
+        logger.debug("fetch systemd logs for %s since last-boot", name)
+        reader.this_boot()
 
-        reader.add_match(_SYSTEMD_UNIT=name)
+    reader.add_match(_SYSTEMD_UNIT=name)
 
-        for entry in reader:
-            cur = entry.get('__REALTIME_TIMESTAMP')
-            yield lavender_pb2.SystemdRequest(
-                host=hostname,
-                unit=entry.get('_SYSTEMD_UNIT'),
-                created_at=to_timestamp(cur),
-                priority=int(entry.get('PRIORITY', '0')),
-                message=entry.get('MESSAGE', '')
-            )
-            db[key] = pickle.dumps(cur)
-
-    except Exception:
-        logger.exception("fetch systemd logs")
+    for entry in reader:
+        cur = entry.get('__REALTIME_TIMESTAMP')
+        yield lavender_pb2.SystemdRequest(
+            host=hostname,
+            unit=entry.get('_SYSTEMD_UNIT'),
+            created_at=to_timestamp(cur),
+            priority=int(entry.get('PRIORITY', '0')),
+            message=entry.get('MESSAGE', '')
+        )
+        db[key] = pickle.dumps(cur)
