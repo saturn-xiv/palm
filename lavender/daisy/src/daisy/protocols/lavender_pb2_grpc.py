@@ -25,7 +25,7 @@ if _version_not_supported:
     )
 
 
-class StorageStub:
+class ReporterStub:
     """Missing associated documentation comment in .proto file."""
 
     def __init__(self, channel):
@@ -35,18 +35,13 @@ class StorageStub:
             channel: A grpc.Channel.
         """
         self.Systemd = channel.unary_unary(
-                '/palm.lavender.v1.Storage/Systemd',
+                '/palm.lavender.v1.Reporter/Systemd',
                 request_serializer=daisy_dot_protocols_dot_lavender__pb2.SystemdRequest.SerializeToString,
                 response_deserializer=daisy_dot_protocols_dot_lavender__pb2.Empty.FromString,
                 _registered_method=True)
-        self.Report = channel.unary_unary(
-                '/palm.lavender.v1.Storage/Report',
-                request_serializer=daisy_dot_protocols_dot_lavender__pb2.ReportRequest.SerializeToString,
-                response_deserializer=daisy_dot_protocols_dot_lavender__pb2.Empty.FromString,
-                _registered_method=True)
 
 
-class StorageServicer:
+class ReporterServicer:
     """Missing associated documentation comment in .proto file."""
 
     def Systemd(self, request, context):
@@ -55,34 +50,23 @@ class StorageServicer:
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
-    def Report(self, request, context):
-        """Missing associated documentation comment in .proto file."""
-        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-        context.set_details('Method not implemented!')
-        raise NotImplementedError('Method not implemented!')
 
-
-def add_StorageServicer_to_server(servicer, server):
+def add_ReporterServicer_to_server(servicer, server):
     rpc_method_handlers = {
             'Systemd': grpc.unary_unary_rpc_method_handler(
                     servicer.Systemd,
                     request_deserializer=daisy_dot_protocols_dot_lavender__pb2.SystemdRequest.FromString,
                     response_serializer=daisy_dot_protocols_dot_lavender__pb2.Empty.SerializeToString,
             ),
-            'Report': grpc.unary_unary_rpc_method_handler(
-                    servicer.Report,
-                    request_deserializer=daisy_dot_protocols_dot_lavender__pb2.ReportRequest.FromString,
-                    response_serializer=daisy_dot_protocols_dot_lavender__pb2.Empty.SerializeToString,
-            ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
-            'palm.lavender.v1.Storage', rpc_method_handlers)
+            'palm.lavender.v1.Reporter', rpc_method_handlers)
     server.add_generic_rpc_handlers((generic_handler,))
-    server.add_registered_method_handlers('palm.lavender.v1.Storage', rpc_method_handlers)
+    server.add_registered_method_handlers('palm.lavender.v1.Reporter', rpc_method_handlers)
 
 
  # This class is part of an EXPERIMENTAL API.
-class Storage:
+class Reporter:
     """Missing associated documentation comment in .proto file."""
 
     @staticmethod
@@ -99,35 +83,8 @@ class Storage:
         return grpc.experimental.unary_unary(
             request,
             target,
-            '/palm.lavender.v1.Storage/Systemd',
+            '/palm.lavender.v1.Reporter/Systemd',
             daisy_dot_protocols_dot_lavender__pb2.SystemdRequest.SerializeToString,
-            daisy_dot_protocols_dot_lavender__pb2.Empty.FromString,
-            options,
-            channel_credentials,
-            insecure,
-            call_credentials,
-            compression,
-            wait_for_ready,
-            timeout,
-            metadata,
-            _registered_method=True)
-
-    @staticmethod
-    def Report(request,
-            target,
-            options=(),
-            channel_credentials=None,
-            call_credentials=None,
-            insecure=False,
-            compression=None,
-            wait_for_ready=None,
-            timeout=None,
-            metadata=None):
-        return grpc.experimental.unary_unary(
-            request,
-            target,
-            '/palm.lavender.v1.Storage/Report',
-            daisy_dot_protocols_dot_lavender__pb2.ReportRequest.SerializeToString,
             daisy_dot_protocols_dot_lavender__pb2.Empty.FromString,
             options,
             channel_credentials,

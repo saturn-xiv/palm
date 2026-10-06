@@ -17,18 +17,17 @@ message Duration {
     int32 nanos = 2;
 }
 
-service Storage {
+service Reporter {
   rpc Systemd(SystemdRequest) returns (Empty) {}
-  rpc Report(ReportRequest) returns (Empty) {}
 }
 
 message SystemdRequest {
     message Item {
         string host = 1;
-        string name = 2;
-        uint32 pid = 3;
+        string unit = 2;
+        uint32 priority = 3;
         string message = 4;
-        Timestamp created_at = 5;
+        Timestamp timestamp = 5;
     }
     repeated Item items = 1;
 }
@@ -77,21 +76,4 @@ message OpenSearch {
     uint32 number_of_in_flight_fetch = 15;
     uint32 task_max_waiting_in_queue_millis = 16;
     float active_shards_percent_as_number = 17;
-}
-
-message ReportRequest{
-    message Item{
-        Duration curation = 1;
-        oneof node {
-            Http http = 11;
-            PostgreSql postgresql = 12;
-            MySql mysql = 13;
-            Redis redis = 14;
-            Snmp snmp = 15;
-            OpenSearch opensearch = 16;
-        }
-    }
-    string host = 1;
-    Timestamp timestamp = 2;
-    repeated Item items = 9;
 }

@@ -169,10 +169,10 @@ host = "127.0.0.1"
 port = 11006
 
 [systemd]
-services = ["sshd"]
+units = ["sshd.service"]
 
 [kubernetes]
-namespaces = []
+namespaces = ["change-me"]
 
 EOF
     cat <<EOF > $1/lavender/daisy-server.service

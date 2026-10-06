@@ -29,18 +29,18 @@ class Duration(_message.Message):
 class SystemdRequest(_message.Message):
     __slots__ = ("items",)
     class Item(_message.Message):
-        __slots__ = ("host", "name", "pid", "message", "created_at")
+        __slots__ = ("host", "unit", "priority", "message", "timestamp")
         HOST_FIELD_NUMBER: _ClassVar[int]
-        NAME_FIELD_NUMBER: _ClassVar[int]
-        PID_FIELD_NUMBER: _ClassVar[int]
+        UNIT_FIELD_NUMBER: _ClassVar[int]
+        PRIORITY_FIELD_NUMBER: _ClassVar[int]
         MESSAGE_FIELD_NUMBER: _ClassVar[int]
-        CREATED_AT_FIELD_NUMBER: _ClassVar[int]
+        TIMESTAMP_FIELD_NUMBER: _ClassVar[int]
         host: str
-        name: str
-        pid: int
+        unit: str
+        priority: int
         message: str
-        created_at: Timestamp
-        def __init__(self, host: _Optional[str] = ..., name: _Optional[str] = ..., pid: _Optional[int] = ..., message: _Optional[str] = ..., created_at: _Optional[_Union[Timestamp, _Mapping]] = ...) -> None: ...
+        timestamp: Timestamp
+        def __init__(self, host: _Optional[str] = ..., unit: _Optional[str] = ..., priority: _Optional[int] = ..., message: _Optional[str] = ..., timestamp: _Optional[_Union[Timestamp, _Mapping]] = ...) -> None: ...
     ITEMS_FIELD_NUMBER: _ClassVar[int]
     items: _containers.RepeatedCompositeFieldContainer[SystemdRequest.Item]
     def __init__(self, items: _Optional[_Iterable[_Union[SystemdRequest.Item, _Mapping]]] = ...) -> None: ...
@@ -129,30 +129,3 @@ class OpenSearch(_message.Message):
     task_max_waiting_in_queue_millis: int
     active_shards_percent_as_number: float
     def __init__(self, cluster_name: _Optional[str] = ..., status: _Optional[str] = ..., timed_out: _Optional[bool] = ..., number_of_nodes: _Optional[int] = ..., number_of_data_nodes: _Optional[int] = ..., discovered_master: _Optional[bool] = ..., discovered_cluster_manager: _Optional[bool] = ..., active_primary_shards: _Optional[int] = ..., active_shards: _Optional[int] = ..., relocating_shards: _Optional[int] = ..., initializing_shards: _Optional[int] = ..., unassigned_shards: _Optional[int] = ..., delayed_unassigned_shards: _Optional[int] = ..., number_of_pending_tasks: _Optional[int] = ..., number_of_in_flight_fetch: _Optional[int] = ..., task_max_waiting_in_queue_millis: _Optional[int] = ..., active_shards_percent_as_number: _Optional[float] = ...) -> None: ...
-
-class ReportRequest(_message.Message):
-    __slots__ = ("host", "timestamp", "items")
-    class Item(_message.Message):
-        __slots__ = ("curation", "http", "postgresql", "mysql", "redis", "snmp", "opensearch")
-        CURATION_FIELD_NUMBER: _ClassVar[int]
-        HTTP_FIELD_NUMBER: _ClassVar[int]
-        POSTGRESQL_FIELD_NUMBER: _ClassVar[int]
-        MYSQL_FIELD_NUMBER: _ClassVar[int]
-        REDIS_FIELD_NUMBER: _ClassVar[int]
-        SNMP_FIELD_NUMBER: _ClassVar[int]
-        OPENSEARCH_FIELD_NUMBER: _ClassVar[int]
-        curation: Duration
-        http: Http
-        postgresql: PostgreSql
-        mysql: MySql
-        redis: Redis
-        snmp: Snmp
-        opensearch: OpenSearch
-        def __init__(self, curation: _Optional[_Union[Duration, _Mapping]] = ..., http: _Optional[_Union[Http, _Mapping]] = ..., postgresql: _Optional[_Union[PostgreSql, _Mapping]] = ..., mysql: _Optional[_Union[MySql, _Mapping]] = ..., redis: _Optional[_Union[Redis, _Mapping]] = ..., snmp: _Optional[_Union[Snmp, _Mapping]] = ..., opensearch: _Optional[_Union[OpenSearch, _Mapping]] = ...) -> None: ...
-    HOST_FIELD_NUMBER: _ClassVar[int]
-    TIMESTAMP_FIELD_NUMBER: _ClassVar[int]
-    ITEMS_FIELD_NUMBER: _ClassVar[int]
-    host: str
-    timestamp: Timestamp
-    items: _containers.RepeatedCompositeFieldContainer[ReportRequest.Item]
-    def __init__(self, host: _Optional[str] = ..., timestamp: _Optional[_Union[Timestamp, _Mapping]] = ..., items: _Optional[_Iterable[_Union[ReportRequest.Item, _Mapping]]] = ...) -> None: ...

@@ -37,6 +37,8 @@ def main():
         "worker", help="Launch a clawer worker")
     parser_worker.add_argument(
         '-c', '--config', default='config.toml', help="config file path")
+    parser_worker.add_argument('-w', '--workers', type=int,
+                               default=os.cpu_count(), help='max of workers')
 
     args = parser.parse_args()
     logging.basicConfig(
@@ -49,4 +51,4 @@ def main():
     if args.command == "server":
         launch_grpc_server(config, args.port, args.workers, args.tls)
     elif args.command == "worker":
-        launch_worker(config, args.tls)
+        launch_worker(config, args.tls, args.workers)

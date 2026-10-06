@@ -27,7 +27,9 @@ $ source $PWD/tmp/python/bin/activate
 ```bash
 # start rpc server
 PYTHON_GIL=0 python3 -m daisy -d server -p 11006
-PYTHON_GIL=0 python3 -m daisy -d worker
+
+PYTHON_GIL=0 python3 -m daisy -d worker -w 2
+sudo -E env PATH="$PATH" PYTHON_GIL=0 python3 -m daisy -d worker -w 2
 ```
 
 ## Documents

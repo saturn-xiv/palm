@@ -10,7 +10,7 @@ from grpc_health.v1 import health, health_pb2, health_pb2_grpc
 from opensearchpy import OpenSearch
 
 from daisy.protocols import lavender_pb2, lavender_pb2_grpc
-from .lavender import StorageServer as LavenderStorageServer
+from .lavender import Reporter as LavenderReporterServer
 
 logger = logging.getLogger(__name__)
 
@@ -20,11 +20,11 @@ def launch(config, port, workers, tls):
 
     db = open_opensearch(config['opensearch']['host'],
                          config['opensearch']['port'])
-    lavender_pb2_grpc.add_StorageServicer_to_server(
-        LavenderStorageServer(db, config['opensearch']['namespace']), server)
+    lavender_pb2_grpc.add_ReporterServicer_to_server(
+        LavenderReporterServer(db, config['opensearch']['namespace']), server)
 
     reflection.enable_server_reflection((
-        lavender_pb2.DESCRIPTOR.services_by_name["Storage"].full_name,
+        lavender_pb2.DESCRIPTOR.services_by_name["Reporter"].full_name,
         reflection.SERVICE_NAME,
     ), server)
 
