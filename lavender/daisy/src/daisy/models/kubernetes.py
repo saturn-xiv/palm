@@ -46,20 +46,30 @@ def _load_logs_for_namespace(db, namespace):
             # https://github.com/kubernetes-client/python/issues/1351
             # TODO since_time not support
             now = datetime.now(tz=UTC)
-            watcher = watch.Watch()
-            for line in watcher.stream(v1.read_namespaced_pod_log,
-                                       name=pod_name,
-                                       namespace=namespace,
-                                       container=container_name,
-                                       timestamps=True,
-                                       _preload_content=False,
-                                       since_seconds=round(
-                                           (now-since).total_seconds()),
-                                       ):
+            # watcher = watch.Watch()
+            # for line in watcher.stream(v1.read_namespaced_pod_log,
+            #                            name=pod_name,
+            #                            namespace=namespace,
+            #                            container=container_name,
+            #                            timestamps=True,
+            #                            _preload_content=False,
+            #                            since_seconds=round(
+            #                                (now-since).total_seconds()),
+            #                            ):
+            res = v1.read_namespaced_pod_log(name=pod_name,
+                                             namespace=namespace,
+                                             container=container_name,
+                                             timestamps=True,
+                                             _preload_content=False,
+                                             since_seconds=round(
+                                                 (now-since).total_seconds()),
+                                             )
+            for line in watch.watch.iter_resp_lines(res):
                 items = line.split(" ", maxsplit=1)
                 if len(items) != 2:
                     logger.warning("ignore message: %s", line)
                     continue
-                yield lavender_pb2.KubernetesRequest(pod=pod_name, container=container_name, created_at=to_timestamp(numpy.datetime64(items[0])), message=items[1])
-                # TODO
-                # db[key] = pickle.dumps(cur)
+                # UserWarning: no explicit representation of timezones available for np.datetime64
+                cur = numpy.datetime64(items[0][:-1])
+                yield lavender_pb2.KubernetesRequest(pod=pod_name, container=container_name, created_at=to_timestamp(cur), message=items[1])
+                db[key] = pickle.dumps(cur.astype('datetime64[us]').item())
