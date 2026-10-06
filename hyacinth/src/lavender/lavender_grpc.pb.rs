@@ -16,13 +16,17 @@ pub mod reporter_client {
             Self { channel }
         }
 
-        pub fn systemd<ReqMsgView>(
+        pub fn systemd(&self) -> ClientStreamingCallBuilder<'_, &T, super::SystemdRequest, super::SystemdResponse> {
+          ClientStreamingCallBuilder::new(&self.channel, "/palm.lavender.v1.Reporter/Systemd")
+        }
+
+        pub fn http<ReqMsgView>(
             &self,
             request: ReqMsgView,
         ) -> UnaryCallBuilder<'_, &T, ReqMsgView, super::Empty>
         where
-          ReqMsgView: protobuf::AsView<Proxied = super::SystemdRequest> + Send + Sync {
-          UnaryCallBuilder::new(&self.channel, "/palm.lavender.v1.Reporter/Systemd", request)
+          ReqMsgView: protobuf::AsView<Proxied = super::HttpRequest> + Send + Sync {
+          UnaryCallBuilder::new(&self.channel, "/palm.lavender.v1.Reporter/Http", request)
         }
     }
 }

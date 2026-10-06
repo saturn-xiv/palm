@@ -3,6 +3,9 @@
 /config.toml
 /*.crt
 /*.key
+/*.db
+/*.db.dir
+/*.db.pag
 
 *.egg-info
 __pycache__/

@@ -18,24 +18,30 @@ message Duration {
 }
 
 service Reporter {
-  rpc Systemd(SystemdRequest) returns (Empty) {}
+  rpc Systemd(stream SystemdRequest) returns (SystemdResponse) {}
+  rpc Http(HttpRequest) returns (Empty) {}
 }
 
 message SystemdRequest {
-    message Item {
-        string host = 1;
-        string unit = 2;
-        uint32 priority = 3;
-        string message = 4;
-        Timestamp timestamp = 5;
-    }
-    repeated Item items = 1;
+    string host = 1;
+    string unit = 2;
+    uint32 priority = 3;
+    string message = 4;
+    Timestamp created_at = 5;
+}
+message SystemdResponse {
+    uint32 chunk_count = 1;
 }
 
-message Http {
-    uint32 status_code = 1;
-    string content_type = 2;
-    string response_body = 3;
+message HttpRequest {
+    message Item{
+        uint32 status_code = 1;
+        string content_type = 2;
+        string response_body = 3;
+        Duration elapsed = 8;
+        Timestamp created_at = 9;
+    }
+    repeated Item items = 1;
 }
 message PostgreSql {
     string version = 1;

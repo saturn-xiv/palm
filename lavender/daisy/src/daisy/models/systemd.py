@@ -1,6 +1,7 @@
 import logging
-from datetime import datetime, timedelta, UTC
+from datetime import datetime,  UTC
 import socket
+import pickle
 
 from systemd import journal
 
@@ -10,30 +11,39 @@ from daisy.protocols import lavender_pb2, to_timestamp
 logger = logging.getLogger(__name__)
 
 
-def logs_by_unit(stub, name):
+def logs_by_unit(stub, name, db):
     logger.info("load systemd unit %s", name)
+    stub.Systemd(_load_logs_for_unit(db, name))
+
+
+def _load_logs_for_unit(db, name):
     hostname = socket.gethostname()
+    key = f"systemd.{name}.last-fetch"
+
     try:
         reader = journal.Reader()
         reader.log_level(journal.LOG_INFO)
 
-        reader.this_boot()
-        # since = datetime.now(UTC) - timedelta(minutes=15)
-        # logger.debug("fetch logs for %s since %s", name, since)
-        # reader.seek_realtime(since)
+        if key in db:
+            since = pickle.loads(db[key])
+            logger.debug("fetch logs for %s since %s", name, since)
+            reader.seek_realtime(since)
+        else:
+            logger.debug("fetch logs for %s since last-boot", name)
+            reader.this_boot()
 
         reader.add_match(_SYSTEMD_UNIT="sshd.service")
 
-        request = lavender_pb2.SystemdRequest(items=[])
         for entry in reader:
-            request.items.append(lavender_pb2.SystemdRequest.Item(
+            cur = entry.get('__REALTIME_TIMESTAMP')
+            yield lavender_pb2.SystemdRequest(
                 host=hostname,
                 unit=entry.get('_SYSTEMD_UNIT'),
-                timestamp=to_timestamp(entry.get('__REALTIME_TIMESTAMP')),
+                created_at=to_timestamp(cur),
                 priority=int(entry.get('PRIORITY', '0')),
-                message=entry.get('MESSAGE', ''))
+                message=entry.get('MESSAGE', '')
             )
+            db[key] = pickle.dumps(cur)
 
-        stub.Systemd(request)
-    except Exception as e:
-        logger.error("%s", e)
+    except Exception:
+        logger.exception("fetch systemd logs")

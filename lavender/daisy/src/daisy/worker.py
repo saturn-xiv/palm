@@ -1,5 +1,8 @@
 import logging
 from concurrent.futures import ThreadPoolExecutor
+import dbm.ndbm
+from datetime import datetime,  UTC
+import pickle
 
 import grpc
 
@@ -11,17 +14,19 @@ logger = logging.getLogger(__name__)
 
 
 def launch(config, tls, max_workers):
-    channel = open_channel(
-        config["server"]["host"], config["server"]["port"], tls)
-    stub = lavender_pb2_grpc.ReporterStub(channel)
+    with dbm.ndbm.open('worker.db', 'c') as db:
+        db["startup"] = pickle.dumps(datetime.now(UTC))
+        channel = open_channel(
+            config["server"]["host"], config["server"]["port"], tls)
+        stub = lavender_pb2_grpc.ReporterStub(channel)
 
-    with ThreadPoolExecutor(max_workers=max_workers) as executor:
-        for name in config["systemd"]["units"]:
-            executor.submit(systemd_logs_by_unit, stub, name)
-        for name in config["kubernetes"]["namespaces"]:
-            executor.submit(kubernetes_logs_by_namespace, stub, name)
+        with ThreadPoolExecutor(max_workers=max_workers) as executor:
+            for name in config["systemd"]["units"]:
+                executor.submit(systemd_logs_by_unit, stub, name, db)
+            for name in config["kubernetes"]["namespaces"]:
+                executor.submit(kubernetes_logs_by_namespace, stub, name, db)
 
-    logger.info("done.")
+        logger.info("done.")
 
 
 def open_channel(host, port, tls):

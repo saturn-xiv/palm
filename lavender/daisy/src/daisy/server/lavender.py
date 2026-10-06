@@ -13,7 +13,14 @@ class Reporter(lavender_pb2_grpc.ReporterServicer):
         self.namespace = namespace
         # TODO init indexs
 
-    def Systemd(self, request, context):
-        logger.info("receive %d items", len(request.items))
-        # TODO
-        return lavender_pb2.Empty()
+    def Systemd(self, request_iterator, context):
+        logger.debug("start to receiving systemd data stream")
+        chunk_count = 0
+        for req in request_iterator:
+            chunk_count += 1
+            # logger.debug("receive chunk(%s): %s %s %s",
+            #              chunk_count, req.unit, req.created_at, req.message)
+            # TODO
+
+        logger.debug("finished receiving stream, total %d chunks", chunk_count)
+        return lavender_pb2.SystemdResponse(chunk_count=chunk_count)

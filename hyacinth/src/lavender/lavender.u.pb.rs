@@ -1316,18 +1316,70 @@ impl<'msg> SystemdRequestView<'msg> {
     ::protobuf::IntoProxied::into_proxied(*self, ::protobuf::__internal::Private)
   }
 
-  // items: repeated message palm.lavender.v1.SystemdRequest.Item
-  pub fn items(self) -> ::protobuf::RepeatedView<'msg, super::systemd_request::Item> {
+  // host: optional string
+  pub fn host(self) -> ::protobuf::View<'msg, ::protobuf::ProtoString> {
+    let str_view = unsafe {
+      self.inner.ptr().get_string_at_index(
+        0, (b"").into()
+      )
+    };
+    // SAFETY: The runtime doesn't require ProtoStr to be UTF-8.
+    unsafe { ::protobuf::ProtoStr::from_utf8_unchecked(str_view.as_ref()) }
+  }
+
+  // unit: optional string
+  pub fn unit(self) -> ::protobuf::View<'msg, ::protobuf::ProtoString> {
+    let str_view = unsafe {
+      self.inner.ptr().get_string_at_index(
+        1, (b"").into()
+      )
+    };
+    // SAFETY: The runtime doesn't require ProtoStr to be UTF-8.
+    unsafe { ::protobuf::ProtoStr::from_utf8_unchecked(str_view.as_ref()) }
+  }
+
+  // priority: optional uint32
+  pub fn priority(self) -> u32 {
     unsafe {
-      self.inner.ptr().get_array_at_index(
-        0
+      // TODO: b/361751487: This .into() and .try_into() is only
+      // here for the enum<->i32 case, we should avoid it for
+      // other primitives where the types naturally match
+      // perfectly (and do an unchecked conversion for
+      // i32->enum types, since even for closed enums we trust
+      // upb to only return one of the named values).
+      self.inner.ptr().get_u32_at_index(
+        2, (0u32).into()
+      ).try_into().unwrap()
+    }
+  }
+
+  // message: optional string
+  pub fn message(self) -> ::protobuf::View<'msg, ::protobuf::ProtoString> {
+    let str_view = unsafe {
+      self.inner.ptr().get_string_at_index(
+        3, (b"").into()
       )
-    }.map_or_else(
-        ::protobuf::__internal::runtime::empty_array::<super::systemd_request::Item>,
-        |raw| unsafe {
-          ::protobuf::RepeatedView::from_raw(::protobuf::__internal::Private, raw)
-        }
-      )
+    };
+    // SAFETY: The runtime doesn't require ProtoStr to be UTF-8.
+    unsafe { ::protobuf::ProtoStr::from_utf8_unchecked(str_view.as_ref()) }
+  }
+
+  // created_at: optional message palm.lavender.v1.Timestamp
+  pub fn has_created_at(self) -> bool {
+    unsafe {
+      self.inner.ptr().has_field_at_index(4)
+    }
+  }
+  pub fn created_at_opt(self) -> ::protobuf::Optional<super::TimestampView<'msg>> {
+        ::protobuf::Optional::new(self.created_at(), self.has_created_at())
+  }
+  pub fn created_at(self) -> super::TimestampView<'msg> {
+    let submsg = unsafe {
+      self.inner.ptr().get_message_at_index(4)
+    };
+    submsg
+        .map(|ptr| unsafe { ::protobuf::__internal::runtime::MessageViewInner::wrap(ptr).into() })
+       .unwrap_or(super::TimestampView::default())
   }
 
 }
@@ -1421,39 +1473,133 @@ impl<'msg> SystemdRequestMut<'msg> {
     ::protobuf::AsView::as_view(self).to_owned()
   }
 
-  // items: repeated message palm.lavender.v1.SystemdRequest.Item
-  pub fn items(&self) -> ::protobuf::RepeatedView<'_, super::systemd_request::Item> {
-    unsafe {
-      self.inner.ptr().get_array_at_index(
-        0
+  // host: optional string
+  pub fn host(&self) -> ::protobuf::View<'_, ::protobuf::ProtoString> {
+    let str_view = unsafe {
+      self.inner.ptr().get_string_at_index(
+        0, (b"").into()
       )
-    }.map_or_else(
-        ::protobuf::__internal::runtime::empty_array::<super::systemd_request::Item>,
-        |raw| unsafe {
-          ::protobuf::RepeatedView::from_raw(::protobuf::__internal::Private, raw)
-        }
-      )
+    };
+    // SAFETY: The runtime doesn't require ProtoStr to be UTF-8.
+    unsafe { ::protobuf::ProtoStr::from_utf8_unchecked(str_view.as_ref()) }
   }
-  pub fn items_mut(&mut self) -> ::protobuf::RepeatedMut<'_, super::systemd_request::Item> {
+  pub fn set_host(&mut self, val: impl ::protobuf::IntoProxied<::protobuf::ProtoString>) {
     unsafe {
-      let raw_array = self.inner.ptr_mut().get_or_create_mutable_array_at_index(
+      ::protobuf::__internal::runtime::message_set_string_field(
+        ::protobuf::AsMut::as_mut(self).inner,
         0,
-        self.inner.arena()
-      ).expect("alloc should not fail");
-      ::protobuf::RepeatedMut::from_inner(
-        ::protobuf::__internal::Private,
-        ::protobuf::__internal::runtime::InnerRepeatedMut::new(
-          raw_array, self.inner.arena(),
-        ),
+        val);
+    }
+  }
+
+  // unit: optional string
+  pub fn unit(&self) -> ::protobuf::View<'_, ::protobuf::ProtoString> {
+    let str_view = unsafe {
+      self.inner.ptr().get_string_at_index(
+        1, (b"").into()
+      )
+    };
+    // SAFETY: The runtime doesn't require ProtoStr to be UTF-8.
+    unsafe { ::protobuf::ProtoStr::from_utf8_unchecked(str_view.as_ref()) }
+  }
+  pub fn set_unit(&mut self, val: impl ::protobuf::IntoProxied<::protobuf::ProtoString>) {
+    unsafe {
+      ::protobuf::__internal::runtime::message_set_string_field(
+        ::protobuf::AsMut::as_mut(self).inner,
+        1,
+        val);
+    }
+  }
+
+  // priority: optional uint32
+  pub fn priority(&self) -> u32 {
+    unsafe {
+      // TODO: b/361751487: This .into() and .try_into() is only
+      // here for the enum<->i32 case, we should avoid it for
+      // other primitives where the types naturally match
+      // perfectly (and do an unchecked conversion for
+      // i32->enum types, since even for closed enums we trust
+      // upb to only return one of the named values).
+      self.inner.ptr().get_u32_at_index(
+        2, (0u32).into()
+      ).try_into().unwrap()
+    }
+  }
+  pub fn set_priority(&mut self, val: u32) {
+    unsafe {
+      // TODO: b/361751487: This .into() is only here
+      // here for the enum<->i32 case, we should avoid it for
+      // other primitives where the types naturally match
+      //perfectly.
+      self.inner.ptr_mut().set_base_field_u32_at_index(
+        2, val.into()
       )
     }
   }
-  pub fn set_items(&mut self, src: impl ::protobuf::IntoProxied<::protobuf::Repeated<super::systemd_request::Item>>) {
+
+  // message: optional string
+  pub fn message(&self) -> ::protobuf::View<'_, ::protobuf::ProtoString> {
+    let str_view = unsafe {
+      self.inner.ptr().get_string_at_index(
+        3, (b"").into()
+      )
+    };
+    // SAFETY: The runtime doesn't require ProtoStr to be UTF-8.
+    unsafe { ::protobuf::ProtoStr::from_utf8_unchecked(str_view.as_ref()) }
+  }
+  pub fn set_message(&mut self, val: impl ::protobuf::IntoProxied<::protobuf::ProtoString>) {
     unsafe {
-      ::protobuf::__internal::runtime::message_set_repeated_field(
+      ::protobuf::__internal::runtime::message_set_string_field(
         ::protobuf::AsMut::as_mut(self).inner,
-        0,
-        src);
+        3,
+        val);
+    }
+  }
+
+  // created_at: optional message palm.lavender.v1.Timestamp
+  pub fn has_created_at(&self) -> bool {
+    unsafe {
+      self.inner.ptr().has_field_at_index(4)
+    }
+  }
+  pub fn clear_created_at(&mut self) {
+    unsafe {
+      self.inner.ptr().clear_field_at_index(
+        4
+      );
+    }
+  }
+  pub fn created_at_opt(&self) -> ::protobuf::Optional<super::TimestampView<'_>> {
+        ::protobuf::Optional::new(self.created_at(), self.has_created_at())
+  }
+  pub fn created_at(&self) -> super::TimestampView<'_> {
+    let submsg = unsafe {
+      self.inner.ptr().get_message_at_index(4)
+    };
+    submsg
+        .map(|ptr| unsafe { ::protobuf::__internal::runtime::MessageViewInner::wrap(ptr).into() })
+       .unwrap_or(super::TimestampView::default())
+  }
+  pub fn created_at_mut(&mut self) -> super::TimestampMut<'_> {
+     let ptr = unsafe {
+       self.inner.ptr_mut().get_or_create_mutable_message_at_index(
+         4, self.inner.arena()
+       ).unwrap()
+     };
+     ::protobuf::__internal::runtime::MessageMutInner::from_parent(
+         self.as_message_mut_inner(::protobuf::__internal::Private),
+         ptr
+     ).into()
+  }
+  pub fn set_created_at(&mut self,
+    val: impl ::protobuf::IntoProxied<super::Timestamp>) {
+
+    unsafe {
+      ::protobuf::__internal::runtime::message_set_sub_message(
+        ::protobuf::AsMut::as_mut(self).inner,
+        4,
+        val
+      );
     }
   }
 
@@ -1521,39 +1667,133 @@ impl SystemdRequest {
     ::protobuf::__internal::runtime::MessageMutInner::mut_of_owned(&mut self.inner).into()
   }
 
-  // items: repeated message palm.lavender.v1.SystemdRequest.Item
-  pub fn items(&self) -> ::protobuf::RepeatedView<'_, super::systemd_request::Item> {
-    unsafe {
-      self.inner.ptr().get_array_at_index(
-        0
+  // host: optional string
+  pub fn host(&self) -> ::protobuf::View<'_, ::protobuf::ProtoString> {
+    let str_view = unsafe {
+      self.inner.ptr().get_string_at_index(
+        0, (b"").into()
       )
-    }.map_or_else(
-        ::protobuf::__internal::runtime::empty_array::<super::systemd_request::Item>,
-        |raw| unsafe {
-          ::protobuf::RepeatedView::from_raw(::protobuf::__internal::Private, raw)
-        }
-      )
+    };
+    // SAFETY: The runtime doesn't require ProtoStr to be UTF-8.
+    unsafe { ::protobuf::ProtoStr::from_utf8_unchecked(str_view.as_ref()) }
   }
-  pub fn items_mut(&mut self) -> ::protobuf::RepeatedMut<'_, super::systemd_request::Item> {
+  pub fn set_host(&mut self, val: impl ::protobuf::IntoProxied<::protobuf::ProtoString>) {
     unsafe {
-      let raw_array = self.inner.ptr_mut().get_or_create_mutable_array_at_index(
+      ::protobuf::__internal::runtime::message_set_string_field(
+        ::protobuf::AsMut::as_mut(self).inner,
         0,
-        self.inner.arena()
-      ).expect("alloc should not fail");
-      ::protobuf::RepeatedMut::from_inner(
-        ::protobuf::__internal::Private,
-        ::protobuf::__internal::runtime::InnerRepeatedMut::new(
-          raw_array, self.inner.arena(),
-        ),
+        val);
+    }
+  }
+
+  // unit: optional string
+  pub fn unit(&self) -> ::protobuf::View<'_, ::protobuf::ProtoString> {
+    let str_view = unsafe {
+      self.inner.ptr().get_string_at_index(
+        1, (b"").into()
+      )
+    };
+    // SAFETY: The runtime doesn't require ProtoStr to be UTF-8.
+    unsafe { ::protobuf::ProtoStr::from_utf8_unchecked(str_view.as_ref()) }
+  }
+  pub fn set_unit(&mut self, val: impl ::protobuf::IntoProxied<::protobuf::ProtoString>) {
+    unsafe {
+      ::protobuf::__internal::runtime::message_set_string_field(
+        ::protobuf::AsMut::as_mut(self).inner,
+        1,
+        val);
+    }
+  }
+
+  // priority: optional uint32
+  pub fn priority(&self) -> u32 {
+    unsafe {
+      // TODO: b/361751487: This .into() and .try_into() is only
+      // here for the enum<->i32 case, we should avoid it for
+      // other primitives where the types naturally match
+      // perfectly (and do an unchecked conversion for
+      // i32->enum types, since even for closed enums we trust
+      // upb to only return one of the named values).
+      self.inner.ptr().get_u32_at_index(
+        2, (0u32).into()
+      ).try_into().unwrap()
+    }
+  }
+  pub fn set_priority(&mut self, val: u32) {
+    unsafe {
+      // TODO: b/361751487: This .into() is only here
+      // here for the enum<->i32 case, we should avoid it for
+      // other primitives where the types naturally match
+      //perfectly.
+      self.inner.ptr_mut().set_base_field_u32_at_index(
+        2, val.into()
       )
     }
   }
-  pub fn set_items(&mut self, src: impl ::protobuf::IntoProxied<::protobuf::Repeated<super::systemd_request::Item>>) {
+
+  // message: optional string
+  pub fn message(&self) -> ::protobuf::View<'_, ::protobuf::ProtoString> {
+    let str_view = unsafe {
+      self.inner.ptr().get_string_at_index(
+        3, (b"").into()
+      )
+    };
+    // SAFETY: The runtime doesn't require ProtoStr to be UTF-8.
+    unsafe { ::protobuf::ProtoStr::from_utf8_unchecked(str_view.as_ref()) }
+  }
+  pub fn set_message(&mut self, val: impl ::protobuf::IntoProxied<::protobuf::ProtoString>) {
     unsafe {
-      ::protobuf::__internal::runtime::message_set_repeated_field(
+      ::protobuf::__internal::runtime::message_set_string_field(
         ::protobuf::AsMut::as_mut(self).inner,
-        0,
-        src);
+        3,
+        val);
+    }
+  }
+
+  // created_at: optional message palm.lavender.v1.Timestamp
+  pub fn has_created_at(&self) -> bool {
+    unsafe {
+      self.inner.ptr().has_field_at_index(4)
+    }
+  }
+  pub fn clear_created_at(&mut self) {
+    unsafe {
+      self.inner.ptr().clear_field_at_index(
+        4
+      );
+    }
+  }
+  pub fn created_at_opt(&self) -> ::protobuf::Optional<super::TimestampView<'_>> {
+        ::protobuf::Optional::new(self.created_at(), self.has_created_at())
+  }
+  pub fn created_at(&self) -> super::TimestampView<'_> {
+    let submsg = unsafe {
+      self.inner.ptr().get_message_at_index(4)
+    };
+    submsg
+        .map(|ptr| unsafe { ::protobuf::__internal::runtime::MessageViewInner::wrap(ptr).into() })
+       .unwrap_or(super::TimestampView::default())
+  }
+  pub fn created_at_mut(&mut self) -> super::TimestampMut<'_> {
+     let ptr = unsafe {
+       self.inner.ptr_mut().get_or_create_mutable_message_at_index(
+         4, self.inner.arena()
+       ).unwrap()
+     };
+     ::protobuf::__internal::runtime::MessageMutInner::from_parent(
+         self.as_message_mut_inner(::protobuf::__internal::Private),
+         ptr
+     ).into()
+  }
+  pub fn set_created_at(&mut self,
+    val: impl ::protobuf::IntoProxied<super::Timestamp>) {
+
+    unsafe {
+      ::protobuf::__internal::runtime::message_set_sub_message(
+        ::protobuf::AsMut::as_mut(self).inner,
+        4,
+        val
+      );
     }
   }
 
@@ -1592,9 +1832,9 @@ unsafe impl ::protobuf::__internal::runtime::AssociatedMiniTable for SystemdRequ
     unsafe {
       ONCE_LOCK.get_or_init(|| {
         super::palm__lavender__v1__SystemdRequest_msg_init.0 =
-            ::protobuf::__internal::runtime::build_mini_table("$G");
+            ::protobuf::__internal::runtime::build_mini_table("$1X1X)P1X3");
         ::protobuf::__internal::runtime::link_mini_table(
-            super::palm__lavender__v1__SystemdRequest_msg_init.0, &[<super::systemd_request::Item as ::protobuf::__internal::runtime::AssociatedMiniTable>::mini_table(),
+            super::palm__lavender__v1__SystemdRequest_msg_init.0, &[<super::Timestamp as ::protobuf::__internal::runtime::AssociatedMiniTable>::mini_table(),
             ], &[]);
         ::protobuf::__internal::runtime::MiniTableInitPtr(super::palm__lavender__v1__SystemdRequest_msg_init.0)
       }).0
@@ -1644,9 +1884,809 @@ unsafe impl ::protobuf::__internal::runtime::UpbGetArena for SystemdRequestMut<'
   }
 }
 
-pub mod systemd_request {// This variable must not be referenced except by protobuf generated
+
+
+// This variable must not be referenced except by protobuf generated
 // code.
-pub(crate) static mut palm__lavender__v1__SystemdRequest__Item_msg_init: ::protobuf::__internal::runtime::MiniTableInitPtr =
+pub(crate) static mut palm__lavender__v1__SystemdResponse_msg_init: ::protobuf::__internal::runtime::MiniTableInitPtr =
+    ::protobuf::__internal::runtime::MiniTableInitPtr(::protobuf::__internal::runtime::MiniTablePtr::dangling());
+#[allow(non_camel_case_types)]
+pub struct SystemdResponse {
+  inner: ::protobuf::__internal::runtime::OwnedMessageInner<SystemdResponse>
+}
+
+impl ::protobuf::Message for SystemdResponse {}
+
+impl ::std::default::Default for SystemdResponse {
+  fn default() -> Self {
+    Self::new()
+  }
+}
+
+impl ::std::fmt::Debug for SystemdResponse {
+  fn fmt(&self, f: &mut ::std::fmt::Formatter<'_>) -> ::std::fmt::Result {
+    write!(f, "{}", ::protobuf::__internal::runtime::debug_string(self))
+  }
+}
+
+// SAFETY:
+// - `SystemdResponse` is `Sync` because it does not implement interior mutability.
+//    Neither does `SystemdResponseMut`.
+unsafe impl Sync for SystemdResponse {}
+
+// SAFETY:
+// - `SystemdResponse` is `Send` because it uniquely owns its arena and does
+//   not use thread-local data.
+unsafe impl Send for SystemdResponse {}
+
+impl ::protobuf::Proxied for SystemdResponse {
+  type View<'msg> = SystemdResponseView<'msg>;
+}
+
+impl ::protobuf::__internal::SealedInternal for SystemdResponse {}
+
+impl ::protobuf::MutProxied for SystemdResponse {
+  type Mut<'msg> = SystemdResponseMut<'msg>;
+}
+
+#[derive(Copy, Clone)]
+#[allow(dead_code)]
+pub struct SystemdResponseView<'msg> {
+  inner: ::protobuf::__internal::runtime::MessageViewInner<'msg, SystemdResponse>,
+}
+
+impl<'msg> ::protobuf::__internal::SealedInternal for SystemdResponseView<'msg> {}
+
+impl<'msg> ::protobuf::MessageView<'msg> for SystemdResponseView<'msg> {
+  type Message = SystemdResponse;
+}
+
+impl ::std::fmt::Debug for SystemdResponseView<'_> {
+  fn fmt(&self, f: &mut ::std::fmt::Formatter<'_>) -> ::std::fmt::Result {
+    write!(f, "{}", ::protobuf::__internal::runtime::debug_string(self))
+  }
+}
+
+impl ::std::default::Default for SystemdResponseView<'_> {
+  fn default() -> SystemdResponseView<'static> {
+    ::protobuf::__internal::runtime::MessageViewInner::default().into()
+  }
+}
+
+impl<'msg> From<::protobuf::__internal::runtime::MessageViewInner<'msg, SystemdResponse>> for SystemdResponseView<'msg> {
+  fn from(inner: ::protobuf::__internal::runtime::MessageViewInner<'msg, SystemdResponse>) -> Self {
+    Self { inner }
+  }
+}
+
+#[allow(dead_code)]
+impl<'msg> SystemdResponseView<'msg> {
+
+  pub fn to_owned(&self) -> SystemdResponse {
+    ::protobuf::IntoProxied::into_proxied(*self, ::protobuf::__internal::Private)
+  }
+
+  // chunk_count: optional uint32
+  pub fn chunk_count(self) -> u32 {
+    unsafe {
+      // TODO: b/361751487: This .into() and .try_into() is only
+      // here for the enum<->i32 case, we should avoid it for
+      // other primitives where the types naturally match
+      // perfectly (and do an unchecked conversion for
+      // i32->enum types, since even for closed enums we trust
+      // upb to only return one of the named values).
+      self.inner.ptr().get_u32_at_index(
+        0, (0u32).into()
+      ).try_into().unwrap()
+    }
+  }
+
+}
+
+// SAFETY:
+// - `SystemdResponseView` is `Sync` because it does not support mutation.
+unsafe impl Sync for SystemdResponseView<'_> {}
+
+// SAFETY:
+// - `SystemdResponseView` is `Send` because while its alive a `SystemdResponseMut` cannot.
+// - `SystemdResponseView` does not use thread-local data.
+unsafe impl Send for SystemdResponseView<'_> {}
+
+impl<'msg> ::protobuf::AsView for SystemdResponseView<'msg> {
+  type Proxied = SystemdResponse;
+  fn as_view(&self) -> ::protobuf::View<'msg, SystemdResponse> {
+    *self
+  }
+}
+
+impl<'msg> ::protobuf::IntoView<'msg> for SystemdResponseView<'msg> {
+  fn into_view<'shorter>(self) -> SystemdResponseView<'shorter>
+  where
+      'msg: 'shorter {
+    self
+  }
+}
+
+impl<'msg> ::protobuf::IntoProxied<SystemdResponse> for SystemdResponseView<'msg> {
+  fn into_proxied(self, _private: ::protobuf::__internal::Private) -> SystemdResponse {
+    let mut dst = SystemdResponse::new();
+    assert!(unsafe {
+      dst.inner.ptr_mut().deep_copy(self.inner.ptr(), dst.inner.arena())
+    });
+    dst
+  }
+}
+
+impl<'msg> ::protobuf::IntoProxied<SystemdResponse> for SystemdResponseMut<'msg> {
+  fn into_proxied(self, _private: ::protobuf::__internal::Private) -> SystemdResponse {
+    ::protobuf::IntoProxied::into_proxied(::protobuf::IntoView::into_view(self), _private)
+  }
+}
+
+impl ::protobuf::__internal::runtime::EntityType for SystemdResponse {
+    type Tag = ::protobuf::__internal::runtime::MessageTag;
+}
+
+impl<'msg> ::protobuf::__internal::runtime::EntityType for SystemdResponseView<'msg> {
+    type Tag = ::protobuf::__internal::runtime::ViewProxyTag;
+}
+
+impl<'msg> ::protobuf::__internal::runtime::EntityType for SystemdResponseMut<'msg> {
+    type Tag = ::protobuf::__internal::runtime::MutProxyTag;
+}
+
+#[allow(dead_code)]
+#[allow(non_camel_case_types)]
+pub struct SystemdResponseMut<'msg> {
+  inner: ::protobuf::__internal::runtime::MessageMutInner<'msg, SystemdResponse>,
+}
+
+impl<'msg> ::protobuf::__internal::SealedInternal for SystemdResponseMut<'msg> {}
+
+impl<'msg> ::protobuf::MessageMut<'msg> for SystemdResponseMut<'msg> {
+  type Message = SystemdResponse;
+}
+
+impl ::std::fmt::Debug for SystemdResponseMut<'_> {
+  fn fmt(&self, f: &mut ::std::fmt::Formatter<'_>) -> ::std::fmt::Result {
+    write!(f, "{}", ::protobuf::__internal::runtime::debug_string(self))
+  }
+}
+
+impl<'msg> From<::protobuf::__internal::runtime::MessageMutInner<'msg, SystemdResponse>> for SystemdResponseMut<'msg> {
+  fn from(inner: ::protobuf::__internal::runtime::MessageMutInner<'msg, SystemdResponse>) -> Self {
+    Self { inner }
+  }
+}
+
+#[allow(dead_code)]
+impl<'msg> SystemdResponseMut<'msg> {
+
+  #[doc(hidden)]
+  pub fn as_message_mut_inner(&mut self, _private: ::protobuf::__internal::Private)
+    -> ::protobuf::__internal::runtime::MessageMutInner<'msg, SystemdResponse> {
+    self.inner
+  }
+
+  pub fn to_owned(&self) -> SystemdResponse {
+    ::protobuf::AsView::as_view(self).to_owned()
+  }
+
+  // chunk_count: optional uint32
+  pub fn chunk_count(&self) -> u32 {
+    unsafe {
+      // TODO: b/361751487: This .into() and .try_into() is only
+      // here for the enum<->i32 case, we should avoid it for
+      // other primitives where the types naturally match
+      // perfectly (and do an unchecked conversion for
+      // i32->enum types, since even for closed enums we trust
+      // upb to only return one of the named values).
+      self.inner.ptr().get_u32_at_index(
+        0, (0u32).into()
+      ).try_into().unwrap()
+    }
+  }
+  pub fn set_chunk_count(&mut self, val: u32) {
+    unsafe {
+      // TODO: b/361751487: This .into() is only here
+      // here for the enum<->i32 case, we should avoid it for
+      // other primitives where the types naturally match
+      //perfectly.
+      self.inner.ptr_mut().set_base_field_u32_at_index(
+        0, val.into()
+      )
+    }
+  }
+
+}
+
+// SAFETY:
+// - `SystemdResponseMut` does not perform any shared mutation.
+unsafe impl Send for SystemdResponseMut<'_> {}
+
+// SAFETY:
+// - `SystemdResponseMut` does not perform any shared mutation.
+unsafe impl Sync for SystemdResponseMut<'_> {}
+
+impl<'msg> ::protobuf::AsView for SystemdResponseMut<'msg> {
+  type Proxied = SystemdResponse;
+  fn as_view(&self) -> ::protobuf::View<'_, SystemdResponse> {
+    SystemdResponseView {
+      inner: ::protobuf::__internal::runtime::MessageViewInner::view_of_mut(self.inner)
+    }
+  }
+}
+
+impl<'msg> ::protobuf::IntoView<'msg> for SystemdResponseMut<'msg> {
+  fn into_view<'shorter>(self) -> ::protobuf::View<'shorter, SystemdResponse>
+  where
+      'msg: 'shorter {
+    SystemdResponseView {
+      inner: ::protobuf::__internal::runtime::MessageViewInner::view_of_mut(self.inner)
+    }
+  }
+}
+
+impl<'msg> ::protobuf::AsMut for SystemdResponseMut<'msg> {
+  type MutProxied = SystemdResponse;
+  fn as_mut(&mut self) -> SystemdResponseMut<'msg> {
+    SystemdResponseMut { inner: self.inner }
+  }
+}
+
+impl<'msg> ::protobuf::IntoMut<'msg> for SystemdResponseMut<'msg> {
+  fn into_mut<'shorter>(self) -> SystemdResponseMut<'shorter>
+  where
+      'msg: 'shorter {
+    self
+  }
+}
+
+#[allow(dead_code)]
+impl SystemdResponse {
+  pub fn new() -> Self {
+    Self { inner: ::protobuf::__internal::runtime::OwnedMessageInner::<Self>::new() }
+  }
+
+
+  #[doc(hidden)]
+  pub fn as_message_mut_inner(&mut self, _private: ::protobuf::__internal::Private) -> ::protobuf::__internal::runtime::MessageMutInner<'_, SystemdResponse> {
+    ::protobuf::__internal::runtime::MessageMutInner::mut_of_owned(&mut self.inner)
+  }
+
+  pub fn as_view(&self) -> SystemdResponseView<'_> {
+    ::protobuf::__internal::runtime::MessageViewInner::view_of_owned(&self.inner).into()
+  }
+
+  pub fn as_mut(&mut self) -> SystemdResponseMut<'_> {
+    ::protobuf::__internal::runtime::MessageMutInner::mut_of_owned(&mut self.inner).into()
+  }
+
+  // chunk_count: optional uint32
+  pub fn chunk_count(&self) -> u32 {
+    unsafe {
+      // TODO: b/361751487: This .into() and .try_into() is only
+      // here for the enum<->i32 case, we should avoid it for
+      // other primitives where the types naturally match
+      // perfectly (and do an unchecked conversion for
+      // i32->enum types, since even for closed enums we trust
+      // upb to only return one of the named values).
+      self.inner.ptr().get_u32_at_index(
+        0, (0u32).into()
+      ).try_into().unwrap()
+    }
+  }
+  pub fn set_chunk_count(&mut self, val: u32) {
+    unsafe {
+      // TODO: b/361751487: This .into() is only here
+      // here for the enum<->i32 case, we should avoid it for
+      // other primitives where the types naturally match
+      //perfectly.
+      self.inner.ptr_mut().set_base_field_u32_at_index(
+        0, val.into()
+      )
+    }
+  }
+
+}  // impl SystemdResponse
+
+impl ::std::ops::Drop for SystemdResponse {
+  #[inline]
+  fn drop(&mut self) {
+  }
+}
+
+impl ::std::clone::Clone for SystemdResponse {
+  fn clone(&self) -> Self {
+    self.as_view().to_owned()
+  }
+}
+
+impl ::protobuf::AsView for SystemdResponse {
+  type Proxied = Self;
+  fn as_view(&self) -> SystemdResponseView<'_> {
+    self.as_view()
+  }
+}
+
+impl ::protobuf::AsMut for SystemdResponse {
+  type MutProxied = Self;
+  fn as_mut(&mut self) -> SystemdResponseMut<'_> {
+    self.as_mut()
+  }
+}
+
+unsafe impl ::protobuf::__internal::runtime::AssociatedMiniTable for SystemdResponse {
+  fn mini_table() -> ::protobuf::__internal::runtime::MiniTablePtr {
+    static ONCE_LOCK: ::std::sync::OnceLock<::protobuf::__internal::runtime::MiniTableInitPtr> =
+        ::std::sync::OnceLock::new();
+    unsafe {
+      ONCE_LOCK.get_or_init(|| {
+        super::palm__lavender__v1__SystemdResponse_msg_init.0 =
+            ::protobuf::__internal::runtime::build_mini_table("$)P");
+        ::protobuf::__internal::runtime::link_mini_table(
+            super::palm__lavender__v1__SystemdResponse_msg_init.0, &[], &[]);
+        ::protobuf::__internal::runtime::MiniTableInitPtr(super::palm__lavender__v1__SystemdResponse_msg_init.0)
+      }).0
+    }
+  }
+}
+unsafe impl ::protobuf::__internal::runtime::UpbGetArena for SystemdResponse {
+  fn get_arena(&mut self, _private: ::protobuf::__internal::Private) -> &::protobuf::__internal::runtime::Arena {
+    self.inner.arena()
+  }
+}
+
+unsafe impl ::protobuf::__internal::runtime::UpbGetMessagePtrMut for SystemdResponse {
+  type Msg = SystemdResponse;
+  fn get_ptr_mut(&mut self, _private: ::protobuf::__internal::Private) -> ::protobuf::__internal::runtime::MessagePtr<SystemdResponse> {
+    self.inner.ptr_mut()
+  }
+}
+unsafe impl ::protobuf::__internal::runtime::UpbGetMessagePtr for SystemdResponse {
+  type Msg = SystemdResponse;
+  fn get_ptr(&self, _private: ::protobuf::__internal::Private) -> ::protobuf::__internal::runtime::MessagePtr<SystemdResponse> {
+    self.inner.ptr()
+  }
+}
+unsafe impl ::protobuf::__internal::runtime::UpbGetMessagePtrMut for SystemdResponseMut<'_> {
+  type Msg = SystemdResponse;
+  fn get_ptr_mut(&mut self, _private: ::protobuf::__internal::Private) -> ::protobuf::__internal::runtime::MessagePtr<SystemdResponse> {
+    self.inner.ptr_mut()
+  }
+}
+unsafe impl ::protobuf::__internal::runtime::UpbGetMessagePtr for SystemdResponseMut<'_> {
+  type Msg = SystemdResponse;
+  fn get_ptr(&self, _private: ::protobuf::__internal::Private) -> ::protobuf::__internal::runtime::MessagePtr<SystemdResponse> {
+    self.inner.ptr()
+  }
+}
+unsafe impl ::protobuf::__internal::runtime::UpbGetMessagePtr for SystemdResponseView<'_> {
+  type Msg = SystemdResponse;
+  fn get_ptr(&self, _private: ::protobuf::__internal::Private) -> ::protobuf::__internal::runtime::MessagePtr<SystemdResponse> {
+    self.inner.ptr()
+  }
+}
+
+unsafe impl ::protobuf::__internal::runtime::UpbGetArena for SystemdResponseMut<'_> {
+  fn get_arena(&mut self, _private: ::protobuf::__internal::Private) -> &::protobuf::__internal::runtime::Arena {
+    self.inner.arena()
+  }
+}
+
+
+
+// This variable must not be referenced except by protobuf generated
+// code.
+pub(crate) static mut palm__lavender__v1__HttpRequest_msg_init: ::protobuf::__internal::runtime::MiniTableInitPtr =
+    ::protobuf::__internal::runtime::MiniTableInitPtr(::protobuf::__internal::runtime::MiniTablePtr::dangling());
+#[allow(non_camel_case_types)]
+pub struct HttpRequest {
+  inner: ::protobuf::__internal::runtime::OwnedMessageInner<HttpRequest>
+}
+
+impl ::protobuf::Message for HttpRequest {}
+
+impl ::std::default::Default for HttpRequest {
+  fn default() -> Self {
+    Self::new()
+  }
+}
+
+impl ::std::fmt::Debug for HttpRequest {
+  fn fmt(&self, f: &mut ::std::fmt::Formatter<'_>) -> ::std::fmt::Result {
+    write!(f, "{}", ::protobuf::__internal::runtime::debug_string(self))
+  }
+}
+
+// SAFETY:
+// - `HttpRequest` is `Sync` because it does not implement interior mutability.
+//    Neither does `HttpRequestMut`.
+unsafe impl Sync for HttpRequest {}
+
+// SAFETY:
+// - `HttpRequest` is `Send` because it uniquely owns its arena and does
+//   not use thread-local data.
+unsafe impl Send for HttpRequest {}
+
+impl ::protobuf::Proxied for HttpRequest {
+  type View<'msg> = HttpRequestView<'msg>;
+}
+
+impl ::protobuf::__internal::SealedInternal for HttpRequest {}
+
+impl ::protobuf::MutProxied for HttpRequest {
+  type Mut<'msg> = HttpRequestMut<'msg>;
+}
+
+#[derive(Copy, Clone)]
+#[allow(dead_code)]
+pub struct HttpRequestView<'msg> {
+  inner: ::protobuf::__internal::runtime::MessageViewInner<'msg, HttpRequest>,
+}
+
+impl<'msg> ::protobuf::__internal::SealedInternal for HttpRequestView<'msg> {}
+
+impl<'msg> ::protobuf::MessageView<'msg> for HttpRequestView<'msg> {
+  type Message = HttpRequest;
+}
+
+impl ::std::fmt::Debug for HttpRequestView<'_> {
+  fn fmt(&self, f: &mut ::std::fmt::Formatter<'_>) -> ::std::fmt::Result {
+    write!(f, "{}", ::protobuf::__internal::runtime::debug_string(self))
+  }
+}
+
+impl ::std::default::Default for HttpRequestView<'_> {
+  fn default() -> HttpRequestView<'static> {
+    ::protobuf::__internal::runtime::MessageViewInner::default().into()
+  }
+}
+
+impl<'msg> From<::protobuf::__internal::runtime::MessageViewInner<'msg, HttpRequest>> for HttpRequestView<'msg> {
+  fn from(inner: ::protobuf::__internal::runtime::MessageViewInner<'msg, HttpRequest>) -> Self {
+    Self { inner }
+  }
+}
+
+#[allow(dead_code)]
+impl<'msg> HttpRequestView<'msg> {
+
+  pub fn to_owned(&self) -> HttpRequest {
+    ::protobuf::IntoProxied::into_proxied(*self, ::protobuf::__internal::Private)
+  }
+
+  // items: repeated message palm.lavender.v1.HttpRequest.Item
+  pub fn items(self) -> ::protobuf::RepeatedView<'msg, super::http_request::Item> {
+    unsafe {
+      self.inner.ptr().get_array_at_index(
+        0
+      )
+    }.map_or_else(
+        ::protobuf::__internal::runtime::empty_array::<super::http_request::Item>,
+        |raw| unsafe {
+          ::protobuf::RepeatedView::from_raw(::protobuf::__internal::Private, raw)
+        }
+      )
+  }
+
+}
+
+// SAFETY:
+// - `HttpRequestView` is `Sync` because it does not support mutation.
+unsafe impl Sync for HttpRequestView<'_> {}
+
+// SAFETY:
+// - `HttpRequestView` is `Send` because while its alive a `HttpRequestMut` cannot.
+// - `HttpRequestView` does not use thread-local data.
+unsafe impl Send for HttpRequestView<'_> {}
+
+impl<'msg> ::protobuf::AsView for HttpRequestView<'msg> {
+  type Proxied = HttpRequest;
+  fn as_view(&self) -> ::protobuf::View<'msg, HttpRequest> {
+    *self
+  }
+}
+
+impl<'msg> ::protobuf::IntoView<'msg> for HttpRequestView<'msg> {
+  fn into_view<'shorter>(self) -> HttpRequestView<'shorter>
+  where
+      'msg: 'shorter {
+    self
+  }
+}
+
+impl<'msg> ::protobuf::IntoProxied<HttpRequest> for HttpRequestView<'msg> {
+  fn into_proxied(self, _private: ::protobuf::__internal::Private) -> HttpRequest {
+    let mut dst = HttpRequest::new();
+    assert!(unsafe {
+      dst.inner.ptr_mut().deep_copy(self.inner.ptr(), dst.inner.arena())
+    });
+    dst
+  }
+}
+
+impl<'msg> ::protobuf::IntoProxied<HttpRequest> for HttpRequestMut<'msg> {
+  fn into_proxied(self, _private: ::protobuf::__internal::Private) -> HttpRequest {
+    ::protobuf::IntoProxied::into_proxied(::protobuf::IntoView::into_view(self), _private)
+  }
+}
+
+impl ::protobuf::__internal::runtime::EntityType for HttpRequest {
+    type Tag = ::protobuf::__internal::runtime::MessageTag;
+}
+
+impl<'msg> ::protobuf::__internal::runtime::EntityType for HttpRequestView<'msg> {
+    type Tag = ::protobuf::__internal::runtime::ViewProxyTag;
+}
+
+impl<'msg> ::protobuf::__internal::runtime::EntityType for HttpRequestMut<'msg> {
+    type Tag = ::protobuf::__internal::runtime::MutProxyTag;
+}
+
+#[allow(dead_code)]
+#[allow(non_camel_case_types)]
+pub struct HttpRequestMut<'msg> {
+  inner: ::protobuf::__internal::runtime::MessageMutInner<'msg, HttpRequest>,
+}
+
+impl<'msg> ::protobuf::__internal::SealedInternal for HttpRequestMut<'msg> {}
+
+impl<'msg> ::protobuf::MessageMut<'msg> for HttpRequestMut<'msg> {
+  type Message = HttpRequest;
+}
+
+impl ::std::fmt::Debug for HttpRequestMut<'_> {
+  fn fmt(&self, f: &mut ::std::fmt::Formatter<'_>) -> ::std::fmt::Result {
+    write!(f, "{}", ::protobuf::__internal::runtime::debug_string(self))
+  }
+}
+
+impl<'msg> From<::protobuf::__internal::runtime::MessageMutInner<'msg, HttpRequest>> for HttpRequestMut<'msg> {
+  fn from(inner: ::protobuf::__internal::runtime::MessageMutInner<'msg, HttpRequest>) -> Self {
+    Self { inner }
+  }
+}
+
+#[allow(dead_code)]
+impl<'msg> HttpRequestMut<'msg> {
+
+  #[doc(hidden)]
+  pub fn as_message_mut_inner(&mut self, _private: ::protobuf::__internal::Private)
+    -> ::protobuf::__internal::runtime::MessageMutInner<'msg, HttpRequest> {
+    self.inner
+  }
+
+  pub fn to_owned(&self) -> HttpRequest {
+    ::protobuf::AsView::as_view(self).to_owned()
+  }
+
+  // items: repeated message palm.lavender.v1.HttpRequest.Item
+  pub fn items(&self) -> ::protobuf::RepeatedView<'_, super::http_request::Item> {
+    unsafe {
+      self.inner.ptr().get_array_at_index(
+        0
+      )
+    }.map_or_else(
+        ::protobuf::__internal::runtime::empty_array::<super::http_request::Item>,
+        |raw| unsafe {
+          ::protobuf::RepeatedView::from_raw(::protobuf::__internal::Private, raw)
+        }
+      )
+  }
+  pub fn items_mut(&mut self) -> ::protobuf::RepeatedMut<'_, super::http_request::Item> {
+    unsafe {
+      let raw_array = self.inner.ptr_mut().get_or_create_mutable_array_at_index(
+        0,
+        self.inner.arena()
+      ).expect("alloc should not fail");
+      ::protobuf::RepeatedMut::from_inner(
+        ::protobuf::__internal::Private,
+        ::protobuf::__internal::runtime::InnerRepeatedMut::new(
+          raw_array, self.inner.arena(),
+        ),
+      )
+    }
+  }
+  pub fn set_items(&mut self, src: impl ::protobuf::IntoProxied<::protobuf::Repeated<super::http_request::Item>>) {
+    unsafe {
+      ::protobuf::__internal::runtime::message_set_repeated_field(
+        ::protobuf::AsMut::as_mut(self).inner,
+        0,
+        src);
+    }
+  }
+
+}
+
+// SAFETY:
+// - `HttpRequestMut` does not perform any shared mutation.
+unsafe impl Send for HttpRequestMut<'_> {}
+
+// SAFETY:
+// - `HttpRequestMut` does not perform any shared mutation.
+unsafe impl Sync for HttpRequestMut<'_> {}
+
+impl<'msg> ::protobuf::AsView for HttpRequestMut<'msg> {
+  type Proxied = HttpRequest;
+  fn as_view(&self) -> ::protobuf::View<'_, HttpRequest> {
+    HttpRequestView {
+      inner: ::protobuf::__internal::runtime::MessageViewInner::view_of_mut(self.inner)
+    }
+  }
+}
+
+impl<'msg> ::protobuf::IntoView<'msg> for HttpRequestMut<'msg> {
+  fn into_view<'shorter>(self) -> ::protobuf::View<'shorter, HttpRequest>
+  where
+      'msg: 'shorter {
+    HttpRequestView {
+      inner: ::protobuf::__internal::runtime::MessageViewInner::view_of_mut(self.inner)
+    }
+  }
+}
+
+impl<'msg> ::protobuf::AsMut for HttpRequestMut<'msg> {
+  type MutProxied = HttpRequest;
+  fn as_mut(&mut self) -> HttpRequestMut<'msg> {
+    HttpRequestMut { inner: self.inner }
+  }
+}
+
+impl<'msg> ::protobuf::IntoMut<'msg> for HttpRequestMut<'msg> {
+  fn into_mut<'shorter>(self) -> HttpRequestMut<'shorter>
+  where
+      'msg: 'shorter {
+    self
+  }
+}
+
+#[allow(dead_code)]
+impl HttpRequest {
+  pub fn new() -> Self {
+    Self { inner: ::protobuf::__internal::runtime::OwnedMessageInner::<Self>::new() }
+  }
+
+
+  #[doc(hidden)]
+  pub fn as_message_mut_inner(&mut self, _private: ::protobuf::__internal::Private) -> ::protobuf::__internal::runtime::MessageMutInner<'_, HttpRequest> {
+    ::protobuf::__internal::runtime::MessageMutInner::mut_of_owned(&mut self.inner)
+  }
+
+  pub fn as_view(&self) -> HttpRequestView<'_> {
+    ::protobuf::__internal::runtime::MessageViewInner::view_of_owned(&self.inner).into()
+  }
+
+  pub fn as_mut(&mut self) -> HttpRequestMut<'_> {
+    ::protobuf::__internal::runtime::MessageMutInner::mut_of_owned(&mut self.inner).into()
+  }
+
+  // items: repeated message palm.lavender.v1.HttpRequest.Item
+  pub fn items(&self) -> ::protobuf::RepeatedView<'_, super::http_request::Item> {
+    unsafe {
+      self.inner.ptr().get_array_at_index(
+        0
+      )
+    }.map_or_else(
+        ::protobuf::__internal::runtime::empty_array::<super::http_request::Item>,
+        |raw| unsafe {
+          ::protobuf::RepeatedView::from_raw(::protobuf::__internal::Private, raw)
+        }
+      )
+  }
+  pub fn items_mut(&mut self) -> ::protobuf::RepeatedMut<'_, super::http_request::Item> {
+    unsafe {
+      let raw_array = self.inner.ptr_mut().get_or_create_mutable_array_at_index(
+        0,
+        self.inner.arena()
+      ).expect("alloc should not fail");
+      ::protobuf::RepeatedMut::from_inner(
+        ::protobuf::__internal::Private,
+        ::protobuf::__internal::runtime::InnerRepeatedMut::new(
+          raw_array, self.inner.arena(),
+        ),
+      )
+    }
+  }
+  pub fn set_items(&mut self, src: impl ::protobuf::IntoProxied<::protobuf::Repeated<super::http_request::Item>>) {
+    unsafe {
+      ::protobuf::__internal::runtime::message_set_repeated_field(
+        ::protobuf::AsMut::as_mut(self).inner,
+        0,
+        src);
+    }
+  }
+
+}  // impl HttpRequest
+
+impl ::std::ops::Drop for HttpRequest {
+  #[inline]
+  fn drop(&mut self) {
+  }
+}
+
+impl ::std::clone::Clone for HttpRequest {
+  fn clone(&self) -> Self {
+    self.as_view().to_owned()
+  }
+}
+
+impl ::protobuf::AsView for HttpRequest {
+  type Proxied = Self;
+  fn as_view(&self) -> HttpRequestView<'_> {
+    self.as_view()
+  }
+}
+
+impl ::protobuf::AsMut for HttpRequest {
+  type MutProxied = Self;
+  fn as_mut(&mut self) -> HttpRequestMut<'_> {
+    self.as_mut()
+  }
+}
+
+unsafe impl ::protobuf::__internal::runtime::AssociatedMiniTable for HttpRequest {
+  fn mini_table() -> ::protobuf::__internal::runtime::MiniTablePtr {
+    static ONCE_LOCK: ::std::sync::OnceLock<::protobuf::__internal::runtime::MiniTableInitPtr> =
+        ::std::sync::OnceLock::new();
+    unsafe {
+      ONCE_LOCK.get_or_init(|| {
+        super::palm__lavender__v1__HttpRequest_msg_init.0 =
+            ::protobuf::__internal::runtime::build_mini_table("$G");
+        ::protobuf::__internal::runtime::link_mini_table(
+            super::palm__lavender__v1__HttpRequest_msg_init.0, &[<super::http_request::Item as ::protobuf::__internal::runtime::AssociatedMiniTable>::mini_table(),
+            ], &[]);
+        ::protobuf::__internal::runtime::MiniTableInitPtr(super::palm__lavender__v1__HttpRequest_msg_init.0)
+      }).0
+    }
+  }
+}
+unsafe impl ::protobuf::__internal::runtime::UpbGetArena for HttpRequest {
+  fn get_arena(&mut self, _private: ::protobuf::__internal::Private) -> &::protobuf::__internal::runtime::Arena {
+    self.inner.arena()
+  }
+}
+
+unsafe impl ::protobuf::__internal::runtime::UpbGetMessagePtrMut for HttpRequest {
+  type Msg = HttpRequest;
+  fn get_ptr_mut(&mut self, _private: ::protobuf::__internal::Private) -> ::protobuf::__internal::runtime::MessagePtr<HttpRequest> {
+    self.inner.ptr_mut()
+  }
+}
+unsafe impl ::protobuf::__internal::runtime::UpbGetMessagePtr for HttpRequest {
+  type Msg = HttpRequest;
+  fn get_ptr(&self, _private: ::protobuf::__internal::Private) -> ::protobuf::__internal::runtime::MessagePtr<HttpRequest> {
+    self.inner.ptr()
+  }
+}
+unsafe impl ::protobuf::__internal::runtime::UpbGetMessagePtrMut for HttpRequestMut<'_> {
+  type Msg = HttpRequest;
+  fn get_ptr_mut(&mut self, _private: ::protobuf::__internal::Private) -> ::protobuf::__internal::runtime::MessagePtr<HttpRequest> {
+    self.inner.ptr_mut()
+  }
+}
+unsafe impl ::protobuf::__internal::runtime::UpbGetMessagePtr for HttpRequestMut<'_> {
+  type Msg = HttpRequest;
+  fn get_ptr(&self, _private: ::protobuf::__internal::Private) -> ::protobuf::__internal::runtime::MessagePtr<HttpRequest> {
+    self.inner.ptr()
+  }
+}
+unsafe impl ::protobuf::__internal::runtime::UpbGetMessagePtr for HttpRequestView<'_> {
+  type Msg = HttpRequest;
+  fn get_ptr(&self, _private: ::protobuf::__internal::Private) -> ::protobuf::__internal::runtime::MessagePtr<HttpRequest> {
+    self.inner.ptr()
+  }
+}
+
+unsafe impl ::protobuf::__internal::runtime::UpbGetArena for HttpRequestMut<'_> {
+  fn get_arena(&mut self, _private: ::protobuf::__internal::Private) -> &::protobuf::__internal::runtime::Arena {
+    self.inner.arena()
+  }
+}
+
+pub mod http_request {// This variable must not be referenced except by protobuf generated
+// code.
+pub(crate) static mut palm__lavender__v1__HttpRequest__Item_msg_init: ::protobuf::__internal::runtime::MiniTableInitPtr =
     ::protobuf::__internal::runtime::MiniTableInitPtr(::protobuf::__internal::runtime::MiniTablePtr::dangling());
 #[allow(non_camel_case_types)]
 pub struct Item {
@@ -1724,19 +2764,23 @@ impl<'msg> ItemView<'msg> {
     ::protobuf::IntoProxied::into_proxied(*self, ::protobuf::__internal::Private)
   }
 
-  // host: optional string
-  pub fn host(self) -> ::protobuf::View<'msg, ::protobuf::ProtoString> {
-    let str_view = unsafe {
-      self.inner.ptr().get_string_at_index(
-        0, (b"").into()
-      )
-    };
-    // SAFETY: The runtime doesn't require ProtoStr to be UTF-8.
-    unsafe { ::protobuf::ProtoStr::from_utf8_unchecked(str_view.as_ref()) }
+  // status_code: optional uint32
+  pub fn status_code(self) -> u32 {
+    unsafe {
+      // TODO: b/361751487: This .into() and .try_into() is only
+      // here for the enum<->i32 case, we should avoid it for
+      // other primitives where the types naturally match
+      // perfectly (and do an unchecked conversion for
+      // i32->enum types, since even for closed enums we trust
+      // upb to only return one of the named values).
+      self.inner.ptr().get_u32_at_index(
+        0, (0u32).into()
+      ).try_into().unwrap()
+    }
   }
 
-  // unit: optional string
-  pub fn unit(self) -> ::protobuf::View<'msg, ::protobuf::ProtoString> {
+  // content_type: optional string
+  pub fn content_type(self) -> ::protobuf::View<'msg, ::protobuf::ProtoString> {
     let str_view = unsafe {
       self.inner.ptr().get_string_at_index(
         1, (b"").into()
@@ -1746,42 +2790,45 @@ impl<'msg> ItemView<'msg> {
     unsafe { ::protobuf::ProtoStr::from_utf8_unchecked(str_view.as_ref()) }
   }
 
-  // priority: optional uint32
-  pub fn priority(self) -> u32 {
-    unsafe {
-      // TODO: b/361751487: This .into() and .try_into() is only
-      // here for the enum<->i32 case, we should avoid it for
-      // other primitives where the types naturally match
-      // perfectly (and do an unchecked conversion for
-      // i32->enum types, since even for closed enums we trust
-      // upb to only return one of the named values).
-      self.inner.ptr().get_u32_at_index(
-        2, (0u32).into()
-      ).try_into().unwrap()
-    }
-  }
-
-  // message: optional string
-  pub fn message(self) -> ::protobuf::View<'msg, ::protobuf::ProtoString> {
+  // response_body: optional string
+  pub fn response_body(self) -> ::protobuf::View<'msg, ::protobuf::ProtoString> {
     let str_view = unsafe {
       self.inner.ptr().get_string_at_index(
-        3, (b"").into()
+        2, (b"").into()
       )
     };
     // SAFETY: The runtime doesn't require ProtoStr to be UTF-8.
     unsafe { ::protobuf::ProtoStr::from_utf8_unchecked(str_view.as_ref()) }
   }
 
-  // timestamp: optional message palm.lavender.v1.Timestamp
-  pub fn has_timestamp(self) -> bool {
+  // elapsed: optional message palm.lavender.v1.Duration
+  pub fn has_elapsed(self) -> bool {
+    unsafe {
+      self.inner.ptr().has_field_at_index(3)
+    }
+  }
+  pub fn elapsed_opt(self) -> ::protobuf::Optional<super::super::DurationView<'msg>> {
+        ::protobuf::Optional::new(self.elapsed(), self.has_elapsed())
+  }
+  pub fn elapsed(self) -> super::super::DurationView<'msg> {
+    let submsg = unsafe {
+      self.inner.ptr().get_message_at_index(3)
+    };
+    submsg
+        .map(|ptr| unsafe { ::protobuf::__internal::runtime::MessageViewInner::wrap(ptr).into() })
+       .unwrap_or(super::super::DurationView::default())
+  }
+
+  // created_at: optional message palm.lavender.v1.Timestamp
+  pub fn has_created_at(self) -> bool {
     unsafe {
       self.inner.ptr().has_field_at_index(4)
     }
   }
-  pub fn timestamp_opt(self) -> ::protobuf::Optional<super::super::TimestampView<'msg>> {
-        ::protobuf::Optional::new(self.timestamp(), self.has_timestamp())
+  pub fn created_at_opt(self) -> ::protobuf::Optional<super::super::TimestampView<'msg>> {
+        ::protobuf::Optional::new(self.created_at(), self.has_created_at())
   }
-  pub fn timestamp(self) -> super::super::TimestampView<'msg> {
+  pub fn created_at(self) -> super::super::TimestampView<'msg> {
     let submsg = unsafe {
       self.inner.ptr().get_message_at_index(4)
     };
@@ -1881,46 +2928,8 @@ impl<'msg> ItemMut<'msg> {
     ::protobuf::AsView::as_view(self).to_owned()
   }
 
-  // host: optional string
-  pub fn host(&self) -> ::protobuf::View<'_, ::protobuf::ProtoString> {
-    let str_view = unsafe {
-      self.inner.ptr().get_string_at_index(
-        0, (b"").into()
-      )
-    };
-    // SAFETY: The runtime doesn't require ProtoStr to be UTF-8.
-    unsafe { ::protobuf::ProtoStr::from_utf8_unchecked(str_view.as_ref()) }
-  }
-  pub fn set_host(&mut self, val: impl ::protobuf::IntoProxied<::protobuf::ProtoString>) {
-    unsafe {
-      ::protobuf::__internal::runtime::message_set_string_field(
-        ::protobuf::AsMut::as_mut(self).inner,
-        0,
-        val);
-    }
-  }
-
-  // unit: optional string
-  pub fn unit(&self) -> ::protobuf::View<'_, ::protobuf::ProtoString> {
-    let str_view = unsafe {
-      self.inner.ptr().get_string_at_index(
-        1, (b"").into()
-      )
-    };
-    // SAFETY: The runtime doesn't require ProtoStr to be UTF-8.
-    unsafe { ::protobuf::ProtoStr::from_utf8_unchecked(str_view.as_ref()) }
-  }
-  pub fn set_unit(&mut self, val: impl ::protobuf::IntoProxied<::protobuf::ProtoString>) {
-    unsafe {
-      ::protobuf::__internal::runtime::message_set_string_field(
-        ::protobuf::AsMut::as_mut(self).inner,
-        1,
-        val);
-    }
-  }
-
-  // priority: optional uint32
-  pub fn priority(&self) -> u32 {
+  // status_code: optional uint32
+  pub fn status_code(&self) -> u32 {
     unsafe {
       // TODO: b/361751487: This .into() and .try_into() is only
       // here for the enum<->i32 case, we should avoid it for
@@ -1929,58 +2938,124 @@ impl<'msg> ItemMut<'msg> {
       // i32->enum types, since even for closed enums we trust
       // upb to only return one of the named values).
       self.inner.ptr().get_u32_at_index(
-        2, (0u32).into()
+        0, (0u32).into()
       ).try_into().unwrap()
     }
   }
-  pub fn set_priority(&mut self, val: u32) {
+  pub fn set_status_code(&mut self, val: u32) {
     unsafe {
       // TODO: b/361751487: This .into() is only here
       // here for the enum<->i32 case, we should avoid it for
       // other primitives where the types naturally match
       //perfectly.
       self.inner.ptr_mut().set_base_field_u32_at_index(
-        2, val.into()
+        0, val.into()
       )
     }
   }
 
-  // message: optional string
-  pub fn message(&self) -> ::protobuf::View<'_, ::protobuf::ProtoString> {
+  // content_type: optional string
+  pub fn content_type(&self) -> ::protobuf::View<'_, ::protobuf::ProtoString> {
     let str_view = unsafe {
       self.inner.ptr().get_string_at_index(
-        3, (b"").into()
+        1, (b"").into()
       )
     };
     // SAFETY: The runtime doesn't require ProtoStr to be UTF-8.
     unsafe { ::protobuf::ProtoStr::from_utf8_unchecked(str_view.as_ref()) }
   }
-  pub fn set_message(&mut self, val: impl ::protobuf::IntoProxied<::protobuf::ProtoString>) {
+  pub fn set_content_type(&mut self, val: impl ::protobuf::IntoProxied<::protobuf::ProtoString>) {
     unsafe {
       ::protobuf::__internal::runtime::message_set_string_field(
         ::protobuf::AsMut::as_mut(self).inner,
-        3,
+        1,
         val);
     }
   }
 
-  // timestamp: optional message palm.lavender.v1.Timestamp
-  pub fn has_timestamp(&self) -> bool {
+  // response_body: optional string
+  pub fn response_body(&self) -> ::protobuf::View<'_, ::protobuf::ProtoString> {
+    let str_view = unsafe {
+      self.inner.ptr().get_string_at_index(
+        2, (b"").into()
+      )
+    };
+    // SAFETY: The runtime doesn't require ProtoStr to be UTF-8.
+    unsafe { ::protobuf::ProtoStr::from_utf8_unchecked(str_view.as_ref()) }
+  }
+  pub fn set_response_body(&mut self, val: impl ::protobuf::IntoProxied<::protobuf::ProtoString>) {
+    unsafe {
+      ::protobuf::__internal::runtime::message_set_string_field(
+        ::protobuf::AsMut::as_mut(self).inner,
+        2,
+        val);
+    }
+  }
+
+  // elapsed: optional message palm.lavender.v1.Duration
+  pub fn has_elapsed(&self) -> bool {
+    unsafe {
+      self.inner.ptr().has_field_at_index(3)
+    }
+  }
+  pub fn clear_elapsed(&mut self) {
+    unsafe {
+      self.inner.ptr().clear_field_at_index(
+        3
+      );
+    }
+  }
+  pub fn elapsed_opt(&self) -> ::protobuf::Optional<super::super::DurationView<'_>> {
+        ::protobuf::Optional::new(self.elapsed(), self.has_elapsed())
+  }
+  pub fn elapsed(&self) -> super::super::DurationView<'_> {
+    let submsg = unsafe {
+      self.inner.ptr().get_message_at_index(3)
+    };
+    submsg
+        .map(|ptr| unsafe { ::protobuf::__internal::runtime::MessageViewInner::wrap(ptr).into() })
+       .unwrap_or(super::super::DurationView::default())
+  }
+  pub fn elapsed_mut(&mut self) -> super::super::DurationMut<'_> {
+     let ptr = unsafe {
+       self.inner.ptr_mut().get_or_create_mutable_message_at_index(
+         3, self.inner.arena()
+       ).unwrap()
+     };
+     ::protobuf::__internal::runtime::MessageMutInner::from_parent(
+         self.as_message_mut_inner(::protobuf::__internal::Private),
+         ptr
+     ).into()
+  }
+  pub fn set_elapsed(&mut self,
+    val: impl ::protobuf::IntoProxied<super::super::Duration>) {
+
+    unsafe {
+      ::protobuf::__internal::runtime::message_set_sub_message(
+        ::protobuf::AsMut::as_mut(self).inner,
+        3,
+        val
+      );
+    }
+  }
+
+  // created_at: optional message palm.lavender.v1.Timestamp
+  pub fn has_created_at(&self) -> bool {
     unsafe {
       self.inner.ptr().has_field_at_index(4)
     }
   }
-  pub fn clear_timestamp(&mut self) {
+  pub fn clear_created_at(&mut self) {
     unsafe {
       self.inner.ptr().clear_field_at_index(
         4
       );
     }
   }
-  pub fn timestamp_opt(&self) -> ::protobuf::Optional<super::super::TimestampView<'_>> {
-        ::protobuf::Optional::new(self.timestamp(), self.has_timestamp())
+  pub fn created_at_opt(&self) -> ::protobuf::Optional<super::super::TimestampView<'_>> {
+        ::protobuf::Optional::new(self.created_at(), self.has_created_at())
   }
-  pub fn timestamp(&self) -> super::super::TimestampView<'_> {
+  pub fn created_at(&self) -> super::super::TimestampView<'_> {
     let submsg = unsafe {
       self.inner.ptr().get_message_at_index(4)
     };
@@ -1988,7 +3063,7 @@ impl<'msg> ItemMut<'msg> {
         .map(|ptr| unsafe { ::protobuf::__internal::runtime::MessageViewInner::wrap(ptr).into() })
        .unwrap_or(super::super::TimestampView::default())
   }
-  pub fn timestamp_mut(&mut self) -> super::super::TimestampMut<'_> {
+  pub fn created_at_mut(&mut self) -> super::super::TimestampMut<'_> {
      let ptr = unsafe {
        self.inner.ptr_mut().get_or_create_mutable_message_at_index(
          4, self.inner.arena()
@@ -1999,7 +3074,7 @@ impl<'msg> ItemMut<'msg> {
          ptr
      ).into()
   }
-  pub fn set_timestamp(&mut self,
+  pub fn set_created_at(&mut self,
     val: impl ::protobuf::IntoProxied<super::super::Timestamp>) {
 
     unsafe {
@@ -2075,46 +3150,8 @@ impl Item {
     ::protobuf::__internal::runtime::MessageMutInner::mut_of_owned(&mut self.inner).into()
   }
 
-  // host: optional string
-  pub fn host(&self) -> ::protobuf::View<'_, ::protobuf::ProtoString> {
-    let str_view = unsafe {
-      self.inner.ptr().get_string_at_index(
-        0, (b"").into()
-      )
-    };
-    // SAFETY: The runtime doesn't require ProtoStr to be UTF-8.
-    unsafe { ::protobuf::ProtoStr::from_utf8_unchecked(str_view.as_ref()) }
-  }
-  pub fn set_host(&mut self, val: impl ::protobuf::IntoProxied<::protobuf::ProtoString>) {
-    unsafe {
-      ::protobuf::__internal::runtime::message_set_string_field(
-        ::protobuf::AsMut::as_mut(self).inner,
-        0,
-        val);
-    }
-  }
-
-  // unit: optional string
-  pub fn unit(&self) -> ::protobuf::View<'_, ::protobuf::ProtoString> {
-    let str_view = unsafe {
-      self.inner.ptr().get_string_at_index(
-        1, (b"").into()
-      )
-    };
-    // SAFETY: The runtime doesn't require ProtoStr to be UTF-8.
-    unsafe { ::protobuf::ProtoStr::from_utf8_unchecked(str_view.as_ref()) }
-  }
-  pub fn set_unit(&mut self, val: impl ::protobuf::IntoProxied<::protobuf::ProtoString>) {
-    unsafe {
-      ::protobuf::__internal::runtime::message_set_string_field(
-        ::protobuf::AsMut::as_mut(self).inner,
-        1,
-        val);
-    }
-  }
-
-  // priority: optional uint32
-  pub fn priority(&self) -> u32 {
+  // status_code: optional uint32
+  pub fn status_code(&self) -> u32 {
     unsafe {
       // TODO: b/361751487: This .into() and .try_into() is only
       // here for the enum<->i32 case, we should avoid it for
@@ -2123,58 +3160,124 @@ impl Item {
       // i32->enum types, since even for closed enums we trust
       // upb to only return one of the named values).
       self.inner.ptr().get_u32_at_index(
-        2, (0u32).into()
+        0, (0u32).into()
       ).try_into().unwrap()
     }
   }
-  pub fn set_priority(&mut self, val: u32) {
+  pub fn set_status_code(&mut self, val: u32) {
     unsafe {
       // TODO: b/361751487: This .into() is only here
       // here for the enum<->i32 case, we should avoid it for
       // other primitives where the types naturally match
       //perfectly.
       self.inner.ptr_mut().set_base_field_u32_at_index(
-        2, val.into()
+        0, val.into()
       )
     }
   }
 
-  // message: optional string
-  pub fn message(&self) -> ::protobuf::View<'_, ::protobuf::ProtoString> {
+  // content_type: optional string
+  pub fn content_type(&self) -> ::protobuf::View<'_, ::protobuf::ProtoString> {
     let str_view = unsafe {
       self.inner.ptr().get_string_at_index(
-        3, (b"").into()
+        1, (b"").into()
       )
     };
     // SAFETY: The runtime doesn't require ProtoStr to be UTF-8.
     unsafe { ::protobuf::ProtoStr::from_utf8_unchecked(str_view.as_ref()) }
   }
-  pub fn set_message(&mut self, val: impl ::protobuf::IntoProxied<::protobuf::ProtoString>) {
+  pub fn set_content_type(&mut self, val: impl ::protobuf::IntoProxied<::protobuf::ProtoString>) {
     unsafe {
       ::protobuf::__internal::runtime::message_set_string_field(
         ::protobuf::AsMut::as_mut(self).inner,
-        3,
+        1,
         val);
     }
   }
 
-  // timestamp: optional message palm.lavender.v1.Timestamp
-  pub fn has_timestamp(&self) -> bool {
+  // response_body: optional string
+  pub fn response_body(&self) -> ::protobuf::View<'_, ::protobuf::ProtoString> {
+    let str_view = unsafe {
+      self.inner.ptr().get_string_at_index(
+        2, (b"").into()
+      )
+    };
+    // SAFETY: The runtime doesn't require ProtoStr to be UTF-8.
+    unsafe { ::protobuf::ProtoStr::from_utf8_unchecked(str_view.as_ref()) }
+  }
+  pub fn set_response_body(&mut self, val: impl ::protobuf::IntoProxied<::protobuf::ProtoString>) {
+    unsafe {
+      ::protobuf::__internal::runtime::message_set_string_field(
+        ::protobuf::AsMut::as_mut(self).inner,
+        2,
+        val);
+    }
+  }
+
+  // elapsed: optional message palm.lavender.v1.Duration
+  pub fn has_elapsed(&self) -> bool {
+    unsafe {
+      self.inner.ptr().has_field_at_index(3)
+    }
+  }
+  pub fn clear_elapsed(&mut self) {
+    unsafe {
+      self.inner.ptr().clear_field_at_index(
+        3
+      );
+    }
+  }
+  pub fn elapsed_opt(&self) -> ::protobuf::Optional<super::super::DurationView<'_>> {
+        ::protobuf::Optional::new(self.elapsed(), self.has_elapsed())
+  }
+  pub fn elapsed(&self) -> super::super::DurationView<'_> {
+    let submsg = unsafe {
+      self.inner.ptr().get_message_at_index(3)
+    };
+    submsg
+        .map(|ptr| unsafe { ::protobuf::__internal::runtime::MessageViewInner::wrap(ptr).into() })
+       .unwrap_or(super::super::DurationView::default())
+  }
+  pub fn elapsed_mut(&mut self) -> super::super::DurationMut<'_> {
+     let ptr = unsafe {
+       self.inner.ptr_mut().get_or_create_mutable_message_at_index(
+         3, self.inner.arena()
+       ).unwrap()
+     };
+     ::protobuf::__internal::runtime::MessageMutInner::from_parent(
+         self.as_message_mut_inner(::protobuf::__internal::Private),
+         ptr
+     ).into()
+  }
+  pub fn set_elapsed(&mut self,
+    val: impl ::protobuf::IntoProxied<super::super::Duration>) {
+
+    unsafe {
+      ::protobuf::__internal::runtime::message_set_sub_message(
+        ::protobuf::AsMut::as_mut(self).inner,
+        3,
+        val
+      );
+    }
+  }
+
+  // created_at: optional message palm.lavender.v1.Timestamp
+  pub fn has_created_at(&self) -> bool {
     unsafe {
       self.inner.ptr().has_field_at_index(4)
     }
   }
-  pub fn clear_timestamp(&mut self) {
+  pub fn clear_created_at(&mut self) {
     unsafe {
       self.inner.ptr().clear_field_at_index(
         4
       );
     }
   }
-  pub fn timestamp_opt(&self) -> ::protobuf::Optional<super::super::TimestampView<'_>> {
-        ::protobuf::Optional::new(self.timestamp(), self.has_timestamp())
+  pub fn created_at_opt(&self) -> ::protobuf::Optional<super::super::TimestampView<'_>> {
+        ::protobuf::Optional::new(self.created_at(), self.has_created_at())
   }
-  pub fn timestamp(&self) -> super::super::TimestampView<'_> {
+  pub fn created_at(&self) -> super::super::TimestampView<'_> {
     let submsg = unsafe {
       self.inner.ptr().get_message_at_index(4)
     };
@@ -2182,7 +3285,7 @@ impl Item {
         .map(|ptr| unsafe { ::protobuf::__internal::runtime::MessageViewInner::wrap(ptr).into() })
        .unwrap_or(super::super::TimestampView::default())
   }
-  pub fn timestamp_mut(&mut self) -> super::super::TimestampMut<'_> {
+  pub fn created_at_mut(&mut self) -> super::super::TimestampMut<'_> {
      let ptr = unsafe {
        self.inner.ptr_mut().get_or_create_mutable_message_at_index(
          4, self.inner.arena()
@@ -2193,7 +3296,7 @@ impl Item {
          ptr
      ).into()
   }
-  pub fn set_timestamp(&mut self,
+  pub fn set_created_at(&mut self,
     val: impl ::protobuf::IntoProxied<super::super::Timestamp>) {
 
     unsafe {
@@ -2239,12 +3342,13 @@ unsafe impl ::protobuf::__internal::runtime::AssociatedMiniTable for Item {
         ::std::sync::OnceLock::new();
     unsafe {
       ONCE_LOCK.get_or_init(|| {
-        super::super::systemd_request::palm__lavender__v1__SystemdRequest__Item_msg_init.0 =
-            ::protobuf::__internal::runtime::build_mini_table("$1X1X)P1X3");
+        super::super::http_request::palm__lavender__v1__HttpRequest__Item_msg_init.0 =
+            ::protobuf::__internal::runtime::build_mini_table("$)P1X1Xd33");
         ::protobuf::__internal::runtime::link_mini_table(
-            super::super::systemd_request::palm__lavender__v1__SystemdRequest__Item_msg_init.0, &[<super::super::Timestamp as ::protobuf::__internal::runtime::AssociatedMiniTable>::mini_table(),
+            super::super::http_request::palm__lavender__v1__HttpRequest__Item_msg_init.0, &[<super::super::Duration as ::protobuf::__internal::runtime::AssociatedMiniTable>::mini_table(),
+            <super::super::Timestamp as ::protobuf::__internal::runtime::AssociatedMiniTable>::mini_table(),
             ], &[]);
-        ::protobuf::__internal::runtime::MiniTableInitPtr(super::super::systemd_request::palm__lavender__v1__SystemdRequest__Item_msg_init.0)
+        ::protobuf::__internal::runtime::MiniTableInitPtr(super::super::http_request::palm__lavender__v1__HttpRequest__Item_msg_init.0)
       }).0
     }
   }
@@ -2294,495 +3398,7 @@ unsafe impl ::protobuf::__internal::runtime::UpbGetArena for ItemMut<'_> {
 
 
 
-}  // pub mod systemd_request
-
-
-// This variable must not be referenced except by protobuf generated
-// code.
-pub(crate) static mut palm__lavender__v1__Http_msg_init: ::protobuf::__internal::runtime::MiniTableInitPtr =
-    ::protobuf::__internal::runtime::MiniTableInitPtr(::protobuf::__internal::runtime::MiniTablePtr::dangling());
-#[allow(non_camel_case_types)]
-pub struct Http {
-  inner: ::protobuf::__internal::runtime::OwnedMessageInner<Http>
-}
-
-impl ::protobuf::Message for Http {}
-
-impl ::std::default::Default for Http {
-  fn default() -> Self {
-    Self::new()
-  }
-}
-
-impl ::std::fmt::Debug for Http {
-  fn fmt(&self, f: &mut ::std::fmt::Formatter<'_>) -> ::std::fmt::Result {
-    write!(f, "{}", ::protobuf::__internal::runtime::debug_string(self))
-  }
-}
-
-// SAFETY:
-// - `Http` is `Sync` because it does not implement interior mutability.
-//    Neither does `HttpMut`.
-unsafe impl Sync for Http {}
-
-// SAFETY:
-// - `Http` is `Send` because it uniquely owns its arena and does
-//   not use thread-local data.
-unsafe impl Send for Http {}
-
-impl ::protobuf::Proxied for Http {
-  type View<'msg> = HttpView<'msg>;
-}
-
-impl ::protobuf::__internal::SealedInternal for Http {}
-
-impl ::protobuf::MutProxied for Http {
-  type Mut<'msg> = HttpMut<'msg>;
-}
-
-#[derive(Copy, Clone)]
-#[allow(dead_code)]
-pub struct HttpView<'msg> {
-  inner: ::protobuf::__internal::runtime::MessageViewInner<'msg, Http>,
-}
-
-impl<'msg> ::protobuf::__internal::SealedInternal for HttpView<'msg> {}
-
-impl<'msg> ::protobuf::MessageView<'msg> for HttpView<'msg> {
-  type Message = Http;
-}
-
-impl ::std::fmt::Debug for HttpView<'_> {
-  fn fmt(&self, f: &mut ::std::fmt::Formatter<'_>) -> ::std::fmt::Result {
-    write!(f, "{}", ::protobuf::__internal::runtime::debug_string(self))
-  }
-}
-
-impl ::std::default::Default for HttpView<'_> {
-  fn default() -> HttpView<'static> {
-    ::protobuf::__internal::runtime::MessageViewInner::default().into()
-  }
-}
-
-impl<'msg> From<::protobuf::__internal::runtime::MessageViewInner<'msg, Http>> for HttpView<'msg> {
-  fn from(inner: ::protobuf::__internal::runtime::MessageViewInner<'msg, Http>) -> Self {
-    Self { inner }
-  }
-}
-
-#[allow(dead_code)]
-impl<'msg> HttpView<'msg> {
-
-  pub fn to_owned(&self) -> Http {
-    ::protobuf::IntoProxied::into_proxied(*self, ::protobuf::__internal::Private)
-  }
-
-  // status_code: optional uint32
-  pub fn status_code(self) -> u32 {
-    unsafe {
-      // TODO: b/361751487: This .into() and .try_into() is only
-      // here for the enum<->i32 case, we should avoid it for
-      // other primitives where the types naturally match
-      // perfectly (and do an unchecked conversion for
-      // i32->enum types, since even for closed enums we trust
-      // upb to only return one of the named values).
-      self.inner.ptr().get_u32_at_index(
-        0, (0u32).into()
-      ).try_into().unwrap()
-    }
-  }
-
-  // content_type: optional string
-  pub fn content_type(self) -> ::protobuf::View<'msg, ::protobuf::ProtoString> {
-    let str_view = unsafe {
-      self.inner.ptr().get_string_at_index(
-        1, (b"").into()
-      )
-    };
-    // SAFETY: The runtime doesn't require ProtoStr to be UTF-8.
-    unsafe { ::protobuf::ProtoStr::from_utf8_unchecked(str_view.as_ref()) }
-  }
-
-  // response_body: optional string
-  pub fn response_body(self) -> ::protobuf::View<'msg, ::protobuf::ProtoString> {
-    let str_view = unsafe {
-      self.inner.ptr().get_string_at_index(
-        2, (b"").into()
-      )
-    };
-    // SAFETY: The runtime doesn't require ProtoStr to be UTF-8.
-    unsafe { ::protobuf::ProtoStr::from_utf8_unchecked(str_view.as_ref()) }
-  }
-
-}
-
-// SAFETY:
-// - `HttpView` is `Sync` because it does not support mutation.
-unsafe impl Sync for HttpView<'_> {}
-
-// SAFETY:
-// - `HttpView` is `Send` because while its alive a `HttpMut` cannot.
-// - `HttpView` does not use thread-local data.
-unsafe impl Send for HttpView<'_> {}
-
-impl<'msg> ::protobuf::AsView for HttpView<'msg> {
-  type Proxied = Http;
-  fn as_view(&self) -> ::protobuf::View<'msg, Http> {
-    *self
-  }
-}
-
-impl<'msg> ::protobuf::IntoView<'msg> for HttpView<'msg> {
-  fn into_view<'shorter>(self) -> HttpView<'shorter>
-  where
-      'msg: 'shorter {
-    self
-  }
-}
-
-impl<'msg> ::protobuf::IntoProxied<Http> for HttpView<'msg> {
-  fn into_proxied(self, _private: ::protobuf::__internal::Private) -> Http {
-    let mut dst = Http::new();
-    assert!(unsafe {
-      dst.inner.ptr_mut().deep_copy(self.inner.ptr(), dst.inner.arena())
-    });
-    dst
-  }
-}
-
-impl<'msg> ::protobuf::IntoProxied<Http> for HttpMut<'msg> {
-  fn into_proxied(self, _private: ::protobuf::__internal::Private) -> Http {
-    ::protobuf::IntoProxied::into_proxied(::protobuf::IntoView::into_view(self), _private)
-  }
-}
-
-impl ::protobuf::__internal::runtime::EntityType for Http {
-    type Tag = ::protobuf::__internal::runtime::MessageTag;
-}
-
-impl<'msg> ::protobuf::__internal::runtime::EntityType for HttpView<'msg> {
-    type Tag = ::protobuf::__internal::runtime::ViewProxyTag;
-}
-
-impl<'msg> ::protobuf::__internal::runtime::EntityType for HttpMut<'msg> {
-    type Tag = ::protobuf::__internal::runtime::MutProxyTag;
-}
-
-#[allow(dead_code)]
-#[allow(non_camel_case_types)]
-pub struct HttpMut<'msg> {
-  inner: ::protobuf::__internal::runtime::MessageMutInner<'msg, Http>,
-}
-
-impl<'msg> ::protobuf::__internal::SealedInternal for HttpMut<'msg> {}
-
-impl<'msg> ::protobuf::MessageMut<'msg> for HttpMut<'msg> {
-  type Message = Http;
-}
-
-impl ::std::fmt::Debug for HttpMut<'_> {
-  fn fmt(&self, f: &mut ::std::fmt::Formatter<'_>) -> ::std::fmt::Result {
-    write!(f, "{}", ::protobuf::__internal::runtime::debug_string(self))
-  }
-}
-
-impl<'msg> From<::protobuf::__internal::runtime::MessageMutInner<'msg, Http>> for HttpMut<'msg> {
-  fn from(inner: ::protobuf::__internal::runtime::MessageMutInner<'msg, Http>) -> Self {
-    Self { inner }
-  }
-}
-
-#[allow(dead_code)]
-impl<'msg> HttpMut<'msg> {
-
-  #[doc(hidden)]
-  pub fn as_message_mut_inner(&mut self, _private: ::protobuf::__internal::Private)
-    -> ::protobuf::__internal::runtime::MessageMutInner<'msg, Http> {
-    self.inner
-  }
-
-  pub fn to_owned(&self) -> Http {
-    ::protobuf::AsView::as_view(self).to_owned()
-  }
-
-  // status_code: optional uint32
-  pub fn status_code(&self) -> u32 {
-    unsafe {
-      // TODO: b/361751487: This .into() and .try_into() is only
-      // here for the enum<->i32 case, we should avoid it for
-      // other primitives where the types naturally match
-      // perfectly (and do an unchecked conversion for
-      // i32->enum types, since even for closed enums we trust
-      // upb to only return one of the named values).
-      self.inner.ptr().get_u32_at_index(
-        0, (0u32).into()
-      ).try_into().unwrap()
-    }
-  }
-  pub fn set_status_code(&mut self, val: u32) {
-    unsafe {
-      // TODO: b/361751487: This .into() is only here
-      // here for the enum<->i32 case, we should avoid it for
-      // other primitives where the types naturally match
-      //perfectly.
-      self.inner.ptr_mut().set_base_field_u32_at_index(
-        0, val.into()
-      )
-    }
-  }
-
-  // content_type: optional string
-  pub fn content_type(&self) -> ::protobuf::View<'_, ::protobuf::ProtoString> {
-    let str_view = unsafe {
-      self.inner.ptr().get_string_at_index(
-        1, (b"").into()
-      )
-    };
-    // SAFETY: The runtime doesn't require ProtoStr to be UTF-8.
-    unsafe { ::protobuf::ProtoStr::from_utf8_unchecked(str_view.as_ref()) }
-  }
-  pub fn set_content_type(&mut self, val: impl ::protobuf::IntoProxied<::protobuf::ProtoString>) {
-    unsafe {
-      ::protobuf::__internal::runtime::message_set_string_field(
-        ::protobuf::AsMut::as_mut(self).inner,
-        1,
-        val);
-    }
-  }
-
-  // response_body: optional string
-  pub fn response_body(&self) -> ::protobuf::View<'_, ::protobuf::ProtoString> {
-    let str_view = unsafe {
-      self.inner.ptr().get_string_at_index(
-        2, (b"").into()
-      )
-    };
-    // SAFETY: The runtime doesn't require ProtoStr to be UTF-8.
-    unsafe { ::protobuf::ProtoStr::from_utf8_unchecked(str_view.as_ref()) }
-  }
-  pub fn set_response_body(&mut self, val: impl ::protobuf::IntoProxied<::protobuf::ProtoString>) {
-    unsafe {
-      ::protobuf::__internal::runtime::message_set_string_field(
-        ::protobuf::AsMut::as_mut(self).inner,
-        2,
-        val);
-    }
-  }
-
-}
-
-// SAFETY:
-// - `HttpMut` does not perform any shared mutation.
-unsafe impl Send for HttpMut<'_> {}
-
-// SAFETY:
-// - `HttpMut` does not perform any shared mutation.
-unsafe impl Sync for HttpMut<'_> {}
-
-impl<'msg> ::protobuf::AsView for HttpMut<'msg> {
-  type Proxied = Http;
-  fn as_view(&self) -> ::protobuf::View<'_, Http> {
-    HttpView {
-      inner: ::protobuf::__internal::runtime::MessageViewInner::view_of_mut(self.inner)
-    }
-  }
-}
-
-impl<'msg> ::protobuf::IntoView<'msg> for HttpMut<'msg> {
-  fn into_view<'shorter>(self) -> ::protobuf::View<'shorter, Http>
-  where
-      'msg: 'shorter {
-    HttpView {
-      inner: ::protobuf::__internal::runtime::MessageViewInner::view_of_mut(self.inner)
-    }
-  }
-}
-
-impl<'msg> ::protobuf::AsMut for HttpMut<'msg> {
-  type MutProxied = Http;
-  fn as_mut(&mut self) -> HttpMut<'msg> {
-    HttpMut { inner: self.inner }
-  }
-}
-
-impl<'msg> ::protobuf::IntoMut<'msg> for HttpMut<'msg> {
-  fn into_mut<'shorter>(self) -> HttpMut<'shorter>
-  where
-      'msg: 'shorter {
-    self
-  }
-}
-
-#[allow(dead_code)]
-impl Http {
-  pub fn new() -> Self {
-    Self { inner: ::protobuf::__internal::runtime::OwnedMessageInner::<Self>::new() }
-  }
-
-
-  #[doc(hidden)]
-  pub fn as_message_mut_inner(&mut self, _private: ::protobuf::__internal::Private) -> ::protobuf::__internal::runtime::MessageMutInner<'_, Http> {
-    ::protobuf::__internal::runtime::MessageMutInner::mut_of_owned(&mut self.inner)
-  }
-
-  pub fn as_view(&self) -> HttpView<'_> {
-    ::protobuf::__internal::runtime::MessageViewInner::view_of_owned(&self.inner).into()
-  }
-
-  pub fn as_mut(&mut self) -> HttpMut<'_> {
-    ::protobuf::__internal::runtime::MessageMutInner::mut_of_owned(&mut self.inner).into()
-  }
-
-  // status_code: optional uint32
-  pub fn status_code(&self) -> u32 {
-    unsafe {
-      // TODO: b/361751487: This .into() and .try_into() is only
-      // here for the enum<->i32 case, we should avoid it for
-      // other primitives where the types naturally match
-      // perfectly (and do an unchecked conversion for
-      // i32->enum types, since even for closed enums we trust
-      // upb to only return one of the named values).
-      self.inner.ptr().get_u32_at_index(
-        0, (0u32).into()
-      ).try_into().unwrap()
-    }
-  }
-  pub fn set_status_code(&mut self, val: u32) {
-    unsafe {
-      // TODO: b/361751487: This .into() is only here
-      // here for the enum<->i32 case, we should avoid it for
-      // other primitives where the types naturally match
-      //perfectly.
-      self.inner.ptr_mut().set_base_field_u32_at_index(
-        0, val.into()
-      )
-    }
-  }
-
-  // content_type: optional string
-  pub fn content_type(&self) -> ::protobuf::View<'_, ::protobuf::ProtoString> {
-    let str_view = unsafe {
-      self.inner.ptr().get_string_at_index(
-        1, (b"").into()
-      )
-    };
-    // SAFETY: The runtime doesn't require ProtoStr to be UTF-8.
-    unsafe { ::protobuf::ProtoStr::from_utf8_unchecked(str_view.as_ref()) }
-  }
-  pub fn set_content_type(&mut self, val: impl ::protobuf::IntoProxied<::protobuf::ProtoString>) {
-    unsafe {
-      ::protobuf::__internal::runtime::message_set_string_field(
-        ::protobuf::AsMut::as_mut(self).inner,
-        1,
-        val);
-    }
-  }
-
-  // response_body: optional string
-  pub fn response_body(&self) -> ::protobuf::View<'_, ::protobuf::ProtoString> {
-    let str_view = unsafe {
-      self.inner.ptr().get_string_at_index(
-        2, (b"").into()
-      )
-    };
-    // SAFETY: The runtime doesn't require ProtoStr to be UTF-8.
-    unsafe { ::protobuf::ProtoStr::from_utf8_unchecked(str_view.as_ref()) }
-  }
-  pub fn set_response_body(&mut self, val: impl ::protobuf::IntoProxied<::protobuf::ProtoString>) {
-    unsafe {
-      ::protobuf::__internal::runtime::message_set_string_field(
-        ::protobuf::AsMut::as_mut(self).inner,
-        2,
-        val);
-    }
-  }
-
-}  // impl Http
-
-impl ::std::ops::Drop for Http {
-  #[inline]
-  fn drop(&mut self) {
-  }
-}
-
-impl ::std::clone::Clone for Http {
-  fn clone(&self) -> Self {
-    self.as_view().to_owned()
-  }
-}
-
-impl ::protobuf::AsView for Http {
-  type Proxied = Self;
-  fn as_view(&self) -> HttpView<'_> {
-    self.as_view()
-  }
-}
-
-impl ::protobuf::AsMut for Http {
-  type MutProxied = Self;
-  fn as_mut(&mut self) -> HttpMut<'_> {
-    self.as_mut()
-  }
-}
-
-unsafe impl ::protobuf::__internal::runtime::AssociatedMiniTable for Http {
-  fn mini_table() -> ::protobuf::__internal::runtime::MiniTablePtr {
-    static ONCE_LOCK: ::std::sync::OnceLock<::protobuf::__internal::runtime::MiniTableInitPtr> =
-        ::std::sync::OnceLock::new();
-    unsafe {
-      ONCE_LOCK.get_or_init(|| {
-        super::palm__lavender__v1__Http_msg_init.0 =
-            ::protobuf::__internal::runtime::build_mini_table("$)P1X1X");
-        ::protobuf::__internal::runtime::link_mini_table(
-            super::palm__lavender__v1__Http_msg_init.0, &[], &[]);
-        ::protobuf::__internal::runtime::MiniTableInitPtr(super::palm__lavender__v1__Http_msg_init.0)
-      }).0
-    }
-  }
-}
-unsafe impl ::protobuf::__internal::runtime::UpbGetArena for Http {
-  fn get_arena(&mut self, _private: ::protobuf::__internal::Private) -> &::protobuf::__internal::runtime::Arena {
-    self.inner.arena()
-  }
-}
-
-unsafe impl ::protobuf::__internal::runtime::UpbGetMessagePtrMut for Http {
-  type Msg = Http;
-  fn get_ptr_mut(&mut self, _private: ::protobuf::__internal::Private) -> ::protobuf::__internal::runtime::MessagePtr<Http> {
-    self.inner.ptr_mut()
-  }
-}
-unsafe impl ::protobuf::__internal::runtime::UpbGetMessagePtr for Http {
-  type Msg = Http;
-  fn get_ptr(&self, _private: ::protobuf::__internal::Private) -> ::protobuf::__internal::runtime::MessagePtr<Http> {
-    self.inner.ptr()
-  }
-}
-unsafe impl ::protobuf::__internal::runtime::UpbGetMessagePtrMut for HttpMut<'_> {
-  type Msg = Http;
-  fn get_ptr_mut(&mut self, _private: ::protobuf::__internal::Private) -> ::protobuf::__internal::runtime::MessagePtr<Http> {
-    self.inner.ptr_mut()
-  }
-}
-unsafe impl ::protobuf::__internal::runtime::UpbGetMessagePtr for HttpMut<'_> {
-  type Msg = Http;
-  fn get_ptr(&self, _private: ::protobuf::__internal::Private) -> ::protobuf::__internal::runtime::MessagePtr<Http> {
-    self.inner.ptr()
-  }
-}
-unsafe impl ::protobuf::__internal::runtime::UpbGetMessagePtr for HttpView<'_> {
-  type Msg = Http;
-  fn get_ptr(&self, _private: ::protobuf::__internal::Private) -> ::protobuf::__internal::runtime::MessagePtr<Http> {
-    self.inner.ptr()
-  }
-}
-
-unsafe impl ::protobuf::__internal::runtime::UpbGetArena for HttpMut<'_> {
-  fn get_arena(&mut self, _private: ::protobuf::__internal::Private) -> &::protobuf::__internal::runtime::Arena {
-    self.inner.arena()
-  }
-}
-
+}  // pub mod http_request
 
 
 // This variable must not be referenced except by protobuf generated
