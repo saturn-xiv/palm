@@ -33,29 +33,17 @@ def _load_logs_for_namespace(db, namespace):
     for pod in pods.items:
         pod_name = pod.metadata.name
         containers = [x.name for x in pod.spec.containers]
-        key = f"kubernetes.{namespace}.last-fetch"
-
-        since = datetime.fromtimestamp(psutil.boot_time(), tz=UTC)
-        if key in db:
-            since = pickle.loads(db[key])
-        logger.debug("fetch kubernetes logs for %s since %s",
-                     namespace, since)
 
         for container_name in containers:
-            logger.debug("fetch %s@%s", container_name, pod_name)
+            key = f"kubernetes.{namespace}.{pod_name}.{container_name}.last-fetch"
+            since = datetime.fromtimestamp(psutil.boot_time(), tz=UTC)
+            if key in db:
+                since = pickle.loads(db[key])
+            logger.debug("fetch kubernetes logs for %s@%s/%s since %s",
+                         container_name, namespace, pod_name, since)
             # https://github.com/kubernetes-client/python/issues/1351
             # TODO since_time not support
             now = datetime.now(tz=UTC)
-            # watcher = watch.Watch()
-            # for line in watcher.stream(v1.read_namespaced_pod_log,
-            #                            name=pod_name,
-            #                            namespace=namespace,
-            #                            container=container_name,
-            #                            timestamps=True,
-            #                            _preload_content=False,
-            #                            since_seconds=round(
-            #                                (now-since).total_seconds()),
-            #                            ):
             res = v1.read_namespaced_pod_log(name=pod_name,
                                              namespace=namespace,
                                              container=container_name,
