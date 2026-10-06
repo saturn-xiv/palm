@@ -1,9 +1,9 @@
 import logging
 from datetime import datetime, UTC
+import pickle
 
 from kubernetes import client, config, watch
 import psutil
-import pickle
 
 from daisy.protocols import lavender_pb2, to_timestamp
 
@@ -45,15 +45,16 @@ def _load_logs_for_namespace(db, namespace):
             # https://github.com/kubernetes-client/python/issues/1351
             # TODO since_time not support
             now = datetime.now(tz=UTC)
-            res = v1.read_namespaced_pod_log(
-                name=pod_name,
-                namespace=namespace,
-                container=container_name,
-                timestamps=True,
-                _preload_content=False,
-                since_seconds=(now-since).total_seconds(),
-            )
-            for line in watch.Watch().iter_resp_lines(res):
+            watcher = watch.Watch()
+            for line in watcher.stream(v1.read_namespaced_pod_log,
+                                       name=pod_name,
+                                       namespace=namespace,
+                                       container=container_name,
+                                       timestamps=True,
+                                       _preload_content=False,
+                                       since_seconds=round(
+                                           (now-since).total_seconds()),
+                                       ):
                 logger.debug("###: %s", line)
                 yield lavender_pb2.KubernetesRequest(pod=pod_name, container=container_name, message=line)
                 # TODO
