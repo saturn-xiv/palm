@@ -4,6 +4,7 @@ import pickle
 
 from kubernetes import client, config, watch
 import psutil
+import numpy
 
 from daisy.protocols import lavender_pb2, to_timestamp
 
@@ -55,7 +56,10 @@ def _load_logs_for_namespace(db, namespace):
                                        since_seconds=round(
                                            (now-since).total_seconds()),
                                        ):
-                logger.debug("###: %s", line)
-                yield lavender_pb2.KubernetesRequest(pod=pod_name, container=container_name, message=line)
+                items = line.split(" ", maxsplit=1)
+                if len(items) != 2:
+                    logger.warning("ignore message: %s", line)
+                    continue
+                yield lavender_pb2.KubernetesRequest(pod=pod_name, container=container_name, created_at=to_timestamp(numpy.datetime64(items[0])), message=items[1])
                 # TODO
                 # db[key] = pickle.dumps(cur)
