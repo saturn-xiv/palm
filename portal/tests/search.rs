@@ -7,5 +7,5 @@ fn opensearch() {
     let cli = cfg.single().unwrap();
     println!("{}", cli.index_name::<lavender_v1::SystemdRequest>());
     println!("{}", cli.index_name::<lavender_v1::KubernetesRequest>());
-    println!("{}", cli.index_name::<lavender_v1::http_request::Item>());
+    println!("{}", cli.index_name::<lavender_v1::claw_request::Http>());
 }

@@ -7,7 +7,6 @@ use std::collections::BTreeMap;
 use std::env::temp_dir;
 use std::path::{Component, Path, PathBuf};
 
-use hyacinth::lavender_v1;
 use portal::{
     Result,
     opensearch::Client as OpenSearch,
@@ -30,9 +29,12 @@ impl Plugin {
                 },
             )
             .await?;
-        if !search.index_exists::<lavender_v1::SystemdRequest>().await? {
+        if !search
+            .index_exists::<graphql::logging::systemd::Item>()
+            .await?
+        {
             search
-                .create_index::<lavender_v1::SystemdRequest>(
+                .create_index::<graphql::logging::systemd::Item>(
                     None,
                     Some(json!({
                         "properties":{
@@ -47,11 +49,11 @@ impl Plugin {
                 .await?;
         }
         if !search
-            .index_exists::<lavender_v1::KubernetesRequest>()
+            .index_exists::<graphql::logging::kubernetes::Item>()
             .await?
         {
             search
-                .create_index::<lavender_v1::KubernetesRequest>(
+                .create_index::<graphql::logging::kubernetes::Item>(
                     None,
                     Some(json!({
                         "properties":{
@@ -66,20 +68,20 @@ impl Plugin {
                 .await?;
         }
         if !search
-            .index_exists::<lavender_v1::http_request::Item>()
+            .index_exists::<graphql::monitoring::http::Item>()
             .await?
         {
             search
-                .create_index::<lavender_v1::http_request::Item>(
+                .create_index::<graphql::monitoring::http::Item>(
                     None,
                     Some(json!({
                         "properties":{
-                            "url": {"type": "keyword"},
                             "from": {"type": "keyword"},
+                            "url": {"type": "keyword"},
                             "status_code": {"type": "short"},
                             "content_type": {"type": "keyword"},
                             "body": {"type": "text"},
-                            "elapsed": {"type": "date_nanos", "format": "strict_date_optional_time_nanos"},
+                            "elapsed": {"type": "unsigned_long"},
                             "created_tt": {"type": "date_nanos", "format": "strict_date_optional_time_nanos"}
                         }
                     })),

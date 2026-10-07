@@ -1,20 +1,23 @@
 pub mod response;
 
 use std::any::type_name;
+use std::fmt::Debug;
 use std::io::{Error as IoError, ErrorKind as IoErrorKind};
 use std::result::Result as StdResult;
 
 use hyper::StatusCode;
 use opensearch::{
-    Error as OpenSearchError, IndexParts, OpenSearch,
+    DeleteByQueryParts, DeleteParts, Error as OpenSearchError, IndexParts, OpenSearch,
     http::{
         Url,
+        response::Response,
         transport::{SingleNodeConnectionPool, TransportBuilder},
     },
     indices::{IndicesCreateParts, IndicesDeleteParts, IndicesExistsParts},
     models::InfoResponse,
+    params::Refresh,
 };
-use serde::{Deserialize, Serialize};
+use serde::{Deserialize, Serialize, de::DeserializeOwned};
 use serde_json::{Value, json};
 
 pub type OpenSearchResult<T> = StdResult<T, OpenSearchError>;
@@ -87,14 +90,7 @@ impl Client {
             })
             .send()
             .await?;
-
-        let status = res.status_code();
-        if status != StatusCode::OK {
-            let body = res.text().await?;
-            log::error!("{status} {body}");
-            return Err(IoError::from(IoErrorKind::InvalidData).into());
-        }
-        let _: response::create_index::Item = res.json().await?;
+        let _: response::index_create::Item = Self::response(res).await?;
         Ok(())
     }
 
@@ -124,6 +120,33 @@ impl Client {
         let items = Vec::new();
         // TODO
         Ok(items)
+    }
+
+    pub async fn delete_document_by_id<T>(&self, id: &str) -> OpenSearchResult<()> {
+        let name = self.index_name::<T>();
+        log::debug!("delete document {name} by {id}");
+        let res = self
+            .db
+            .delete(DeleteParts::IndexId(&name, id))
+            .refresh(Refresh::True)
+            .send()
+            .await?;
+        let _: response::document_delete_by_id::Item = Self::response(res).await?;
+        Ok(())
+    }
+
+    pub async fn delete_document_by_query<T>(&self, query: Value) -> OpenSearchResult<()> {
+        let name = self.index_name::<T>();
+        log::debug!("delete document {name} by {query}");
+        let res = self
+            .db
+            .delete_by_query(DeleteByQueryParts::Index(&[&name]))
+            .body(query)
+            .refresh(true)
+            .send()
+            .await?;
+        let _: response::document_delete_by_query::Item = Self::response(res).await?;
+        Ok(())
     }
 
     pub async fn index_document<T: Serialize>(&self, item: &T) -> OpenSearchResult<()> {
@@ -163,5 +186,17 @@ impl Client {
             None => n.to_string(),
         };
         s.to_lowercase().replace("::", ".")
+    }
+
+    async fn response<T: DeserializeOwned + Debug>(res: Response) -> OpenSearchResult<T> {
+        let status = res.status_code();
+        if status != StatusCode::OK {
+            let body = res.text().await?;
+            log::error!("{status} {body}");
+            return Err(IoError::from(IoErrorKind::InvalidData).into());
+        }
+        let it: T = res.json().await?;
+        log::debug!("{:?}", it);
+        Ok(it)
     }
 }

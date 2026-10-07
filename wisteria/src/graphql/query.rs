@@ -234,4 +234,67 @@ impl Query {
         .await?;
         Ok(reply)
     }
+
+    async fn lavender_systemd_log_by_unit(
+        unit: String,
+        page: Page,
+        ctx: &Context,
+    ) -> FieldResult<Vec<lavender_graphql::logging::systemd::Index>> {
+        let mut db = ctx.state.db.get()?;
+        let db = db.deref_mut();
+        let mut cache = ctx.state.cache.get()?;
+        let reply = lavender_graphql::logging::systemd::Index::by_unit(
+            &ctx.session,
+            db,
+            &mut cache,
+            &ctx.state.dahlia,
+            &ctx.state.loquat,
+            &ctx.state.search,
+            (&unit, &page),
+        )
+        .await?;
+        Ok(reply)
+    }
+
+    async fn lavender_kubernetes_log_by_unit(
+        namespace: String,
+        page: Page,
+        ctx: &Context,
+    ) -> FieldResult<Vec<lavender_graphql::logging::kubernetes::Index>> {
+        let mut db = ctx.state.db.get()?;
+        let db = db.deref_mut();
+        let mut cache = ctx.state.cache.get()?;
+        let reply = lavender_graphql::logging::kubernetes::Index::by_namespace(
+            &ctx.session,
+            db,
+            &mut cache,
+            &ctx.state.dahlia,
+            &ctx.state.loquat,
+            &ctx.state.search,
+            (&namespace, &page),
+        )
+        .await?;
+        Ok(reply)
+    }
+
+    async fn lavender_http_monitor_by_url(
+        url: String,
+        page: Page,
+        ctx: &Context,
+    ) -> FieldResult<Vec<lavender_graphql::monitoring::http::Index>> {
+        let mut db = ctx.state.db.get()?;
+        let db = db.deref_mut();
+        let mut cache = ctx.state.cache.get()?;
+        let reply = lavender_graphql::monitoring::http::Index::by_url(
+            &ctx.session,
+            db,
+            &mut cache,
+            &ctx.state.dahlia,
+            &ctx.state.loquat,
+            &ctx.state.search,
+            (&url, &page),
+        )
+        .await?;
+        Ok(reply)
+    }
 }

@@ -223,4 +223,20 @@ impl Mutation {
         .await?;
         Ok(Succeeded::default())
     }
+    async fn lavender_vacuum(months: i32, ctx: &Context) -> FieldResult<Succeeded> {
+        let mut db = ctx.state.db.get()?;
+        let db = db.deref_mut();
+        let mut cache = ctx.state.cache.get()?;
+        lavender_graphql::vacuum(
+            &ctx.session,
+            db,
+            &mut cache,
+            &ctx.state.dahlia,
+            &ctx.state.loquat,
+            &ctx.state.search,
+            months as u32,
+        )
+        .await?;
+        Ok(Succeeded::default())
+    }
 }

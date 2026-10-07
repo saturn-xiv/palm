@@ -44,9 +44,9 @@ class ReporterStub:
                 request_serializer=daisy_dot_protocols_dot_lavender__pb2.KubernetesRequest.SerializeToString,
                 response_deserializer=daisy_dot_protocols_dot_lavender__pb2.KubernetesResponse.FromString,
                 _registered_method=True)
-        self.Http = channel.unary_unary(
-                '/palm.lavender.v1.Reporter/Http',
-                request_serializer=daisy_dot_protocols_dot_lavender__pb2.HttpRequest.SerializeToString,
+        self.Claw = channel.unary_unary(
+                '/palm.lavender.v1.Reporter/Claw',
+                request_serializer=daisy_dot_protocols_dot_lavender__pb2.ClawRequest.SerializeToString,
                 response_deserializer=daisy_dot_protocols_dot_lavender__pb2.Empty.FromString,
                 _registered_method=True)
 
@@ -66,7 +66,7 @@ class ReporterServicer:
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
-    def Http(self, request, context):
+    def Claw(self, request, context):
         """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -85,9 +85,9 @@ def add_ReporterServicer_to_server(servicer, server):
                     request_deserializer=daisy_dot_protocols_dot_lavender__pb2.KubernetesRequest.FromString,
                     response_serializer=daisy_dot_protocols_dot_lavender__pb2.KubernetesResponse.SerializeToString,
             ),
-            'Http': grpc.unary_unary_rpc_method_handler(
-                    servicer.Http,
-                    request_deserializer=daisy_dot_protocols_dot_lavender__pb2.HttpRequest.FromString,
+            'Claw': grpc.unary_unary_rpc_method_handler(
+                    servicer.Claw,
+                    request_deserializer=daisy_dot_protocols_dot_lavender__pb2.ClawRequest.FromString,
                     response_serializer=daisy_dot_protocols_dot_lavender__pb2.Empty.SerializeToString,
             ),
     }
@@ -156,7 +156,7 @@ class Reporter:
             _registered_method=True)
 
     @staticmethod
-    def Http(request,
+    def Claw(request,
             target,
             options=(),
             channel_credentials=None,
@@ -169,8 +169,8 @@ class Reporter:
         return grpc.experimental.unary_unary(
             request,
             target,
-            '/palm.lavender.v1.Reporter/Http',
-            daisy_dot_protocols_dot_lavender__pb2.HttpRequest.SerializeToString,
+            '/palm.lavender.v1.Reporter/Claw',
+            daisy_dot_protocols_dot_lavender__pb2.ClawRequest.SerializeToString,
             daisy_dot_protocols_dot_lavender__pb2.Empty.FromString,
             options,
             channel_credentials,

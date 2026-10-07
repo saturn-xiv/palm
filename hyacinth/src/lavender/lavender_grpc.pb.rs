@@ -24,13 +24,13 @@ pub mod reporter_client {
           ClientStreamingCallBuilder::new(&self.channel, "/palm.lavender.v1.Reporter/Kubernetes")
         }
 
-        pub fn http<ReqMsgView>(
+        pub fn claw<ReqMsgView>(
             &self,
             request: ReqMsgView,
         ) -> UnaryCallBuilder<'_, &T, ReqMsgView, super::Empty>
         where
-          ReqMsgView: protobuf::AsView<Proxied = super::HttpRequest> + Send + Sync {
-          UnaryCallBuilder::new(&self.channel, "/palm.lavender.v1.Reporter/Http", request)
+          ReqMsgView: protobuf::AsView<Proxied = super::ClawRequest> + Send + Sync {
+          UnaryCallBuilder::new(&self.channel, "/palm.lavender.v1.Reporter/Claw", request)
         }
     }
 }
