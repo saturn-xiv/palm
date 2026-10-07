@@ -7,7 +7,7 @@ use std::result::Result as StdResult;
 
 use hyper::StatusCode;
 use opensearch::{
-    DeleteByQueryParts, DeleteParts, Error as OpenSearchError, IndexParts, OpenSearch,
+    CountParts, DeleteByQueryParts, DeleteParts, Error as OpenSearchError, IndexParts, OpenSearch,
     http::{
         Url,
         response::Response,
@@ -106,20 +106,34 @@ impl Client {
     }
 
     // https://docs.opensearch.org/latest/api-reference/search-apis/search/
-    pub async fn search_document<T: Serialize>(&self, query: Value) -> OpenSearchResult<Vec<T>> {
+    pub async fn search_document<T: Debug + Clone + Serialize + DeserializeOwned>(
+        &self,
+        query: Value,
+    ) -> OpenSearchResult<response::document_search::Item<T>> {
         let name = self.index_name::<T>();
         log::debug!("search document {name}");
         let res = self
             .db
             .search(opensearch::SearchParts::Index(&[&name]))
-            .body(serde_json::json!({"query": query}))
+            .body(query)
             .send()
             .await?;
 
-        let _body: response::document_search::Item = res.json().await?;
-        let items = Vec::new();
-        // TODO
-        Ok(items)
+        let it = Self::response(res).await?;
+        Ok(it)
+    }
+
+    pub async fn count_document_by_query<T>(&self, query: Value) -> OpenSearchResult<usize> {
+        let name = self.index_name::<T>();
+        log::debug!("count document {name} by {query}");
+        let res = self
+            .db
+            .count(CountParts::Index(&[&name]))
+            .body(query)
+            .send()
+            .await?;
+        let body: response::document_count::Item = Self::response(res).await?;
+        Ok(body.count)
     }
 
     pub async fn delete_document_by_id<T>(&self, id: &str) -> OpenSearchResult<()> {
@@ -188,7 +202,7 @@ impl Client {
         s.to_lowercase().replace("::", ".")
     }
 
-    async fn response<T: DeserializeOwned + Debug>(res: Response) -> OpenSearchResult<T> {
+    async fn response<T: DeserializeOwned>(res: Response) -> OpenSearchResult<T> {
         let status = res.status_code();
         if status != StatusCode::OK {
             let body = res.text().await?;
@@ -196,7 +210,6 @@ impl Client {
             return Err(IoError::from(IoErrorKind::InvalidData).into());
         }
         let it: T = res.json().await?;
-        log::debug!("{:?}", it);
         Ok(it)
     }
 }

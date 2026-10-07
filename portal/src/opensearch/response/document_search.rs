@@ -1,13 +1,14 @@
 use std::fmt::Debug;
 
 use serde::{Deserialize, Serialize};
-use serde_json::Value;
 
+// https://docs.opensearch.org/latest/api-reference/search-apis/search/#example-response
 #[derive(Debug, Clone, Serialize, Deserialize)]
-pub struct Item {
+pub struct Item<T> {
     pub took: usize,
     pub timed_out: bool,
-    pub hits: Hits,
+    pub _shards: Shards,
+    pub hits: Hits<T>,
 }
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
@@ -17,8 +18,24 @@ pub struct Total {
 }
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
-pub struct Hits {
+pub struct Hits<T> {
     pub max_score: f32,
     pub total: Total,
-    pub hits: Vec<Value>,
+    pub hits: Vec<Hit<T>>,
+}
+
+#[derive(Debug, Clone, Serialize, Deserialize)]
+pub struct Shards {
+    pub total: usize,
+    pub successful: usize,
+    pub skipped: usize,
+    pub failed: usize,
+}
+
+#[derive(Debug, Clone, Serialize, Deserialize)]
+pub struct Hit<T> {
+    pub _index: String,
+    pub _id: String,
+    pub _score: f32,
+    pub _source: T,
 }

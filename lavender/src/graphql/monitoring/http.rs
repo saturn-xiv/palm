@@ -10,6 +10,7 @@ use portal::{
     rbac::Rbac,
 };
 use serde::{Deserialize, Serialize};
+use serde_json::json;
 
 use super::super::can;
 
@@ -39,12 +40,40 @@ impl Index {
         cache: &mut Cache,
         rbac: &R,
         jwt: &J,
-        _search: &Search,
-        (_url, _page): (&str, &Page),
-    ) -> Result<Vec<Self>> {
+        search: &Search,
+        (url, page): (&str, &Page),
+    ) -> Result<Self> {
         let current_user = ss.current_user(db, cache, jwt).await?;
         can(rbac, current_user.id()).await?;
-        // TODO
-        todo!()
+        let total = search
+            .count_document_by_query::<Item>(json!({
+                "query": {
+                    "term": {
+                        "url": url
+                    }
+                }
+            }))
+            .await? as i64;
+
+        let items = search
+            .search_document::<Item>(json!({
+                "from": page.offset(total),
+                "size": page.size(),
+                "query": {
+                    "term": {
+                        "url": url
+                    }
+                }
+            }))
+            .await?;
+        Ok(Self {
+            items: items
+                .hits
+                .hits
+                .into_iter()
+                .map(|x| x._source)
+                .collect::<_>(),
+            pagination: Pagination::new(page, total),
+        })
     }
 }
