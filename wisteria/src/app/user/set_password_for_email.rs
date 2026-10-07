@@ -3,9 +3,7 @@ use std::path::Path;
 
 use diesel::Connection as DieselConnection;
 use portal::{
-    Error, Loquat, PasswordHashing, Result, current_user,
-    graphql::Plugin,
-    hostname,
+    Error, Loquat, PasswordHashing, Plugin, Result, current_user, hostname,
     models::{
         log::{Dao as LogDao, Level},
         user::email::Dao as EmailUserDao,

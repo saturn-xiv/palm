@@ -18,10 +18,12 @@ logger = logging.getLogger(__name__)
 def launch(config, port, workers, tls):
     server = grpc.server(futures.ThreadPoolExecutor(max_workers=workers))
 
-    db = open_opensearch(config['opensearch']['host'],
-                         config['opensearch']['port'])
-    lavender_pb2_grpc.add_ReporterServicer_to_server(
-        LavenderReporterServer(db, config['opensearch']['namespace']), server)
+    client = open_opensearch(config['opensearch']['host'],
+                             config['opensearch']['port'])
+    reporter_service = LavenderReporterServer(
+        client, config['opensearch']['namespace'])
+    reporter_service.check_indices()
+    lavender_pb2_grpc.add_ReporterServicer_to_server(reporter_service, server)
 
     reflection.enable_server_reflection((
         lavender_pb2.DESCRIPTOR.services_by_name["Reporter"].full_name,

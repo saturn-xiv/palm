@@ -56,9 +56,11 @@ pub async fn start<P: AsRef<Path>>(config: P, port: u16, _theme: Theme) -> Resul
     }
     let config: Config = parse_toml(config)?;
 
+    let queue = config.rabbitmq.open().await?;
+    let search = config.opensearch.single()?;
     {
-        log::info!("initialize lavender repos");
-        // TODO
+        portal::Plugin::init(&queue).await?;
+        lavender::Plugin::init(&queue, &search).await?;
     }
 
     let schema = new_schema();
@@ -74,8 +76,8 @@ pub async fn start<P: AsRef<Path>>(config: P, port: u16, _theme: Theme) -> Resul
             it
         },
         cache: config.redis.standalone()?,
-        queue: config.rabbitmq.open().await?,
-        search: config.opensearch.single()?,
+        queue,
+        search,
         loquat: Loquat::new(config.loquat.open()),
         dahlia: Dahlia::new(config.dahlia.open()),
         marigold: Marigold::new(config.marigold.open()),

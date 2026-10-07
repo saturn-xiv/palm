@@ -9,6 +9,8 @@ from daisy.protocols import lavender_pb2, to_timestamp, to_duration, Duration
 
 logger = logging.getLogger(__name__)
 
+INDEX_NAME = "hyacinth.palm.lavender.v1.internal_do_not_use_lavender.http_request.item"
+
 
 def launch(stub, url):
     logger.info("load %s", url)

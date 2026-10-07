@@ -4,10 +4,7 @@ use std::{fs::File, io::prelude::*, path::Path, process::Command, time::Duration
 use hyacinth::{cups_v1::Task, flatbuffers_root};
 use portal::{
     Error, Result, is_stopped, parse_toml,
-    queue::{
-        Consumer as QueueConsumer,
-        rabbitmq::{Node as RabbitMq, QueueDeclareOptions},
-    },
+    queue::{Consumer as QueueConsumer, rabbitmq::Node as RabbitMq},
 };
 use serde::{Deserialize, Serialize};
 use tempfile::tempdir;
@@ -27,16 +24,6 @@ pub async fn start<P: AsRef<Path>>(config: P, interval: Duration) -> Result<()> 
 
     let queue = type_name::<Task>();
     let client = config.rabbitmq.open().await?;
-    client
-        .declare_queue(
-            queue,
-            QueueDeclareOptions {
-                durable: true,
-                exclusive: true,
-                ..Default::default()
-            },
-        )
-        .await?;
 
     loop {
         if let Err(e) = client.consume("cups", queue, &Consumer {}, interval).await {

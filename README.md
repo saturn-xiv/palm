@@ -27,6 +27,7 @@ git submodule update --init --recursive
 - [Media Types](https://www.iana.org/assignments/media-types/media-types.xhtml)
 - [Protobuf Version Support](https://protobuf.dev/support/version-support/)
 - [Amazon Corretto Downloads](https://downloads.corretto.aws/#/overview)
+- [OpenSearch: Index naming restrictions](https://docs.opensearch.org/latest/api-reference/index-apis/create-index/#index-naming-restrictions)
 
 ### UI
 

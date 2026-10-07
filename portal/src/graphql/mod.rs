@@ -194,8 +194,6 @@ pub struct TokenPayload {
     pub r#type: UserType,
 }
 
-pub struct Plugin;
-
 #[derive(Debug, GraphQLObject)]
 #[graphql(name = "Pagination")]
 pub struct Pagination {

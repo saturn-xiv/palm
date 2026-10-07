@@ -22,6 +22,7 @@ pub mod session;
 pub mod ssha512;
 pub mod twilio;
 
+use std::any::type_name;
 use std::env::current_exe;
 use std::error::Error as StdError;
 use std::fmt;
@@ -85,6 +86,31 @@ macro_rules! web_try {
             (StatusCode::INTERNAL_SERVER_ERROR, x.to_string())
         })?
     };
+}
+
+pub struct Plugin;
+
+impl Plugin {
+    pub async fn init(queue: &queue::rabbitmq::Client) -> Result<()> {
+        for it in [
+            type_name::<hyacinth::email_v1::Task>(),
+            type_name::<hyacinth::sms_v1::Task>(),
+            type_name::<hyacinth::tex_v1::Task>(),
+            type_name::<hyacinth::cups_v1::Task>(),
+        ] {
+            queue
+                .declare_queue(
+                    it,
+                    lapin::options::QueueDeclareOptions {
+                        durable: true,
+                        exclusive: true,
+                        ..Default::default()
+                    },
+                )
+                .await?;
+        }
+        Ok(())
+    }
 }
 
 pub fn is_stopped() -> Result<bool> {

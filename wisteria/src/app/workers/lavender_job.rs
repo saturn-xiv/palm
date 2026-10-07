@@ -19,7 +19,7 @@ use portal::{
     parse_toml,
     queue::{
         Consumer as QueueConsumer,
-        rabbitmq::{Client as QueueClient, Node as RabbitMq, QueueDeclareOptions},
+        rabbitmq::{Client as QueueClient, Node as RabbitMq},
     },
     shell,
 };
@@ -37,16 +37,6 @@ pub async fn start<P: AsRef<Path>>(config: P, interval: Duration) -> Result<()> 
 
     let queue = type_name::<Message>();
     let client = config.rabbitmq.open().await?;
-    client
-        .declare_queue(
-            queue,
-            QueueDeclareOptions {
-                durable: true,
-                exclusive: true,
-                ..Default::default()
-            },
-        )
-        .await?;
 
     loop {
         if let Err(e) = client

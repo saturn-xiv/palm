@@ -3,8 +3,8 @@ use std::{ops::DerefMut, path::Path};
 use chrono::Duration;
 use diesel::Connection as DieselConnection;
 use portal::{
-    Error, Loquat, Result, current_user,
-    graphql::{CurrentUser, Plugin},
+    Error, Loquat, Plugin, Result, current_user,
+    graphql::CurrentUser,
     hostname,
     models::{
         log::{Dao as LogDao, Level},

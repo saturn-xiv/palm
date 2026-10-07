@@ -2,18 +2,18 @@ pub mod response;
 
 use std::{any::type_name, result::Result as StdResult};
 
+use hyper::StatusCode;
 use opensearch::{
     Error as OpenSearchError, IndexParts, OpenSearch,
     http::{
         Url,
         transport::{SingleNodeConnectionPool, TransportBuilder},
     },
-    indices::{IndicesCreateParts, IndicesDeleteParts},
+    indices::{IndicesCreateParts, IndicesDeleteParts, IndicesExistsParts},
     models::InfoResponse,
 };
 use serde::{Deserialize, Serialize};
-
-pub use serde_json::Value;
+use serde_json::Value;
 
 pub type OpenSearchResult<T> = StdResult<T, OpenSearchError>;
 
@@ -32,7 +32,7 @@ fn node_default_host() -> String {
 impl Default for Node {
     fn default() -> Self {
         Self {
-            host: "http://localhost:9200".to_string(),
+            host: node_default_host(),
             namespace: None,
         }
     }
@@ -106,17 +106,30 @@ impl Client {
             .await?;
         Ok(())
     }
+
+    // https://docs.opensearch.org/latest/api-reference/index-apis/exists/
+    pub async fn index_exists<T>(&self) -> OpenSearchResult<bool> {
+        let name = self.index_name::<T>();
+        let res = self
+            .db
+            .indices()
+            .exists(IndicesExistsParts::Index(&[name.as_str()]))
+            .send()
+            .await?;
+        Ok(res.status_code() == StatusCode::OK)
+    }
+
     pub async fn info(&self) -> OpenSearchResult<InfoResponse> {
         let res: InfoResponse = self.db.info().send().await?.json().await?;
         Ok(res)
     }
-    // https://docs.opensearch.org/latest/api-reference/index-apis/create-index/#index-naming-restrictions
+
     pub fn index_name<T>(&self) -> String {
         let n = type_name::<T>();
         let s = match self.namespace {
             Some(ref it) => format!("{}.{}", it, n),
             None => n.to_string(),
         };
-        s.to_lowercase().replace("::", "-")
+        s.to_lowercase().replace("::", ".")
     }
 }

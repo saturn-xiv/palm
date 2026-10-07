@@ -15,7 +15,7 @@ use uuid::Uuid;
 use validator::Validate;
 
 use super::super::super::{
-    Error, HttpError, Jwt, PasswordHashing, Result,
+    Error, HttpError, Jwt, PasswordHashing, Plugin, Result,
     cache::redis::StandaloneConnection as Cache,
     content_types::APPLICATION_X_FLATBUFFERS,
     models::{
@@ -30,7 +30,7 @@ use super::super::super::{
     queue::rabbitmq::Client as RabbitMq,
     rbac::Rbac,
 };
-use super::super::{Plugin, Session};
+use super::super::Session;
 use super::{CurrentUser, SignInResponse, TokenPayload};
 
 #[derive(Clone, Debug, Validate)]

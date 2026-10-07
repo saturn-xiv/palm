@@ -4,10 +4,7 @@ use std::{path::Path, sync::Arc, time::Duration};
 use hyacinth::{flatbuffers_root, sms_v1::Task};
 use portal::{
     Error, Result, is_stopped, parse_toml,
-    queue::{
-        Consumer as QueueConsumer,
-        rabbitmq::{Node as RabbitMq, QueueDeclareOptions},
-    },
+    queue::{Consumer as QueueConsumer, rabbitmq::Node as RabbitMq},
     twilio::Node as TwilioConfig,
 };
 use serde::{Deserialize, Serialize};
@@ -23,16 +20,6 @@ pub async fn start<P: AsRef<Path>>(config: P, interval: Duration) -> Result<()> 
 
     let queue = type_name::<Task>();
     let client = config.rabbitmq.open().await?;
-    client
-        .declare_queue(
-            queue,
-            QueueDeclareOptions {
-                durable: true,
-                exclusive: true,
-                ..Default::default()
-            },
-        )
-        .await?;
 
     loop {
         if let Err(e) = client

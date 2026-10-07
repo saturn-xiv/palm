@@ -55,11 +55,11 @@ fn node_default_virtual_host() -> String {
 impl Default for Node {
     fn default() -> Self {
         Self {
-            host: "127.0.0.1".to_string(),
-            port: 5672,
-            user: "guest".to_string(),
-            password: "guest".to_string(),
-            virtual_host: "%2f".to_string(),
+            host: node_default_host(),
+            port: node_default_port(),
+            user: node_default_user(),
+            password: node_default_password(),
+            virtual_host: node_default_virtual_host(),
         }
     }
 }

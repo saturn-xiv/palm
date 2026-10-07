@@ -2,8 +2,8 @@ use std::{ops::DerefMut, path::Path};
 
 use diesel::Connection as DieselConnection;
 use portal::{
-    Error, Loquat, PasswordHashing, Result, current_user,
-    graphql::{Plugin, user::email::SignUp},
+    Error, Loquat, PasswordHashing, Plugin, Result, current_user,
+    graphql::user::email::SignUp,
     hostname,
     models::{
         log::{Dao as LogDao, Level},

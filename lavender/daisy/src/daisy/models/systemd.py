@@ -9,6 +9,8 @@ from daisy.protocols import lavender_pb2, to_timestamp
 
 logger = logging.getLogger(__name__)
 
+INDEX_NAME = "hyacinth.palm.lavender.v1.internal_do_not_use_lavender.systemdrequest"
+
 
 def launch(stub, name, db):
     logger.info("load systemd unit %s", name)
