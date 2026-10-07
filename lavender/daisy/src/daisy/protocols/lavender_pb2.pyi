@@ -69,18 +69,20 @@ class KubernetesResponse(_message.Message):
 class HttpRequest(_message.Message):
     __slots__ = ("host", "items")
     class Item(_message.Message):
-        __slots__ = ("status_code", "content_type", "body", "elapsed", "created_at")
+        __slots__ = ("url", "status_code", "content_type", "body", "elapsed", "created_at")
+        URL_FIELD_NUMBER: _ClassVar[int]
         STATUS_CODE_FIELD_NUMBER: _ClassVar[int]
         CONTENT_TYPE_FIELD_NUMBER: _ClassVar[int]
         BODY_FIELD_NUMBER: _ClassVar[int]
         ELAPSED_FIELD_NUMBER: _ClassVar[int]
         CREATED_AT_FIELD_NUMBER: _ClassVar[int]
+        url: str
         status_code: int
         content_type: str
         body: str
         elapsed: Duration
         created_at: Timestamp
-        def __init__(self, status_code: _Optional[int] = ..., content_type: _Optional[str] = ..., body: _Optional[str] = ..., elapsed: _Optional[_Union[Duration, _Mapping]] = ..., created_at: _Optional[_Union[Timestamp, _Mapping]] = ...) -> None: ...
+        def __init__(self, url: _Optional[str] = ..., status_code: _Optional[int] = ..., content_type: _Optional[str] = ..., body: _Optional[str] = ..., elapsed: _Optional[_Union[Duration, _Mapping]] = ..., created_at: _Optional[_Union[Timestamp, _Mapping]] = ...) -> None: ...
     HOST_FIELD_NUMBER: _ClassVar[int]
     ITEMS_FIELD_NUMBER: _ClassVar[int]
     host: str

@@ -46,9 +46,10 @@ message KubernetesResponse{
 
 message HttpRequest {
     message Item{
-        uint32 status_code = 1;
-        string content_type = 2;
-        string body = 3;
+        string url = 1;
+        uint32 status_code = 2;
+        string content_type = 3;
+        string body = 4;
         Duration elapsed = 8;
         Timestamp created_at = 9;
     }

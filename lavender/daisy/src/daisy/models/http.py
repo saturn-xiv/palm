@@ -28,7 +28,7 @@ def _http_fetch(url):
     start_time = time.perf_counter()
 
     it = lavender_pb2.HttpRequest.Item(
-        elapsed=Duration(), created_at=to_timestamp(now))
+        url=url, elapsed=Duration(), created_at=to_timestamp(now))
     try:
         res = requests.get(url, timeout=5)
         it.status_code = res.status_code

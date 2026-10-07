@@ -1,6 +1,8 @@
 pub mod response;
 
-use std::{any::type_name, result::Result as StdResult};
+use std::any::type_name;
+use std::io::{Error as IoError, ErrorKind as IoErrorKind};
+use std::result::Result as StdResult;
 
 use hyper::StatusCode;
 use opensearch::{
@@ -13,7 +15,7 @@ use opensearch::{
     models::InfoResponse,
 };
 use serde::{Deserialize, Serialize};
-use serde_json::Value;
+use serde_json::{Value, json};
 
 pub type OpenSearchResult<T> = StdResult<T, OpenSearchError>;
 
@@ -60,19 +62,45 @@ pub struct Client {
 }
 
 impl Client {
-    pub async fn create_index<T>(&self, config: Value) -> OpenSearchResult<()> {
+    // https://docs.opensearch.org/latest/api-reference/index-apis/create-index/
+    // https://docs.opensearch.org/latest/mappings/supported-field-types/index/
+    pub async fn create_index<T>(
+        &self,
+        settings: Option<Value>,
+        mappings: Option<Value>,
+    ) -> OpenSearchResult<()> {
         let name = self.index_name::<T>();
-        self.db
+        log::warn!("create index {name}");
+        let res = self
+            .db
             .indices()
             .create(IndicesCreateParts::Index(&name))
-            .body(config)
+            .body({
+                let mut it = json!({});
+                if let Some(v) = settings {
+                    it["settings"] = v;
+                }
+                if let Some(v) = mappings {
+                    it["mappings"] = v;
+                }
+                it
+            })
             .send()
             .await?;
+
+        let status = res.status_code();
+        if status != StatusCode::OK {
+            let body = res.text().await?;
+            log::error!("{status} {body}");
+            return Err(IoError::from(IoErrorKind::InvalidData).into());
+        }
+        let _: response::create_index::Item = res.json().await?;
         Ok(())
     }
 
     pub async fn delete_index<T>(&self) -> OpenSearchResult<()> {
         let name = self.index_name::<T>();
+        log::warn!("delete index {name}");
         self.db
             .indices()
             .delete(IndicesDeleteParts::Index(&[&name]))
@@ -84,6 +112,7 @@ impl Client {
     // https://docs.opensearch.org/latest/api-reference/search-apis/search/
     pub async fn search_document<T: Serialize>(&self, query: Value) -> OpenSearchResult<Vec<T>> {
         let name = self.index_name::<T>();
+        log::debug!("search document {name}");
         let res = self
             .db
             .search(opensearch::SearchParts::Index(&[&name]))
@@ -99,6 +128,7 @@ impl Client {
 
     pub async fn index_document<T: Serialize>(&self, item: &T) -> OpenSearchResult<()> {
         let name = self.index_name::<T>();
+        log::debug!("index document {name}");
         self.db
             .index(IndexParts::Index(&name))
             .body(item)
@@ -110,6 +140,7 @@ impl Client {
     // https://docs.opensearch.org/latest/api-reference/index-apis/exists/
     pub async fn index_exists<T>(&self) -> OpenSearchResult<bool> {
         let name = self.index_name::<T>();
+        log::debug!("check index {name} exists");
         let res = self
             .db
             .indices()
@@ -124,6 +155,7 @@ impl Client {
         Ok(res)
     }
 
+    // https://docs.opensearch.org/latest/api-reference/index-apis/create-index/#index-naming-restrictions
     pub fn index_name<T>(&self) -> String {
         let n = type_name::<T>();
         let s = match self.namespace {

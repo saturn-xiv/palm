@@ -14,6 +14,7 @@ use portal::{
     queue::rabbitmq::{Client as RabbitMq, QueueDeclareOptions},
 };
 use serde::{Deserialize, Serialize};
+use serde_json::json;
 
 pub struct Plugin;
 
@@ -30,7 +31,60 @@ impl Plugin {
             )
             .await?;
         if !search.index_exists::<lavender_v1::SystemdRequest>().await? {
-            log::debug!("create index for systemd request");
+            search
+                .create_index::<lavender_v1::SystemdRequest>(
+                    None,
+                    Some(json!({
+                        "properties":{
+                            "host": {"type": "keyword"},
+                            "unit": {"type": "keyword"},
+                            "priority": {"type": "byte"},
+                            "message": {"type": "text"},
+                            "created_at": {"type": "date_nanos", "format": "strict_date_optional_time_nanos"}
+                        }
+                    })),
+                )
+                .await?;
+        }
+        if !search
+            .index_exists::<lavender_v1::KubernetesRequest>()
+            .await?
+        {
+            search
+                .create_index::<lavender_v1::KubernetesRequest>(
+                    None,
+                    Some(json!({
+                        "properties":{
+                            "node": {"type": "keyword"},
+                            "pod": {"type": "keyword"},
+                            "container": {"type": "keyword"},
+                            "message": {"type": "text"},
+                            "created_at": {"type": "date_nanos", "format": "strict_date_optional_time_nanos"}
+                        }
+                    })),
+                )
+                .await?;
+        }
+        if !search
+            .index_exists::<lavender_v1::http_request::Item>()
+            .await?
+        {
+            search
+                .create_index::<lavender_v1::http_request::Item>(
+                    None,
+                    Some(json!({
+                        "properties":{
+                            "url": {"type": "keyword"},
+                            "from": {"type": "keyword"},
+                            "status_code": {"type": "short"},
+                            "content_type": {"type": "keyword"},
+                            "body": {"type": "text"},
+                            "elapsed": {"type": "date_nanos", "format": "strict_date_optional_time_nanos"},
+                            "created_tt": {"type": "date_nanos", "format": "strict_date_optional_time_nanos"}
+                        }
+                    })),
+                )
+                .await?;
         }
         Ok(())
     }
