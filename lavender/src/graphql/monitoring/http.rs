@@ -19,8 +19,8 @@ use super::super::can;
 pub struct Item {
     pub from: String,
     pub url: String,
-    pub status_code: i32,
-    pub content_type: String,
+    pub status_code: Optional<i32>,
+    pub content_type: Optional<String>,
     pub body: String,
     pub elapsed: i32,
     pub created_at: NaiveDateTime,

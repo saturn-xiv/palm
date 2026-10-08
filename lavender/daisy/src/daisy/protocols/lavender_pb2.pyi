@@ -78,12 +78,7 @@ class KubernetesResponse(_message.Message):
     def __init__(self, chunk_count: _Optional[int] = ...) -> None: ...
 
 class ClawRequest(_message.Message):
-    __slots__ = ("elapsed", "created_at", "error", "http", "postgresql", "mysql", "redis", "opensearch", "snmp")
-    class Error(_message.Message):
-        __slots__ = ("reason",)
-        REASON_FIELD_NUMBER: _ClassVar[int]
-        reason: str
-        def __init__(self, reason: _Optional[str] = ...) -> None: ...
+    __slots__ = ("elapsed", "created_at", "http", "postgresql", "mysql", "redis", "opensearch", "snmp")
     class Http(_message.Message):
         __slots__ = ("url", "status_code", "content_type", "body")
         URL_FIELD_NUMBER: _ClassVar[int]
@@ -168,7 +163,6 @@ class ClawRequest(_message.Message):
     FROM_FIELD_NUMBER: _ClassVar[int]
     ELAPSED_FIELD_NUMBER: _ClassVar[int]
     CREATED_AT_FIELD_NUMBER: _ClassVar[int]
-    ERROR_FIELD_NUMBER: _ClassVar[int]
     HTTP_FIELD_NUMBER: _ClassVar[int]
     POSTGRESQL_FIELD_NUMBER: _ClassVar[int]
     MYSQL_FIELD_NUMBER: _ClassVar[int]
@@ -177,11 +171,10 @@ class ClawRequest(_message.Message):
     SNMP_FIELD_NUMBER: _ClassVar[int]
     elapsed: Duration
     created_at: Timestamp
-    error: ClawRequest.Error
     http: ClawRequest.Http
     postgresql: ClawRequest.PostgreSql
     mysql: ClawRequest.MySql
     redis: ClawRequest.Redis
     opensearch: ClawRequest.OpenSearch
     snmp: ClawRequest.Snmp
-    def __init__(self, elapsed: _Optional[_Union[Duration, _Mapping]] = ..., created_at: _Optional[_Union[Timestamp, _Mapping]] = ..., error: _Optional[_Union[ClawRequest.Error, _Mapping]] = ..., http: _Optional[_Union[ClawRequest.Http, _Mapping]] = ..., postgresql: _Optional[_Union[ClawRequest.PostgreSql, _Mapping]] = ..., mysql: _Optional[_Union[ClawRequest.MySql, _Mapping]] = ..., redis: _Optional[_Union[ClawRequest.Redis, _Mapping]] = ..., opensearch: _Optional[_Union[ClawRequest.OpenSearch, _Mapping]] = ..., snmp: _Optional[_Union[ClawRequest.Snmp, _Mapping]] = ..., **kwargs) -> None: ...
+    def __init__(self, elapsed: _Optional[_Union[Duration, _Mapping]] = ..., created_at: _Optional[_Union[Timestamp, _Mapping]] = ..., http: _Optional[_Union[ClawRequest.Http, _Mapping]] = ..., postgresql: _Optional[_Union[ClawRequest.PostgreSql, _Mapping]] = ..., mysql: _Optional[_Union[ClawRequest.MySql, _Mapping]] = ..., redis: _Optional[_Union[ClawRequest.Redis, _Mapping]] = ..., opensearch: _Optional[_Union[ClawRequest.OpenSearch, _Mapping]] = ..., snmp: _Optional[_Union[ClawRequest.Snmp, _Mapping]] = ..., **kwargs) -> None: ...

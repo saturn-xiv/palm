@@ -10,7 +10,7 @@ from daisy.protocols import lavender_pb2, to_timestamp
 
 logger = logging.getLogger(__name__)
 
-INDEX_NAME = "hyacinth.palm.lavender.v1.internal_do_not_use_lavender.kubernetesrequest"
+INDEX_NAME = "lavender.graphql.logging.kubernetes.pod.item"
 
 
 def launch(stub, name, db):
@@ -28,9 +28,8 @@ def launch(stub, name, db):
 def _load_logs_for_namespace(db, namespace):
     v1 = client.CoreV1Api()
 
-    logger.debug("get metadata for namespace %s", namespace)
+    logger.debug("detect metadata for namespace %s", namespace)
     namespace_ = v1.read_namespace(name=namespace)
-    namespace_creation_time = namespace_.metadata.creation_timestamp
 
     logger.debug("load pods for namespace %s", namespace)
     pods = v1.list_namespaced_pod(namespace=namespace)
@@ -41,14 +40,15 @@ def _load_logs_for_namespace(db, namespace):
     for pod in pods.items:
         pod_name = pod.metadata.name
         node_name = pod.spec.node_name
+        pod_owners = [lavender_pb2.KubernetesRequest.Owner(
+            kind=x.kind, name=x.name, uid=x.uid) for x in pod.metadata.owner_references]
 
         for container in pod.spec.containers:
             container_name = container.name
-            # if state.waiting and state.waiting.reason == "ContainerCreating":
+
             key = f"kubernetes.{namespace}.{pod_name}.{container_name}.last-fetch"
-            since = namespace_creation_time
-            if key in db:
-                since = pickle.loads(db[key])
+            since = pickle.loads(
+                db[key]) if key in db else namespace_.metadata.creation_timestamp
             logger.debug("fetch kubernetes logs for %s@%s/%s since %s",
                          container_name, namespace, pod_name, since)
             try:
@@ -69,7 +69,7 @@ def _load_logs_for_namespace(db, namespace):
                         continue
                     # UserWarning: no explicit representation of timezones available for np.datetime64
                     cur = numpy.datetime64(items[0][:-1])
-                    yield lavender_pb2.KubernetesRequest(node=node_name, pod=pod_name, container=container_name, created_at=to_timestamp(cur), message=items[1])
+                    yield lavender_pb2.KubernetesRequest(node=node_name, pod=pod_name, container=container_name, owners=pod_owners, created_at=to_timestamp(cur), message=items[1])
                     db[key] = pickle.dumps(cur.astype(
                         'datetime64[us]').item().replace(tzinfo=UTC))
             except ApiException as e:

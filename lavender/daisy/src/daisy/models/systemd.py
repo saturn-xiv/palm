@@ -9,7 +9,7 @@ from daisy.protocols import lavender_pb2, to_timestamp
 
 logger = logging.getLogger(__name__)
 
-INDEX_NAME = "hyacinth.palm.lavender.v1.internal_do_not_use_lavender.systemdrequest"
+INDEX_NAME = "lavender.graphql.logging.systemd.unit.item"
 
 
 def launch(stub, name, db):
@@ -40,7 +40,7 @@ def _load_logs_for_unit(db, name):
         cur = entry.get('__REALTIME_TIMESTAMP')
         yield lavender_pb2.SystemdRequest(
             host=entry.get('_HOSTNAME'),
-            unit=entry.get('_SYSTEMD_UNIT'),
+            name=entry.get('_SYSTEMD_UNIT'),
             created_at=to_timestamp(cur),
             priority=int(entry.get('PRIORITY', '0')),
             message=entry.get('MESSAGE', '')

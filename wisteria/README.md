@@ -12,5 +12,5 @@
 ```bash
 cargo build
 
-RUST_LOG=debug,h2=info,lapin=info,hyper_util=info ./target/debug/wisteria -c wisteria/config.toml http -p 4000
+RUST_LOG=debug,h2=info,lapin=info,hyper_util=info,reqwest=info ./target/debug/wisteria -c wisteria/config.toml http -p 4000
 ```

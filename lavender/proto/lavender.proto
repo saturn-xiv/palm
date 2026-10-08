@@ -50,13 +50,10 @@ message KubernetesResponse {
     uint32 chunk_count = 1;
 }
 message ClawRequest {
-    message Error{
-        string reason = 1;
-    }
     message Http{
         string url = 1;
-        uint32 status_code = 2;
-        string content_type = 3;
+        optional uint32 status_code = 2;
+        optional string content_type = 3;
         string body = 4;
     }
     message PostgreSql {
@@ -103,7 +100,6 @@ message ClawRequest {
     Duration elapsed = 8;
     Timestamp created_at = 9;
     oneof item {
-        Error error = 10;
         Http http = 11;
         PostgreSql postgresql = 12;
         MySql mysql = 13;

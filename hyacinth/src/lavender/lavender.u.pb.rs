@@ -3983,28 +3983,10 @@ impl<'msg> ClawRequestView<'msg> {
        .unwrap_or(super::TimestampView::default())
   }
 
-  // error: optional message palm.lavender.v1.ClawRequest.Error
-  pub fn has_error(self) -> bool {
-    unsafe {
-      self.inner.ptr().has_field_at_index(3)
-    }
-  }
-  pub fn error_opt(self) -> ::protobuf::Optional<super::claw_request::ErrorView<'msg>> {
-        ::protobuf::Optional::new(self.error(), self.has_error())
-  }
-  pub fn error(self) -> super::claw_request::ErrorView<'msg> {
-    let submsg = unsafe {
-      self.inner.ptr().get_message_at_index(3)
-    };
-    submsg
-        .map(|ptr| unsafe { ::protobuf::__internal::runtime::MessageViewInner::wrap(ptr).into() })
-       .unwrap_or(super::claw_request::ErrorView::default())
-  }
-
   // http: optional message palm.lavender.v1.ClawRequest.Http
   pub fn has_http(self) -> bool {
     unsafe {
-      self.inner.ptr().has_field_at_index(4)
+      self.inner.ptr().has_field_at_index(3)
     }
   }
   pub fn http_opt(self) -> ::protobuf::Optional<super::claw_request::HttpView<'msg>> {
@@ -4012,7 +3994,7 @@ impl<'msg> ClawRequestView<'msg> {
   }
   pub fn http(self) -> super::claw_request::HttpView<'msg> {
     let submsg = unsafe {
-      self.inner.ptr().get_message_at_index(4)
+      self.inner.ptr().get_message_at_index(3)
     };
     submsg
         .map(|ptr| unsafe { ::protobuf::__internal::runtime::MessageViewInner::wrap(ptr).into() })
@@ -4022,7 +4004,7 @@ impl<'msg> ClawRequestView<'msg> {
   // postgresql: optional message palm.lavender.v1.ClawRequest.PostgreSql
   pub fn has_postgresql(self) -> bool {
     unsafe {
-      self.inner.ptr().has_field_at_index(5)
+      self.inner.ptr().has_field_at_index(4)
     }
   }
   pub fn postgresql_opt(self) -> ::protobuf::Optional<super::claw_request::PostgreSqlView<'msg>> {
@@ -4030,7 +4012,7 @@ impl<'msg> ClawRequestView<'msg> {
   }
   pub fn postgresql(self) -> super::claw_request::PostgreSqlView<'msg> {
     let submsg = unsafe {
-      self.inner.ptr().get_message_at_index(5)
+      self.inner.ptr().get_message_at_index(4)
     };
     submsg
         .map(|ptr| unsafe { ::protobuf::__internal::runtime::MessageViewInner::wrap(ptr).into() })
@@ -4040,7 +4022,7 @@ impl<'msg> ClawRequestView<'msg> {
   // mysql: optional message palm.lavender.v1.ClawRequest.MySql
   pub fn has_mysql(self) -> bool {
     unsafe {
-      self.inner.ptr().has_field_at_index(6)
+      self.inner.ptr().has_field_at_index(5)
     }
   }
   pub fn mysql_opt(self) -> ::protobuf::Optional<super::claw_request::MySqlView<'msg>> {
@@ -4048,7 +4030,7 @@ impl<'msg> ClawRequestView<'msg> {
   }
   pub fn mysql(self) -> super::claw_request::MySqlView<'msg> {
     let submsg = unsafe {
-      self.inner.ptr().get_message_at_index(6)
+      self.inner.ptr().get_message_at_index(5)
     };
     submsg
         .map(|ptr| unsafe { ::protobuf::__internal::runtime::MessageViewInner::wrap(ptr).into() })
@@ -4058,7 +4040,7 @@ impl<'msg> ClawRequestView<'msg> {
   // redis: optional message palm.lavender.v1.ClawRequest.Redis
   pub fn has_redis(self) -> bool {
     unsafe {
-      self.inner.ptr().has_field_at_index(7)
+      self.inner.ptr().has_field_at_index(6)
     }
   }
   pub fn redis_opt(self) -> ::protobuf::Optional<super::claw_request::RedisView<'msg>> {
@@ -4066,7 +4048,7 @@ impl<'msg> ClawRequestView<'msg> {
   }
   pub fn redis(self) -> super::claw_request::RedisView<'msg> {
     let submsg = unsafe {
-      self.inner.ptr().get_message_at_index(7)
+      self.inner.ptr().get_message_at_index(6)
     };
     submsg
         .map(|ptr| unsafe { ::protobuf::__internal::runtime::MessageViewInner::wrap(ptr).into() })
@@ -4076,7 +4058,7 @@ impl<'msg> ClawRequestView<'msg> {
   // opensearch: optional message palm.lavender.v1.ClawRequest.OpenSearch
   pub fn has_opensearch(self) -> bool {
     unsafe {
-      self.inner.ptr().has_field_at_index(8)
+      self.inner.ptr().has_field_at_index(7)
     }
   }
   pub fn opensearch_opt(self) -> ::protobuf::Optional<super::claw_request::OpenSearchView<'msg>> {
@@ -4084,7 +4066,7 @@ impl<'msg> ClawRequestView<'msg> {
   }
   pub fn opensearch(self) -> super::claw_request::OpenSearchView<'msg> {
     let submsg = unsafe {
-      self.inner.ptr().get_message_at_index(8)
+      self.inner.ptr().get_message_at_index(7)
     };
     submsg
         .map(|ptr| unsafe { ::protobuf::__internal::runtime::MessageViewInner::wrap(ptr).into() })
@@ -4094,7 +4076,7 @@ impl<'msg> ClawRequestView<'msg> {
   // snmp: optional message palm.lavender.v1.ClawRequest.Snmp
   pub fn has_snmp(self) -> bool {
     unsafe {
-      self.inner.ptr().has_field_at_index(9)
+      self.inner.ptr().has_field_at_index(8)
     }
   }
   pub fn snmp_opt(self) -> ::protobuf::Optional<super::claw_request::SnmpView<'msg>> {
@@ -4102,7 +4084,7 @@ impl<'msg> ClawRequestView<'msg> {
   }
   pub fn snmp(self) -> super::claw_request::SnmpView<'msg> {
     let submsg = unsafe {
-      self.inner.ptr().get_message_at_index(9)
+      self.inner.ptr().get_message_at_index(8)
     };
     submsg
         .map(|ptr| unsafe { ::protobuf::__internal::runtime::MessageViewInner::wrap(ptr).into() })
@@ -4111,8 +4093,6 @@ impl<'msg> ClawRequestView<'msg> {
 
   pub fn item(self) -> super::claw_request::ItemOneof<'msg> {
     match self.item_case() {
-      super::claw_request::ItemCase::Error =>
-          super::claw_request::ItemOneof::Error(self.error()),
       super::claw_request::ItemCase::Http =>
           super::claw_request::ItemOneof::Http(self.http()),
       super::claw_request::ItemCase::Postgresql =>
@@ -4341,63 +4321,16 @@ impl<'msg> ClawRequestMut<'msg> {
     }
   }
 
-  // error: optional message palm.lavender.v1.ClawRequest.Error
-  pub fn has_error(&self) -> bool {
-    unsafe {
-      self.inner.ptr().has_field_at_index(3)
-    }
-  }
-  pub fn clear_error(&mut self) {
-    unsafe {
-      self.inner.ptr().clear_field_at_index(
-        3
-      );
-    }
-  }
-  pub fn error_opt(&self) -> ::protobuf::Optional<super::claw_request::ErrorView<'_>> {
-        ::protobuf::Optional::new(self.error(), self.has_error())
-  }
-  pub fn error(&self) -> super::claw_request::ErrorView<'_> {
-    let submsg = unsafe {
-      self.inner.ptr().get_message_at_index(3)
-    };
-    submsg
-        .map(|ptr| unsafe { ::protobuf::__internal::runtime::MessageViewInner::wrap(ptr).into() })
-       .unwrap_or(super::claw_request::ErrorView::default())
-  }
-  pub fn error_mut(&mut self) -> super::claw_request::ErrorMut<'_> {
-     let ptr = unsafe {
-       self.inner.ptr_mut().get_or_create_mutable_message_at_index(
-         3, self.inner.arena()
-       ).unwrap()
-     };
-     ::protobuf::__internal::runtime::MessageMutInner::from_parent(
-         self.as_message_mut_inner(::protobuf::__internal::Private),
-         ptr
-     ).into()
-  }
-  pub fn set_error(&mut self,
-    val: impl ::protobuf::IntoProxied<super::claw_request::Error>) {
-
-    unsafe {
-      ::protobuf::__internal::runtime::message_set_sub_message(
-        ::protobuf::AsMut::as_mut(self).inner,
-        3,
-        val
-      );
-    }
-  }
-
   // http: optional message palm.lavender.v1.ClawRequest.Http
   pub fn has_http(&self) -> bool {
     unsafe {
-      self.inner.ptr().has_field_at_index(4)
+      self.inner.ptr().has_field_at_index(3)
     }
   }
   pub fn clear_http(&mut self) {
     unsafe {
       self.inner.ptr().clear_field_at_index(
-        4
+        3
       );
     }
   }
@@ -4406,7 +4339,7 @@ impl<'msg> ClawRequestMut<'msg> {
   }
   pub fn http(&self) -> super::claw_request::HttpView<'_> {
     let submsg = unsafe {
-      self.inner.ptr().get_message_at_index(4)
+      self.inner.ptr().get_message_at_index(3)
     };
     submsg
         .map(|ptr| unsafe { ::protobuf::__internal::runtime::MessageViewInner::wrap(ptr).into() })
@@ -4415,7 +4348,7 @@ impl<'msg> ClawRequestMut<'msg> {
   pub fn http_mut(&mut self) -> super::claw_request::HttpMut<'_> {
      let ptr = unsafe {
        self.inner.ptr_mut().get_or_create_mutable_message_at_index(
-         4, self.inner.arena()
+         3, self.inner.arena()
        ).unwrap()
      };
      ::protobuf::__internal::runtime::MessageMutInner::from_parent(
@@ -4429,7 +4362,7 @@ impl<'msg> ClawRequestMut<'msg> {
     unsafe {
       ::protobuf::__internal::runtime::message_set_sub_message(
         ::protobuf::AsMut::as_mut(self).inner,
-        4,
+        3,
         val
       );
     }
@@ -4438,13 +4371,13 @@ impl<'msg> ClawRequestMut<'msg> {
   // postgresql: optional message palm.lavender.v1.ClawRequest.PostgreSql
   pub fn has_postgresql(&self) -> bool {
     unsafe {
-      self.inner.ptr().has_field_at_index(5)
+      self.inner.ptr().has_field_at_index(4)
     }
   }
   pub fn clear_postgresql(&mut self) {
     unsafe {
       self.inner.ptr().clear_field_at_index(
-        5
+        4
       );
     }
   }
@@ -4453,7 +4386,7 @@ impl<'msg> ClawRequestMut<'msg> {
   }
   pub fn postgresql(&self) -> super::claw_request::PostgreSqlView<'_> {
     let submsg = unsafe {
-      self.inner.ptr().get_message_at_index(5)
+      self.inner.ptr().get_message_at_index(4)
     };
     submsg
         .map(|ptr| unsafe { ::protobuf::__internal::runtime::MessageViewInner::wrap(ptr).into() })
@@ -4462,7 +4395,7 @@ impl<'msg> ClawRequestMut<'msg> {
   pub fn postgresql_mut(&mut self) -> super::claw_request::PostgreSqlMut<'_> {
      let ptr = unsafe {
        self.inner.ptr_mut().get_or_create_mutable_message_at_index(
-         5, self.inner.arena()
+         4, self.inner.arena()
        ).unwrap()
      };
      ::protobuf::__internal::runtime::MessageMutInner::from_parent(
@@ -4476,7 +4409,7 @@ impl<'msg> ClawRequestMut<'msg> {
     unsafe {
       ::protobuf::__internal::runtime::message_set_sub_message(
         ::protobuf::AsMut::as_mut(self).inner,
-        5,
+        4,
         val
       );
     }
@@ -4485,13 +4418,13 @@ impl<'msg> ClawRequestMut<'msg> {
   // mysql: optional message palm.lavender.v1.ClawRequest.MySql
   pub fn has_mysql(&self) -> bool {
     unsafe {
-      self.inner.ptr().has_field_at_index(6)
+      self.inner.ptr().has_field_at_index(5)
     }
   }
   pub fn clear_mysql(&mut self) {
     unsafe {
       self.inner.ptr().clear_field_at_index(
-        6
+        5
       );
     }
   }
@@ -4500,7 +4433,7 @@ impl<'msg> ClawRequestMut<'msg> {
   }
   pub fn mysql(&self) -> super::claw_request::MySqlView<'_> {
     let submsg = unsafe {
-      self.inner.ptr().get_message_at_index(6)
+      self.inner.ptr().get_message_at_index(5)
     };
     submsg
         .map(|ptr| unsafe { ::protobuf::__internal::runtime::MessageViewInner::wrap(ptr).into() })
@@ -4509,7 +4442,7 @@ impl<'msg> ClawRequestMut<'msg> {
   pub fn mysql_mut(&mut self) -> super::claw_request::MySqlMut<'_> {
      let ptr = unsafe {
        self.inner.ptr_mut().get_or_create_mutable_message_at_index(
-         6, self.inner.arena()
+         5, self.inner.arena()
        ).unwrap()
      };
      ::protobuf::__internal::runtime::MessageMutInner::from_parent(
@@ -4523,7 +4456,7 @@ impl<'msg> ClawRequestMut<'msg> {
     unsafe {
       ::protobuf::__internal::runtime::message_set_sub_message(
         ::protobuf::AsMut::as_mut(self).inner,
-        6,
+        5,
         val
       );
     }
@@ -4532,13 +4465,13 @@ impl<'msg> ClawRequestMut<'msg> {
   // redis: optional message palm.lavender.v1.ClawRequest.Redis
   pub fn has_redis(&self) -> bool {
     unsafe {
-      self.inner.ptr().has_field_at_index(7)
+      self.inner.ptr().has_field_at_index(6)
     }
   }
   pub fn clear_redis(&mut self) {
     unsafe {
       self.inner.ptr().clear_field_at_index(
-        7
+        6
       );
     }
   }
@@ -4547,7 +4480,7 @@ impl<'msg> ClawRequestMut<'msg> {
   }
   pub fn redis(&self) -> super::claw_request::RedisView<'_> {
     let submsg = unsafe {
-      self.inner.ptr().get_message_at_index(7)
+      self.inner.ptr().get_message_at_index(6)
     };
     submsg
         .map(|ptr| unsafe { ::protobuf::__internal::runtime::MessageViewInner::wrap(ptr).into() })
@@ -4556,7 +4489,7 @@ impl<'msg> ClawRequestMut<'msg> {
   pub fn redis_mut(&mut self) -> super::claw_request::RedisMut<'_> {
      let ptr = unsafe {
        self.inner.ptr_mut().get_or_create_mutable_message_at_index(
-         7, self.inner.arena()
+         6, self.inner.arena()
        ).unwrap()
      };
      ::protobuf::__internal::runtime::MessageMutInner::from_parent(
@@ -4570,7 +4503,7 @@ impl<'msg> ClawRequestMut<'msg> {
     unsafe {
       ::protobuf::__internal::runtime::message_set_sub_message(
         ::protobuf::AsMut::as_mut(self).inner,
-        7,
+        6,
         val
       );
     }
@@ -4579,13 +4512,13 @@ impl<'msg> ClawRequestMut<'msg> {
   // opensearch: optional message palm.lavender.v1.ClawRequest.OpenSearch
   pub fn has_opensearch(&self) -> bool {
     unsafe {
-      self.inner.ptr().has_field_at_index(8)
+      self.inner.ptr().has_field_at_index(7)
     }
   }
   pub fn clear_opensearch(&mut self) {
     unsafe {
       self.inner.ptr().clear_field_at_index(
-        8
+        7
       );
     }
   }
@@ -4594,7 +4527,7 @@ impl<'msg> ClawRequestMut<'msg> {
   }
   pub fn opensearch(&self) -> super::claw_request::OpenSearchView<'_> {
     let submsg = unsafe {
-      self.inner.ptr().get_message_at_index(8)
+      self.inner.ptr().get_message_at_index(7)
     };
     submsg
         .map(|ptr| unsafe { ::protobuf::__internal::runtime::MessageViewInner::wrap(ptr).into() })
@@ -4603,7 +4536,7 @@ impl<'msg> ClawRequestMut<'msg> {
   pub fn opensearch_mut(&mut self) -> super::claw_request::OpenSearchMut<'_> {
      let ptr = unsafe {
        self.inner.ptr_mut().get_or_create_mutable_message_at_index(
-         8, self.inner.arena()
+         7, self.inner.arena()
        ).unwrap()
      };
      ::protobuf::__internal::runtime::MessageMutInner::from_parent(
@@ -4617,7 +4550,7 @@ impl<'msg> ClawRequestMut<'msg> {
     unsafe {
       ::protobuf::__internal::runtime::message_set_sub_message(
         ::protobuf::AsMut::as_mut(self).inner,
-        8,
+        7,
         val
       );
     }
@@ -4626,13 +4559,13 @@ impl<'msg> ClawRequestMut<'msg> {
   // snmp: optional message palm.lavender.v1.ClawRequest.Snmp
   pub fn has_snmp(&self) -> bool {
     unsafe {
-      self.inner.ptr().has_field_at_index(9)
+      self.inner.ptr().has_field_at_index(8)
     }
   }
   pub fn clear_snmp(&mut self) {
     unsafe {
       self.inner.ptr().clear_field_at_index(
-        9
+        8
       );
     }
   }
@@ -4641,7 +4574,7 @@ impl<'msg> ClawRequestMut<'msg> {
   }
   pub fn snmp(&self) -> super::claw_request::SnmpView<'_> {
     let submsg = unsafe {
-      self.inner.ptr().get_message_at_index(9)
+      self.inner.ptr().get_message_at_index(8)
     };
     submsg
         .map(|ptr| unsafe { ::protobuf::__internal::runtime::MessageViewInner::wrap(ptr).into() })
@@ -4650,7 +4583,7 @@ impl<'msg> ClawRequestMut<'msg> {
   pub fn snmp_mut(&mut self) -> super::claw_request::SnmpMut<'_> {
      let ptr = unsafe {
        self.inner.ptr_mut().get_or_create_mutable_message_at_index(
-         9, self.inner.arena()
+         8, self.inner.arena()
        ).unwrap()
      };
      ::protobuf::__internal::runtime::MessageMutInner::from_parent(
@@ -4664,7 +4597,7 @@ impl<'msg> ClawRequestMut<'msg> {
     unsafe {
       ::protobuf::__internal::runtime::message_set_sub_message(
         ::protobuf::AsMut::as_mut(self).inner,
-        9,
+        8,
         val
       );
     }
@@ -4672,8 +4605,6 @@ impl<'msg> ClawRequestMut<'msg> {
 
   pub fn item(&self) -> super::claw_request::ItemOneof<'_> {
     match &self.item_case() {
-      super::claw_request::ItemCase::Error =>
-          super::claw_request::ItemOneof::Error(self.error()),
       super::claw_request::ItemCase::Http =>
           super::claw_request::ItemOneof::Http(self.http()),
       super::claw_request::ItemCase::Postgresql =>
@@ -4875,63 +4806,16 @@ impl ClawRequest {
     }
   }
 
-  // error: optional message palm.lavender.v1.ClawRequest.Error
-  pub fn has_error(&self) -> bool {
-    unsafe {
-      self.inner.ptr().has_field_at_index(3)
-    }
-  }
-  pub fn clear_error(&mut self) {
-    unsafe {
-      self.inner.ptr().clear_field_at_index(
-        3
-      );
-    }
-  }
-  pub fn error_opt(&self) -> ::protobuf::Optional<super::claw_request::ErrorView<'_>> {
-        ::protobuf::Optional::new(self.error(), self.has_error())
-  }
-  pub fn error(&self) -> super::claw_request::ErrorView<'_> {
-    let submsg = unsafe {
-      self.inner.ptr().get_message_at_index(3)
-    };
-    submsg
-        .map(|ptr| unsafe { ::protobuf::__internal::runtime::MessageViewInner::wrap(ptr).into() })
-       .unwrap_or(super::claw_request::ErrorView::default())
-  }
-  pub fn error_mut(&mut self) -> super::claw_request::ErrorMut<'_> {
-     let ptr = unsafe {
-       self.inner.ptr_mut().get_or_create_mutable_message_at_index(
-         3, self.inner.arena()
-       ).unwrap()
-     };
-     ::protobuf::__internal::runtime::MessageMutInner::from_parent(
-         self.as_message_mut_inner(::protobuf::__internal::Private),
-         ptr
-     ).into()
-  }
-  pub fn set_error(&mut self,
-    val: impl ::protobuf::IntoProxied<super::claw_request::Error>) {
-
-    unsafe {
-      ::protobuf::__internal::runtime::message_set_sub_message(
-        ::protobuf::AsMut::as_mut(self).inner,
-        3,
-        val
-      );
-    }
-  }
-
   // http: optional message palm.lavender.v1.ClawRequest.Http
   pub fn has_http(&self) -> bool {
     unsafe {
-      self.inner.ptr().has_field_at_index(4)
+      self.inner.ptr().has_field_at_index(3)
     }
   }
   pub fn clear_http(&mut self) {
     unsafe {
       self.inner.ptr().clear_field_at_index(
-        4
+        3
       );
     }
   }
@@ -4940,7 +4824,7 @@ impl ClawRequest {
   }
   pub fn http(&self) -> super::claw_request::HttpView<'_> {
     let submsg = unsafe {
-      self.inner.ptr().get_message_at_index(4)
+      self.inner.ptr().get_message_at_index(3)
     };
     submsg
         .map(|ptr| unsafe { ::protobuf::__internal::runtime::MessageViewInner::wrap(ptr).into() })
@@ -4949,7 +4833,7 @@ impl ClawRequest {
   pub fn http_mut(&mut self) -> super::claw_request::HttpMut<'_> {
      let ptr = unsafe {
        self.inner.ptr_mut().get_or_create_mutable_message_at_index(
-         4, self.inner.arena()
+         3, self.inner.arena()
        ).unwrap()
      };
      ::protobuf::__internal::runtime::MessageMutInner::from_parent(
@@ -4963,7 +4847,7 @@ impl ClawRequest {
     unsafe {
       ::protobuf::__internal::runtime::message_set_sub_message(
         ::protobuf::AsMut::as_mut(self).inner,
-        4,
+        3,
         val
       );
     }
@@ -4972,13 +4856,13 @@ impl ClawRequest {
   // postgresql: optional message palm.lavender.v1.ClawRequest.PostgreSql
   pub fn has_postgresql(&self) -> bool {
     unsafe {
-      self.inner.ptr().has_field_at_index(5)
+      self.inner.ptr().has_field_at_index(4)
     }
   }
   pub fn clear_postgresql(&mut self) {
     unsafe {
       self.inner.ptr().clear_field_at_index(
-        5
+        4
       );
     }
   }
@@ -4987,7 +4871,7 @@ impl ClawRequest {
   }
   pub fn postgresql(&self) -> super::claw_request::PostgreSqlView<'_> {
     let submsg = unsafe {
-      self.inner.ptr().get_message_at_index(5)
+      self.inner.ptr().get_message_at_index(4)
     };
     submsg
         .map(|ptr| unsafe { ::protobuf::__internal::runtime::MessageViewInner::wrap(ptr).into() })
@@ -4996,7 +4880,7 @@ impl ClawRequest {
   pub fn postgresql_mut(&mut self) -> super::claw_request::PostgreSqlMut<'_> {
      let ptr = unsafe {
        self.inner.ptr_mut().get_or_create_mutable_message_at_index(
-         5, self.inner.arena()
+         4, self.inner.arena()
        ).unwrap()
      };
      ::protobuf::__internal::runtime::MessageMutInner::from_parent(
@@ -5010,7 +4894,7 @@ impl ClawRequest {
     unsafe {
       ::protobuf::__internal::runtime::message_set_sub_message(
         ::protobuf::AsMut::as_mut(self).inner,
-        5,
+        4,
         val
       );
     }
@@ -5019,13 +4903,13 @@ impl ClawRequest {
   // mysql: optional message palm.lavender.v1.ClawRequest.MySql
   pub fn has_mysql(&self) -> bool {
     unsafe {
-      self.inner.ptr().has_field_at_index(6)
+      self.inner.ptr().has_field_at_index(5)
     }
   }
   pub fn clear_mysql(&mut self) {
     unsafe {
       self.inner.ptr().clear_field_at_index(
-        6
+        5
       );
     }
   }
@@ -5034,7 +4918,7 @@ impl ClawRequest {
   }
   pub fn mysql(&self) -> super::claw_request::MySqlView<'_> {
     let submsg = unsafe {
-      self.inner.ptr().get_message_at_index(6)
+      self.inner.ptr().get_message_at_index(5)
     };
     submsg
         .map(|ptr| unsafe { ::protobuf::__internal::runtime::MessageViewInner::wrap(ptr).into() })
@@ -5043,7 +4927,7 @@ impl ClawRequest {
   pub fn mysql_mut(&mut self) -> super::claw_request::MySqlMut<'_> {
      let ptr = unsafe {
        self.inner.ptr_mut().get_or_create_mutable_message_at_index(
-         6, self.inner.arena()
+         5, self.inner.arena()
        ).unwrap()
      };
      ::protobuf::__internal::runtime::MessageMutInner::from_parent(
@@ -5057,7 +4941,7 @@ impl ClawRequest {
     unsafe {
       ::protobuf::__internal::runtime::message_set_sub_message(
         ::protobuf::AsMut::as_mut(self).inner,
-        6,
+        5,
         val
       );
     }
@@ -5066,13 +4950,13 @@ impl ClawRequest {
   // redis: optional message palm.lavender.v1.ClawRequest.Redis
   pub fn has_redis(&self) -> bool {
     unsafe {
-      self.inner.ptr().has_field_at_index(7)
+      self.inner.ptr().has_field_at_index(6)
     }
   }
   pub fn clear_redis(&mut self) {
     unsafe {
       self.inner.ptr().clear_field_at_index(
-        7
+        6
       );
     }
   }
@@ -5081,7 +4965,7 @@ impl ClawRequest {
   }
   pub fn redis(&self) -> super::claw_request::RedisView<'_> {
     let submsg = unsafe {
-      self.inner.ptr().get_message_at_index(7)
+      self.inner.ptr().get_message_at_index(6)
     };
     submsg
         .map(|ptr| unsafe { ::protobuf::__internal::runtime::MessageViewInner::wrap(ptr).into() })
@@ -5090,7 +4974,7 @@ impl ClawRequest {
   pub fn redis_mut(&mut self) -> super::claw_request::RedisMut<'_> {
      let ptr = unsafe {
        self.inner.ptr_mut().get_or_create_mutable_message_at_index(
-         7, self.inner.arena()
+         6, self.inner.arena()
        ).unwrap()
      };
      ::protobuf::__internal::runtime::MessageMutInner::from_parent(
@@ -5104,7 +4988,7 @@ impl ClawRequest {
     unsafe {
       ::protobuf::__internal::runtime::message_set_sub_message(
         ::protobuf::AsMut::as_mut(self).inner,
-        7,
+        6,
         val
       );
     }
@@ -5113,13 +4997,13 @@ impl ClawRequest {
   // opensearch: optional message palm.lavender.v1.ClawRequest.OpenSearch
   pub fn has_opensearch(&self) -> bool {
     unsafe {
-      self.inner.ptr().has_field_at_index(8)
+      self.inner.ptr().has_field_at_index(7)
     }
   }
   pub fn clear_opensearch(&mut self) {
     unsafe {
       self.inner.ptr().clear_field_at_index(
-        8
+        7
       );
     }
   }
@@ -5128,7 +5012,7 @@ impl ClawRequest {
   }
   pub fn opensearch(&self) -> super::claw_request::OpenSearchView<'_> {
     let submsg = unsafe {
-      self.inner.ptr().get_message_at_index(8)
+      self.inner.ptr().get_message_at_index(7)
     };
     submsg
         .map(|ptr| unsafe { ::protobuf::__internal::runtime::MessageViewInner::wrap(ptr).into() })
@@ -5137,7 +5021,7 @@ impl ClawRequest {
   pub fn opensearch_mut(&mut self) -> super::claw_request::OpenSearchMut<'_> {
      let ptr = unsafe {
        self.inner.ptr_mut().get_or_create_mutable_message_at_index(
-         8, self.inner.arena()
+         7, self.inner.arena()
        ).unwrap()
      };
      ::protobuf::__internal::runtime::MessageMutInner::from_parent(
@@ -5151,7 +5035,7 @@ impl ClawRequest {
     unsafe {
       ::protobuf::__internal::runtime::message_set_sub_message(
         ::protobuf::AsMut::as_mut(self).inner,
-        8,
+        7,
         val
       );
     }
@@ -5160,13 +5044,13 @@ impl ClawRequest {
   // snmp: optional message palm.lavender.v1.ClawRequest.Snmp
   pub fn has_snmp(&self) -> bool {
     unsafe {
-      self.inner.ptr().has_field_at_index(9)
+      self.inner.ptr().has_field_at_index(8)
     }
   }
   pub fn clear_snmp(&mut self) {
     unsafe {
       self.inner.ptr().clear_field_at_index(
-        9
+        8
       );
     }
   }
@@ -5175,7 +5059,7 @@ impl ClawRequest {
   }
   pub fn snmp(&self) -> super::claw_request::SnmpView<'_> {
     let submsg = unsafe {
-      self.inner.ptr().get_message_at_index(9)
+      self.inner.ptr().get_message_at_index(8)
     };
     submsg
         .map(|ptr| unsafe { ::protobuf::__internal::runtime::MessageViewInner::wrap(ptr).into() })
@@ -5184,7 +5068,7 @@ impl ClawRequest {
   pub fn snmp_mut(&mut self) -> super::claw_request::SnmpMut<'_> {
      let ptr = unsafe {
        self.inner.ptr_mut().get_or_create_mutable_message_at_index(
-         9, self.inner.arena()
+         8, self.inner.arena()
        ).unwrap()
      };
      ::protobuf::__internal::runtime::MessageMutInner::from_parent(
@@ -5198,7 +5082,7 @@ impl ClawRequest {
     unsafe {
       ::protobuf::__internal::runtime::message_set_sub_message(
         ::protobuf::AsMut::as_mut(self).inner,
-        9,
+        8,
         val
       );
     }
@@ -5206,8 +5090,6 @@ impl ClawRequest {
 
   pub fn item(&self) -> super::claw_request::ItemOneof<'_> {
     match &self.item_case() {
-      super::claw_request::ItemCase::Error =>
-          super::claw_request::ItemOneof::Error(self.error()),
       super::claw_request::ItemCase::Http =>
           super::claw_request::ItemOneof::Http(self.http()),
       super::claw_request::ItemCase::Postgresql =>
@@ -5267,11 +5149,10 @@ unsafe impl ::protobuf::__internal::runtime::AssociatedMiniTable for ClawRequest
     unsafe {
       ONCE_LOCK.get_or_init(|| {
         super::palm__lavender__v1__ClawRequest_msg_init.0 =
-            ::protobuf::__internal::runtime::build_mini_table("$1Xf33333333sa3^,|-|.|/|0|1|E!");
+            ::protobuf::__internal::runtime::build_mini_table("$1Xf33a33333sa3^-|.|/|0|1|E!");
         ::protobuf::__internal::runtime::link_mini_table(
             super::palm__lavender__v1__ClawRequest_msg_init.0, &[<super::Duration as ::protobuf::__internal::runtime::AssociatedMiniTable>::mini_table(),
             <super::Timestamp as ::protobuf::__internal::runtime::AssociatedMiniTable>::mini_table(),
-            <super::claw_request::Error as ::protobuf::__internal::runtime::AssociatedMiniTable>::mini_table(),
             <super::claw_request::Http as ::protobuf::__internal::runtime::AssociatedMiniTable>::mini_table(),
             <super::claw_request::PostgreSql as ::protobuf::__internal::runtime::AssociatedMiniTable>::mini_table(),
             <super::claw_request::MySql as ::protobuf::__internal::runtime::AssociatedMiniTable>::mini_table(),
@@ -5328,377 +5209,6 @@ unsafe impl ::protobuf::__internal::runtime::UpbGetArena for ClawRequestMut<'_> 
 }
 
 pub mod claw_request {// This variable must not be referenced except by protobuf generated
-// code.
-pub(crate) static mut palm__lavender__v1__ClawRequest__Error_msg_init: ::protobuf::__internal::runtime::MiniTableInitPtr =
-    ::protobuf::__internal::runtime::MiniTableInitPtr(::protobuf::__internal::runtime::MiniTablePtr::dangling());
-#[allow(non_camel_case_types)]
-pub struct Error {
-  inner: ::protobuf::__internal::runtime::OwnedMessageInner<Error>
-}
-
-impl ::protobuf::Message for Error {}
-
-impl ::std::default::Default for Error {
-  fn default() -> Self {
-    Self::new()
-  }
-}
-
-impl ::std::fmt::Debug for Error {
-  fn fmt(&self, f: &mut ::std::fmt::Formatter<'_>) -> ::std::fmt::Result {
-    write!(f, "{}", ::protobuf::__internal::runtime::debug_string(self))
-  }
-}
-
-// SAFETY:
-// - `Error` is `Sync` because it does not implement interior mutability.
-//    Neither does `ErrorMut`.
-unsafe impl Sync for Error {}
-
-// SAFETY:
-// - `Error` is `Send` because it uniquely owns its arena and does
-//   not use thread-local data.
-unsafe impl Send for Error {}
-
-impl ::protobuf::Proxied for Error {
-  type View<'msg> = ErrorView<'msg>;
-}
-
-impl ::protobuf::__internal::SealedInternal for Error {}
-
-impl ::protobuf::MutProxied for Error {
-  type Mut<'msg> = ErrorMut<'msg>;
-}
-
-#[derive(Copy, Clone)]
-#[allow(dead_code)]
-pub struct ErrorView<'msg> {
-  inner: ::protobuf::__internal::runtime::MessageViewInner<'msg, Error>,
-}
-
-impl<'msg> ::protobuf::__internal::SealedInternal for ErrorView<'msg> {}
-
-impl<'msg> ::protobuf::MessageView<'msg> for ErrorView<'msg> {
-  type Message = Error;
-}
-
-impl ::std::fmt::Debug for ErrorView<'_> {
-  fn fmt(&self, f: &mut ::std::fmt::Formatter<'_>) -> ::std::fmt::Result {
-    write!(f, "{}", ::protobuf::__internal::runtime::debug_string(self))
-  }
-}
-
-impl ::std::default::Default for ErrorView<'_> {
-  fn default() -> ErrorView<'static> {
-    ::protobuf::__internal::runtime::MessageViewInner::default().into()
-  }
-}
-
-impl<'msg> From<::protobuf::__internal::runtime::MessageViewInner<'msg, Error>> for ErrorView<'msg> {
-  fn from(inner: ::protobuf::__internal::runtime::MessageViewInner<'msg, Error>) -> Self {
-    Self { inner }
-  }
-}
-
-#[allow(dead_code)]
-impl<'msg> ErrorView<'msg> {
-
-  pub fn to_owned(&self) -> Error {
-    ::protobuf::IntoProxied::into_proxied(*self, ::protobuf::__internal::Private)
-  }
-
-  // reason: optional string
-  pub fn reason(self) -> ::protobuf::View<'msg, ::protobuf::ProtoString> {
-    let str_view = unsafe {
-      self.inner.ptr().get_string_at_index(
-        0, (b"").into()
-      )
-    };
-    // SAFETY: The runtime doesn't require ProtoStr to be UTF-8.
-    unsafe { ::protobuf::ProtoStr::from_utf8_unchecked(str_view.as_ref()) }
-  }
-
-}
-
-// SAFETY:
-// - `ErrorView` is `Sync` because it does not support mutation.
-unsafe impl Sync for ErrorView<'_> {}
-
-// SAFETY:
-// - `ErrorView` is `Send` because while its alive a `ErrorMut` cannot.
-// - `ErrorView` does not use thread-local data.
-unsafe impl Send for ErrorView<'_> {}
-
-impl<'msg> ::protobuf::AsView for ErrorView<'msg> {
-  type Proxied = Error;
-  fn as_view(&self) -> ::protobuf::View<'msg, Error> {
-    *self
-  }
-}
-
-impl<'msg> ::protobuf::IntoView<'msg> for ErrorView<'msg> {
-  fn into_view<'shorter>(self) -> ErrorView<'shorter>
-  where
-      'msg: 'shorter {
-    self
-  }
-}
-
-impl<'msg> ::protobuf::IntoProxied<Error> for ErrorView<'msg> {
-  fn into_proxied(self, _private: ::protobuf::__internal::Private) -> Error {
-    let mut dst = Error::new();
-    assert!(unsafe {
-      dst.inner.ptr_mut().deep_copy(self.inner.ptr(), dst.inner.arena())
-    });
-    dst
-  }
-}
-
-impl<'msg> ::protobuf::IntoProxied<Error> for ErrorMut<'msg> {
-  fn into_proxied(self, _private: ::protobuf::__internal::Private) -> Error {
-    ::protobuf::IntoProxied::into_proxied(::protobuf::IntoView::into_view(self), _private)
-  }
-}
-
-impl ::protobuf::__internal::runtime::EntityType for Error {
-    type Tag = ::protobuf::__internal::runtime::MessageTag;
-}
-
-impl<'msg> ::protobuf::__internal::runtime::EntityType for ErrorView<'msg> {
-    type Tag = ::protobuf::__internal::runtime::ViewProxyTag;
-}
-
-impl<'msg> ::protobuf::__internal::runtime::EntityType for ErrorMut<'msg> {
-    type Tag = ::protobuf::__internal::runtime::MutProxyTag;
-}
-
-#[allow(dead_code)]
-#[allow(non_camel_case_types)]
-pub struct ErrorMut<'msg> {
-  inner: ::protobuf::__internal::runtime::MessageMutInner<'msg, Error>,
-}
-
-impl<'msg> ::protobuf::__internal::SealedInternal for ErrorMut<'msg> {}
-
-impl<'msg> ::protobuf::MessageMut<'msg> for ErrorMut<'msg> {
-  type Message = Error;
-}
-
-impl ::std::fmt::Debug for ErrorMut<'_> {
-  fn fmt(&self, f: &mut ::std::fmt::Formatter<'_>) -> ::std::fmt::Result {
-    write!(f, "{}", ::protobuf::__internal::runtime::debug_string(self))
-  }
-}
-
-impl<'msg> From<::protobuf::__internal::runtime::MessageMutInner<'msg, Error>> for ErrorMut<'msg> {
-  fn from(inner: ::protobuf::__internal::runtime::MessageMutInner<'msg, Error>) -> Self {
-    Self { inner }
-  }
-}
-
-#[allow(dead_code)]
-impl<'msg> ErrorMut<'msg> {
-
-  #[doc(hidden)]
-  pub fn as_message_mut_inner(&mut self, _private: ::protobuf::__internal::Private)
-    -> ::protobuf::__internal::runtime::MessageMutInner<'msg, Error> {
-    self.inner
-  }
-
-  pub fn to_owned(&self) -> Error {
-    ::protobuf::AsView::as_view(self).to_owned()
-  }
-
-  // reason: optional string
-  pub fn reason(&self) -> ::protobuf::View<'_, ::protobuf::ProtoString> {
-    let str_view = unsafe {
-      self.inner.ptr().get_string_at_index(
-        0, (b"").into()
-      )
-    };
-    // SAFETY: The runtime doesn't require ProtoStr to be UTF-8.
-    unsafe { ::protobuf::ProtoStr::from_utf8_unchecked(str_view.as_ref()) }
-  }
-  pub fn set_reason(&mut self, val: impl ::protobuf::IntoProxied<::protobuf::ProtoString>) {
-    unsafe {
-      ::protobuf::__internal::runtime::message_set_string_field(
-        ::protobuf::AsMut::as_mut(self).inner,
-        0,
-        val);
-    }
-  }
-
-}
-
-// SAFETY:
-// - `ErrorMut` does not perform any shared mutation.
-unsafe impl Send for ErrorMut<'_> {}
-
-// SAFETY:
-// - `ErrorMut` does not perform any shared mutation.
-unsafe impl Sync for ErrorMut<'_> {}
-
-impl<'msg> ::protobuf::AsView for ErrorMut<'msg> {
-  type Proxied = Error;
-  fn as_view(&self) -> ::protobuf::View<'_, Error> {
-    ErrorView {
-      inner: ::protobuf::__internal::runtime::MessageViewInner::view_of_mut(self.inner)
-    }
-  }
-}
-
-impl<'msg> ::protobuf::IntoView<'msg> for ErrorMut<'msg> {
-  fn into_view<'shorter>(self) -> ::protobuf::View<'shorter, Error>
-  where
-      'msg: 'shorter {
-    ErrorView {
-      inner: ::protobuf::__internal::runtime::MessageViewInner::view_of_mut(self.inner)
-    }
-  }
-}
-
-impl<'msg> ::protobuf::AsMut for ErrorMut<'msg> {
-  type MutProxied = Error;
-  fn as_mut(&mut self) -> ErrorMut<'msg> {
-    ErrorMut { inner: self.inner }
-  }
-}
-
-impl<'msg> ::protobuf::IntoMut<'msg> for ErrorMut<'msg> {
-  fn into_mut<'shorter>(self) -> ErrorMut<'shorter>
-  where
-      'msg: 'shorter {
-    self
-  }
-}
-
-#[allow(dead_code)]
-impl Error {
-  pub fn new() -> Self {
-    Self { inner: ::protobuf::__internal::runtime::OwnedMessageInner::<Self>::new() }
-  }
-
-
-  #[doc(hidden)]
-  pub fn as_message_mut_inner(&mut self, _private: ::protobuf::__internal::Private) -> ::protobuf::__internal::runtime::MessageMutInner<'_, Error> {
-    ::protobuf::__internal::runtime::MessageMutInner::mut_of_owned(&mut self.inner)
-  }
-
-  pub fn as_view(&self) -> ErrorView<'_> {
-    ::protobuf::__internal::runtime::MessageViewInner::view_of_owned(&self.inner).into()
-  }
-
-  pub fn as_mut(&mut self) -> ErrorMut<'_> {
-    ::protobuf::__internal::runtime::MessageMutInner::mut_of_owned(&mut self.inner).into()
-  }
-
-  // reason: optional string
-  pub fn reason(&self) -> ::protobuf::View<'_, ::protobuf::ProtoString> {
-    let str_view = unsafe {
-      self.inner.ptr().get_string_at_index(
-        0, (b"").into()
-      )
-    };
-    // SAFETY: The runtime doesn't require ProtoStr to be UTF-8.
-    unsafe { ::protobuf::ProtoStr::from_utf8_unchecked(str_view.as_ref()) }
-  }
-  pub fn set_reason(&mut self, val: impl ::protobuf::IntoProxied<::protobuf::ProtoString>) {
-    unsafe {
-      ::protobuf::__internal::runtime::message_set_string_field(
-        ::protobuf::AsMut::as_mut(self).inner,
-        0,
-        val);
-    }
-  }
-
-}  // impl Error
-
-impl ::std::ops::Drop for Error {
-  #[inline]
-  fn drop(&mut self) {
-  }
-}
-
-impl ::std::clone::Clone for Error {
-  fn clone(&self) -> Self {
-    self.as_view().to_owned()
-  }
-}
-
-impl ::protobuf::AsView for Error {
-  type Proxied = Self;
-  fn as_view(&self) -> ErrorView<'_> {
-    self.as_view()
-  }
-}
-
-impl ::protobuf::AsMut for Error {
-  type MutProxied = Self;
-  fn as_mut(&mut self) -> ErrorMut<'_> {
-    self.as_mut()
-  }
-}
-
-unsafe impl ::protobuf::__internal::runtime::AssociatedMiniTable for Error {
-  fn mini_table() -> ::protobuf::__internal::runtime::MiniTablePtr {
-    static ONCE_LOCK: ::std::sync::OnceLock<::protobuf::__internal::runtime::MiniTableInitPtr> =
-        ::std::sync::OnceLock::new();
-    unsafe {
-      ONCE_LOCK.get_or_init(|| {
-        super::super::claw_request::palm__lavender__v1__ClawRequest__Error_msg_init.0 =
-            ::protobuf::__internal::runtime::build_mini_table("$M1P");
-        ::protobuf::__internal::runtime::link_mini_table(
-            super::super::claw_request::palm__lavender__v1__ClawRequest__Error_msg_init.0, &[], &[]);
-        ::protobuf::__internal::runtime::MiniTableInitPtr(super::super::claw_request::palm__lavender__v1__ClawRequest__Error_msg_init.0)
-      }).0
-    }
-  }
-}
-unsafe impl ::protobuf::__internal::runtime::UpbGetArena for Error {
-  fn get_arena(&mut self, _private: ::protobuf::__internal::Private) -> &::protobuf::__internal::runtime::Arena {
-    self.inner.arena()
-  }
-}
-
-unsafe impl ::protobuf::__internal::runtime::UpbGetMessagePtrMut for Error {
-  type Msg = Error;
-  fn get_ptr_mut(&mut self, _private: ::protobuf::__internal::Private) -> ::protobuf::__internal::runtime::MessagePtr<Error> {
-    self.inner.ptr_mut()
-  }
-}
-unsafe impl ::protobuf::__internal::runtime::UpbGetMessagePtr for Error {
-  type Msg = Error;
-  fn get_ptr(&self, _private: ::protobuf::__internal::Private) -> ::protobuf::__internal::runtime::MessagePtr<Error> {
-    self.inner.ptr()
-  }
-}
-unsafe impl ::protobuf::__internal::runtime::UpbGetMessagePtrMut for ErrorMut<'_> {
-  type Msg = Error;
-  fn get_ptr_mut(&mut self, _private: ::protobuf::__internal::Private) -> ::protobuf::__internal::runtime::MessagePtr<Error> {
-    self.inner.ptr_mut()
-  }
-}
-unsafe impl ::protobuf::__internal::runtime::UpbGetMessagePtr for ErrorMut<'_> {
-  type Msg = Error;
-  fn get_ptr(&self, _private: ::protobuf::__internal::Private) -> ::protobuf::__internal::runtime::MessagePtr<Error> {
-    self.inner.ptr()
-  }
-}
-unsafe impl ::protobuf::__internal::runtime::UpbGetMessagePtr for ErrorView<'_> {
-  type Msg = Error;
-  fn get_ptr(&self, _private: ::protobuf::__internal::Private) -> ::protobuf::__internal::runtime::MessagePtr<Error> {
-    self.inner.ptr()
-  }
-}
-
-unsafe impl ::protobuf::__internal::runtime::UpbGetArena for ErrorMut<'_> {
-  fn get_arena(&mut self, _private: ::protobuf::__internal::Private) -> &::protobuf::__internal::runtime::Arena {
-    self.inner.arena()
-  }
-}
-
-
-// This variable must not be referenced except by protobuf generated
 // code.
 pub(crate) static mut palm__lavender__v1__ClawRequest__Http_msg_init: ::protobuf::__internal::runtime::MiniTableInitPtr =
     ::protobuf::__internal::runtime::MiniTableInitPtr(::protobuf::__internal::runtime::MiniTablePtr::dangling());
@@ -5790,6 +5300,14 @@ impl<'msg> HttpView<'msg> {
   }
 
   // status_code: optional uint32
+  pub fn has_status_code(self) -> bool {
+    unsafe {
+      self.inner.ptr().has_field_at_index(1)
+    }
+  }
+  pub fn status_code_opt(self) -> ::protobuf::Optional<u32> {
+        ::protobuf::Optional::new(self.status_code(), self.has_status_code())
+  }
   pub fn status_code(self) -> u32 {
     unsafe {
       // TODO: b/361751487: This .into() and .try_into() is only
@@ -5805,6 +5323,14 @@ impl<'msg> HttpView<'msg> {
   }
 
   // content_type: optional string
+  pub fn has_content_type(self) -> bool {
+    unsafe {
+      self.inner.ptr().has_field_at_index(2)
+    }
+  }
+  pub fn content_type_opt(self) -> ::protobuf::Optional<&'msg ::protobuf::ProtoStr> {
+        ::protobuf::Optional::new(self.content_type(), self.has_content_type())
+  }
   pub fn content_type(self) -> ::protobuf::View<'msg, ::protobuf::ProtoString> {
     let str_view = unsafe {
       self.inner.ptr().get_string_at_index(
@@ -5937,6 +5463,21 @@ impl<'msg> HttpMut<'msg> {
   }
 
   // status_code: optional uint32
+  pub fn has_status_code(&self) -> bool {
+    unsafe {
+      self.inner.ptr().has_field_at_index(1)
+    }
+  }
+  pub fn clear_status_code(&mut self) {
+    unsafe {
+      self.inner.ptr().clear_field_at_index(
+        1
+      );
+    }
+  }
+  pub fn status_code_opt(&self) -> ::protobuf::Optional<u32> {
+        ::protobuf::Optional::new(self.status_code(), self.has_status_code())
+  }
   pub fn status_code(&self) -> u32 {
     unsafe {
       // TODO: b/361751487: This .into() and .try_into() is only
@@ -5963,6 +5504,21 @@ impl<'msg> HttpMut<'msg> {
   }
 
   // content_type: optional string
+  pub fn has_content_type(&self) -> bool {
+    unsafe {
+      self.inner.ptr().has_field_at_index(2)
+    }
+  }
+  pub fn clear_content_type(&mut self) {
+    unsafe {
+      self.inner.ptr().clear_field_at_index(
+        2
+      );
+    }
+  }
+  pub fn content_type_opt(&self) -> ::protobuf::Optional<&'_ ::protobuf::ProtoStr> {
+        ::protobuf::Optional::new(self.content_type(), self.has_content_type())
+  }
   pub fn content_type(&self) -> ::protobuf::View<'_, ::protobuf::ProtoString> {
     let str_view = unsafe {
       self.inner.ptr().get_string_at_index(
@@ -6084,6 +5640,21 @@ impl Http {
   }
 
   // status_code: optional uint32
+  pub fn has_status_code(&self) -> bool {
+    unsafe {
+      self.inner.ptr().has_field_at_index(1)
+    }
+  }
+  pub fn clear_status_code(&mut self) {
+    unsafe {
+      self.inner.ptr().clear_field_at_index(
+        1
+      );
+    }
+  }
+  pub fn status_code_opt(&self) -> ::protobuf::Optional<u32> {
+        ::protobuf::Optional::new(self.status_code(), self.has_status_code())
+  }
   pub fn status_code(&self) -> u32 {
     unsafe {
       // TODO: b/361751487: This .into() and .try_into() is only
@@ -6110,6 +5681,21 @@ impl Http {
   }
 
   // content_type: optional string
+  pub fn has_content_type(&self) -> bool {
+    unsafe {
+      self.inner.ptr().has_field_at_index(2)
+    }
+  }
+  pub fn clear_content_type(&mut self) {
+    unsafe {
+      self.inner.ptr().clear_field_at_index(
+        2
+      );
+    }
+  }
+  pub fn content_type_opt(&self) -> ::protobuf::Optional<&'_ ::protobuf::ProtoStr> {
+        ::protobuf::Optional::new(self.content_type(), self.has_content_type())
+  }
   pub fn content_type(&self) -> ::protobuf::View<'_, ::protobuf::ProtoString> {
     let str_view = unsafe {
       self.inner.ptr().get_string_at_index(
@@ -6182,7 +5768,7 @@ unsafe impl ::protobuf::__internal::runtime::AssociatedMiniTable for Http {
     unsafe {
       ONCE_LOCK.get_or_init(|| {
         super::super::claw_request::palm__lavender__v1__ClawRequest__Http_msg_init.0 =
-            ::protobuf::__internal::runtime::build_mini_table("$1X)P1X1X");
+            ::protobuf::__internal::runtime::build_mini_table("$1X)1T1X");
         ::protobuf::__internal::runtime::link_mini_table(
             super::super::claw_request::palm__lavender__v1__ClawRequest__Http_msg_init.0, &[], &[]);
         ::protobuf::__internal::runtime::MiniTableInitPtr(super::super::claw_request::palm__lavender__v1__ClawRequest__Http_msg_init.0)
@@ -10042,7 +9628,6 @@ unsafe impl ::protobuf::__internal::runtime::UpbGetArena for OpenSearchMut<'_> {
 #[allow(dead_code)]
 #[repr(u32)]
 pub enum ItemOneof<'msg> {
-  Error(::protobuf::View<'msg, super::super::claw_request::Error>) = 10,
   Http(::protobuf::View<'msg, super::super::claw_request::Http>) = 11,
   Postgresql(::protobuf::View<'msg, super::super::claw_request::PostgreSql>) = 12,
   Mysql(::protobuf::View<'msg, super::super::claw_request::MySql>) = 13,
@@ -10057,7 +9642,6 @@ pub enum ItemOneof<'msg> {
 #[non_exhaustive]
 #[allow(dead_code)]
 pub enum ItemCase {
-  Error = 10,
   Http = 11,
   Postgresql = 12,
   Mysql = 13,
@@ -10073,7 +9657,6 @@ impl ItemCase {
   pub(crate) fn try_from(v: u32) -> ::std::option::Option<ItemCase> {
     match v {
       0 => Some(ItemCase::not_set),
-      10 => Some(ItemCase::Error),
       11 => Some(ItemCase::Http),
       12 => Some(ItemCase::Postgresql),
       13 => Some(ItemCase::Mysql),
