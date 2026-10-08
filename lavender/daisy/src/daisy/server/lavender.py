@@ -21,11 +21,17 @@ class Reporter(lavender_pb2_grpc.ReporterServicer):
     def Systemd(self, request_iterator, context):
         logger.debug("start to receiving systemd data stream")
         chunk_count = 0
+
         for req in request_iterator:
-            chunk_count += 1
             # logger.debug("receive chunk(%s): %s %s %s",
-            #              chunk_count, req.unit, req.created_at, req.message)
-            # TODO
+            #              chunk_count, req.name, req.created_at, req.message)
+            doc = {'host': req.host, 'name': req.name, 'priority': req.priority,
+                   'message': req.message, 'created_at': from_timestamp(req.created_at)}
+            res = self.client.index(index=self._index(
+                SYSTEMD_INDEX_NAME), body=doc, refresh=True)
+            logger.debug("index systemd-log %s", res['_id'])
+
+            chunk_count += 1
 
         logger.debug(
             "finished receiving systemd stream, total %d chunks", chunk_count)
@@ -34,11 +40,17 @@ class Reporter(lavender_pb2_grpc.ReporterServicer):
     def Kubernetes(self, request_iterator, context):
         logger.debug("start to receiving kubernetes data stream")
         chunk_count = 0
+
         for req in request_iterator:
-            chunk_count += 1
             # logger.debug("receive chunk(%s): %s %s %s",
-            #              chunk_count, req.unit, req.created_at, req.message)
-            # TODO
+            #              chunk_count, req.pod, req.node, req.container)
+            doc = {'node': req.node, 'pod': req.pod, 'container': req.container, 'owners': [
+                {'kind': x.kind, 'name': x.name, 'uid': x.uid} for x in req.owners], 'message': req.message, 'created_at': from_timestamp(req.created_at)}
+            res = self.client.index(index=self._index(
+                SYSTEMD_INDEX_NAME), body=doc, refresh=True)
+            logger.debug("index systemd-log %s", res['_id'])
+
+            chunk_count += 1
 
         logger.debug(
             "finished receiving kubernetes stream, total %d chunks", chunk_count)
