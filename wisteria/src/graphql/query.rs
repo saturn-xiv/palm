@@ -239,7 +239,7 @@ impl Query {
         unit: String,
         page: Page,
         ctx: &Context,
-    ) -> FieldResult<Vec<lavender_graphql::logging::systemd::Index>> {
+    ) -> FieldResult<lavender_graphql::logging::systemd::Index> {
         let mut db = ctx.state.db.get()?;
         let db = db.deref_mut();
         let mut cache = ctx.state.cache.get()?;
@@ -260,7 +260,7 @@ impl Query {
         namespace: String,
         page: Page,
         ctx: &Context,
-    ) -> FieldResult<Vec<lavender_graphql::logging::kubernetes::Index>> {
+    ) -> FieldResult<lavender_graphql::logging::kubernetes::Index> {
         let mut db = ctx.state.db.get()?;
         let db = db.deref_mut();
         let mut cache = ctx.state.cache.get()?;
@@ -281,7 +281,7 @@ impl Query {
         url: String,
         page: Page,
         ctx: &Context,
-    ) -> FieldResult<Vec<lavender_graphql::monitoring::http::Index>> {
+    ) -> FieldResult<lavender_graphql::monitoring::http::Index> {
         let mut db = ctx.state.db.get()?;
         let db = db.deref_mut();
         let mut cache = ctx.state.cache.get()?;

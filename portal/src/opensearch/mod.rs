@@ -20,6 +20,8 @@ use opensearch::{
 use serde::{Deserialize, Serialize, de::DeserializeOwned};
 use serde_json::{Value, json};
 
+use super::graphql::{Page, Pagination};
+
 pub type OpenSearchResult<T> = StdResult<T, OpenSearchError>;
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
@@ -121,6 +123,30 @@ impl Client {
 
         let it = Self::response(res).await?;
         Ok(it)
+    }
+
+    pub async fn pagination<T: Debug + Clone + Serialize + DeserializeOwned>(
+        &self,
+        count: Value,
+        mut query: Value,
+        page: &Page,
+    ) -> OpenSearchResult<(Vec<T>, Pagination)> {
+        let total = self.count_document_by_query::<T>(count).await? as i64;
+        if let Some(it) = query.as_object_mut() {
+            it.insert("from".to_string(), json!(page.offset(total)));
+            it.insert("size".to_string(), json!(page.size()));
+        }
+        let items = self.search_document::<T>(query).await?;
+
+        Ok((
+            items
+                .hits
+                .hits
+                .into_iter()
+                .map(|x| x._source)
+                .collect::<_>(),
+            Pagination::new(page, total),
+        ))
     }
 
     pub async fn count_document_by_query<T>(&self, query: Value) -> OpenSearchResult<usize> {

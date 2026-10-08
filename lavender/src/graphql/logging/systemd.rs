@@ -44,35 +44,33 @@ impl Index {
         let current_user = ss.current_user(db, cache, jwt).await?;
         can(rbac, current_user.id()).await?;
 
-        let total = search
-            .count_document_by_query::<Item>(json!({
-                "query": {
-                    "term": {
-                        "unit": unit
+        let (items, pagination) = search
+            .pagination::<Item>(
+                json!({
+                    "query": {
+                        "term": {
+                            "unit": unit
+                        }
                     }
-                }
-            }))
-            .await? as i64;
-
-        let items = search
-            .search_document::<Item>(json!({
-                "from": page.offset(total),
-                "size": page.size(),
-                "query": {
-                    "term": {
-                        "unit": unit
-                    }
-                }
-            }))
+                }),
+                json!({
+                    "query": {
+                        "term": {
+                            "unit": unit
+                        }
+                    },
+                    "sort": [
+                        {
+                            "created_at": {
+                                "order": "desc"
+                            }
+                        }
+                    ]
+                }),
+                page,
+            )
             .await?;
-        Ok(Self {
-            items: items
-                .hits
-                .hits
-                .into_iter()
-                .map(|x| x._source)
-                .collect::<_>(),
-            pagination: Pagination::new(page, total),
-        })
+
+        Ok(Self { items, pagination })
     }
 }

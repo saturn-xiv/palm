@@ -4,7 +4,6 @@ import pickle
 
 from kubernetes import client, config, watch
 from kubernetes.client.rest import ApiException
-import psutil
 import numpy
 
 from daisy.protocols import lavender_pb2, to_timestamp
@@ -28,6 +27,11 @@ def launch(stub, name, db):
 # https://github.com/kubernetes-client/python/blob/master/kubernetes/docs/CoreV1Api.md
 def _load_logs_for_namespace(db, namespace):
     v1 = client.CoreV1Api()
+
+    logger.debug("get metadata for namespace %s", namespace)
+    namespace_ = v1.read_namespace(name=namespace)
+    namespace_creation_time = namespace_.metadata.creation_timestamp
+
     logger.debug("load pods for namespace %s", namespace)
     pods = v1.list_namespaced_pod(namespace=namespace)
     if not pods.items:
@@ -42,7 +46,7 @@ def _load_logs_for_namespace(db, namespace):
             container_name = container.name
             # if state.waiting and state.waiting.reason == "ContainerCreating":
             key = f"kubernetes.{namespace}.{pod_name}.{container_name}.last-fetch"
-            since = datetime.fromtimestamp(psutil.boot_time(), tz=UTC)
+            since = namespace_creation_time
             if key in db:
                 since = pickle.loads(db[key])
             logger.debug("fetch kubernetes logs for %s@%s/%s since %s",
