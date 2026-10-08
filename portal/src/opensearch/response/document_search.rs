@@ -10,6 +10,11 @@ pub struct Item<T> {
     pub _shards: Shards,
     pub hits: Hits<T>,
 }
+#[derive(Debug, Clone, Serialize, Deserialize)]
+pub struct Header {
+    pub count: usize,
+    pub _shards: Shards,
+}
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct Total {
@@ -19,7 +24,7 @@ pub struct Total {
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct Hits<T> {
-    pub max_score: f32,
+    pub max_score: Option<f32>,
     pub total: Total,
     pub hits: Vec<Hit<T>>,
 }
@@ -36,6 +41,6 @@ pub struct Shards {
 pub struct Hit<T> {
     pub _index: String,
     pub _id: String,
-    pub _score: f32,
+    pub _score: Option<f32>,
     pub _source: T,
 }

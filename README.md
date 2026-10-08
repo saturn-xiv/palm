@@ -27,6 +27,7 @@ git submodule update --init --recursive
 - [Media Types](https://www.iana.org/assignments/media-types/media-types.xhtml)
 - [Protobuf Version Support](https://protobuf.dev/support/version-support/)
 - [Amazon Corretto Downloads](https://downloads.corretto.aws/#/overview)
+- [OpenSearch: Codec processor combinations](https://docs.opensearch.org/latest/data-prepper/common-use-cases/codec-processor-combinations/)
 
 ### UI
 

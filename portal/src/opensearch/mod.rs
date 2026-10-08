@@ -1,4 +1,5 @@
 pub mod response;
+pub mod timestamp;
 
 use std::any::type_name;
 use std::fmt::Debug;
@@ -8,6 +9,7 @@ use std::result::Result as StdResult;
 use hyper::StatusCode;
 use opensearch::{
     CountParts, DeleteByQueryParts, DeleteParts, Error as OpenSearchError, IndexParts, OpenSearch,
+    SearchParts,
     http::{
         Url,
         response::Response,
@@ -92,7 +94,7 @@ impl Client {
             })
             .send()
             .await?;
-        let _: response::index_create::Item = Self::response(res).await?;
+        let _: response::index_create::Item = Self::json(res).await?;
         Ok(())
     }
 
@@ -116,13 +118,11 @@ impl Client {
         log::debug!("search document {name}");
         let res = self
             .db
-            .search(opensearch::SearchParts::Index(&[&name]))
+            .search(SearchParts::Index(&[&name]))
             .body(query)
             .send()
             .await?;
-
-        let it = Self::response(res).await?;
-        Ok(it)
+        Self::json(res).await
     }
 
     pub async fn pagination<T: Debug + Clone + Serialize + DeserializeOwned>(
@@ -158,7 +158,7 @@ impl Client {
             .body(query)
             .send()
             .await?;
-        let body: response::document_count::Item = Self::response(res).await?;
+        let body: response::document_count::Item = Self::json(res).await?;
         Ok(body.count)
     }
 
@@ -171,7 +171,7 @@ impl Client {
             .refresh(Refresh::True)
             .send()
             .await?;
-        let _: response::document_delete_by_id::Item = Self::response(res).await?;
+        let _: response::document_delete_by_id::Item = Self::json(res).await?;
         Ok(())
     }
 
@@ -185,18 +185,21 @@ impl Client {
             .refresh(true)
             .send()
             .await?;
-        let _: response::document_delete_by_query::Item = Self::response(res).await?;
+        let _: response::document_delete_by_query::Item = Self::json(res).await?;
         Ok(())
     }
 
     pub async fn index_document<T: Serialize>(&self, item: &T) -> OpenSearchResult<()> {
         let name = self.index_name::<T>();
         log::debug!("index document {name}");
-        self.db
+        let res = self
+            .db
             .index(IndexParts::Index(&name))
             .body(item)
             .send()
             .await?;
+        let it: response::document_index::Item = Self::json(res).await?;
+        log::debug!("id {}", it._id);
         Ok(())
     }
 
@@ -228,14 +231,22 @@ impl Client {
         s.to_lowercase().replace("::", ".")
     }
 
-    async fn response<T: DeserializeOwned>(res: Response) -> OpenSearchResult<T> {
+    pub async fn json<T: DeserializeOwned>(res: Response) -> OpenSearchResult<T> {
         let status = res.status_code();
         if status != StatusCode::OK {
             let body = res.text().await?;
             log::error!("{status} {body}");
             return Err(IoError::from(IoErrorKind::InvalidData).into());
         }
-        let it: T = res.json().await?;
-        Ok(it)
+        res.json().await
+    }
+    pub async fn text(res: Response) -> OpenSearchResult<String> {
+        let status = res.status_code();
+        if status != StatusCode::OK {
+            let body = res.text().await?;
+            log::error!("{status} {body}");
+            return Err(IoError::from(IoErrorKind::InvalidData).into());
+        }
+        res.text().await
     }
 }

@@ -59,7 +59,7 @@ class Reporter(lavender_pb2_grpc.ReporterServicer):
                 HTTP_INDEX_NAME), body=doc, refresh=True)
             logger.debug("index http-monitor %s", res['_id'])
         else:
-            context.abort(StatusCode.UNIMPLEMENTED, 'not supported yet')
+            context.abort(StatusCode.UNIMPLEMENTED, 'not yet implemented')
             return
 
         return lavender_pb2.Empty()

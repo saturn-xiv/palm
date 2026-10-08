@@ -5,12 +5,12 @@ use portal::{
     cache::redis::StandaloneConnection as Cache,
     graphql::Session,
     graphql::{Page, Pagination},
-    opensearch::Client as Search,
+    opensearch::{Client as Search, timestamp},
     orm::postgresql::Connection as Db,
     rbac::Rbac,
 };
 use serde::{Deserialize, Serialize};
-use serde_json::json;
+use serde_json::{Value, json};
 
 use super::super::super::can;
 
@@ -21,7 +21,36 @@ pub struct Item {
     pub name: String,
     pub priority: i32,
     pub message: String,
+    #[serde(with = "timestamp")]
     pub created_at: NaiveDateTime,
+}
+
+impl Item {
+    pub fn queries_by_name(name: &str) -> (Value, Value) {
+        (
+            json!({
+                "query": {
+                    "term": {
+                        "name": name
+                    }
+                }
+            }),
+            json!({
+                "query": {
+                    "term": {
+                        "name": name
+                    }
+                },
+                "sort": [
+                    {
+                        "created_at": {
+                            "order": "desc"
+                        }
+                    }
+                ]
+            }),
+        )
+    }
 }
 
 #[derive(Debug, GraphQLObject)]
@@ -44,32 +73,8 @@ impl Index {
         let current_user = ss.current_user(db, cache, jwt).await?;
         can(rbac, current_user.id()).await?;
 
-        let (items, pagination) = search
-            .pagination::<Item>(
-                json!({
-                    "query": {
-                        "term": {
-                            "name": name
-                        }
-                    }
-                }),
-                json!({
-                    "query": {
-                        "term": {
-                            "name": name
-                        }
-                    },
-                    "sort": [
-                        {
-                            "created_at": {
-                                "order": "desc"
-                            }
-                        }
-                    ]
-                }),
-                page,
-            )
-            .await?;
+        let (count, query) = Item::queries_by_name(name);
+        let (items, pagination) = search.pagination::<Item>(count, query, page).await?;
 
         Ok(Self { items, pagination })
     }

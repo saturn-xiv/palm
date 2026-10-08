@@ -5,12 +5,12 @@ use portal::{
     cache::redis::StandaloneConnection as Cache,
     graphql::Session,
     graphql::{Page, Pagination},
-    opensearch::Client as Search,
+    opensearch::{Client as Search, timestamp},
     orm::postgresql::Connection as Db,
     rbac::Rbac,
 };
 use serde::{Deserialize, Serialize};
-use serde_json::json;
+use serde_json::{Value, json};
 
 use super::super::can;
 
@@ -19,11 +19,40 @@ use super::super::can;
 pub struct Item {
     pub from: String,
     pub url: String,
-    pub status_code: Optional<i32>,
-    pub content_type: Optional<String>,
+    pub status_code: Option<i32>,
+    pub content_type: Option<String>,
     pub body: String,
     pub elapsed: i32,
+    #[serde(with = "timestamp")]
     pub created_at: NaiveDateTime,
+}
+
+impl Item {
+    pub fn queries_by_url(url: &str) -> (Value, Value) {
+        (
+            json!({
+                "query": {
+                    "term": {
+                        "url": url
+                    }
+                }
+            }),
+            json!({
+                "query": {
+                    "term": {
+                        "url": url
+                    }
+                },
+                "sort": [
+                    {
+                        "created_at": {
+                            "order": "desc"
+                        }
+                    }
+                ]
+            }),
+        )
+    }
 }
 
 #[derive(Debug, GraphQLObject)]
@@ -45,32 +74,9 @@ impl Index {
     ) -> Result<Self> {
         let current_user = ss.current_user(db, cache, jwt).await?;
         can(rbac, current_user.id()).await?;
-        let (items, pagination) = search
-            .pagination::<Item>(
-                json!({
-                    "query": {
-                        "term": {
-                            "url": url
-                        }
-                    }
-                }),
-                json!({
-                    "query": {
-                        "term": {
-                            "url": url
-                        }
-                    },
-                    "sort": [
-                        {
-                            "created_at": {
-                                "order": "desc"
-                            }
-                        }
-                    ]
-                }),
-                page,
-            )
-            .await?;
+
+        let (count, query) = Item::queries_by_url(url);
+        let (items, pagination) = search.pagination::<Item>(count, query, page).await?;
 
         Ok(Self { items, pagination })
     }
