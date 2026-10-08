@@ -12,34 +12,34 @@ use portal::{
 use serde::{Deserialize, Serialize};
 use serde_json::json;
 
-use super::super::can;
+use super::super::super::can;
 
 #[derive(Debug, Clone, Serialize, Deserialize, GraphQLObject)]
-#[graphql(name = "LavenderSystemdLogItem")]
+#[graphql(name = "LavenderSystemdUnitLog")]
 pub struct Item {
     pub host: String,
-    pub unit: String,
+    pub name: String,
     pub priority: i32,
     pub message: String,
     pub created_at: NaiveDateTime,
 }
 
 #[derive(Debug, GraphQLObject)]
-#[graphql(name = "LavenderIndexSystemdLog")]
+#[graphql(name = "LavenderIndexSystemdUnitLog")]
 pub struct Index {
     pub items: Vec<Item>,
     pub pagination: Pagination,
 }
 
 impl Index {
-    pub async fn by_unit<R: Rbac, J: Jwt>(
+    pub async fn by_name<R: Rbac, J: Jwt>(
         ss: &Session,
         db: &mut Db,
         cache: &mut Cache,
         rbac: &R,
         jwt: &J,
         search: &Search,
-        (unit, page): (&str, &Page),
+        (name, page): (&str, &Page),
     ) -> Result<Self> {
         let current_user = ss.current_user(db, cache, jwt).await?;
         can(rbac, current_user.id()).await?;
@@ -49,14 +49,14 @@ impl Index {
                 json!({
                     "query": {
                         "term": {
-                            "unit": unit
+                            "name": name
                         }
                     }
                 }),
                 json!({
                     "query": {
                         "term": {
-                            "unit": unit
+                            "name": name
                         }
                     },
                     "sort": [

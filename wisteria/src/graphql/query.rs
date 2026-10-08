@@ -235,36 +235,36 @@ impl Query {
         Ok(reply)
     }
 
-    async fn lavender_systemd_log_by_unit(
-        unit: String,
+    async fn lavender_systemd_unit_log_by_name(
+        name: String,
         page: Page,
         ctx: &Context,
-    ) -> FieldResult<lavender_graphql::logging::systemd::Index> {
+    ) -> FieldResult<lavender_graphql::logging::systemd::unit::Index> {
         let mut db = ctx.state.db.get()?;
         let db = db.deref_mut();
         let mut cache = ctx.state.cache.get()?;
-        let reply = lavender_graphql::logging::systemd::Index::by_unit(
+        let reply = lavender_graphql::logging::systemd::unit::Index::by_name(
             &ctx.session,
             db,
             &mut cache,
             &ctx.state.dahlia,
             &ctx.state.loquat,
             &ctx.state.search,
-            (&unit, &page),
+            (&name, &page),
         )
         .await?;
         Ok(reply)
     }
 
-    async fn lavender_kubernetes_log_by_unit(
+    async fn lavender_kubernetes_pod_log_by_namespace(
         namespace: String,
         page: Page,
         ctx: &Context,
-    ) -> FieldResult<lavender_graphql::logging::kubernetes::Index> {
+    ) -> FieldResult<lavender_graphql::logging::kubernetes::pod::Index> {
         let mut db = ctx.state.db.get()?;
         let db = db.deref_mut();
         let mut cache = ctx.state.cache.get()?;
-        let reply = lavender_graphql::logging::kubernetes::Index::by_namespace(
+        let reply = lavender_graphql::logging::kubernetes::pod::Index::by_namespace(
             &ctx.session,
             db,
             &mut cache,
@@ -272,6 +272,27 @@ impl Query {
             &ctx.state.loquat,
             &ctx.state.search,
             (&namespace, &page),
+        )
+        .await?;
+        Ok(reply)
+    }
+
+    async fn lavender_kubernetes_pod_log_by_owner_uid(
+        owner_uid: String,
+        page: Page,
+        ctx: &Context,
+    ) -> FieldResult<lavender_graphql::logging::kubernetes::pod::Index> {
+        let mut db = ctx.state.db.get()?;
+        let db = db.deref_mut();
+        let mut cache = ctx.state.cache.get()?;
+        let reply = lavender_graphql::logging::kubernetes::pod::Index::by_owner_uid(
+            &ctx.session,
+            db,
+            &mut cache,
+            &ctx.state.dahlia,
+            &ctx.state.loquat,
+            &ctx.state.search,
+            (&owner_uid, &page),
         )
         .await?;
         Ok(reply)

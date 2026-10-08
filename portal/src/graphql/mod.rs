@@ -254,8 +254,8 @@ impl Page {
         }
         size
     }
-    const MAX_SIZE: i64 = 1 << 12;
-    const MIN_SIZE: i64 = 1 << 2;
+    const MAX_SIZE: i64 = 10_000;
+    const MIN_SIZE: i64 = 5;
 }
 
 #[derive(Debug, GraphQLObject, Serialize, Deserialize)]

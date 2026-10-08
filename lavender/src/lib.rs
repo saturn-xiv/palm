@@ -30,16 +30,16 @@ impl Plugin {
             )
             .await?;
         if !search
-            .index_exists::<graphql::logging::systemd::Item>()
+            .index_exists::<graphql::logging::systemd::unit::Item>()
             .await?
         {
             search
-                .create_index::<graphql::logging::systemd::Item>(
+                .create_index::<graphql::logging::systemd::unit::Item>(
                     None,
                     Some(json!({
                         "properties":{
                             "host": {"type": "keyword"},
-                            "unit": {"type": "keyword"},
+                            "name": {"type": "keyword"},
                             "priority": {"type": "byte"},
                             "message": {"type": "text"},
                             "created_at": {"type": "date_nanos", "format": "strict_date_optional_time_nanos"}
@@ -49,17 +49,25 @@ impl Plugin {
                 .await?;
         }
         if !search
-            .index_exists::<graphql::logging::kubernetes::Item>()
+            .index_exists::<graphql::logging::kubernetes::pod::Item>()
             .await?
         {
             search
-                .create_index::<graphql::logging::kubernetes::Item>(
+                .create_index::<graphql::logging::kubernetes::pod::Item>(
                     None,
                     Some(json!({
                         "properties":{
                             "node": {"type": "keyword"},
                             "pod": {"type": "keyword"},
                             "container": {"type": "keyword"},
+                            "owners": {
+                                "type": "nested",
+                                "properties": {
+                                    "name": { "type": "keyword" },
+                                    "kind": { "type": "keyword" },
+                                    "uid": { "type": "keyword" }
+                                }
+                            },
                             "message": {"type": "text"},
                             "created_at": {"type": "date_nanos", "format": "strict_date_optional_time_nanos"}
                         }

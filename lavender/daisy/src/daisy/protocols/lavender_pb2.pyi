@@ -27,18 +27,18 @@ class Duration(_message.Message):
     def __init__(self, seconds: _Optional[int] = ..., nanos: _Optional[int] = ...) -> None: ...
 
 class SystemdRequest(_message.Message):
-    __slots__ = ("host", "unit", "priority", "message", "created_at")
+    __slots__ = ("host", "name", "priority", "message", "created_at")
     HOST_FIELD_NUMBER: _ClassVar[int]
-    UNIT_FIELD_NUMBER: _ClassVar[int]
+    NAME_FIELD_NUMBER: _ClassVar[int]
     PRIORITY_FIELD_NUMBER: _ClassVar[int]
     MESSAGE_FIELD_NUMBER: _ClassVar[int]
     CREATED_AT_FIELD_NUMBER: _ClassVar[int]
     host: str
-    unit: str
+    name: str
     priority: int
     message: str
     created_at: Timestamp
-    def __init__(self, host: _Optional[str] = ..., unit: _Optional[str] = ..., priority: _Optional[int] = ..., message: _Optional[str] = ..., created_at: _Optional[_Union[Timestamp, _Mapping]] = ...) -> None: ...
+    def __init__(self, host: _Optional[str] = ..., name: _Optional[str] = ..., priority: _Optional[int] = ..., message: _Optional[str] = ..., created_at: _Optional[_Union[Timestamp, _Mapping]] = ...) -> None: ...
 
 class SystemdResponse(_message.Message):
     __slots__ = ("chunk_count",)
@@ -47,18 +47,29 @@ class SystemdResponse(_message.Message):
     def __init__(self, chunk_count: _Optional[int] = ...) -> None: ...
 
 class KubernetesRequest(_message.Message):
-    __slots__ = ("node", "pod", "container", "message", "created_at")
+    __slots__ = ("node", "pod", "container", "message", "owners", "created_at")
+    class Owner(_message.Message):
+        __slots__ = ("kind", "name", "uid")
+        KIND_FIELD_NUMBER: _ClassVar[int]
+        NAME_FIELD_NUMBER: _ClassVar[int]
+        UID_FIELD_NUMBER: _ClassVar[int]
+        kind: str
+        name: str
+        uid: str
+        def __init__(self, kind: _Optional[str] = ..., name: _Optional[str] = ..., uid: _Optional[str] = ...) -> None: ...
     NODE_FIELD_NUMBER: _ClassVar[int]
     POD_FIELD_NUMBER: _ClassVar[int]
     CONTAINER_FIELD_NUMBER: _ClassVar[int]
     MESSAGE_FIELD_NUMBER: _ClassVar[int]
+    OWNERS_FIELD_NUMBER: _ClassVar[int]
     CREATED_AT_FIELD_NUMBER: _ClassVar[int]
     node: str
     pod: str
     container: str
     message: str
+    owners: _containers.RepeatedCompositeFieldContainer[KubernetesRequest.Owner]
     created_at: Timestamp
-    def __init__(self, node: _Optional[str] = ..., pod: _Optional[str] = ..., container: _Optional[str] = ..., message: _Optional[str] = ..., created_at: _Optional[_Union[Timestamp, _Mapping]] = ...) -> None: ...
+    def __init__(self, node: _Optional[str] = ..., pod: _Optional[str] = ..., container: _Optional[str] = ..., message: _Optional[str] = ..., owners: _Optional[_Iterable[_Union[KubernetesRequest.Owner, _Mapping]]] = ..., created_at: _Optional[_Union[Timestamp, _Mapping]] = ...) -> None: ...
 
 class KubernetesResponse(_message.Message):
     __slots__ = ("chunk_count",)

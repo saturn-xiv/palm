@@ -12,20 +12,29 @@ use portal::{
 use serde::{Deserialize, Serialize};
 use serde_json::json;
 
-use super::super::can;
+use super::super::super::can;
 
 #[derive(Debug, Clone, Serialize, Deserialize, GraphQLObject)]
-#[graphql(name = "LavenderKubernatesLogItem")]
+#[graphql(name = "LavenderKubernatesPodLog")]
 pub struct Item {
     pub node: String,
     pub pod: String,
+    pub owners: Vec<Owner>,
     pub container: String,
     pub message: String,
     pub created_at: NaiveDateTime,
 }
 
+#[derive(Debug, Clone, Serialize, Deserialize, GraphQLObject)]
+#[graphql(name = "LavenderKubernatesPodOwner")]
+pub struct Owner {
+    pub kind: String,
+    pub name: String,
+    pub uid: String,
+}
+
 #[derive(Debug, GraphQLObject)]
-#[graphql(name = "LavenderIndexKubernatesLog")]
+#[graphql(name = "LavenderIndexKubernatesPodLog")]
 pub struct Index {
     pub items: Vec<Item>,
     pub pagination: Pagination,
@@ -56,6 +65,48 @@ impl Index {
                     "query": {
                         "term": {
                             "namespace": namespace
+                        }
+                    },
+                    "sort": [
+                        {
+                            "created_at": {
+                                "order": "desc"
+                            }
+                        }
+                    ]
+                }),
+                page,
+            )
+            .await?;
+
+        Ok(Self { items, pagination })
+    }
+
+    pub async fn by_owner_uid<R: Rbac, J: Jwt>(
+        ss: &Session,
+        db: &mut Db,
+        cache: &mut Cache,
+        rbac: &R,
+        jwt: &J,
+        search: &Search,
+        (owner, page): (&str, &Page),
+    ) -> Result<Self> {
+        let current_user = ss.current_user(db, cache, jwt).await?;
+        can(rbac, current_user.id()).await?;
+
+        let (items, pagination) = search
+            .pagination::<Item>(
+                json!({
+                    "query": {
+                        "term": {
+                            "owner.uid": owner
+                        }
+                    }
+                }),
+                json!({
+                    "query": {
+                        "term": {
+                            "owner.uid": owner
                         }
                     },
                     "sort": [

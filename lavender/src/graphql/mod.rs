@@ -51,10 +51,10 @@ pub async fn vacuum<R: Rbac, J: Jwt>(
         .delete_document_by_query::<monitoring::http::Item>(query.clone())
         .await?;
     search
-        .delete_document_by_query::<logging::systemd::Item>(query.clone())
+        .delete_document_by_query::<logging::systemd::unit::Item>(query.clone())
         .await?;
     search
-        .delete_document_by_query::<logging::kubernetes::Item>(query)
+        .delete_document_by_query::<logging::kubernetes::pod::Item>(query)
         .await?;
     Ok(())
 }

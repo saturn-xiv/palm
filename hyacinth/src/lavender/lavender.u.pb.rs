@@ -1327,8 +1327,8 @@ impl<'msg> SystemdRequestView<'msg> {
     unsafe { ::protobuf::ProtoStr::from_utf8_unchecked(str_view.as_ref()) }
   }
 
-  // unit: optional string
-  pub fn unit(self) -> ::protobuf::View<'msg, ::protobuf::ProtoString> {
+  // name: optional string
+  pub fn name(self) -> ::protobuf::View<'msg, ::protobuf::ProtoString> {
     let str_view = unsafe {
       self.inner.ptr().get_string_at_index(
         1, (b"").into()
@@ -1492,8 +1492,8 @@ impl<'msg> SystemdRequestMut<'msg> {
     }
   }
 
-  // unit: optional string
-  pub fn unit(&self) -> ::protobuf::View<'_, ::protobuf::ProtoString> {
+  // name: optional string
+  pub fn name(&self) -> ::protobuf::View<'_, ::protobuf::ProtoString> {
     let str_view = unsafe {
       self.inner.ptr().get_string_at_index(
         1, (b"").into()
@@ -1502,7 +1502,7 @@ impl<'msg> SystemdRequestMut<'msg> {
     // SAFETY: The runtime doesn't require ProtoStr to be UTF-8.
     unsafe { ::protobuf::ProtoStr::from_utf8_unchecked(str_view.as_ref()) }
   }
-  pub fn set_unit(&mut self, val: impl ::protobuf::IntoProxied<::protobuf::ProtoString>) {
+  pub fn set_name(&mut self, val: impl ::protobuf::IntoProxied<::protobuf::ProtoString>) {
     unsafe {
       ::protobuf::__internal::runtime::message_set_string_field(
         ::protobuf::AsMut::as_mut(self).inner,
@@ -1686,8 +1686,8 @@ impl SystemdRequest {
     }
   }
 
-  // unit: optional string
-  pub fn unit(&self) -> ::protobuf::View<'_, ::protobuf::ProtoString> {
+  // name: optional string
+  pub fn name(&self) -> ::protobuf::View<'_, ::protobuf::ProtoString> {
     let str_view = unsafe {
       self.inner.ptr().get_string_at_index(
         1, (b"").into()
@@ -1696,7 +1696,7 @@ impl SystemdRequest {
     // SAFETY: The runtime doesn't require ProtoStr to be UTF-8.
     unsafe { ::protobuf::ProtoStr::from_utf8_unchecked(str_view.as_ref()) }
   }
-  pub fn set_unit(&mut self, val: impl ::protobuf::IntoProxied<::protobuf::ProtoString>) {
+  pub fn set_name(&mut self, val: impl ::protobuf::IntoProxied<::protobuf::ProtoString>) {
     unsafe {
       ::protobuf::__internal::runtime::message_set_string_field(
         ::protobuf::AsMut::as_mut(self).inner,
@@ -2400,10 +2400,24 @@ impl<'msg> KubernetesRequestView<'msg> {
     unsafe { ::protobuf::ProtoStr::from_utf8_unchecked(str_view.as_ref()) }
   }
 
+  // owners: repeated message palm.lavender.v1.KubernetesRequest.Owner
+  pub fn owners(self) -> ::protobuf::RepeatedView<'msg, super::kubernetes_request::Owner> {
+    unsafe {
+      self.inner.ptr().get_array_at_index(
+        4
+      )
+    }.map_or_else(
+        ::protobuf::__internal::runtime::empty_array::<super::kubernetes_request::Owner>,
+        |raw| unsafe {
+          ::protobuf::RepeatedView::from_raw(::protobuf::__internal::Private, raw)
+        }
+      )
+  }
+
   // created_at: optional message palm.lavender.v1.Timestamp
   pub fn has_created_at(self) -> bool {
     unsafe {
-      self.inner.ptr().has_field_at_index(4)
+      self.inner.ptr().has_field_at_index(5)
     }
   }
   pub fn created_at_opt(self) -> ::protobuf::Optional<super::TimestampView<'msg>> {
@@ -2411,7 +2425,7 @@ impl<'msg> KubernetesRequestView<'msg> {
   }
   pub fn created_at(self) -> super::TimestampView<'msg> {
     let submsg = unsafe {
-      self.inner.ptr().get_message_at_index(4)
+      self.inner.ptr().get_message_at_index(5)
     };
     submsg
         .map(|ptr| unsafe { ::protobuf::__internal::runtime::MessageViewInner::wrap(ptr).into() })
@@ -2585,16 +2599,52 @@ impl<'msg> KubernetesRequestMut<'msg> {
     }
   }
 
+  // owners: repeated message palm.lavender.v1.KubernetesRequest.Owner
+  pub fn owners(&self) -> ::protobuf::RepeatedView<'_, super::kubernetes_request::Owner> {
+    unsafe {
+      self.inner.ptr().get_array_at_index(
+        4
+      )
+    }.map_or_else(
+        ::protobuf::__internal::runtime::empty_array::<super::kubernetes_request::Owner>,
+        |raw| unsafe {
+          ::protobuf::RepeatedView::from_raw(::protobuf::__internal::Private, raw)
+        }
+      )
+  }
+  pub fn owners_mut(&mut self) -> ::protobuf::RepeatedMut<'_, super::kubernetes_request::Owner> {
+    unsafe {
+      let raw_array = self.inner.ptr_mut().get_or_create_mutable_array_at_index(
+        4,
+        self.inner.arena()
+      ).expect("alloc should not fail");
+      ::protobuf::RepeatedMut::from_inner(
+        ::protobuf::__internal::Private,
+        ::protobuf::__internal::runtime::InnerRepeatedMut::new(
+          raw_array, self.inner.arena(),
+        ),
+      )
+    }
+  }
+  pub fn set_owners(&mut self, src: impl ::protobuf::IntoProxied<::protobuf::Repeated<super::kubernetes_request::Owner>>) {
+    unsafe {
+      ::protobuf::__internal::runtime::message_set_repeated_field(
+        ::protobuf::AsMut::as_mut(self).inner,
+        4,
+        src);
+    }
+  }
+
   // created_at: optional message palm.lavender.v1.Timestamp
   pub fn has_created_at(&self) -> bool {
     unsafe {
-      self.inner.ptr().has_field_at_index(4)
+      self.inner.ptr().has_field_at_index(5)
     }
   }
   pub fn clear_created_at(&mut self) {
     unsafe {
       self.inner.ptr().clear_field_at_index(
-        4
+        5
       );
     }
   }
@@ -2603,7 +2653,7 @@ impl<'msg> KubernetesRequestMut<'msg> {
   }
   pub fn created_at(&self) -> super::TimestampView<'_> {
     let submsg = unsafe {
-      self.inner.ptr().get_message_at_index(4)
+      self.inner.ptr().get_message_at_index(5)
     };
     submsg
         .map(|ptr| unsafe { ::protobuf::__internal::runtime::MessageViewInner::wrap(ptr).into() })
@@ -2612,7 +2662,7 @@ impl<'msg> KubernetesRequestMut<'msg> {
   pub fn created_at_mut(&mut self) -> super::TimestampMut<'_> {
      let ptr = unsafe {
        self.inner.ptr_mut().get_or_create_mutable_message_at_index(
-         4, self.inner.arena()
+         5, self.inner.arena()
        ).unwrap()
      };
      ::protobuf::__internal::runtime::MessageMutInner::from_parent(
@@ -2626,7 +2676,7 @@ impl<'msg> KubernetesRequestMut<'msg> {
     unsafe {
       ::protobuf::__internal::runtime::message_set_sub_message(
         ::protobuf::AsMut::as_mut(self).inner,
-        4,
+        5,
         val
       );
     }
@@ -2772,16 +2822,52 @@ impl KubernetesRequest {
     }
   }
 
+  // owners: repeated message palm.lavender.v1.KubernetesRequest.Owner
+  pub fn owners(&self) -> ::protobuf::RepeatedView<'_, super::kubernetes_request::Owner> {
+    unsafe {
+      self.inner.ptr().get_array_at_index(
+        4
+      )
+    }.map_or_else(
+        ::protobuf::__internal::runtime::empty_array::<super::kubernetes_request::Owner>,
+        |raw| unsafe {
+          ::protobuf::RepeatedView::from_raw(::protobuf::__internal::Private, raw)
+        }
+      )
+  }
+  pub fn owners_mut(&mut self) -> ::protobuf::RepeatedMut<'_, super::kubernetes_request::Owner> {
+    unsafe {
+      let raw_array = self.inner.ptr_mut().get_or_create_mutable_array_at_index(
+        4,
+        self.inner.arena()
+      ).expect("alloc should not fail");
+      ::protobuf::RepeatedMut::from_inner(
+        ::protobuf::__internal::Private,
+        ::protobuf::__internal::runtime::InnerRepeatedMut::new(
+          raw_array, self.inner.arena(),
+        ),
+      )
+    }
+  }
+  pub fn set_owners(&mut self, src: impl ::protobuf::IntoProxied<::protobuf::Repeated<super::kubernetes_request::Owner>>) {
+    unsafe {
+      ::protobuf::__internal::runtime::message_set_repeated_field(
+        ::protobuf::AsMut::as_mut(self).inner,
+        4,
+        src);
+    }
+  }
+
   // created_at: optional message palm.lavender.v1.Timestamp
   pub fn has_created_at(&self) -> bool {
     unsafe {
-      self.inner.ptr().has_field_at_index(4)
+      self.inner.ptr().has_field_at_index(5)
     }
   }
   pub fn clear_created_at(&mut self) {
     unsafe {
       self.inner.ptr().clear_field_at_index(
-        4
+        5
       );
     }
   }
@@ -2790,7 +2876,7 @@ impl KubernetesRequest {
   }
   pub fn created_at(&self) -> super::TimestampView<'_> {
     let submsg = unsafe {
-      self.inner.ptr().get_message_at_index(4)
+      self.inner.ptr().get_message_at_index(5)
     };
     submsg
         .map(|ptr| unsafe { ::protobuf::__internal::runtime::MessageViewInner::wrap(ptr).into() })
@@ -2799,7 +2885,7 @@ impl KubernetesRequest {
   pub fn created_at_mut(&mut self) -> super::TimestampMut<'_> {
      let ptr = unsafe {
        self.inner.ptr_mut().get_or_create_mutable_message_at_index(
-         4, self.inner.arena()
+         5, self.inner.arena()
        ).unwrap()
      };
      ::protobuf::__internal::runtime::MessageMutInner::from_parent(
@@ -2813,7 +2899,7 @@ impl KubernetesRequest {
     unsafe {
       ::protobuf::__internal::runtime::message_set_sub_message(
         ::protobuf::AsMut::as_mut(self).inner,
-        4,
+        5,
         val
       );
     }
@@ -2854,9 +2940,10 @@ unsafe impl ::protobuf::__internal::runtime::AssociatedMiniTable for KubernetesR
     unsafe {
       ONCE_LOCK.get_or_init(|| {
         super::palm__lavender__v1__KubernetesRequest_msg_init.0 =
-            ::protobuf::__internal::runtime::build_mini_table("$1X1X1X1Xd3");
+            ::protobuf::__internal::runtime::build_mini_table("$1X1X1X1XGc3");
         ::protobuf::__internal::runtime::link_mini_table(
-            super::palm__lavender__v1__KubernetesRequest_msg_init.0, &[<super::Timestamp as ::protobuf::__internal::runtime::AssociatedMiniTable>::mini_table(),
+            super::palm__lavender__v1__KubernetesRequest_msg_init.0, &[<super::kubernetes_request::Owner as ::protobuf::__internal::runtime::AssociatedMiniTable>::mini_table(),
+            <super::Timestamp as ::protobuf::__internal::runtime::AssociatedMiniTable>::mini_table(),
             ], &[]);
         ::protobuf::__internal::runtime::MiniTableInitPtr(super::palm__lavender__v1__KubernetesRequest_msg_init.0)
       }).0
@@ -2906,6 +2993,477 @@ unsafe impl ::protobuf::__internal::runtime::UpbGetArena for KubernetesRequestMu
   }
 }
 
+pub mod kubernetes_request {// This variable must not be referenced except by protobuf generated
+// code.
+pub(crate) static mut palm__lavender__v1__KubernetesRequest__Owner_msg_init: ::protobuf::__internal::runtime::MiniTableInitPtr =
+    ::protobuf::__internal::runtime::MiniTableInitPtr(::protobuf::__internal::runtime::MiniTablePtr::dangling());
+#[allow(non_camel_case_types)]
+pub struct Owner {
+  inner: ::protobuf::__internal::runtime::OwnedMessageInner<Owner>
+}
+
+impl ::protobuf::Message for Owner {}
+
+impl ::std::default::Default for Owner {
+  fn default() -> Self {
+    Self::new()
+  }
+}
+
+impl ::std::fmt::Debug for Owner {
+  fn fmt(&self, f: &mut ::std::fmt::Formatter<'_>) -> ::std::fmt::Result {
+    write!(f, "{}", ::protobuf::__internal::runtime::debug_string(self))
+  }
+}
+
+// SAFETY:
+// - `Owner` is `Sync` because it does not implement interior mutability.
+//    Neither does `OwnerMut`.
+unsafe impl Sync for Owner {}
+
+// SAFETY:
+// - `Owner` is `Send` because it uniquely owns its arena and does
+//   not use thread-local data.
+unsafe impl Send for Owner {}
+
+impl ::protobuf::Proxied for Owner {
+  type View<'msg> = OwnerView<'msg>;
+}
+
+impl ::protobuf::__internal::SealedInternal for Owner {}
+
+impl ::protobuf::MutProxied for Owner {
+  type Mut<'msg> = OwnerMut<'msg>;
+}
+
+#[derive(Copy, Clone)]
+#[allow(dead_code)]
+pub struct OwnerView<'msg> {
+  inner: ::protobuf::__internal::runtime::MessageViewInner<'msg, Owner>,
+}
+
+impl<'msg> ::protobuf::__internal::SealedInternal for OwnerView<'msg> {}
+
+impl<'msg> ::protobuf::MessageView<'msg> for OwnerView<'msg> {
+  type Message = Owner;
+}
+
+impl ::std::fmt::Debug for OwnerView<'_> {
+  fn fmt(&self, f: &mut ::std::fmt::Formatter<'_>) -> ::std::fmt::Result {
+    write!(f, "{}", ::protobuf::__internal::runtime::debug_string(self))
+  }
+}
+
+impl ::std::default::Default for OwnerView<'_> {
+  fn default() -> OwnerView<'static> {
+    ::protobuf::__internal::runtime::MessageViewInner::default().into()
+  }
+}
+
+impl<'msg> From<::protobuf::__internal::runtime::MessageViewInner<'msg, Owner>> for OwnerView<'msg> {
+  fn from(inner: ::protobuf::__internal::runtime::MessageViewInner<'msg, Owner>) -> Self {
+    Self { inner }
+  }
+}
+
+#[allow(dead_code)]
+impl<'msg> OwnerView<'msg> {
+
+  pub fn to_owned(&self) -> Owner {
+    ::protobuf::IntoProxied::into_proxied(*self, ::protobuf::__internal::Private)
+  }
+
+  // kind: optional string
+  pub fn kind(self) -> ::protobuf::View<'msg, ::protobuf::ProtoString> {
+    let str_view = unsafe {
+      self.inner.ptr().get_string_at_index(
+        0, (b"").into()
+      )
+    };
+    // SAFETY: The runtime doesn't require ProtoStr to be UTF-8.
+    unsafe { ::protobuf::ProtoStr::from_utf8_unchecked(str_view.as_ref()) }
+  }
+
+  // name: optional string
+  pub fn name(self) -> ::protobuf::View<'msg, ::protobuf::ProtoString> {
+    let str_view = unsafe {
+      self.inner.ptr().get_string_at_index(
+        1, (b"").into()
+      )
+    };
+    // SAFETY: The runtime doesn't require ProtoStr to be UTF-8.
+    unsafe { ::protobuf::ProtoStr::from_utf8_unchecked(str_view.as_ref()) }
+  }
+
+  // uid: optional string
+  pub fn uid(self) -> ::protobuf::View<'msg, ::protobuf::ProtoString> {
+    let str_view = unsafe {
+      self.inner.ptr().get_string_at_index(
+        2, (b"").into()
+      )
+    };
+    // SAFETY: The runtime doesn't require ProtoStr to be UTF-8.
+    unsafe { ::protobuf::ProtoStr::from_utf8_unchecked(str_view.as_ref()) }
+  }
+
+}
+
+// SAFETY:
+// - `OwnerView` is `Sync` because it does not support mutation.
+unsafe impl Sync for OwnerView<'_> {}
+
+// SAFETY:
+// - `OwnerView` is `Send` because while its alive a `OwnerMut` cannot.
+// - `OwnerView` does not use thread-local data.
+unsafe impl Send for OwnerView<'_> {}
+
+impl<'msg> ::protobuf::AsView for OwnerView<'msg> {
+  type Proxied = Owner;
+  fn as_view(&self) -> ::protobuf::View<'msg, Owner> {
+    *self
+  }
+}
+
+impl<'msg> ::protobuf::IntoView<'msg> for OwnerView<'msg> {
+  fn into_view<'shorter>(self) -> OwnerView<'shorter>
+  where
+      'msg: 'shorter {
+    self
+  }
+}
+
+impl<'msg> ::protobuf::IntoProxied<Owner> for OwnerView<'msg> {
+  fn into_proxied(self, _private: ::protobuf::__internal::Private) -> Owner {
+    let mut dst = Owner::new();
+    assert!(unsafe {
+      dst.inner.ptr_mut().deep_copy(self.inner.ptr(), dst.inner.arena())
+    });
+    dst
+  }
+}
+
+impl<'msg> ::protobuf::IntoProxied<Owner> for OwnerMut<'msg> {
+  fn into_proxied(self, _private: ::protobuf::__internal::Private) -> Owner {
+    ::protobuf::IntoProxied::into_proxied(::protobuf::IntoView::into_view(self), _private)
+  }
+}
+
+impl ::protobuf::__internal::runtime::EntityType for Owner {
+    type Tag = ::protobuf::__internal::runtime::MessageTag;
+}
+
+impl<'msg> ::protobuf::__internal::runtime::EntityType for OwnerView<'msg> {
+    type Tag = ::protobuf::__internal::runtime::ViewProxyTag;
+}
+
+impl<'msg> ::protobuf::__internal::runtime::EntityType for OwnerMut<'msg> {
+    type Tag = ::protobuf::__internal::runtime::MutProxyTag;
+}
+
+#[allow(dead_code)]
+#[allow(non_camel_case_types)]
+pub struct OwnerMut<'msg> {
+  inner: ::protobuf::__internal::runtime::MessageMutInner<'msg, Owner>,
+}
+
+impl<'msg> ::protobuf::__internal::SealedInternal for OwnerMut<'msg> {}
+
+impl<'msg> ::protobuf::MessageMut<'msg> for OwnerMut<'msg> {
+  type Message = Owner;
+}
+
+impl ::std::fmt::Debug for OwnerMut<'_> {
+  fn fmt(&self, f: &mut ::std::fmt::Formatter<'_>) -> ::std::fmt::Result {
+    write!(f, "{}", ::protobuf::__internal::runtime::debug_string(self))
+  }
+}
+
+impl<'msg> From<::protobuf::__internal::runtime::MessageMutInner<'msg, Owner>> for OwnerMut<'msg> {
+  fn from(inner: ::protobuf::__internal::runtime::MessageMutInner<'msg, Owner>) -> Self {
+    Self { inner }
+  }
+}
+
+#[allow(dead_code)]
+impl<'msg> OwnerMut<'msg> {
+
+  #[doc(hidden)]
+  pub fn as_message_mut_inner(&mut self, _private: ::protobuf::__internal::Private)
+    -> ::protobuf::__internal::runtime::MessageMutInner<'msg, Owner> {
+    self.inner
+  }
+
+  pub fn to_owned(&self) -> Owner {
+    ::protobuf::AsView::as_view(self).to_owned()
+  }
+
+  // kind: optional string
+  pub fn kind(&self) -> ::protobuf::View<'_, ::protobuf::ProtoString> {
+    let str_view = unsafe {
+      self.inner.ptr().get_string_at_index(
+        0, (b"").into()
+      )
+    };
+    // SAFETY: The runtime doesn't require ProtoStr to be UTF-8.
+    unsafe { ::protobuf::ProtoStr::from_utf8_unchecked(str_view.as_ref()) }
+  }
+  pub fn set_kind(&mut self, val: impl ::protobuf::IntoProxied<::protobuf::ProtoString>) {
+    unsafe {
+      ::protobuf::__internal::runtime::message_set_string_field(
+        ::protobuf::AsMut::as_mut(self).inner,
+        0,
+        val);
+    }
+  }
+
+  // name: optional string
+  pub fn name(&self) -> ::protobuf::View<'_, ::protobuf::ProtoString> {
+    let str_view = unsafe {
+      self.inner.ptr().get_string_at_index(
+        1, (b"").into()
+      )
+    };
+    // SAFETY: The runtime doesn't require ProtoStr to be UTF-8.
+    unsafe { ::protobuf::ProtoStr::from_utf8_unchecked(str_view.as_ref()) }
+  }
+  pub fn set_name(&mut self, val: impl ::protobuf::IntoProxied<::protobuf::ProtoString>) {
+    unsafe {
+      ::protobuf::__internal::runtime::message_set_string_field(
+        ::protobuf::AsMut::as_mut(self).inner,
+        1,
+        val);
+    }
+  }
+
+  // uid: optional string
+  pub fn uid(&self) -> ::protobuf::View<'_, ::protobuf::ProtoString> {
+    let str_view = unsafe {
+      self.inner.ptr().get_string_at_index(
+        2, (b"").into()
+      )
+    };
+    // SAFETY: The runtime doesn't require ProtoStr to be UTF-8.
+    unsafe { ::protobuf::ProtoStr::from_utf8_unchecked(str_view.as_ref()) }
+  }
+  pub fn set_uid(&mut self, val: impl ::protobuf::IntoProxied<::protobuf::ProtoString>) {
+    unsafe {
+      ::protobuf::__internal::runtime::message_set_string_field(
+        ::protobuf::AsMut::as_mut(self).inner,
+        2,
+        val);
+    }
+  }
+
+}
+
+// SAFETY:
+// - `OwnerMut` does not perform any shared mutation.
+unsafe impl Send for OwnerMut<'_> {}
+
+// SAFETY:
+// - `OwnerMut` does not perform any shared mutation.
+unsafe impl Sync for OwnerMut<'_> {}
+
+impl<'msg> ::protobuf::AsView for OwnerMut<'msg> {
+  type Proxied = Owner;
+  fn as_view(&self) -> ::protobuf::View<'_, Owner> {
+    OwnerView {
+      inner: ::protobuf::__internal::runtime::MessageViewInner::view_of_mut(self.inner)
+    }
+  }
+}
+
+impl<'msg> ::protobuf::IntoView<'msg> for OwnerMut<'msg> {
+  fn into_view<'shorter>(self) -> ::protobuf::View<'shorter, Owner>
+  where
+      'msg: 'shorter {
+    OwnerView {
+      inner: ::protobuf::__internal::runtime::MessageViewInner::view_of_mut(self.inner)
+    }
+  }
+}
+
+impl<'msg> ::protobuf::AsMut for OwnerMut<'msg> {
+  type MutProxied = Owner;
+  fn as_mut(&mut self) -> OwnerMut<'msg> {
+    OwnerMut { inner: self.inner }
+  }
+}
+
+impl<'msg> ::protobuf::IntoMut<'msg> for OwnerMut<'msg> {
+  fn into_mut<'shorter>(self) -> OwnerMut<'shorter>
+  where
+      'msg: 'shorter {
+    self
+  }
+}
+
+#[allow(dead_code)]
+impl Owner {
+  pub fn new() -> Self {
+    Self { inner: ::protobuf::__internal::runtime::OwnedMessageInner::<Self>::new() }
+  }
+
+
+  #[doc(hidden)]
+  pub fn as_message_mut_inner(&mut self, _private: ::protobuf::__internal::Private) -> ::protobuf::__internal::runtime::MessageMutInner<'_, Owner> {
+    ::protobuf::__internal::runtime::MessageMutInner::mut_of_owned(&mut self.inner)
+  }
+
+  pub fn as_view(&self) -> OwnerView<'_> {
+    ::protobuf::__internal::runtime::MessageViewInner::view_of_owned(&self.inner).into()
+  }
+
+  pub fn as_mut(&mut self) -> OwnerMut<'_> {
+    ::protobuf::__internal::runtime::MessageMutInner::mut_of_owned(&mut self.inner).into()
+  }
+
+  // kind: optional string
+  pub fn kind(&self) -> ::protobuf::View<'_, ::protobuf::ProtoString> {
+    let str_view = unsafe {
+      self.inner.ptr().get_string_at_index(
+        0, (b"").into()
+      )
+    };
+    // SAFETY: The runtime doesn't require ProtoStr to be UTF-8.
+    unsafe { ::protobuf::ProtoStr::from_utf8_unchecked(str_view.as_ref()) }
+  }
+  pub fn set_kind(&mut self, val: impl ::protobuf::IntoProxied<::protobuf::ProtoString>) {
+    unsafe {
+      ::protobuf::__internal::runtime::message_set_string_field(
+        ::protobuf::AsMut::as_mut(self).inner,
+        0,
+        val);
+    }
+  }
+
+  // name: optional string
+  pub fn name(&self) -> ::protobuf::View<'_, ::protobuf::ProtoString> {
+    let str_view = unsafe {
+      self.inner.ptr().get_string_at_index(
+        1, (b"").into()
+      )
+    };
+    // SAFETY: The runtime doesn't require ProtoStr to be UTF-8.
+    unsafe { ::protobuf::ProtoStr::from_utf8_unchecked(str_view.as_ref()) }
+  }
+  pub fn set_name(&mut self, val: impl ::protobuf::IntoProxied<::protobuf::ProtoString>) {
+    unsafe {
+      ::protobuf::__internal::runtime::message_set_string_field(
+        ::protobuf::AsMut::as_mut(self).inner,
+        1,
+        val);
+    }
+  }
+
+  // uid: optional string
+  pub fn uid(&self) -> ::protobuf::View<'_, ::protobuf::ProtoString> {
+    let str_view = unsafe {
+      self.inner.ptr().get_string_at_index(
+        2, (b"").into()
+      )
+    };
+    // SAFETY: The runtime doesn't require ProtoStr to be UTF-8.
+    unsafe { ::protobuf::ProtoStr::from_utf8_unchecked(str_view.as_ref()) }
+  }
+  pub fn set_uid(&mut self, val: impl ::protobuf::IntoProxied<::protobuf::ProtoString>) {
+    unsafe {
+      ::protobuf::__internal::runtime::message_set_string_field(
+        ::protobuf::AsMut::as_mut(self).inner,
+        2,
+        val);
+    }
+  }
+
+}  // impl Owner
+
+impl ::std::ops::Drop for Owner {
+  #[inline]
+  fn drop(&mut self) {
+  }
+}
+
+impl ::std::clone::Clone for Owner {
+  fn clone(&self) -> Self {
+    self.as_view().to_owned()
+  }
+}
+
+impl ::protobuf::AsView for Owner {
+  type Proxied = Self;
+  fn as_view(&self) -> OwnerView<'_> {
+    self.as_view()
+  }
+}
+
+impl ::protobuf::AsMut for Owner {
+  type MutProxied = Self;
+  fn as_mut(&mut self) -> OwnerMut<'_> {
+    self.as_mut()
+  }
+}
+
+unsafe impl ::protobuf::__internal::runtime::AssociatedMiniTable for Owner {
+  fn mini_table() -> ::protobuf::__internal::runtime::MiniTablePtr {
+    static ONCE_LOCK: ::std::sync::OnceLock<::protobuf::__internal::runtime::MiniTableInitPtr> =
+        ::std::sync::OnceLock::new();
+    unsafe {
+      ONCE_LOCK.get_or_init(|| {
+        super::super::kubernetes_request::palm__lavender__v1__KubernetesRequest__Owner_msg_init.0 =
+            ::protobuf::__internal::runtime::build_mini_table("$M1P1P1P");
+        ::protobuf::__internal::runtime::link_mini_table(
+            super::super::kubernetes_request::palm__lavender__v1__KubernetesRequest__Owner_msg_init.0, &[], &[]);
+        ::protobuf::__internal::runtime::MiniTableInitPtr(super::super::kubernetes_request::palm__lavender__v1__KubernetesRequest__Owner_msg_init.0)
+      }).0
+    }
+  }
+}
+unsafe impl ::protobuf::__internal::runtime::UpbGetArena for Owner {
+  fn get_arena(&mut self, _private: ::protobuf::__internal::Private) -> &::protobuf::__internal::runtime::Arena {
+    self.inner.arena()
+  }
+}
+
+unsafe impl ::protobuf::__internal::runtime::UpbGetMessagePtrMut for Owner {
+  type Msg = Owner;
+  fn get_ptr_mut(&mut self, _private: ::protobuf::__internal::Private) -> ::protobuf::__internal::runtime::MessagePtr<Owner> {
+    self.inner.ptr_mut()
+  }
+}
+unsafe impl ::protobuf::__internal::runtime::UpbGetMessagePtr for Owner {
+  type Msg = Owner;
+  fn get_ptr(&self, _private: ::protobuf::__internal::Private) -> ::protobuf::__internal::runtime::MessagePtr<Owner> {
+    self.inner.ptr()
+  }
+}
+unsafe impl ::protobuf::__internal::runtime::UpbGetMessagePtrMut for OwnerMut<'_> {
+  type Msg = Owner;
+  fn get_ptr_mut(&mut self, _private: ::protobuf::__internal::Private) -> ::protobuf::__internal::runtime::MessagePtr<Owner> {
+    self.inner.ptr_mut()
+  }
+}
+unsafe impl ::protobuf::__internal::runtime::UpbGetMessagePtr for OwnerMut<'_> {
+  type Msg = Owner;
+  fn get_ptr(&self, _private: ::protobuf::__internal::Private) -> ::protobuf::__internal::runtime::MessagePtr<Owner> {
+    self.inner.ptr()
+  }
+}
+unsafe impl ::protobuf::__internal::runtime::UpbGetMessagePtr for OwnerView<'_> {
+  type Msg = Owner;
+  fn get_ptr(&self, _private: ::protobuf::__internal::Private) -> ::protobuf::__internal::runtime::MessagePtr<Owner> {
+    self.inner.ptr()
+  }
+}
+
+unsafe impl ::protobuf::__internal::runtime::UpbGetArena for OwnerMut<'_> {
+  fn get_arena(&mut self, _private: ::protobuf::__internal::Private) -> &::protobuf::__internal::runtime::Arena {
+    self.inner.arena()
+  }
+}
+
+
+
+}  // pub mod kubernetes_request
 
 
 // This variable must not be referenced except by protobuf generated
