@@ -1,4 +1,5 @@
 pub mod email;
+pub mod wechat_oauth2;
 
 use chrono::Duration;
 use juniper::GraphQLObject;

@@ -103,7 +103,7 @@ impl Plugin {
                     it,
                     lapin::options::QueueDeclareOptions {
                         durable: true,
-                        exclusive: true,
+                        exclusive: false,
                         ..Default::default()
                     },
                 )

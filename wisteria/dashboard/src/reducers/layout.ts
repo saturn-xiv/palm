@@ -14,7 +14,7 @@ export const slice = createSlice({
   initialState,
   reducers: {
     refresh: (state, action: PayloadAction<ISiteLayout>) => {
-      state.payload = structuredClone(action.payload)
+      state.payload = structuredClone(action.payload);
     },
   },
 });

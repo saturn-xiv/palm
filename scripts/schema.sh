@@ -151,6 +151,8 @@ cd $WORK_DIR/dahlia/
 autopep8 --in-place --recursive src --exclude="src/dahlia/protocols/*"
 cd $WORK_DIR/lavender/daisy/
 autopep8 --in-place --recursive src --exclude="src/daisy/protocols/*"
+cd $WORK_DIR/wisteria/dashboard/
+npx prettier --write "src/**/*.ts"
 
 echo 'done.'
 exit 0

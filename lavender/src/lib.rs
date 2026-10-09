@@ -24,7 +24,7 @@ impl Plugin {
                 type_name::<models::job::Message>(),
                 QueueDeclareOptions {
                     durable: true,
-                    exclusive: true,
+                    exclusive: false,
                     ..Default::default()
                 },
             )

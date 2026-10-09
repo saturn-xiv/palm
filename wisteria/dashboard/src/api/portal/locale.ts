@@ -52,12 +52,21 @@ export const index = async (
   const res: { indexLocale: IIndexResponse } = await graphql(
     `
       query call($page: Page!) {
-        index(page: $page) {
-          id
-          lang
-          code
-          message
-          updatedAt
+        indexLocale(page: $page) {
+          items {
+            id
+            lang
+            code
+            message
+            updatedAt
+          }
+          pagination {
+            index
+            size
+            total
+            hasNext
+            hasPrevious
+          }
         }
       }
     `,
