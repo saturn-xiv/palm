@@ -1327,8 +1327,8 @@ impl<'msg> SystemdRequestView<'msg> {
     unsafe { ::protobuf::ProtoStr::from_utf8_unchecked(str_view.as_ref()) }
   }
 
-  // name: optional string
-  pub fn name(self) -> ::protobuf::View<'msg, ::protobuf::ProtoString> {
+  // unit: optional string
+  pub fn unit(self) -> ::protobuf::View<'msg, ::protobuf::ProtoString> {
     let str_view = unsafe {
       self.inner.ptr().get_string_at_index(
         1, (b"").into()
@@ -1492,8 +1492,8 @@ impl<'msg> SystemdRequestMut<'msg> {
     }
   }
 
-  // name: optional string
-  pub fn name(&self) -> ::protobuf::View<'_, ::protobuf::ProtoString> {
+  // unit: optional string
+  pub fn unit(&self) -> ::protobuf::View<'_, ::protobuf::ProtoString> {
     let str_view = unsafe {
       self.inner.ptr().get_string_at_index(
         1, (b"").into()
@@ -1502,7 +1502,7 @@ impl<'msg> SystemdRequestMut<'msg> {
     // SAFETY: The runtime doesn't require ProtoStr to be UTF-8.
     unsafe { ::protobuf::ProtoStr::from_utf8_unchecked(str_view.as_ref()) }
   }
-  pub fn set_name(&mut self, val: impl ::protobuf::IntoProxied<::protobuf::ProtoString>) {
+  pub fn set_unit(&mut self, val: impl ::protobuf::IntoProxied<::protobuf::ProtoString>) {
     unsafe {
       ::protobuf::__internal::runtime::message_set_string_field(
         ::protobuf::AsMut::as_mut(self).inner,
@@ -1686,8 +1686,8 @@ impl SystemdRequest {
     }
   }
 
-  // name: optional string
-  pub fn name(&self) -> ::protobuf::View<'_, ::protobuf::ProtoString> {
+  // unit: optional string
+  pub fn unit(&self) -> ::protobuf::View<'_, ::protobuf::ProtoString> {
     let str_view = unsafe {
       self.inner.ptr().get_string_at_index(
         1, (b"").into()
@@ -1696,7 +1696,7 @@ impl SystemdRequest {
     // SAFETY: The runtime doesn't require ProtoStr to be UTF-8.
     unsafe { ::protobuf::ProtoStr::from_utf8_unchecked(str_view.as_ref()) }
   }
-  pub fn set_name(&mut self, val: impl ::protobuf::IntoProxied<::protobuf::ProtoString>) {
+  pub fn set_unit(&mut self, val: impl ::protobuf::IntoProxied<::protobuf::ProtoString>) {
     unsafe {
       ::protobuf::__internal::runtime::message_set_string_field(
         ::protobuf::AsMut::as_mut(self).inner,

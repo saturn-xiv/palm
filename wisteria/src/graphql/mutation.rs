@@ -139,7 +139,7 @@ impl Mutation {
         Ok(Succeeded::default())
     }
 
-    async fn desctoy_attachment<S: ScalarValue + Display>(
+    async fn destroy_attachment<S: ScalarValue + Display>(
         id: i32,
         ctx: &Context,
     ) -> FieldResult<Succeeded, S> {

@@ -12,35 +12,35 @@ logger = logging.getLogger(__name__)
 INDEX_NAME = "lavender.graphql.logging.systemd.unit.item"
 
 
-def launch(stub, name, db):
-    logger.info("load systemd unit %s", name)
+def launch(stub, unit, db):
+    logger.info("load systemd unit %s", unit)
     try:
-        stub.Systemd(_load_logs_for_unit(db, name))
+        stub.Systemd(_load_logs_for_unit(db, unit))
     except Exception:
         logger.exception("fetch systemd logs")
 
 
-def _load_logs_for_unit(db, name):
-    key = f"systemd.{name}.last-fetch"
+def _load_logs_for_unit(db, unit):
+    key = f"systemd.{unit}.last-fetch"
 
     reader = journal.Reader()
     reader.log_level(journal.LOG_INFO)
 
     if key in db:
         since = pickle.loads(db[key])
-        logger.debug("fetch systemd logs for %s since %s", name, since)
+        logger.debug("fetch systemd logs for %s since %s", unit, since)
         reader.seek_realtime(since)
     else:
-        logger.debug("fetch systemd logs for %s since last-boot", name)
+        logger.debug("fetch systemd logs for %s since last-boot", unit)
         reader.this_boot()
 
-    reader.add_match(_SYSTEMD_UNIT=name)
+    reader.add_match(_SYSTEMD_UNIT=unit)
 
     for entry in reader:
         cur = entry.get('__REALTIME_TIMESTAMP')
         yield lavender_pb2.SystemdRequest(
             host=entry.get('_HOSTNAME'),
-            name=entry.get('_SYSTEMD_UNIT'),
+            unit=entry.get('_SYSTEMD_UNIT'),
             created_at=to_timestamp(cur),
             priority=int(entry.get('PRIORITY', '0')),
             message=entry.get('MESSAGE', '')

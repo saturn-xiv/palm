@@ -1,1 +1,1 @@
-Execute {{ name }}({{ version }}) {%- if output.succeed() -%}succeed{%- else -%}failed{%- endif -%} in {{ output.elapsed()? }} µs
+Execute {{ name }}({{ version }}) {%- if output.succeed() -%} succeed {%- else -%} failed {%- endif -%} in {{ output.elapsed()? }} µs

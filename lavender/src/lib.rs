@@ -39,7 +39,7 @@ impl Plugin {
                     Some(json!({
                         "properties":{
                             "host": {"type": "keyword"},
-                            "name": {"type": "keyword"},
+                            "unit": {"type": "keyword"},
                             "priority": {"type": "byte"},
                             "message": {"type": "text"},
                             "created_at": {"type": "date_nanos", "format": "strict_date_optional_time_nanos"}

@@ -10,12 +10,8 @@ export interface IItem {
   fund?: boolean;
 }
 
-interface IIndexResponse {
-  indexCurrency: IItem[];
-}
-
 export const index = async (): Promise<IItem[]> => {
-  const res: IIndexResponse = await graphql(
+  const res: { indexCurrency: IItem[] } = await graphql(
     `
       query call {
         indexCurrency {

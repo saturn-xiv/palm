@@ -21,7 +21,7 @@ pub struct Item {
     pub postgresql: postgresql::Item,
     pub redis: String,
     pub seaweedfs: seaweedfs::Item,
-    pub open_search: opensearch::Item,
+    pub opensearch: opensearch::Item,
     pub client_ip: Option<String>,
 
     pub build_time: String,
@@ -50,7 +50,7 @@ impl Item {
             rabbitmq: rabbitmq::Item::new(queue),
             redis: cache.info()?,
             seaweedfs: seaweedfs::Item::new(s3).await?,
-            open_search: opensearch::Item::new(search).await?,
+            opensearch: opensearch::Item::new(search).await?,
             client_ip: ss.client_ip.clone(),
             created_at: Utc::now().naive_utc(),
             version: version.to_string(),

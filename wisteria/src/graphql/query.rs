@@ -235,22 +235,22 @@ impl Query {
         Ok(reply)
     }
 
-    async fn lavender_systemd_unit_log_by_name(
-        name: String,
+    async fn lavender_systemd_log_by_unit(
+        unit: String,
         page: Page,
         ctx: &Context,
     ) -> FieldResult<lavender_graphql::logging::systemd::unit::Index> {
         let mut db = ctx.state.db.get()?;
         let db = db.deref_mut();
         let mut cache = ctx.state.cache.get()?;
-        let reply = lavender_graphql::logging::systemd::unit::Index::by_name(
+        let reply = lavender_graphql::logging::systemd::unit::Index::by_unit(
             &ctx.session,
             db,
             &mut cache,
             &ctx.state.dahlia,
             &ctx.state.loquat,
             &ctx.state.search,
-            (&name, &page),
+            (&unit, &page),
         )
         .await?;
         Ok(reply)

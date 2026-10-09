@@ -24,8 +24,8 @@ class Reporter(lavender_pb2_grpc.ReporterServicer):
 
         for req in request_iterator:
             # logger.debug("receive chunk(%s): %s %s %s",
-            #              chunk_count, req.name, req.created_at, req.message)
-            doc = {'host': req.host, 'name': req.name, 'priority': req.priority,
+            #              chunk_count, req.unit, req.created_at, req.message)
+            doc = {'host': req.host, 'unit': req.unit, 'priority': req.priority,
                    'message': req.message, 'created_at': from_timestamp(req.created_at)}
             res = self.client.index(index=self._index(
                 SYSTEMD_INDEX_NAME), body=doc, refresh=True)

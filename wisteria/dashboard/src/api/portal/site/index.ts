@@ -1,4 +1,4 @@
-import graphql from "../../graphql";
+import graphql from "../../../graphql";
 
 export interface ILayout {
   favicon?: string;

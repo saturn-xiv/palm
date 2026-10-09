@@ -25,7 +25,7 @@ service Reporter {
 
 message SystemdRequest {
     string host = 1;
-    string name = 2;
+    string unit = 2;
     uint32 priority = 3;
     string message = 4;
     Timestamp created_at = 9;

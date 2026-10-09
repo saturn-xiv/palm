@@ -1,5 +1,5 @@
 import graphql from "../../graphql";
-import { type IPagination } from ".";
+import { type IPagination, type ISucceeded } from ".";
 
 export interface IItem {
   id: number;
@@ -68,4 +68,18 @@ export const index = async (
     { page: { index, size } },
   );
   return res.indexAttacchment;
+};
+
+export const destroy = async (id: number): Promise<ISucceeded> => {
+  const res: { destroyAttachment: ISucceeded } = await graphql(
+    `
+      mutation call($id: Int!) {
+        destroyAttachment(id: $id) {
+          createdAt
+        }
+      }
+    `,
+    { id },
+  );
+  return res.destroyAttachment;
 };

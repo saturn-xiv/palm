@@ -27,18 +27,18 @@ class Duration(_message.Message):
     def __init__(self, seconds: _Optional[int] = ..., nanos: _Optional[int] = ...) -> None: ...
 
 class SystemdRequest(_message.Message):
-    __slots__ = ("host", "name", "priority", "message", "created_at")
+    __slots__ = ("host", "unit", "priority", "message", "created_at")
     HOST_FIELD_NUMBER: _ClassVar[int]
-    NAME_FIELD_NUMBER: _ClassVar[int]
+    UNIT_FIELD_NUMBER: _ClassVar[int]
     PRIORITY_FIELD_NUMBER: _ClassVar[int]
     MESSAGE_FIELD_NUMBER: _ClassVar[int]
     CREATED_AT_FIELD_NUMBER: _ClassVar[int]
     host: str
-    name: str
+    unit: str
     priority: int
     message: str
     created_at: Timestamp
-    def __init__(self, host: _Optional[str] = ..., name: _Optional[str] = ..., priority: _Optional[int] = ..., message: _Optional[str] = ..., created_at: _Optional[_Union[Timestamp, _Mapping]] = ...) -> None: ...
+    def __init__(self, host: _Optional[str] = ..., unit: _Optional[str] = ..., priority: _Optional[int] = ..., message: _Optional[str] = ..., created_at: _Optional[_Union[Timestamp, _Mapping]] = ...) -> None: ...
 
 class SystemdResponse(_message.Message):
     __slots__ = ("chunk_count",)
