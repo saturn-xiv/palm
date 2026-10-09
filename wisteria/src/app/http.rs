@@ -12,9 +12,15 @@ use clap::ValueEnum;
 use hyacinth::{GrpcClientChannel, open_grpc_channel};
 use juniper_axum::{graphiql, playground};
 use portal::{
-    Dahlia, Key, Loquat, Marigold, Result, cache::redis::Node as Redis, is_stopped,
-    opensearch::Node as OpenSearch, orm::postgresql::Node as PostgreSql, parse_toml,
-    queue::rabbitmq::Node as RabbitMq, s3::seaweedfs::Config as SeaweedFs,
+    Dahlia, Key, Loquat, Marigold, Result,
+    cache::redis::Node as Redis,
+    is_stopped,
+    opensearch::Node as OpenSearch,
+    orm::postgresql::Node as PostgreSql,
+    parse_toml,
+    queue::rabbitmq::Node as RabbitMq,
+    s3::seaweedfs::Config as SeaweedFs,
+    wechat::{oauth2::Config as WebchatOauth2Config, webhook::Config as WechatWebhookConfig},
 };
 use serde::{Deserialize, Serialize};
 use strum::{Display as EnumDisplay, EnumString};
@@ -81,7 +87,9 @@ pub async fn start<P: AsRef<Path>>(config: P, port: u16, _theme: Theme) -> Resul
         loquat: Loquat::new(config.loquat.open()),
         dahlia: Dahlia::new(config.dahlia.open()),
         marigold: Marigold::new(config.marigold.open()),
-        lavender: config.lavender.clone(),
+        lavender: config.lavender.clone().unwrap_or_default(),
+        wechat_oauth2: config.wechat_oauth2.clone().unwrap_or_default(),
+        wechat_web_hook: config.wechat_webhook.clone().unwrap_or_default(),
         db,
     }));
 
@@ -89,6 +97,14 @@ pub async fn start<P: AsRef<Path>>(config: P, port: u16, _theme: Theme) -> Resul
         .route(
             "/lavender/web-hooks/{name}",
             post(controllers::lavender::web_hooks),
+        )
+        .route(
+            "/wechat/web-hooks/ping",
+            get(controllers::portal::wechat_webhook_ping),
+        )
+        .route(
+            "/wechat/web-hooks",
+            post(controllers::portal::wechat_webhook),
         )
         .route(
             "/attachments/{token}/{uid}",
@@ -152,7 +168,11 @@ struct Config {
     loquat: Rpc,
     dahlia: Rpc,
     marigold: Rpc,
-    lavender: lavender::Config,
+    lavender: Option<lavender::Config>,
+    #[serde(rename = "wechat-web-hook")]
+    wechat_webhook: Option<WechatWebhookConfig>,
+    #[serde(rename = "wechat-oauth2")]
+    wechat_oauth2: Option<WebchatOauth2Config>,
 }
 
 #[derive(Debug, Clone, Default, Serialize, Deserialize)]

@@ -6,13 +6,11 @@ CREATE TABLE wechat_oauth2_users(
     app_id VARCHAR(63) NOT NULL,
     open_id VARCHAR(63) NOT NULL,
     nickname VARCHAR(63) NOT NULL,
-    sex INTEGER NOT NULL,
-    city VARCHAR(63) NOT NULL,
-    province VARCHAR(63) NOT NULL,
-    country VARCHAR(63) NOT NULL,
     head_img_url VARCHAR(127),
-    privilege BYTEA NOT NULL,
-    lang VARCHAR(7) NOT NULL,
+    privilege JSONB NOT NULL,
+    access_token VARCHAR(63) NOT NULL,
+    expires_in TIMESTAMP WITHOUT TIME ZONE NOT NULL,
+    refresh_token  VARCHAR(63) NOT NULL,
     locked_at TIMESTAMP WITHOUT TIME ZONE,
     deleted_at  TIMESTAMP WITHOUT TIME ZONE,
     version INTEGER NOT NULL DEFAULT 0,
@@ -23,10 +21,6 @@ CREATE TABLE wechat_oauth2_users(
 CREATE UNIQUE INDEX idx_wechat_oauth2_users_app_open ON wechat_oauth2_users(app_id, open_id);
 CREATE INDEX idx_wechat_oauth2_users_union ON wechat_oauth2_users(union_id);
 CREATE INDEX idx_wechat_oauth2_users_nickname ON wechat_oauth2_users(nickname);
-CREATE INDEX idx_wechat_oauth2_users_city ON wechat_oauth2_users(city);
-CREATE INDEX idx_wechat_oauth2_users_province ON wechat_oauth2_users(province);
-CREATE INDEX idx_wechat_oauth2_users_country ON wechat_oauth2_users(country);
-CREATE INDEX idx_wechat_oauth2_users_lang ON wechat_oauth2_users(lang);
 
 -- migrate:down
 DROP TABLE wechat_oauth2_users;

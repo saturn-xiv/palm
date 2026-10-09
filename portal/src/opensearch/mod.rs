@@ -233,7 +233,7 @@ impl Client {
 
     pub async fn json<T: DeserializeOwned>(res: Response) -> OpenSearchResult<T> {
         let status = res.status_code();
-        if status != StatusCode::OK {
+        if !status.is_success() {
             let body = res.text().await?;
             log::error!("{status} {body}");
             return Err(IoError::from(IoErrorKind::InvalidData).into());
@@ -242,7 +242,7 @@ impl Client {
     }
     pub async fn text(res: Response) -> OpenSearchResult<String> {
         let status = res.status_code();
-        if status != StatusCode::OK {
+        if !status.is_success() {
             let body = res.text().await?;
             log::error!("{status} {body}");
             return Err(IoError::from(IoErrorKind::InvalidData).into());

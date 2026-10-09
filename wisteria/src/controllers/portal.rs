@@ -5,16 +5,18 @@ use axum::{
     Extension,
     body::Body,
     extract::{Json, Multipart, Path, Query},
+    http::HeaderMap,
     http::Response,
-    http::{HeaderMap, StatusCode},
     response::Html,
 };
 use axum_extra::extract::cookie::CookieJar;
+use hyper::StatusCode;
 use portal::{
     HtmlResult, JsonResult,
     controllers::{attachments as attachment_api, home as home_},
     graphql::{Session, Succeeded},
     web_try,
+    wechat::webhook::ping::Query as WechatPingQuery,
 };
 use serde::Deserialize;
 
@@ -92,4 +94,27 @@ pub async fn attachments_show(
         .await
     );
     Ok(it)
+}
+
+// https://developers.weixin.qq.com/apiExplorer?type=messagePush
+#[axum::debug_handler]
+pub async fn wechat_webhook_ping(
+    Extension(state): Extension<State>,
+    Query(query): Query<WechatPingQuery>,
+) -> (StatusCode, String) {
+    match query.verify(&state.wechat_web_hook.access_token) {
+        Ok(_) => (StatusCode::OK, query.echo_str),
+        Err(e) => (StatusCode::BAD_REQUEST, e.to_string()),
+    }
+}
+
+#[axum::debug_handler]
+pub async fn wechat_webhook(
+    Extension(state): Extension<State>,
+    Query(query): Query<WechatPingQuery>,
+) -> (StatusCode, String) {
+    match query.verify(&state.wechat_web_hook.access_token) {
+        Ok(_) => (StatusCode::OK, query.echo_str),
+        Err(e) => (StatusCode::BAD_REQUEST, e.to_string()),
+    }
 }

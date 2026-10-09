@@ -292,18 +292,14 @@ diesel::table! {
         open_id -> Varchar,
         #[max_length = 63]
         nickname -> Varchar,
-        sex -> Int4,
-        #[max_length = 63]
-        city -> Varchar,
-        #[max_length = 63]
-        province -> Varchar,
-        #[max_length = 63]
-        country -> Varchar,
         #[max_length = 127]
         head_img_url -> Nullable<Varchar>,
-        privilege -> Bytea,
-        #[max_length = 7]
-        lang -> Varchar,
+        privilege -> Jsonb,
+        #[max_length = 63]
+        access_token -> Varchar,
+        expires_in -> Timestamp,
+        #[max_length = 63]
+        refresh_token -> Varchar,
         locked_at -> Nullable<Timestamp>,
         deleted_at -> Nullable<Timestamp>,
         version -> Int4,

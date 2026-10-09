@@ -21,6 +21,7 @@ pub mod s3;
 pub mod session;
 pub mod ssha512;
 pub mod twilio;
+pub mod wechat;
 
 use std::any::type_name;
 use std::env::current_exe;
