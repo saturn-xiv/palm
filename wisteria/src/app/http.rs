@@ -20,7 +20,10 @@ use portal::{
     parse_toml,
     queue::rabbitmq::Node as RabbitMq,
     s3::seaweedfs::Config as SeaweedFs,
-    wechat::{oauth2::Config as WebchatOauth2Config, webhook::Config as WechatWebhookConfig},
+    wechat::{
+        mini_program::Config as WechatMiniProgramConfig, oauth2::Config as WechatOauth2Config,
+        webhook::Config as WechatWebhookConfig,
+    },
 };
 use serde::{Deserialize, Serialize};
 use strum::{Display as EnumDisplay, EnumString};
@@ -90,6 +93,7 @@ pub async fn start<P: AsRef<Path>>(config: P, port: u16, _theme: Theme) -> Resul
         lavender: config.lavender.clone().unwrap_or_default(),
         wechat_oauth2: config.wechat_oauth2.clone().unwrap_or_default(),
         wechat_web_hook: config.wechat_webhook.clone().unwrap_or_default(),
+        wechat_mini_program: config.wechat_mini_program.clone().unwrap_or_default(),
         db,
     }));
 
@@ -103,8 +107,12 @@ pub async fn start<P: AsRef<Path>>(config: P, port: u16, _theme: Theme) -> Resul
             get(controllers::portal::wechat_webhook_ping),
         )
         .route(
-            "/wechat/web-hooks",
-            post(controllers::portal::wechat_webhook),
+            "/wechat/oauth2/web-hooks",
+            post(controllers::portal::wechat_oauth2_webhook),
+        )
+        .route(
+            "/wechat/mini-program/web-hooks",
+            post(controllers::portal::wechat_mini_program_webhook),
         )
         .route(
             "/attachments/{token}/{uid}",
@@ -172,7 +180,9 @@ struct Config {
     #[serde(rename = "wechat-web-hook")]
     wechat_webhook: Option<WechatWebhookConfig>,
     #[serde(rename = "wechat-oauth2")]
-    wechat_oauth2: Option<WebchatOauth2Config>,
+    wechat_oauth2: Option<WechatOauth2Config>,
+    #[serde(rename = "wechat-mini-program")]
+    wechat_mini_program: Option<WechatMiniProgramConfig>,
 }
 
 #[derive(Debug, Clone, Default, Serialize, Deserialize)]

@@ -16,7 +16,11 @@ use portal::{
     controllers::{attachments as attachment_api, home as home_},
     graphql::{Session, Succeeded},
     web_try,
-    wechat::webhook::ping::Query as WechatPingQuery,
+    wechat::webhook::{
+        EncryptRequest as WechatWebHookEncryptRequest, Query as WechatWebHookQuery,
+        Request as WechatWebHookRequest, Response as WechatWebHookResponse,
+        ping::Query as WechatWebHookPingQuery,
+    },
 };
 use serde::Deserialize;
 
@@ -100,21 +104,63 @@ pub async fn attachments_show(
 #[axum::debug_handler]
 pub async fn wechat_webhook_ping(
     Extension(state): Extension<State>,
-    Query(query): Query<WechatPingQuery>,
+    Query(query): Query<WechatWebHookPingQuery>,
 ) -> (StatusCode, String) {
-    match query.verify(&state.wechat_web_hook.access_token) {
+    match query.verify(&state.wechat_web_hook.token) {
         Ok(_) => (StatusCode::OK, query.echo_str),
         Err(e) => (StatusCode::BAD_REQUEST, e.to_string()),
     }
 }
 
 #[axum::debug_handler]
-pub async fn wechat_webhook(
+pub async fn wechat_oauth2_webhook(
     Extension(state): Extension<State>,
-    Query(query): Query<WechatPingQuery>,
-) -> (StatusCode, String) {
-    match query.verify(&state.wechat_web_hook.access_token) {
-        Ok(_) => (StatusCode::OK, query.echo_str),
-        Err(e) => (StatusCode::BAD_REQUEST, e.to_string()),
-    }
+    Query(query): Query<WechatWebHookQuery>,
+    Json(body): Json<WechatWebHookEncryptRequest>,
+) -> JsonResult<WechatWebHookResponse> {
+    log::info!("receive message from user {}", body.to_user_name);
+    web_try!(query.verify(&state.wechat_web_hook.token, &body.encrypt));
+    let it = match web_try!(
+        state
+            .wechat_web_hook
+            .request(&state.wechat_oauth2.app_id, &body.encrypt)
+    ) {
+        WechatWebHookRequest::AuthorizationChange(ref it) => {
+            log::debug!("{:?}", it);
+            // TODO
+            web_try!(
+                state
+                    .wechat_web_hook
+                    .response(&state.wechat_oauth2.app_id, &Succeeded::default(),)
+            )
+        }
+    };
+
+    Ok(Json(it))
+}
+#[axum::debug_handler]
+pub async fn wechat_mini_program_webhook(
+    Extension(state): Extension<State>,
+    Query(query): Query<WechatWebHookQuery>,
+    Json(body): Json<WechatWebHookEncryptRequest>,
+) -> JsonResult<WechatWebHookResponse> {
+    log::info!("receive message from user {}", body.to_user_name);
+    web_try!(query.verify(&state.wechat_web_hook.token, &body.encrypt));
+    let it = match web_try!(
+        state
+            .wechat_web_hook
+            .request(&state.wechat_mini_program.app_id, &body.encrypt)
+    ) {
+        WechatWebHookRequest::AuthorizationChange(ref it) => {
+            log::debug!("{:?}", it);
+            // TODO
+            web_try!(
+                state
+                    .wechat_web_hook
+                    .response(&state.wechat_mini_program.app_id, &Succeeded::default(),)
+            )
+        }
+    };
+
+    Ok(Json(it))
 }

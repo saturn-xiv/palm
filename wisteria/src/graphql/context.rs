@@ -11,7 +11,10 @@ use portal::{
     orm::postgresql::Pool as Db,
     queue::rabbitmq::Client as RabbitMq,
     s3::seaweedfs::Client as S3,
-    wechat::{oauth2::Config as WebOauth2Config, webhook::Config as WechatWebhookConfig},
+    wechat::{
+        mini_program::Config as WechatMiniProgramConfig, oauth2::Config as WechatOauth2Config,
+        webhook::Config as WechatWebhookConfig,
+    },
 };
 
 #[derive(Clone)]
@@ -28,7 +31,8 @@ pub struct InnerState {
     pub loquat: Loquat,
     pub marigold: Marigold,
     pub lavender: lavender::Config,
-    pub wechat_oauth2: WebOauth2Config,
+    pub wechat_oauth2: WechatOauth2Config,
+    pub wechat_mini_program: WechatMiniProgramConfig,
     pub wechat_web_hook: WechatWebhookConfig,
 }
 
