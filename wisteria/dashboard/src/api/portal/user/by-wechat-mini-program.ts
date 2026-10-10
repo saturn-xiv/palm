@@ -9,12 +9,8 @@ export const sign_in = async (
 ): Promise<ISignInResponse> => {
   const res: { signInByWechatMiniProgram: ISignInResponse } = await graphql(
     `
-      mutation call($code: String!, $lang: String!, $timezone: String!) {
-        signInByWechatMiniProgram(
-          code: $code
-          lang: $lang
-          timezone: $timezone
-        ) {
+      mutation call($form: UserSignInByWechatMiniProgramRequest!) {
+        signInByWechatMiniProgram(form: $form) {
           token
           user {
             lang
@@ -48,7 +44,7 @@ export const sign_in = async (
         }
       }
     `,
-    { code, lang, timezone },
+    { form: { code, lang, timezone } },
   );
   return res.signInByWechatMiniProgram;
 };

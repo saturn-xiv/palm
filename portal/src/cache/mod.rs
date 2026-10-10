@@ -1,7 +1,6 @@
 pub mod redis;
 
-use std::time::Duration;
-
+use chrono::Duration;
 use hyacinth::ProtobufMessage;
 use serde::{Serialize, de::DeserializeOwned};
 

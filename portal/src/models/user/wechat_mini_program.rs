@@ -10,7 +10,10 @@ use icu::locale::Locale;
 use serde::{Deserialize, Serialize};
 use uuid::Uuid;
 
-use super::super::super::{HttpError, Result, orm::postgresql::Connection};
+use super::super::super::{
+    HttpError, Result, orm::postgresql::Connection,
+    wechat::mini_program::code2session::Response as Code2SessionResponse,
+};
 use super::Dao as UserDao;
 
 #[derive(Queryable, Serialize, Deserialize, Clone)]
@@ -66,6 +69,7 @@ impl fmt::Display for Item {
 pub trait Dao {
     fn count(&mut self) -> Result<i64>;
     fn all(&mut self, offset: i64, limit: i64) -> Result<Vec<Item>>;
+    fn by_user(&mut self, id: i64) -> Result<Vec<Item>>;
     fn by_id(&mut self, id: i64) -> Result<Item>;
     fn by_uid(&mut self, uid: &str) -> Result<Item>;
     fn by_app_and_open_id(&mut self, app_id: &str, open_id: &str) -> StdResult<Item, DieselError>;
@@ -86,7 +90,7 @@ pub trait Dao {
     fn sign_in_or_up(
         &mut self,
         location: (&Locale, Tz),
-        user_info: (&str, &str, &str, &str),
+        info: (&str, &Code2SessionResponse),
     ) -> Result<Item>;
 }
 
@@ -104,6 +108,13 @@ impl Dao for Connection {
             .limit(limit)
             .load::<Item>(self)?;
         Ok(items)
+    }
+    fn by_user(&mut self, id: i64) -> Result<Vec<Item>> {
+        let it = wechat_mini_program_users::dsl::wechat_mini_program_users
+            .order(wechat_mini_program_users::dsl::updated_at.desc())
+            .filter(wechat_mini_program_users::dsl::user_id.eq(id))
+            .load::<Item>(self)?;
+        Ok(it)
     }
     fn by_id(&mut self, id: i64) -> Result<Item> {
         let it = wechat_mini_program_users::dsl::wechat_mini_program_users
@@ -225,12 +236,12 @@ impl Dao for Connection {
     fn sign_in_or_up(
         &mut self,
         (lang, timezone): (&Locale, Tz),
-        (app_id, open_id, union_id, session_key): (&str, &str, &str, &str),
+        (app_id, user_info): (&str, &Code2SessionResponse),
     ) -> Result<Item> {
-        match self.by_app_and_open_id(app_id, open_id) {
+        match self.by_app_and_open_id(app_id, &user_info.openid) {
             Ok(it) => {
                 it.is_enable()?;
-                if it.union_id != union_id {
+                if it.union_id != user_info.unionid {
                     return Err(Box::new(HttpError(
                         StatusCode::BAD_REQUEST,
                         Some("invalid union_id".to_string()),
@@ -240,18 +251,25 @@ impl Dao for Connection {
                     let user = UserDao::by_id(self, it.user_id)?;
                     user.is_enable()?;
                 }
-                self.set_session_key(it.id, session_key)?;
+                self.set_session_key(it.id, &user_info.session_key)?;
                 Ok(())
             }
             Err(DieselError::NotFound) => {
                 let uid = Uuid::new_v4().to_string();
                 UserDao::create(self, &uid, "Wechat MiniProgram User", lang, timezone)?;
                 let user = UserDao::by_uid(self, &uid)?;
-                Dao::create(self, user.id, app_id, open_id, union_id, session_key)?;
+                Dao::create(
+                    self,
+                    user.id,
+                    app_id,
+                    &user_info.openid,
+                    &user_info.unionid,
+                    &user_info.session_key,
+                )?;
                 Ok(())
             }
             Err(e) => Err(e),
         }?;
-        Ok(self.by_app_and_open_id(app_id, open_id)?)
+        Ok(self.by_app_and_open_id(app_id, &user_info.openid)?)
     }
 }

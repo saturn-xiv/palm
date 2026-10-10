@@ -1,8 +1,8 @@
 use std::ops::{Deref, DerefMut};
 use std::result::Result as StdResult;
 use std::sync::Arc;
-use std::time::Duration;
 
+use chrono::Duration;
 use hyacinth::{FlexbufferReader, FlexbufferSerializer, ProtobufMessage};
 use r2d2::{
     Error as R2d2Error, ManageConnection, Pool as R2d2Pool,
@@ -24,7 +24,7 @@ pub type StandaloneConnection = PooledConnection<RedisConnection, RedisClient>;
 
 fn set<D: Commands>(db: &mut D, key: &str, value: &[u8], ttl: Option<Duration>) -> RedisResult<()> {
     let _: () = match ttl {
-        Some(ttl) => db.set_ex(key, value, ttl.as_secs())?,
+        Some(ttl) => db.set_ex(key, value, ttl.num_seconds() as u64)?,
         None => db.set(key, value)?,
     };
     Ok(())

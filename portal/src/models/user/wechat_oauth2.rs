@@ -1,9 +1,12 @@
 use std::fmt;
+use std::result::Result as StdResult;
 
 use chrono::{Duration, NaiveDateTime, Utc};
-use diesel::{insert_into, prelude::*, update};
+use chrono_tz::Tz;
+use diesel::{insert_into, prelude::*, result::Error as DieselError, update};
 use hyacinth::schema::wechat_oauth2_users;
 use hyper::StatusCode;
+use icu::locale::Locale;
 use serde::{Deserialize, Serialize};
 use serde_json::{Value, to_value};
 use uuid::Uuid;
@@ -13,6 +16,7 @@ use super::super::super::{
     orm::postgresql::Connection,
     wechat::oauth2::responses::{AccessToken, RefreshToken, UserInfo},
 };
+use super::Dao as UserDao;
 
 #[derive(Queryable, Serialize, Deserialize, Clone)]
 pub struct Item {
@@ -62,9 +66,10 @@ impl fmt::Display for Item {
 pub trait Dao {
     fn count(&mut self) -> Result<i64>;
     fn all(&mut self, offset: i64, limit: i64) -> Result<Vec<Item>>;
+    fn by_user(&mut self, id: i64) -> Result<Vec<Item>>;
     fn by_id(&mut self, id: i64) -> Result<Item>;
     fn by_uid(&mut self, uid: &str) -> Result<Item>;
-    fn by_app_and_open_id(&mut self, app_id: &str, open_id: &str) -> Result<Item>;
+    fn by_app_and_open_id(&mut self, app_id: &str, open_id: &str) -> StdResult<Item, DieselError>;
     fn by_union_id(&mut self, union_id: &str) -> Result<Vec<Item>>;
     fn create(
         &mut self,
@@ -74,10 +79,17 @@ pub trait Dao {
         info: &UserInfo,
     ) -> Result<()>;
     fn set_info(&mut self, id: i64, info: &UserInfo) -> Result<()>;
-    fn set_access_token(&mut self, id: i64, token: &RefreshToken) -> Result<()>;
+    fn set_access_token(&mut self, id: i64, token: &RefreshToken) -> StdResult<(), DieselError>;
     fn lock(&mut self, id: i64) -> Result<()>;
     fn unlock(&mut self, id: i64) -> Result<()>;
     fn delete(&mut self, id: i64) -> Result<()>;
+    fn sign_in_or_up(
+        &mut self,
+        location: (&Locale, Tz),
+        app_id: &str,
+        token: &AccessToken,
+        info: &UserInfo,
+    ) -> Result<Item>;
 }
 
 impl Dao for Connection {
@@ -101,13 +113,20 @@ impl Dao for Connection {
             .first::<Item>(self)?;
         Ok(it)
     }
+    fn by_user(&mut self, id: i64) -> Result<Vec<Item>> {
+        let it = wechat_oauth2_users::dsl::wechat_oauth2_users
+            .order(wechat_oauth2_users::dsl::updated_at.desc())
+            .filter(wechat_oauth2_users::dsl::user_id.eq(id))
+            .load::<Item>(self)?;
+        Ok(it)
+    }
     fn by_uid(&mut self, uid: &str) -> Result<Item> {
         let it = wechat_oauth2_users::dsl::wechat_oauth2_users
             .filter(wechat_oauth2_users::dsl::uid.eq(uid))
             .first::<Item>(self)?;
         Ok(it)
     }
-    fn by_app_and_open_id(&mut self, app_id: &str, open_id: &str) -> Result<Item> {
+    fn by_app_and_open_id(&mut self, app_id: &str, open_id: &str) -> StdResult<Item, DieselError> {
         let it = wechat_oauth2_users::dsl::wechat_oauth2_users
             .filter(wechat_oauth2_users::dsl::app_id.eq(app_id))
             .filter(wechat_oauth2_users::dsl::open_id.eq(open_id))
@@ -165,7 +184,7 @@ impl Dao for Connection {
             .execute(self)?;
         Ok(())
     }
-    fn set_access_token(&mut self, id: i64, token: &RefreshToken) -> Result<()> {
+    fn set_access_token(&mut self, id: i64, token: &RefreshToken) -> StdResult<(), DieselError> {
         let now = Utc::now().naive_utc();
         let it = wechat_oauth2_users::dsl::wechat_oauth2_users
             .filter(wechat_oauth2_users::dsl::id.eq(id));
@@ -216,5 +235,39 @@ impl Dao for Connection {
             .set(wechat_oauth2_users::dsl::deleted_at.eq(&now))
             .execute(self)?;
         Ok(())
+    }
+    fn sign_in_or_up(
+        &mut self,
+        (lang, timezone): (&Locale, Tz),
+        app_id: &str,
+        token: &AccessToken,
+        info: &UserInfo,
+    ) -> Result<Item> {
+        match self.by_app_and_open_id(app_id, &token.openid) {
+            Ok(it) => {
+                it.is_enable()?;
+                if it.union_id != token.unionid {
+                    return Err(Box::new(HttpError(
+                        StatusCode::BAD_REQUEST,
+                        Some("invalid union_id".to_string()),
+                    )));
+                }
+                {
+                    let user = UserDao::by_id(self, it.user_id)?;
+                    user.is_enable()?;
+                }
+                self.set_info(it.id, info)?;
+                Ok(())
+            }
+            Err(DieselError::NotFound) => {
+                let uid = Uuid::new_v4().to_string();
+                UserDao::create(self, &uid, "Wechat Oauth2 User", lang, timezone)?;
+                let user = UserDao::by_uid(self, &uid)?;
+                Dao::create(self, user.id, app_id, token, info)?;
+                Ok(())
+            }
+            Err(e) => Err(e),
+        }?;
+        Ok(self.by_app_and_open_id(app_id, &token.openid)?)
     }
 }

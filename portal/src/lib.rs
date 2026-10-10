@@ -4,6 +4,7 @@ pub mod cache;
 pub mod content_types;
 pub mod controllers;
 pub mod git;
+pub mod google;
 pub mod graphql;
 pub mod gravatar;
 pub mod headers;

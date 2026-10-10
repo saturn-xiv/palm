@@ -1,13 +1,14 @@
 use std::fmt::Display;
 use std::ops::DerefMut;
 
+use chrono::Duration;
 use chrono_tz::TZ_VARIANTS;
 use juniper::{FieldResult, ScalarValue, graphql_object};
 use lavender::graphql as lavender_graphql;
 use portal::graphql::{
     Menu, Page, Succeeded, attachment as attachment_api, currency as currency_api,
     locale as locale_api, site as site_api,
-    user::{self as user_api, email as email_user_api},
+    user::{self as user_api, email as email_user_api, wechat_oauth2 as wechat_oauth2_user_api},
 };
 
 use super::super::{BUILD_TIME, GIT_VERSION};
@@ -67,6 +68,17 @@ impl Query {
         form.execute(db, &ctx.state.queue, &ctx.state.loquat)
             .await?;
         Ok(Succeeded::default())
+    }
+
+    fn sign_in_url_for_wechat_oauth2(ctx: &Context) -> FieldResult<String> {
+        let mut cache = ctx.state.cache.get()?;
+        let it = wechat_oauth2_user_api::sign_in_url(
+            &ctx.session,
+            &mut cache,
+            &ctx.state.wechat_oauth2,
+            Duration::minutes(5),
+        )?;
+        Ok(it)
     }
 
     async fn refresh(ctx: &Context) -> FieldResult<user_api::RefreshResponse> {

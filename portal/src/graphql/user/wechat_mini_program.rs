@@ -20,7 +20,7 @@ use super::super::Session;
 use super::SignInResponse;
 
 #[derive(Clone, Debug, Validate, GraphQLInputObject)]
-#[graphql(name = "UserSignUpByWechatMiniProgramRequest")]
+#[graphql(name = "UserSignInByWechatMiniProgramRequest")]
 pub struct SignIn {
     #[validate(length(min = 1, max = 255))]
     pub code: String,
@@ -53,7 +53,7 @@ impl SignIn {
             let it = WechatMiniProgramUserDao::sign_in_or_up(
                 tx,
                 (&self.lang.parse()?, self.timezone.parse()?),
-                (&wechat.app_id, &res.openid, &res.unionid, &res.session_key),
+                (&wechat.app_id, &res),
             )?;
             UserDao::sign_in(tx, it.user_id, ip)?;
             LogDao::create::<Plugin, _>(
