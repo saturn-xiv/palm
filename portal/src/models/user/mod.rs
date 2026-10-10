@@ -79,6 +79,7 @@ pub trait Dao {
     fn lock(&mut self, id: i64) -> Result<()>;
     fn unlock(&mut self, id: i64) -> Result<()>;
     fn delete(&mut self, id: i64) -> Result<()>;
+    fn email(&mut self, id: i64) -> Result<String>;
 }
 
 impl Dao for Connection {
@@ -217,5 +218,14 @@ impl Dao for Connection {
             .set(users::dsl::deleted_at.eq(&now))
             .execute(self)?;
         Ok(())
+    }
+    fn email(&mut self, id: i64) -> Result<String> {
+        for it in email::Dao::by_user(self, id)?.into_iter() {
+            if it.is_enable().is_ok() {
+                return Ok(it.email);
+            }
+        }
+
+        Err(Box::new(HttpError(StatusCode::NOT_FOUND, None)))
     }
 }

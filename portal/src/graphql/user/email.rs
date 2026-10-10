@@ -159,6 +159,7 @@ impl SignIn {
         (rbac, jwt, hashing): (&R, &J, &H),
         version: &str,
     ) -> Result<SignInResponse> {
+        self.validate()?;
         let it = EmailUserDao::by_email(db, &self.email)?;
         hashing.verify(&it.password, &self.password).await?;
         it.is_enable()?;

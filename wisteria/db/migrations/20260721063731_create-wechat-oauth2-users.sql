@@ -2,6 +2,7 @@
 CREATE TABLE wechat_oauth2_users(
     id BIGSERIAL PRIMARY KEY,
     user_id BIGINT NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+    uid VARCHAR(36) NOT NULL,
     union_id VARCHAR(127) NOT NULL,
     app_id VARCHAR(63) NOT NULL,
     open_id VARCHAR(63) NOT NULL,
@@ -18,6 +19,7 @@ CREATE TABLE wechat_oauth2_users(
     created_at TIMESTAMP WITHOUT TIME ZONE NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
 
+CREATE UNIQUE INDEX idx_wechat_oauth2_users_uid ON wechat_oauth2_users(uid);
 CREATE UNIQUE INDEX idx_wechat_oauth2_users_app_open ON wechat_oauth2_users(app_id, open_id);
 CREATE INDEX idx_wechat_oauth2_users_union ON wechat_oauth2_users(union_id);
 CREATE INDEX idx_wechat_oauth2_users_nickname ON wechat_oauth2_users(nickname);

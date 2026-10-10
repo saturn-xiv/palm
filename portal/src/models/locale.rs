@@ -1,5 +1,7 @@
+use std::result::Result as StdResult;
+
 use chrono::{NaiveDateTime, Utc};
-use diesel::{delete, insert_into, prelude::*, update};
+use diesel::{delete, insert_into, prelude::*, result::Error as DieselError, update};
 use hyacinth::schema::locales;
 use icu::locale::Locale;
 use serde::{Deserialize, Serialize};
@@ -34,10 +36,11 @@ pub trait Dao {
     fn by_lang(&mut self, lang: &Locale) -> Result<Vec<Item>>;
     fn by_code(&mut self, code: &str) -> Result<Vec<Item>>;
     fn by_id(&mut self, id: i64) -> Result<Item>;
-    fn by_lang_and_code(&mut self, lang: &Locale, code: &str) -> Result<Item>;
+    fn by_lang_and_code(&mut self, lang: &Locale, code: &str) -> StdResult<Item, DieselError>;
     fn delete(&mut self, id: i64) -> Result<()>;
-    fn create(&mut self, lang: &Locale, code: &str, message: &str) -> Result<()>;
-    fn update(&mut self, id: i64, message: &str) -> Result<()>;
+    fn create(&mut self, lang: &Locale, code: &str, message: &str) -> StdResult<(), DieselError>;
+    fn update(&mut self, id: i64, message: &str) -> StdResult<(), DieselError>;
+    fn set(&mut self, lang: &Locale, code: &str, message: &str) -> Result<()>;
 }
 
 impl Dao for Connection {
@@ -90,7 +93,7 @@ impl Dao for Connection {
             .first::<Item>(self)?;
         Ok(it)
     }
-    fn by_lang_and_code(&mut self, lang: &Locale, code: &str) -> Result<Item> {
+    fn by_lang_and_code(&mut self, lang: &Locale, code: &str) -> StdResult<Item, DieselError> {
         let lang = lang.to_string();
         let it = locales::dsl::locales
             .filter(locales::dsl::lang.eq(&lang))
@@ -98,7 +101,7 @@ impl Dao for Connection {
             .first::<Item>(self)?;
         Ok(it)
     }
-    fn update(&mut self, id: i64, message: &str) -> Result<()> {
+    fn update(&mut self, id: i64, message: &str) -> StdResult<(), DieselError> {
         let now = Utc::now().naive_utc();
         let it = locales::dsl::locales.filter(locales::dsl::id.eq(id));
         update(it)
@@ -110,7 +113,7 @@ impl Dao for Connection {
             .execute(self)?;
         Ok(())
     }
-    fn create(&mut self, lang: &Locale, code: &str, message: &str) -> Result<()> {
+    fn create(&mut self, lang: &Locale, code: &str, message: &str) -> StdResult<(), DieselError> {
         let lang = lang.to_string();
         let now = Utc::now().naive_utc();
         insert_into(locales::dsl::locales)
@@ -125,6 +128,14 @@ impl Dao for Connection {
     }
     fn delete(&mut self, id: i64) -> Result<()> {
         delete(locales::dsl::locales.filter(locales::dsl::id.eq(id))).execute(self)?;
+        Ok(())
+    }
+    fn set(&mut self, lang: &Locale, code: &str, message: &str) -> Result<()> {
+        match self.by_lang_and_code(lang, code) {
+            Ok(it) => self.update(it.id, message),
+            Err(DieselError::NotFound) => self.create(lang, code, message),
+            Err(e) => Err(e),
+        }?;
         Ok(())
     }
 }

@@ -18,6 +18,8 @@ use super::{
     headers::{AUTHORIZATION, BEARER, X_FORWARDED_FOR, X_REAL_IP},
     models::user::{
         Dao as UserDao, Item as UserItem, Type as UserType, email::Dao as EmailUserDao,
+        wechat_mini_program::Dao as WechatMiniProgramUserDao,
+        wechat_oauth2::Dao as WechatOauth2UserDao,
     },
     orm::postgresql::Connection as Db,
 };
@@ -115,7 +117,7 @@ impl Session {
 
 pub struct CurrentUser {
     pub item: UserItem,
-    pub type_: UserType,
+    pub r#type: UserType,
     pub subject: String,
 }
 impl CurrentUser {
@@ -152,6 +154,16 @@ impl CurrentUser {
                 it.is_enable()?;
                 Ok(it.user_id)
             }
+            UserType::WechatMiniProgram => {
+                let it = WechatMiniProgramUserDao::by_uid(db, &subject)?;
+                it.is_enable()?;
+                Ok(it.user_id)
+            }
+            UserType::WechatOauth2 => {
+                let it = WechatOauth2UserDao::by_uid(db, &subject)?;
+                it.is_enable()?;
+                Ok(it.user_id)
+            }
             _ => Err(Box::new(HttpError(
                 StatusCode::NOT_IMPLEMENTED,
                 Some("Invalid user type".to_string()),
@@ -163,7 +175,7 @@ impl CurrentUser {
 
         Ok(Self {
             item: user,
-            type_: payload.r#type,
+            r#type: payload.r#type,
             subject,
         })
     }

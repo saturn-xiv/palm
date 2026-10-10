@@ -6,6 +6,7 @@ use hyacinth::schema::wechat_oauth2_users;
 use hyper::StatusCode;
 use serde::{Deserialize, Serialize};
 use serde_json::{Value, to_value};
+use uuid::Uuid;
 
 use super::super::super::{
     HttpError, Result,
@@ -17,6 +18,7 @@ use super::super::super::{
 pub struct Item {
     pub id: i64,
     pub user_id: i64,
+    pub uid: String,
     pub union_id: String,
     pub app_id: String,
     pub open_id: String,
@@ -61,6 +63,7 @@ pub trait Dao {
     fn count(&mut self) -> Result<i64>;
     fn all(&mut self, offset: i64, limit: i64) -> Result<Vec<Item>>;
     fn by_id(&mut self, id: i64) -> Result<Item>;
+    fn by_uid(&mut self, uid: &str) -> Result<Item>;
     fn by_app_and_open_id(&mut self, app_id: &str, open_id: &str) -> Result<Item>;
     fn by_union_id(&mut self, union_id: &str) -> Result<Vec<Item>>;
     fn create(
@@ -98,6 +101,12 @@ impl Dao for Connection {
             .first::<Item>(self)?;
         Ok(it)
     }
+    fn by_uid(&mut self, uid: &str) -> Result<Item> {
+        let it = wechat_oauth2_users::dsl::wechat_oauth2_users
+            .filter(wechat_oauth2_users::dsl::uid.eq(uid))
+            .first::<Item>(self)?;
+        Ok(it)
+    }
     fn by_app_and_open_id(&mut self, app_id: &str, open_id: &str) -> Result<Item> {
         let it = wechat_oauth2_users::dsl::wechat_oauth2_users
             .filter(wechat_oauth2_users::dsl::app_id.eq(app_id))
@@ -120,8 +129,10 @@ impl Dao for Connection {
     ) -> Result<()> {
         let now = Utc::now().naive_utc();
         let privilege = to_value(&info.privilege)?;
+        let uid = Uuid::new_v4().to_string();
         insert_into(wechat_oauth2_users::dsl::wechat_oauth2_users)
             .values((
+                wechat_oauth2_users::dsl::uid.eq(&uid),
                 wechat_oauth2_users::dsl::user_id.eq(user),
                 wechat_oauth2_users::dsl::union_id.eq(&token.unionid),
                 wechat_oauth2_users::dsl::app_id.eq(app_id),

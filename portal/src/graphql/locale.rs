@@ -56,10 +56,7 @@ impl Set {
         rbac.is_administrator(current_user.id()).await?;
 
         db.transaction::<_, Error, _>(|tx| {
-            match LocaleDao::by_lang_and_code(tx, &lang, &self.code) {
-                Ok(it) => LocaleDao::update(tx, it.id, &self.message),
-                Err(_) => LocaleDao::create(tx, &lang, &self.code, &self.message),
-            }?;
+            LocaleDao::set(tx, &lang, &self.code, &self.message)?;
             Ok(())
         })?;
 

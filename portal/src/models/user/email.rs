@@ -56,6 +56,7 @@ impl fmt::Display for Item {
 pub trait Dao {
     fn count(&mut self) -> Result<i64>;
     fn all(&mut self, offset: i64, limit: i64) -> Result<Vec<Item>>;
+    fn by_user(&mut self, id: i64) -> Result<Vec<Item>>;
     fn by_id(&mut self, id: i64) -> Result<Item>;
     fn by_email(&mut self, email: &str) -> Result<Item>;
     fn create(&mut self, user: i64, name: &str, email: &str, password: &str) -> Result<()>;
@@ -77,6 +78,13 @@ impl Dao for Connection {
             .order(email_users::dsl::updated_at.desc())
             .offset(offset)
             .limit(limit)
+            .load::<Item>(self)?;
+        Ok(items)
+    }
+    fn by_user(&mut self, id: i64) -> Result<Vec<Item>> {
+        let items = email_users::dsl::email_users
+            .order(email_users::dsl::updated_at.desc())
+            .filter(email_users::dsl::user_id.eq(id))
             .load::<Item>(self)?;
         Ok(items)
     }

@@ -6,7 +6,9 @@ use juniper::{FieldResult, ScalarValue, graphql_object};
 use lavender::graphql as lavender_graphql;
 use portal::graphql::{
     Succeeded, attachment as attachment_api, locale as locale_api,
-    user::{self as user_api, email as email_user_api},
+    user::{
+        self as user_api, email as email_user_api, wechat_mini_program as wechat_mini_program_api,
+    },
 };
 
 use super::super::GIT_VERSION;
@@ -136,6 +138,45 @@ impl Mutation {
             &ctx.state.loquat,
         )
         .await?;
+        Ok(Succeeded::default())
+    }
+
+    async fn sign_in_by_wechat_mini_program<S: ScalarValue + Display>(
+        form: wechat_mini_program_api::SignIn,
+        ctx: &Context,
+    ) -> FieldResult<Succeeded, S> {
+        let mut db = ctx.state.db.get()?;
+        let db = db.deref_mut();
+        let mut cache = ctx.state.cache.get()?;
+
+        form.execute(
+            &ctx.session,
+            (db, &mut cache),
+            (
+                &ctx.state.dahlia,
+                &ctx.state.loquat,
+                &ctx.state.wechat_mini_program,
+            ),
+            GIT_VERSION,
+        )
+        .await?;
+        Ok(Succeeded::default())
+    }
+    async fn update_wechat_mini_program_user_info<S: ScalarValue + Display>(
+        nickname: String,
+        avatar_url: String,
+        ctx: &Context,
+    ) -> FieldResult<Succeeded, S> {
+        let mut db = ctx.state.db.get()?;
+        let db = db.deref_mut();
+        let mut cache = ctx.state.cache.get()?;
+
+        let form = wechat_mini_program_api::UserInfo {
+            nickname,
+            avatar_url,
+        };
+        form.execute(&ctx.session, db, &mut cache, &ctx.state.loquat)
+            .await?;
         Ok(Succeeded::default())
     }
 

@@ -1,10 +1,9 @@
 pub mod git;
 
-use hyper::StatusCode;
 use juniper::GraphQLObject;
 use portal::{
-    HttpError, Jwt, Result, cache::redis::StandaloneConnection as Cache, graphql::Session,
-    models::user::Type as UserType, orm::postgresql::Connection as Db,
+    Jwt, Result, cache::redis::StandaloneConnection as Cache, graphql::Session,
+    models::user::Dao as UserDao, orm::postgresql::Connection as Db,
     queue::rabbitmq::Client as RabbitMq, rbac::Rbac,
 };
 
@@ -22,15 +21,13 @@ pub async fn launch<R: Rbac, J: Jwt, A: Into<String> + Clone>(
     let current_user = ss.current_user(db, cache, jwt).await?;
     can(rbac, current_user.id()).await?;
 
-    if current_user.type_ != UserType::Email {
-        return Err(Box::new(HttpError(StatusCode::FORBIDDEN, None)));
-    }
+    let email = UserDao::email(db, current_user.id())?;
 
     Job::publish(
         db,
         queue,
         ip,
-        (current_user.id(), &current_user.subject),
+        (current_user.id(), &email),
         (&config.jobs_dir, name, args),
     )
     .await?;

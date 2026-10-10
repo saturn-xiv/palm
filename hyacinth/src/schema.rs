@@ -262,6 +262,8 @@ diesel::table! {
     wechat_mini_program_users (id) {
         id -> Int8,
         user_id -> Int8,
+        #[max_length = 36]
+        uid -> Varchar,
         #[max_length = 127]
         union_id -> Varchar,
         #[max_length = 63]
@@ -271,7 +273,9 @@ diesel::table! {
         #[max_length = 63]
         nickname -> Nullable<Varchar>,
         #[max_length = 127]
-        head_img_url -> Nullable<Varchar>,
+        avatar_url -> Nullable<Varchar>,
+        #[max_length = 127]
+        session_key -> Varchar,
         locked_at -> Nullable<Timestamp>,
         deleted_at -> Nullable<Timestamp>,
         version -> Int4,
@@ -284,6 +288,8 @@ diesel::table! {
     wechat_oauth2_users (id) {
         id -> Int8,
         user_id -> Int8,
+        #[max_length = 36]
+        uid -> Varchar,
         #[max_length = 127]
         union_id -> Varchar,
         #[max_length = 63]

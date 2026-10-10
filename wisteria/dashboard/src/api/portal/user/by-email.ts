@@ -19,7 +19,10 @@ export const set_password = async (
   return res.setPasswordForEmailUser;
 };
 
-export const sign_in = async (): Promise<ISignInResponse> => {
+export const sign_in = async (
+  name: string,
+  password: string,
+): Promise<ISignInResponse> => {
   const res: { signInByEmail: ISignInResponse } = await graphql(
     `
       mutation call($email: String!, $password: String!) {
@@ -57,7 +60,7 @@ export const sign_in = async (): Promise<ISignInResponse> => {
         }
       }
     `,
-    {},
+    { name, password },
   );
   return res.signInByEmail;
 };
