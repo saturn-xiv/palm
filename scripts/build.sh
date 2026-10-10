@@ -138,6 +138,10 @@ port = 5672
 user = 'www'
 password = 'change-me'
 virtual-host = 'dahlia.dev'
+
+[google-oauth2]
+client-secret-file = "client_secret.json"
+
 EOF
     cat <<EOF > $1/dahlia/rpc.service
 [Unit]

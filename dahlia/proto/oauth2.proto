@@ -1,0 +1,58 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "com.github.saturn_xiv.palm.plugins.oauth2.v1";
+option java_outer_classname = "Oauth2Proto";
+option go_package = "./;v2";
+option csharp_namespace = "Palm.Plugins.Oauth2.Grpc";
+package palm.oauth2.v1;
+
+service Google {
+    rpc SignInUrl(GoogleSignInUrlRequest) returns (GoogleSignInUrlResponse) {}
+    rpc FetchToken(GoogleFetchTokenRequest) returns (GoogleFetchTokenResponse) {}
+    rpc UserInfo(GoogleFetchTokenResponse.Credentials) returns (GoogleUserInfoResponse) {}
+    rpc Revoke(GoogleFetchTokenResponse.Credentials) returns (GoogleRevokeResponse){}
+}
+
+message GoogleSignInUrlRequest{
+    string redirect_uri = 1;
+    repeated string scopes = 2;
+}
+
+message GoogleSignInUrlResponse {
+    string authorization_url = 1;
+    string state = 2;
+}
+
+message GoogleFetchTokenRequest {
+    string authorization_response = 1;
+    string state = 2;
+    repeated string scopes = 3;
+}
+
+message GoogleFetchTokenResponse {
+    message Credentials {
+        string token = 1;
+        string refresh_token = 2;
+        repeated string granted_scopes = 3;
+    }
+    Credentials credentials = 1;
+}
+
+message GoogleRevokeResponse {
+
+}
+
+message GoogleUserInfoResponse {
+    string sub = 1;
+    string email = 2;
+    bool verified_email = 3;
+    optional  string name = 4;
+    optional string given_name = 5;
+    optional string family_name = 6;
+    optional string picture = 7;
+    optional string locale = 8;
+    optional string hosted_domain = 9;
+    optional string gender = 10;
+    optional string link = 11;
+}

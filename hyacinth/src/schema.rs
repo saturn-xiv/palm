@@ -77,17 +77,27 @@ diesel::table! {
         id -> Int8,
         user_id -> Int8,
         #[max_length = 127]
-        email -> Nullable<Varchar>,
+        sub -> Varchar,
+        #[max_length = 127]
+        email -> Varchar,
         email_verified -> Bool,
+        #[max_length = 63]
+        hosted_domain -> Nullable<Varchar>,
+        #[max_length = 31]
+        given_name -> Nullable<Varchar>,
+        #[max_length = 16]
+        gender -> Nullable<Varchar>,
+        #[max_length = 127]
+        link -> Nullable<Varchar>,
+        #[max_length = 31]
+        family_name -> Nullable<Varchar>,
         #[max_length = 63]
         name -> Nullable<Varchar>,
         #[max_length = 127]
         picture -> Nullable<Varchar>,
-        #[max_length = 127]
-        sub -> Varchar,
-        code -> Bytea,
-        #[max_length = 127]
-        token -> Varchar,
+        #[max_length = 15]
+        locale -> Nullable<Varchar>,
+        credentials -> Jsonb,
         locked_at -> Nullable<Timestamp>,
         deleted_at -> Nullable<Timestamp>,
         version -> Int4,

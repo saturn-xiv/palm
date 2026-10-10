@@ -15,7 +15,8 @@ from grpc_health.v1 import health, health_pb2, health_pb2_grpc
 
 from . import rbac
 from .rbac.server import Server as RbacServer
-from dahlia.protocols import rbac_pb2_grpc, rbac_pb2
+from .oauth2.google import Server as GoogleOauth2Server
+from dahlia.protocols import rbac_pb2_grpc, rbac_pb2, oauth2_pb2, oauth2_pb2_grpc
 
 logger = logging.getLogger(__name__)
 
@@ -51,9 +52,12 @@ def launch_grpc_server(config, port, workers, tls):
 
     enforcer = rbac.open_enforcer(config['postgresql'], config['rabbitmq'])
     rbac_pb2_grpc.add_EnforcerServicer_to_server(RbacServer(enforcer), server)
+    oauth2_pb2_grpc.add_GoogleServicer_to_server(GoogleOauth2Server(
+        config['google-oauth2']['client-secret-file']), server)
 
     reflection.enable_server_reflection((
         rbac_pb2.DESCRIPTOR.services_by_name["Enforcer"].full_name,
+        oauth2_pb2.DESCRIPTOR.services_by_name["Google"].full_name,
         reflection.SERVICE_NAME,
     ), server)
 

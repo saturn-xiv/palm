@@ -56,6 +56,11 @@ function generate_grpc() {
         $WORK_DIR/dahlia/proto/rbac.proto
     $PROTOBUF_HOME/bin/protoc --rust_opt=experimental-codegen=enabled,kernel=upb --rust-grpc_opt=client_only=true \
         --plugin=protoc-gen-rust-grpc=$PROTOBUF_HOME/bin/protoc-gen-rust-grpc \
+        -I $PROTOBUF_HOME/include/ -I $WORK_DIR/dahlia/proto/ \
+        --rust_out=$HYACINTH_OUTPUT_DIR/oauth2 --rust-grpc_out=$HYACINTH_OUTPUT_DIR/oauth2 \
+        $WORK_DIR/dahlia/proto/oauth2.proto
+    $PROTOBUF_HOME/bin/protoc --rust_opt=experimental-codegen=enabled,kernel=upb --rust-grpc_opt=client_only=true \
+        --plugin=protoc-gen-rust-grpc=$PROTOBUF_HOME/bin/protoc-gen-rust-grpc \
         -I $PROTOBUF_HOME/include/ -I $WORK_DIR/loquat/proto/ \
         --rust_out=$HYACINTH_OUTPUT_DIR/loquat --rust-grpc_out=$HYACINTH_OUTPUT_DIR/loquat \
         $WORK_DIR/loquat/proto/loquat.proto

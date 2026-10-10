@@ -14,8 +14,8 @@ pub struct Config {
     pub app_id: String,
     #[serde(rename = "app-secret")]
     pub app_secret: String,
-    #[serde(rename = "redirect-url")]
-    pub redirect_url: String,
+    #[serde(rename = "redirect-uri")]
+    pub redirect_uri: String,
 }
 
 impl Config {
@@ -23,7 +23,7 @@ impl Config {
         format!(
             "https://open.weixin.qq.com/connect/qrconnect?appid={}&redirect_uri={}&response_type=code&scope=snsapi_login&state={}&lang={}#wechat_redirect",
             self.app_id,
-            utf8_percent_encode(&self.redirect_url, NON_ALPHANUMERIC),
+            utf8_percent_encode(&self.redirect_uri, NON_ALPHANUMERIC),
             state,
             if lang.id.language.as_str() == "zh" {
                 "cn"
