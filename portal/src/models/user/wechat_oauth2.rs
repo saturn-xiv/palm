@@ -85,7 +85,7 @@ pub trait Dao {
     fn delete(&mut self, id: i64) -> Result<()>;
     fn sign_in_or_up(
         &mut self,
-        location: (&Locale, Tz),
+        location: (&Locale, Tz, Option<&str>),
         app_id: &str,
         token: &AccessToken,
         info: &UserInfo,
@@ -239,7 +239,7 @@ impl Dao for Connection {
     }
     fn sign_in_or_up(
         &mut self,
-        (lang, timezone): (&Locale, Tz),
+        (lang, timezone, state): (&Locale, Tz, Option<&str>),
         app_id: &str,
         token: &AccessToken,
         info: &UserInfo,
@@ -261,9 +261,18 @@ impl Dao for Connection {
                 Ok(())
             }
             Err(DieselError::NotFound) => {
-                let uid = Uuid::new_v4().to_string();
-                UserDao::create(self, &uid, "Wechat Oauth2 User", lang, timezone)?;
-                let user = UserDao::by_uid(self, &uid)?;
+                let user = match state {
+                    Some(uid) => {
+                        let it = UserDao::by_uid(self, uid)?;
+                        it.is_enable()?;
+                        it
+                    }
+                    None => {
+                        let uid = Uuid::new_v4().to_string();
+                        UserDao::create(self, &uid, "Wechat Oauth2 User", lang, timezone)?;
+                        UserDao::by_uid(self, &uid)?
+                    }
+                };
                 Dao::create(self, user.id, app_id, token, info)?;
                 Ok(())
             }

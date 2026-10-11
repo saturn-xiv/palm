@@ -1,13 +1,17 @@
 pub mod email;
+pub mod google;
 pub mod wechat_mini_program;
 pub mod wechat_oauth2;
 
+use std::any::type_name;
+
 use chrono::Duration;
 use juniper::GraphQLObject;
+use serde::{Deserialize, Serialize};
 
 use super::super::{
     Jwt, Result,
-    cache::redis::StandaloneConnection as Cache,
+    cache::{FlexBuffersCacher, redis::StandaloneConnection as Cache},
     models::user::{
         Dao as UserDao, Item as UserItem, Type as UserType, email::Item as EmailUserItem,
     },
@@ -126,4 +130,23 @@ impl SignInResponse {
 pub struct Index {
     pub items: Vec<Item>,
     pub pagination: Pagination,
+}
+
+#[derive(Clone, Debug, Default, Serialize, Deserialize)]
+pub struct State {
+    pub user: Option<String>,
+}
+
+impl State {
+    pub fn new(cache: &mut Cache, key: &str) -> Result<Self> {
+        cache.get(Self::key(key))
+    }
+    pub fn save(&self, cache: &mut Cache, key: &str, ttl: Duration) -> Result<()> {
+        cache.set(Self::key(key), self, Some(ttl))?;
+        Ok(())
+    }
+
+    fn key(s: &str) -> String {
+        format!("{}.{}", type_name::<Self>(), s)
+    }
 }

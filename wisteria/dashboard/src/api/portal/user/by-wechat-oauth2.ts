@@ -1,16 +1,16 @@
 import graphql from "../../../graphql";
 import { type ISignInResponse } from ".";
 
-export const sign_in = async (
+export const callback = async (
   code: string,
   state: string,
   lang: string,
   timezone: string,
 ): Promise<ISignInResponse> => {
-  const res: { signInByWechatMiniProgram: ISignInResponse } = await graphql(
+  const res: { wechatOauth2UserCallback: ISignInResponse } = await graphql(
     `
-      mutation call($form: UserSignInByWechatOauth2Request) {
-        signInByWechatMiniProgram(form: $form) {
+      mutation call($form: WechatOauth2UserCallbackRequest) {
+        wechatOauth2UserCallback(form: $form) {
           token
           user {
             lang
@@ -46,17 +46,29 @@ export const sign_in = async (
     `,
     { form: { code, state, lang, timezone } },
   );
-  return res.signInByWechatMiniProgram;
+  return res.wechatOauth2UserCallback;
 };
 
 export const sign_in_url = async (): Promise<string> => {
-  const res: { signInUrlForWechaOauth2: string } = await graphql(
+  const res: { urlForWechaOauth2UserSignIn: string } = await graphql(
     `
-      mutation call {
-        signInUrlForWechaOauth2
+      query call {
+        urlForWechaOauth2UserSignIn
       }
     `,
     {},
   );
-  return res.signInUrlForWechaOauth2;
+  return res.urlForWechaOauth2UserSignIn;
+};
+
+export const bind_url = async (): Promise<string> => {
+  const res: { urlForBindWechatOauth2User: string } = await graphql(
+    `
+      query call {
+        urlForBindWechatOauth2User
+      }
+    `,
+    {},
+  );
+  return res.urlForBindWechatOauth2User;
 };

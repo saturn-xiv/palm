@@ -12,7 +12,7 @@ use hyacinth::{
 use hyper::StatusCode;
 use icu::locale::Locale;
 use serde::{Deserialize, Serialize};
-use serde_json::{Value, to_value};
+use serde_json::{Value, from_value, to_value};
 use uuid::Uuid;
 
 use super::super::super::{HttpError, Result, orm::postgresql::Connection};
@@ -46,6 +46,16 @@ pub struct Item {
 }
 
 impl Item {
+    pub fn credentials(&self) -> Result<Credentials> {
+        let mut it = Credentials::default();
+        it.set_token(&self.token);
+        it.set_refresh_token(&self.refresh_token);
+        let granted_scopes: Vec<String> = from_value(self.granted_scopes.clone())?;
+        for scope in granted_scopes {
+            it.granted_scopes_mut().push(&scope);
+        }
+        Ok(it)
+    }
     pub fn is_enable(&self) -> Result<()> {
         if self.locked_at.is_some() {
             return Err(Box::new(HttpError(

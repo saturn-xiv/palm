@@ -70,7 +70,7 @@ impl Query {
         Ok(Succeeded::default())
     }
 
-    fn sign_in_url_for_wechat_oauth2(ctx: &Context) -> FieldResult<String> {
+    fn url_for_wechat_oauth2_user_sign_in(ctx: &Context) -> FieldResult<String> {
         let mut cache = ctx.state.cache.get()?;
         let it = wechat_oauth2_user_api::sign_in_url(
             &ctx.session,
@@ -78,6 +78,21 @@ impl Query {
             &ctx.state.wechat_oauth2,
             Duration::minutes(5),
         )?;
+        Ok(it)
+    }
+    async fn url_for_bind_wechat_oauth2_user(ctx: &Context) -> FieldResult<String> {
+        let mut db = ctx.state.db.get()?;
+        let db = db.deref_mut();
+        let mut cache = ctx.state.cache.get()?;
+        let it = wechat_oauth2_user_api::bind_url(
+            &ctx.session,
+            db,
+            &mut cache,
+            &ctx.state.loquat,
+            &ctx.state.wechat_oauth2,
+            Duration::minutes(5),
+        )
+        .await?;
         Ok(it)
     }
 

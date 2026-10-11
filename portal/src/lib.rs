@@ -38,6 +38,7 @@ use std::str::FromStr;
 use axum::{Json, http::HeaderMap as HttpHeaderMap, response::Html};
 use chrono::Duration;
 use data_encoding::{BASE64, DecodeError as Base64DecodeError};
+use hyacinth::oauth2_v1;
 use hyacinth::{GrpcClientChannel, GrpcStatusError, loquat_v1, rbac_v1, wechat_pay_v1};
 use hyper::StatusCode;
 use serde::de::DeserializeOwned;
@@ -211,11 +212,13 @@ impl Loquat {
 }
 pub struct Dahlia {
     pub enforcer: rbac_v1::enforcer_client::EnforcerClient<GrpcClientChannel>,
+    pub google_oauth2: oauth2_v1::google_client::GoogleClient<GrpcClientChannel>,
 }
 impl Dahlia {
     pub fn new(channel: GrpcClientChannel) -> Self {
         Self {
-            enforcer: rbac_v1::enforcer_client::EnforcerClient::new(channel),
+            enforcer: rbac_v1::enforcer_client::EnforcerClient::new(channel.clone()),
+            google_oauth2: oauth2_v1::google_client::GoogleClient::new(channel),
         }
     }
 }

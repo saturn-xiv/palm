@@ -165,8 +165,8 @@ impl Mutation {
         Ok(Succeeded::default())
     }
 
-    async fn sign_in_by_wechat_oauth2<S: ScalarValue + Display>(
-        form: wechat_oauth2_user_api::SignIn,
+    async fn wechat_oauth2_user_callback<S: ScalarValue + Display>(
+        form: wechat_oauth2_user_api::Callback,
         ctx: &Context,
     ) -> FieldResult<Succeeded, S> {
         let mut db = ctx.state.db.get()?;
