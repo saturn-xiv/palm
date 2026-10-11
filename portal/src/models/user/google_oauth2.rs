@@ -57,6 +57,12 @@ impl Item {
         Ok(it)
     }
     pub fn is_enable(&self) -> Result<()> {
+        if !self.email_verified {
+            return Err(Box::new(HttpError(
+                StatusCode::NOT_ACCEPTABLE,
+                Some("User's email address isn't verified yet".to_string()),
+            )));
+        }
         if self.locked_at.is_some() {
             return Err(Box::new(HttpError(
                 StatusCode::LOCKED,
@@ -106,7 +112,7 @@ pub trait Dao {
     fn delete(&mut self, id: i64) -> Result<()>;
     fn sign_in_or_up(
         &mut self,
-        location: (&Locale, Tz),
+        location: (&Locale, Tz, Option<&str>),
         client_id: &str,
         credentials: &Credentials,
         user_info: &UserInfo,
@@ -279,7 +285,7 @@ impl Dao for Connection {
 
     fn sign_in_or_up(
         &mut self,
-        (lang, timezone): (&Locale, Tz),
+        (lang, timezone, state): (&Locale, Tz, Option<&str>),
         client_id: &str,
         credentials: &Credentials,
         user_info: &UserInfo,
@@ -297,9 +303,18 @@ impl Dao for Connection {
                 Ok(())
             }
             Err(DieselError::NotFound) => {
-                let uid = Uuid::new_v4().to_string();
-                UserDao::create(self, &uid, "Google Oauth2 User", lang, timezone)?;
-                let user = UserDao::by_uid(self, &uid)?;
+                let user = match state {
+                    Some(uid) => {
+                        let it = UserDao::by_uid(self, uid)?;
+                        it.is_enable()?;
+                        it
+                    }
+                    None => {
+                        let uid = Uuid::new_v4().to_string();
+                        UserDao::create(self, &uid, "Google Oauth2 User", lang, timezone)?;
+                        UserDao::by_uid(self, &uid)?
+                    }
+                };
                 Dao::create(self, user.id, client_id, credentials, user_info)?;
                 Ok(())
             }

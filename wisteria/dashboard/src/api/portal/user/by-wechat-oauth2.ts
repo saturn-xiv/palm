@@ -50,26 +50,26 @@ export const callback = async (
   return res.wechatOauth2UserCallback;
 };
 
-export const url_for_sign_in = async (redirectUri:string): Promise<string> => {
+export const url_for_sign_in = async (redirectUri: string): Promise<string> => {
   const res: { urlForWechaOauth2UserSignIn: string } = await graphql(
     `
       query call($redirectUri: String!) {
         urlForWechaOauth2UserSignIn(redirectUri: $redirectUri)
       }
     `,
-    {redirectUri},
+    { redirectUri },
   );
   return res.urlForWechaOauth2UserSignIn;
 };
 
-export const url_for_bind = async (redirectUri:string): Promise<string> => {
+export const url_for_bind = async (redirectUri: string): Promise<string> => {
   const res: { urlForBindWechatOauth2User: string } = await graphql(
     `
       query call($redirectUri: String!) {
         urlForBindWechatOauth2User(redirectUri: $redirectUri)
       }
     `,
-    {redirectUri},
+    { redirectUri },
   );
   return res.urlForBindWechatOauth2User;
 };

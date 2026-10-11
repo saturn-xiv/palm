@@ -2,7 +2,6 @@ use chrono::Duration;
 use diesel::Connection as DieselConnection;
 use hyper::StatusCode;
 use juniper::GraphQLInputObject;
-use uuid::Uuid;
 use validator::Validate;
 
 use super::super::super::{
@@ -26,6 +25,77 @@ use super::{
     SignInResponse, State,
     email::{Confirm, send_email},
 };
+
+#[derive(Clone, Debug, Validate, GraphQLInputObject)]
+#[graphql(name = "GoogleOauth2UserCallbackRequest")]
+pub struct Callback {
+    #[validate(url, length(min = 1, max = 255))]
+    pub authorization_response: String,
+    #[validate(length(min = 2, max = 63))]
+    pub state: String,
+    #[validate(length(min = 2, max = 7))]
+    pub lang: String,
+    #[validate(length(min = 3, max = 31))]
+    pub timezone: String,
+}
+
+impl Callback {
+    pub async fn execute<R: Rbac, J: Jwt>(
+        &self,
+        ss: &Session,
+        (db, cache): (&mut Db, &mut Cache),
+        (rbac, jwt, google): (&R, &J, &Dahlia),
+        version: &str,
+    ) -> Result<SignInResponse> {
+        self.validate()?;
+
+        let token = google
+            .google_oauth2_fetch_token(
+                &self.authorization_response,
+                vec![scopes::EMAIL, scopes::PROFILE, scopes::OPENID],
+                &self.state,
+            )
+            .await?;
+        let client_id = token.client_id().to_str()?;
+        let credentials = token.credentials().to_owned();
+        let user_info = google.google_oauth2_user_info(credentials.clone()).await?;
+        let state = State::new(cache, &self.state)?;
+
+        let ip = ss.client_ip();
+
+        let it = db.transaction::<_, Error, _>(|tx| {
+            let it = GoogleOauth2UserDao::sign_in_or_up(
+                tx,
+                (
+                    &self.lang.parse()?,
+                    self.timezone.parse()?,
+                    state.user.as_deref(),
+                ),
+                client_id,
+                &credentials,
+                &user_info,
+            )?;
+            UserDao::sign_in(tx, it.user_id, ip)?;
+            LogDao::create::<Plugin, _>(
+                tx,
+                it.user_id,
+                Level::Info,
+                ip,
+                "Sign in by wechat oauth2.",
+            )?;
+            Ok(it)
+        })?;
+
+        SignInResponse::new(
+            db,
+            cache,
+            (rbac, jwt),
+            (it.user_id, UserType::WechatOauth2, &it.uid),
+            version,
+        )
+        .await
+    }
+}
 
 pub async fn user_for_sign_in(
     cache: &mut Cache,

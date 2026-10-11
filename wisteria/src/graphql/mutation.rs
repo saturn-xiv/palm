@@ -266,6 +266,23 @@ impl Mutation {
         .await?;
         Ok(Succeeded::default())
     }
+    async fn google_oauth2_user_callback<S: ScalarValue + Display>(
+        form: google_oauth2_user_api::Callback,
+        ctx: &Context,
+    ) -> FieldResult<Succeeded, S> {
+        let mut db = ctx.state.db.get()?;
+        let db = db.deref_mut();
+        let mut cache = ctx.state.cache.get()?;
+
+        form.execute(
+            &ctx.session,
+            (db, &mut cache),
+            (&ctx.state.dahlia, &ctx.state.loquat, &ctx.state.dahlia),
+            GIT_VERSION,
+        )
+        .await?;
+        Ok(Succeeded::default())
+    }
 
     async fn destroy_attachment<S: ScalarValue + Display>(
         id: i32,

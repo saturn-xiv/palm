@@ -37,6 +37,7 @@ message GoogleFetchTokenResponse {
         repeated string granted_scopes = 3;
     }
     Credentials credentials = 1;
+    string client_id = 2;
 }
 
 message GoogleRevokeResponse {

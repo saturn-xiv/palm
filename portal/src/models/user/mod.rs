@@ -220,6 +220,11 @@ impl Dao for Connection {
         Ok(())
     }
     fn email(&mut self, id: i64) -> Result<String> {
+        for it in google_oauth2::Dao::by_user(self, id)?.into_iter() {
+            if it.is_enable().is_ok() {
+                return Ok(it.email);
+            }
+        }
         for it in email::Dao::by_user(self, id)?.into_iter() {
             if it.is_enable().is_ok() {
                 return Ok(it.email);

@@ -33,7 +33,7 @@ class GoogleFetchTokenRequest(_message.Message):
     def __init__(self, authorization_response: _Optional[str] = ..., state: _Optional[str] = ..., scopes: _Optional[_Iterable[str]] = ...) -> None: ...
 
 class GoogleFetchTokenResponse(_message.Message):
-    __slots__ = ("credentials",)
+    __slots__ = ("credentials", "client_id")
     class Credentials(_message.Message):
         __slots__ = ("token", "refresh_token", "granted_scopes")
         TOKEN_FIELD_NUMBER: _ClassVar[int]
@@ -44,8 +44,10 @@ class GoogleFetchTokenResponse(_message.Message):
         granted_scopes: _containers.RepeatedScalarFieldContainer[str]
         def __init__(self, token: _Optional[str] = ..., refresh_token: _Optional[str] = ..., granted_scopes: _Optional[_Iterable[str]] = ...) -> None: ...
     CREDENTIALS_FIELD_NUMBER: _ClassVar[int]
+    CLIENT_ID_FIELD_NUMBER: _ClassVar[int]
     credentials: GoogleFetchTokenResponse.Credentials
-    def __init__(self, credentials: _Optional[_Union[GoogleFetchTokenResponse.Credentials, _Mapping]] = ...) -> None: ...
+    client_id: str
+    def __init__(self, credentials: _Optional[_Union[GoogleFetchTokenResponse.Credentials, _Mapping]] = ..., client_id: _Optional[str] = ...) -> None: ...
 
 class GoogleRevokeResponse(_message.Message):
     __slots__ = ()

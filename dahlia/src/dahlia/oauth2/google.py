@@ -37,6 +37,7 @@ class Server(oauth2_pb2_grpc.GoogleServicer):
                 refresh_token=credentials.refresh_token,
                 granted_scopes=credentials.granted_scopes,
             ),
+            client_id=credentials.client_id
         )
 
     # https://developers.google.com/identity/account-linking/oauth-linking#handle_userinfo_requests

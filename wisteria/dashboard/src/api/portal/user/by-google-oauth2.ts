@@ -2,17 +2,16 @@ import graphql from "../../../graphql";
 import { type ISucceeded } from "..";
 import { type ISignInResponse } from ".";
 
-
 export const callback = async (
-  code: string,
+  authorizationResponse: string,
   state: string,
   lang: string,
   timezone: string,
 ): Promise<ISignInResponse> => {
   const res: { googleOauth2UserCallback: ISignInResponse } = await graphql(
     `
-      mutation call($form: WechatOauth2UserCallbackRequest) {
-        wechatOauth2UserCallback(form: $form) {
+      mutation call($form: GoogleOauth2UserCallbackRequest) {
+        googleOauth2UserCallback(form: $form) {
           token
           user {
             lang
@@ -46,9 +45,9 @@ export const callback = async (
         }
       }
     `,
-    { form: { code, state, lang, timezone } },
+    { form: { authorizationResponse, state, lang, timezone } },
   );
-  return res.wechatOauth2UserCallback;
+  return res.googleOauth2UserCallback;
 };
 
 export const url_for_sign_in = async (redirectUri: string): Promise<string> => {
@@ -58,7 +57,7 @@ export const url_for_sign_in = async (redirectUri: string): Promise<string> => {
         urlForWechaOauth2UserSignIn(redirectUri: $redirectUri)
       }
     `,
-    {redirectUri},
+    { redirectUri },
   );
   return res.urlForGoogleOauth2UserSignIn;
 };
@@ -70,11 +69,10 @@ export const url_for_bind = async (redirectUri: string): Promise<string> => {
         urlForBindGoogleOauth2User(redirectUri: $redirectUri)
       }
     `,
-    {redirectUri},
+    { redirectUri },
   );
   return res.urlForBindGoogleOauth2User;
 };
-
 
 export const bind_email = async (email: string): Promise<ISucceeded> => {
   const res: { bindEmailForGoogleOauth2User: ISucceeded } = await graphql(
