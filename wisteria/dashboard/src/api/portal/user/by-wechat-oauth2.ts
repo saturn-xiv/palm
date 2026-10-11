@@ -27,6 +27,10 @@ export const callback = async (
                 id
               }
             }
+            hasEmail
+            hasWechatOauth2
+            hasWechatMiniProgram
+            hasGoogleOauth2
           }
           site {
             favicon

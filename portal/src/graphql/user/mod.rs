@@ -13,7 +13,11 @@ use super::super::{
     Jwt, Result,
     cache::{FlexBuffersCacher, redis::StandaloneConnection as Cache},
     models::user::{
-        Dao as UserDao, Item as UserItem, Type as UserType, email::Item as EmailUserItem,
+        Dao as UserDao, Item as UserItem, Type as UserType,
+        email::{Dao as EmailUserDao, Item as EmailUserItem},
+        google_oauth2::Dao as GoogleOauth2UserDao,
+        wechat_mini_program::Dao as WechatMiniProgramUserDao,
+        wechat_oauth2::Dao as WechatOauth2UserDao,
     },
     orm::postgresql::Connection as Db,
     rbac::{Permission, Rbac},
@@ -51,9 +55,13 @@ pub struct Layout {
     pub is_administrator: bool,
     pub roles: Vec<String>,
     pub permissions: Vec<Permission>,
+    pub has_email: bool,
+    pub has_wechat_oauth2: bool,
+    pub has_wechat_mini_program: bool,
+    pub has_google_oauth2: bool,
 }
 impl Layout {
-    pub async fn new<R: Rbac>(rbac: &R, user: &UserItem) -> Result<Self> {
+    pub async fn new<R: Rbac>(db: &mut Db, rbac: &R, user: &UserItem) -> Result<Self> {
         user.is_enable()?;
 
         Ok(Self {
@@ -64,6 +72,10 @@ impl Layout {
             is_administrator: rbac.is_administrator(user.id).await.is_ok(),
             roles: rbac.roles(user.id).await?,
             permissions: rbac.permissions(user.id).await?,
+            has_email: !EmailUserDao::by_user(db, user.id)?.is_empty(),
+            has_wechat_oauth2: !WechatOauth2UserDao::by_user(db, user.id)?.is_empty(),
+            has_wechat_mini_program: !WechatMiniProgramUserDao::by_user(db, user.id)?.is_empty(),
+            has_google_oauth2: !GoogleOauth2UserDao::by_user(db, user.id)?.is_empty(),
         })
     }
 }
@@ -86,7 +98,7 @@ impl RefreshResponse {
         let current_user = ss.current_user(db, cache, jwt).await?;
         let lang = current_user.lang()?;
         Ok(Self {
-            user: Layout::new(rbac, &current_user.item).await?,
+            user: Layout::new(db, rbac, &current_user.item).await?,
             site: SiteLayout::new(db, cache, &lang, version)?,
         })
     }
@@ -119,7 +131,7 @@ impl SignInResponse {
                 Duration::weeks(1),
             )
             .await?,
-            user: Layout::new(rbac, &user).await?,
+            user: Layout::new(db, rbac, &user).await?,
             site: SiteLayout::new(db, cache, &lang, version)?,
         })
     }

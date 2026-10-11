@@ -26,6 +26,10 @@ export const sign_in = async (
                 id
               }
             }
+            hasEmail
+            hasWechatOauth2
+            hasWechatMiniProgram
+            hasGoogleOauth2
           }
           site {
             favicon

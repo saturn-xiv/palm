@@ -62,6 +62,10 @@ export interface ILayout {
   isAdministrator: boolean;
   roles: string[];
   permissions: IPermission[];
+  hasEmail: boolean;
+  hasWechatOauth2: boolean;
+  hasWechatMiniProgram: boolean;
+  hasGoogleOauth2: boolean;
 }
 
 export interface IResource {
