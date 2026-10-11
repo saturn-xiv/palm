@@ -135,6 +135,7 @@ impl Dao for Connection {
     }
     fn by_union_id(&mut self, union_id: &str) -> Result<Vec<Item>> {
         let it = wechat_oauth2_users::dsl::wechat_oauth2_users
+            .order(wechat_oauth2_users::dsl::updated_at.desc())
             .filter(wechat_oauth2_users::dsl::union_id.eq(union_id))
             .load::<Item>(self)?;
         Ok(it)

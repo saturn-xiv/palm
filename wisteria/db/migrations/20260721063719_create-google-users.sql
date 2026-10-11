@@ -2,6 +2,8 @@
 CREATE TABLE google_users(
     id BIGSERIAL PRIMARY KEY,
     user_id BIGINT NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+    uid VARCHAR(36) NOT NULL,
+    client_id VARCHAR(63) NOT NULL,
     sub VARCHAR(127) NOT NULL,
     email VARCHAR(127) NOT NULL,
     email_verified BOOLEAN NOT NULL,
@@ -13,7 +15,9 @@ CREATE TABLE google_users(
     name VARCHAR(63),
     picture VARCHAR(127),
     locale VARCHAR(15),
-    credentials JSONB NOT NULL,
+    token VARCHAR(127) NOT NULL,
+    refresh_token VARCHAR(127) NOT NULL,
+    granted_scopes JSONB NOT NULL,
     locked_at TIMESTAMP WITHOUT TIME ZONE,
     deleted_at  TIMESTAMP WITHOUT TIME ZONE,
     version INTEGER NOT NULL DEFAULT 0,
@@ -21,7 +25,8 @@ CREATE TABLE google_users(
     created_at TIMESTAMP WITHOUT TIME ZONE NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
 
-CREATE UNIQUE INDEX idx_google_users_sub ON google_users(sub);
+CREATE UNIQUE INDEX idx_google_users_uid ON google_users(uid);
+CREATE UNIQUE INDEX idx_google_users_client_sub ON google_users(client_id, sub);
 CREATE INDEX idx_google_users_email ON google_users(email);
 CREATE INDEX idx_google_users_name ON google_users(name) WHERE name IS NOT NULL;
 CREATE INDEX idx_google_users_given_name ON google_users(given_name) WHERE given_name IS NOT NULL;

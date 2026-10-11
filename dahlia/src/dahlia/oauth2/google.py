@@ -57,7 +57,7 @@ class Server(oauth2_pb2_grpc.GoogleServicer):
             locale=user_info.get('locale'),
             name=user_info.get('name'),
             picture=user_info.get('picture'),
-            verified_email=user_info.get('verified_email'),
+            email_verified=user_info.get('verified_email'),
         )
 
     def Revoke(self, request, context):

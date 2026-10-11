@@ -71,9 +71,11 @@ pub use portal::palm::portal::v_1 as portal_v1;
 pub use sms::palm::sms::v_1 as sms_v1;
 pub use tex::palm::tex::v_1 as tex_v1;
 
+use std::result::Result as StdResult;
 use std::sync::Arc;
 
 use grpc::{client::ChannelOptions, credentials::LocalChannelCredentials};
+use protobuf::Utf8Error as ProtobufUtf8Error;
 
 // https://grpc.io/docs/guides/custom-name-resolution/
 pub fn open_grpc_channel(host: &str, port: u16) -> GrpcClientChannel {
@@ -97,4 +99,24 @@ pub trait Role {
     fn administrator() -> Self;
     fn root() -> Self;
     fn new(code: &str) -> Self;
+}
+
+pub fn to_option_str(
+    val: protobuf::Optional<&protobuf::ProtoStr>,
+) -> StdResult<Option<&str>, ProtobufUtf8Error> {
+    if let Some(it) = val.into_option() {
+        let it = it.to_str()?;
+        return Ok(Some(it));
+    }
+    Ok(None)
+}
+
+pub fn to_vector_str<'a>(
+    val: protobuf::RepeatedView<'a, protobuf::ProtoString>,
+) -> StdResult<Vec<&'a str>, ProtobufUtf8Error> {
+    let mut items = Vec::new();
+    for it in val.into_iter() {
+        items.push(it.to_str()?);
+    }
+    Ok(items)
 }

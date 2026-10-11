@@ -2754,8 +2754,8 @@ impl<'msg> GoogleUserInfoResponseView<'msg> {
     unsafe { ::protobuf::ProtoStr::from_utf8_unchecked(str_view.as_ref()) }
   }
 
-  // verified_email: optional bool
-  pub fn verified_email(self) -> bool {
+  // email_verified: optional bool
+  pub fn email_verified(self) -> bool {
     unsafe {
       // TODO: b/361751487: This .into() and .try_into() is only
       // here for the enum<->i32 case, we should avoid it for
@@ -3050,8 +3050,8 @@ impl<'msg> GoogleUserInfoResponseMut<'msg> {
     }
   }
 
-  // verified_email: optional bool
-  pub fn verified_email(&self) -> bool {
+  // email_verified: optional bool
+  pub fn email_verified(&self) -> bool {
     unsafe {
       // TODO: b/361751487: This .into() and .try_into() is only
       // here for the enum<->i32 case, we should avoid it for
@@ -3064,7 +3064,7 @@ impl<'msg> GoogleUserInfoResponseMut<'msg> {
       ).try_into().unwrap()
     }
   }
-  pub fn set_verified_email(&mut self, val: bool) {
+  pub fn set_email_verified(&mut self, val: bool) {
     unsafe {
       // TODO: b/361751487: This .into() is only here
       // here for the enum<->i32 case, we should avoid it for
@@ -3450,8 +3450,8 @@ impl GoogleUserInfoResponse {
     }
   }
 
-  // verified_email: optional bool
-  pub fn verified_email(&self) -> bool {
+  // email_verified: optional bool
+  pub fn email_verified(&self) -> bool {
     unsafe {
       // TODO: b/361751487: This .into() and .try_into() is only
       // here for the enum<->i32 case, we should avoid it for
@@ -3464,7 +3464,7 @@ impl GoogleUserInfoResponse {
       ).try_into().unwrap()
     }
   }
-  pub fn set_verified_email(&mut self, val: bool) {
+  pub fn set_email_verified(&mut self, val: bool) {
     unsafe {
       // TODO: b/361751487: This .into() is only here
       // here for the enum<->i32 case, we should avoid it for

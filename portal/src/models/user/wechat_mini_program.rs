@@ -35,9 +35,6 @@ pub struct Item {
 }
 
 impl Item {
-    pub fn subject(&self) -> String {
-        format!("{}.{}", self.app_id, self.open_id)
-    }
     pub fn is_enable(&self) -> Result<()> {
         if self.locked_at.is_some() {
             return Err(Box::new(HttpError(
@@ -137,6 +134,7 @@ impl Dao for Connection {
     }
     fn by_union_id(&mut self, union_id: &str) -> Result<Vec<Item>> {
         let it = wechat_mini_program_users::dsl::wechat_mini_program_users
+            .order(wechat_mini_program_users::dsl::updated_at.desc())
             .filter(wechat_mini_program_users::dsl::union_id.eq(union_id))
             .load::<Item>(self)?;
         Ok(it)

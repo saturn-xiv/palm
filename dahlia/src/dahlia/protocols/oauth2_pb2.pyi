@@ -52,10 +52,10 @@ class GoogleRevokeResponse(_message.Message):
     def __init__(self) -> None: ...
 
 class GoogleUserInfoResponse(_message.Message):
-    __slots__ = ("sub", "email", "verified_email", "name", "given_name", "family_name", "picture", "locale", "hosted_domain", "gender", "link")
+    __slots__ = ("sub", "email", "email_verified", "name", "given_name", "family_name", "picture", "locale", "hosted_domain", "gender", "link")
     SUB_FIELD_NUMBER: _ClassVar[int]
     EMAIL_FIELD_NUMBER: _ClassVar[int]
-    VERIFIED_EMAIL_FIELD_NUMBER: _ClassVar[int]
+    EMAIL_VERIFIED_FIELD_NUMBER: _ClassVar[int]
     NAME_FIELD_NUMBER: _ClassVar[int]
     GIVEN_NAME_FIELD_NUMBER: _ClassVar[int]
     FAMILY_NAME_FIELD_NUMBER: _ClassVar[int]
@@ -66,7 +66,7 @@ class GoogleUserInfoResponse(_message.Message):
     LINK_FIELD_NUMBER: _ClassVar[int]
     sub: str
     email: str
-    verified_email: bool
+    email_verified: bool
     name: str
     given_name: str
     family_name: str
@@ -75,4 +75,4 @@ class GoogleUserInfoResponse(_message.Message):
     hosted_domain: str
     gender: str
     link: str
-    def __init__(self, sub: _Optional[str] = ..., email: _Optional[str] = ..., verified_email: _Optional[bool] = ..., name: _Optional[str] = ..., given_name: _Optional[str] = ..., family_name: _Optional[str] = ..., picture: _Optional[str] = ..., locale: _Optional[str] = ..., hosted_domain: _Optional[str] = ..., gender: _Optional[str] = ..., link: _Optional[str] = ...) -> None: ...
+    def __init__(self, sub: _Optional[str] = ..., email: _Optional[str] = ..., email_verified: _Optional[bool] = ..., name: _Optional[str] = ..., given_name: _Optional[str] = ..., family_name: _Optional[str] = ..., picture: _Optional[str] = ..., locale: _Optional[str] = ..., hosted_domain: _Optional[str] = ..., gender: _Optional[str] = ..., link: _Optional[str] = ...) -> None: ...

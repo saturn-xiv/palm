@@ -76,6 +76,10 @@ diesel::table! {
     google_users (id) {
         id -> Int8,
         user_id -> Int8,
+        #[max_length = 36]
+        uid -> Varchar,
+        #[max_length = 63]
+        client_id -> Varchar,
         #[max_length = 127]
         sub -> Varchar,
         #[max_length = 127]
@@ -97,7 +101,11 @@ diesel::table! {
         picture -> Nullable<Varchar>,
         #[max_length = 15]
         locale -> Nullable<Varchar>,
-        credentials -> Jsonb,
+        #[max_length = 127]
+        token -> Varchar,
+        #[max_length = 127]
+        refresh_token -> Varchar,
+        granted_scopes -> Jsonb,
         locked_at -> Nullable<Timestamp>,
         deleted_at -> Nullable<Timestamp>,
         version -> Int4,
