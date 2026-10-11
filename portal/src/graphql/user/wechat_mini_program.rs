@@ -9,15 +9,21 @@ use super::super::super::{
     models::{
         log::{Dao as LogDao, Level},
         user::{
-            Dao as UserDao, Type as UserType, wechat_mini_program::Dao as WechatMiniProgramUserDao,
+            Dao as UserDao, Type as UserType, email::Dao as EmailUserDao,
+            wechat_mini_program::Dao as WechatMiniProgramUserDao,
         },
     },
     orm::postgresql::Connection as Db,
+    queue::rabbitmq::Client as RabbitMq,
+    random::alphanumeric as random_alphanumeric,
     rbac::Rbac,
     wechat::mini_program::Config as WechatMiniProgram,
 };
 use super::super::Session;
-use super::SignInResponse;
+use super::{
+    SignInResponse,
+    email::{Confirm, send_email},
+};
 
 #[derive(Clone, Debug, Validate, GraphQLInputObject)]
 #[graphql(name = "UserSignInByWechatMiniProgramRequest")]
@@ -117,6 +123,51 @@ impl UserInfo {
             Ok(())
         })?;
 
+        Ok(())
+    }
+}
+
+#[derive(Debug, Validate)]
+pub struct BindEmail {
+    #[validate(length(min = 5, max = 31), email)]
+    pub email: String,
+}
+impl BindEmail {
+    pub async fn execute<J: Jwt>(
+        &self,
+        ss: &Session,
+        db: &mut Db,
+        cache: &mut Cache,
+        jwt: &J,
+        queue: &RabbitMq,
+    ) -> Result<()> {
+        self.validate()?;
+        let current_user = ss.current_user(db, cache, jwt).await?;
+        if current_user.r#type != UserType::WechatOauth2 {
+            return Err(Box::new(HttpError(StatusCode::BAD_REQUEST, None)));
+        }
+        let ip = ss.client_ip();
+        let password = random_alphanumeric(63);
+
+        let it = db.transaction::<_, Error, _>(|tx| {
+            EmailUserDao::create(
+                tx,
+                current_user.id(),
+                current_user.name(),
+                &self.email,
+                &password,
+            )?;
+            let it = EmailUserDao::by_email(tx, &self.email)?;
+            LogDao::create::<Plugin, _>(
+                tx,
+                it.user_id,
+                Level::Info,
+                ip,
+                "Created by wechat mini-program.",
+            )?;
+            Ok(it)
+        })?;
+        send_email(db, queue, jwt, &it, Confirm::ACTION).await?;
         Ok(())
     }
 }

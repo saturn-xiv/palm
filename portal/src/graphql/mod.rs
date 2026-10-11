@@ -18,6 +18,7 @@ use super::{
     headers::{AUTHORIZATION, BEARER, X_FORWARDED_FOR, X_REAL_IP},
     models::user::{
         Dao as UserDao, Item as UserItem, Type as UserType, email::Dao as EmailUserDao,
+        google_oauth2::Dao as GoogleOauth2UserDao,
         wechat_mini_program::Dao as WechatMiniProgramUserDao,
         wechat_oauth2::Dao as WechatOauth2UserDao,
     },
@@ -127,6 +128,9 @@ impl CurrentUser {
     pub fn id(&self) -> i64 {
         self.item.id
     }
+    pub fn name(&self) -> &String {
+        &self.item.name
+    }
     pub fn lang(&self) -> Result<Locale> {
         let it = self.item.lang.parse()?;
         Ok(it)
@@ -161,6 +165,11 @@ impl CurrentUser {
             }
             UserType::WechatOauth2 => {
                 let it = WechatOauth2UserDao::by_uid(db, &subject)?;
+                it.is_enable()?;
+                Ok(it.user_id)
+            }
+            UserType::GoogleOauth2 => {
+                let it = GoogleOauth2UserDao::by_uid(db, &subject)?;
                 it.is_enable()?;
                 Ok(it.user_id)
             }

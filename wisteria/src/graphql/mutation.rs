@@ -7,7 +7,7 @@ use lavender::graphql as lavender_graphql;
 use portal::graphql::{
     Succeeded, attachment as attachment_api, locale as locale_api,
     user::{
-        self as user_api, email as email_user_api,
+        self as user_api, email as email_user_api, google_oauth2 as google_oauth2_user_api,
         wechat_mini_program as wechat_mini_program_user_api,
         wechat_oauth2 as wechat_oauth2_user_api,
     },
@@ -186,6 +186,27 @@ impl Mutation {
         .await?;
         Ok(Succeeded::default())
     }
+    async fn bind_email_for_wechat_oauth2_user<S: ScalarValue + Display>(
+        email: String,
+        ctx: &Context,
+    ) -> FieldResult<Succeeded, S> {
+        let mut db = ctx.state.db.get()?;
+        let db = db.deref_mut();
+        let mut cache = ctx.state.cache.get()?;
+
+        let form = wechat_oauth2_user_api::BindEmail {
+            email: email.trim().to_lowercase(),
+        };
+        form.execute(
+            &ctx.session,
+            db,
+            &mut cache,
+            &ctx.state.loquat,
+            &ctx.state.queue,
+        )
+        .await?;
+        Ok(Succeeded::default())
+    }
     async fn update_wechat_mini_program_user_info<S: ScalarValue + Display>(
         nickname: String,
         avatar_url: String,
@@ -201,6 +222,48 @@ impl Mutation {
         };
         form.execute(&ctx.session, db, &mut cache, &ctx.state.loquat)
             .await?;
+        Ok(Succeeded::default())
+    }
+    async fn bind_email_for_wechat_mini_program_user<S: ScalarValue + Display>(
+        email: String,
+        ctx: &Context,
+    ) -> FieldResult<Succeeded, S> {
+        let mut db = ctx.state.db.get()?;
+        let db = db.deref_mut();
+        let mut cache = ctx.state.cache.get()?;
+
+        let form = wechat_mini_program_user_api::BindEmail {
+            email: email.trim().to_lowercase(),
+        };
+        form.execute(
+            &ctx.session,
+            db,
+            &mut cache,
+            &ctx.state.loquat,
+            &ctx.state.queue,
+        )
+        .await?;
+        Ok(Succeeded::default())
+    }
+    async fn bind_email_for_google_oauth2_user<S: ScalarValue + Display>(
+        email: String,
+        ctx: &Context,
+    ) -> FieldResult<Succeeded, S> {
+        let mut db = ctx.state.db.get()?;
+        let db = db.deref_mut();
+        let mut cache = ctx.state.cache.get()?;
+
+        let form = google_oauth2_user_api::BindEmail {
+            email: email.trim().to_lowercase(),
+        };
+        form.execute(
+            &ctx.session,
+            db,
+            &mut cache,
+            &ctx.state.loquat,
+            &ctx.state.queue,
+        )
+        .await?;
         Ok(Succeeded::default())
     }
 

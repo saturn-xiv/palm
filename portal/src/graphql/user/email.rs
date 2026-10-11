@@ -190,7 +190,7 @@ pub struct Confirm {
 }
 
 impl Confirm {
-    const ACTION: &str = "user.confirm-by-email";
+    pub const ACTION: &str = "user.confirm-by-email";
 
     pub async fn execute<J: Jwt>(&self, db: &mut Db, queue: &RabbitMq, jwt: &J) -> Result<()> {
         self.validate()?;
@@ -401,7 +401,7 @@ impl ResetPassword {
     }
 }
 
-async fn send_email<J: Jwt>(
+pub async fn send_email<J: Jwt>(
     db: &mut Db,
     queue: &RabbitMq,
     jwt: &J,

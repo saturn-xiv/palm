@@ -1,0 +1,11 @@
+emails:
+  user:
+    confirm-by-email:
+      subject: ""
+      body: ""
+    unlock-by-email:
+      subject: ""
+      body: ""
+    reset-password-by-email:
+      subject: ""
+      body: ""

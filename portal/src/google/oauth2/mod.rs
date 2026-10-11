@@ -27,7 +27,7 @@ impl Dahlia {
             .map_err(|x| Box::<HttpError>::new(x.into()))?;
         Ok(res)
     }
-    pub async fn fetch_token<A: Into<String>>(
+    pub async fn google_oauth2_fetch_token<A: Into<String>>(
         &self,
         authorization_response: &str,
         scopes: Vec<A>,
@@ -47,7 +47,10 @@ impl Dahlia {
             .map_err(|x| Box::<HttpError>::new(x.into()))?;
         Ok(res)
     }
-    pub async fn user_info(&self, credentials: Credentials) -> Result<GoogleUserInfoResponse> {
+    pub async fn google_oauth2_user_info(
+        &self,
+        credentials: Credentials,
+    ) -> Result<GoogleUserInfoResponse> {
         let res = self
             .google_oauth2
             .user_info(credentials)
@@ -56,7 +59,10 @@ impl Dahlia {
         Ok(res)
     }
 
-    pub async fn revoke(&self, credentials: Credentials) -> Result<GoogleRevokeResponse> {
+    pub async fn google_oauth2_revoke(
+        &self,
+        credentials: Credentials,
+    ) -> Result<GoogleRevokeResponse> {
         let res = self
             .google_oauth2
             .revoke(credentials)

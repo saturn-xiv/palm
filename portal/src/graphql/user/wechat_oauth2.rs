@@ -1,22 +1,31 @@
 use chrono::Duration;
 use diesel::Connection as DieselConnection;
+use hyper::StatusCode;
 use juniper::GraphQLInputObject;
 use uuid::Uuid;
 use validator::Validate;
 
 use super::super::super::{
-    Error, Jwt, Plugin, Result,
+    Error, HttpError, Jwt, Plugin, Result,
     cache::redis::StandaloneConnection as Cache,
     models::{
         log::{Dao as LogDao, Level},
-        user::{Dao as UserDao, Type as UserType, wechat_oauth2::Dao as WechatOauth2UserDao},
+        user::{
+            Dao as UserDao, Type as UserType, email::Dao as EmailUserDao,
+            wechat_oauth2::Dao as WechatOauth2UserDao,
+        },
     },
     orm::postgresql::Connection as Db,
+    queue::rabbitmq::Client as RabbitMq,
+    random::alphanumeric as random_alphanumeric,
     rbac::Rbac,
     wechat::oauth2::Config as WechatOauth2,
 };
 use super::super::{CurrentUser, Session};
-use super::{SignInResponse, State};
+use super::{
+    SignInResponse, State,
+    email::{Confirm, send_email},
+};
 
 #[derive(Clone, Debug, Validate, GraphQLInputObject)]
 #[graphql(name = "WechatOauth2UserCallbackRequest")]
@@ -82,25 +91,72 @@ impl Callback {
     }
 }
 
-pub fn sign_in_url(
+pub fn user_for_sign_in(
     ss: &Session,
     cache: &mut Cache,
     wechat: &WechatOauth2,
     ttl: Duration,
+    redirect_uri: &str,
 ) -> Result<String> {
-    qr_code_url(ss, cache, wechat, ttl, None)
+    qr_code_url(ss, cache, wechat, ttl, None, redirect_uri)
 }
 
-pub async fn bind_url<J: Jwt>(
+pub async fn url_for_bind_user<J: Jwt>(
     ss: &Session,
     db: &mut Db,
     cache: &mut Cache,
     jwt: &J,
     wechat: &WechatOauth2,
     ttl: Duration,
+    redirect_uri: &str,
 ) -> Result<String> {
     let current_user = ss.current_user(db, cache, jwt).await?;
-    qr_code_url(ss, cache, wechat, ttl, Some(&current_user))
+    qr_code_url(ss, cache, wechat, ttl, Some(&current_user), redirect_uri)
+}
+
+#[derive(Debug, Validate)]
+pub struct BindEmail {
+    #[validate(length(min = 5, max = 31), email)]
+    pub email: String,
+}
+impl BindEmail {
+    pub async fn execute<J: Jwt>(
+        &self,
+        ss: &Session,
+        db: &mut Db,
+        cache: &mut Cache,
+        jwt: &J,
+        queue: &RabbitMq,
+    ) -> Result<()> {
+        self.validate()?;
+        let current_user = ss.current_user(db, cache, jwt).await?;
+        if current_user.r#type != UserType::WechatOauth2 {
+            return Err(Box::new(HttpError(StatusCode::BAD_REQUEST, None)));
+        }
+        let ip = ss.client_ip();
+        let password = random_alphanumeric(63);
+
+        let it = db.transaction::<_, Error, _>(|tx| {
+            EmailUserDao::create(
+                tx,
+                current_user.id(),
+                current_user.name(),
+                &self.email,
+                &password,
+            )?;
+            let it = EmailUserDao::by_email(tx, &self.email)?;
+            LogDao::create::<Plugin, _>(
+                tx,
+                it.user_id,
+                Level::Info,
+                ip,
+                "Created by wechat oauth2.",
+            )?;
+            Ok(it)
+        })?;
+        send_email(db, queue, jwt, &it, Confirm::ACTION).await?;
+        Ok(())
+    }
 }
 
 fn qr_code_url(
@@ -109,11 +165,12 @@ fn qr_code_url(
     wechat: &WechatOauth2,
     ttl: Duration,
     user: Option<&CurrentUser>,
+    redirect_uri: &str,
 ) -> Result<String> {
     let key = Uuid::new_v4().to_string();
     let tmp = State {
         user: user.map(|it| it.uid().clone()),
     };
     tmp.save(cache, &key, ttl)?;
-    Ok(wechat.login_url(&key, &ss.locale()?))
+    Ok(wechat.login_url(&key, &ss.locale()?, redirect_uri))
 }

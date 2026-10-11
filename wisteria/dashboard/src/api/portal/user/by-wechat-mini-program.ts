@@ -68,3 +68,17 @@ export const set_info = async (
   );
   return res.setWechatMiniProgramUserInfo;
 };
+
+export const bind_email = async (email: string): Promise<ISucceeded> => {
+  const res: { bindEmailForWechatMiniProgramUser: ISucceeded } = await graphql(
+    `
+      query call($email: String!) {
+        bindEmailForWechatMiniProgramUser(email: $email) {
+          createdAt
+        }
+      }
+    `,
+    { email },
+  );
+  return res.bindEmailForWechatMiniProgramUser;
+};

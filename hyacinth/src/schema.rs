@@ -73,7 +73,7 @@ diesel::table! {
 }
 
 diesel::table! {
-    google_users (id) {
+    google_oauth2_users (id) {
         id -> Int8,
         user_id -> Int8,
         #[max_length = 36]
@@ -334,7 +334,7 @@ diesel::table! {
 
 diesel::joinable!(attachments -> users (user_id));
 diesel::joinable!(email_users -> users (user_id));
-diesel::joinable!(google_users -> users (user_id));
+diesel::joinable!(google_oauth2_users -> users (user_id));
 diesel::joinable!(logs -> users (user_id));
 diesel::joinable!(settings -> users (user_id));
 diesel::joinable!(user_contacts -> users (user_id));
@@ -347,7 +347,7 @@ diesel::allow_tables_to_appear_in_same_query!(
     categories,
     currencies,
     email_users,
-    google_users,
+    google_oauth2_users,
     lavender_tasks,
     locales,
     logs,

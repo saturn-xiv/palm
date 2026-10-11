@@ -8,7 +8,10 @@ use lavender::graphql as lavender_graphql;
 use portal::graphql::{
     Menu, Page, Succeeded, attachment as attachment_api, currency as currency_api,
     locale as locale_api, site as site_api,
-    user::{self as user_api, email as email_user_api, wechat_oauth2 as wechat_oauth2_user_api},
+    user::{
+        self as user_api, email as email_user_api, google_oauth2 as google_oauth2_user_api,
+        wechat_oauth2 as wechat_oauth2_user_api,
+    },
 };
 
 use super::super::{BUILD_TIME, GIT_VERSION};
@@ -70,27 +73,69 @@ impl Query {
         Ok(Succeeded::default())
     }
 
-    fn url_for_wechat_oauth2_user_sign_in(ctx: &Context) -> FieldResult<String> {
+    fn url_for_wechat_oauth2_user_sign_in(
+        redirect_uri: String,
+        ctx: &Context,
+    ) -> FieldResult<String> {
         let mut cache = ctx.state.cache.get()?;
-        let it = wechat_oauth2_user_api::sign_in_url(
+        let it = wechat_oauth2_user_api::user_for_sign_in(
             &ctx.session,
             &mut cache,
             &ctx.state.wechat_oauth2,
             Duration::minutes(5),
+            &redirect_uri,
         )?;
         Ok(it)
     }
-    async fn url_for_bind_wechat_oauth2_user(ctx: &Context) -> FieldResult<String> {
+    async fn url_for_bind_wechat_oauth2_user(
+        redirect_uri: String,
+        ctx: &Context,
+    ) -> FieldResult<String> {
         let mut db = ctx.state.db.get()?;
         let db = db.deref_mut();
         let mut cache = ctx.state.cache.get()?;
-        let it = wechat_oauth2_user_api::bind_url(
+        let it = wechat_oauth2_user_api::url_for_bind_user(
             &ctx.session,
             db,
             &mut cache,
             &ctx.state.loquat,
             &ctx.state.wechat_oauth2,
             Duration::minutes(5),
+            &redirect_uri,
+        )
+        .await?;
+        Ok(it)
+    }
+
+    async fn url_for_google_oauth2_user_sign_in(
+        redirect_uri: String,
+        ctx: &Context,
+    ) -> FieldResult<String> {
+        let mut cache = ctx.state.cache.get()?;
+        let it = google_oauth2_user_api::user_for_sign_in(
+            &mut cache,
+            &ctx.state.dahlia,
+            Duration::minutes(5),
+            &redirect_uri,
+        )
+        .await?;
+        Ok(it)
+    }
+    async fn url_for_bind_google_oauth2_user(
+        redirect_uri: String,
+        ctx: &Context,
+    ) -> FieldResult<String> {
+        let mut db = ctx.state.db.get()?;
+        let db = db.deref_mut();
+        let mut cache = ctx.state.cache.get()?;
+        let it = google_oauth2_user_api::url_for_bind_user(
+            &ctx.session,
+            db,
+            &mut cache,
+            &ctx.state.loquat,
+            &ctx.state.dahlia,
+            Duration::minutes(5),
+            &redirect_uri,
         )
         .await?;
         Ok(it)

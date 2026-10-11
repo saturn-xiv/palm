@@ -6,7 +6,7 @@ use chrono_tz::Tz;
 use diesel::{insert_into, prelude::*, result::Error as DieselError, update};
 use hyacinth::{
     oauth2_v1::{GoogleUserInfoResponse as UserInfo, google_fetch_token_response::Credentials},
-    schema::google_users,
+    schema::google_oauth2_users,
     to_option_str, to_vector_str,
 };
 use hyper::StatusCode;
@@ -115,47 +115,49 @@ pub trait Dao {
 
 impl Dao for Connection {
     fn count(&mut self) -> Result<i64> {
-        let it: i64 = google_users::dsl::google_users.count().get_result(self)?;
+        let it: i64 = google_oauth2_users::dsl::google_oauth2_users
+            .count()
+            .get_result(self)?;
         Ok(it)
     }
     fn all(&mut self, offset: i64, limit: i64) -> Result<Vec<Item>> {
-        let items = google_users::dsl::google_users
-            .order(google_users::dsl::updated_at.desc())
+        let items = google_oauth2_users::dsl::google_oauth2_users
+            .order(google_oauth2_users::dsl::updated_at.desc())
             .offset(offset)
             .limit(limit)
             .load::<Item>(self)?;
         Ok(items)
     }
     fn by_user(&mut self, id: i64) -> Result<Vec<Item>> {
-        let it = google_users::dsl::google_users
-            .order(google_users::dsl::updated_at.desc())
-            .filter(google_users::dsl::user_id.eq(id))
+        let it = google_oauth2_users::dsl::google_oauth2_users
+            .order(google_oauth2_users::dsl::updated_at.desc())
+            .filter(google_oauth2_users::dsl::user_id.eq(id))
             .load::<Item>(self)?;
         Ok(it)
     }
     fn by_id(&mut self, id: i64) -> Result<Item> {
-        let it = google_users::dsl::google_users
-            .filter(google_users::dsl::id.eq(id))
+        let it = google_oauth2_users::dsl::google_oauth2_users
+            .filter(google_oauth2_users::dsl::id.eq(id))
             .first::<Item>(self)?;
         Ok(it)
     }
     fn by_uid(&mut self, uid: &str) -> Result<Item> {
-        let it = google_users::dsl::google_users
-            .filter(google_users::dsl::uid.eq(uid))
+        let it = google_oauth2_users::dsl::google_oauth2_users
+            .filter(google_oauth2_users::dsl::uid.eq(uid))
             .first::<Item>(self)?;
         Ok(it)
     }
     fn by_client_id_and_sub(&mut self, client_id: &str, sub: &str) -> StdResult<Item, DieselError> {
-        let it = google_users::dsl::google_users
-            .filter(google_users::dsl::client_id.eq(client_id))
-            .filter(google_users::dsl::sub.eq(sub))
+        let it = google_oauth2_users::dsl::google_oauth2_users
+            .filter(google_oauth2_users::dsl::client_id.eq(client_id))
+            .filter(google_oauth2_users::dsl::sub.eq(sub))
             .first::<Item>(self)?;
         Ok(it)
     }
     fn by_client_id(&mut self, client_id: &str) -> Result<Vec<Item>> {
-        let it = google_users::dsl::google_users
-            .order(google_users::dsl::updated_at.desc())
-            .filter(google_users::dsl::client_id.eq(client_id))
+        let it = google_oauth2_users::dsl::google_oauth2_users
+            .order(google_oauth2_users::dsl::updated_at.desc())
+            .filter(google_oauth2_users::dsl::client_id.eq(client_id))
             .load::<Item>(self)?;
         Ok(it)
     }
@@ -170,47 +172,53 @@ impl Dao for Connection {
         let uid = Uuid::new_v4().to_string();
         let granted_scopes = to_value(to_vector_str(credentials.granted_scopes())?)?;
 
-        insert_into(google_users::dsl::google_users)
+        insert_into(google_oauth2_users::dsl::google_oauth2_users)
             .values((
-                google_users::dsl::uid.eq(&uid),
-                google_users::dsl::user_id.eq(user),
-                google_users::dsl::client_id.eq(client_id),
-                google_users::dsl::sub.eq(&user_info.sub().to_str()?),
-                google_users::dsl::token.eq(&credentials.token().to_str()?),
-                google_users::dsl::refresh_token.eq(&credentials.refresh_token().to_str()?),
-                google_users::dsl::granted_scopes.eq(&granted_scopes),
-                google_users::dsl::email.eq(&user_info.email().to_str()?),
-                google_users::dsl::email_verified.eq(user_info.email_verified()),
-                google_users::dsl::hosted_domain.eq(to_option_str(user_info.hosted_domain_opt())?),
-                google_users::dsl::given_name.eq(to_option_str(user_info.given_name_opt())?),
-                google_users::dsl::gender.eq(to_option_str(user_info.gender_opt())?),
-                google_users::dsl::link.eq(to_option_str(user_info.link_opt())?),
-                google_users::dsl::family_name.eq(to_option_str(user_info.family_name_opt())?),
-                google_users::dsl::name.eq(to_option_str(user_info.name_opt())?),
-                google_users::dsl::picture.eq(to_option_str(user_info.picture_opt())?),
-                google_users::dsl::locale.eq(to_option_str(user_info.locale_opt())?),
-                google_users::dsl::updated_at.eq(&now),
+                google_oauth2_users::dsl::uid.eq(&uid),
+                google_oauth2_users::dsl::user_id.eq(user),
+                google_oauth2_users::dsl::client_id.eq(client_id),
+                google_oauth2_users::dsl::sub.eq(&user_info.sub().to_str()?),
+                google_oauth2_users::dsl::token.eq(&credentials.token().to_str()?),
+                google_oauth2_users::dsl::refresh_token
+                    .eq(&credentials.refresh_token().to_str()?),
+                google_oauth2_users::dsl::granted_scopes.eq(&granted_scopes),
+                google_oauth2_users::dsl::email.eq(&user_info.email().to_str()?),
+                google_oauth2_users::dsl::email_verified.eq(user_info.email_verified()),
+                google_oauth2_users::dsl::hosted_domain
+                    .eq(to_option_str(user_info.hosted_domain_opt())?),
+                google_oauth2_users::dsl::given_name.eq(to_option_str(user_info.given_name_opt())?),
+                google_oauth2_users::dsl::gender.eq(to_option_str(user_info.gender_opt())?),
+                google_oauth2_users::dsl::link.eq(to_option_str(user_info.link_opt())?),
+                google_oauth2_users::dsl::family_name
+                    .eq(to_option_str(user_info.family_name_opt())?),
+                google_oauth2_users::dsl::name.eq(to_option_str(user_info.name_opt())?),
+                google_oauth2_users::dsl::picture.eq(to_option_str(user_info.picture_opt())?),
+                google_oauth2_users::dsl::locale.eq(to_option_str(user_info.locale_opt())?),
+                google_oauth2_users::dsl::updated_at.eq(&now),
             ))
             .execute(self)?;
         Ok(())
     }
     fn set_info(&mut self, id: i64, user_info: &UserInfo) -> Result<()> {
         let now = Utc::now().naive_utc();
-        let it = google_users::dsl::google_users.filter(google_users::dsl::id.eq(id));
+        let it = google_oauth2_users::dsl::google_oauth2_users
+            .filter(google_oauth2_users::dsl::id.eq(id));
         update(it)
             .set((
-                google_users::dsl::email.eq(&user_info.email().to_str()?),
-                google_users::dsl::email_verified.eq(&user_info.email_verified()),
-                google_users::dsl::hosted_domain.eq(to_option_str(user_info.hosted_domain_opt())?),
-                google_users::dsl::given_name.eq(to_option_str(user_info.given_name_opt())?),
-                google_users::dsl::gender.eq(to_option_str(user_info.gender_opt())?),
-                google_users::dsl::link.eq(to_option_str(user_info.link_opt())?),
-                google_users::dsl::family_name.eq(to_option_str(user_info.family_name_opt())?),
-                google_users::dsl::name.eq(to_option_str(user_info.name_opt())?),
-                google_users::dsl::picture.eq(to_option_str(user_info.picture_opt())?),
-                google_users::dsl::locale.eq(to_option_str(user_info.locale_opt())?),
-                google_users::dsl::version.eq(google_users::dsl::version + 1),
-                google_users::dsl::updated_at.eq(&now),
+                google_oauth2_users::dsl::email.eq(&user_info.email().to_str()?),
+                google_oauth2_users::dsl::email_verified.eq(&user_info.email_verified()),
+                google_oauth2_users::dsl::hosted_domain
+                    .eq(to_option_str(user_info.hosted_domain_opt())?),
+                google_oauth2_users::dsl::given_name.eq(to_option_str(user_info.given_name_opt())?),
+                google_oauth2_users::dsl::gender.eq(to_option_str(user_info.gender_opt())?),
+                google_oauth2_users::dsl::link.eq(to_option_str(user_info.link_opt())?),
+                google_oauth2_users::dsl::family_name
+                    .eq(to_option_str(user_info.family_name_opt())?),
+                google_oauth2_users::dsl::name.eq(to_option_str(user_info.name_opt())?),
+                google_oauth2_users::dsl::picture.eq(to_option_str(user_info.picture_opt())?),
+                google_oauth2_users::dsl::locale.eq(to_option_str(user_info.locale_opt())?),
+                google_oauth2_users::dsl::version.eq(google_oauth2_users::dsl::version + 1),
+                google_oauth2_users::dsl::updated_at.eq(&now),
             ))
             .execute(self)?;
         Ok(())
@@ -218,14 +226,16 @@ impl Dao for Connection {
     fn set_credentials(&mut self, id: i64, credentials: &Credentials) -> Result<()> {
         let now = Utc::now().naive_utc();
         let granted_scopes = to_value(to_vector_str(credentials.granted_scopes())?)?;
-        let it = google_users::dsl::google_users.filter(google_users::dsl::id.eq(id));
+        let it = google_oauth2_users::dsl::google_oauth2_users
+            .filter(google_oauth2_users::dsl::id.eq(id));
         update(it)
             .set((
-                google_users::dsl::token.eq(&credentials.token().to_str()?),
-                google_users::dsl::refresh_token.eq(&credentials.refresh_token().to_str()?),
-                google_users::dsl::granted_scopes.eq(&granted_scopes),
-                google_users::dsl::version.eq(google_users::dsl::version + 1),
-                google_users::dsl::updated_at.eq(&now),
+                google_oauth2_users::dsl::token.eq(&credentials.token().to_str()?),
+                google_oauth2_users::dsl::refresh_token
+                    .eq(&credentials.refresh_token().to_str()?),
+                google_oauth2_users::dsl::granted_scopes.eq(&granted_scopes),
+                google_oauth2_users::dsl::version.eq(google_oauth2_users::dsl::version + 1),
+                google_oauth2_users::dsl::updated_at.eq(&now),
             ))
             .execute(self)?;
         Ok(())
@@ -233,33 +243,36 @@ impl Dao for Connection {
 
     fn lock(&mut self, id: i64) -> Result<()> {
         let now = Utc::now().naive_utc();
-        let it = google_users::dsl::google_users.filter(google_users::dsl::id.eq(id));
+        let it = google_oauth2_users::dsl::google_oauth2_users
+            .filter(google_oauth2_users::dsl::id.eq(id));
         update(it)
             .set((
-                google_users::dsl::locked_at.eq(&now),
-                google_users::dsl::version.eq(google_users::dsl::version + 1),
-                google_users::dsl::updated_at.eq(&now),
+                google_oauth2_users::dsl::locked_at.eq(&now),
+                google_oauth2_users::dsl::version.eq(google_oauth2_users::dsl::version + 1),
+                google_oauth2_users::dsl::updated_at.eq(&now),
             ))
             .execute(self)?;
         Ok(())
     }
     fn unlock(&mut self, id: i64) -> Result<()> {
         let now = Utc::now().naive_utc();
-        let it = google_users::dsl::google_users.filter(google_users::dsl::id.eq(id));
+        let it = google_oauth2_users::dsl::google_oauth2_users
+            .filter(google_oauth2_users::dsl::id.eq(id));
         update(it)
             .set((
-                google_users::dsl::locked_at.eq(None::<NaiveDateTime>),
-                google_users::dsl::version.eq(google_users::dsl::version + 1),
-                google_users::dsl::updated_at.eq(&now),
+                google_oauth2_users::dsl::locked_at.eq(None::<NaiveDateTime>),
+                google_oauth2_users::dsl::version.eq(google_oauth2_users::dsl::version + 1),
+                google_oauth2_users::dsl::updated_at.eq(&now),
             ))
             .execute(self)?;
         Ok(())
     }
     fn delete(&mut self, id: i64) -> Result<()> {
         let now = Utc::now().naive_utc();
-        let it = google_users::dsl::google_users.filter(google_users::dsl::id.eq(id));
+        let it = google_oauth2_users::dsl::google_oauth2_users
+            .filter(google_oauth2_users::dsl::id.eq(id));
         update(it)
-            .set(google_users::dsl::deleted_at.eq(&now))
+            .set(google_oauth2_users::dsl::deleted_at.eq(&now))
             .execute(self)?;
         Ok(())
     }
