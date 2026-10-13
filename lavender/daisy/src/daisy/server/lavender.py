@@ -13,7 +13,7 @@ from daisy.protocols import lavender_pb2_grpc, lavender_pb2
 logger = logging.getLogger(__name__)
 
 
-class Reporter(lavender_pb2_grpc.ReporterServicer):
+class Stash(lavender_pb2_grpc.StashServicer):
     def __init__(self, client, namespace):
         self.client = client
         self.namespace = namespace

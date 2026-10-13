@@ -15,12 +15,14 @@ class GoogleSignInUrlRequest(_message.Message):
     def __init__(self, redirect_uri: _Optional[str] = ..., scopes: _Optional[_Iterable[str]] = ...) -> None: ...
 
 class GoogleSignInUrlResponse(_message.Message):
-    __slots__ = ("authorization_url", "state")
+    __slots__ = ("authorization_url", "state", "client_id")
     AUTHORIZATION_URL_FIELD_NUMBER: _ClassVar[int]
     STATE_FIELD_NUMBER: _ClassVar[int]
+    CLIENT_ID_FIELD_NUMBER: _ClassVar[int]
     authorization_url: str
     state: str
-    def __init__(self, authorization_url: _Optional[str] = ..., state: _Optional[str] = ...) -> None: ...
+    client_id: str
+    def __init__(self, authorization_url: _Optional[str] = ..., state: _Optional[str] = ..., client_id: _Optional[str] = ...) -> None: ...
 
 class GoogleFetchTokenRequest(_message.Message):
     __slots__ = ("authorization_response", "state", "scopes")

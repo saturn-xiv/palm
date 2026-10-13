@@ -17,7 +17,7 @@ message Duration {
     int32 nanos = 2;
 }
 
-service Reporter {
+service Stash {
     rpc Systemd(stream SystemdRequest) returns (SystemdResponse) {}
     rpc Kubernetes(stream KubernetesRequest) returns (KubernetesResponse) {}
     rpc Claw(ClawRequest) returns (Empty) {}

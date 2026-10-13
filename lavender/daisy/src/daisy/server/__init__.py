@@ -10,7 +10,7 @@ from grpc_health.v1 import health, health_pb2, health_pb2_grpc
 from opensearchpy import OpenSearch
 
 from daisy.protocols import lavender_pb2, lavender_pb2_grpc
-from .lavender import Reporter as LavenderReporterServer
+from .lavender import Stash as LavenderStashServer
 
 logger = logging.getLogger(__name__)
 
@@ -20,13 +20,13 @@ def launch(config, port, workers, tls):
 
     client = open_opensearch(config['opensearch']['host'],
                              config['opensearch']['port'])
-    reporter_service = LavenderReporterServer(
+    stash_service = LavenderStashServer(
         client, config['opensearch']['namespace'])
-    reporter_service.check_indices()
-    lavender_pb2_grpc.add_ReporterServicer_to_server(reporter_service, server)
+    stash_service.check_indices()
+    lavender_pb2_grpc.add_StashServicer_to_server(stash_service, server)
 
     reflection.enable_server_reflection((
-        lavender_pb2.DESCRIPTOR.services_by_name["Reporter"].full_name,
+        lavender_pb2.DESCRIPTOR.services_by_name["Stash"].full_name,
         reflection.SERVICE_NAME,
     ), server)
 

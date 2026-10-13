@@ -559,6 +559,17 @@ impl<'msg> GoogleSignInUrlResponseView<'msg> {
     unsafe { ::protobuf::ProtoStr::from_utf8_unchecked(str_view.as_ref()) }
   }
 
+  // client_id: optional string
+  pub fn client_id(self) -> ::protobuf::View<'msg, ::protobuf::ProtoString> {
+    let str_view = unsafe {
+      self.inner.ptr().get_string_at_index(
+        2, (b"").into()
+      )
+    };
+    // SAFETY: The runtime doesn't require ProtoStr to be UTF-8.
+    unsafe { ::protobuf::ProtoStr::from_utf8_unchecked(str_view.as_ref()) }
+  }
+
 }
 
 // SAFETY:
@@ -688,6 +699,25 @@ impl<'msg> GoogleSignInUrlResponseMut<'msg> {
     }
   }
 
+  // client_id: optional string
+  pub fn client_id(&self) -> ::protobuf::View<'_, ::protobuf::ProtoString> {
+    let str_view = unsafe {
+      self.inner.ptr().get_string_at_index(
+        2, (b"").into()
+      )
+    };
+    // SAFETY: The runtime doesn't require ProtoStr to be UTF-8.
+    unsafe { ::protobuf::ProtoStr::from_utf8_unchecked(str_view.as_ref()) }
+  }
+  pub fn set_client_id(&mut self, val: impl ::protobuf::IntoProxied<::protobuf::ProtoString>) {
+    unsafe {
+      ::protobuf::__internal::runtime::message_set_string_field(
+        ::protobuf::AsMut::as_mut(self).inner,
+        2,
+        val);
+    }
+  }
+
 }
 
 // SAFETY:
@@ -790,6 +820,25 @@ impl GoogleSignInUrlResponse {
     }
   }
 
+  // client_id: optional string
+  pub fn client_id(&self) -> ::protobuf::View<'_, ::protobuf::ProtoString> {
+    let str_view = unsafe {
+      self.inner.ptr().get_string_at_index(
+        2, (b"").into()
+      )
+    };
+    // SAFETY: The runtime doesn't require ProtoStr to be UTF-8.
+    unsafe { ::protobuf::ProtoStr::from_utf8_unchecked(str_view.as_ref()) }
+  }
+  pub fn set_client_id(&mut self, val: impl ::protobuf::IntoProxied<::protobuf::ProtoString>) {
+    unsafe {
+      ::protobuf::__internal::runtime::message_set_string_field(
+        ::protobuf::AsMut::as_mut(self).inner,
+        2,
+        val);
+    }
+  }
+
 }  // impl GoogleSignInUrlResponse
 
 impl ::std::ops::Drop for GoogleSignInUrlResponse {
@@ -825,7 +874,7 @@ unsafe impl ::protobuf::__internal::runtime::AssociatedMiniTable for GoogleSignI
     unsafe {
       ONCE_LOCK.get_or_init(|| {
         super::palm__oauth2__v1__GoogleSignInUrlResponse_msg_init.0 =
-            ::protobuf::__internal::runtime::build_mini_table("$M1P1P");
+            ::protobuf::__internal::runtime::build_mini_table("$M1P1P1P");
         ::protobuf::__internal::runtime::link_mini_table(
             super::palm__oauth2__v1__GoogleSignInUrlResponse_msg_init.0, &[], &[]);
         ::protobuf::__internal::runtime::MiniTableInitPtr(super::palm__oauth2__v1__GoogleSignInUrlResponse_msg_init.0)

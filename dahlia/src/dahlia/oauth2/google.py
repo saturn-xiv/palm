@@ -24,7 +24,7 @@ class Server(oauth2_pb2_grpc.GoogleServicer):
         flow.redirect_uri = request.redirect_uri
         authorization_url, state = flow.authorization_url(
             access_type='offline', include_granted_scopes='true')
-        return oauth2_pb2.GoogleSignInUrlResponse(authorization_url=authorization_url, state=state)
+        return oauth2_pb2.GoogleSignInUrlResponse(authorization_url=authorization_url, state=state, client_id=flow.credentials.client_id)
 
     def FetchToken(self, request, context):
         flow = google_auth_oauthlib.flow.Flow.from_client_secrets_file(

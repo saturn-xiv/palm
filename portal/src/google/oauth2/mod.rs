@@ -1,5 +1,6 @@
 pub mod scopes;
 
+use askama::Template;
 use hyacinth::oauth2_v1::{
     GoogleFetchTokenRequest, GoogleFetchTokenResponse, GoogleRevokeResponse,
     GoogleSignInUrlRequest, GoogleSignInUrlResponse, GoogleUserInfoResponse,
@@ -69,5 +70,22 @@ impl Dahlia {
             .await
             .map_err(|x| Box::<HttpError>::new(x.into()))?;
         Ok(res)
+    }
+}
+
+#[derive(Template)]
+#[template(path = "google/oauth2/button.html")]
+pub struct Button<'a> {
+    pub authorization_url: &'a str,
+    pub client_id: &'a str,
+}
+
+impl<'a> Button<'a> {
+    pub fn new(res: &'a GoogleSignInUrlResponse) -> Result<Self> {
+        let it = Self {
+            authorization_url: res.authorization_url().to_str()?,
+            client_id: res.client_id().to_str()?,
+        };
+        Ok(it)
     }
 }

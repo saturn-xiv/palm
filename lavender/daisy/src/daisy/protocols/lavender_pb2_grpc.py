@@ -25,7 +25,7 @@ if _version_not_supported:
     )
 
 
-class ReporterStub:
+class StashStub:
     """Missing associated documentation comment in .proto file."""
 
     def __init__(self, channel):
@@ -35,23 +35,23 @@ class ReporterStub:
             channel: A grpc.Channel.
         """
         self.Systemd = channel.stream_unary(
-                '/palm.lavender.v1.Reporter/Systemd',
+                '/palm.lavender.v1.Stash/Systemd',
                 request_serializer=daisy_dot_protocols_dot_lavender__pb2.SystemdRequest.SerializeToString,
                 response_deserializer=daisy_dot_protocols_dot_lavender__pb2.SystemdResponse.FromString,
                 _registered_method=True)
         self.Kubernetes = channel.stream_unary(
-                '/palm.lavender.v1.Reporter/Kubernetes',
+                '/palm.lavender.v1.Stash/Kubernetes',
                 request_serializer=daisy_dot_protocols_dot_lavender__pb2.KubernetesRequest.SerializeToString,
                 response_deserializer=daisy_dot_protocols_dot_lavender__pb2.KubernetesResponse.FromString,
                 _registered_method=True)
         self.Claw = channel.unary_unary(
-                '/palm.lavender.v1.Reporter/Claw',
+                '/palm.lavender.v1.Stash/Claw',
                 request_serializer=daisy_dot_protocols_dot_lavender__pb2.ClawRequest.SerializeToString,
                 response_deserializer=daisy_dot_protocols_dot_lavender__pb2.Empty.FromString,
                 _registered_method=True)
 
 
-class ReporterServicer:
+class StashServicer:
     """Missing associated documentation comment in .proto file."""
 
     def Systemd(self, request_iterator, context):
@@ -73,7 +73,7 @@ class ReporterServicer:
         raise NotImplementedError('Method not implemented!')
 
 
-def add_ReporterServicer_to_server(servicer, server):
+def add_StashServicer_to_server(servicer, server):
     rpc_method_handlers = {
             'Systemd': grpc.stream_unary_rpc_method_handler(
                     servicer.Systemd,
@@ -92,13 +92,13 @@ def add_ReporterServicer_to_server(servicer, server):
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
-            'palm.lavender.v1.Reporter', rpc_method_handlers)
+            'palm.lavender.v1.Stash', rpc_method_handlers)
     server.add_generic_rpc_handlers((generic_handler,))
-    server.add_registered_method_handlers('palm.lavender.v1.Reporter', rpc_method_handlers)
+    server.add_registered_method_handlers('palm.lavender.v1.Stash', rpc_method_handlers)
 
 
  # This class is part of an EXPERIMENTAL API.
-class Reporter:
+class Stash:
     """Missing associated documentation comment in .proto file."""
 
     @staticmethod
@@ -115,7 +115,7 @@ class Reporter:
         return grpc.experimental.stream_unary(
             request_iterator,
             target,
-            '/palm.lavender.v1.Reporter/Systemd',
+            '/palm.lavender.v1.Stash/Systemd',
             daisy_dot_protocols_dot_lavender__pb2.SystemdRequest.SerializeToString,
             daisy_dot_protocols_dot_lavender__pb2.SystemdResponse.FromString,
             options,
@@ -142,7 +142,7 @@ class Reporter:
         return grpc.experimental.stream_unary(
             request_iterator,
             target,
-            '/palm.lavender.v1.Reporter/Kubernetes',
+            '/palm.lavender.v1.Stash/Kubernetes',
             daisy_dot_protocols_dot_lavender__pb2.KubernetesRequest.SerializeToString,
             daisy_dot_protocols_dot_lavender__pb2.KubernetesResponse.FromString,
             options,
@@ -169,7 +169,7 @@ class Reporter:
         return grpc.experimental.unary_unary(
             request,
             target,
-            '/palm.lavender.v1.Reporter/Claw',
+            '/palm.lavender.v1.Stash/Claw',
             daisy_dot_protocols_dot_lavender__pb2.ClawRequest.SerializeToString,
             daisy_dot_protocols_dot_lavender__pb2.Empty.FromString,
             options,

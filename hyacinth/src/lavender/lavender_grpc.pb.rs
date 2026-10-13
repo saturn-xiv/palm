@@ -1,14 +1,14 @@
 /// Generated client implementations.
-pub mod reporter_client {
+pub mod stash_client {
     use grpc::client::*;
     use grpc_protobuf::*;
 
     #[derive(Debug, Clone)]
-    pub struct ReporterClient<T> {
+    pub struct StashClient<T> {
         channel: T,
     }
 
-    impl<T> ReporterClient<T>
+    impl<T> StashClient<T>
     where
         T: grpc::client::Invoke,
     {
@@ -17,11 +17,11 @@ pub mod reporter_client {
         }
 
         pub fn systemd(&self) -> ClientStreamingCallBuilder<'_, &T, super::SystemdRequest, super::SystemdResponse> {
-          ClientStreamingCallBuilder::new(&self.channel, "/palm.lavender.v1.Reporter/Systemd")
+          ClientStreamingCallBuilder::new(&self.channel, "/palm.lavender.v1.Stash/Systemd")
         }
 
         pub fn kubernetes(&self) -> ClientStreamingCallBuilder<'_, &T, super::KubernetesRequest, super::KubernetesResponse> {
-          ClientStreamingCallBuilder::new(&self.channel, "/palm.lavender.v1.Reporter/Kubernetes")
+          ClientStreamingCallBuilder::new(&self.channel, "/palm.lavender.v1.Stash/Kubernetes")
         }
 
         pub fn claw<ReqMsgView>(
@@ -30,7 +30,7 @@ pub mod reporter_client {
         ) -> UnaryCallBuilder<'_, &T, ReqMsgView, super::Empty>
         where
           ReqMsgView: protobuf::AsView<Proxied = super::ClawRequest> + Send + Sync {
-          UnaryCallBuilder::new(&self.channel, "/palm.lavender.v1.Reporter/Claw", request)
+          UnaryCallBuilder::new(&self.channel, "/palm.lavender.v1.Stash/Claw", request)
         }
     }
 }
