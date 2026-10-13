@@ -1,11 +1,12 @@
 {
-  "format_on_save": "on",
-  "languages": {
-    "YAML": {
-      "tab_size": 2
-    },
-    "JSON": {
-      "tab_size": 2
+    "autosave": "on_focus_change",
+    "format_on_save": "on",
+    "languages": {
+        "YAML": {
+            "tab_size": 2
+        },
+        "JSON": {
+            "tab_size": 2
+        }
     }
-  }
 }

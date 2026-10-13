@@ -1,3 +1,18 @@
+layouts:
+  anonymous:
+    description:
+      settings-suggest:
+        title: "Adaptable performance"
+        content: "Our product effortlessly adjusts to your needs, boosting efficiency and simplifying your tasks."
+      construction:
+        title: "Built to last"
+        content: "Experience unmatched durability that goes above and beyond with lasting investment."
+      thumb-up-alt:
+        title: "Great user experience"
+        content: "Integrate our product into your routine with an intuitive and easy-to-use interface."
+      auto-fix-high:
+        title: "Innovative functionality"
+        content: "Stay ahead with features that set new standards, addressing your evolving needs better than the rest."
 emails:
   user:
     confirm-by-email:

@@ -5,11 +5,13 @@ import AutoFixHighRoundedIcon from "@mui/icons-material/AutoFixHighRounded";
 import ConstructionRoundedIcon from "@mui/icons-material/ConstructionRounded";
 import SettingsSuggestRoundedIcon from "@mui/icons-material/SettingsSuggestRounded";
 import ThumbUpAltRoundedIcon from "@mui/icons-material/ThumbUpAltRounded";
+import { useIntl } from "react-intl";
 
+import { SitemarkIcon } from "./Icons";
 import Footer from "../Footer";
-import site_mark_icon from "../../assets/Palm.svg";
 
 const Widget = () => {
+  const intl = useIntl();
   return (
     <Stack
       sx={{
@@ -20,32 +22,34 @@ const Widget = () => {
       }}
     >
       <Box sx={{ display: { xs: "none", md: "flex" } }}>
-        <img src={site_mark_icon} />
+        <SitemarkIcon />
       </Box>
       {[
         {
           icon: <SettingsSuggestRoundedIcon sx={{ color: "text.secondary" }} />,
-          title: "Adaptable performance",
+          title: intl.formatMessage({
+            id: "portal.layouts.anonymous.description.settings-suggest.title",
+          }),
           description:
-            "Our product effortlessly adjusts to your needs, boosting efficiency and simplifying your tasks.",
+            "portal.layouts.anonymous.description.settings-suggest.content",
         },
         {
           icon: <ConstructionRoundedIcon sx={{ color: "text.secondary" }} />,
-          title: "Built to last",
+          title: "portal.layouts.anonymous.description.construction.title",
           description:
-            "Experience unmatched durability that goes above and beyond with lasting investment.",
+            "portal.layouts.anonymous.description.construction.content",
         },
         {
           icon: <ThumbUpAltRoundedIcon sx={{ color: "text.secondary" }} />,
-          title: "Great user experience",
+          title: "portal.layouts.anonymous.description.thumb-up-alt.title",
           description:
-            "Integrate our product into your routine with an intuitive and easy-to-use interface.",
+            "portal.layouts.anonymous.description.thumb-up-alt.content",
         },
         {
           icon: <AutoFixHighRoundedIcon sx={{ color: "text.secondary" }} />,
-          title: "Innovative functionality",
+          title: "portal.layouts.anonymous.description.auto-fix-high.title",
           description:
-            "Stay ahead with features that set new standards, addressing your evolving needs better than the rest.",
+            "portal.layouts.anonymous.description.auto-fix-high.content",
         },
       ].map((item, index) => (
         <Stack key={index} direction="row" sx={{ gap: 2 }}>
@@ -60,7 +64,9 @@ const Widget = () => {
           </div>
         </Stack>
       ))}
-      <Footer />
+      <Box sx={{ display: { xs: "none", md: "flex" } }}>
+        <Footer />
+      </Box>
     </Stack>
   );
 };
