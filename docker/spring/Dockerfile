@@ -7,34 +7,34 @@ RUN pacman-key --init \
     && pacman -Syu --noconfirm
 
 RUN pacman bzip2 bzip3 p7zip unarchiver \
-        git subversion screen vim wget zsh man-db man-pages \
-        pwgen sshpass openssl openssh rsync zip unzip tree tmux asciidoc doxygen cpio net-tools bind-tools \
+    git subversion screen vim wget zsh man-db man-pages \
+    pwgen sshpass openssl openssh rsync zip unzip tree tmux asciidoc doxygen cpio net-tools bind-tools \
     -S --needed --noconfirm && pacman -Scc --noconfirm
 RUN pacman imagemagick ffmpeg xorg-font-util \
-        pandoc graphviz \
-        hspell nuspell libvoikko hunspell hunspell-en_us \
+    pandoc graphviz \
+    hspell nuspell libvoikko hunspell hunspell-en_us \
     -S --needed --noconfirm && pacman -Scc --noconfirm
 RUN pacman base-devel clang llvm lld lldb mold bison flex ninja bazel \
-        cmake thrift capnproto grpc flatbuffers \
+    cmake thrift capnproto grpc flatbuffers \
     -S --needed --noconfirm && pacman -Scc --noconfirm
 RUN pacman aarch64-linux-gnu-gcc risc-v \
     -S --needed --noconfirm && pacman -Scc --noconfirm
 RUN pacman xdebug php-fpm php-pgsql php-sqlite php-redis php-mongodb php-imagick php-gd php-intl php-enchant php-snmp php-tidy php-xsl php-sodium php-odbc \
-        libxcrypt-compat \
+    libxcrypt-compat \
     -S --needed --noconfirm && pacman -Scc --noconfirm
 RUN pacman dart haxe lua erlang elixir jdk-openjdk \
     -S --needed --noconfirm && pacman -Scc --noconfirm
 RUN pacman nginx mariadb postgresql rabbitmq redis dovecot postfix supervisor \
-        ansible ansible-lint hugo \
+    ansible ansible-lint hugo \
     -S --needed --noconfirm && pacman -Scc --noconfirm
 RUN pacman wqy-bitmapfont wqy-microhei wqy-zenhei \
-        ttf-arphic-ukai ttf-arphic-uming \
-        ttf-fira-code woff-fira-code woff2-fira-code \
-        ttf-dejavu ttf-ubuntu-font-family \
-        adobe-source-code-pro-fonts adobe-source-serif-fonts adobe-source-sans-fonts \
-        adobe-source-han-serif-cn-fonts adobe-source-han-serif-hk-fonts adobe-source-han-serif-jp-fonts adobe-source-han-serif-kr-fonts adobe-source-han-serif-tw-fonts \
-        adobe-source-han-sans-cn-fonts adobe-source-han-sans-hk-fonts adobe-source-han-sans-jp-fonts adobe-source-han-sans-kr-fonts adobe-source-han-sans-tw-fonts \
-     -S --needed --noconfirm && pacman -Scc --noconfirm
+    ttf-arphic-ukai ttf-arphic-uming \
+    ttf-fira-code woff-fira-code woff2-fira-code \
+    ttf-dejavu ttf-ubuntu-font-family \
+    adobe-source-code-pro-fonts adobe-source-serif-fonts adobe-source-sans-fonts \
+    adobe-source-han-serif-cn-fonts adobe-source-han-serif-hk-fonts adobe-source-han-serif-jp-fonts adobe-source-han-serif-kr-fonts adobe-source-han-serif-tw-fonts \
+    adobe-source-han-sans-cn-fonts adobe-source-han-sans-hk-fonts adobe-source-han-sans-jp-fonts adobe-source-han-sans-kr-fonts adobe-source-han-sans-tw-fonts \
+    -S --needed --noconfirm && pacman -Scc --noconfirm
 RUN pacman texlive -S --needed --noconfirm && pacman -Scc --noconfirm
 RUN pacman texlive-lang -S --needed --noconfirm && pacman -Scc --noconfirm
 RUN pacman nerd-fonts -S --needed --noconfirm && pacman -Scc --noconfirm
@@ -52,9 +52,15 @@ RUN curl -L -o $HOME/downloads/pkl https://github.com/apple/pkl/releases/downloa
     && sudo cp $HOME/downloads/pkl /usr/local/bin/ \
     && sudo chmod +x /usr/local/bin/pkl
 
+# https://aur.archlinux.org/packages/ttf-arphic-tex-extra
+ENV ARPHIC_TTF_VERSION="20161212-1"
+RUN git clone https://aur.archlinux.org/ttf-arphic-tex-extra.git $HOME/downloads/ttf-arphic-tex-extra \
+    && cd $HOME/downloads/ttf-arphic-tex-extra/ \
+    && makepkg \
+    && sudo pacman -U --noconfirm ttf-arphic-tex-extra-${ARPHIC_TTF_VERSION}-any.pkg.tar.zst
 
 # https://github.com/envoyproxy/envoy
-ENV ENVOY_VERSION="1.39.1"
+ENV ENVOY_VERSION="1.40.1"
 RUN wget -q -O $HOME/downloads/envoy https://github.com/envoyproxy/envoy/releases/download/v${ENVOY_VERSION}/envoy-${ENVOY_VERSION}-linux-x86_64 \
     && sudo cp $HOME/downloads/envoy /usr/local/bin/ \
     && sudo chmod +x /usr/local/bin/envoy
@@ -67,14 +73,14 @@ RUN wget -q -O $HOME/downloads/composer https://getcomposer.org/installer \
 RUN echo 'export PATH=$HOME/.config/composer/vendor/bin:$PATH' >> $HOME/.zshrc
 
 # https://github.com/bazelbuild/bazelisk
-ENV BAZEL_VERSION="v1.29.0"
+ENV BAZEL_VERSION="v9.3.1"
 RUN wget -q -O $HOME/downloads/bazel https://github.com/bazelbuild/bazelisk/releases/download/${BAZEL_VERSION}/bazelisk-linux-amd64 \
     && sudo cp $HOME/downloads/bazel /usr/local/bin && sudo chmod +x /usr/local/bin/bazel
 
 
 # https://github.com/seaweedfs/seaweedfs/tags
 # https://github.com/seaweedfs/seaweedfs/wiki/Quick-Start-with-weed-mini
-ENV SEAWEEDFS_VERSION="4.47"
+ENV SEAWEEDFS_VERSION="4.48"
 RUN wget -q -P $HOME/downloads/ https://github.com/seaweedfs/seaweedfs/releases/download/${SEAWEEDFS_VERSION}/linux_amd64.tar.gz \
     && cd $HOME/downloads/ \
     && tar xf linux_amd64.tar.gz \
@@ -92,13 +98,6 @@ RUN wget -q -P $HOME/downloads https://github.com/fullstorydev/grpcurl/releases/
     && tar xf $HOME/downloads/grpcurl_${GRPCURL_VERSION}_linux_x86_64.tar.gz -C $HOME/downloads \
     && sudo cp $HOME/downloads/grpcurl /usr/local/bin/ \
     && rm $HOME/downloads/grpcurl
-
-# https://aur.archlinux.org/packages/ttf-arphic-tex-extra
-ENV ARPHIC_TTF_VERSION="20161212-1"
-RUN git clone https://aur.archlinux.org/ttf-arphic-tex-extra.git $HOME/downloads/ttf-arphic-tex-extra \
-    && cd $HOME/downloads/ttf-arphic-tex-extra/ \
-    && makepkg \
-    && sudo pacman -U --noconfirm ttf-arphic-tex-extra-${ARPHIC_TTF_VERSION}-any.pkg.tar.zst
 
 # https://github.com/ohmyzsh/ohmyzsh
 RUN git clone https://github.com/ohmyzsh/ohmyzsh.git $HOME/.oh-my-zsh \
@@ -120,7 +119,7 @@ RUN echo 'term xterm-256color' >> $HOME/.screenrc
 
 # https://github.com/cross-tools/musl-cross
 RUN git clone https://github.com/cross-tools/musl-cross.git $HOME/build/musl-cross
-ENV MUSL_TOOLCHAIN_VERSION=20260823
+ENV MUSL_TOOLCHAIN_VERSION=20261001
 RUN wget -q -P $HOME/downloads https://github.com/cross-tools/musl-cross/releases/download/${MUSL_TOOLCHAIN_VERSION}/x86_64-unknown-linux-musl.tar.xz \
     && tar xf $HOME/downloads/x86_64-unknown-linux-musl.tar.xz -C $HOME/local \
     && echo 'export PATH=$HOME/local/x86_64-unknown-linux-musl/bin:$PATH' >> $HOME/.zshrc
@@ -137,6 +136,7 @@ RUN wget -q -P $HOME/downloads https://github.com/cross-tools/musl-cross/release
 # https://github.com/asdf-vm/asdf
 # asdf plugin list --urls
 # asdf plugin list all
+# asdf plugin update --all
 # asdf list all XXX
 ENV ASDF_VERSION="0.20.2"
 RUN wget -q -P $HOME/downloads https://github.com/asdf-vm/asdf/releases/download/v${ASDF_VERSION}/asdf-v${ASDF_VERSION}-linux-amd64.tar.gz \
@@ -145,13 +145,13 @@ RUN wget -q -P $HOME/downloads https://github.com/asdf-vm/asdf/releases/download
     && rm $HOME/downloads/asdf \
     && echo 'export PATH=${ASDF_DATA_DIR:-$HOME/.asdf}/shims:$PATH' >> $HOME/.zshrc
 
-RUN zsh -c "source $HOME/.zshrc && asdf plugin add erlang && asdf install erlang 29.1.1 && asdf set --home erlang 29.1.1"
+RUN zsh -c "source $HOME/.zshrc && asdf plugin add erlang && asdf install erlang 29.1.2 && asdf set --home erlang 29.1.2"
 RUN zsh -c "source $HOME/.zshrc && asdf plugin add elixir && asdf install elixir 1.20.4-otp-29 && asdf set --home elixir 1.20.4-otp-29"
 RUN echo "export HEX_HTTP_CONCURRENCY=1" >> $HOME/.zshrc && echo "export HEX_HTTP_TIMEOUT=120" >> $HOME/.zshrc
 # https://thrift.apache.org/lib/java.html
 RUN zsh -c "source $HOME/.zshrc && asdf plugin add java && asdf install java corretto-27.0.0.35.1 && asdf set --home java corretto-27.0.0.35.1"
 # https://docs.gradle.org/current/userguide/compatibility.html
-RUN zsh -c "source $HOME/.zshrc && asdf plugin add gradle && asdf install gradle 9.8.0 && asdf set --home gradle 9.8.0"
+RUN zsh -c "source $HOME/.zshrc && asdf plugin add gradle && asdf install gradle 9.8.2 && asdf set --home gradle 9.8.2"
 RUN zsh -c "source $HOME/.zshrc && asdf plugin add maven && asdf install maven latest && asdf set --home maven latest"
 
 RUN zsh -c "source $HOME/.zshrc && asdf plugin add golang && asdf install golang latest && asdf set --home golang latest"
@@ -251,8 +251,8 @@ RUN cd $HOME/downloads/grpc/ && git submodule update --init --recursive
 RUN zsh -c "source $HOME/.zshrc \
     && mkdir -pv $HOME/build/grpc \
     && cmake -DCMAKE_BUILD_TYPE=Release -G Ninja \
-        -DgRPC_INSTALL=ON -DgRPC_SSL_PROVIDER=package -DgRPC_BUILD_TESTS=OFF \
-        -DCMAKE_INSTALL_PREFIX=$HOME/.local -B $HOME/build/grpc -S $HOME/downloads/grpc \
+    -DgRPC_INSTALL=ON -DgRPC_SSL_PROVIDER=package -DgRPC_BUILD_TESTS=OFF \
+    -DCMAKE_INSTALL_PREFIX=$HOME/.local -B $HOME/build/grpc -S $HOME/downloads/grpc \
     && cmake --build $HOME/build/grpc \
     && cmake --install $HOME/build/grpc \
     && rm -r $HOME/build/grpc"
@@ -273,7 +273,7 @@ RUN mkdir -p $HOME/build/protobuf-javascript \
 
 # https://repo1.maven.org/maven2/io/grpc/protoc-gen-grpc-java/
 # https://github.com/grpc/grpc-java
-ENV GRPC_JAVA_PLUGIN_VERSION="1.84.0"
+ENV GRPC_JAVA_PLUGIN_VERSION="1.85.1"
 RUN wget -q -O $HOME/.local/bin/grpc_java_plugin \
     https://repo1.maven.org/maven2/io/grpc/protoc-gen-grpc-java/${GRPC_JAVA_PLUGIN_VERSION}/protoc-gen-grpc-java-${GRPC_JAVA_PLUGIN_VERSION}-linux-x86_64.exe
 RUN chmod +x $HOME/.local/bin/grpc_java_plugin
@@ -284,8 +284,8 @@ RUN git clone -b $FLATBUFFERS_VERSION https://github.com/google/flatbuffers.git 
 RUN zsh -c "source $HOME/.zshrc \
     && mkdir -pv $HOME/build/flatbuffers \
     && CC=clang CXX=clang++ cmake -G Ninja -DCMAKE_BUILD_TYPE=Release \
-        -DFLATBUFFERS_BUILD_TESTS=OFF \
-        -DCMAKE_INSTALL_PREFIX=$HOME/.local -B $HOME/build/flatbuffers -S $HOME/downloads/flatbuffers \
+    -DFLATBUFFERS_BUILD_TESTS=OFF \
+    -DCMAKE_INSTALL_PREFIX=$HOME/.local -B $HOME/build/flatbuffers -S $HOME/downloads/flatbuffers \
     && cmake --build $HOME/build/flatbuffers \
     && cmake --install $HOME/build/flatbuffers \
     && rm -r $HOME/build/flatbuffers"

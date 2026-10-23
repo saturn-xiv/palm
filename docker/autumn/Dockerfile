@@ -69,7 +69,7 @@ ARG TARGETARCH
 
 # https://github.com/seaweedfs/seaweedfs/tags
 # https://github.com/seaweedfs/seaweedfs/wiki/Quick-Start-with-weed-mini
-ENV SEAWEEDFS_VERSION="4.47"
+ENV SEAWEEDFS_VERSION="4.48"
 RUN wget -q -P $HOME/downloads/ https://github.com/seaweedfs/seaweedfs/releases/download/${SEAWEEDFS_VERSION}/linux_${TARGETARCH}.tar.gz \
     && cd $HOME/downloads/ \
     && tar xf linux_${TARGETARCH}.tar.gz \
@@ -110,13 +110,13 @@ RUN wget -q -P $HOME/downloads https://github.com/asdf-vm/asdf/releases/download
     && echo 'export PATH=${ASDF_DATA_DIR:-$HOME/.asdf}/shims:$PATH' >> $HOME/.profile \
     && rm $HOME/downloads/asdf $HOME/downloads/asdf-v${ASDF_VERSION}-linux-${TARGETARCH}.tar.gz
 
-RUN bash -c "source $HOME/.profile && asdf plugin add erlang && asdf install erlang 29.1.1 && asdf set --home erlang 29.1.1"
+RUN bash -c "source $HOME/.profile && asdf plugin add erlang && asdf install erlang 29.1.2 && asdf set --home erlang 29.1.2"
 RUN bash -c "source $HOME/.profile && asdf plugin add elixir && asdf install elixir 1.20.4-otp-29 && asdf set --home elixir 1.20.4-otp-29"
 RUN echo "export HEX_HTTP_CONCURRENCY=1" >> $HOME/.profile && echo "export HEX_HTTP_TIMEOUT=120" >> $HOME/.profile
 # https://thrift.apache.org/lib/java.html
 RUN bash -c "source $HOME/.profile && asdf plugin add java && asdf install java corretto-27.0.0.35.1 && asdf set --home java corretto-27.0.0.35.1"
 # https://docs.gradle.org/current/userguide/compatibility.html
-RUN bash -c "source $HOME/.profile && asdf plugin add gradle && asdf install gradle 9.8.0 && asdf set --home gradle 9.8.0"
+RUN bash -c "source $HOME/.profile && asdf plugin add gradle && asdf install gradle 9.8.2 && asdf set --home gradle 9.8.2"
 RUN bash -c "source $HOME/.profile && asdf plugin add maven && asdf install maven latest && asdf set --home maven latest"
 
 RUN bash -c "source $HOME/.profile && asdf plugin add golang && asdf install golang latest && asdf set --home golang latest"
@@ -159,11 +159,11 @@ RUN echo 'export VCPKG_DISABLE_METRICS=1' >> $HOME/.profile
 # https://github.com/aparo/opensearch-analysis-pinyin?tab=readme-ov-file#installation
 ENV OPENSEARCH_VERSION="3.0.0"
 RUN if [ "$TARGETARCH" = "amd64" ]; then \
-        wget -q -O $HOME/downloads/opensearch-${OPENSEARCH_VERSION}-linux-${TARGETARCH}.tar.gz https://artifacts.opensearch.org/releases/bundle/opensearch/${OPENSEARCH_VERSION}/opensearch-${OPENSEARCH_VERSION}-linux-x64.tar.gz; \
+    wget -q -O $HOME/downloads/opensearch-${OPENSEARCH_VERSION}-linux-${TARGETARCH}.tar.gz https://artifacts.opensearch.org/releases/bundle/opensearch/${OPENSEARCH_VERSION}/opensearch-${OPENSEARCH_VERSION}-linux-x64.tar.gz; \
     elif [ "$TARGETARCH" = "arm64" ]; then \
-        wget -q -O $HOME/downloads/opensearch-${OPENSEARCH_VERSION}-linux-${TARGETARCH}.tar.gz https://artifacts.opensearch.org/releases/bundle/opensearch/${OPENSEARCH_VERSION}/opensearch-${OPENSEARCH_VERSION}-linux-arm64.tar.gz; \
+    wget -q -O $HOME/downloads/opensearch-${OPENSEARCH_VERSION}-linux-${TARGETARCH}.tar.gz https://artifacts.opensearch.org/releases/bundle/opensearch/${OPENSEARCH_VERSION}/opensearch-${OPENSEARCH_VERSION}-linux-arm64.tar.gz; \
     else \
-        exit 1; \
+    exit 1; \
     fi
 
 RUN tar xf $HOME/downloads/opensearch-${OPENSEARCH_VERSION}-linux-${TARGETARCH}.tar.gz -C $HOME/tmp \
