@@ -4,7 +4,10 @@ import { useNavigate } from "react-router";
 import { useAppSelector } from "../../hooks";
 import { selectCurrentUser } from "../../reducers/current-user";
 import { selectLayout } from "../../reducers/layout";
-import { USERS_SIGN_IN_PATH, PERSONAL_LOGS_PATH } from "../../api/portal";
+import {
+  USERS_SIGN_IN_PATH,
+  PERSONAL_LOGS_PATH,
+} from "../../reducers/current-user";
 
 const Widget = () => {
   const current_user = useAppSelector(selectCurrentUser);

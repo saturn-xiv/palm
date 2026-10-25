@@ -1,7 +1,7 @@
 import { createSlice, type PayloadAction } from "@reduxjs/toolkit";
 import { jwtDecode, type JwtPayload } from "jwt-decode";
 
-import { type RootState } from "../store";
+import type { RootState } from "../store";
 import { type ILayout as IUserLayout } from "../api/portal/user";
 
 interface IState {
@@ -52,6 +52,9 @@ export const selectCurrentUser = (state: RootState) =>
 export default slice.reducer;
 
 // --------------------------------------------------------
+
+export const USERS_SIGN_IN_PATH = "/anonymous/users/sign-in";
+export const PERSONAL_LOGS_PATH = "/dashboard/personal/logs";
 
 const KEY = "token";
 
