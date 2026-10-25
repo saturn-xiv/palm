@@ -5,9 +5,9 @@ use super::super::super::{
 };
 
 #[derive(Debug, Default, Serialize, Deserialize)]
-pub struct Favicon(pub String);
+pub struct Item(pub String);
 
-impl Favicon {
+impl Item {
     pub const KEY: &str = "site.favicon";
     pub fn new(db: &mut Db) -> Result<Self> {
         let it = SettingDao::get(db, &Self::KEY.to_string(), None)?;

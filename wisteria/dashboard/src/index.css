@@ -5,6 +5,13 @@
 
 @import "video.js/dist/video-js.css";
 
+.cls-1 {
+  fill: #00c70a;
+  fill-rule: evenodd;
+}
+.cls-2 {
+  fill: #fff;
+}
 body {
   margin: 0;
   padding: 0;

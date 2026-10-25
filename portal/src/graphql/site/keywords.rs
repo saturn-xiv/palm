@@ -5,9 +5,9 @@ use super::super::super::{
 };
 
 #[derive(Debug, Default, Serialize, Deserialize)]
-pub struct Keywords(pub Vec<String>);
+pub struct Item(pub Vec<String>);
 
-impl Keywords {
+impl Item {
     pub const KEY: &str = "site.keywords";
     pub fn new(db: &mut Db) -> Result<Self> {
         let it = SettingDao::get(db, &Self::KEY.to_string(), None)?;

@@ -13,3 +13,6 @@ export interface IPagination {
 export interface ISucceeded {
   createdAt: Date;
 }
+
+export const USERS_SIGN_IN_PATH = "/anonymous/users/sign-in";
+export const PERSONAL_LOGS_PATH = "/dashboard/personal/logs";

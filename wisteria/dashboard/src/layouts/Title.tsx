@@ -1,18 +1,18 @@
 import { useAppSelector } from "../hooks";
-import { selectLayout as selectSiteLayout } from "../reducers/layout";
+import { selectLayout } from "../reducers/layout";
 
 interface IProps {
   value: string;
 }
 
 const Widget = ({ value }: IProps) => {
-  const site = useAppSelector(selectSiteLayout);
+  const site = useAppSelector(selectLayout);
   return (
     <>
       <title>
         {value}|{site?.subhead || ""}|{site?.title || ""}
       </title>
-      <h2>{value}</h2>
+      {value}
     </>
   );
 };

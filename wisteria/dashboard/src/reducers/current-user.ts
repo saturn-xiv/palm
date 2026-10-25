@@ -1,7 +1,7 @@
 import { createSlice, type PayloadAction } from "@reduxjs/toolkit";
 import { jwtDecode, type JwtPayload } from "jwt-decode";
 
-import type { RootState } from "../store";
+import { type RootState } from "../store";
 import { type ILayout as IUserLayout } from "../api/portal/user";
 
 interface IState {
@@ -46,7 +46,8 @@ export const selectIsAdministrator = (state: RootState) =>
   state.currentUser.payload?.isAdministrator || false;
 export const selectPermissions = (state: RootState) =>
   state.currentUser.payload?.permissions || [];
-export const selectLayout = (state: RootState) => state.currentUser.payload;
+export const selectCurrentUser = (state: RootState) =>
+  state.currentUser.payload;
 
 export default slice.reducer;
 

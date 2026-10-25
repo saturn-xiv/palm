@@ -7,12 +7,12 @@ use super::super::super::{
 
 #[derive(Debug, Default, Serialize, Deserialize, GraphQLObject)]
 #[graphql(name = "SiteAuthor")]
-pub struct Author {
+pub struct Item {
     pub name: String,
     pub email: String,
 }
 
-impl Author {
+impl Item {
     pub const KEY: &str = "site.author";
     pub fn new(db: &mut Db) -> Result<Self> {
         let it = SettingDao::get(db, &Self::KEY.to_string(), None)?;

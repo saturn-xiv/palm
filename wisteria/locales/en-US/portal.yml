@@ -24,3 +24,8 @@ emails:
     reset-password-by-email:
       subject: ""
       body: ""
+pages:
+  anonymous:
+    users:
+      sign-in:
+        title: "Sign in"

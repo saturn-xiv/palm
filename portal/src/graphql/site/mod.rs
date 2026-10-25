@@ -1,6 +1,7 @@
 pub mod author;
 pub mod favicon;
 pub mod keywords;
+pub mod oauth;
 pub mod status;
 
 use icu::locale::Locale;
@@ -20,10 +21,11 @@ pub struct Layout {
     pub favicon: Option<String>,
     pub title: String,
     pub subhead: String,
-    pub author: author::Author,
+    pub author: author::Item,
     pub keywords: Vec<String>,
     pub description: String,
     pub copyright: String,
+    pub oauth: oauth::Item,
     pub languages: Vec<String>,
     pub version: String,
 }
@@ -41,14 +43,15 @@ impl Layout {
             return Ok(it);
         }
         let it = Self {
-            favicon: favicon::Favicon::new(db).map(|x| x.0).ok(),
+            favicon: favicon::Item::new(db).map(|x| x.0).ok(),
             title: I18n::t(db, locale, Self::TITLE, None::<&String>),
             subhead: I18n::t(db, locale, Self::SUBHEAD, None::<&String>),
             description: I18n::t(db, locale, Self::DESCRIPTION, None::<&String>),
             copyright: I18n::t(db, locale, Self::COPYRIGHT, None::<&String>),
             languages: LocaleDao::languages(db)?,
-            author: author::Author::new(db).unwrap_or_default(),
-            keywords: keywords::Keywords::new(db).unwrap_or_default().0,
+            author: author::Item::new(db).unwrap_or_default(),
+            oauth: oauth::Item::new(db).unwrap_or_default(),
+            keywords: keywords::Item::new(db).unwrap_or_default().0,
             version: version.to_string(),
         };
         cache.set(Self::KEY, &it, None)?;

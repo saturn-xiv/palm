@@ -1,8 +1,13 @@
+import { Outlet } from "react-router";
 import Stack from "@mui/material/Stack";
+import Divider from "@mui/material/Divider";
+import Box from "@mui/material/Box";
+import Button from "@mui/material/Button";
 
 import Layout from "../";
 import Description from "./Description";
-import UserCard from "./UserCard";
+import Card from "./Card";
+import { GoogleIcon, FacebookIcon, WechatIcon, SitemarkIcon } from "./Icons";
 
 // https://github.com/mui/material-ui/tree/v9.5.0/docs/data/material/getting-started/templates/sign-in-side
 const Widget = () => {
@@ -55,7 +60,39 @@ const Widget = () => {
             }}
           >
             <Description />
-            <UserCard />
+            <Card variant="outlined">
+              <Box sx={{ display: { xs: "flex", md: "none" } }}>
+                <SitemarkIcon />
+              </Box>
+              <Outlet />
+              <Divider>or</Divider>
+              <Box sx={{ display: "flex", flexDirection: "column", gap: 2 }}>
+                <Button
+                  fullWidth
+                  variant="outlined"
+                  onClick={() => alert("Sign in with Google")}
+                  startIcon={<GoogleIcon />}
+                >
+                  Sign in with Google
+                </Button>
+                <Button
+                  fullWidth
+                  variant="outlined"
+                  onClick={() => alert("Sign in with Facebook")}
+                  startIcon={<FacebookIcon />}
+                >
+                  Sign in with Facebook
+                </Button>
+                <Button
+                  fullWidth
+                  variant="outlined"
+                  onClick={() => alert("Sign in with Wechat")}
+                  startIcon={<WechatIcon />}
+                >
+                  Sign in with Wechat
+                </Button>
+              </Box>
+            </Card>
           </Stack>
         </Stack>
       </Stack>

@@ -30,26 +30,36 @@ const Widget = () => {
           title: intl.formatMessage({
             id: "portal.layouts.anonymous.description.settings-suggest.title",
           }),
-          description:
-            "portal.layouts.anonymous.description.settings-suggest.content",
+          description: intl.formatMessage({
+            id: "portal.layouts.anonymous.description.settings-suggest.content",
+          }),
         },
         {
           icon: <ConstructionRoundedIcon sx={{ color: "text.secondary" }} />,
-          title: "portal.layouts.anonymous.description.construction.title",
-          description:
-            "portal.layouts.anonymous.description.construction.content",
+          title: intl.formatMessage({
+            id: "portal.layouts.anonymous.description.construction.title",
+          }),
+          description: intl.formatMessage({
+            id: "portal.layouts.anonymous.description.construction.content",
+          }),
         },
         {
           icon: <ThumbUpAltRoundedIcon sx={{ color: "text.secondary" }} />,
-          title: "portal.layouts.anonymous.description.thumb-up-alt.title",
-          description:
-            "portal.layouts.anonymous.description.thumb-up-alt.content",
+          title: intl.formatMessage({
+            id: "portal.layouts.anonymous.description.thumb-up-alt.title",
+          }),
+          description: intl.formatMessage({
+            id: "portal.layouts.anonymous.description.thumb-up-alt.content",
+          }),
         },
         {
           icon: <AutoFixHighRoundedIcon sx={{ color: "text.secondary" }} />,
-          title: "portal.layouts.anonymous.description.auto-fix-high.title",
-          description:
-            "portal.layouts.anonymous.description.auto-fix-high.content",
+          title: intl.formatMessage({
+            id: "portal.layouts.anonymous.description.auto-fix-high.title",
+          }),
+          description: intl.formatMessage({
+            id: "portal.layouts.anonymous.description.auto-fix-high.content",
+          }),
         },
       ].map((item, index) => (
         <Stack key={index} direction="row" sx={{ gap: 2 }}>

@@ -73,10 +73,9 @@ RUN wget -q -O $HOME/downloads/composer https://getcomposer.org/installer \
 RUN echo 'export PATH=$HOME/.config/composer/vendor/bin:$PATH' >> $HOME/.zshrc
 
 # https://github.com/bazelbuild/bazelisk
-ENV BAZEL_VERSION="v9.3.1"
+ENV BAZEL_VERSION="v1.30.0"
 RUN wget -q -O $HOME/downloads/bazel https://github.com/bazelbuild/bazelisk/releases/download/${BAZEL_VERSION}/bazelisk-linux-amd64 \
     && sudo cp $HOME/downloads/bazel /usr/local/bin && sudo chmod +x /usr/local/bin/bazel
-
 
 # https://github.com/seaweedfs/seaweedfs/tags
 # https://github.com/seaweedfs/seaweedfs/wiki/Quick-Start-with-weed-mini

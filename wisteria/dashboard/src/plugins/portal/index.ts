@@ -37,7 +37,12 @@ const router: IRouter = {
       Component: lazy(() => import("./users/by-email/reset-password")),
     },
   ],
-  dashboard: [],
+  dashboard: [
+    {
+      path: "personal/logs",
+      Component: lazy(() => import("./personal/logs")),
+    },
+  ],
 };
 
 export default router;
