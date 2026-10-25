@@ -13,5 +13,5 @@
 - Usage
 
   ```bash
-  ./build/x86_64/loquat -d rpc -p 11002
+  ./build/x86_64/loquat -d rpc -p 11001
   ```

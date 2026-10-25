@@ -241,13 +241,19 @@ spring:
         trust-cert-collection: file:certs/ca.crt
         client-auth: REQUIRE
   datasource:
-  url: jdbc:postgresql://localhost:5432/marigold_dev
-  username: www
-  password: "change-me"
-  driver-class-name: org.postgresql.Driver
-  hikari:
-    maximum-pool-size: 16
-    minimum-idle: 5
+    url: "jdbc:postgresql://localhost:5432/marigold_dev"
+    username: "www"
+    password: "change-me"
+    driver-class-name: "org.postgresql.Driver"
+    hikari:
+        maximum-pool-size: 16
+        minimum-idle: 5
+  rabbitmq:
+    host: "127.0.0.1"
+    port: 5672
+    username: "www"
+    password: "change-me"
+    virtual-host: "marigold.dev"
 EOF
     cat <<EOF > $1/marigold/rpc.service
 [Unit]
@@ -311,7 +317,7 @@ port = 11001
 port = 11002
 
 [marigold]
-port = 11003
+port = 11004
 
 [lavender]
 jobs-dir = "/var/lib/palm/lavender/jobs"

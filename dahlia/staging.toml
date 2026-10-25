@@ -1,0 +1,17 @@
+[postgresql]
+host = '127.0.0.1'
+port = 5432
+user = 'www'
+password = 'change-me'
+db-name = 'dahlia_dev'
+pool-size = 16
+
+[rabbitmq]
+host = '127.0.0.1'
+port = 5672
+user = 'www'
+password = 'change-me'
+virtual-host = 'dahlia.dev'
+
+[google-oauth2]
+client-secret-file = "client_secret.json"

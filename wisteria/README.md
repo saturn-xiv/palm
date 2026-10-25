@@ -1,8 +1,21 @@
 # WISTERIA - An online education solution
 
+## Setup
+
+- PostgreSql
+
+  ```sql
+  CREATE DATABASE wisteria_dev WITH OWNER www;
+  ```
+
+  ```bash
+  cd wisteria/db/
+  dbmate up
+  ```
+
 - RabbitMq
 
-  ```bash  
+  ```bash
   sudo rabbitmqctl add_vhost wisteria.dev
   sudo rabbitmqctl set_permissions -p wisteria.dev www ".*" ".*" ".*"
   ```

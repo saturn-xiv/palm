@@ -40,13 +40,13 @@ $ source $PWD/tmp/python/bin/activate
 
 ```bash
 # start rpc server
-PYTHON_GIL=0 python3 -m dahlia -d -p 11001
+python3 -m dahlia -d -p 11002
 
 # test by grpcurl
 grpcurl -plaintext 127.0.0.1:8080 list
 
 # run unittests
-PYTHON_GIL=0 python3 -m unittest tests.py
+python3 -m unittest tests.py
 ```
 
 ## Documents
