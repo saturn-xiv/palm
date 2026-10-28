@@ -189,5 +189,6 @@
     }
   ],
   "java.compile.nullAnalysis.mode": "automatic",
+  "todo-tree.ripgrep.ripgrep": "/usr/bin/rg",
   "cmake.sourceDirectory": "${workspaceFolder}/loquat"
 }
