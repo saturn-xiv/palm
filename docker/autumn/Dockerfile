@@ -6,7 +6,7 @@ ENV DEBIAN_FRONTEND="noninteractive"
 RUN apt update && apt upgrade -y && apt clean -y
 RUN apt install -y lsb-release apt-utils debian-keyring debian-archive-keyring apt-transport-https software-properties-common curl wget gnupg \
     && apt clean -y
-RUN apt install -y pwgen git locales locales-all vim tzdata zip unzip tree tmux screen \
+RUN apt install -y pwgen git locales locales-all vim tzdata zip unzip tree tmux screen neomutt \
     curl wget rsync telnet dnsutils netcat-openbsd iputils-ping lftp sudo \
     openssh-server sshpass \
     python3-full \
@@ -38,7 +38,10 @@ RUN apt install -y php-fpm \
     php-odbc php-mysql php-pgsql php-sqlite3 php-redis php-mongodb php-amqp \
     php-snmp \
     && apt clean -y
-RUN apt install -y libssl-dev libsodium-dev libpq-dev libmysqlclient-dev libsqlite3-dev libyaml-dev libffi-dev libbz2-dev zlib1g-dev libncurses-dev libreadline-dev python3-dev && apt clean -y
+RUN apt install -y libssl-dev libsodium-dev libpq-dev libmysqlclient-dev libsqlite3-dev libyaml-dev libffi-dev libbz2-dev zlib1g-dev \
+        libpcre2-dev libjemalloc-dev \
+        libncurses-dev libreadline-dev python3-dev \
+    && apt clean -y
 # https://apt.llvm.org/
 RUN bash -c "$(wget -O - https://apt.llvm.org/llvm.sh)"
 RUN apt clean -y && apt autoremove -y
@@ -159,13 +162,12 @@ RUN echo 'export VCPKG_DISABLE_METRICS=1' >> $HOME/.profile
 # https://github.com/aparo/opensearch-analysis-pinyin?tab=readme-ov-file#installation
 ENV OPENSEARCH_VERSION="3.0.0"
 RUN if [ "$TARGETARCH" = "amd64" ]; then \
-    wget -q -O $HOME/downloads/opensearch-${OPENSEARCH_VERSION}-linux-${TARGETARCH}.tar.gz https://artifacts.opensearch.org/releases/bundle/opensearch/${OPENSEARCH_VERSION}/opensearch-${OPENSEARCH_VERSION}-linux-x64.tar.gz; \
+        wget -q -O $HOME/downloads/opensearch-${OPENSEARCH_VERSION}-linux-${TARGETARCH}.tar.gz https://artifacts.opensearch.org/releases/bundle/opensearch/${OPENSEARCH_VERSION}/opensearch-${OPENSEARCH_VERSION}-linux-x64.tar.gz; \
     elif [ "$TARGETARCH" = "arm64" ]; then \
-    wget -q -O $HOME/downloads/opensearch-${OPENSEARCH_VERSION}-linux-${TARGETARCH}.tar.gz https://artifacts.opensearch.org/releases/bundle/opensearch/${OPENSEARCH_VERSION}/opensearch-${OPENSEARCH_VERSION}-linux-arm64.tar.gz; \
+        wget -q -O $HOME/downloads/opensearch-${OPENSEARCH_VERSION}-linux-${TARGETARCH}.tar.gz https://artifacts.opensearch.org/releases/bundle/opensearch/${OPENSEARCH_VERSION}/opensearch-${OPENSEARCH_VERSION}-linux-arm64.tar.gz; \
     else \
-    exit 1; \
+        exit 1; \
     fi
-
 RUN tar xf $HOME/downloads/opensearch-${OPENSEARCH_VERSION}-linux-${TARGETARCH}.tar.gz -C $HOME/tmp \
     && rm $HOME/downloads/opensearch-${OPENSEARCH_VERSION}-linux-${TARGETARCH}.tar.gz \
     && sudo mv $HOME/tmp/opensearch-${OPENSEARCH_VERSION} /opt/opensearch \
@@ -176,6 +178,15 @@ RUN tar xf $HOME/downloads/opensearch-${OPENSEARCH_VERSION}-linux-${TARGETARCH}.
 
 # https://code.claude.com/docs/en/setup#install-with-npm
 RUN bash -c "source $HOME/.profile && npm install -g @anthropic-ai/claude-code"
+
+# https://github.com/alibaba/tengine
+ENV TENGINE_VERSION="3.1.0"
+RUN wget -q -O $HOME/downloads/tengine-${TENGINE_VERSION}.tar.gz https://github.com/alibaba/tengine/archive/refs/tags/${TENGINE_VERSION}.tar.gz \
+    && tar xf $HOME/downloads/tengine-${TENGINE_VERSION}.tar.gz -C $HOME/build \
+    && cd $HOME/build/tengine-${TENGINE_VERSION} \
+    && ./configure --prefix=/opt/tengine --with-jemalloc \
+    && make \
+    && sudo make install
 
 # https://opensearch.org/docs/latest/opensearch/install/tar/
 RUN cd /opt/opensearch/ \

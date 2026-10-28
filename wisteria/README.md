@@ -25,5 +25,6 @@
 ```bash
 cargo build
 
+RUST_LOG=debug ./target/debug/wisteria -c wisteria/config.toml db-seeds -l wisteria/locales
 RUST_LOG=debug,h2=info,lapin=info,hyper_util=info,reqwest=info ./target/debug/wisteria -c wisteria/config.toml http -p 4000
 ```
