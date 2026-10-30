@@ -40,7 +40,7 @@ RUN apt install -y php-fpm \
     && apt clean -y
 RUN apt install -y libssl-dev libsodium-dev libpq-dev libmysqlclient-dev libsqlite3-dev libyaml-dev libffi-dev libbz2-dev zlib1g-dev \
         libpcre2-dev libjemalloc-dev \
-        libncurses-dev libreadline-dev python3-dev \
+        unixodbc-dev libncurses-dev libreadline-dev python3-dev \
     && apt clean -y
 # https://apt.llvm.org/
 RUN bash -c "$(wget -O - https://apt.llvm.org/llvm.sh)"
@@ -186,7 +186,8 @@ RUN wget -q -O $HOME/downloads/tengine-${TENGINE_VERSION}.tar.gz https://github.
     && cd $HOME/build/tengine-${TENGINE_VERSION} \
     && ./configure --prefix=/opt/tengine --with-jemalloc \
     && make \
-    && sudo make install
+    && sudo make install \
+    && rm -rf $HOME/build/tengine-${TENGINE_VERSION}
 
 # https://opensearch.org/docs/latest/opensearch/install/tar/
 RUN cd /opt/opensearch/ \
@@ -210,7 +211,7 @@ RUN sudo chown www-data:www-data /var/log/nginx
 ENV PHP_VERSION="8.5"
 RUN sudo sed -i 's/memory_limit =.*/memory_limit = 1G/' /etc/php/${PHP_VERSION}/fpm/php.ini \
     && sudo sed -i 's/^listen = .*/listen = 0.0.0.0:9000/' /etc/php/${PHP_VERSION}/fpm/pool.d/www.conf \
-    && sudo sed -i 's/^;*\(pm.max_requests\s*=\s*\).*/\1500/' /etc/php/${PHP_VERSION}/fpm/pool.d/www.conf
+    && sudo sed -i 's/^;*\(pm.max_requests\s*=\s*\).*/\11000/' /etc/php/${PHP_VERSION}/fpm/pool.d/www.conf
 
 # /usr/sbin/sshd -D -e -4 -p 10022
 RUN sudo tee -a /etc/ssh/sshd_config > /dev/null <<EOF

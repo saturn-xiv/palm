@@ -41,3 +41,5 @@ git submodule update --init --recursive
 - [Password Hashing Competition](https://www.password-hashing.net/)
 - [Security DO's and DON'Ts](https://quasar.dev/security/dos-and-donts)
 - [Tinkey overview](https://developers.google.com/tink/tinkey-overview)
+
+- [Amazon Web Search crawlers](https://developer.amazon.com/docs/amazonbot/amazonbot.html)
