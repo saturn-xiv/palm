@@ -51,6 +51,7 @@
       - docker-ce
       - docker-ce-cli
       - containerd.io
+      - cri-tools
       - docker-buildx-plugin
       - docker-compose-plugin
       - kubelet
