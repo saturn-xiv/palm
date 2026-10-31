@@ -31,7 +31,7 @@ RUN apt-get install -y fonts-dejavu-extra fonts-opensymbol fonts-lxgw-wenkai fon
 RUN apt install -y postgresql redis rabbitmq-server vsftpd nginx certbot sqlite3 \
     && apt clean -y
 
-RUN apt install -y php-fpm \
+RUN apt install -y libfcgi-bin php-fpm \
     php-bz2 php-zip php-xml php-xsl \
     php-bcmath php-gmp php-enchant\
     php-mbstring php-curl php-zmq php-imagick php-gd php-intl php-soap \
