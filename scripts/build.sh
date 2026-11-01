@@ -175,6 +175,9 @@ port = 11006
 [systemd]
 units = ["sshd.service", "nginx.service"]
 
+[php-fpm]
+hosts = ["127.0.0.1:9000"]
+
 [kubernetes]
 namespaces = ["change-me"]
 

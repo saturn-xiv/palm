@@ -96,6 +96,49 @@ message ClawRequest {
         uint32 task_max_waiting_in_queue_millis = 16;
         float active_shards_percent_as_number = 17;
     }
+
+    message PhpFpm {
+        message Body {
+            message Process{
+                uint32 pid = 1;
+                string state = 2;
+                uint32 start_time = 3;
+                uint32 start_since = 4;
+                uint32 requests = 5;
+                uint32 request_duration = 6;
+                string request_method = 7;
+                string request_uri = 8;
+                uint32 content_length = 9;
+                string user = 10;
+                string script = 11;
+                float last_request_cpu = 12;
+                uint32 last_request_memory = 13;
+            }
+            string pool = 1;
+            string process_manager = 2;
+            uint32 start_time = 3;
+            uint32 start_since = 4;
+            uint32 accepted_conn = 5;
+            uint32 listen_queue = 6;
+            uint32 max_listen_queue = 7;
+            uint32 listen_queue_len = 8;
+            uint32 idle_processes = 9;
+            uint32 active_process = 10;
+            uint32 total_process = 11;
+            uint32 max_active_processes = 12;
+            uint32 max_children_reached = 13;
+            uint32 slow_requests = 14;
+            uint32 memory_peak = 15;
+            repeated Process processes = 99;
+        }
+        string x_powered_by = 1;
+        string expires = 2;
+        string cache_control = 3;
+        string content_type = 4;
+        Body body = 9;
+    }
+
+
     string from = 1;
     Duration elapsed = 8;
     Timestamp created_at = 9;
@@ -105,6 +148,7 @@ message ClawRequest {
         MySql mysql = 13;
         Redis redis = 14;
         OpenSearch opensearch = 15;
+        PhpFpm php_fpm = 16;
         Snmp snmp = 99;
     }
 }

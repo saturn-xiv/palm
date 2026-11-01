@@ -13,7 +13,7 @@ INDEX_NAME = "lavender.graphql.monitoring.http.item"
 
 
 def launch(stub, url):
-    logger.info("load %s", url)
+    logger.info("http fetch %s", url)
     hostname = socket.gethostname()
 
     try:

@@ -329,8 +329,7 @@ RUN sudo mkdir -p /var/www/html \
     && sudo cp /etc/nginx/nginx.conf /etc/nginx/nginx.conf.orig \
     && echo "daemon off;" | sudo tee -a /etc/nginx/nginx.conf \
     && sudo sed -i '35,82d' /etc/nginx/nginx.conf \
-    && sudo sed -i '35i include sites-enabled/*.conf;' /etc/nginx/nginx.conf \
-    && sudo sed -i "s/error_log =.*/error_log = log\/php-fpm.log/g" /etc/php/php-fpm.conf
+    && sudo sed -i '35i include sites-enabled/*.conf;' /etc/nginx/nginx.conf    
 ADD etc/nginx/sites-enabled/localhost.conf /etc/nginx/sites-enabled/localhost.conf
 
 # php -i
@@ -367,6 +366,9 @@ RUN sudo sed -i 's/memory_limit =.*/memory_limit = 1G/' /etc/php/php.ini \
     && sudo sed -i 's/; extension = imagick/extension=imagick/' /etc/php/conf.d/imagick.ini \
     && sudo sed -i 's/;zend_extension=opcache/zend_extension=opcache/' /etc/php/php.ini \
     && sudo sed -i 's/;zend_extension=xdebug/zend_extension=xdebug/' /etc/php/conf.d/xdebug.ini \
+    && sudo sed -i "s/error_log =.*/error_log = log\/php-fpm.log/g" /etc/php/php-fpm.conf \
+    && sudo sed -i '259i pm.status_path = /status' /etc/php/php-fpm.d/www.conf \
+    && sudo sed -i 's/^listen = .*/listen = 0.0.0.0:9000/' /etc/php/php-fpm.d/www.conf \
     && sudo sed -i 's/;xdebug.mode=debug/xdebug.mode=develop,coverage,debug/' /etc/php/conf.d/xdebug.ini \
     && echo 'xdebug.start_with_request=trigger' | sudo tee -a /etc/php/conf.d/xdebug.ini \
     && echo 'xdebug.client_host=0.0.0.0' | sudo tee -a /etc/php/conf.d/xdebug.ini \

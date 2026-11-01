@@ -2,7 +2,6 @@
 
 ## Setup
 
-
 ## Usage
 
 ```bash
@@ -13,7 +12,7 @@ $ python3 -m venv $PWD/tmp/python
 # Load virtual env vars
 $ source $PWD/tmp/python/bin/activate
 
-# Install dependencies for develpoment
+# Install dependencies for development
 > python3 -m pip install -e .
 
 # Install for production

@@ -10,6 +10,7 @@ from .protocols import lavender_pb2_grpc
 from .models.systemd import launch as systemd_logs_by_unit
 from .models.kubernetes import launch as kubernetes_logs_by_namespace
 from .models.http import launch as http_by_url
+from .models.php_fpm import launch as php_fpm
 
 logger = logging.getLogger(__name__)
 
@@ -19,7 +20,7 @@ def launch(config, tls, max_workers):
         db["startup"] = pickle.dumps(datetime.now(UTC))
         channel = open_channel(
             config["server"]["host"], config["server"]["port"], tls)
-        stub = lavender_pb2_grpc.ReporterStub(channel)
+        stub = lavender_pb2_grpc.StashStub(channel)
 
         with ThreadPoolExecutor(max_workers=max_workers) as executor:
             for name in config["systemd"]["units"]:
@@ -28,6 +29,8 @@ def launch(config, tls, max_workers):
                 executor.submit(kubernetes_logs_by_namespace, stub, name, db)
             for url in config["http"]["urls"]:
                 executor.submit(http_by_url, stub, url)
+            for host in config["php-fpm"]["hosts"]:
+                executor.submit(php_fpm, stub, host)
 
         logger.info("done.")
 

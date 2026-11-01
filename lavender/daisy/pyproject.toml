@@ -26,6 +26,7 @@ dependencies = [
     "pysnmp",
     "psutil",
     "numpy",
+    "fcgi-client",
 ]
 dynamic = ["version"]
 
