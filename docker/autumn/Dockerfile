@@ -190,11 +190,11 @@ RUN wget -q -O $HOME/downloads/tengine-${TENGINE_VERSION}.tar.gz https://github.
     && rm -rf $HOME/build/tengine-${TENGINE_VERSION}
 
 # https://github.com/renatomefi/php-fpm-healthcheck#installation
-RUN wget -q -P $HOME/downloads/ \
-    https://raw.githubusercontent.com/renatomefi/php-fpm-healthcheck/master/php-fpm-healthcheck \
-    && chmod +x $HOME/downloads/php-fpm-healthcheck \
-    && sudo cp $HOME/downloads/php-fpm-healthcheck /usr/local/bin/ \
-    && rm $HOME/downloads/php-fpm-healthcheck
+# RUN wget -q -P $HOME/downloads/ \
+#     https://raw.githubusercontent.com/renatomefi/php-fpm-healthcheck/master/php-fpm-healthcheck \
+#     && chmod +x $HOME/downloads/php-fpm-healthcheck \
+#     && sudo cp $HOME/downloads/php-fpm-healthcheck /usr/local/bin/ \
+#     && rm $HOME/downloads/php-fpm-healthcheck
 
 # https://opensearch.org/docs/latest/opensearch/install/tar/
 RUN cd /opt/opensearch/ \
@@ -215,10 +215,14 @@ RUN sudo chown -R rabbitmq:rabbitmq /var/lib/rabbitmq \
 
 RUN sudo chown www-data:www-data /var/log/nginx
 
+# Small Servers (1–2GB RAM): Set pm.max_children around 10–20.
+# Medium Servers (4–8GB RAM): Set around 30–60.
+# Large Servers (16+GB RAM): Can handle 100+ processes, depending on site load
 ENV PHP_VERSION="8.5"
-RUN sudo sed -i 's/memory_limit =.*/memory_limit = 1G/' /etc/php/${PHP_VERSION}/fpm/php.ini \
+RUN sudo sed -i 's/memory_limit =.*/memory_limit = 2G/' /etc/php/${PHP_VERSION}/fpm/php.ini \
     && sudo sed -i 's/^listen = .*/listen = 0.0.0.0:9000/' /etc/php/${PHP_VERSION}/fpm/pool.d/www.conf \
     && sudo sed -i 's/^;*\(pm.max_requests\s*=\s*\).*/\11000/' /etc/php/${PHP_VERSION}/fpm/pool.d/www.conf \
+    && sudo sed -i 's/^;*\(pm.max_children\s*=\s*\).*/\120/' /etc/php/${PHP_VERSION}/fpm/pool.d/www.conf \
     && sudo sed -i '259i pm.status_path = /status' /etc/php/${PHP_VERSION}/fpm/pool.d/www.conf
 
 
