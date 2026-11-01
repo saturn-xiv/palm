@@ -211,7 +211,8 @@ RUN sudo chown www-data:www-data /var/log/nginx
 ENV PHP_VERSION="8.5"
 RUN sudo sed -i 's/memory_limit =.*/memory_limit = 1G/' /etc/php/${PHP_VERSION}/fpm/php.ini \
     && sudo sed -i 's/^listen = .*/listen = 0.0.0.0:9000/' /etc/php/${PHP_VERSION}/fpm/pool.d/www.conf \
-    && sudo sed -i 's/^;*\(pm.max_requests\s*=\s*\).*/\11000/' /etc/php/${PHP_VERSION}/fpm/pool.d/www.conf
+    && sudo sed -i 's/^;*\(pm.max_requests\s*=\s*\).*/\11000/' /etc/php/${PHP_VERSION}/fpm/pool.d/www.conf \
+    && sudo sed -i '259i pm.status_path = /status' /etc/php/${PHP_VERSION}/fpm/pool.d/www.conf
 
 # /usr/sbin/sshd -D -e -4 -p 10022
 RUN sudo tee -a /etc/ssh/sshd_config > /dev/null <<EOF

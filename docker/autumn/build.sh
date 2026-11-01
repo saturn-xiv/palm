@@ -18,8 +18,8 @@ else
     exit 1
 fi
 
-docker save -o $CODE-$ARCH-$VERSION.tar $CODE
-md5sum $CODE-$ARCH-$VERSION.tar > $CODE-$ARCH-$VERSION.md5
+# docker save -o $CODE-$ARCH-$VERSION.tar $CODE
+# md5sum $CODE-$ARCH-$VERSION.tar > $CODE-$ARCH-$VERSION.md5
 
 echo "done."
 
