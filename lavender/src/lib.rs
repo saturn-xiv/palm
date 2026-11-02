@@ -96,6 +96,25 @@ impl Plugin {
                 )
                 .await?;
         }
+        if !search
+            .index_exists::<graphql::monitoring::php_fpm::Item>()
+            .await?
+        {
+            search
+                .create_index::<graphql::monitoring::php_fpm::Item>(
+                    None,
+                    Some(json!({
+                        "properties":{
+                            "host": {"type": "keyword"},
+                            "unit": {"type": "keyword"},
+                            "priority": {"type": "byte"},
+                            "message": {"type": "text"},
+                            "created_at": {"type": "date_nanos", "format": "strict_date_optional_time_nanos"}
+                        }
+                    })),
+                )
+                .await?;
+        }
         Ok(())
     }
 }

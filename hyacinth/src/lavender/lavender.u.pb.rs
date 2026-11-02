@@ -4073,10 +4073,28 @@ impl<'msg> ClawRequestView<'msg> {
        .unwrap_or(super::claw_request::OpenSearchView::default())
   }
 
+  // php_fpm: optional message palm.lavender.v1.ClawRequest.PhpFpm
+  pub fn has_php_fpm(self) -> bool {
+    unsafe {
+      self.inner.ptr().has_field_at_index(8)
+    }
+  }
+  pub fn php_fpm_opt(self) -> ::protobuf::Optional<super::claw_request::PhpFpmView<'msg>> {
+        ::protobuf::Optional::new(self.php_fpm(), self.has_php_fpm())
+  }
+  pub fn php_fpm(self) -> super::claw_request::PhpFpmView<'msg> {
+    let submsg = unsafe {
+      self.inner.ptr().get_message_at_index(8)
+    };
+    submsg
+        .map(|ptr| unsafe { ::protobuf::__internal::runtime::MessageViewInner::wrap(ptr).into() })
+       .unwrap_or(super::claw_request::PhpFpmView::default())
+  }
+
   // snmp: optional message palm.lavender.v1.ClawRequest.Snmp
   pub fn has_snmp(self) -> bool {
     unsafe {
-      self.inner.ptr().has_field_at_index(8)
+      self.inner.ptr().has_field_at_index(9)
     }
   }
   pub fn snmp_opt(self) -> ::protobuf::Optional<super::claw_request::SnmpView<'msg>> {
@@ -4084,7 +4102,7 @@ impl<'msg> ClawRequestView<'msg> {
   }
   pub fn snmp(self) -> super::claw_request::SnmpView<'msg> {
     let submsg = unsafe {
-      self.inner.ptr().get_message_at_index(8)
+      self.inner.ptr().get_message_at_index(9)
     };
     submsg
         .map(|ptr| unsafe { ::protobuf::__internal::runtime::MessageViewInner::wrap(ptr).into() })
@@ -4103,6 +4121,8 @@ impl<'msg> ClawRequestView<'msg> {
           super::claw_request::ItemOneof::Redis(self.redis()),
       super::claw_request::ItemCase::Opensearch =>
           super::claw_request::ItemOneof::Opensearch(self.opensearch()),
+      super::claw_request::ItemCase::PhpFpm =>
+          super::claw_request::ItemOneof::PhpFpm(self.php_fpm()),
       super::claw_request::ItemCase::Snmp =>
           super::claw_request::ItemOneof::Snmp(self.snmp()),
       _ => super::claw_request::ItemOneof::not_set(std::marker::PhantomData)
@@ -4556,16 +4576,63 @@ impl<'msg> ClawRequestMut<'msg> {
     }
   }
 
+  // php_fpm: optional message palm.lavender.v1.ClawRequest.PhpFpm
+  pub fn has_php_fpm(&self) -> bool {
+    unsafe {
+      self.inner.ptr().has_field_at_index(8)
+    }
+  }
+  pub fn clear_php_fpm(&mut self) {
+    unsafe {
+      self.inner.ptr().clear_field_at_index(
+        8
+      );
+    }
+  }
+  pub fn php_fpm_opt(&self) -> ::protobuf::Optional<super::claw_request::PhpFpmView<'_>> {
+        ::protobuf::Optional::new(self.php_fpm(), self.has_php_fpm())
+  }
+  pub fn php_fpm(&self) -> super::claw_request::PhpFpmView<'_> {
+    let submsg = unsafe {
+      self.inner.ptr().get_message_at_index(8)
+    };
+    submsg
+        .map(|ptr| unsafe { ::protobuf::__internal::runtime::MessageViewInner::wrap(ptr).into() })
+       .unwrap_or(super::claw_request::PhpFpmView::default())
+  }
+  pub fn php_fpm_mut(&mut self) -> super::claw_request::PhpFpmMut<'_> {
+     let ptr = unsafe {
+       self.inner.ptr_mut().get_or_create_mutable_message_at_index(
+         8, self.inner.arena()
+       ).unwrap()
+     };
+     ::protobuf::__internal::runtime::MessageMutInner::from_parent(
+         self.as_message_mut_inner(::protobuf::__internal::Private),
+         ptr
+     ).into()
+  }
+  pub fn set_php_fpm(&mut self,
+    val: impl ::protobuf::IntoProxied<super::claw_request::PhpFpm>) {
+
+    unsafe {
+      ::protobuf::__internal::runtime::message_set_sub_message(
+        ::protobuf::AsMut::as_mut(self).inner,
+        8,
+        val
+      );
+    }
+  }
+
   // snmp: optional message palm.lavender.v1.ClawRequest.Snmp
   pub fn has_snmp(&self) -> bool {
     unsafe {
-      self.inner.ptr().has_field_at_index(8)
+      self.inner.ptr().has_field_at_index(9)
     }
   }
   pub fn clear_snmp(&mut self) {
     unsafe {
       self.inner.ptr().clear_field_at_index(
-        8
+        9
       );
     }
   }
@@ -4574,7 +4641,7 @@ impl<'msg> ClawRequestMut<'msg> {
   }
   pub fn snmp(&self) -> super::claw_request::SnmpView<'_> {
     let submsg = unsafe {
-      self.inner.ptr().get_message_at_index(8)
+      self.inner.ptr().get_message_at_index(9)
     };
     submsg
         .map(|ptr| unsafe { ::protobuf::__internal::runtime::MessageViewInner::wrap(ptr).into() })
@@ -4583,7 +4650,7 @@ impl<'msg> ClawRequestMut<'msg> {
   pub fn snmp_mut(&mut self) -> super::claw_request::SnmpMut<'_> {
      let ptr = unsafe {
        self.inner.ptr_mut().get_or_create_mutable_message_at_index(
-         8, self.inner.arena()
+         9, self.inner.arena()
        ).unwrap()
      };
      ::protobuf::__internal::runtime::MessageMutInner::from_parent(
@@ -4597,7 +4664,7 @@ impl<'msg> ClawRequestMut<'msg> {
     unsafe {
       ::protobuf::__internal::runtime::message_set_sub_message(
         ::protobuf::AsMut::as_mut(self).inner,
-        8,
+        9,
         val
       );
     }
@@ -4615,6 +4682,8 @@ impl<'msg> ClawRequestMut<'msg> {
           super::claw_request::ItemOneof::Redis(self.redis()),
       super::claw_request::ItemCase::Opensearch =>
           super::claw_request::ItemOneof::Opensearch(self.opensearch()),
+      super::claw_request::ItemCase::PhpFpm =>
+          super::claw_request::ItemOneof::PhpFpm(self.php_fpm()),
       super::claw_request::ItemCase::Snmp =>
           super::claw_request::ItemOneof::Snmp(self.snmp()),
       _ => super::claw_request::ItemOneof::not_set(std::marker::PhantomData)
@@ -5041,16 +5110,63 @@ impl ClawRequest {
     }
   }
 
+  // php_fpm: optional message palm.lavender.v1.ClawRequest.PhpFpm
+  pub fn has_php_fpm(&self) -> bool {
+    unsafe {
+      self.inner.ptr().has_field_at_index(8)
+    }
+  }
+  pub fn clear_php_fpm(&mut self) {
+    unsafe {
+      self.inner.ptr().clear_field_at_index(
+        8
+      );
+    }
+  }
+  pub fn php_fpm_opt(&self) -> ::protobuf::Optional<super::claw_request::PhpFpmView<'_>> {
+        ::protobuf::Optional::new(self.php_fpm(), self.has_php_fpm())
+  }
+  pub fn php_fpm(&self) -> super::claw_request::PhpFpmView<'_> {
+    let submsg = unsafe {
+      self.inner.ptr().get_message_at_index(8)
+    };
+    submsg
+        .map(|ptr| unsafe { ::protobuf::__internal::runtime::MessageViewInner::wrap(ptr).into() })
+       .unwrap_or(super::claw_request::PhpFpmView::default())
+  }
+  pub fn php_fpm_mut(&mut self) -> super::claw_request::PhpFpmMut<'_> {
+     let ptr = unsafe {
+       self.inner.ptr_mut().get_or_create_mutable_message_at_index(
+         8, self.inner.arena()
+       ).unwrap()
+     };
+     ::protobuf::__internal::runtime::MessageMutInner::from_parent(
+         self.as_message_mut_inner(::protobuf::__internal::Private),
+         ptr
+     ).into()
+  }
+  pub fn set_php_fpm(&mut self,
+    val: impl ::protobuf::IntoProxied<super::claw_request::PhpFpm>) {
+
+    unsafe {
+      ::protobuf::__internal::runtime::message_set_sub_message(
+        ::protobuf::AsMut::as_mut(self).inner,
+        8,
+        val
+      );
+    }
+  }
+
   // snmp: optional message palm.lavender.v1.ClawRequest.Snmp
   pub fn has_snmp(&self) -> bool {
     unsafe {
-      self.inner.ptr().has_field_at_index(8)
+      self.inner.ptr().has_field_at_index(9)
     }
   }
   pub fn clear_snmp(&mut self) {
     unsafe {
       self.inner.ptr().clear_field_at_index(
-        8
+        9
       );
     }
   }
@@ -5059,7 +5175,7 @@ impl ClawRequest {
   }
   pub fn snmp(&self) -> super::claw_request::SnmpView<'_> {
     let submsg = unsafe {
-      self.inner.ptr().get_message_at_index(8)
+      self.inner.ptr().get_message_at_index(9)
     };
     submsg
         .map(|ptr| unsafe { ::protobuf::__internal::runtime::MessageViewInner::wrap(ptr).into() })
@@ -5068,7 +5184,7 @@ impl ClawRequest {
   pub fn snmp_mut(&mut self) -> super::claw_request::SnmpMut<'_> {
      let ptr = unsafe {
        self.inner.ptr_mut().get_or_create_mutable_message_at_index(
-         8, self.inner.arena()
+         9, self.inner.arena()
        ).unwrap()
      };
      ::protobuf::__internal::runtime::MessageMutInner::from_parent(
@@ -5082,7 +5198,7 @@ impl ClawRequest {
     unsafe {
       ::protobuf::__internal::runtime::message_set_sub_message(
         ::protobuf::AsMut::as_mut(self).inner,
-        8,
+        9,
         val
       );
     }
@@ -5100,6 +5216,8 @@ impl ClawRequest {
           super::claw_request::ItemOneof::Redis(self.redis()),
       super::claw_request::ItemCase::Opensearch =>
           super::claw_request::ItemOneof::Opensearch(self.opensearch()),
+      super::claw_request::ItemCase::PhpFpm =>
+          super::claw_request::ItemOneof::PhpFpm(self.php_fpm()),
       super::claw_request::ItemCase::Snmp =>
           super::claw_request::ItemOneof::Snmp(self.snmp()),
       _ => super::claw_request::ItemOneof::not_set(std::marker::PhantomData)
@@ -5149,7 +5267,7 @@ unsafe impl ::protobuf::__internal::runtime::AssociatedMiniTable for ClawRequest
     unsafe {
       ONCE_LOCK.get_or_init(|| {
         super::palm__lavender__v1__ClawRequest_msg_init.0 =
-            ::protobuf::__internal::runtime::build_mini_table("$1Xf33a33333sa3^-|.|/|0|1|E!");
+            ::protobuf::__internal::runtime::build_mini_table("$1Xf33a333333ra3^-|.|/|0|1|2|E!");
         ::protobuf::__internal::runtime::link_mini_table(
             super::palm__lavender__v1__ClawRequest_msg_init.0, &[<super::Duration as ::protobuf::__internal::runtime::AssociatedMiniTable>::mini_table(),
             <super::Timestamp as ::protobuf::__internal::runtime::AssociatedMiniTable>::mini_table(),
@@ -5158,6 +5276,7 @@ unsafe impl ::protobuf::__internal::runtime::AssociatedMiniTable for ClawRequest
             <super::claw_request::MySql as ::protobuf::__internal::runtime::AssociatedMiniTable>::mini_table(),
             <super::claw_request::Redis as ::protobuf::__internal::runtime::AssociatedMiniTable>::mini_table(),
             <super::claw_request::OpenSearch as ::protobuf::__internal::runtime::AssociatedMiniTable>::mini_table(),
+            <super::claw_request::PhpFpm as ::protobuf::__internal::runtime::AssociatedMiniTable>::mini_table(),
             <super::claw_request::Snmp as ::protobuf::__internal::runtime::AssociatedMiniTable>::mini_table(),
             ], &[]);
         ::protobuf::__internal::runtime::MiniTableInitPtr(super::palm__lavender__v1__ClawRequest_msg_init.0)
@@ -9622,6 +9741,3122 @@ unsafe impl ::protobuf::__internal::runtime::UpbGetArena for OpenSearchMut<'_> {
 }
 
 
+// This variable must not be referenced except by protobuf generated
+// code.
+pub(crate) static mut palm__lavender__v1__ClawRequest__PhpFpm_msg_init: ::protobuf::__internal::runtime::MiniTableInitPtr =
+    ::protobuf::__internal::runtime::MiniTableInitPtr(::protobuf::__internal::runtime::MiniTablePtr::dangling());
+#[allow(non_camel_case_types)]
+pub struct PhpFpm {
+  inner: ::protobuf::__internal::runtime::OwnedMessageInner<PhpFpm>
+}
+
+impl ::protobuf::Message for PhpFpm {}
+
+impl ::std::default::Default for PhpFpm {
+  fn default() -> Self {
+    Self::new()
+  }
+}
+
+impl ::std::fmt::Debug for PhpFpm {
+  fn fmt(&self, f: &mut ::std::fmt::Formatter<'_>) -> ::std::fmt::Result {
+    write!(f, "{}", ::protobuf::__internal::runtime::debug_string(self))
+  }
+}
+
+// SAFETY:
+// - `PhpFpm` is `Sync` because it does not implement interior mutability.
+//    Neither does `PhpFpmMut`.
+unsafe impl Sync for PhpFpm {}
+
+// SAFETY:
+// - `PhpFpm` is `Send` because it uniquely owns its arena and does
+//   not use thread-local data.
+unsafe impl Send for PhpFpm {}
+
+impl ::protobuf::Proxied for PhpFpm {
+  type View<'msg> = PhpFpmView<'msg>;
+}
+
+impl ::protobuf::__internal::SealedInternal for PhpFpm {}
+
+impl ::protobuf::MutProxied for PhpFpm {
+  type Mut<'msg> = PhpFpmMut<'msg>;
+}
+
+#[derive(Copy, Clone)]
+#[allow(dead_code)]
+pub struct PhpFpmView<'msg> {
+  inner: ::protobuf::__internal::runtime::MessageViewInner<'msg, PhpFpm>,
+}
+
+impl<'msg> ::protobuf::__internal::SealedInternal for PhpFpmView<'msg> {}
+
+impl<'msg> ::protobuf::MessageView<'msg> for PhpFpmView<'msg> {
+  type Message = PhpFpm;
+}
+
+impl ::std::fmt::Debug for PhpFpmView<'_> {
+  fn fmt(&self, f: &mut ::std::fmt::Formatter<'_>) -> ::std::fmt::Result {
+    write!(f, "{}", ::protobuf::__internal::runtime::debug_string(self))
+  }
+}
+
+impl ::std::default::Default for PhpFpmView<'_> {
+  fn default() -> PhpFpmView<'static> {
+    ::protobuf::__internal::runtime::MessageViewInner::default().into()
+  }
+}
+
+impl<'msg> From<::protobuf::__internal::runtime::MessageViewInner<'msg, PhpFpm>> for PhpFpmView<'msg> {
+  fn from(inner: ::protobuf::__internal::runtime::MessageViewInner<'msg, PhpFpm>) -> Self {
+    Self { inner }
+  }
+}
+
+#[allow(dead_code)]
+impl<'msg> PhpFpmView<'msg> {
+
+  pub fn to_owned(&self) -> PhpFpm {
+    ::protobuf::IntoProxied::into_proxied(*self, ::protobuf::__internal::Private)
+  }
+
+  // x_powered_by: optional string
+  pub fn x_powered_by(self) -> ::protobuf::View<'msg, ::protobuf::ProtoString> {
+    let str_view = unsafe {
+      self.inner.ptr().get_string_at_index(
+        0, (b"").into()
+      )
+    };
+    // SAFETY: The runtime doesn't require ProtoStr to be UTF-8.
+    unsafe { ::protobuf::ProtoStr::from_utf8_unchecked(str_view.as_ref()) }
+  }
+
+  // expires: optional string
+  pub fn expires(self) -> ::protobuf::View<'msg, ::protobuf::ProtoString> {
+    let str_view = unsafe {
+      self.inner.ptr().get_string_at_index(
+        1, (b"").into()
+      )
+    };
+    // SAFETY: The runtime doesn't require ProtoStr to be UTF-8.
+    unsafe { ::protobuf::ProtoStr::from_utf8_unchecked(str_view.as_ref()) }
+  }
+
+  // cache_control: optional string
+  pub fn cache_control(self) -> ::protobuf::View<'msg, ::protobuf::ProtoString> {
+    let str_view = unsafe {
+      self.inner.ptr().get_string_at_index(
+        2, (b"").into()
+      )
+    };
+    // SAFETY: The runtime doesn't require ProtoStr to be UTF-8.
+    unsafe { ::protobuf::ProtoStr::from_utf8_unchecked(str_view.as_ref()) }
+  }
+
+  // content_type: optional string
+  pub fn content_type(self) -> ::protobuf::View<'msg, ::protobuf::ProtoString> {
+    let str_view = unsafe {
+      self.inner.ptr().get_string_at_index(
+        3, (b"").into()
+      )
+    };
+    // SAFETY: The runtime doesn't require ProtoStr to be UTF-8.
+    unsafe { ::protobuf::ProtoStr::from_utf8_unchecked(str_view.as_ref()) }
+  }
+
+  // body: optional message palm.lavender.v1.ClawRequest.PhpFpm.Body
+  pub fn has_body(self) -> bool {
+    unsafe {
+      self.inner.ptr().has_field_at_index(4)
+    }
+  }
+  pub fn body_opt(self) -> ::protobuf::Optional<super::super::claw_request::php_fpm::BodyView<'msg>> {
+        ::protobuf::Optional::new(self.body(), self.has_body())
+  }
+  pub fn body(self) -> super::super::claw_request::php_fpm::BodyView<'msg> {
+    let submsg = unsafe {
+      self.inner.ptr().get_message_at_index(4)
+    };
+    submsg
+        .map(|ptr| unsafe { ::protobuf::__internal::runtime::MessageViewInner::wrap(ptr).into() })
+       .unwrap_or(super::super::claw_request::php_fpm::BodyView::default())
+  }
+
+}
+
+// SAFETY:
+// - `PhpFpmView` is `Sync` because it does not support mutation.
+unsafe impl Sync for PhpFpmView<'_> {}
+
+// SAFETY:
+// - `PhpFpmView` is `Send` because while its alive a `PhpFpmMut` cannot.
+// - `PhpFpmView` does not use thread-local data.
+unsafe impl Send for PhpFpmView<'_> {}
+
+impl<'msg> ::protobuf::AsView for PhpFpmView<'msg> {
+  type Proxied = PhpFpm;
+  fn as_view(&self) -> ::protobuf::View<'msg, PhpFpm> {
+    *self
+  }
+}
+
+impl<'msg> ::protobuf::IntoView<'msg> for PhpFpmView<'msg> {
+  fn into_view<'shorter>(self) -> PhpFpmView<'shorter>
+  where
+      'msg: 'shorter {
+    self
+  }
+}
+
+impl<'msg> ::protobuf::IntoProxied<PhpFpm> for PhpFpmView<'msg> {
+  fn into_proxied(self, _private: ::protobuf::__internal::Private) -> PhpFpm {
+    let mut dst = PhpFpm::new();
+    assert!(unsafe {
+      dst.inner.ptr_mut().deep_copy(self.inner.ptr(), dst.inner.arena())
+    });
+    dst
+  }
+}
+
+impl<'msg> ::protobuf::IntoProxied<PhpFpm> for PhpFpmMut<'msg> {
+  fn into_proxied(self, _private: ::protobuf::__internal::Private) -> PhpFpm {
+    ::protobuf::IntoProxied::into_proxied(::protobuf::IntoView::into_view(self), _private)
+  }
+}
+
+impl ::protobuf::__internal::runtime::EntityType for PhpFpm {
+    type Tag = ::protobuf::__internal::runtime::MessageTag;
+}
+
+impl<'msg> ::protobuf::__internal::runtime::EntityType for PhpFpmView<'msg> {
+    type Tag = ::protobuf::__internal::runtime::ViewProxyTag;
+}
+
+impl<'msg> ::protobuf::__internal::runtime::EntityType for PhpFpmMut<'msg> {
+    type Tag = ::protobuf::__internal::runtime::MutProxyTag;
+}
+
+#[allow(dead_code)]
+#[allow(non_camel_case_types)]
+pub struct PhpFpmMut<'msg> {
+  inner: ::protobuf::__internal::runtime::MessageMutInner<'msg, PhpFpm>,
+}
+
+impl<'msg> ::protobuf::__internal::SealedInternal for PhpFpmMut<'msg> {}
+
+impl<'msg> ::protobuf::MessageMut<'msg> for PhpFpmMut<'msg> {
+  type Message = PhpFpm;
+}
+
+impl ::std::fmt::Debug for PhpFpmMut<'_> {
+  fn fmt(&self, f: &mut ::std::fmt::Formatter<'_>) -> ::std::fmt::Result {
+    write!(f, "{}", ::protobuf::__internal::runtime::debug_string(self))
+  }
+}
+
+impl<'msg> From<::protobuf::__internal::runtime::MessageMutInner<'msg, PhpFpm>> for PhpFpmMut<'msg> {
+  fn from(inner: ::protobuf::__internal::runtime::MessageMutInner<'msg, PhpFpm>) -> Self {
+    Self { inner }
+  }
+}
+
+#[allow(dead_code)]
+impl<'msg> PhpFpmMut<'msg> {
+
+  #[doc(hidden)]
+  pub fn as_message_mut_inner(&mut self, _private: ::protobuf::__internal::Private)
+    -> ::protobuf::__internal::runtime::MessageMutInner<'msg, PhpFpm> {
+    self.inner
+  }
+
+  pub fn to_owned(&self) -> PhpFpm {
+    ::protobuf::AsView::as_view(self).to_owned()
+  }
+
+  // x_powered_by: optional string
+  pub fn x_powered_by(&self) -> ::protobuf::View<'_, ::protobuf::ProtoString> {
+    let str_view = unsafe {
+      self.inner.ptr().get_string_at_index(
+        0, (b"").into()
+      )
+    };
+    // SAFETY: The runtime doesn't require ProtoStr to be UTF-8.
+    unsafe { ::protobuf::ProtoStr::from_utf8_unchecked(str_view.as_ref()) }
+  }
+  pub fn set_x_powered_by(&mut self, val: impl ::protobuf::IntoProxied<::protobuf::ProtoString>) {
+    unsafe {
+      ::protobuf::__internal::runtime::message_set_string_field(
+        ::protobuf::AsMut::as_mut(self).inner,
+        0,
+        val);
+    }
+  }
+
+  // expires: optional string
+  pub fn expires(&self) -> ::protobuf::View<'_, ::protobuf::ProtoString> {
+    let str_view = unsafe {
+      self.inner.ptr().get_string_at_index(
+        1, (b"").into()
+      )
+    };
+    // SAFETY: The runtime doesn't require ProtoStr to be UTF-8.
+    unsafe { ::protobuf::ProtoStr::from_utf8_unchecked(str_view.as_ref()) }
+  }
+  pub fn set_expires(&mut self, val: impl ::protobuf::IntoProxied<::protobuf::ProtoString>) {
+    unsafe {
+      ::protobuf::__internal::runtime::message_set_string_field(
+        ::protobuf::AsMut::as_mut(self).inner,
+        1,
+        val);
+    }
+  }
+
+  // cache_control: optional string
+  pub fn cache_control(&self) -> ::protobuf::View<'_, ::protobuf::ProtoString> {
+    let str_view = unsafe {
+      self.inner.ptr().get_string_at_index(
+        2, (b"").into()
+      )
+    };
+    // SAFETY: The runtime doesn't require ProtoStr to be UTF-8.
+    unsafe { ::protobuf::ProtoStr::from_utf8_unchecked(str_view.as_ref()) }
+  }
+  pub fn set_cache_control(&mut self, val: impl ::protobuf::IntoProxied<::protobuf::ProtoString>) {
+    unsafe {
+      ::protobuf::__internal::runtime::message_set_string_field(
+        ::protobuf::AsMut::as_mut(self).inner,
+        2,
+        val);
+    }
+  }
+
+  // content_type: optional string
+  pub fn content_type(&self) -> ::protobuf::View<'_, ::protobuf::ProtoString> {
+    let str_view = unsafe {
+      self.inner.ptr().get_string_at_index(
+        3, (b"").into()
+      )
+    };
+    // SAFETY: The runtime doesn't require ProtoStr to be UTF-8.
+    unsafe { ::protobuf::ProtoStr::from_utf8_unchecked(str_view.as_ref()) }
+  }
+  pub fn set_content_type(&mut self, val: impl ::protobuf::IntoProxied<::protobuf::ProtoString>) {
+    unsafe {
+      ::protobuf::__internal::runtime::message_set_string_field(
+        ::protobuf::AsMut::as_mut(self).inner,
+        3,
+        val);
+    }
+  }
+
+  // body: optional message palm.lavender.v1.ClawRequest.PhpFpm.Body
+  pub fn has_body(&self) -> bool {
+    unsafe {
+      self.inner.ptr().has_field_at_index(4)
+    }
+  }
+  pub fn clear_body(&mut self) {
+    unsafe {
+      self.inner.ptr().clear_field_at_index(
+        4
+      );
+    }
+  }
+  pub fn body_opt(&self) -> ::protobuf::Optional<super::super::claw_request::php_fpm::BodyView<'_>> {
+        ::protobuf::Optional::new(self.body(), self.has_body())
+  }
+  pub fn body(&self) -> super::super::claw_request::php_fpm::BodyView<'_> {
+    let submsg = unsafe {
+      self.inner.ptr().get_message_at_index(4)
+    };
+    submsg
+        .map(|ptr| unsafe { ::protobuf::__internal::runtime::MessageViewInner::wrap(ptr).into() })
+       .unwrap_or(super::super::claw_request::php_fpm::BodyView::default())
+  }
+  pub fn body_mut(&mut self) -> super::super::claw_request::php_fpm::BodyMut<'_> {
+     let ptr = unsafe {
+       self.inner.ptr_mut().get_or_create_mutable_message_at_index(
+         4, self.inner.arena()
+       ).unwrap()
+     };
+     ::protobuf::__internal::runtime::MessageMutInner::from_parent(
+         self.as_message_mut_inner(::protobuf::__internal::Private),
+         ptr
+     ).into()
+  }
+  pub fn set_body(&mut self,
+    val: impl ::protobuf::IntoProxied<super::super::claw_request::php_fpm::Body>) {
+
+    unsafe {
+      ::protobuf::__internal::runtime::message_set_sub_message(
+        ::protobuf::AsMut::as_mut(self).inner,
+        4,
+        val
+      );
+    }
+  }
+
+}
+
+// SAFETY:
+// - `PhpFpmMut` does not perform any shared mutation.
+unsafe impl Send for PhpFpmMut<'_> {}
+
+// SAFETY:
+// - `PhpFpmMut` does not perform any shared mutation.
+unsafe impl Sync for PhpFpmMut<'_> {}
+
+impl<'msg> ::protobuf::AsView for PhpFpmMut<'msg> {
+  type Proxied = PhpFpm;
+  fn as_view(&self) -> ::protobuf::View<'_, PhpFpm> {
+    PhpFpmView {
+      inner: ::protobuf::__internal::runtime::MessageViewInner::view_of_mut(self.inner)
+    }
+  }
+}
+
+impl<'msg> ::protobuf::IntoView<'msg> for PhpFpmMut<'msg> {
+  fn into_view<'shorter>(self) -> ::protobuf::View<'shorter, PhpFpm>
+  where
+      'msg: 'shorter {
+    PhpFpmView {
+      inner: ::protobuf::__internal::runtime::MessageViewInner::view_of_mut(self.inner)
+    }
+  }
+}
+
+impl<'msg> ::protobuf::AsMut for PhpFpmMut<'msg> {
+  type MutProxied = PhpFpm;
+  fn as_mut(&mut self) -> PhpFpmMut<'msg> {
+    PhpFpmMut { inner: self.inner }
+  }
+}
+
+impl<'msg> ::protobuf::IntoMut<'msg> for PhpFpmMut<'msg> {
+  fn into_mut<'shorter>(self) -> PhpFpmMut<'shorter>
+  where
+      'msg: 'shorter {
+    self
+  }
+}
+
+#[allow(dead_code)]
+impl PhpFpm {
+  pub fn new() -> Self {
+    Self { inner: ::protobuf::__internal::runtime::OwnedMessageInner::<Self>::new() }
+  }
+
+
+  #[doc(hidden)]
+  pub fn as_message_mut_inner(&mut self, _private: ::protobuf::__internal::Private) -> ::protobuf::__internal::runtime::MessageMutInner<'_, PhpFpm> {
+    ::protobuf::__internal::runtime::MessageMutInner::mut_of_owned(&mut self.inner)
+  }
+
+  pub fn as_view(&self) -> PhpFpmView<'_> {
+    ::protobuf::__internal::runtime::MessageViewInner::view_of_owned(&self.inner).into()
+  }
+
+  pub fn as_mut(&mut self) -> PhpFpmMut<'_> {
+    ::protobuf::__internal::runtime::MessageMutInner::mut_of_owned(&mut self.inner).into()
+  }
+
+  // x_powered_by: optional string
+  pub fn x_powered_by(&self) -> ::protobuf::View<'_, ::protobuf::ProtoString> {
+    let str_view = unsafe {
+      self.inner.ptr().get_string_at_index(
+        0, (b"").into()
+      )
+    };
+    // SAFETY: The runtime doesn't require ProtoStr to be UTF-8.
+    unsafe { ::protobuf::ProtoStr::from_utf8_unchecked(str_view.as_ref()) }
+  }
+  pub fn set_x_powered_by(&mut self, val: impl ::protobuf::IntoProxied<::protobuf::ProtoString>) {
+    unsafe {
+      ::protobuf::__internal::runtime::message_set_string_field(
+        ::protobuf::AsMut::as_mut(self).inner,
+        0,
+        val);
+    }
+  }
+
+  // expires: optional string
+  pub fn expires(&self) -> ::protobuf::View<'_, ::protobuf::ProtoString> {
+    let str_view = unsafe {
+      self.inner.ptr().get_string_at_index(
+        1, (b"").into()
+      )
+    };
+    // SAFETY: The runtime doesn't require ProtoStr to be UTF-8.
+    unsafe { ::protobuf::ProtoStr::from_utf8_unchecked(str_view.as_ref()) }
+  }
+  pub fn set_expires(&mut self, val: impl ::protobuf::IntoProxied<::protobuf::ProtoString>) {
+    unsafe {
+      ::protobuf::__internal::runtime::message_set_string_field(
+        ::protobuf::AsMut::as_mut(self).inner,
+        1,
+        val);
+    }
+  }
+
+  // cache_control: optional string
+  pub fn cache_control(&self) -> ::protobuf::View<'_, ::protobuf::ProtoString> {
+    let str_view = unsafe {
+      self.inner.ptr().get_string_at_index(
+        2, (b"").into()
+      )
+    };
+    // SAFETY: The runtime doesn't require ProtoStr to be UTF-8.
+    unsafe { ::protobuf::ProtoStr::from_utf8_unchecked(str_view.as_ref()) }
+  }
+  pub fn set_cache_control(&mut self, val: impl ::protobuf::IntoProxied<::protobuf::ProtoString>) {
+    unsafe {
+      ::protobuf::__internal::runtime::message_set_string_field(
+        ::protobuf::AsMut::as_mut(self).inner,
+        2,
+        val);
+    }
+  }
+
+  // content_type: optional string
+  pub fn content_type(&self) -> ::protobuf::View<'_, ::protobuf::ProtoString> {
+    let str_view = unsafe {
+      self.inner.ptr().get_string_at_index(
+        3, (b"").into()
+      )
+    };
+    // SAFETY: The runtime doesn't require ProtoStr to be UTF-8.
+    unsafe { ::protobuf::ProtoStr::from_utf8_unchecked(str_view.as_ref()) }
+  }
+  pub fn set_content_type(&mut self, val: impl ::protobuf::IntoProxied<::protobuf::ProtoString>) {
+    unsafe {
+      ::protobuf::__internal::runtime::message_set_string_field(
+        ::protobuf::AsMut::as_mut(self).inner,
+        3,
+        val);
+    }
+  }
+
+  // body: optional message palm.lavender.v1.ClawRequest.PhpFpm.Body
+  pub fn has_body(&self) -> bool {
+    unsafe {
+      self.inner.ptr().has_field_at_index(4)
+    }
+  }
+  pub fn clear_body(&mut self) {
+    unsafe {
+      self.inner.ptr().clear_field_at_index(
+        4
+      );
+    }
+  }
+  pub fn body_opt(&self) -> ::protobuf::Optional<super::super::claw_request::php_fpm::BodyView<'_>> {
+        ::protobuf::Optional::new(self.body(), self.has_body())
+  }
+  pub fn body(&self) -> super::super::claw_request::php_fpm::BodyView<'_> {
+    let submsg = unsafe {
+      self.inner.ptr().get_message_at_index(4)
+    };
+    submsg
+        .map(|ptr| unsafe { ::protobuf::__internal::runtime::MessageViewInner::wrap(ptr).into() })
+       .unwrap_or(super::super::claw_request::php_fpm::BodyView::default())
+  }
+  pub fn body_mut(&mut self) -> super::super::claw_request::php_fpm::BodyMut<'_> {
+     let ptr = unsafe {
+       self.inner.ptr_mut().get_or_create_mutable_message_at_index(
+         4, self.inner.arena()
+       ).unwrap()
+     };
+     ::protobuf::__internal::runtime::MessageMutInner::from_parent(
+         self.as_message_mut_inner(::protobuf::__internal::Private),
+         ptr
+     ).into()
+  }
+  pub fn set_body(&mut self,
+    val: impl ::protobuf::IntoProxied<super::super::claw_request::php_fpm::Body>) {
+
+    unsafe {
+      ::protobuf::__internal::runtime::message_set_sub_message(
+        ::protobuf::AsMut::as_mut(self).inner,
+        4,
+        val
+      );
+    }
+  }
+
+}  // impl PhpFpm
+
+impl ::std::ops::Drop for PhpFpm {
+  #[inline]
+  fn drop(&mut self) {
+  }
+}
+
+impl ::std::clone::Clone for PhpFpm {
+  fn clone(&self) -> Self {
+    self.as_view().to_owned()
+  }
+}
+
+impl ::protobuf::AsView for PhpFpm {
+  type Proxied = Self;
+  fn as_view(&self) -> PhpFpmView<'_> {
+    self.as_view()
+  }
+}
+
+impl ::protobuf::AsMut for PhpFpm {
+  type MutProxied = Self;
+  fn as_mut(&mut self) -> PhpFpmMut<'_> {
+    self.as_mut()
+  }
+}
+
+unsafe impl ::protobuf::__internal::runtime::AssociatedMiniTable for PhpFpm {
+  fn mini_table() -> ::protobuf::__internal::runtime::MiniTablePtr {
+    static ONCE_LOCK: ::std::sync::OnceLock<::protobuf::__internal::runtime::MiniTableInitPtr> =
+        ::std::sync::OnceLock::new();
+    unsafe {
+      ONCE_LOCK.get_or_init(|| {
+        super::super::claw_request::palm__lavender__v1__ClawRequest__PhpFpm_msg_init.0 =
+            ::protobuf::__internal::runtime::build_mini_table("$1X1X1X1Xd3");
+        ::protobuf::__internal::runtime::link_mini_table(
+            super::super::claw_request::palm__lavender__v1__ClawRequest__PhpFpm_msg_init.0, &[<super::super::claw_request::php_fpm::Body as ::protobuf::__internal::runtime::AssociatedMiniTable>::mini_table(),
+            ], &[]);
+        ::protobuf::__internal::runtime::MiniTableInitPtr(super::super::claw_request::palm__lavender__v1__ClawRequest__PhpFpm_msg_init.0)
+      }).0
+    }
+  }
+}
+unsafe impl ::protobuf::__internal::runtime::UpbGetArena for PhpFpm {
+  fn get_arena(&mut self, _private: ::protobuf::__internal::Private) -> &::protobuf::__internal::runtime::Arena {
+    self.inner.arena()
+  }
+}
+
+unsafe impl ::protobuf::__internal::runtime::UpbGetMessagePtrMut for PhpFpm {
+  type Msg = PhpFpm;
+  fn get_ptr_mut(&mut self, _private: ::protobuf::__internal::Private) -> ::protobuf::__internal::runtime::MessagePtr<PhpFpm> {
+    self.inner.ptr_mut()
+  }
+}
+unsafe impl ::protobuf::__internal::runtime::UpbGetMessagePtr for PhpFpm {
+  type Msg = PhpFpm;
+  fn get_ptr(&self, _private: ::protobuf::__internal::Private) -> ::protobuf::__internal::runtime::MessagePtr<PhpFpm> {
+    self.inner.ptr()
+  }
+}
+unsafe impl ::protobuf::__internal::runtime::UpbGetMessagePtrMut for PhpFpmMut<'_> {
+  type Msg = PhpFpm;
+  fn get_ptr_mut(&mut self, _private: ::protobuf::__internal::Private) -> ::protobuf::__internal::runtime::MessagePtr<PhpFpm> {
+    self.inner.ptr_mut()
+  }
+}
+unsafe impl ::protobuf::__internal::runtime::UpbGetMessagePtr for PhpFpmMut<'_> {
+  type Msg = PhpFpm;
+  fn get_ptr(&self, _private: ::protobuf::__internal::Private) -> ::protobuf::__internal::runtime::MessagePtr<PhpFpm> {
+    self.inner.ptr()
+  }
+}
+unsafe impl ::protobuf::__internal::runtime::UpbGetMessagePtr for PhpFpmView<'_> {
+  type Msg = PhpFpm;
+  fn get_ptr(&self, _private: ::protobuf::__internal::Private) -> ::protobuf::__internal::runtime::MessagePtr<PhpFpm> {
+    self.inner.ptr()
+  }
+}
+
+unsafe impl ::protobuf::__internal::runtime::UpbGetArena for PhpFpmMut<'_> {
+  fn get_arena(&mut self, _private: ::protobuf::__internal::Private) -> &::protobuf::__internal::runtime::Arena {
+    self.inner.arena()
+  }
+}
+
+pub mod php_fpm {// This variable must not be referenced except by protobuf generated
+// code.
+pub(crate) static mut palm__lavender__v1__ClawRequest__PhpFpm__Body_msg_init: ::protobuf::__internal::runtime::MiniTableInitPtr =
+    ::protobuf::__internal::runtime::MiniTableInitPtr(::protobuf::__internal::runtime::MiniTablePtr::dangling());
+#[allow(non_camel_case_types)]
+pub struct Body {
+  inner: ::protobuf::__internal::runtime::OwnedMessageInner<Body>
+}
+
+impl ::protobuf::Message for Body {}
+
+impl ::std::default::Default for Body {
+  fn default() -> Self {
+    Self::new()
+  }
+}
+
+impl ::std::fmt::Debug for Body {
+  fn fmt(&self, f: &mut ::std::fmt::Formatter<'_>) -> ::std::fmt::Result {
+    write!(f, "{}", ::protobuf::__internal::runtime::debug_string(self))
+  }
+}
+
+// SAFETY:
+// - `Body` is `Sync` because it does not implement interior mutability.
+//    Neither does `BodyMut`.
+unsafe impl Sync for Body {}
+
+// SAFETY:
+// - `Body` is `Send` because it uniquely owns its arena and does
+//   not use thread-local data.
+unsafe impl Send for Body {}
+
+impl ::protobuf::Proxied for Body {
+  type View<'msg> = BodyView<'msg>;
+}
+
+impl ::protobuf::__internal::SealedInternal for Body {}
+
+impl ::protobuf::MutProxied for Body {
+  type Mut<'msg> = BodyMut<'msg>;
+}
+
+#[derive(Copy, Clone)]
+#[allow(dead_code)]
+pub struct BodyView<'msg> {
+  inner: ::protobuf::__internal::runtime::MessageViewInner<'msg, Body>,
+}
+
+impl<'msg> ::protobuf::__internal::SealedInternal for BodyView<'msg> {}
+
+impl<'msg> ::protobuf::MessageView<'msg> for BodyView<'msg> {
+  type Message = Body;
+}
+
+impl ::std::fmt::Debug for BodyView<'_> {
+  fn fmt(&self, f: &mut ::std::fmt::Formatter<'_>) -> ::std::fmt::Result {
+    write!(f, "{}", ::protobuf::__internal::runtime::debug_string(self))
+  }
+}
+
+impl ::std::default::Default for BodyView<'_> {
+  fn default() -> BodyView<'static> {
+    ::protobuf::__internal::runtime::MessageViewInner::default().into()
+  }
+}
+
+impl<'msg> From<::protobuf::__internal::runtime::MessageViewInner<'msg, Body>> for BodyView<'msg> {
+  fn from(inner: ::protobuf::__internal::runtime::MessageViewInner<'msg, Body>) -> Self {
+    Self { inner }
+  }
+}
+
+#[allow(dead_code)]
+impl<'msg> BodyView<'msg> {
+
+  pub fn to_owned(&self) -> Body {
+    ::protobuf::IntoProxied::into_proxied(*self, ::protobuf::__internal::Private)
+  }
+
+  // pool: optional string
+  pub fn pool(self) -> ::protobuf::View<'msg, ::protobuf::ProtoString> {
+    let str_view = unsafe {
+      self.inner.ptr().get_string_at_index(
+        0, (b"").into()
+      )
+    };
+    // SAFETY: The runtime doesn't require ProtoStr to be UTF-8.
+    unsafe { ::protobuf::ProtoStr::from_utf8_unchecked(str_view.as_ref()) }
+  }
+
+  // process_manager: optional string
+  pub fn process_manager(self) -> ::protobuf::View<'msg, ::protobuf::ProtoString> {
+    let str_view = unsafe {
+      self.inner.ptr().get_string_at_index(
+        1, (b"").into()
+      )
+    };
+    // SAFETY: The runtime doesn't require ProtoStr to be UTF-8.
+    unsafe { ::protobuf::ProtoStr::from_utf8_unchecked(str_view.as_ref()) }
+  }
+
+  // start_time: optional uint32
+  pub fn start_time(self) -> u32 {
+    unsafe {
+      // TODO: b/361751487: This .into() and .try_into() is only
+      // here for the enum<->i32 case, we should avoid it for
+      // other primitives where the types naturally match
+      // perfectly (and do an unchecked conversion for
+      // i32->enum types, since even for closed enums we trust
+      // upb to only return one of the named values).
+      self.inner.ptr().get_u32_at_index(
+        2, (0u32).into()
+      ).try_into().unwrap()
+    }
+  }
+
+  // start_since: optional uint32
+  pub fn start_since(self) -> u32 {
+    unsafe {
+      // TODO: b/361751487: This .into() and .try_into() is only
+      // here for the enum<->i32 case, we should avoid it for
+      // other primitives where the types naturally match
+      // perfectly (and do an unchecked conversion for
+      // i32->enum types, since even for closed enums we trust
+      // upb to only return one of the named values).
+      self.inner.ptr().get_u32_at_index(
+        3, (0u32).into()
+      ).try_into().unwrap()
+    }
+  }
+
+  // accepted_conn: optional uint32
+  pub fn accepted_conn(self) -> u32 {
+    unsafe {
+      // TODO: b/361751487: This .into() and .try_into() is only
+      // here for the enum<->i32 case, we should avoid it for
+      // other primitives where the types naturally match
+      // perfectly (and do an unchecked conversion for
+      // i32->enum types, since even for closed enums we trust
+      // upb to only return one of the named values).
+      self.inner.ptr().get_u32_at_index(
+        4, (0u32).into()
+      ).try_into().unwrap()
+    }
+  }
+
+  // listen_queue: optional uint32
+  pub fn listen_queue(self) -> u32 {
+    unsafe {
+      // TODO: b/361751487: This .into() and .try_into() is only
+      // here for the enum<->i32 case, we should avoid it for
+      // other primitives where the types naturally match
+      // perfectly (and do an unchecked conversion for
+      // i32->enum types, since even for closed enums we trust
+      // upb to only return one of the named values).
+      self.inner.ptr().get_u32_at_index(
+        5, (0u32).into()
+      ).try_into().unwrap()
+    }
+  }
+
+  // max_listen_queue: optional uint32
+  pub fn max_listen_queue(self) -> u32 {
+    unsafe {
+      // TODO: b/361751487: This .into() and .try_into() is only
+      // here for the enum<->i32 case, we should avoid it for
+      // other primitives where the types naturally match
+      // perfectly (and do an unchecked conversion for
+      // i32->enum types, since even for closed enums we trust
+      // upb to only return one of the named values).
+      self.inner.ptr().get_u32_at_index(
+        6, (0u32).into()
+      ).try_into().unwrap()
+    }
+  }
+
+  // listen_queue_len: optional uint32
+  pub fn listen_queue_len(self) -> u32 {
+    unsafe {
+      // TODO: b/361751487: This .into() and .try_into() is only
+      // here for the enum<->i32 case, we should avoid it for
+      // other primitives where the types naturally match
+      // perfectly (and do an unchecked conversion for
+      // i32->enum types, since even for closed enums we trust
+      // upb to only return one of the named values).
+      self.inner.ptr().get_u32_at_index(
+        7, (0u32).into()
+      ).try_into().unwrap()
+    }
+  }
+
+  // idle_processes: optional uint32
+  pub fn idle_processes(self) -> u32 {
+    unsafe {
+      // TODO: b/361751487: This .into() and .try_into() is only
+      // here for the enum<->i32 case, we should avoid it for
+      // other primitives where the types naturally match
+      // perfectly (and do an unchecked conversion for
+      // i32->enum types, since even for closed enums we trust
+      // upb to only return one of the named values).
+      self.inner.ptr().get_u32_at_index(
+        8, (0u32).into()
+      ).try_into().unwrap()
+    }
+  }
+
+  // active_process: optional uint32
+  pub fn active_process(self) -> u32 {
+    unsafe {
+      // TODO: b/361751487: This .into() and .try_into() is only
+      // here for the enum<->i32 case, we should avoid it for
+      // other primitives where the types naturally match
+      // perfectly (and do an unchecked conversion for
+      // i32->enum types, since even for closed enums we trust
+      // upb to only return one of the named values).
+      self.inner.ptr().get_u32_at_index(
+        9, (0u32).into()
+      ).try_into().unwrap()
+    }
+  }
+
+  // total_process: optional uint32
+  pub fn total_process(self) -> u32 {
+    unsafe {
+      // TODO: b/361751487: This .into() and .try_into() is only
+      // here for the enum<->i32 case, we should avoid it for
+      // other primitives where the types naturally match
+      // perfectly (and do an unchecked conversion for
+      // i32->enum types, since even for closed enums we trust
+      // upb to only return one of the named values).
+      self.inner.ptr().get_u32_at_index(
+        10, (0u32).into()
+      ).try_into().unwrap()
+    }
+  }
+
+  // max_active_processes: optional uint32
+  pub fn max_active_processes(self) -> u32 {
+    unsafe {
+      // TODO: b/361751487: This .into() and .try_into() is only
+      // here for the enum<->i32 case, we should avoid it for
+      // other primitives where the types naturally match
+      // perfectly (and do an unchecked conversion for
+      // i32->enum types, since even for closed enums we trust
+      // upb to only return one of the named values).
+      self.inner.ptr().get_u32_at_index(
+        11, (0u32).into()
+      ).try_into().unwrap()
+    }
+  }
+
+  // max_children_reached: optional uint32
+  pub fn max_children_reached(self) -> u32 {
+    unsafe {
+      // TODO: b/361751487: This .into() and .try_into() is only
+      // here for the enum<->i32 case, we should avoid it for
+      // other primitives where the types naturally match
+      // perfectly (and do an unchecked conversion for
+      // i32->enum types, since even for closed enums we trust
+      // upb to only return one of the named values).
+      self.inner.ptr().get_u32_at_index(
+        12, (0u32).into()
+      ).try_into().unwrap()
+    }
+  }
+
+  // slow_requests: optional uint32
+  pub fn slow_requests(self) -> u32 {
+    unsafe {
+      // TODO: b/361751487: This .into() and .try_into() is only
+      // here for the enum<->i32 case, we should avoid it for
+      // other primitives where the types naturally match
+      // perfectly (and do an unchecked conversion for
+      // i32->enum types, since even for closed enums we trust
+      // upb to only return one of the named values).
+      self.inner.ptr().get_u32_at_index(
+        13, (0u32).into()
+      ).try_into().unwrap()
+    }
+  }
+
+  // memory_peak: optional uint32
+  pub fn memory_peak(self) -> u32 {
+    unsafe {
+      // TODO: b/361751487: This .into() and .try_into() is only
+      // here for the enum<->i32 case, we should avoid it for
+      // other primitives where the types naturally match
+      // perfectly (and do an unchecked conversion for
+      // i32->enum types, since even for closed enums we trust
+      // upb to only return one of the named values).
+      self.inner.ptr().get_u32_at_index(
+        14, (0u32).into()
+      ).try_into().unwrap()
+    }
+  }
+
+  // processes: repeated message palm.lavender.v1.ClawRequest.PhpFpm.Body.Process
+  pub fn processes(self) -> ::protobuf::RepeatedView<'msg, super::super::super::claw_request::php_fpm::body::Process> {
+    unsafe {
+      self.inner.ptr().get_array_at_index(
+        15
+      )
+    }.map_or_else(
+        ::protobuf::__internal::runtime::empty_array::<super::super::super::claw_request::php_fpm::body::Process>,
+        |raw| unsafe {
+          ::protobuf::RepeatedView::from_raw(::protobuf::__internal::Private, raw)
+        }
+      )
+  }
+
+}
+
+// SAFETY:
+// - `BodyView` is `Sync` because it does not support mutation.
+unsafe impl Sync for BodyView<'_> {}
+
+// SAFETY:
+// - `BodyView` is `Send` because while its alive a `BodyMut` cannot.
+// - `BodyView` does not use thread-local data.
+unsafe impl Send for BodyView<'_> {}
+
+impl<'msg> ::protobuf::AsView for BodyView<'msg> {
+  type Proxied = Body;
+  fn as_view(&self) -> ::protobuf::View<'msg, Body> {
+    *self
+  }
+}
+
+impl<'msg> ::protobuf::IntoView<'msg> for BodyView<'msg> {
+  fn into_view<'shorter>(self) -> BodyView<'shorter>
+  where
+      'msg: 'shorter {
+    self
+  }
+}
+
+impl<'msg> ::protobuf::IntoProxied<Body> for BodyView<'msg> {
+  fn into_proxied(self, _private: ::protobuf::__internal::Private) -> Body {
+    let mut dst = Body::new();
+    assert!(unsafe {
+      dst.inner.ptr_mut().deep_copy(self.inner.ptr(), dst.inner.arena())
+    });
+    dst
+  }
+}
+
+impl<'msg> ::protobuf::IntoProxied<Body> for BodyMut<'msg> {
+  fn into_proxied(self, _private: ::protobuf::__internal::Private) -> Body {
+    ::protobuf::IntoProxied::into_proxied(::protobuf::IntoView::into_view(self), _private)
+  }
+}
+
+impl ::protobuf::__internal::runtime::EntityType for Body {
+    type Tag = ::protobuf::__internal::runtime::MessageTag;
+}
+
+impl<'msg> ::protobuf::__internal::runtime::EntityType for BodyView<'msg> {
+    type Tag = ::protobuf::__internal::runtime::ViewProxyTag;
+}
+
+impl<'msg> ::protobuf::__internal::runtime::EntityType for BodyMut<'msg> {
+    type Tag = ::protobuf::__internal::runtime::MutProxyTag;
+}
+
+#[allow(dead_code)]
+#[allow(non_camel_case_types)]
+pub struct BodyMut<'msg> {
+  inner: ::protobuf::__internal::runtime::MessageMutInner<'msg, Body>,
+}
+
+impl<'msg> ::protobuf::__internal::SealedInternal for BodyMut<'msg> {}
+
+impl<'msg> ::protobuf::MessageMut<'msg> for BodyMut<'msg> {
+  type Message = Body;
+}
+
+impl ::std::fmt::Debug for BodyMut<'_> {
+  fn fmt(&self, f: &mut ::std::fmt::Formatter<'_>) -> ::std::fmt::Result {
+    write!(f, "{}", ::protobuf::__internal::runtime::debug_string(self))
+  }
+}
+
+impl<'msg> From<::protobuf::__internal::runtime::MessageMutInner<'msg, Body>> for BodyMut<'msg> {
+  fn from(inner: ::protobuf::__internal::runtime::MessageMutInner<'msg, Body>) -> Self {
+    Self { inner }
+  }
+}
+
+#[allow(dead_code)]
+impl<'msg> BodyMut<'msg> {
+
+  #[doc(hidden)]
+  pub fn as_message_mut_inner(&mut self, _private: ::protobuf::__internal::Private)
+    -> ::protobuf::__internal::runtime::MessageMutInner<'msg, Body> {
+    self.inner
+  }
+
+  pub fn to_owned(&self) -> Body {
+    ::protobuf::AsView::as_view(self).to_owned()
+  }
+
+  // pool: optional string
+  pub fn pool(&self) -> ::protobuf::View<'_, ::protobuf::ProtoString> {
+    let str_view = unsafe {
+      self.inner.ptr().get_string_at_index(
+        0, (b"").into()
+      )
+    };
+    // SAFETY: The runtime doesn't require ProtoStr to be UTF-8.
+    unsafe { ::protobuf::ProtoStr::from_utf8_unchecked(str_view.as_ref()) }
+  }
+  pub fn set_pool(&mut self, val: impl ::protobuf::IntoProxied<::protobuf::ProtoString>) {
+    unsafe {
+      ::protobuf::__internal::runtime::message_set_string_field(
+        ::protobuf::AsMut::as_mut(self).inner,
+        0,
+        val);
+    }
+  }
+
+  // process_manager: optional string
+  pub fn process_manager(&self) -> ::protobuf::View<'_, ::protobuf::ProtoString> {
+    let str_view = unsafe {
+      self.inner.ptr().get_string_at_index(
+        1, (b"").into()
+      )
+    };
+    // SAFETY: The runtime doesn't require ProtoStr to be UTF-8.
+    unsafe { ::protobuf::ProtoStr::from_utf8_unchecked(str_view.as_ref()) }
+  }
+  pub fn set_process_manager(&mut self, val: impl ::protobuf::IntoProxied<::protobuf::ProtoString>) {
+    unsafe {
+      ::protobuf::__internal::runtime::message_set_string_field(
+        ::protobuf::AsMut::as_mut(self).inner,
+        1,
+        val);
+    }
+  }
+
+  // start_time: optional uint32
+  pub fn start_time(&self) -> u32 {
+    unsafe {
+      // TODO: b/361751487: This .into() and .try_into() is only
+      // here for the enum<->i32 case, we should avoid it for
+      // other primitives where the types naturally match
+      // perfectly (and do an unchecked conversion for
+      // i32->enum types, since even for closed enums we trust
+      // upb to only return one of the named values).
+      self.inner.ptr().get_u32_at_index(
+        2, (0u32).into()
+      ).try_into().unwrap()
+    }
+  }
+  pub fn set_start_time(&mut self, val: u32) {
+    unsafe {
+      // TODO: b/361751487: This .into() is only here
+      // here for the enum<->i32 case, we should avoid it for
+      // other primitives where the types naturally match
+      //perfectly.
+      self.inner.ptr_mut().set_base_field_u32_at_index(
+        2, val.into()
+      )
+    }
+  }
+
+  // start_since: optional uint32
+  pub fn start_since(&self) -> u32 {
+    unsafe {
+      // TODO: b/361751487: This .into() and .try_into() is only
+      // here for the enum<->i32 case, we should avoid it for
+      // other primitives where the types naturally match
+      // perfectly (and do an unchecked conversion for
+      // i32->enum types, since even for closed enums we trust
+      // upb to only return one of the named values).
+      self.inner.ptr().get_u32_at_index(
+        3, (0u32).into()
+      ).try_into().unwrap()
+    }
+  }
+  pub fn set_start_since(&mut self, val: u32) {
+    unsafe {
+      // TODO: b/361751487: This .into() is only here
+      // here for the enum<->i32 case, we should avoid it for
+      // other primitives where the types naturally match
+      //perfectly.
+      self.inner.ptr_mut().set_base_field_u32_at_index(
+        3, val.into()
+      )
+    }
+  }
+
+  // accepted_conn: optional uint32
+  pub fn accepted_conn(&self) -> u32 {
+    unsafe {
+      // TODO: b/361751487: This .into() and .try_into() is only
+      // here for the enum<->i32 case, we should avoid it for
+      // other primitives where the types naturally match
+      // perfectly (and do an unchecked conversion for
+      // i32->enum types, since even for closed enums we trust
+      // upb to only return one of the named values).
+      self.inner.ptr().get_u32_at_index(
+        4, (0u32).into()
+      ).try_into().unwrap()
+    }
+  }
+  pub fn set_accepted_conn(&mut self, val: u32) {
+    unsafe {
+      // TODO: b/361751487: This .into() is only here
+      // here for the enum<->i32 case, we should avoid it for
+      // other primitives where the types naturally match
+      //perfectly.
+      self.inner.ptr_mut().set_base_field_u32_at_index(
+        4, val.into()
+      )
+    }
+  }
+
+  // listen_queue: optional uint32
+  pub fn listen_queue(&self) -> u32 {
+    unsafe {
+      // TODO: b/361751487: This .into() and .try_into() is only
+      // here for the enum<->i32 case, we should avoid it for
+      // other primitives where the types naturally match
+      // perfectly (and do an unchecked conversion for
+      // i32->enum types, since even for closed enums we trust
+      // upb to only return one of the named values).
+      self.inner.ptr().get_u32_at_index(
+        5, (0u32).into()
+      ).try_into().unwrap()
+    }
+  }
+  pub fn set_listen_queue(&mut self, val: u32) {
+    unsafe {
+      // TODO: b/361751487: This .into() is only here
+      // here for the enum<->i32 case, we should avoid it for
+      // other primitives where the types naturally match
+      //perfectly.
+      self.inner.ptr_mut().set_base_field_u32_at_index(
+        5, val.into()
+      )
+    }
+  }
+
+  // max_listen_queue: optional uint32
+  pub fn max_listen_queue(&self) -> u32 {
+    unsafe {
+      // TODO: b/361751487: This .into() and .try_into() is only
+      // here for the enum<->i32 case, we should avoid it for
+      // other primitives where the types naturally match
+      // perfectly (and do an unchecked conversion for
+      // i32->enum types, since even for closed enums we trust
+      // upb to only return one of the named values).
+      self.inner.ptr().get_u32_at_index(
+        6, (0u32).into()
+      ).try_into().unwrap()
+    }
+  }
+  pub fn set_max_listen_queue(&mut self, val: u32) {
+    unsafe {
+      // TODO: b/361751487: This .into() is only here
+      // here for the enum<->i32 case, we should avoid it for
+      // other primitives where the types naturally match
+      //perfectly.
+      self.inner.ptr_mut().set_base_field_u32_at_index(
+        6, val.into()
+      )
+    }
+  }
+
+  // listen_queue_len: optional uint32
+  pub fn listen_queue_len(&self) -> u32 {
+    unsafe {
+      // TODO: b/361751487: This .into() and .try_into() is only
+      // here for the enum<->i32 case, we should avoid it for
+      // other primitives where the types naturally match
+      // perfectly (and do an unchecked conversion for
+      // i32->enum types, since even for closed enums we trust
+      // upb to only return one of the named values).
+      self.inner.ptr().get_u32_at_index(
+        7, (0u32).into()
+      ).try_into().unwrap()
+    }
+  }
+  pub fn set_listen_queue_len(&mut self, val: u32) {
+    unsafe {
+      // TODO: b/361751487: This .into() is only here
+      // here for the enum<->i32 case, we should avoid it for
+      // other primitives where the types naturally match
+      //perfectly.
+      self.inner.ptr_mut().set_base_field_u32_at_index(
+        7, val.into()
+      )
+    }
+  }
+
+  // idle_processes: optional uint32
+  pub fn idle_processes(&self) -> u32 {
+    unsafe {
+      // TODO: b/361751487: This .into() and .try_into() is only
+      // here for the enum<->i32 case, we should avoid it for
+      // other primitives where the types naturally match
+      // perfectly (and do an unchecked conversion for
+      // i32->enum types, since even for closed enums we trust
+      // upb to only return one of the named values).
+      self.inner.ptr().get_u32_at_index(
+        8, (0u32).into()
+      ).try_into().unwrap()
+    }
+  }
+  pub fn set_idle_processes(&mut self, val: u32) {
+    unsafe {
+      // TODO: b/361751487: This .into() is only here
+      // here for the enum<->i32 case, we should avoid it for
+      // other primitives where the types naturally match
+      //perfectly.
+      self.inner.ptr_mut().set_base_field_u32_at_index(
+        8, val.into()
+      )
+    }
+  }
+
+  // active_process: optional uint32
+  pub fn active_process(&self) -> u32 {
+    unsafe {
+      // TODO: b/361751487: This .into() and .try_into() is only
+      // here for the enum<->i32 case, we should avoid it for
+      // other primitives where the types naturally match
+      // perfectly (and do an unchecked conversion for
+      // i32->enum types, since even for closed enums we trust
+      // upb to only return one of the named values).
+      self.inner.ptr().get_u32_at_index(
+        9, (0u32).into()
+      ).try_into().unwrap()
+    }
+  }
+  pub fn set_active_process(&mut self, val: u32) {
+    unsafe {
+      // TODO: b/361751487: This .into() is only here
+      // here for the enum<->i32 case, we should avoid it for
+      // other primitives where the types naturally match
+      //perfectly.
+      self.inner.ptr_mut().set_base_field_u32_at_index(
+        9, val.into()
+      )
+    }
+  }
+
+  // total_process: optional uint32
+  pub fn total_process(&self) -> u32 {
+    unsafe {
+      // TODO: b/361751487: This .into() and .try_into() is only
+      // here for the enum<->i32 case, we should avoid it for
+      // other primitives where the types naturally match
+      // perfectly (and do an unchecked conversion for
+      // i32->enum types, since even for closed enums we trust
+      // upb to only return one of the named values).
+      self.inner.ptr().get_u32_at_index(
+        10, (0u32).into()
+      ).try_into().unwrap()
+    }
+  }
+  pub fn set_total_process(&mut self, val: u32) {
+    unsafe {
+      // TODO: b/361751487: This .into() is only here
+      // here for the enum<->i32 case, we should avoid it for
+      // other primitives where the types naturally match
+      //perfectly.
+      self.inner.ptr_mut().set_base_field_u32_at_index(
+        10, val.into()
+      )
+    }
+  }
+
+  // max_active_processes: optional uint32
+  pub fn max_active_processes(&self) -> u32 {
+    unsafe {
+      // TODO: b/361751487: This .into() and .try_into() is only
+      // here for the enum<->i32 case, we should avoid it for
+      // other primitives where the types naturally match
+      // perfectly (and do an unchecked conversion for
+      // i32->enum types, since even for closed enums we trust
+      // upb to only return one of the named values).
+      self.inner.ptr().get_u32_at_index(
+        11, (0u32).into()
+      ).try_into().unwrap()
+    }
+  }
+  pub fn set_max_active_processes(&mut self, val: u32) {
+    unsafe {
+      // TODO: b/361751487: This .into() is only here
+      // here for the enum<->i32 case, we should avoid it for
+      // other primitives where the types naturally match
+      //perfectly.
+      self.inner.ptr_mut().set_base_field_u32_at_index(
+        11, val.into()
+      )
+    }
+  }
+
+  // max_children_reached: optional uint32
+  pub fn max_children_reached(&self) -> u32 {
+    unsafe {
+      // TODO: b/361751487: This .into() and .try_into() is only
+      // here for the enum<->i32 case, we should avoid it for
+      // other primitives where the types naturally match
+      // perfectly (and do an unchecked conversion for
+      // i32->enum types, since even for closed enums we trust
+      // upb to only return one of the named values).
+      self.inner.ptr().get_u32_at_index(
+        12, (0u32).into()
+      ).try_into().unwrap()
+    }
+  }
+  pub fn set_max_children_reached(&mut self, val: u32) {
+    unsafe {
+      // TODO: b/361751487: This .into() is only here
+      // here for the enum<->i32 case, we should avoid it for
+      // other primitives where the types naturally match
+      //perfectly.
+      self.inner.ptr_mut().set_base_field_u32_at_index(
+        12, val.into()
+      )
+    }
+  }
+
+  // slow_requests: optional uint32
+  pub fn slow_requests(&self) -> u32 {
+    unsafe {
+      // TODO: b/361751487: This .into() and .try_into() is only
+      // here for the enum<->i32 case, we should avoid it for
+      // other primitives where the types naturally match
+      // perfectly (and do an unchecked conversion for
+      // i32->enum types, since even for closed enums we trust
+      // upb to only return one of the named values).
+      self.inner.ptr().get_u32_at_index(
+        13, (0u32).into()
+      ).try_into().unwrap()
+    }
+  }
+  pub fn set_slow_requests(&mut self, val: u32) {
+    unsafe {
+      // TODO: b/361751487: This .into() is only here
+      // here for the enum<->i32 case, we should avoid it for
+      // other primitives where the types naturally match
+      //perfectly.
+      self.inner.ptr_mut().set_base_field_u32_at_index(
+        13, val.into()
+      )
+    }
+  }
+
+  // memory_peak: optional uint32
+  pub fn memory_peak(&self) -> u32 {
+    unsafe {
+      // TODO: b/361751487: This .into() and .try_into() is only
+      // here for the enum<->i32 case, we should avoid it for
+      // other primitives where the types naturally match
+      // perfectly (and do an unchecked conversion for
+      // i32->enum types, since even for closed enums we trust
+      // upb to only return one of the named values).
+      self.inner.ptr().get_u32_at_index(
+        14, (0u32).into()
+      ).try_into().unwrap()
+    }
+  }
+  pub fn set_memory_peak(&mut self, val: u32) {
+    unsafe {
+      // TODO: b/361751487: This .into() is only here
+      // here for the enum<->i32 case, we should avoid it for
+      // other primitives where the types naturally match
+      //perfectly.
+      self.inner.ptr_mut().set_base_field_u32_at_index(
+        14, val.into()
+      )
+    }
+  }
+
+  // processes: repeated message palm.lavender.v1.ClawRequest.PhpFpm.Body.Process
+  pub fn processes(&self) -> ::protobuf::RepeatedView<'_, super::super::super::claw_request::php_fpm::body::Process> {
+    unsafe {
+      self.inner.ptr().get_array_at_index(
+        15
+      )
+    }.map_or_else(
+        ::protobuf::__internal::runtime::empty_array::<super::super::super::claw_request::php_fpm::body::Process>,
+        |raw| unsafe {
+          ::protobuf::RepeatedView::from_raw(::protobuf::__internal::Private, raw)
+        }
+      )
+  }
+  pub fn processes_mut(&mut self) -> ::protobuf::RepeatedMut<'_, super::super::super::claw_request::php_fpm::body::Process> {
+    unsafe {
+      let raw_array = self.inner.ptr_mut().get_or_create_mutable_array_at_index(
+        15,
+        self.inner.arena()
+      ).expect("alloc should not fail");
+      ::protobuf::RepeatedMut::from_inner(
+        ::protobuf::__internal::Private,
+        ::protobuf::__internal::runtime::InnerRepeatedMut::new(
+          raw_array, self.inner.arena(),
+        ),
+      )
+    }
+  }
+  pub fn set_processes(&mut self, src: impl ::protobuf::IntoProxied<::protobuf::Repeated<super::super::super::claw_request::php_fpm::body::Process>>) {
+    unsafe {
+      ::protobuf::__internal::runtime::message_set_repeated_field(
+        ::protobuf::AsMut::as_mut(self).inner,
+        15,
+        src);
+    }
+  }
+
+}
+
+// SAFETY:
+// - `BodyMut` does not perform any shared mutation.
+unsafe impl Send for BodyMut<'_> {}
+
+// SAFETY:
+// - `BodyMut` does not perform any shared mutation.
+unsafe impl Sync for BodyMut<'_> {}
+
+impl<'msg> ::protobuf::AsView for BodyMut<'msg> {
+  type Proxied = Body;
+  fn as_view(&self) -> ::protobuf::View<'_, Body> {
+    BodyView {
+      inner: ::protobuf::__internal::runtime::MessageViewInner::view_of_mut(self.inner)
+    }
+  }
+}
+
+impl<'msg> ::protobuf::IntoView<'msg> for BodyMut<'msg> {
+  fn into_view<'shorter>(self) -> ::protobuf::View<'shorter, Body>
+  where
+      'msg: 'shorter {
+    BodyView {
+      inner: ::protobuf::__internal::runtime::MessageViewInner::view_of_mut(self.inner)
+    }
+  }
+}
+
+impl<'msg> ::protobuf::AsMut for BodyMut<'msg> {
+  type MutProxied = Body;
+  fn as_mut(&mut self) -> BodyMut<'msg> {
+    BodyMut { inner: self.inner }
+  }
+}
+
+impl<'msg> ::protobuf::IntoMut<'msg> for BodyMut<'msg> {
+  fn into_mut<'shorter>(self) -> BodyMut<'shorter>
+  where
+      'msg: 'shorter {
+    self
+  }
+}
+
+#[allow(dead_code)]
+impl Body {
+  pub fn new() -> Self {
+    Self { inner: ::protobuf::__internal::runtime::OwnedMessageInner::<Self>::new() }
+  }
+
+
+  #[doc(hidden)]
+  pub fn as_message_mut_inner(&mut self, _private: ::protobuf::__internal::Private) -> ::protobuf::__internal::runtime::MessageMutInner<'_, Body> {
+    ::protobuf::__internal::runtime::MessageMutInner::mut_of_owned(&mut self.inner)
+  }
+
+  pub fn as_view(&self) -> BodyView<'_> {
+    ::protobuf::__internal::runtime::MessageViewInner::view_of_owned(&self.inner).into()
+  }
+
+  pub fn as_mut(&mut self) -> BodyMut<'_> {
+    ::protobuf::__internal::runtime::MessageMutInner::mut_of_owned(&mut self.inner).into()
+  }
+
+  // pool: optional string
+  pub fn pool(&self) -> ::protobuf::View<'_, ::protobuf::ProtoString> {
+    let str_view = unsafe {
+      self.inner.ptr().get_string_at_index(
+        0, (b"").into()
+      )
+    };
+    // SAFETY: The runtime doesn't require ProtoStr to be UTF-8.
+    unsafe { ::protobuf::ProtoStr::from_utf8_unchecked(str_view.as_ref()) }
+  }
+  pub fn set_pool(&mut self, val: impl ::protobuf::IntoProxied<::protobuf::ProtoString>) {
+    unsafe {
+      ::protobuf::__internal::runtime::message_set_string_field(
+        ::protobuf::AsMut::as_mut(self).inner,
+        0,
+        val);
+    }
+  }
+
+  // process_manager: optional string
+  pub fn process_manager(&self) -> ::protobuf::View<'_, ::protobuf::ProtoString> {
+    let str_view = unsafe {
+      self.inner.ptr().get_string_at_index(
+        1, (b"").into()
+      )
+    };
+    // SAFETY: The runtime doesn't require ProtoStr to be UTF-8.
+    unsafe { ::protobuf::ProtoStr::from_utf8_unchecked(str_view.as_ref()) }
+  }
+  pub fn set_process_manager(&mut self, val: impl ::protobuf::IntoProxied<::protobuf::ProtoString>) {
+    unsafe {
+      ::protobuf::__internal::runtime::message_set_string_field(
+        ::protobuf::AsMut::as_mut(self).inner,
+        1,
+        val);
+    }
+  }
+
+  // start_time: optional uint32
+  pub fn start_time(&self) -> u32 {
+    unsafe {
+      // TODO: b/361751487: This .into() and .try_into() is only
+      // here for the enum<->i32 case, we should avoid it for
+      // other primitives where the types naturally match
+      // perfectly (and do an unchecked conversion for
+      // i32->enum types, since even for closed enums we trust
+      // upb to only return one of the named values).
+      self.inner.ptr().get_u32_at_index(
+        2, (0u32).into()
+      ).try_into().unwrap()
+    }
+  }
+  pub fn set_start_time(&mut self, val: u32) {
+    unsafe {
+      // TODO: b/361751487: This .into() is only here
+      // here for the enum<->i32 case, we should avoid it for
+      // other primitives where the types naturally match
+      //perfectly.
+      self.inner.ptr_mut().set_base_field_u32_at_index(
+        2, val.into()
+      )
+    }
+  }
+
+  // start_since: optional uint32
+  pub fn start_since(&self) -> u32 {
+    unsafe {
+      // TODO: b/361751487: This .into() and .try_into() is only
+      // here for the enum<->i32 case, we should avoid it for
+      // other primitives where the types naturally match
+      // perfectly (and do an unchecked conversion for
+      // i32->enum types, since even for closed enums we trust
+      // upb to only return one of the named values).
+      self.inner.ptr().get_u32_at_index(
+        3, (0u32).into()
+      ).try_into().unwrap()
+    }
+  }
+  pub fn set_start_since(&mut self, val: u32) {
+    unsafe {
+      // TODO: b/361751487: This .into() is only here
+      // here for the enum<->i32 case, we should avoid it for
+      // other primitives where the types naturally match
+      //perfectly.
+      self.inner.ptr_mut().set_base_field_u32_at_index(
+        3, val.into()
+      )
+    }
+  }
+
+  // accepted_conn: optional uint32
+  pub fn accepted_conn(&self) -> u32 {
+    unsafe {
+      // TODO: b/361751487: This .into() and .try_into() is only
+      // here for the enum<->i32 case, we should avoid it for
+      // other primitives where the types naturally match
+      // perfectly (and do an unchecked conversion for
+      // i32->enum types, since even for closed enums we trust
+      // upb to only return one of the named values).
+      self.inner.ptr().get_u32_at_index(
+        4, (0u32).into()
+      ).try_into().unwrap()
+    }
+  }
+  pub fn set_accepted_conn(&mut self, val: u32) {
+    unsafe {
+      // TODO: b/361751487: This .into() is only here
+      // here for the enum<->i32 case, we should avoid it for
+      // other primitives where the types naturally match
+      //perfectly.
+      self.inner.ptr_mut().set_base_field_u32_at_index(
+        4, val.into()
+      )
+    }
+  }
+
+  // listen_queue: optional uint32
+  pub fn listen_queue(&self) -> u32 {
+    unsafe {
+      // TODO: b/361751487: This .into() and .try_into() is only
+      // here for the enum<->i32 case, we should avoid it for
+      // other primitives where the types naturally match
+      // perfectly (and do an unchecked conversion for
+      // i32->enum types, since even for closed enums we trust
+      // upb to only return one of the named values).
+      self.inner.ptr().get_u32_at_index(
+        5, (0u32).into()
+      ).try_into().unwrap()
+    }
+  }
+  pub fn set_listen_queue(&mut self, val: u32) {
+    unsafe {
+      // TODO: b/361751487: This .into() is only here
+      // here for the enum<->i32 case, we should avoid it for
+      // other primitives where the types naturally match
+      //perfectly.
+      self.inner.ptr_mut().set_base_field_u32_at_index(
+        5, val.into()
+      )
+    }
+  }
+
+  // max_listen_queue: optional uint32
+  pub fn max_listen_queue(&self) -> u32 {
+    unsafe {
+      // TODO: b/361751487: This .into() and .try_into() is only
+      // here for the enum<->i32 case, we should avoid it for
+      // other primitives where the types naturally match
+      // perfectly (and do an unchecked conversion for
+      // i32->enum types, since even for closed enums we trust
+      // upb to only return one of the named values).
+      self.inner.ptr().get_u32_at_index(
+        6, (0u32).into()
+      ).try_into().unwrap()
+    }
+  }
+  pub fn set_max_listen_queue(&mut self, val: u32) {
+    unsafe {
+      // TODO: b/361751487: This .into() is only here
+      // here for the enum<->i32 case, we should avoid it for
+      // other primitives where the types naturally match
+      //perfectly.
+      self.inner.ptr_mut().set_base_field_u32_at_index(
+        6, val.into()
+      )
+    }
+  }
+
+  // listen_queue_len: optional uint32
+  pub fn listen_queue_len(&self) -> u32 {
+    unsafe {
+      // TODO: b/361751487: This .into() and .try_into() is only
+      // here for the enum<->i32 case, we should avoid it for
+      // other primitives where the types naturally match
+      // perfectly (and do an unchecked conversion for
+      // i32->enum types, since even for closed enums we trust
+      // upb to only return one of the named values).
+      self.inner.ptr().get_u32_at_index(
+        7, (0u32).into()
+      ).try_into().unwrap()
+    }
+  }
+  pub fn set_listen_queue_len(&mut self, val: u32) {
+    unsafe {
+      // TODO: b/361751487: This .into() is only here
+      // here for the enum<->i32 case, we should avoid it for
+      // other primitives where the types naturally match
+      //perfectly.
+      self.inner.ptr_mut().set_base_field_u32_at_index(
+        7, val.into()
+      )
+    }
+  }
+
+  // idle_processes: optional uint32
+  pub fn idle_processes(&self) -> u32 {
+    unsafe {
+      // TODO: b/361751487: This .into() and .try_into() is only
+      // here for the enum<->i32 case, we should avoid it for
+      // other primitives where the types naturally match
+      // perfectly (and do an unchecked conversion for
+      // i32->enum types, since even for closed enums we trust
+      // upb to only return one of the named values).
+      self.inner.ptr().get_u32_at_index(
+        8, (0u32).into()
+      ).try_into().unwrap()
+    }
+  }
+  pub fn set_idle_processes(&mut self, val: u32) {
+    unsafe {
+      // TODO: b/361751487: This .into() is only here
+      // here for the enum<->i32 case, we should avoid it for
+      // other primitives where the types naturally match
+      //perfectly.
+      self.inner.ptr_mut().set_base_field_u32_at_index(
+        8, val.into()
+      )
+    }
+  }
+
+  // active_process: optional uint32
+  pub fn active_process(&self) -> u32 {
+    unsafe {
+      // TODO: b/361751487: This .into() and .try_into() is only
+      // here for the enum<->i32 case, we should avoid it for
+      // other primitives where the types naturally match
+      // perfectly (and do an unchecked conversion for
+      // i32->enum types, since even for closed enums we trust
+      // upb to only return one of the named values).
+      self.inner.ptr().get_u32_at_index(
+        9, (0u32).into()
+      ).try_into().unwrap()
+    }
+  }
+  pub fn set_active_process(&mut self, val: u32) {
+    unsafe {
+      // TODO: b/361751487: This .into() is only here
+      // here for the enum<->i32 case, we should avoid it for
+      // other primitives where the types naturally match
+      //perfectly.
+      self.inner.ptr_mut().set_base_field_u32_at_index(
+        9, val.into()
+      )
+    }
+  }
+
+  // total_process: optional uint32
+  pub fn total_process(&self) -> u32 {
+    unsafe {
+      // TODO: b/361751487: This .into() and .try_into() is only
+      // here for the enum<->i32 case, we should avoid it for
+      // other primitives where the types naturally match
+      // perfectly (and do an unchecked conversion for
+      // i32->enum types, since even for closed enums we trust
+      // upb to only return one of the named values).
+      self.inner.ptr().get_u32_at_index(
+        10, (0u32).into()
+      ).try_into().unwrap()
+    }
+  }
+  pub fn set_total_process(&mut self, val: u32) {
+    unsafe {
+      // TODO: b/361751487: This .into() is only here
+      // here for the enum<->i32 case, we should avoid it for
+      // other primitives where the types naturally match
+      //perfectly.
+      self.inner.ptr_mut().set_base_field_u32_at_index(
+        10, val.into()
+      )
+    }
+  }
+
+  // max_active_processes: optional uint32
+  pub fn max_active_processes(&self) -> u32 {
+    unsafe {
+      // TODO: b/361751487: This .into() and .try_into() is only
+      // here for the enum<->i32 case, we should avoid it for
+      // other primitives where the types naturally match
+      // perfectly (and do an unchecked conversion for
+      // i32->enum types, since even for closed enums we trust
+      // upb to only return one of the named values).
+      self.inner.ptr().get_u32_at_index(
+        11, (0u32).into()
+      ).try_into().unwrap()
+    }
+  }
+  pub fn set_max_active_processes(&mut self, val: u32) {
+    unsafe {
+      // TODO: b/361751487: This .into() is only here
+      // here for the enum<->i32 case, we should avoid it for
+      // other primitives where the types naturally match
+      //perfectly.
+      self.inner.ptr_mut().set_base_field_u32_at_index(
+        11, val.into()
+      )
+    }
+  }
+
+  // max_children_reached: optional uint32
+  pub fn max_children_reached(&self) -> u32 {
+    unsafe {
+      // TODO: b/361751487: This .into() and .try_into() is only
+      // here for the enum<->i32 case, we should avoid it for
+      // other primitives where the types naturally match
+      // perfectly (and do an unchecked conversion for
+      // i32->enum types, since even for closed enums we trust
+      // upb to only return one of the named values).
+      self.inner.ptr().get_u32_at_index(
+        12, (0u32).into()
+      ).try_into().unwrap()
+    }
+  }
+  pub fn set_max_children_reached(&mut self, val: u32) {
+    unsafe {
+      // TODO: b/361751487: This .into() is only here
+      // here for the enum<->i32 case, we should avoid it for
+      // other primitives where the types naturally match
+      //perfectly.
+      self.inner.ptr_mut().set_base_field_u32_at_index(
+        12, val.into()
+      )
+    }
+  }
+
+  // slow_requests: optional uint32
+  pub fn slow_requests(&self) -> u32 {
+    unsafe {
+      // TODO: b/361751487: This .into() and .try_into() is only
+      // here for the enum<->i32 case, we should avoid it for
+      // other primitives where the types naturally match
+      // perfectly (and do an unchecked conversion for
+      // i32->enum types, since even for closed enums we trust
+      // upb to only return one of the named values).
+      self.inner.ptr().get_u32_at_index(
+        13, (0u32).into()
+      ).try_into().unwrap()
+    }
+  }
+  pub fn set_slow_requests(&mut self, val: u32) {
+    unsafe {
+      // TODO: b/361751487: This .into() is only here
+      // here for the enum<->i32 case, we should avoid it for
+      // other primitives where the types naturally match
+      //perfectly.
+      self.inner.ptr_mut().set_base_field_u32_at_index(
+        13, val.into()
+      )
+    }
+  }
+
+  // memory_peak: optional uint32
+  pub fn memory_peak(&self) -> u32 {
+    unsafe {
+      // TODO: b/361751487: This .into() and .try_into() is only
+      // here for the enum<->i32 case, we should avoid it for
+      // other primitives where the types naturally match
+      // perfectly (and do an unchecked conversion for
+      // i32->enum types, since even for closed enums we trust
+      // upb to only return one of the named values).
+      self.inner.ptr().get_u32_at_index(
+        14, (0u32).into()
+      ).try_into().unwrap()
+    }
+  }
+  pub fn set_memory_peak(&mut self, val: u32) {
+    unsafe {
+      // TODO: b/361751487: This .into() is only here
+      // here for the enum<->i32 case, we should avoid it for
+      // other primitives where the types naturally match
+      //perfectly.
+      self.inner.ptr_mut().set_base_field_u32_at_index(
+        14, val.into()
+      )
+    }
+  }
+
+  // processes: repeated message palm.lavender.v1.ClawRequest.PhpFpm.Body.Process
+  pub fn processes(&self) -> ::protobuf::RepeatedView<'_, super::super::super::claw_request::php_fpm::body::Process> {
+    unsafe {
+      self.inner.ptr().get_array_at_index(
+        15
+      )
+    }.map_or_else(
+        ::protobuf::__internal::runtime::empty_array::<super::super::super::claw_request::php_fpm::body::Process>,
+        |raw| unsafe {
+          ::protobuf::RepeatedView::from_raw(::protobuf::__internal::Private, raw)
+        }
+      )
+  }
+  pub fn processes_mut(&mut self) -> ::protobuf::RepeatedMut<'_, super::super::super::claw_request::php_fpm::body::Process> {
+    unsafe {
+      let raw_array = self.inner.ptr_mut().get_or_create_mutable_array_at_index(
+        15,
+        self.inner.arena()
+      ).expect("alloc should not fail");
+      ::protobuf::RepeatedMut::from_inner(
+        ::protobuf::__internal::Private,
+        ::protobuf::__internal::runtime::InnerRepeatedMut::new(
+          raw_array, self.inner.arena(),
+        ),
+      )
+    }
+  }
+  pub fn set_processes(&mut self, src: impl ::protobuf::IntoProxied<::protobuf::Repeated<super::super::super::claw_request::php_fpm::body::Process>>) {
+    unsafe {
+      ::protobuf::__internal::runtime::message_set_repeated_field(
+        ::protobuf::AsMut::as_mut(self).inner,
+        15,
+        src);
+    }
+  }
+
+}  // impl Body
+
+impl ::std::ops::Drop for Body {
+  #[inline]
+  fn drop(&mut self) {
+  }
+}
+
+impl ::std::clone::Clone for Body {
+  fn clone(&self) -> Self {
+    self.as_view().to_owned()
+  }
+}
+
+impl ::protobuf::AsView for Body {
+  type Proxied = Self;
+  fn as_view(&self) -> BodyView<'_> {
+    self.as_view()
+  }
+}
+
+impl ::protobuf::AsMut for Body {
+  type MutProxied = Self;
+  fn as_mut(&mut self) -> BodyMut<'_> {
+    self.as_mut()
+  }
+}
+
+unsafe impl ::protobuf::__internal::runtime::AssociatedMiniTable for Body {
+  fn mini_table() -> ::protobuf::__internal::runtime::MiniTablePtr {
+    static ONCE_LOCK: ::std::sync::OnceLock<::protobuf::__internal::runtime::MiniTableInitPtr> =
+        ::std::sync::OnceLock::new();
+    unsafe {
+      ONCE_LOCK.get_or_init(|| {
+        super::super::super::claw_request::php_fpm::palm__lavender__v1__ClawRequest__PhpFpm__Body_msg_init.0 =
+            ::protobuf::__internal::runtime::build_mini_table("$1X1X)P)P)P)P)P)P)P)P)P)P)P)P)PsaG");
+        ::protobuf::__internal::runtime::link_mini_table(
+            super::super::super::claw_request::php_fpm::palm__lavender__v1__ClawRequest__PhpFpm__Body_msg_init.0, &[<super::super::super::claw_request::php_fpm::body::Process as ::protobuf::__internal::runtime::AssociatedMiniTable>::mini_table(),
+            ], &[]);
+        ::protobuf::__internal::runtime::MiniTableInitPtr(super::super::super::claw_request::php_fpm::palm__lavender__v1__ClawRequest__PhpFpm__Body_msg_init.0)
+      }).0
+    }
+  }
+}
+unsafe impl ::protobuf::__internal::runtime::UpbGetArena for Body {
+  fn get_arena(&mut self, _private: ::protobuf::__internal::Private) -> &::protobuf::__internal::runtime::Arena {
+    self.inner.arena()
+  }
+}
+
+unsafe impl ::protobuf::__internal::runtime::UpbGetMessagePtrMut for Body {
+  type Msg = Body;
+  fn get_ptr_mut(&mut self, _private: ::protobuf::__internal::Private) -> ::protobuf::__internal::runtime::MessagePtr<Body> {
+    self.inner.ptr_mut()
+  }
+}
+unsafe impl ::protobuf::__internal::runtime::UpbGetMessagePtr for Body {
+  type Msg = Body;
+  fn get_ptr(&self, _private: ::protobuf::__internal::Private) -> ::protobuf::__internal::runtime::MessagePtr<Body> {
+    self.inner.ptr()
+  }
+}
+unsafe impl ::protobuf::__internal::runtime::UpbGetMessagePtrMut for BodyMut<'_> {
+  type Msg = Body;
+  fn get_ptr_mut(&mut self, _private: ::protobuf::__internal::Private) -> ::protobuf::__internal::runtime::MessagePtr<Body> {
+    self.inner.ptr_mut()
+  }
+}
+unsafe impl ::protobuf::__internal::runtime::UpbGetMessagePtr for BodyMut<'_> {
+  type Msg = Body;
+  fn get_ptr(&self, _private: ::protobuf::__internal::Private) -> ::protobuf::__internal::runtime::MessagePtr<Body> {
+    self.inner.ptr()
+  }
+}
+unsafe impl ::protobuf::__internal::runtime::UpbGetMessagePtr for BodyView<'_> {
+  type Msg = Body;
+  fn get_ptr(&self, _private: ::protobuf::__internal::Private) -> ::protobuf::__internal::runtime::MessagePtr<Body> {
+    self.inner.ptr()
+  }
+}
+
+unsafe impl ::protobuf::__internal::runtime::UpbGetArena for BodyMut<'_> {
+  fn get_arena(&mut self, _private: ::protobuf::__internal::Private) -> &::protobuf::__internal::runtime::Arena {
+    self.inner.arena()
+  }
+}
+
+pub mod body {// This variable must not be referenced except by protobuf generated
+// code.
+pub(crate) static mut palm__lavender__v1__ClawRequest__PhpFpm__Body__Process_msg_init: ::protobuf::__internal::runtime::MiniTableInitPtr =
+    ::protobuf::__internal::runtime::MiniTableInitPtr(::protobuf::__internal::runtime::MiniTablePtr::dangling());
+#[allow(non_camel_case_types)]
+pub struct Process {
+  inner: ::protobuf::__internal::runtime::OwnedMessageInner<Process>
+}
+
+impl ::protobuf::Message for Process {}
+
+impl ::std::default::Default for Process {
+  fn default() -> Self {
+    Self::new()
+  }
+}
+
+impl ::std::fmt::Debug for Process {
+  fn fmt(&self, f: &mut ::std::fmt::Formatter<'_>) -> ::std::fmt::Result {
+    write!(f, "{}", ::protobuf::__internal::runtime::debug_string(self))
+  }
+}
+
+// SAFETY:
+// - `Process` is `Sync` because it does not implement interior mutability.
+//    Neither does `ProcessMut`.
+unsafe impl Sync for Process {}
+
+// SAFETY:
+// - `Process` is `Send` because it uniquely owns its arena and does
+//   not use thread-local data.
+unsafe impl Send for Process {}
+
+impl ::protobuf::Proxied for Process {
+  type View<'msg> = ProcessView<'msg>;
+}
+
+impl ::protobuf::__internal::SealedInternal for Process {}
+
+impl ::protobuf::MutProxied for Process {
+  type Mut<'msg> = ProcessMut<'msg>;
+}
+
+#[derive(Copy, Clone)]
+#[allow(dead_code)]
+pub struct ProcessView<'msg> {
+  inner: ::protobuf::__internal::runtime::MessageViewInner<'msg, Process>,
+}
+
+impl<'msg> ::protobuf::__internal::SealedInternal for ProcessView<'msg> {}
+
+impl<'msg> ::protobuf::MessageView<'msg> for ProcessView<'msg> {
+  type Message = Process;
+}
+
+impl ::std::fmt::Debug for ProcessView<'_> {
+  fn fmt(&self, f: &mut ::std::fmt::Formatter<'_>) -> ::std::fmt::Result {
+    write!(f, "{}", ::protobuf::__internal::runtime::debug_string(self))
+  }
+}
+
+impl ::std::default::Default for ProcessView<'_> {
+  fn default() -> ProcessView<'static> {
+    ::protobuf::__internal::runtime::MessageViewInner::default().into()
+  }
+}
+
+impl<'msg> From<::protobuf::__internal::runtime::MessageViewInner<'msg, Process>> for ProcessView<'msg> {
+  fn from(inner: ::protobuf::__internal::runtime::MessageViewInner<'msg, Process>) -> Self {
+    Self { inner }
+  }
+}
+
+#[allow(dead_code)]
+impl<'msg> ProcessView<'msg> {
+
+  pub fn to_owned(&self) -> Process {
+    ::protobuf::IntoProxied::into_proxied(*self, ::protobuf::__internal::Private)
+  }
+
+  // pid: optional uint32
+  pub fn pid(self) -> u32 {
+    unsafe {
+      // TODO: b/361751487: This .into() and .try_into() is only
+      // here for the enum<->i32 case, we should avoid it for
+      // other primitives where the types naturally match
+      // perfectly (and do an unchecked conversion for
+      // i32->enum types, since even for closed enums we trust
+      // upb to only return one of the named values).
+      self.inner.ptr().get_u32_at_index(
+        0, (0u32).into()
+      ).try_into().unwrap()
+    }
+  }
+
+  // state: optional string
+  pub fn state(self) -> ::protobuf::View<'msg, ::protobuf::ProtoString> {
+    let str_view = unsafe {
+      self.inner.ptr().get_string_at_index(
+        1, (b"").into()
+      )
+    };
+    // SAFETY: The runtime doesn't require ProtoStr to be UTF-8.
+    unsafe { ::protobuf::ProtoStr::from_utf8_unchecked(str_view.as_ref()) }
+  }
+
+  // start_time: optional uint32
+  pub fn start_time(self) -> u32 {
+    unsafe {
+      // TODO: b/361751487: This .into() and .try_into() is only
+      // here for the enum<->i32 case, we should avoid it for
+      // other primitives where the types naturally match
+      // perfectly (and do an unchecked conversion for
+      // i32->enum types, since even for closed enums we trust
+      // upb to only return one of the named values).
+      self.inner.ptr().get_u32_at_index(
+        2, (0u32).into()
+      ).try_into().unwrap()
+    }
+  }
+
+  // start_since: optional uint32
+  pub fn start_since(self) -> u32 {
+    unsafe {
+      // TODO: b/361751487: This .into() and .try_into() is only
+      // here for the enum<->i32 case, we should avoid it for
+      // other primitives where the types naturally match
+      // perfectly (and do an unchecked conversion for
+      // i32->enum types, since even for closed enums we trust
+      // upb to only return one of the named values).
+      self.inner.ptr().get_u32_at_index(
+        3, (0u32).into()
+      ).try_into().unwrap()
+    }
+  }
+
+  // requests: optional uint32
+  pub fn requests(self) -> u32 {
+    unsafe {
+      // TODO: b/361751487: This .into() and .try_into() is only
+      // here for the enum<->i32 case, we should avoid it for
+      // other primitives where the types naturally match
+      // perfectly (and do an unchecked conversion for
+      // i32->enum types, since even for closed enums we trust
+      // upb to only return one of the named values).
+      self.inner.ptr().get_u32_at_index(
+        4, (0u32).into()
+      ).try_into().unwrap()
+    }
+  }
+
+  // request_duration: optional uint32
+  pub fn request_duration(self) -> u32 {
+    unsafe {
+      // TODO: b/361751487: This .into() and .try_into() is only
+      // here for the enum<->i32 case, we should avoid it for
+      // other primitives where the types naturally match
+      // perfectly (and do an unchecked conversion for
+      // i32->enum types, since even for closed enums we trust
+      // upb to only return one of the named values).
+      self.inner.ptr().get_u32_at_index(
+        5, (0u32).into()
+      ).try_into().unwrap()
+    }
+  }
+
+  // request_method: optional string
+  pub fn request_method(self) -> ::protobuf::View<'msg, ::protobuf::ProtoString> {
+    let str_view = unsafe {
+      self.inner.ptr().get_string_at_index(
+        6, (b"").into()
+      )
+    };
+    // SAFETY: The runtime doesn't require ProtoStr to be UTF-8.
+    unsafe { ::protobuf::ProtoStr::from_utf8_unchecked(str_view.as_ref()) }
+  }
+
+  // request_uri: optional string
+  pub fn request_uri(self) -> ::protobuf::View<'msg, ::protobuf::ProtoString> {
+    let str_view = unsafe {
+      self.inner.ptr().get_string_at_index(
+        7, (b"").into()
+      )
+    };
+    // SAFETY: The runtime doesn't require ProtoStr to be UTF-8.
+    unsafe { ::protobuf::ProtoStr::from_utf8_unchecked(str_view.as_ref()) }
+  }
+
+  // content_length: optional uint32
+  pub fn content_length(self) -> u32 {
+    unsafe {
+      // TODO: b/361751487: This .into() and .try_into() is only
+      // here for the enum<->i32 case, we should avoid it for
+      // other primitives where the types naturally match
+      // perfectly (and do an unchecked conversion for
+      // i32->enum types, since even for closed enums we trust
+      // upb to only return one of the named values).
+      self.inner.ptr().get_u32_at_index(
+        8, (0u32).into()
+      ).try_into().unwrap()
+    }
+  }
+
+  // user: optional string
+  pub fn user(self) -> ::protobuf::View<'msg, ::protobuf::ProtoString> {
+    let str_view = unsafe {
+      self.inner.ptr().get_string_at_index(
+        9, (b"").into()
+      )
+    };
+    // SAFETY: The runtime doesn't require ProtoStr to be UTF-8.
+    unsafe { ::protobuf::ProtoStr::from_utf8_unchecked(str_view.as_ref()) }
+  }
+
+  // script: optional string
+  pub fn script(self) -> ::protobuf::View<'msg, ::protobuf::ProtoString> {
+    let str_view = unsafe {
+      self.inner.ptr().get_string_at_index(
+        10, (b"").into()
+      )
+    };
+    // SAFETY: The runtime doesn't require ProtoStr to be UTF-8.
+    unsafe { ::protobuf::ProtoStr::from_utf8_unchecked(str_view.as_ref()) }
+  }
+
+  // last_request_cpu: optional float
+  pub fn last_request_cpu(self) -> f32 {
+    unsafe {
+      // TODO: b/361751487: This .into() and .try_into() is only
+      // here for the enum<->i32 case, we should avoid it for
+      // other primitives where the types naturally match
+      // perfectly (and do an unchecked conversion for
+      // i32->enum types, since even for closed enums we trust
+      // upb to only return one of the named values).
+      self.inner.ptr().get_f32_at_index(
+        11, (0f32).into()
+      ).try_into().unwrap()
+    }
+  }
+
+  // last_request_memory: optional uint32
+  pub fn last_request_memory(self) -> u32 {
+    unsafe {
+      // TODO: b/361751487: This .into() and .try_into() is only
+      // here for the enum<->i32 case, we should avoid it for
+      // other primitives where the types naturally match
+      // perfectly (and do an unchecked conversion for
+      // i32->enum types, since even for closed enums we trust
+      // upb to only return one of the named values).
+      self.inner.ptr().get_u32_at_index(
+        12, (0u32).into()
+      ).try_into().unwrap()
+    }
+  }
+
+}
+
+// SAFETY:
+// - `ProcessView` is `Sync` because it does not support mutation.
+unsafe impl Sync for ProcessView<'_> {}
+
+// SAFETY:
+// - `ProcessView` is `Send` because while its alive a `ProcessMut` cannot.
+// - `ProcessView` does not use thread-local data.
+unsafe impl Send for ProcessView<'_> {}
+
+impl<'msg> ::protobuf::AsView for ProcessView<'msg> {
+  type Proxied = Process;
+  fn as_view(&self) -> ::protobuf::View<'msg, Process> {
+    *self
+  }
+}
+
+impl<'msg> ::protobuf::IntoView<'msg> for ProcessView<'msg> {
+  fn into_view<'shorter>(self) -> ProcessView<'shorter>
+  where
+      'msg: 'shorter {
+    self
+  }
+}
+
+impl<'msg> ::protobuf::IntoProxied<Process> for ProcessView<'msg> {
+  fn into_proxied(self, _private: ::protobuf::__internal::Private) -> Process {
+    let mut dst = Process::new();
+    assert!(unsafe {
+      dst.inner.ptr_mut().deep_copy(self.inner.ptr(), dst.inner.arena())
+    });
+    dst
+  }
+}
+
+impl<'msg> ::protobuf::IntoProxied<Process> for ProcessMut<'msg> {
+  fn into_proxied(self, _private: ::protobuf::__internal::Private) -> Process {
+    ::protobuf::IntoProxied::into_proxied(::protobuf::IntoView::into_view(self), _private)
+  }
+}
+
+impl ::protobuf::__internal::runtime::EntityType for Process {
+    type Tag = ::protobuf::__internal::runtime::MessageTag;
+}
+
+impl<'msg> ::protobuf::__internal::runtime::EntityType for ProcessView<'msg> {
+    type Tag = ::protobuf::__internal::runtime::ViewProxyTag;
+}
+
+impl<'msg> ::protobuf::__internal::runtime::EntityType for ProcessMut<'msg> {
+    type Tag = ::protobuf::__internal::runtime::MutProxyTag;
+}
+
+#[allow(dead_code)]
+#[allow(non_camel_case_types)]
+pub struct ProcessMut<'msg> {
+  inner: ::protobuf::__internal::runtime::MessageMutInner<'msg, Process>,
+}
+
+impl<'msg> ::protobuf::__internal::SealedInternal for ProcessMut<'msg> {}
+
+impl<'msg> ::protobuf::MessageMut<'msg> for ProcessMut<'msg> {
+  type Message = Process;
+}
+
+impl ::std::fmt::Debug for ProcessMut<'_> {
+  fn fmt(&self, f: &mut ::std::fmt::Formatter<'_>) -> ::std::fmt::Result {
+    write!(f, "{}", ::protobuf::__internal::runtime::debug_string(self))
+  }
+}
+
+impl<'msg> From<::protobuf::__internal::runtime::MessageMutInner<'msg, Process>> for ProcessMut<'msg> {
+  fn from(inner: ::protobuf::__internal::runtime::MessageMutInner<'msg, Process>) -> Self {
+    Self { inner }
+  }
+}
+
+#[allow(dead_code)]
+impl<'msg> ProcessMut<'msg> {
+
+  #[doc(hidden)]
+  pub fn as_message_mut_inner(&mut self, _private: ::protobuf::__internal::Private)
+    -> ::protobuf::__internal::runtime::MessageMutInner<'msg, Process> {
+    self.inner
+  }
+
+  pub fn to_owned(&self) -> Process {
+    ::protobuf::AsView::as_view(self).to_owned()
+  }
+
+  // pid: optional uint32
+  pub fn pid(&self) -> u32 {
+    unsafe {
+      // TODO: b/361751487: This .into() and .try_into() is only
+      // here for the enum<->i32 case, we should avoid it for
+      // other primitives where the types naturally match
+      // perfectly (and do an unchecked conversion for
+      // i32->enum types, since even for closed enums we trust
+      // upb to only return one of the named values).
+      self.inner.ptr().get_u32_at_index(
+        0, (0u32).into()
+      ).try_into().unwrap()
+    }
+  }
+  pub fn set_pid(&mut self, val: u32) {
+    unsafe {
+      // TODO: b/361751487: This .into() is only here
+      // here for the enum<->i32 case, we should avoid it for
+      // other primitives where the types naturally match
+      //perfectly.
+      self.inner.ptr_mut().set_base_field_u32_at_index(
+        0, val.into()
+      )
+    }
+  }
+
+  // state: optional string
+  pub fn state(&self) -> ::protobuf::View<'_, ::protobuf::ProtoString> {
+    let str_view = unsafe {
+      self.inner.ptr().get_string_at_index(
+        1, (b"").into()
+      )
+    };
+    // SAFETY: The runtime doesn't require ProtoStr to be UTF-8.
+    unsafe { ::protobuf::ProtoStr::from_utf8_unchecked(str_view.as_ref()) }
+  }
+  pub fn set_state(&mut self, val: impl ::protobuf::IntoProxied<::protobuf::ProtoString>) {
+    unsafe {
+      ::protobuf::__internal::runtime::message_set_string_field(
+        ::protobuf::AsMut::as_mut(self).inner,
+        1,
+        val);
+    }
+  }
+
+  // start_time: optional uint32
+  pub fn start_time(&self) -> u32 {
+    unsafe {
+      // TODO: b/361751487: This .into() and .try_into() is only
+      // here for the enum<->i32 case, we should avoid it for
+      // other primitives where the types naturally match
+      // perfectly (and do an unchecked conversion for
+      // i32->enum types, since even for closed enums we trust
+      // upb to only return one of the named values).
+      self.inner.ptr().get_u32_at_index(
+        2, (0u32).into()
+      ).try_into().unwrap()
+    }
+  }
+  pub fn set_start_time(&mut self, val: u32) {
+    unsafe {
+      // TODO: b/361751487: This .into() is only here
+      // here for the enum<->i32 case, we should avoid it for
+      // other primitives where the types naturally match
+      //perfectly.
+      self.inner.ptr_mut().set_base_field_u32_at_index(
+        2, val.into()
+      )
+    }
+  }
+
+  // start_since: optional uint32
+  pub fn start_since(&self) -> u32 {
+    unsafe {
+      // TODO: b/361751487: This .into() and .try_into() is only
+      // here for the enum<->i32 case, we should avoid it for
+      // other primitives where the types naturally match
+      // perfectly (and do an unchecked conversion for
+      // i32->enum types, since even for closed enums we trust
+      // upb to only return one of the named values).
+      self.inner.ptr().get_u32_at_index(
+        3, (0u32).into()
+      ).try_into().unwrap()
+    }
+  }
+  pub fn set_start_since(&mut self, val: u32) {
+    unsafe {
+      // TODO: b/361751487: This .into() is only here
+      // here for the enum<->i32 case, we should avoid it for
+      // other primitives where the types naturally match
+      //perfectly.
+      self.inner.ptr_mut().set_base_field_u32_at_index(
+        3, val.into()
+      )
+    }
+  }
+
+  // requests: optional uint32
+  pub fn requests(&self) -> u32 {
+    unsafe {
+      // TODO: b/361751487: This .into() and .try_into() is only
+      // here for the enum<->i32 case, we should avoid it for
+      // other primitives where the types naturally match
+      // perfectly (and do an unchecked conversion for
+      // i32->enum types, since even for closed enums we trust
+      // upb to only return one of the named values).
+      self.inner.ptr().get_u32_at_index(
+        4, (0u32).into()
+      ).try_into().unwrap()
+    }
+  }
+  pub fn set_requests(&mut self, val: u32) {
+    unsafe {
+      // TODO: b/361751487: This .into() is only here
+      // here for the enum<->i32 case, we should avoid it for
+      // other primitives where the types naturally match
+      //perfectly.
+      self.inner.ptr_mut().set_base_field_u32_at_index(
+        4, val.into()
+      )
+    }
+  }
+
+  // request_duration: optional uint32
+  pub fn request_duration(&self) -> u32 {
+    unsafe {
+      // TODO: b/361751487: This .into() and .try_into() is only
+      // here for the enum<->i32 case, we should avoid it for
+      // other primitives where the types naturally match
+      // perfectly (and do an unchecked conversion for
+      // i32->enum types, since even for closed enums we trust
+      // upb to only return one of the named values).
+      self.inner.ptr().get_u32_at_index(
+        5, (0u32).into()
+      ).try_into().unwrap()
+    }
+  }
+  pub fn set_request_duration(&mut self, val: u32) {
+    unsafe {
+      // TODO: b/361751487: This .into() is only here
+      // here for the enum<->i32 case, we should avoid it for
+      // other primitives where the types naturally match
+      //perfectly.
+      self.inner.ptr_mut().set_base_field_u32_at_index(
+        5, val.into()
+      )
+    }
+  }
+
+  // request_method: optional string
+  pub fn request_method(&self) -> ::protobuf::View<'_, ::protobuf::ProtoString> {
+    let str_view = unsafe {
+      self.inner.ptr().get_string_at_index(
+        6, (b"").into()
+      )
+    };
+    // SAFETY: The runtime doesn't require ProtoStr to be UTF-8.
+    unsafe { ::protobuf::ProtoStr::from_utf8_unchecked(str_view.as_ref()) }
+  }
+  pub fn set_request_method(&mut self, val: impl ::protobuf::IntoProxied<::protobuf::ProtoString>) {
+    unsafe {
+      ::protobuf::__internal::runtime::message_set_string_field(
+        ::protobuf::AsMut::as_mut(self).inner,
+        6,
+        val);
+    }
+  }
+
+  // request_uri: optional string
+  pub fn request_uri(&self) -> ::protobuf::View<'_, ::protobuf::ProtoString> {
+    let str_view = unsafe {
+      self.inner.ptr().get_string_at_index(
+        7, (b"").into()
+      )
+    };
+    // SAFETY: The runtime doesn't require ProtoStr to be UTF-8.
+    unsafe { ::protobuf::ProtoStr::from_utf8_unchecked(str_view.as_ref()) }
+  }
+  pub fn set_request_uri(&mut self, val: impl ::protobuf::IntoProxied<::protobuf::ProtoString>) {
+    unsafe {
+      ::protobuf::__internal::runtime::message_set_string_field(
+        ::protobuf::AsMut::as_mut(self).inner,
+        7,
+        val);
+    }
+  }
+
+  // content_length: optional uint32
+  pub fn content_length(&self) -> u32 {
+    unsafe {
+      // TODO: b/361751487: This .into() and .try_into() is only
+      // here for the enum<->i32 case, we should avoid it for
+      // other primitives where the types naturally match
+      // perfectly (and do an unchecked conversion for
+      // i32->enum types, since even for closed enums we trust
+      // upb to only return one of the named values).
+      self.inner.ptr().get_u32_at_index(
+        8, (0u32).into()
+      ).try_into().unwrap()
+    }
+  }
+  pub fn set_content_length(&mut self, val: u32) {
+    unsafe {
+      // TODO: b/361751487: This .into() is only here
+      // here for the enum<->i32 case, we should avoid it for
+      // other primitives where the types naturally match
+      //perfectly.
+      self.inner.ptr_mut().set_base_field_u32_at_index(
+        8, val.into()
+      )
+    }
+  }
+
+  // user: optional string
+  pub fn user(&self) -> ::protobuf::View<'_, ::protobuf::ProtoString> {
+    let str_view = unsafe {
+      self.inner.ptr().get_string_at_index(
+        9, (b"").into()
+      )
+    };
+    // SAFETY: The runtime doesn't require ProtoStr to be UTF-8.
+    unsafe { ::protobuf::ProtoStr::from_utf8_unchecked(str_view.as_ref()) }
+  }
+  pub fn set_user(&mut self, val: impl ::protobuf::IntoProxied<::protobuf::ProtoString>) {
+    unsafe {
+      ::protobuf::__internal::runtime::message_set_string_field(
+        ::protobuf::AsMut::as_mut(self).inner,
+        9,
+        val);
+    }
+  }
+
+  // script: optional string
+  pub fn script(&self) -> ::protobuf::View<'_, ::protobuf::ProtoString> {
+    let str_view = unsafe {
+      self.inner.ptr().get_string_at_index(
+        10, (b"").into()
+      )
+    };
+    // SAFETY: The runtime doesn't require ProtoStr to be UTF-8.
+    unsafe { ::protobuf::ProtoStr::from_utf8_unchecked(str_view.as_ref()) }
+  }
+  pub fn set_script(&mut self, val: impl ::protobuf::IntoProxied<::protobuf::ProtoString>) {
+    unsafe {
+      ::protobuf::__internal::runtime::message_set_string_field(
+        ::protobuf::AsMut::as_mut(self).inner,
+        10,
+        val);
+    }
+  }
+
+  // last_request_cpu: optional float
+  pub fn last_request_cpu(&self) -> f32 {
+    unsafe {
+      // TODO: b/361751487: This .into() and .try_into() is only
+      // here for the enum<->i32 case, we should avoid it for
+      // other primitives where the types naturally match
+      // perfectly (and do an unchecked conversion for
+      // i32->enum types, since even for closed enums we trust
+      // upb to only return one of the named values).
+      self.inner.ptr().get_f32_at_index(
+        11, (0f32).into()
+      ).try_into().unwrap()
+    }
+  }
+  pub fn set_last_request_cpu(&mut self, val: f32) {
+    unsafe {
+      // TODO: b/361751487: This .into() is only here
+      // here for the enum<->i32 case, we should avoid it for
+      // other primitives where the types naturally match
+      //perfectly.
+      self.inner.ptr_mut().set_base_field_f32_at_index(
+        11, val.into()
+      )
+    }
+  }
+
+  // last_request_memory: optional uint32
+  pub fn last_request_memory(&self) -> u32 {
+    unsafe {
+      // TODO: b/361751487: This .into() and .try_into() is only
+      // here for the enum<->i32 case, we should avoid it for
+      // other primitives where the types naturally match
+      // perfectly (and do an unchecked conversion for
+      // i32->enum types, since even for closed enums we trust
+      // upb to only return one of the named values).
+      self.inner.ptr().get_u32_at_index(
+        12, (0u32).into()
+      ).try_into().unwrap()
+    }
+  }
+  pub fn set_last_request_memory(&mut self, val: u32) {
+    unsafe {
+      // TODO: b/361751487: This .into() is only here
+      // here for the enum<->i32 case, we should avoid it for
+      // other primitives where the types naturally match
+      //perfectly.
+      self.inner.ptr_mut().set_base_field_u32_at_index(
+        12, val.into()
+      )
+    }
+  }
+
+}
+
+// SAFETY:
+// - `ProcessMut` does not perform any shared mutation.
+unsafe impl Send for ProcessMut<'_> {}
+
+// SAFETY:
+// - `ProcessMut` does not perform any shared mutation.
+unsafe impl Sync for ProcessMut<'_> {}
+
+impl<'msg> ::protobuf::AsView for ProcessMut<'msg> {
+  type Proxied = Process;
+  fn as_view(&self) -> ::protobuf::View<'_, Process> {
+    ProcessView {
+      inner: ::protobuf::__internal::runtime::MessageViewInner::view_of_mut(self.inner)
+    }
+  }
+}
+
+impl<'msg> ::protobuf::IntoView<'msg> for ProcessMut<'msg> {
+  fn into_view<'shorter>(self) -> ::protobuf::View<'shorter, Process>
+  where
+      'msg: 'shorter {
+    ProcessView {
+      inner: ::protobuf::__internal::runtime::MessageViewInner::view_of_mut(self.inner)
+    }
+  }
+}
+
+impl<'msg> ::protobuf::AsMut for ProcessMut<'msg> {
+  type MutProxied = Process;
+  fn as_mut(&mut self) -> ProcessMut<'msg> {
+    ProcessMut { inner: self.inner }
+  }
+}
+
+impl<'msg> ::protobuf::IntoMut<'msg> for ProcessMut<'msg> {
+  fn into_mut<'shorter>(self) -> ProcessMut<'shorter>
+  where
+      'msg: 'shorter {
+    self
+  }
+}
+
+#[allow(dead_code)]
+impl Process {
+  pub fn new() -> Self {
+    Self { inner: ::protobuf::__internal::runtime::OwnedMessageInner::<Self>::new() }
+  }
+
+
+  #[doc(hidden)]
+  pub fn as_message_mut_inner(&mut self, _private: ::protobuf::__internal::Private) -> ::protobuf::__internal::runtime::MessageMutInner<'_, Process> {
+    ::protobuf::__internal::runtime::MessageMutInner::mut_of_owned(&mut self.inner)
+  }
+
+  pub fn as_view(&self) -> ProcessView<'_> {
+    ::protobuf::__internal::runtime::MessageViewInner::view_of_owned(&self.inner).into()
+  }
+
+  pub fn as_mut(&mut self) -> ProcessMut<'_> {
+    ::protobuf::__internal::runtime::MessageMutInner::mut_of_owned(&mut self.inner).into()
+  }
+
+  // pid: optional uint32
+  pub fn pid(&self) -> u32 {
+    unsafe {
+      // TODO: b/361751487: This .into() and .try_into() is only
+      // here for the enum<->i32 case, we should avoid it for
+      // other primitives where the types naturally match
+      // perfectly (and do an unchecked conversion for
+      // i32->enum types, since even for closed enums we trust
+      // upb to only return one of the named values).
+      self.inner.ptr().get_u32_at_index(
+        0, (0u32).into()
+      ).try_into().unwrap()
+    }
+  }
+  pub fn set_pid(&mut self, val: u32) {
+    unsafe {
+      // TODO: b/361751487: This .into() is only here
+      // here for the enum<->i32 case, we should avoid it for
+      // other primitives where the types naturally match
+      //perfectly.
+      self.inner.ptr_mut().set_base_field_u32_at_index(
+        0, val.into()
+      )
+    }
+  }
+
+  // state: optional string
+  pub fn state(&self) -> ::protobuf::View<'_, ::protobuf::ProtoString> {
+    let str_view = unsafe {
+      self.inner.ptr().get_string_at_index(
+        1, (b"").into()
+      )
+    };
+    // SAFETY: The runtime doesn't require ProtoStr to be UTF-8.
+    unsafe { ::protobuf::ProtoStr::from_utf8_unchecked(str_view.as_ref()) }
+  }
+  pub fn set_state(&mut self, val: impl ::protobuf::IntoProxied<::protobuf::ProtoString>) {
+    unsafe {
+      ::protobuf::__internal::runtime::message_set_string_field(
+        ::protobuf::AsMut::as_mut(self).inner,
+        1,
+        val);
+    }
+  }
+
+  // start_time: optional uint32
+  pub fn start_time(&self) -> u32 {
+    unsafe {
+      // TODO: b/361751487: This .into() and .try_into() is only
+      // here for the enum<->i32 case, we should avoid it for
+      // other primitives where the types naturally match
+      // perfectly (and do an unchecked conversion for
+      // i32->enum types, since even for closed enums we trust
+      // upb to only return one of the named values).
+      self.inner.ptr().get_u32_at_index(
+        2, (0u32).into()
+      ).try_into().unwrap()
+    }
+  }
+  pub fn set_start_time(&mut self, val: u32) {
+    unsafe {
+      // TODO: b/361751487: This .into() is only here
+      // here for the enum<->i32 case, we should avoid it for
+      // other primitives where the types naturally match
+      //perfectly.
+      self.inner.ptr_mut().set_base_field_u32_at_index(
+        2, val.into()
+      )
+    }
+  }
+
+  // start_since: optional uint32
+  pub fn start_since(&self) -> u32 {
+    unsafe {
+      // TODO: b/361751487: This .into() and .try_into() is only
+      // here for the enum<->i32 case, we should avoid it for
+      // other primitives where the types naturally match
+      // perfectly (and do an unchecked conversion for
+      // i32->enum types, since even for closed enums we trust
+      // upb to only return one of the named values).
+      self.inner.ptr().get_u32_at_index(
+        3, (0u32).into()
+      ).try_into().unwrap()
+    }
+  }
+  pub fn set_start_since(&mut self, val: u32) {
+    unsafe {
+      // TODO: b/361751487: This .into() is only here
+      // here for the enum<->i32 case, we should avoid it for
+      // other primitives where the types naturally match
+      //perfectly.
+      self.inner.ptr_mut().set_base_field_u32_at_index(
+        3, val.into()
+      )
+    }
+  }
+
+  // requests: optional uint32
+  pub fn requests(&self) -> u32 {
+    unsafe {
+      // TODO: b/361751487: This .into() and .try_into() is only
+      // here for the enum<->i32 case, we should avoid it for
+      // other primitives where the types naturally match
+      // perfectly (and do an unchecked conversion for
+      // i32->enum types, since even for closed enums we trust
+      // upb to only return one of the named values).
+      self.inner.ptr().get_u32_at_index(
+        4, (0u32).into()
+      ).try_into().unwrap()
+    }
+  }
+  pub fn set_requests(&mut self, val: u32) {
+    unsafe {
+      // TODO: b/361751487: This .into() is only here
+      // here for the enum<->i32 case, we should avoid it for
+      // other primitives where the types naturally match
+      //perfectly.
+      self.inner.ptr_mut().set_base_field_u32_at_index(
+        4, val.into()
+      )
+    }
+  }
+
+  // request_duration: optional uint32
+  pub fn request_duration(&self) -> u32 {
+    unsafe {
+      // TODO: b/361751487: This .into() and .try_into() is only
+      // here for the enum<->i32 case, we should avoid it for
+      // other primitives where the types naturally match
+      // perfectly (and do an unchecked conversion for
+      // i32->enum types, since even for closed enums we trust
+      // upb to only return one of the named values).
+      self.inner.ptr().get_u32_at_index(
+        5, (0u32).into()
+      ).try_into().unwrap()
+    }
+  }
+  pub fn set_request_duration(&mut self, val: u32) {
+    unsafe {
+      // TODO: b/361751487: This .into() is only here
+      // here for the enum<->i32 case, we should avoid it for
+      // other primitives where the types naturally match
+      //perfectly.
+      self.inner.ptr_mut().set_base_field_u32_at_index(
+        5, val.into()
+      )
+    }
+  }
+
+  // request_method: optional string
+  pub fn request_method(&self) -> ::protobuf::View<'_, ::protobuf::ProtoString> {
+    let str_view = unsafe {
+      self.inner.ptr().get_string_at_index(
+        6, (b"").into()
+      )
+    };
+    // SAFETY: The runtime doesn't require ProtoStr to be UTF-8.
+    unsafe { ::protobuf::ProtoStr::from_utf8_unchecked(str_view.as_ref()) }
+  }
+  pub fn set_request_method(&mut self, val: impl ::protobuf::IntoProxied<::protobuf::ProtoString>) {
+    unsafe {
+      ::protobuf::__internal::runtime::message_set_string_field(
+        ::protobuf::AsMut::as_mut(self).inner,
+        6,
+        val);
+    }
+  }
+
+  // request_uri: optional string
+  pub fn request_uri(&self) -> ::protobuf::View<'_, ::protobuf::ProtoString> {
+    let str_view = unsafe {
+      self.inner.ptr().get_string_at_index(
+        7, (b"").into()
+      )
+    };
+    // SAFETY: The runtime doesn't require ProtoStr to be UTF-8.
+    unsafe { ::protobuf::ProtoStr::from_utf8_unchecked(str_view.as_ref()) }
+  }
+  pub fn set_request_uri(&mut self, val: impl ::protobuf::IntoProxied<::protobuf::ProtoString>) {
+    unsafe {
+      ::protobuf::__internal::runtime::message_set_string_field(
+        ::protobuf::AsMut::as_mut(self).inner,
+        7,
+        val);
+    }
+  }
+
+  // content_length: optional uint32
+  pub fn content_length(&self) -> u32 {
+    unsafe {
+      // TODO: b/361751487: This .into() and .try_into() is only
+      // here for the enum<->i32 case, we should avoid it for
+      // other primitives where the types naturally match
+      // perfectly (and do an unchecked conversion for
+      // i32->enum types, since even for closed enums we trust
+      // upb to only return one of the named values).
+      self.inner.ptr().get_u32_at_index(
+        8, (0u32).into()
+      ).try_into().unwrap()
+    }
+  }
+  pub fn set_content_length(&mut self, val: u32) {
+    unsafe {
+      // TODO: b/361751487: This .into() is only here
+      // here for the enum<->i32 case, we should avoid it for
+      // other primitives where the types naturally match
+      //perfectly.
+      self.inner.ptr_mut().set_base_field_u32_at_index(
+        8, val.into()
+      )
+    }
+  }
+
+  // user: optional string
+  pub fn user(&self) -> ::protobuf::View<'_, ::protobuf::ProtoString> {
+    let str_view = unsafe {
+      self.inner.ptr().get_string_at_index(
+        9, (b"").into()
+      )
+    };
+    // SAFETY: The runtime doesn't require ProtoStr to be UTF-8.
+    unsafe { ::protobuf::ProtoStr::from_utf8_unchecked(str_view.as_ref()) }
+  }
+  pub fn set_user(&mut self, val: impl ::protobuf::IntoProxied<::protobuf::ProtoString>) {
+    unsafe {
+      ::protobuf::__internal::runtime::message_set_string_field(
+        ::protobuf::AsMut::as_mut(self).inner,
+        9,
+        val);
+    }
+  }
+
+  // script: optional string
+  pub fn script(&self) -> ::protobuf::View<'_, ::protobuf::ProtoString> {
+    let str_view = unsafe {
+      self.inner.ptr().get_string_at_index(
+        10, (b"").into()
+      )
+    };
+    // SAFETY: The runtime doesn't require ProtoStr to be UTF-8.
+    unsafe { ::protobuf::ProtoStr::from_utf8_unchecked(str_view.as_ref()) }
+  }
+  pub fn set_script(&mut self, val: impl ::protobuf::IntoProxied<::protobuf::ProtoString>) {
+    unsafe {
+      ::protobuf::__internal::runtime::message_set_string_field(
+        ::protobuf::AsMut::as_mut(self).inner,
+        10,
+        val);
+    }
+  }
+
+  // last_request_cpu: optional float
+  pub fn last_request_cpu(&self) -> f32 {
+    unsafe {
+      // TODO: b/361751487: This .into() and .try_into() is only
+      // here for the enum<->i32 case, we should avoid it for
+      // other primitives where the types naturally match
+      // perfectly (and do an unchecked conversion for
+      // i32->enum types, since even for closed enums we trust
+      // upb to only return one of the named values).
+      self.inner.ptr().get_f32_at_index(
+        11, (0f32).into()
+      ).try_into().unwrap()
+    }
+  }
+  pub fn set_last_request_cpu(&mut self, val: f32) {
+    unsafe {
+      // TODO: b/361751487: This .into() is only here
+      // here for the enum<->i32 case, we should avoid it for
+      // other primitives where the types naturally match
+      //perfectly.
+      self.inner.ptr_mut().set_base_field_f32_at_index(
+        11, val.into()
+      )
+    }
+  }
+
+  // last_request_memory: optional uint32
+  pub fn last_request_memory(&self) -> u32 {
+    unsafe {
+      // TODO: b/361751487: This .into() and .try_into() is only
+      // here for the enum<->i32 case, we should avoid it for
+      // other primitives where the types naturally match
+      // perfectly (and do an unchecked conversion for
+      // i32->enum types, since even for closed enums we trust
+      // upb to only return one of the named values).
+      self.inner.ptr().get_u32_at_index(
+        12, (0u32).into()
+      ).try_into().unwrap()
+    }
+  }
+  pub fn set_last_request_memory(&mut self, val: u32) {
+    unsafe {
+      // TODO: b/361751487: This .into() is only here
+      // here for the enum<->i32 case, we should avoid it for
+      // other primitives where the types naturally match
+      //perfectly.
+      self.inner.ptr_mut().set_base_field_u32_at_index(
+        12, val.into()
+      )
+    }
+  }
+
+}  // impl Process
+
+impl ::std::ops::Drop for Process {
+  #[inline]
+  fn drop(&mut self) {
+  }
+}
+
+impl ::std::clone::Clone for Process {
+  fn clone(&self) -> Self {
+    self.as_view().to_owned()
+  }
+}
+
+impl ::protobuf::AsView for Process {
+  type Proxied = Self;
+  fn as_view(&self) -> ProcessView<'_> {
+    self.as_view()
+  }
+}
+
+impl ::protobuf::AsMut for Process {
+  type MutProxied = Self;
+  fn as_mut(&mut self) -> ProcessMut<'_> {
+    self.as_mut()
+  }
+}
+
+unsafe impl ::protobuf::__internal::runtime::AssociatedMiniTable for Process {
+  fn mini_table() -> ::protobuf::__internal::runtime::MiniTablePtr {
+    static ONCE_LOCK: ::std::sync::OnceLock<::protobuf::__internal::runtime::MiniTableInitPtr> =
+        ::std::sync::OnceLock::new();
+    unsafe {
+      ONCE_LOCK.get_or_init(|| {
+        super::super::super::super::claw_request::php_fpm::body::palm__lavender__v1__ClawRequest__PhpFpm__Body__Process_msg_init.0 =
+            ::protobuf::__internal::runtime::build_mini_table("$)P1X)P)P)P)P1X1X)P1X1X!P)P");
+        ::protobuf::__internal::runtime::link_mini_table(
+            super::super::super::super::claw_request::php_fpm::body::palm__lavender__v1__ClawRequest__PhpFpm__Body__Process_msg_init.0, &[], &[]);
+        ::protobuf::__internal::runtime::MiniTableInitPtr(super::super::super::super::claw_request::php_fpm::body::palm__lavender__v1__ClawRequest__PhpFpm__Body__Process_msg_init.0)
+      }).0
+    }
+  }
+}
+unsafe impl ::protobuf::__internal::runtime::UpbGetArena for Process {
+  fn get_arena(&mut self, _private: ::protobuf::__internal::Private) -> &::protobuf::__internal::runtime::Arena {
+    self.inner.arena()
+  }
+}
+
+unsafe impl ::protobuf::__internal::runtime::UpbGetMessagePtrMut for Process {
+  type Msg = Process;
+  fn get_ptr_mut(&mut self, _private: ::protobuf::__internal::Private) -> ::protobuf::__internal::runtime::MessagePtr<Process> {
+    self.inner.ptr_mut()
+  }
+}
+unsafe impl ::protobuf::__internal::runtime::UpbGetMessagePtr for Process {
+  type Msg = Process;
+  fn get_ptr(&self, _private: ::protobuf::__internal::Private) -> ::protobuf::__internal::runtime::MessagePtr<Process> {
+    self.inner.ptr()
+  }
+}
+unsafe impl ::protobuf::__internal::runtime::UpbGetMessagePtrMut for ProcessMut<'_> {
+  type Msg = Process;
+  fn get_ptr_mut(&mut self, _private: ::protobuf::__internal::Private) -> ::protobuf::__internal::runtime::MessagePtr<Process> {
+    self.inner.ptr_mut()
+  }
+}
+unsafe impl ::protobuf::__internal::runtime::UpbGetMessagePtr for ProcessMut<'_> {
+  type Msg = Process;
+  fn get_ptr(&self, _private: ::protobuf::__internal::Private) -> ::protobuf::__internal::runtime::MessagePtr<Process> {
+    self.inner.ptr()
+  }
+}
+unsafe impl ::protobuf::__internal::runtime::UpbGetMessagePtr for ProcessView<'_> {
+  type Msg = Process;
+  fn get_ptr(&self, _private: ::protobuf::__internal::Private) -> ::protobuf::__internal::runtime::MessagePtr<Process> {
+    self.inner.ptr()
+  }
+}
+
+unsafe impl ::protobuf::__internal::runtime::UpbGetArena for ProcessMut<'_> {
+  fn get_arena(&mut self, _private: ::protobuf::__internal::Private) -> &::protobuf::__internal::runtime::Arena {
+    self.inner.arena()
+  }
+}
+
+
+
+}  // pub mod body
+
+
+}  // pub mod php_fpm
+
 
 #[non_exhaustive]
 #[derive(Debug, Clone, Copy)]
@@ -9633,6 +12868,7 @@ pub enum ItemOneof<'msg> {
   Mysql(::protobuf::View<'msg, super::super::claw_request::MySql>) = 13,
   Redis(::protobuf::View<'msg, super::super::claw_request::Redis>) = 14,
   Opensearch(::protobuf::View<'msg, super::super::claw_request::OpenSearch>) = 15,
+  PhpFpm(::protobuf::View<'msg, super::super::claw_request::PhpFpm>) = 16,
   Snmp(::protobuf::View<'msg, super::super::claw_request::Snmp>) = 99,
 
   not_set(std::marker::PhantomData<&'msg ()>) = 0
@@ -9647,6 +12883,7 @@ pub enum ItemCase {
   Mysql = 13,
   Redis = 14,
   Opensearch = 15,
+  PhpFpm = 16,
   Snmp = 99,
 
   not_set = 0
@@ -9662,6 +12899,7 @@ impl ItemCase {
       13 => Some(ItemCase::Mysql),
       14 => Some(ItemCase::Redis),
       15 => Some(ItemCase::Opensearch),
+      16 => Some(ItemCase::PhpFpm),
       99 => Some(ItemCase::Snmp),
       _ => None
     }

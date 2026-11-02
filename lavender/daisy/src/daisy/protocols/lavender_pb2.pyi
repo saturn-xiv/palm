@@ -78,7 +78,7 @@ class KubernetesResponse(_message.Message):
     def __init__(self, chunk_count: _Optional[int] = ...) -> None: ...
 
 class ClawRequest(_message.Message):
-    __slots__ = ("elapsed", "created_at", "http", "postgresql", "mysql", "redis", "opensearch", "snmp")
+    __slots__ = ("elapsed", "created_at", "http", "postgresql", "mysql", "redis", "opensearch", "php_fpm", "snmp")
     class Http(_message.Message):
         __slots__ = ("url", "status_code", "content_type", "body")
         URL_FIELD_NUMBER: _ClassVar[int]
@@ -160,6 +160,83 @@ class ClawRequest(_message.Message):
         task_max_waiting_in_queue_millis: int
         active_shards_percent_as_number: float
         def __init__(self, cluster_name: _Optional[str] = ..., status: _Optional[str] = ..., timed_out: _Optional[bool] = ..., number_of_nodes: _Optional[int] = ..., number_of_data_nodes: _Optional[int] = ..., discovered_master: _Optional[bool] = ..., discovered_cluster_manager: _Optional[bool] = ..., active_primary_shards: _Optional[int] = ..., active_shards: _Optional[int] = ..., relocating_shards: _Optional[int] = ..., initializing_shards: _Optional[int] = ..., unassigned_shards: _Optional[int] = ..., delayed_unassigned_shards: _Optional[int] = ..., number_of_pending_tasks: _Optional[int] = ..., number_of_in_flight_fetch: _Optional[int] = ..., task_max_waiting_in_queue_millis: _Optional[int] = ..., active_shards_percent_as_number: _Optional[float] = ...) -> None: ...
+    class PhpFpm(_message.Message):
+        __slots__ = ("x_powered_by", "expires", "cache_control", "content_type", "body")
+        class Body(_message.Message):
+            __slots__ = ("pool", "process_manager", "start_time", "start_since", "accepted_conn", "listen_queue", "max_listen_queue", "listen_queue_len", "idle_processes", "active_process", "total_process", "max_active_processes", "max_children_reached", "slow_requests", "memory_peak", "processes")
+            class Process(_message.Message):
+                __slots__ = ("pid", "state", "start_time", "start_since", "requests", "request_duration", "request_method", "request_uri", "content_length", "user", "script", "last_request_cpu", "last_request_memory")
+                PID_FIELD_NUMBER: _ClassVar[int]
+                STATE_FIELD_NUMBER: _ClassVar[int]
+                START_TIME_FIELD_NUMBER: _ClassVar[int]
+                START_SINCE_FIELD_NUMBER: _ClassVar[int]
+                REQUESTS_FIELD_NUMBER: _ClassVar[int]
+                REQUEST_DURATION_FIELD_NUMBER: _ClassVar[int]
+                REQUEST_METHOD_FIELD_NUMBER: _ClassVar[int]
+                REQUEST_URI_FIELD_NUMBER: _ClassVar[int]
+                CONTENT_LENGTH_FIELD_NUMBER: _ClassVar[int]
+                USER_FIELD_NUMBER: _ClassVar[int]
+                SCRIPT_FIELD_NUMBER: _ClassVar[int]
+                LAST_REQUEST_CPU_FIELD_NUMBER: _ClassVar[int]
+                LAST_REQUEST_MEMORY_FIELD_NUMBER: _ClassVar[int]
+                pid: int
+                state: str
+                start_time: int
+                start_since: int
+                requests: int
+                request_duration: int
+                request_method: str
+                request_uri: str
+                content_length: int
+                user: str
+                script: str
+                last_request_cpu: float
+                last_request_memory: int
+                def __init__(self, pid: _Optional[int] = ..., state: _Optional[str] = ..., start_time: _Optional[int] = ..., start_since: _Optional[int] = ..., requests: _Optional[int] = ..., request_duration: _Optional[int] = ..., request_method: _Optional[str] = ..., request_uri: _Optional[str] = ..., content_length: _Optional[int] = ..., user: _Optional[str] = ..., script: _Optional[str] = ..., last_request_cpu: _Optional[float] = ..., last_request_memory: _Optional[int] = ...) -> None: ...
+            POOL_FIELD_NUMBER: _ClassVar[int]
+            PROCESS_MANAGER_FIELD_NUMBER: _ClassVar[int]
+            START_TIME_FIELD_NUMBER: _ClassVar[int]
+            START_SINCE_FIELD_NUMBER: _ClassVar[int]
+            ACCEPTED_CONN_FIELD_NUMBER: _ClassVar[int]
+            LISTEN_QUEUE_FIELD_NUMBER: _ClassVar[int]
+            MAX_LISTEN_QUEUE_FIELD_NUMBER: _ClassVar[int]
+            LISTEN_QUEUE_LEN_FIELD_NUMBER: _ClassVar[int]
+            IDLE_PROCESSES_FIELD_NUMBER: _ClassVar[int]
+            ACTIVE_PROCESS_FIELD_NUMBER: _ClassVar[int]
+            TOTAL_PROCESS_FIELD_NUMBER: _ClassVar[int]
+            MAX_ACTIVE_PROCESSES_FIELD_NUMBER: _ClassVar[int]
+            MAX_CHILDREN_REACHED_FIELD_NUMBER: _ClassVar[int]
+            SLOW_REQUESTS_FIELD_NUMBER: _ClassVar[int]
+            MEMORY_PEAK_FIELD_NUMBER: _ClassVar[int]
+            PROCESSES_FIELD_NUMBER: _ClassVar[int]
+            pool: str
+            process_manager: str
+            start_time: int
+            start_since: int
+            accepted_conn: int
+            listen_queue: int
+            max_listen_queue: int
+            listen_queue_len: int
+            idle_processes: int
+            active_process: int
+            total_process: int
+            max_active_processes: int
+            max_children_reached: int
+            slow_requests: int
+            memory_peak: int
+            processes: _containers.RepeatedCompositeFieldContainer[ClawRequest.PhpFpm.Body.Process]
+            def __init__(self, pool: _Optional[str] = ..., process_manager: _Optional[str] = ..., start_time: _Optional[int] = ..., start_since: _Optional[int] = ..., accepted_conn: _Optional[int] = ..., listen_queue: _Optional[int] = ..., max_listen_queue: _Optional[int] = ..., listen_queue_len: _Optional[int] = ..., idle_processes: _Optional[int] = ..., active_process: _Optional[int] = ..., total_process: _Optional[int] = ..., max_active_processes: _Optional[int] = ..., max_children_reached: _Optional[int] = ..., slow_requests: _Optional[int] = ..., memory_peak: _Optional[int] = ..., processes: _Optional[_Iterable[_Union[ClawRequest.PhpFpm.Body.Process, _Mapping]]] = ...) -> None: ...
+        X_POWERED_BY_FIELD_NUMBER: _ClassVar[int]
+        EXPIRES_FIELD_NUMBER: _ClassVar[int]
+        CACHE_CONTROL_FIELD_NUMBER: _ClassVar[int]
+        CONTENT_TYPE_FIELD_NUMBER: _ClassVar[int]
+        BODY_FIELD_NUMBER: _ClassVar[int]
+        x_powered_by: str
+        expires: str
+        cache_control: str
+        content_type: str
+        body: ClawRequest.PhpFpm.Body
+        def __init__(self, x_powered_by: _Optional[str] = ..., expires: _Optional[str] = ..., cache_control: _Optional[str] = ..., content_type: _Optional[str] = ..., body: _Optional[_Union[ClawRequest.PhpFpm.Body, _Mapping]] = ...) -> None: ...
     FROM_FIELD_NUMBER: _ClassVar[int]
     ELAPSED_FIELD_NUMBER: _ClassVar[int]
     CREATED_AT_FIELD_NUMBER: _ClassVar[int]
@@ -168,6 +245,7 @@ class ClawRequest(_message.Message):
     MYSQL_FIELD_NUMBER: _ClassVar[int]
     REDIS_FIELD_NUMBER: _ClassVar[int]
     OPENSEARCH_FIELD_NUMBER: _ClassVar[int]
+    PHP_FPM_FIELD_NUMBER: _ClassVar[int]
     SNMP_FIELD_NUMBER: _ClassVar[int]
     elapsed: Duration
     created_at: Timestamp
@@ -176,5 +254,6 @@ class ClawRequest(_message.Message):
     mysql: ClawRequest.MySql
     redis: ClawRequest.Redis
     opensearch: ClawRequest.OpenSearch
+    php_fpm: ClawRequest.PhpFpm
     snmp: ClawRequest.Snmp
-    def __init__(self, elapsed: _Optional[_Union[Duration, _Mapping]] = ..., created_at: _Optional[_Union[Timestamp, _Mapping]] = ..., http: _Optional[_Union[ClawRequest.Http, _Mapping]] = ..., postgresql: _Optional[_Union[ClawRequest.PostgreSql, _Mapping]] = ..., mysql: _Optional[_Union[ClawRequest.MySql, _Mapping]] = ..., redis: _Optional[_Union[ClawRequest.Redis, _Mapping]] = ..., opensearch: _Optional[_Union[ClawRequest.OpenSearch, _Mapping]] = ..., snmp: _Optional[_Union[ClawRequest.Snmp, _Mapping]] = ..., **kwargs) -> None: ...
+    def __init__(self, elapsed: _Optional[_Union[Duration, _Mapping]] = ..., created_at: _Optional[_Union[Timestamp, _Mapping]] = ..., http: _Optional[_Union[ClawRequest.Http, _Mapping]] = ..., postgresql: _Optional[_Union[ClawRequest.PostgreSql, _Mapping]] = ..., mysql: _Optional[_Union[ClawRequest.MySql, _Mapping]] = ..., redis: _Optional[_Union[ClawRequest.Redis, _Mapping]] = ..., opensearch: _Optional[_Union[ClawRequest.OpenSearch, _Mapping]] = ..., php_fpm: _Optional[_Union[ClawRequest.PhpFpm, _Mapping]] = ..., snmp: _Optional[_Union[ClawRequest.Snmp, _Mapping]] = ..., **kwargs) -> None: ...
