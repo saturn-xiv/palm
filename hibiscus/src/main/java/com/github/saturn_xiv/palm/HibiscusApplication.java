@@ -1,5 +1,7 @@
 package com.github.saturn_xiv.palm;
 
+import com.github.saturn_xiv.palm.commands.OtpNodeCommand;
+
 import io.dropwizard.core.Application;
 import io.dropwizard.core.setup.Bootstrap;
 import io.dropwizard.core.setup.Environment;
@@ -17,13 +19,13 @@ public class HibiscusApplication extends Application<HibiscusConfiguration> {
 
     @Override
     public void initialize(final Bootstrap<HibiscusConfiguration> bootstrap) {
-        // TODO: application initialization
+        bootstrap.addCommand(new OtpNodeCommand());
     }
 
     @Override
     public void run(final HibiscusConfiguration configuration,
-                    final Environment environment) {
-        // TODO: implement application
+            final Environment environment) {
+
     }
 
 }
