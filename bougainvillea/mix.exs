@@ -23,6 +23,7 @@ defmodule Bougainvillea.MixProject do
   defp deps do
     [
       {:yaml_elixir, "~> 2.12"},
+      {:sweet_xml, "~> 0.7"},
       {:ecto_sql, "~> 3.0"},
       {:postgrex, "~> 0.22"},
       {:plug_cowboy, "~> 2.0"}

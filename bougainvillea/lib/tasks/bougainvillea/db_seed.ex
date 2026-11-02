@@ -1,7 +1,7 @@
 defmodule Mix.Tasks.Bougainvillea.DbSeed do
   use Mix.Task
   require Logger
-  import Ecto.Query
+  import SweetXml
 
   @shortdoc "Load the seed data from priv"
 
@@ -12,23 +12,56 @@ defmodule Mix.Tasks.Bougainvillea.DbSeed do
     priv_dir = :code.priv_dir(:bougainvillea)
 
     Bougainvillea.Repo.transaction(fn ->
-      load_iso4217(Path.join([priv_dir, "iso4217", "list-one.xml"]))
+      load_locales(Path.join(priv_dir, "locales"))
     end)
-
-    load_locales(Path.join(priv_dir, "locales"))
+    Bougainvillea.Repo.transaction(fn ->
+      if Bougainvillea.Portal.Dao.Currency.count() == 0 do
+        load_iso4217(Path.join([priv_dir, "iso4217", "list-one.xml"]))
+        count = Bougainvillea.Portal.Dao.Currency.count()
+        Logger.info("totally inserted #{count} items")
+      else
+        Logger.warning("table currencies isn't empty")
+      end
+    end)
 
     Logger.info("done.")
   end
 
   def load_iso4217(file) do
     Logger.info("loading iso4217 from #{file}")
+    {:ok, doc} = File.read(file)
+    items = doc |> xpath(
+      ~x"//CcyTbl/CcyNtry"l,
+      country: ~x"./CtryNm/text()",
+      name: ~x"./CcyNm/text()",
+      code: ~x"./Ccy/text()",
+      number: ~x"./CcyNbr/text()",
+      units: ~x"./CcyMnrUnts/text()",
+      fund: ~x"./CcyNm/@IsFund"
+    )
+
+    Enum.each(items, fn it ->
+      Logger.info("found #{it[:name]}(#{it[:code]},#{it[:number]})")
+      if it[:number] do
+        units = case it[:units] do
+          nil -> nil
+          ~c"N.A." -> nil
+          v -> List.to_integer(v)
+        end
+        {:ok, fund} = case it[:fund] do
+          nil -> {:ok, nil}
+          ~c"true" -> {:ok, true}
+          v -> {:error, "invalid value #{v}"}
+        end
+        {:ok, _} = Bougainvillea.Portal.Dao.Currency.create(List.to_string(it[:name]), List.to_string(it[:code]), List.to_string(it[:country]), List.to_string(it[:number]), units, fund)
+      end
+    end)
   end
 
   def load_locales(lang, key, value) when is_binary(value) do
     Logger.debug("found #{lang}.#{key}")
-    now = DateTime.utc_now(:microsecond)
-    if Bougainvillea.Portal.Models.Locale |> where([x], x.lang == ^lang and x.code == ^key) |> Bougainvillea.Repo.aggregate(:count) == 0 do
-      %Bougainvillea.Portal.Models.Locale{lang: lang, code: key, message: value, updated_at: now} |> Bougainvillea.Repo.insert()
+    if Bougainvillea.Portal.Dao.Locale.exist?(lang, key) do
+      {:ok, _} =  Bougainvillea.Portal.Dao.Locale.create(lang, key, value)
       {1, 1}
     else
       {1, 0}

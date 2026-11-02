@@ -5,7 +5,7 @@ defmodule Bougainvillea.Portal.Models.Currency do
     field :name, :string
     field :code, :string
     field :country, :string
-    field :number, :integer
+    field :number, :string
     field :units, :integer
     field :fund, :boolean
     field :created_at, :utc_datetime_usec
