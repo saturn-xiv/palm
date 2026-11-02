@@ -1,5 +1,11 @@
 # HIBISCUS - A BEAM node server for bougainvillea
 
+## Usage
+
+```bash
+cp ~/.asdf/installs/erlang/29.0.3/lib/jinterface-1.16/priv/OtpErlang.jar lib/com/ericsson/jinterface/1.16/jinterface-1.16.jar
+```
+
 How to start the Hibiscus application
 ---
 

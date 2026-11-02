@@ -20,6 +20,13 @@
         <mainClass>com.github.saturn_xiv.palm.HibiscusApplication</mainClass>
     </properties>
 
+    <repositories>
+        <repository>
+            <id>local-project-repo</id>
+            <url>file://${project.basedir}/lib</url>
+        </repository>
+    </repositories>
+
     <dependencyManagement>
         <dependencies>
             <dependency>
@@ -64,6 +71,12 @@
         <dependency>
             <groupId>org.hibernate.validator</groupId>
             <artifactId>hibernate-validator</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.ericsson</groupId>
+            <artifactId>jinterface</artifactId>
+            <version>1.16</version>
         </dependency>
 
         <!-- Source: https://mvnrepository.com/artifact/jakarta.mail/jakarta.mail-api -->
