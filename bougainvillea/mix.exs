@@ -22,6 +22,7 @@ defmodule Bougainvillea.MixProject do
   # Run "mix help deps" to learn about dependencies.
   defp deps do
     [
+      {:yaml_elixir, "~> 2.12"},
       {:ecto_sql, "~> 3.0"},
       {:postgrex, "~> 0.22"},
       {:plug_cowboy, "~> 2.0"}

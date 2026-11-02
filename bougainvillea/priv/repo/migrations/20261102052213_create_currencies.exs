@@ -10,7 +10,7 @@ defmodule Bougainvillea.Repo.Migrations.CreateCurrencies do
       add :number, :integer, null: false
       add :units, :integer
       add :fund, :boolean
-      add :created_at, :naive_datetime_usec, null: false, default: fragment("now()")
+      add :created_at, :utc_datetime_usec, null: false, default: fragment("now()")
     end
 
     create index(:currencies, [:name])

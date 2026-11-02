@@ -8,8 +8,8 @@ defmodule Bougainvillea.Repo.Migrations.CreateLocales do
       add :code, :string, size: 255, null: false
       add :message, :text, null: false
       add :version, :integer, null: false, default: 0
-      add :updated_at, :naive_datetime_usec, null: false
-      add :created_at, :naive_datetime_usec, null: false, default: fragment("now()")
+      add :updated_at, :utc_datetime_usec, null: false
+      add :created_at, :utc_datetime_usec, null: false, default: fragment("now()")
     end
 
     create index(:locales, [:lang])
