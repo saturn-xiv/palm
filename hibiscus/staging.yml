@@ -1,0 +1,17 @@
+server:
+  port: 8080
+spring:
+  datasource:
+    url: jdbc:postgresql://127.0.0.1:5432/hibiscus_dev
+    username: "www"
+    password: "change-me"
+    driver-class-name: "org.postgresql.Driver"
+    hikari:
+      maximum-pool-size: 10
+      minimum-idle: 5
+  rabbitmq:
+    host: "127.0.0.1"
+    port: 5672
+    username: "www"
+    password: "change-me"
+    virtual-host: "hibiscus.dev"
