@@ -145,7 +145,7 @@ RUN wget -q -P $HOME/downloads https://github.com/asdf-vm/asdf/releases/download
     && echo 'export PATH=${ASDF_DATA_DIR:-$HOME/.asdf}/shims:$PATH' >> $HOME/.zshrc
 
 RUN zsh -c "source $HOME/.zshrc && asdf plugin add erlang && asdf install erlang 29.1.2 && asdf set --home erlang 29.1.2"
-RUN zsh -c "source $HOME/.zshrc && asdf plugin add elixir && asdf install elixir 1.20.4-otp-29 && asdf set --home elixir 1.20.4-otp-29"
+RUN zsh -c "source $HOME/.zshrc && asdf plugin add elixir && asdf install elixir 1.20.5-otp-29 && asdf set --home elixir 1.20.5-otp-29"
 RUN echo "export HEX_HTTP_CONCURRENCY=1" >> $HOME/.zshrc && echo "export HEX_HTTP_TIMEOUT=120" >> $HOME/.zshrc
 # https://thrift.apache.org/lib/java.html
 RUN zsh -c "source $HOME/.zshrc && asdf plugin add java && asdf install java corretto-27.0.0.35.1 && asdf set --home java corretto-27.0.0.35.1"

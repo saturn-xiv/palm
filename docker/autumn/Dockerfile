@@ -114,7 +114,7 @@ RUN wget -q -P $HOME/downloads https://github.com/asdf-vm/asdf/releases/download
     && rm $HOME/downloads/asdf $HOME/downloads/asdf-v${ASDF_VERSION}-linux-${TARGETARCH}.tar.gz
 
 RUN bash -c "source $HOME/.profile && asdf plugin add erlang && asdf install erlang 29.1.2 && asdf set --home erlang 29.1.2"
-RUN bash -c "source $HOME/.profile && asdf plugin add elixir && asdf install elixir 1.20.4-otp-29 && asdf set --home elixir 1.20.4-otp-29"
+RUN bash -c "source $HOME/.profile && asdf plugin add elixir && asdf install elixir 1.20.5-otp-29 && asdf set --home elixir 1.20.5-otp-29"
 RUN echo "export HEX_HTTP_CONCURRENCY=1" >> $HOME/.profile && echo "export HEX_HTTP_TIMEOUT=120" >> $HOME/.profile
 # https://thrift.apache.org/lib/java.html
 RUN bash -c "source $HOME/.profile && asdf plugin add java && asdf install java corretto-27.0.0.35.1 && asdf set --home java corretto-27.0.0.35.1"
