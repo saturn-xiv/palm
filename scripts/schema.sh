@@ -158,6 +158,8 @@ cd $WORK_DIR/lavender/daisy/
 autopep8 --in-place --recursive src --exclude="src/daisy/protocols/*"
 cd $WORK_DIR/wisteria/dashboard/
 npx prettier --write "src/**/*.ts"
+cd $WORK_DIR/bougainvillea/
+mix format
 
 echo 'done.'
 exit 0
