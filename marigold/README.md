@@ -1,6 +1,6 @@
 # MARIGOLD - WechatPay services
 
-## setup
+## Setup
 
 - PostgreSql
 
