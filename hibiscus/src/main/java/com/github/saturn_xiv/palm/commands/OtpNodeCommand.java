@@ -11,6 +11,7 @@ import com.ericsson.otp.erlang.OtpErlangTuple;
 import com.ericsson.otp.erlang.OtpMbox;
 import com.ericsson.otp.erlang.OtpNode;
 import com.github.saturn_xiv.palm.HibiscusConfiguration;
+import com.github.saturn_xiv.palm.services.RbacService;
 
 import io.dropwizard.core.cli.ConfiguredCommand;
 import io.dropwizard.core.setup.Bootstrap;
@@ -50,11 +51,12 @@ public class OtpNodeCommand extends ConfiguredCommand<HibiscusConfiguration> {
         final var name = namespace.getString(NAME);
         final var cookie = namespace.getString(COOKIE);
         final var mailbox = namespace.getString(MAILBOX);
-        logger.info("start java otp server {}://{}", name, mailbox);
+
+        this.rbacService = new RbacService(null, "amqp://guest:guest@localhost:5672/vhost");
 
         OtpNode node = new OtpNode(name, cookie);
         OtpMbox mbox = node.createMbox(mailbox);
-        logger.info("Java Node started, waiting for messages...");
+        logger.info("Java otp node started at {}://{}, waiting for messages...", name, mailbox);
 
         while (true) {
             final var request = (OtpErlangTuple) mbox.receive();
@@ -95,6 +97,8 @@ public class OtpNodeCommand extends ConfiguredCommand<HibiscusConfiguration> {
 
         };
     }
+
+    private RbacService rbacService;
 
     private static final String OK = "ok";
     private static final String ERROR = "error";
