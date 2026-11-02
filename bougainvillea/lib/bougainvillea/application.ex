@@ -8,6 +8,7 @@ defmodule Bougainvillea.Application do
   @impl true
   def start(_type, _args) do
     children = [
+      Bougainvillea.Repo,
       {Plug.Cowboy, scheme: :http, plug: Bougainvillea.Router, options: [port: 8080]}
       # Starts a worker by calling: Bougainvillea.Worker.start_link(arg)
       # {Bougainvillea.Worker, arg}
