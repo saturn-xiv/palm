@@ -29,4 +29,3 @@ hibiscus:
   otp-node:
     name: "java-node@127.0.0.1"
     cookie: "secret-cookie"
-    mailbox: "hibiscus-mailbox"

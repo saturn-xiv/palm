@@ -4,6 +4,14 @@ defmodule Bougainvillea.Portal.Dao.Currency do
   end
 
   def create(name, code, country, number, units, fund) do
-    %Bougainvillea.Portal.Models.Currency{name: name, code: code, country: country, number: number, units: units, fund: fund} |> Bougainvillea.Repo.insert()
+    %Bougainvillea.Portal.Models.Currency{
+      name: name,
+      code: code,
+      country: country,
+      number: number,
+      units: units,
+      fund: fund
+    }
+    |> Bougainvillea.Repo.insert()
   end
 end
