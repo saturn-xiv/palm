@@ -1,4 +1,4 @@
-package com.github.saturn_xiv.palm.hibiscus.otp_node.handlers;
+package com.github.saturn_xiv.palm.hibiscus.otp_node.handlers.tink;
 
 import java.security.GeneralSecurityException;
 
@@ -12,41 +12,39 @@ import com.ericsson.otp.erlang.OtpErlangPid;
 import com.ericsson.otp.erlang.OtpErlangTuple;
 import com.ericsson.otp.erlang.OtpMbox;
 import com.github.saturn_xiv.palm.hibiscus.otp_node.Handler;
-import com.github.saturn_xiv.palm.hibiscus.utils.Aead;
+import com.github.saturn_xiv.palm.hibiscus.utils.tink.Mac;
 
 import jakarta.annotation.Resource;
 
-@Component("otp-node.h.aead")
-public class AeadHandler extends Handler {
-
+@Component("otp-node.h.mac.tink")
+public class MacHandler extends Handler {
     @Override
     public String mailbox() {
-        return "aead";
+        return "mac";
     }
 
     @Override
     protected void handle(OtpMbox mbox, OtpErlangPid fromPid, OtpErlangTuple request, String action, int len) {
         try {
-            if (action.equals("encrypt") && len == 4 && request.elementAt(2) instanceof OtpErlangBinary plain
-                    && request.elementAt(3) instanceof OtpErlangBinary associated) {
-                final var cipher = aead.encrypt(plain.binaryValue(), associated.binaryValue());
+            if (action.equals("compute") && len == 3 && request.elementAt(2) instanceof OtpErlangBinary message) {
+                final var mac = this.mac.compute(message.binaryValue());
                 super.send(mbox, fromPid, new OtpErlangObject[] {
                         super.ok(),
-                        new OtpErlangBinary(cipher)
+                        new OtpErlangBinary(mac)
                 });
                 return;
             }
-            if (action.equals("decrypt") && len == 4 && request.elementAt(2) instanceof OtpErlangBinary cipher
-                    && request.elementAt(3) instanceof OtpErlangBinary associated) {
-                final var plain = aead.decrypt(cipher.binaryValue(), associated.binaryValue());
+            if (action.equals("verify") && len == 4 && request.elementAt(2) instanceof OtpErlangBinary mac
+                    && request.elementAt(3) instanceof OtpErlangBinary message) {
+                this.mac.verify(mac.binaryValue(), message.binaryValue());
                 super.send(mbox, fromPid, new OtpErlangObject[] {
-                        super.ok(),
-                        new OtpErlangBinary(plain)
+                        super.ok()
                 });
                 return;
             }
+
         } catch (GeneralSecurityException e) {
-            logger.error("aead", e);
+            logger.error("mac", e);
             super.internalServerError(mbox, fromPid);
             return;
         }
@@ -55,7 +53,7 @@ public class AeadHandler extends Handler {
     }
 
     @Resource
-    Aead aead;
-    private static final Logger logger = LoggerFactory.getLogger(AeadHandler.class);
+    Mac mac;
+    private static final Logger logger = LoggerFactory.getLogger(MacHandler.class);
 
 }

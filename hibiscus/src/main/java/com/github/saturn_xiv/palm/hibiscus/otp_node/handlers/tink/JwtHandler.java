@@ -1,4 +1,4 @@
-package com.github.saturn_xiv.palm.hibiscus.otp_node.handlers;
+package com.github.saturn_xiv.palm.hibiscus.otp_node.handlers.tink;
 
 import java.security.GeneralSecurityException;
 import java.util.ArrayList;
@@ -17,11 +17,11 @@ import com.ericsson.otp.erlang.OtpErlangString;
 import com.ericsson.otp.erlang.OtpErlangTuple;
 import com.ericsson.otp.erlang.OtpMbox;
 import com.github.saturn_xiv.palm.hibiscus.otp_node.Handler;
-import com.github.saturn_xiv.palm.hibiscus.utils.Jwt;
+import com.github.saturn_xiv.palm.hibiscus.utils.tink.Jwt;
 
 import jakarta.annotation.Resource;
 
-@Component("otp-node.h.jwt")
+@Component("otp-node.h.jwt.tink")
 public class JwtHandler extends Handler {
 
     @Override

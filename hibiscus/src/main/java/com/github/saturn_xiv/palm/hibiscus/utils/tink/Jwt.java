@@ -1,23 +1,19 @@
-package com.github.saturn_xiv.palm.hibiscus.utils;
+package com.github.saturn_xiv.palm.hibiscus.utils.tink;
 
 import java.io.IOException;
 import java.io.Serializable;
-import java.nio.file.Files;
 import java.nio.file.Path;
 import java.security.GeneralSecurityException;
 import java.time.Instant;
 import java.time.temporal.ChronoUnit;
 import java.util.List;
+import java.util.UUID;
 
 import org.apache.commons.lang3.tuple.ImmutablePair;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
-import com.google.crypto.tink.InsecureSecretKeyAccess;
 import com.google.crypto.tink.KeysetHandle;
 import com.google.crypto.tink.RegistryConfiguration;
-import com.google.crypto.tink.TinkProtoKeysetFormat;
 import com.google.crypto.tink.jwt.JwtHmacParameters;
 import com.google.crypto.tink.jwt.JwtMac;
 import com.google.crypto.tink.jwt.JwtMacConfig;
@@ -28,8 +24,8 @@ import com.google.gson.Gson;
 
 import jakarta.annotation.PostConstruct;
 
-@Component("u.jwt")
-public class Jwt {
+@Component("u.jwt.tink")
+public class Jwt extends Keyset {
         public ImmutablePair<String, String> verify(String token, String issuer, String audience)
                         throws GeneralSecurityException {
                 JwtValidator validator = JwtValidator.newBuilder()
@@ -65,6 +61,7 @@ public class Jwt {
 
                 final var now = Instant.now();
                 RawJwt raw = RawJwt.newBuilder()
+                                .setJwtId(UUID.randomUUID().toString())
                                 .setIssuer(issuer)
                                 .setSubject(subject)
                                 .setAudiences(audiences)
@@ -95,36 +92,28 @@ public class Jwt {
                 return this.jwt.computeMacAndEncode(raw);
         }
 
+        @Override
+        protected KeysetHandle generate() throws GeneralSecurityException {
+                return KeysetHandle.generateNew(JwtHmacParameters.builder()
+                                .setKeySizeBytes(64)
+                                .setAlgorithm(JwtHmacParameters.Algorithm.HS512)
+                                .setKidStrategy(JwtHmacParameters.KidStrategy.BASE64_ENCODED_KEY_ID)
+                                .build(),
+                                RegistryConfiguration.get());
+
+        }
+
         // https://developers.google.com/tink/create-jwts-signature#java
         @PostConstruct
         void init() throws GeneralSecurityException, IOException {
                 this.gson = new Gson();
                 JwtMacConfig.register();
 
-                final var file = Path.of("jwt.bin");
-                if (!Files.exists(file)) {
-                        logger.warn("generate key file {}", file);
-                        KeysetHandle handle = KeysetHandle.generateNew(JwtHmacParameters.builder()
-                                        .setKeySizeBytes(64)
-                                        .setAlgorithm(JwtHmacParameters.Algorithm.HS512)
-                                        .setKidStrategy(JwtHmacParameters.KidStrategy.BASE64_ENCODED_KEY_ID)
-                                        .build(),
-                                        RegistryConfiguration.get());
-                        final byte[] keyset = TinkProtoKeysetFormat.serializeKeyset(
-                                        handle, InsecureSecretKeyAccess.get(), RegistryConfiguration.get());
-                        Files.write(file, keyset);
-                }
-
-                logger.debug("load key from {}", file);
-                KeysetHandle keysetHandle = TinkProtoKeysetFormat.parseKeyset(
-                                Files.readAllBytes(file),
-                                InsecureSecretKeyAccess.get(), RegistryConfiguration.get());
-
+                final var keysetHandle = super.load(Path.of("jwt.bin"));
                 this.jwt = keysetHandle.getPrimitive(RegistryConfiguration.get(), JwtMac.class);
         }
 
         private JwtMac jwt;
         private Gson gson;
         private final static String PAYLOAD = "ext";
-        private static final Logger logger = LoggerFactory.getLogger(Aead.class);
 }

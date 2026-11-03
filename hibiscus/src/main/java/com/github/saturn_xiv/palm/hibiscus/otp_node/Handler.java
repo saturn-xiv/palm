@@ -1,6 +1,8 @@
 package com.github.saturn_xiv.palm.hibiscus.otp_node;
 
 import java.nio.charset.StandardCharsets;
+import java.util.Arrays;
+import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -24,7 +26,9 @@ public abstract class Handler {
     public void execute(OtpMbox mbox, OtpErlangPid fromPid, OtpErlangTuple request, String action,
             int len) {
         try {
-            logger.info("{}@{}/{} {}({})", fromPid.id(), fromPid.node(), mbox.getName(), action, len);
+            List<String> args = Arrays.stream(request.elements()).map(x -> x.getClass().getSimpleName()).toList();
+            logger.info("{}@{}/{}.{}({}) {}", fromPid.id(), fromPid.node(), mbox.getName(), action, len,
+                    String.join(" ", args));
             this.handle(mbox, fromPid, request, action, len);
         } catch (Exception e) {
             logger.error("Internal server error", e);
