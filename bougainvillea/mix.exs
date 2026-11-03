@@ -22,6 +22,7 @@ defmodule Bougainvillea.MixProject do
   # Run "mix help deps" to learn about dependencies.
   defp deps do
     [
+      {:uuid, "~> 1.1"},
       {:yaml_elixir, "~> 2.12"},
       {:sweet_xml, "~> 0.7"},
       {:ecto_sql, "~> 3.0"},

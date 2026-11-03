@@ -13,4 +13,8 @@ defmodule Hibiscus do
       5000 -> {:error, "Timeout waiting for Hibiscus node."}
     end
   end
+
+  def uuid() do
+    UUID.uuid4()
+  end
 end
