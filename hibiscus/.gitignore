@@ -1,4 +1,6 @@
 /target/
 /.git-versioned-pom.xml
 /dependency-reduced-pom.xml
+
 /application.yml
+/*.bin
