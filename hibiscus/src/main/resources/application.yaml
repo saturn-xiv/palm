@@ -12,3 +12,5 @@ spring:
       thread-name-prefix: "hibiscus-t-"
   liquibase:
     change-log: classpath:db/change-logs/master.xml
+hibiscus:
+  version: "@project.version@"

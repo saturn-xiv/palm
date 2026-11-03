@@ -1,9 +1,9 @@
 defmodule Hibiscus do
   def version() do
-    Node.start(:"elixir_node@127.0.0.1")
-    Node.set_cookie(:secret_cookie)
+    Node.start(:"elixir-node@127.0.0.1")
+    Node.set_cookie(:"secret-cookie")
 
-    target = {:hibiscus_mailbox, :"java_node@127.0.0.1"}
+    target = {:"hibiscus-mailbox", :"java-node@127.0.0.1"}
 
     send(target, {self(), :version})
 
