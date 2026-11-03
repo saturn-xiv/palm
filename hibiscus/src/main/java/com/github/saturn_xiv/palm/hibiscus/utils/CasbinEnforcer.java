@@ -1,4 +1,4 @@
-package com.github.saturn_xiv.palm.hibiscus.helpers;
+package com.github.saturn_xiv.palm.hibiscus.utils;
 
 import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
@@ -19,8 +19,8 @@ import org.springframework.stereotype.Component;
 import jakarta.annotation.PostConstruct;
 import jakarta.annotation.Resource;
 
-@Component("h.casbin-enforcer")
-public class CasbinEnforcerHelper {
+@Component("u.casbin-enforcer")
+public class CasbinEnforcer {
     @PostConstruct
     void init() throws Exception {
         InputStream modelStream = getClass().getClassLoader().getResourceAsStream("rbac_model.conf");
@@ -69,5 +69,5 @@ public class CasbinEnforcerHelper {
     private Enforcer enforcer;
     private Watcher watcher;
 
-    private static final Logger logger = LoggerFactory.getLogger(CasbinEnforcerHelper.class);
+    private static final Logger logger = LoggerFactory.getLogger(CasbinEnforcer.class);
 }
