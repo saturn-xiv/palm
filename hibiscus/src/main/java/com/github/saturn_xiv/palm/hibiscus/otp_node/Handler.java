@@ -1,10 +1,13 @@
 package com.github.saturn_xiv.palm.hibiscus.otp_node;
 
+import java.nio.charset.StandardCharsets;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.scheduling.annotation.Async;
 
 import com.ericsson.otp.erlang.OtpErlangAtom;
+import com.ericsson.otp.erlang.OtpErlangBinary;
 import com.ericsson.otp.erlang.OtpErlangObject;
 import com.ericsson.otp.erlang.OtpErlangPid;
 import com.ericsson.otp.erlang.OtpErlangString;
@@ -21,6 +24,7 @@ public abstract class Handler {
     public void execute(OtpMbox mbox, OtpErlangPid fromPid, OtpErlangTuple request, String action,
             int len) {
         try {
+            logger.info("{}@{}/{} {}({})", fromPid.id(), fromPid.node(), mbox.getName(), action, len);
             this.handle(mbox, fromPid, request, action, len);
         } catch (Exception e) {
             logger.error("Internal server error", e);
@@ -53,6 +57,10 @@ public abstract class Handler {
 
     protected void send(OtpMbox mbox, OtpErlangPid fromPid, OtpErlangObject[] response) {
         mbox.send(fromPid, new OtpErlangTuple(response));
+    }
+
+    protected String binary2string(OtpErlangBinary b) {
+        return new String(b.binaryValue(), StandardCharsets.UTF_8);
     }
 
     private static final Logger logger = LoggerFactory.getLogger(Handler.class);

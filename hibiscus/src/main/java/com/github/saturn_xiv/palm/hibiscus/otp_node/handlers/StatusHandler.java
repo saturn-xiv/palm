@@ -24,7 +24,6 @@ public class StatusHandler extends Handler {
     protected void handle(OtpMbox mbox, OtpErlangPid fromPid, OtpErlangTuple request, String action,
             int len) {
         if (action.equals("version") && len == 2) {
-            logger.info("{}", action);
             super.send(mbox, fromPid, new OtpErlangObject[] {
                     super.ok(),
                     new OtpErlangString(version)

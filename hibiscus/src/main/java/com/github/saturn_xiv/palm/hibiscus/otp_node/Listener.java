@@ -14,9 +14,6 @@ import com.ericsson.otp.erlang.OtpErlangPid;
 import com.ericsson.otp.erlang.OtpErlangTuple;
 import com.ericsson.otp.erlang.OtpMbox;
 import com.ericsson.otp.erlang.OtpNode;
-import com.github.saturn_xiv.palm.hibiscus.utils.CasbinEnforcer;
-
-import jakarta.annotation.Resource;
 
 @Component("otp-node.listener")
 public class Listener {
@@ -47,9 +44,6 @@ public class Listener {
             }
         }
     }
-
-    @Resource
-    CasbinEnforcer casbinEnforcer;
 
     private static final Logger logger = LoggerFactory.getLogger(Listener.class);
 }
