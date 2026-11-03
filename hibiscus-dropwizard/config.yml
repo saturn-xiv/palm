@@ -1,5 +1,0 @@
----
-logging:
-  level: INFO
-  loggers:
-    com.github.saturn_xiv.palm: DEBUG
