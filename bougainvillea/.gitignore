@@ -1,4 +1,8 @@
 /_build/
 /deps/
 /mix.lock
+/erl_crash.dump
 /.elixir_ls/
+
+/config.toml
+/tmp/

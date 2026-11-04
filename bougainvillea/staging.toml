@@ -1,0 +1,14 @@
+[postgresql]
+host = "127.0.0.1"
+port = 5432
+db-name = "bougainvillea"
+user = "www"
+password = "change-me"
+pool-size = 16
+
+[rabbitmq]
+host = "127.0.0.1"
+port = 5672
+user = "www"
+password = "change-me"
+virtual-host = "bougainvillea"
