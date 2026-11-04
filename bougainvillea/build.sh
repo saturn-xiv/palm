@@ -6,11 +6,11 @@ export WORK_DIR=$PWD
 export PACKAGE=palm_"$(git describe --tags --always --dirty)-${VERSION_CODENAME}-$(uname -m)"
 export TARGET_DIR=$WORK_DIR/tmp
 
-cd $WORK_DIR/hibiscus/
+cd $WORK_DIR/marigold/
 mvn clean
 mvn package -Dmaven.test.skip=true
-mkdir -p $TARGET_DIR/$PACKAGE/hibiscus
-cp README.md staging.yml target/hibiscus-*.jar $TARGET_DIR/$PACKAGE/hibiscus/
+mkdir -p $TARGET_DIR/$PACKAGE/marigold
+cp README.md staging.yml target/marigold-*.jar $TARGET_DIR/$PACKAGE/marigold/
 
 cd $WORK_DIR/bougainvillea/
 export MIX_ENV=prod

@@ -5,7 +5,7 @@ import warnings
 
 from dahlia.protocols import oauth2_pb2 as dahlia_dot_protocols_dot_oauth2__pb2
 
-GRPC_GENERATED_VERSION = '1.82.1'
+GRPC_GENERATED_VERSION = '1.85.1'
 GRPC_VERSION = grpc.__version__
 _version_not_supported = False
 

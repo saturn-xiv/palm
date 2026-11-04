@@ -28,6 +28,10 @@ defmodule Bougainvillea.MixProject do
       {:sweet_xml, "~> 0.7"},
       {:ecto_sql, "~> 3.0"},
       {:postgrex, "~> 0.22"},
+      {:grpc, "~> 1.0"},
+      {:grpc_server, "~> 1.0"},
+      {:protobuf, "~> 0.17.1"},
+      {:grpc_reflection, "~> 0.5"},
       {:plug_cowboy, "~> 2.0"}
       # {:dep_from_hexpm, "~> 0.3.0"},
       # {:dep_from_git, git: "https://github.com/elixir-lang/my_dep.git", tag: "0.1.0"}
