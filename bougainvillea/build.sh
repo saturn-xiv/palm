@@ -68,7 +68,7 @@ function build_loquat() {
 
 function amazon_corretto_jdk() {
     mkdir -p $TARGET_DIR/$PACKAGE/share
-    local -a targets=("x86_64" "aarch64")
+    local -a targets=("x64" "aarch64")
     for t in "${targets[@]}"
     do
         local f=amazon-corretto-27-${t}-linux-jdk.tar.gz
@@ -85,6 +85,7 @@ function amazon_corretto_jdk() {
 build_java marigold
 build_python3 dahlia
 build_elixir bougainvillea
+build_loquat
 amazon_corretto_jdk
 
 cd $WORK_DIR/

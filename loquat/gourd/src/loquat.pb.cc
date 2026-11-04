@@ -244,24 +244,6 @@ struct HMacSignRequestDefaultTypeInternal {
 
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
     PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 HMacSignRequestDefaultTypeInternal _HMacSignRequest_default_instance_;
-template <typename>
-PROTOBUF_CONSTEXPR Empty::Empty(::_pbi::ConstantInitialized)
-#if defined(PROTOBUF_CUSTOM_VTABLE)
-    : ::google::protobuf::internal::ZeroFieldsBase(Empty_class_data_.base()){}
-#else   // PROTOBUF_CUSTOM_VTABLE
-    : ::google::protobuf::internal::ZeroFieldsBase() {
-}
-#endif  // PROTOBUF_CUSTOM_VTABLE
-struct EmptyDefaultTypeInternal {
-  PROTOBUF_CONSTEXPR EmptyDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
-  ~EmptyDefaultTypeInternal() {}
-  union {
-    Empty _instance;
-  };
-};
-
-PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
-    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 EmptyDefaultTypeInternal _Empty_default_instance_;
 
 inline constexpr Argon2VerifyRequest::Impl_::Impl_(
     ::_pbi::ConstantInitialized) noexcept
@@ -470,7 +452,6 @@ static constexpr const ::_pb::ServiceDescriptor* PROTOBUF_NONNULL* PROTOBUF_NULL
 const ::uint32_t
     TableStruct_loquat_2eproto::offsets[] ABSL_ATTRIBUTE_SECTION_VARIABLE(
         protodesc_cold) = {
-        0x000, // bitmap
         0x081, // bitmap
         PROTOBUF_FIELD_OFFSET(::palm::loquat::v1::JwtVerifyRequest, _impl_._has_bits_),
         6, // hasbit index offset
@@ -575,24 +556,22 @@ const ::uint32_t
 
 static const ::_pbi::MigrationSchema
     schemas[] ABSL_ATTRIBUTE_SECTION_VARIABLE(protodesc_cold) = {
-        {0, sizeof(::palm::loquat::v1::Empty)},
-        {1, sizeof(::palm::loquat::v1::JwtVerifyRequest)},
-        {10, sizeof(::palm::loquat::v1::JwtVerifyResponse)},
-        {17, sizeof(::palm::loquat::v1::JwtSignRequest)},
-        {38, sizeof(::palm::loquat::v1::JwtSignResponse)},
-        {43, sizeof(::palm::loquat::v1::HMacSignRequest)},
-        {48, sizeof(::palm::loquat::v1::HMacSignResponse)},
-        {53, sizeof(::palm::loquat::v1::HMacVerifyRequest)},
-        {60, sizeof(::palm::loquat::v1::AesEncryptRequest)},
-        {67, sizeof(::palm::loquat::v1::AesEncryptResponse)},
-        {72, sizeof(::palm::loquat::v1::AesDecryptRequest)},
-        {79, sizeof(::palm::loquat::v1::AesDecryptResponse)},
-        {84, sizeof(::palm::loquat::v1::Argon2SignRequest)},
-        {89, sizeof(::palm::loquat::v1::Argon2SignResponse)},
-        {94, sizeof(::palm::loquat::v1::Argon2VerifyRequest)},
+        {0, sizeof(::palm::loquat::v1::JwtVerifyRequest)},
+        {9, sizeof(::palm::loquat::v1::JwtVerifyResponse)},
+        {16, sizeof(::palm::loquat::v1::JwtSignRequest)},
+        {37, sizeof(::palm::loquat::v1::JwtSignResponse)},
+        {42, sizeof(::palm::loquat::v1::HMacSignRequest)},
+        {47, sizeof(::palm::loquat::v1::HMacSignResponse)},
+        {52, sizeof(::palm::loquat::v1::HMacVerifyRequest)},
+        {59, sizeof(::palm::loquat::v1::AesEncryptRequest)},
+        {66, sizeof(::palm::loquat::v1::AesEncryptResponse)},
+        {71, sizeof(::palm::loquat::v1::AesDecryptRequest)},
+        {78, sizeof(::palm::loquat::v1::AesDecryptResponse)},
+        {83, sizeof(::palm::loquat::v1::Argon2SignRequest)},
+        {88, sizeof(::palm::loquat::v1::Argon2SignResponse)},
+        {93, sizeof(::palm::loquat::v1::Argon2VerifyRequest)},
 };
 static const ::_pb::Message* PROTOBUF_NONNULL const file_default_instances[] = {
-    &::palm::loquat::v1::_Empty_default_instance_._instance,
     &::palm::loquat::v1::_JwtVerifyRequest_default_instance_._instance,
     &::palm::loquat::v1::_JwtVerifyResponse_default_instance_._instance,
     &::palm::loquat::v1::_JwtSignRequest_default_instance_._instance,
@@ -610,60 +589,65 @@ static const ::_pb::Message* PROTOBUF_NONNULL const file_default_instances[] = {
 };
 const char descriptor_table_protodef_loquat_2eproto[] ABSL_ATTRIBUTE_SECTION_VARIABLE(
     protodesc_cold) = {
-    "\n\014loquat.proto\022\016palm.loquat.v1\"\007\n\005Empty\""
-    "C\n\020JwtVerifyRequest\022\r\n\005token\030\001 \001(\t\022\016\n\006is"
-    "suer\030\002 \001(\t\022\020\n\010audience\030\003 \001(\t\"F\n\021JwtVerif"
-    "yResponse\022\017\n\007subject\030\001 \001(\t\022\024\n\007payload\030\002 "
-    "\001(\014H\000\210\001\001B\n\n\010_payload\"\341\001\n\016JwtSignRequest\022"
-    "\023\n\006jwt_id\030\001 \001(\tH\000\210\001\001\022\023\n\006key_id\030\002 \001(\tH\001\210\001"
-    "\001\022\016\n\006issuer\030\003 \001(\t\022\017\n\007subject\030\004 \001(\t\022\021\n\tau"
-    "diences\030\005 \003(\t\022\021\n\tissued_at\030\006 \001(\003\022\022\n\nnot_"
-    "before\030\007 \001(\003\022\022\n\nexpired_at\030\010 \001(\003\022\024\n\007payl"
-    "oad\030\t \001(\014H\002\210\001\001B\t\n\007_jwt_idB\t\n\007_key_idB\n\n\010"
-    "_payload\" \n\017JwtSignResponse\022\r\n\005token\030\001 \001"
-    "(\t\" \n\017HMacSignRequest\022\r\n\005plain\030\001 \001(\014\"\"\n\020"
-    "HMacSignResponse\022\016\n\006hashed\030\001 \001(\014\"2\n\021HMac"
-    "VerifyRequest\022\016\n\006hashed\030\001 \001(\014\022\r\n\005plain\030\002"
-    " \001(\014\";\n\021AesEncryptRequest\022\r\n\005plain\030\001 \001(\014"
-    "\022\027\n\017associated_data\030\002 \001(\014\"$\n\022AesEncryptR"
-    "esponse\022\016\n\006cipher\030\001 \001(\014\"<\n\021AesDecryptReq"
-    "uest\022\016\n\006cipher\030\001 \001(\014\022\027\n\017associated_data\030"
-    "\002 \001(\014\"#\n\022AesDecryptResponse\022\r\n\005plain\030\001 \001"
-    "(\014\"%\n\021Argon2SignRequest\022\020\n\010password\030\001 \001("
-    "\t\"$\n\022Argon2SignResponse\022\016\n\006hashed\030\001 \001(\t\""
-    "7\n\023Argon2VerifyRequest\022\016\n\006hashed\030\001 \001(\t\022\020"
-    "\n\010password\030\002 \001(\t2\241\001\n\003Jwt\022I\n\004Sign\022\036.palm."
-    "loquat.v1.JwtSignRequest\032\037.palm.loquat.v"
-    "1.JwtSignResponse\"\000\022O\n\006Verify\022 .palm.loq"
-    "uat.v1.JwtVerifyRequest\032!.palm.loquat.v1"
-    ".JwtVerifyResponse\"\0002\231\001\n\004HMac\022K\n\004Sign\022\037."
-    "palm.loquat.v1.HMacSignRequest\032 .palm.lo"
-    "quat.v1.HMacSignResponse\"\000\022D\n\006Verify\022!.p"
-    "alm.loquat.v1.HMacVerifyRequest\032\025.palm.l"
-    "oquat.v1.Empty\"\0002\255\001\n\003Aes\022R\n\007Encrypt\022!.pa"
-    "lm.loquat.v1.AesEncryptRequest\032\".palm.lo"
-    "quat.v1.AesEncryptResponse\"\000\022R\n\007Decrypt\022"
-    "!.palm.loquat.v1.AesDecryptRequest\032\".pal"
-    "m.loquat.v1.AesDecryptResponse\"\0002\241\001\n\006Arg"
-    "on2\022O\n\004Sign\022!.palm.loquat.v1.Argon2SignR"
-    "equest\032\".palm.loquat.v1.Argon2SignRespon"
-    "se\"\000\022F\n\006Verify\022#.palm.loquat.v1.Argon2Ve"
-    "rifyRequest\032\025.palm.loquat.v1.Empty\"\000B_\n,"
-    "com.github.saturn_xiv.palm.plugins.loqua"
-    "t.v1B\013LoquatProtoP\001Z\005./;v2\252\002\030Palm.Plugin"
-    "s.Loquat.Grpcb\006proto3"
+    "\n\014loquat.proto\022\016palm.loquat.v1\032\033google/p"
+    "rotobuf/empty.proto\"C\n\020JwtVerifyRequest\022"
+    "\r\n\005token\030\001 \001(\t\022\016\n\006issuer\030\002 \001(\t\022\020\n\010audien"
+    "ce\030\003 \001(\t\"F\n\021JwtVerifyResponse\022\017\n\007subject"
+    "\030\001 \001(\t\022\024\n\007payload\030\002 \001(\014H\000\210\001\001B\n\n\010_payload"
+    "\"\341\001\n\016JwtSignRequest\022\023\n\006jwt_id\030\001 \001(\tH\000\210\001\001"
+    "\022\023\n\006key_id\030\002 \001(\tH\001\210\001\001\022\016\n\006issuer\030\003 \001(\t\022\017\n"
+    "\007subject\030\004 \001(\t\022\021\n\taudiences\030\005 \003(\t\022\021\n\tiss"
+    "ued_at\030\006 \001(\003\022\022\n\nnot_before\030\007 \001(\003\022\022\n\nexpi"
+    "red_at\030\010 \001(\003\022\024\n\007payload\030\t \001(\014H\002\210\001\001B\t\n\007_j"
+    "wt_idB\t\n\007_key_idB\n\n\010_payload\" \n\017JwtSignR"
+    "esponse\022\r\n\005token\030\001 \001(\t\" \n\017HMacSignReques"
+    "t\022\r\n\005plain\030\001 \001(\014\"\"\n\020HMacSignResponse\022\016\n\006"
+    "hashed\030\001 \001(\014\"2\n\021HMacVerifyRequest\022\016\n\006has"
+    "hed\030\001 \001(\014\022\r\n\005plain\030\002 \001(\014\";\n\021AesEncryptRe"
+    "quest\022\r\n\005plain\030\001 \001(\014\022\027\n\017associated_data\030"
+    "\002 \001(\014\"$\n\022AesEncryptResponse\022\016\n\006cipher\030\001 "
+    "\001(\014\"<\n\021AesDecryptRequest\022\016\n\006cipher\030\001 \001(\014"
+    "\022\027\n\017associated_data\030\002 \001(\014\"#\n\022AesDecryptR"
+    "esponse\022\r\n\005plain\030\001 \001(\014\"%\n\021Argon2SignRequ"
+    "est\022\020\n\010password\030\001 \001(\t\"$\n\022Argon2SignRespo"
+    "nse\022\016\n\006hashed\030\001 \001(\t\"7\n\023Argon2VerifyReque"
+    "st\022\016\n\006hashed\030\001 \001(\t\022\020\n\010password\030\002 \001(\t2\241\001\n"
+    "\003Jwt\022I\n\004Sign\022\036.palm.loquat.v1.JwtSignReq"
+    "uest\032\037.palm.loquat.v1.JwtSignResponse\"\000\022"
+    "O\n\006Verify\022 .palm.loquat.v1.JwtVerifyRequ"
+    "est\032!.palm.loquat.v1.JwtVerifyResponse\"\000"
+    "2\232\001\n\004HMac\022K\n\004Sign\022\037.palm.loquat.v1.HMacS"
+    "ignRequest\032 .palm.loquat.v1.HMacSignResp"
+    "onse\"\000\022E\n\006Verify\022!.palm.loquat.v1.HMacVe"
+    "rifyRequest\032\026.google.protobuf.Empty\"\0002\255\001"
+    "\n\003Aes\022R\n\007Encrypt\022!.palm.loquat.v1.AesEnc"
+    "ryptRequest\032\".palm.loquat.v1.AesEncryptR"
+    "esponse\"\000\022R\n\007Decrypt\022!.palm.loquat.v1.Ae"
+    "sDecryptRequest\032\".palm.loquat.v1.AesDecr"
+    "yptResponse\"\0002\242\001\n\006Argon2\022O\n\004Sign\022!.palm."
+    "loquat.v1.Argon2SignRequest\032\".palm.loqua"
+    "t.v1.Argon2SignResponse\"\000\022G\n\006Verify\022#.pa"
+    "lm.loquat.v1.Argon2VerifyRequest\032\026.googl"
+    "e.protobuf.Empty\"\000B_\n,com.github.saturn_"
+    "xiv.palm.plugins.loquat.v1B\013LoquatProtoP"
+    "\001Z\005./;v2\252\002\030Palm.Plugins.Loquat.Grpcb\006pro"
+    "to3"
+};
+static const ::_pbi::DescriptorTable* PROTOBUF_NONNULL const
+    descriptor_table_loquat_2eproto_deps[1] = {
+        &::descriptor_table_google_2fprotobuf_2fempty_2eproto,
 };
 static ::absl::once_flag descriptor_table_loquat_2eproto_once;
 PROTOBUF_CONSTINIT const ::_pbi::DescriptorTable descriptor_table_loquat_2eproto = {
     false,
     false,
-    1661,
+    1683,
     descriptor_table_protodef_loquat_2eproto,
     "loquat.proto",
     &descriptor_table_loquat_2eproto_once,
-    nullptr,
-    0,
-    15,
+    descriptor_table_loquat_2eproto_deps,
+    1,
+    14,
     schemas,
     file_default_instances,
     TableStruct_loquat_2eproto::offsets,
@@ -673,115 +657,6 @@ PROTOBUF_CONSTINIT const ::_pbi::DescriptorTable descriptor_table_loquat_2eproto
 namespace palm {
 namespace loquat {
 namespace v1 {
-// ===================================================================
-
-class Empty::_Internal {
- public:
-};
-
-Empty::Empty(::google::protobuf::Arena* PROTOBUF_NULLABLE arena)
-#if defined(PROTOBUF_CUSTOM_VTABLE)
-    : ::google::protobuf::internal::ZeroFieldsBase(arena, Empty_class_data_.base()) {
-#else   // PROTOBUF_CUSTOM_VTABLE
-    : ::google::protobuf::internal::ZeroFieldsBase(arena) {
-#endif  // PROTOBUF_CUSTOM_VTABLE
-  // @@protoc_insertion_point(arena_constructor:palm.loquat.v1.Empty)
-}
-Empty::Empty(
-    ::google::protobuf::Arena* PROTOBUF_NULLABLE arena,
-    const Empty& from)
-#if defined(PROTOBUF_CUSTOM_VTABLE)
-    : ::google::protobuf::internal::ZeroFieldsBase(arena, Empty_class_data_.base()) {
-#else   // PROTOBUF_CUSTOM_VTABLE
-    : ::google::protobuf::internal::ZeroFieldsBase(arena) {
-#endif  // PROTOBUF_CUSTOM_VTABLE
-  Empty* const _this = this;
-  (void)_this;
-  _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
-      from._internal_metadata_);
-
-  // @@protoc_insertion_point(copy_constructor:palm.loquat.v1.Empty)
-}
-
-inline void* PROTOBUF_NONNULL Empty::PlacementNew_(
-    const void* PROTOBUF_NONNULL, void* PROTOBUF_NONNULL mem,
-    ::google::protobuf::Arena* PROTOBUF_NULLABLE arena) {
-  return ::new (mem) Empty(arena);
-}
-constexpr auto Empty::InternalNewImpl_() {
-  return ::google::protobuf::internal::MessageCreator::ZeroInit(sizeof(Empty),
-                                            alignof(Empty));
-}
-constexpr auto Empty::InternalGenerateClassData_() {
-  return ::google::protobuf::internal::ClassDataFull{
-      ::google::protobuf::internal::ClassData{
-          &_Empty_default_instance_._instance,
-          &_table_.header,
-          nullptr,  // OnDemandRegisterArenaDtor
-          nullptr,  // IsInitialized
-          &Empty::MergeImpl,
-          ::google::protobuf::internal::ZeroFieldsBase::GetNewImpl<Empty>(),
-#if defined(PROTOBUF_CUSTOM_VTABLE)
-          &Empty::SharedDtor,
-          ::google::protobuf::internal::ZeroFieldsBase::GetClearImpl<Empty>(), &Empty::ByteSizeLong,
-              &Empty::_InternalSerialize,
-#endif  // PROTOBUF_CUSTOM_VTABLE
-          PROTOBUF_FIELD_OFFSET(Empty, _impl_._cached_size_),
-          false,
-      },
-      &Empty::kDescriptorMethods,
-      &descriptor_table_loquat_2eproto,
-      nullptr,  // tracker
-  };
-}
-
-PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 const
-    ::google::protobuf::internal::ClassDataFull Empty_class_data_ =
-        Empty::InternalGenerateClassData_();
-
-PROTOBUF_ATTRIBUTE_WEAK const ::google::protobuf::internal::ClassData* PROTOBUF_NONNULL
-Empty::GetClassData() const {
-  ::google::protobuf::internal::PrefetchToLocalCache(&Empty_class_data_);
-  ::google::protobuf::internal::PrefetchToLocalCache(Empty_class_data_.tc_table);
-  return Empty_class_data_.base();
-}
-PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::_pbi::TcParseTable<0, 0, 0, 0, 2>
-Empty::_table_ = {
-  {
-    0,  // no _has_bits_
-    0, // no _extensions_
-    0, 0,  // max_field_number, fast_idx_mask
-    offsetof(decltype(_table_), field_lookup_table),
-    4294967295,  // skipmap
-    offsetof(decltype(_table_), field_names),  // no field_entries
-    0,  // num_field_entries
-    0,  // num_aux_entries
-    offsetof(decltype(_table_), field_names),  // no aux_entries
-    Empty_class_data_.base(),
-    nullptr,  // post_loop_handler
-    ::_pbi::TcParser::GenericFallback,  // fallback
-    #ifdef PROTOBUF_PREFETCH_PARSE_TABLE
-    ::_pbi::TcParser::GetTable<::palm::loquat::v1::Empty>(),  // to_prefetch
-    #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
-  }, {{
-    {::_pbi::TcParser::MiniParse, {}},
-  }}, {{
-    65535, 65535
-  }}, // no field_entries, or aux_entries
-  {{
-  }},
-};
-
-
-
-
-
-
-
-::google::protobuf::Metadata Empty::GetMetadata() const {
-  return ::google::protobuf::internal::ZeroFieldsBase::GetMetadataImpl(GetClassData()->full());
-}
 // ===================================================================
 
 class JwtVerifyRequest::_Internal {

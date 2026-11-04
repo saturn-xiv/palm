@@ -7,7 +7,7 @@ option go_package = "./;v2";
 option csharp_namespace = "Palm.Plugins.Loquat.Grpc";
 package palm.loquat.v1;
 
-message Empty {}
+import "google/protobuf/empty.proto";
 
 // --------------------------------------------------------
 service Jwt {
@@ -45,7 +45,7 @@ message JwtSignResponse {
 // --------------------------------------------------------
 service HMac {
   rpc Sign(HMacSignRequest) returns (HMacSignResponse){}
-  rpc Verify(HMacVerifyRequest) returns (Empty) {}
+  rpc Verify(HMacVerifyRequest) returns (google.protobuf.Empty) {}
 }
 
 message HMacSignRequest {
@@ -88,7 +88,7 @@ message AesDecryptResponse {
 // --------------------------------------------------------
 service Argon2 {
   rpc Sign(Argon2SignRequest) returns (Argon2SignResponse){}
-  rpc Verify(Argon2VerifyRequest) returns (Empty) {}
+  rpc Verify(Argon2VerifyRequest) returns (google.protobuf.Empty) {}
 }
 
 message Argon2SignRequest {

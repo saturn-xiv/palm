@@ -411,20 +411,20 @@ class HMac final {
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::palm::loquat::v1::HMacSignResponse>> PrepareAsyncSign(::grpc::ClientContext* context, const ::palm::loquat::v1::HMacSignRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::palm::loquat::v1::HMacSignResponse>>(PrepareAsyncSignRaw(context, request, cq));
     }
-    virtual ::grpc::Status Verify(::grpc::ClientContext* context, const ::palm::loquat::v1::HMacVerifyRequest& request, ::palm::loquat::v1::Empty* response) = 0;
-    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::palm::loquat::v1::Empty>> AsyncVerify(::grpc::ClientContext* context, const ::palm::loquat::v1::HMacVerifyRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::palm::loquat::v1::Empty>>(AsyncVerifyRaw(context, request, cq));
+    virtual ::grpc::Status Verify(::grpc::ClientContext* context, const ::palm::loquat::v1::HMacVerifyRequest& request, ::google::protobuf::Empty* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>> AsyncVerify(::grpc::ClientContext* context, const ::palm::loquat::v1::HMacVerifyRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>>(AsyncVerifyRaw(context, request, cq));
     }
-    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::palm::loquat::v1::Empty>> PrepareAsyncVerify(::grpc::ClientContext* context, const ::palm::loquat::v1::HMacVerifyRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::palm::loquat::v1::Empty>>(PrepareAsyncVerifyRaw(context, request, cq));
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>> PrepareAsyncVerify(::grpc::ClientContext* context, const ::palm::loquat::v1::HMacVerifyRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>>(PrepareAsyncVerifyRaw(context, request, cq));
     }
     class async_interface {
      public:
       virtual ~async_interface() {}
       virtual void Sign(::grpc::ClientContext* context, const ::palm::loquat::v1::HMacSignRequest* request, ::palm::loquat::v1::HMacSignResponse* response, std::function<void(::grpc::Status)>) = 0;
       virtual void Sign(::grpc::ClientContext* context, const ::palm::loquat::v1::HMacSignRequest* request, ::palm::loquat::v1::HMacSignResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
-      virtual void Verify(::grpc::ClientContext* context, const ::palm::loquat::v1::HMacVerifyRequest* request, ::palm::loquat::v1::Empty* response, std::function<void(::grpc::Status)>) = 0;
-      virtual void Verify(::grpc::ClientContext* context, const ::palm::loquat::v1::HMacVerifyRequest* request, ::palm::loquat::v1::Empty* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      virtual void Verify(::grpc::ClientContext* context, const ::palm::loquat::v1::HMacVerifyRequest* request, ::google::protobuf::Empty* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void Verify(::grpc::ClientContext* context, const ::palm::loquat::v1::HMacVerifyRequest* request, ::google::protobuf::Empty* response, ::grpc::ClientUnaryReactor* reactor) = 0;
     };
     typedef class async_interface experimental_async_interface;
     virtual class async_interface* async() { return nullptr; }
@@ -432,8 +432,8 @@ class HMac final {
    private:
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::palm::loquat::v1::HMacSignResponse>* AsyncSignRaw(::grpc::ClientContext* context, const ::palm::loquat::v1::HMacSignRequest& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::palm::loquat::v1::HMacSignResponse>* PrepareAsyncSignRaw(::grpc::ClientContext* context, const ::palm::loquat::v1::HMacSignRequest& request, ::grpc::CompletionQueue* cq) = 0;
-    virtual ::grpc::ClientAsyncResponseReaderInterface< ::palm::loquat::v1::Empty>* AsyncVerifyRaw(::grpc::ClientContext* context, const ::palm::loquat::v1::HMacVerifyRequest& request, ::grpc::CompletionQueue* cq) = 0;
-    virtual ::grpc::ClientAsyncResponseReaderInterface< ::palm::loquat::v1::Empty>* PrepareAsyncVerifyRaw(::grpc::ClientContext* context, const ::palm::loquat::v1::HMacVerifyRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>* AsyncVerifyRaw(::grpc::ClientContext* context, const ::palm::loquat::v1::HMacVerifyRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>* PrepareAsyncVerifyRaw(::grpc::ClientContext* context, const ::palm::loquat::v1::HMacVerifyRequest& request, ::grpc::CompletionQueue* cq) = 0;
   };
   class Stub final : public StubInterface {
    public:
@@ -445,20 +445,20 @@ class HMac final {
     std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::palm::loquat::v1::HMacSignResponse>> PrepareAsyncSign(::grpc::ClientContext* context, const ::palm::loquat::v1::HMacSignRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::palm::loquat::v1::HMacSignResponse>>(PrepareAsyncSignRaw(context, request, cq));
     }
-    ::grpc::Status Verify(::grpc::ClientContext* context, const ::palm::loquat::v1::HMacVerifyRequest& request, ::palm::loquat::v1::Empty* response) override;
-    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::palm::loquat::v1::Empty>> AsyncVerify(::grpc::ClientContext* context, const ::palm::loquat::v1::HMacVerifyRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::palm::loquat::v1::Empty>>(AsyncVerifyRaw(context, request, cq));
+    ::grpc::Status Verify(::grpc::ClientContext* context, const ::palm::loquat::v1::HMacVerifyRequest& request, ::google::protobuf::Empty* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>> AsyncVerify(::grpc::ClientContext* context, const ::palm::loquat::v1::HMacVerifyRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>>(AsyncVerifyRaw(context, request, cq));
     }
-    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::palm::loquat::v1::Empty>> PrepareAsyncVerify(::grpc::ClientContext* context, const ::palm::loquat::v1::HMacVerifyRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::palm::loquat::v1::Empty>>(PrepareAsyncVerifyRaw(context, request, cq));
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>> PrepareAsyncVerify(::grpc::ClientContext* context, const ::palm::loquat::v1::HMacVerifyRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>>(PrepareAsyncVerifyRaw(context, request, cq));
     }
     class async final :
       public StubInterface::async_interface {
      public:
       void Sign(::grpc::ClientContext* context, const ::palm::loquat::v1::HMacSignRequest* request, ::palm::loquat::v1::HMacSignResponse* response, std::function<void(::grpc::Status)>) override;
       void Sign(::grpc::ClientContext* context, const ::palm::loquat::v1::HMacSignRequest* request, ::palm::loquat::v1::HMacSignResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
-      void Verify(::grpc::ClientContext* context, const ::palm::loquat::v1::HMacVerifyRequest* request, ::palm::loquat::v1::Empty* response, std::function<void(::grpc::Status)>) override;
-      void Verify(::grpc::ClientContext* context, const ::palm::loquat::v1::HMacVerifyRequest* request, ::palm::loquat::v1::Empty* response, ::grpc::ClientUnaryReactor* reactor) override;
+      void Verify(::grpc::ClientContext* context, const ::palm::loquat::v1::HMacVerifyRequest* request, ::google::protobuf::Empty* response, std::function<void(::grpc::Status)>) override;
+      void Verify(::grpc::ClientContext* context, const ::palm::loquat::v1::HMacVerifyRequest* request, ::google::protobuf::Empty* response, ::grpc::ClientUnaryReactor* reactor) override;
      private:
       friend class Stub;
       explicit async(Stub* stub): stub_(stub) { }
@@ -472,8 +472,8 @@ class HMac final {
     class async async_stub_{this};
     ::grpc::ClientAsyncResponseReader< ::palm::loquat::v1::HMacSignResponse>* AsyncSignRaw(::grpc::ClientContext* context, const ::palm::loquat::v1::HMacSignRequest& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::palm::loquat::v1::HMacSignResponse>* PrepareAsyncSignRaw(::grpc::ClientContext* context, const ::palm::loquat::v1::HMacSignRequest& request, ::grpc::CompletionQueue* cq) override;
-    ::grpc::ClientAsyncResponseReader< ::palm::loquat::v1::Empty>* AsyncVerifyRaw(::grpc::ClientContext* context, const ::palm::loquat::v1::HMacVerifyRequest& request, ::grpc::CompletionQueue* cq) override;
-    ::grpc::ClientAsyncResponseReader< ::palm::loquat::v1::Empty>* PrepareAsyncVerifyRaw(::grpc::ClientContext* context, const ::palm::loquat::v1::HMacVerifyRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* AsyncVerifyRaw(::grpc::ClientContext* context, const ::palm::loquat::v1::HMacVerifyRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* PrepareAsyncVerifyRaw(::grpc::ClientContext* context, const ::palm::loquat::v1::HMacVerifyRequest& request, ::grpc::CompletionQueue* cq) override;
     const ::grpc::internal::RpcMethod rpcmethod_Sign_;
     const ::grpc::internal::RpcMethod rpcmethod_Verify_;
   };
@@ -484,7 +484,7 @@ class HMac final {
     Service();
     virtual ~Service();
     virtual ::grpc::Status Sign(::grpc::ServerContext* context, const ::palm::loquat::v1::HMacSignRequest* request, ::palm::loquat::v1::HMacSignResponse* response);
-    virtual ::grpc::Status Verify(::grpc::ServerContext* context, const ::palm::loquat::v1::HMacVerifyRequest* request, ::palm::loquat::v1::Empty* response);
+    virtual ::grpc::Status Verify(::grpc::ServerContext* context, const ::palm::loquat::v1::HMacVerifyRequest* request, ::google::protobuf::Empty* response);
   };
   template <class BaseClass>
   class WithAsyncMethod_Sign : public BaseClass {
@@ -518,11 +518,11 @@ class HMac final {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status Verify(::grpc::ServerContext* /*context*/, const ::palm::loquat::v1::HMacVerifyRequest* /*request*/, ::palm::loquat::v1::Empty* /*response*/) override {
+    ::grpc::Status Verify(::grpc::ServerContext* /*context*/, const ::palm::loquat::v1::HMacVerifyRequest* /*request*/, ::google::protobuf::Empty* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    void RequestVerify(::grpc::ServerContext* context, ::palm::loquat::v1::HMacVerifyRequest* request, ::grpc::ServerAsyncResponseWriter< ::palm::loquat::v1::Empty>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+    void RequestVerify(::grpc::ServerContext* context, ::palm::loquat::v1::HMacVerifyRequest* request, ::grpc::ServerAsyncResponseWriter< ::google::protobuf::Empty>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
       ::grpc::Service::RequestAsyncUnary(1, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
@@ -561,25 +561,25 @@ class HMac final {
    public:
     WithCallbackMethod_Verify() {
       ::grpc::Service::MarkMethodCallback(1,
-          new ::grpc::internal::CallbackUnaryHandler< ::palm::loquat::v1::HMacVerifyRequest, ::palm::loquat::v1::Empty>(
+          new ::grpc::internal::CallbackUnaryHandler< ::palm::loquat::v1::HMacVerifyRequest, ::google::protobuf::Empty>(
             [this](
-                   ::grpc::CallbackServerContext* context, const ::palm::loquat::v1::HMacVerifyRequest* request, ::palm::loquat::v1::Empty* response) { return this->Verify(context, request, response); }));}
+                   ::grpc::CallbackServerContext* context, const ::palm::loquat::v1::HMacVerifyRequest* request, ::google::protobuf::Empty* response) { return this->Verify(context, request, response); }));}
     void SetMessageAllocatorFor_Verify(
-        ::grpc::MessageAllocator< ::palm::loquat::v1::HMacVerifyRequest, ::palm::loquat::v1::Empty>* allocator) {
+        ::grpc::MessageAllocator< ::palm::loquat::v1::HMacVerifyRequest, ::google::protobuf::Empty>* allocator) {
       ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(1);
-      static_cast<::grpc::internal::CallbackUnaryHandler< ::palm::loquat::v1::HMacVerifyRequest, ::palm::loquat::v1::Empty>*>(handler)
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::palm::loquat::v1::HMacVerifyRequest, ::google::protobuf::Empty>*>(handler)
               ->SetMessageAllocator(allocator);
     }
     ~WithCallbackMethod_Verify() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status Verify(::grpc::ServerContext* /*context*/, const ::palm::loquat::v1::HMacVerifyRequest* /*request*/, ::palm::loquat::v1::Empty* /*response*/) override {
+    ::grpc::Status Verify(::grpc::ServerContext* /*context*/, const ::palm::loquat::v1::HMacVerifyRequest* /*request*/, ::google::protobuf::Empty* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     virtual ::grpc::ServerUnaryReactor* Verify(
-      ::grpc::CallbackServerContext* /*context*/, const ::palm::loquat::v1::HMacVerifyRequest* /*request*/, ::palm::loquat::v1::Empty* /*response*/)  { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::palm::loquat::v1::HMacVerifyRequest* /*request*/, ::google::protobuf::Empty* /*response*/)  { return nullptr; }
   };
   typedef WithCallbackMethod_Sign<WithCallbackMethod_Verify<Service > > CallbackService;
   typedef CallbackService ExperimentalCallbackService;
@@ -612,7 +612,7 @@ class HMac final {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status Verify(::grpc::ServerContext* /*context*/, const ::palm::loquat::v1::HMacVerifyRequest* /*request*/, ::palm::loquat::v1::Empty* /*response*/) override {
+    ::grpc::Status Verify(::grpc::ServerContext* /*context*/, const ::palm::loquat::v1::HMacVerifyRequest* /*request*/, ::google::protobuf::Empty* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
@@ -649,7 +649,7 @@ class HMac final {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status Verify(::grpc::ServerContext* /*context*/, const ::palm::loquat::v1::HMacVerifyRequest* /*request*/, ::palm::loquat::v1::Empty* /*response*/) override {
+    ::grpc::Status Verify(::grpc::ServerContext* /*context*/, const ::palm::loquat::v1::HMacVerifyRequest* /*request*/, ::google::protobuf::Empty* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
@@ -694,7 +694,7 @@ class HMac final {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status Verify(::grpc::ServerContext* /*context*/, const ::palm::loquat::v1::HMacVerifyRequest* /*request*/, ::palm::loquat::v1::Empty* /*response*/) override {
+    ::grpc::Status Verify(::grpc::ServerContext* /*context*/, const ::palm::loquat::v1::HMacVerifyRequest* /*request*/, ::google::protobuf::Empty* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
@@ -736,10 +736,10 @@ class HMac final {
     WithStreamedUnaryMethod_Verify() {
       ::grpc::Service::MarkMethodStreamed(1,
         new ::grpc::internal::StreamedUnaryHandler<
-          ::palm::loquat::v1::HMacVerifyRequest, ::palm::loquat::v1::Empty>(
+          ::palm::loquat::v1::HMacVerifyRequest, ::google::protobuf::Empty>(
             [this](::grpc::ServerContext* context,
                    ::grpc::ServerUnaryStreamer<
-                     ::palm::loquat::v1::HMacVerifyRequest, ::palm::loquat::v1::Empty>* streamer) {
+                     ::palm::loquat::v1::HMacVerifyRequest, ::google::protobuf::Empty>* streamer) {
                        return this->StreamedVerify(context,
                          streamer);
                   }));
@@ -748,12 +748,12 @@ class HMac final {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable regular version of this method
-    ::grpc::Status Verify(::grpc::ServerContext* /*context*/, const ::palm::loquat::v1::HMacVerifyRequest* /*request*/, ::palm::loquat::v1::Empty* /*response*/) override {
+    ::grpc::Status Verify(::grpc::ServerContext* /*context*/, const ::palm::loquat::v1::HMacVerifyRequest* /*request*/, ::google::protobuf::Empty* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     // replace default version of method with streamed unary
-    virtual ::grpc::Status StreamedVerify(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::palm::loquat::v1::HMacVerifyRequest,::palm::loquat::v1::Empty>* server_unary_streamer) = 0;
+    virtual ::grpc::Status StreamedVerify(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::palm::loquat::v1::HMacVerifyRequest,::google::protobuf::Empty>* server_unary_streamer) = 0;
   };
   typedef WithStreamedUnaryMethod_Sign<WithStreamedUnaryMethod_Verify<Service > > StreamedUnaryService;
   typedef Service SplitStreamedService;
@@ -1141,20 +1141,20 @@ class Argon2 final {
     std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::palm::loquat::v1::Argon2SignResponse>> PrepareAsyncSign(::grpc::ClientContext* context, const ::palm::loquat::v1::Argon2SignRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::palm::loquat::v1::Argon2SignResponse>>(PrepareAsyncSignRaw(context, request, cq));
     }
-    virtual ::grpc::Status Verify(::grpc::ClientContext* context, const ::palm::loquat::v1::Argon2VerifyRequest& request, ::palm::loquat::v1::Empty* response) = 0;
-    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::palm::loquat::v1::Empty>> AsyncVerify(::grpc::ClientContext* context, const ::palm::loquat::v1::Argon2VerifyRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::palm::loquat::v1::Empty>>(AsyncVerifyRaw(context, request, cq));
+    virtual ::grpc::Status Verify(::grpc::ClientContext* context, const ::palm::loquat::v1::Argon2VerifyRequest& request, ::google::protobuf::Empty* response) = 0;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>> AsyncVerify(::grpc::ClientContext* context, const ::palm::loquat::v1::Argon2VerifyRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>>(AsyncVerifyRaw(context, request, cq));
     }
-    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::palm::loquat::v1::Empty>> PrepareAsyncVerify(::grpc::ClientContext* context, const ::palm::loquat::v1::Argon2VerifyRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::palm::loquat::v1::Empty>>(PrepareAsyncVerifyRaw(context, request, cq));
+    std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>> PrepareAsyncVerify(::grpc::ClientContext* context, const ::palm::loquat::v1::Argon2VerifyRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>>(PrepareAsyncVerifyRaw(context, request, cq));
     }
     class async_interface {
      public:
       virtual ~async_interface() {}
       virtual void Sign(::grpc::ClientContext* context, const ::palm::loquat::v1::Argon2SignRequest* request, ::palm::loquat::v1::Argon2SignResponse* response, std::function<void(::grpc::Status)>) = 0;
       virtual void Sign(::grpc::ClientContext* context, const ::palm::loquat::v1::Argon2SignRequest* request, ::palm::loquat::v1::Argon2SignResponse* response, ::grpc::ClientUnaryReactor* reactor) = 0;
-      virtual void Verify(::grpc::ClientContext* context, const ::palm::loquat::v1::Argon2VerifyRequest* request, ::palm::loquat::v1::Empty* response, std::function<void(::grpc::Status)>) = 0;
-      virtual void Verify(::grpc::ClientContext* context, const ::palm::loquat::v1::Argon2VerifyRequest* request, ::palm::loquat::v1::Empty* response, ::grpc::ClientUnaryReactor* reactor) = 0;
+      virtual void Verify(::grpc::ClientContext* context, const ::palm::loquat::v1::Argon2VerifyRequest* request, ::google::protobuf::Empty* response, std::function<void(::grpc::Status)>) = 0;
+      virtual void Verify(::grpc::ClientContext* context, const ::palm::loquat::v1::Argon2VerifyRequest* request, ::google::protobuf::Empty* response, ::grpc::ClientUnaryReactor* reactor) = 0;
     };
     typedef class async_interface experimental_async_interface;
     virtual class async_interface* async() { return nullptr; }
@@ -1162,8 +1162,8 @@ class Argon2 final {
    private:
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::palm::loquat::v1::Argon2SignResponse>* AsyncSignRaw(::grpc::ClientContext* context, const ::palm::loquat::v1::Argon2SignRequest& request, ::grpc::CompletionQueue* cq) = 0;
     virtual ::grpc::ClientAsyncResponseReaderInterface< ::palm::loquat::v1::Argon2SignResponse>* PrepareAsyncSignRaw(::grpc::ClientContext* context, const ::palm::loquat::v1::Argon2SignRequest& request, ::grpc::CompletionQueue* cq) = 0;
-    virtual ::grpc::ClientAsyncResponseReaderInterface< ::palm::loquat::v1::Empty>* AsyncVerifyRaw(::grpc::ClientContext* context, const ::palm::loquat::v1::Argon2VerifyRequest& request, ::grpc::CompletionQueue* cq) = 0;
-    virtual ::grpc::ClientAsyncResponseReaderInterface< ::palm::loquat::v1::Empty>* PrepareAsyncVerifyRaw(::grpc::ClientContext* context, const ::palm::loquat::v1::Argon2VerifyRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>* AsyncVerifyRaw(::grpc::ClientContext* context, const ::palm::loquat::v1::Argon2VerifyRequest& request, ::grpc::CompletionQueue* cq) = 0;
+    virtual ::grpc::ClientAsyncResponseReaderInterface< ::google::protobuf::Empty>* PrepareAsyncVerifyRaw(::grpc::ClientContext* context, const ::palm::loquat::v1::Argon2VerifyRequest& request, ::grpc::CompletionQueue* cq) = 0;
   };
   class Stub final : public StubInterface {
    public:
@@ -1175,20 +1175,20 @@ class Argon2 final {
     std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::palm::loquat::v1::Argon2SignResponse>> PrepareAsyncSign(::grpc::ClientContext* context, const ::palm::loquat::v1::Argon2SignRequest& request, ::grpc::CompletionQueue* cq) {
       return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::palm::loquat::v1::Argon2SignResponse>>(PrepareAsyncSignRaw(context, request, cq));
     }
-    ::grpc::Status Verify(::grpc::ClientContext* context, const ::palm::loquat::v1::Argon2VerifyRequest& request, ::palm::loquat::v1::Empty* response) override;
-    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::palm::loquat::v1::Empty>> AsyncVerify(::grpc::ClientContext* context, const ::palm::loquat::v1::Argon2VerifyRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::palm::loquat::v1::Empty>>(AsyncVerifyRaw(context, request, cq));
+    ::grpc::Status Verify(::grpc::ClientContext* context, const ::palm::loquat::v1::Argon2VerifyRequest& request, ::google::protobuf::Empty* response) override;
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>> AsyncVerify(::grpc::ClientContext* context, const ::palm::loquat::v1::Argon2VerifyRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>>(AsyncVerifyRaw(context, request, cq));
     }
-    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::palm::loquat::v1::Empty>> PrepareAsyncVerify(::grpc::ClientContext* context, const ::palm::loquat::v1::Argon2VerifyRequest& request, ::grpc::CompletionQueue* cq) {
-      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::palm::loquat::v1::Empty>>(PrepareAsyncVerifyRaw(context, request, cq));
+    std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>> PrepareAsyncVerify(::grpc::ClientContext* context, const ::palm::loquat::v1::Argon2VerifyRequest& request, ::grpc::CompletionQueue* cq) {
+      return std::unique_ptr< ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>>(PrepareAsyncVerifyRaw(context, request, cq));
     }
     class async final :
       public StubInterface::async_interface {
      public:
       void Sign(::grpc::ClientContext* context, const ::palm::loquat::v1::Argon2SignRequest* request, ::palm::loquat::v1::Argon2SignResponse* response, std::function<void(::grpc::Status)>) override;
       void Sign(::grpc::ClientContext* context, const ::palm::loquat::v1::Argon2SignRequest* request, ::palm::loquat::v1::Argon2SignResponse* response, ::grpc::ClientUnaryReactor* reactor) override;
-      void Verify(::grpc::ClientContext* context, const ::palm::loquat::v1::Argon2VerifyRequest* request, ::palm::loquat::v1::Empty* response, std::function<void(::grpc::Status)>) override;
-      void Verify(::grpc::ClientContext* context, const ::palm::loquat::v1::Argon2VerifyRequest* request, ::palm::loquat::v1::Empty* response, ::grpc::ClientUnaryReactor* reactor) override;
+      void Verify(::grpc::ClientContext* context, const ::palm::loquat::v1::Argon2VerifyRequest* request, ::google::protobuf::Empty* response, std::function<void(::grpc::Status)>) override;
+      void Verify(::grpc::ClientContext* context, const ::palm::loquat::v1::Argon2VerifyRequest* request, ::google::protobuf::Empty* response, ::grpc::ClientUnaryReactor* reactor) override;
      private:
       friend class Stub;
       explicit async(Stub* stub): stub_(stub) { }
@@ -1202,8 +1202,8 @@ class Argon2 final {
     class async async_stub_{this};
     ::grpc::ClientAsyncResponseReader< ::palm::loquat::v1::Argon2SignResponse>* AsyncSignRaw(::grpc::ClientContext* context, const ::palm::loquat::v1::Argon2SignRequest& request, ::grpc::CompletionQueue* cq) override;
     ::grpc::ClientAsyncResponseReader< ::palm::loquat::v1::Argon2SignResponse>* PrepareAsyncSignRaw(::grpc::ClientContext* context, const ::palm::loquat::v1::Argon2SignRequest& request, ::grpc::CompletionQueue* cq) override;
-    ::grpc::ClientAsyncResponseReader< ::palm::loquat::v1::Empty>* AsyncVerifyRaw(::grpc::ClientContext* context, const ::palm::loquat::v1::Argon2VerifyRequest& request, ::grpc::CompletionQueue* cq) override;
-    ::grpc::ClientAsyncResponseReader< ::palm::loquat::v1::Empty>* PrepareAsyncVerifyRaw(::grpc::ClientContext* context, const ::palm::loquat::v1::Argon2VerifyRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* AsyncVerifyRaw(::grpc::ClientContext* context, const ::palm::loquat::v1::Argon2VerifyRequest& request, ::grpc::CompletionQueue* cq) override;
+    ::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* PrepareAsyncVerifyRaw(::grpc::ClientContext* context, const ::palm::loquat::v1::Argon2VerifyRequest& request, ::grpc::CompletionQueue* cq) override;
     const ::grpc::internal::RpcMethod rpcmethod_Sign_;
     const ::grpc::internal::RpcMethod rpcmethod_Verify_;
   };
@@ -1214,7 +1214,7 @@ class Argon2 final {
     Service();
     virtual ~Service();
     virtual ::grpc::Status Sign(::grpc::ServerContext* context, const ::palm::loquat::v1::Argon2SignRequest* request, ::palm::loquat::v1::Argon2SignResponse* response);
-    virtual ::grpc::Status Verify(::grpc::ServerContext* context, const ::palm::loquat::v1::Argon2VerifyRequest* request, ::palm::loquat::v1::Empty* response);
+    virtual ::grpc::Status Verify(::grpc::ServerContext* context, const ::palm::loquat::v1::Argon2VerifyRequest* request, ::google::protobuf::Empty* response);
   };
   template <class BaseClass>
   class WithAsyncMethod_Sign : public BaseClass {
@@ -1248,11 +1248,11 @@ class Argon2 final {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status Verify(::grpc::ServerContext* /*context*/, const ::palm::loquat::v1::Argon2VerifyRequest* /*request*/, ::palm::loquat::v1::Empty* /*response*/) override {
+    ::grpc::Status Verify(::grpc::ServerContext* /*context*/, const ::palm::loquat::v1::Argon2VerifyRequest* /*request*/, ::google::protobuf::Empty* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
-    void RequestVerify(::grpc::ServerContext* context, ::palm::loquat::v1::Argon2VerifyRequest* request, ::grpc::ServerAsyncResponseWriter< ::palm::loquat::v1::Empty>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
+    void RequestVerify(::grpc::ServerContext* context, ::palm::loquat::v1::Argon2VerifyRequest* request, ::grpc::ServerAsyncResponseWriter< ::google::protobuf::Empty>* response, ::grpc::CompletionQueue* new_call_cq, ::grpc::ServerCompletionQueue* notification_cq, void *tag) {
       ::grpc::Service::RequestAsyncUnary(1, context, request, response, new_call_cq, notification_cq, tag);
     }
   };
@@ -1291,25 +1291,25 @@ class Argon2 final {
    public:
     WithCallbackMethod_Verify() {
       ::grpc::Service::MarkMethodCallback(1,
-          new ::grpc::internal::CallbackUnaryHandler< ::palm::loquat::v1::Argon2VerifyRequest, ::palm::loquat::v1::Empty>(
+          new ::grpc::internal::CallbackUnaryHandler< ::palm::loquat::v1::Argon2VerifyRequest, ::google::protobuf::Empty>(
             [this](
-                   ::grpc::CallbackServerContext* context, const ::palm::loquat::v1::Argon2VerifyRequest* request, ::palm::loquat::v1::Empty* response) { return this->Verify(context, request, response); }));}
+                   ::grpc::CallbackServerContext* context, const ::palm::loquat::v1::Argon2VerifyRequest* request, ::google::protobuf::Empty* response) { return this->Verify(context, request, response); }));}
     void SetMessageAllocatorFor_Verify(
-        ::grpc::MessageAllocator< ::palm::loquat::v1::Argon2VerifyRequest, ::palm::loquat::v1::Empty>* allocator) {
+        ::grpc::MessageAllocator< ::palm::loquat::v1::Argon2VerifyRequest, ::google::protobuf::Empty>* allocator) {
       ::grpc::internal::MethodHandler* const handler = ::grpc::Service::GetHandler(1);
-      static_cast<::grpc::internal::CallbackUnaryHandler< ::palm::loquat::v1::Argon2VerifyRequest, ::palm::loquat::v1::Empty>*>(handler)
+      static_cast<::grpc::internal::CallbackUnaryHandler< ::palm::loquat::v1::Argon2VerifyRequest, ::google::protobuf::Empty>*>(handler)
               ->SetMessageAllocator(allocator);
     }
     ~WithCallbackMethod_Verify() override {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status Verify(::grpc::ServerContext* /*context*/, const ::palm::loquat::v1::Argon2VerifyRequest* /*request*/, ::palm::loquat::v1::Empty* /*response*/) override {
+    ::grpc::Status Verify(::grpc::ServerContext* /*context*/, const ::palm::loquat::v1::Argon2VerifyRequest* /*request*/, ::google::protobuf::Empty* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     virtual ::grpc::ServerUnaryReactor* Verify(
-      ::grpc::CallbackServerContext* /*context*/, const ::palm::loquat::v1::Argon2VerifyRequest* /*request*/, ::palm::loquat::v1::Empty* /*response*/)  { return nullptr; }
+      ::grpc::CallbackServerContext* /*context*/, const ::palm::loquat::v1::Argon2VerifyRequest* /*request*/, ::google::protobuf::Empty* /*response*/)  { return nullptr; }
   };
   typedef WithCallbackMethod_Sign<WithCallbackMethod_Verify<Service > > CallbackService;
   typedef CallbackService ExperimentalCallbackService;
@@ -1342,7 +1342,7 @@ class Argon2 final {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status Verify(::grpc::ServerContext* /*context*/, const ::palm::loquat::v1::Argon2VerifyRequest* /*request*/, ::palm::loquat::v1::Empty* /*response*/) override {
+    ::grpc::Status Verify(::grpc::ServerContext* /*context*/, const ::palm::loquat::v1::Argon2VerifyRequest* /*request*/, ::google::protobuf::Empty* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
@@ -1379,7 +1379,7 @@ class Argon2 final {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status Verify(::grpc::ServerContext* /*context*/, const ::palm::loquat::v1::Argon2VerifyRequest* /*request*/, ::palm::loquat::v1::Empty* /*response*/) override {
+    ::grpc::Status Verify(::grpc::ServerContext* /*context*/, const ::palm::loquat::v1::Argon2VerifyRequest* /*request*/, ::google::protobuf::Empty* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
@@ -1424,7 +1424,7 @@ class Argon2 final {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable synchronous version of this method
-    ::grpc::Status Verify(::grpc::ServerContext* /*context*/, const ::palm::loquat::v1::Argon2VerifyRequest* /*request*/, ::palm::loquat::v1::Empty* /*response*/) override {
+    ::grpc::Status Verify(::grpc::ServerContext* /*context*/, const ::palm::loquat::v1::Argon2VerifyRequest* /*request*/, ::google::protobuf::Empty* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
@@ -1466,10 +1466,10 @@ class Argon2 final {
     WithStreamedUnaryMethod_Verify() {
       ::grpc::Service::MarkMethodStreamed(1,
         new ::grpc::internal::StreamedUnaryHandler<
-          ::palm::loquat::v1::Argon2VerifyRequest, ::palm::loquat::v1::Empty>(
+          ::palm::loquat::v1::Argon2VerifyRequest, ::google::protobuf::Empty>(
             [this](::grpc::ServerContext* context,
                    ::grpc::ServerUnaryStreamer<
-                     ::palm::loquat::v1::Argon2VerifyRequest, ::palm::loquat::v1::Empty>* streamer) {
+                     ::palm::loquat::v1::Argon2VerifyRequest, ::google::protobuf::Empty>* streamer) {
                        return this->StreamedVerify(context,
                          streamer);
                   }));
@@ -1478,12 +1478,12 @@ class Argon2 final {
       BaseClassMustBeDerivedFromService(this);
     }
     // disable regular version of this method
-    ::grpc::Status Verify(::grpc::ServerContext* /*context*/, const ::palm::loquat::v1::Argon2VerifyRequest* /*request*/, ::palm::loquat::v1::Empty* /*response*/) override {
+    ::grpc::Status Verify(::grpc::ServerContext* /*context*/, const ::palm::loquat::v1::Argon2VerifyRequest* /*request*/, ::google::protobuf::Empty* /*response*/) override {
       abort();
       return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
     }
     // replace default version of method with streamed unary
-    virtual ::grpc::Status StreamedVerify(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::palm::loquat::v1::Argon2VerifyRequest,::palm::loquat::v1::Empty>* server_unary_streamer) = 0;
+    virtual ::grpc::Status StreamedVerify(::grpc::ServerContext* context, ::grpc::ServerUnaryStreamer< ::palm::loquat::v1::Argon2VerifyRequest,::google::protobuf::Empty>* server_unary_streamer) = 0;
   };
   typedef WithStreamedUnaryMethod_Sign<WithStreamedUnaryMethod_Verify<Service > > StreamedUnaryService;
   typedef Service SplitStreamedService;

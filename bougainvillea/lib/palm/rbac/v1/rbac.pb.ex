@@ -1,12 +1,3 @@
-defmodule Palm.Rbac.V1.Empty do
-  @moduledoc false
-
-  use Protobuf,
-    full_name: "palm.rbac.v1.Empty",
-    protoc_gen_elixir_version: "0.17.1",
-    syntax: :proto3
-end
-
 defmodule Palm.Rbac.V1.Object do
   @moduledoc false
 
@@ -20,7 +11,7 @@ defmodule Palm.Rbac.V1.Object do
   field :type, 1, type: :string
   field :id, 11, type: :int64, oneof: 0
   field :code, 12, type: :string, oneof: 0
-  field :all, 19, type: Palm.Rbac.V1.Empty, oneof: 0
+  field :all, 19, type: Google.Protobuf.Empty, oneof: 0
 end
 
 defmodule Palm.Rbac.V1.Subject.Role.Root do
@@ -264,13 +255,13 @@ defmodule Palm.Rbac.V1.Enforcer.Service do
 
   use GRPC.Service, name: "palm.rbac.v1.Enforcer", protoc_gen_elixir_version: "0.17.1"
 
-  rpc(:GetAllSubjects, Palm.Rbac.V1.Empty, Palm.Rbac.V1.SubjectsResponse)
+  rpc(:GetAllSubjects, Google.Protobuf.Empty, Palm.Rbac.V1.SubjectsResponse)
 
-  rpc(:GetAllObjects, Palm.Rbac.V1.Empty, Palm.Rbac.V1.ObjectsResponse)
+  rpc(:GetAllObjects, Google.Protobuf.Empty, Palm.Rbac.V1.ObjectsResponse)
 
-  rpc(:GetAllActions, Palm.Rbac.V1.Empty, Palm.Rbac.V1.ActionsResponse)
+  rpc(:GetAllActions, Google.Protobuf.Empty, Palm.Rbac.V1.ActionsResponse)
 
-  rpc(:GetAllRoles, Palm.Rbac.V1.Empty, Palm.Rbac.V1.RolesResponse)
+  rpc(:GetAllRoles, Google.Protobuf.Empty, Palm.Rbac.V1.RolesResponse)
 
   rpc(:GetRolesForUser, Palm.Rbac.V1.Subject.User, Palm.Rbac.V1.RolesResponse)
 
@@ -280,25 +271,25 @@ defmodule Palm.Rbac.V1.Enforcer.Service do
 
   rpc(:GetImplicitUsersForRole, Palm.Rbac.V1.Subject.Role, Palm.Rbac.V1.UsersResponse)
 
-  rpc(:HasRoleForUser, Palm.Rbac.V1.UserRoleRequest, Palm.Rbac.V1.Empty)
+  rpc(:HasRoleForUser, Palm.Rbac.V1.UserRoleRequest, Google.Protobuf.Empty)
 
-  rpc(:AddRoleForUser, Palm.Rbac.V1.UserRoleRequest, Palm.Rbac.V1.Empty)
+  rpc(:AddRoleForUser, Palm.Rbac.V1.UserRoleRequest, Google.Protobuf.Empty)
 
-  rpc(:DeleteRoleForUser, Palm.Rbac.V1.UserRoleRequest, Palm.Rbac.V1.Empty)
+  rpc(:DeleteRoleForUser, Palm.Rbac.V1.UserRoleRequest, Google.Protobuf.Empty)
 
-  rpc(:DeleteUser, Palm.Rbac.V1.Subject.User, Palm.Rbac.V1.Empty)
+  rpc(:DeleteUser, Palm.Rbac.V1.Subject.User, Google.Protobuf.Empty)
 
-  rpc(:DeleteRole, Palm.Rbac.V1.Subject.Role, Palm.Rbac.V1.Empty)
+  rpc(:DeleteRole, Palm.Rbac.V1.Subject.Role, Google.Protobuf.Empty)
 
   rpc(:GetPermissions, Palm.Rbac.V1.Subject, Palm.Rbac.V1.PermissionsResponse)
 
   rpc(:GetImplicitPermissions, Palm.Rbac.V1.Subject, Palm.Rbac.V1.PermissionsResponse)
 
-  rpc(:DeletePermission, Palm.Rbac.V1.Permission, Palm.Rbac.V1.Empty)
+  rpc(:DeletePermission, Palm.Rbac.V1.Permission, Google.Protobuf.Empty)
 
-  rpc(:AddPermission, Palm.Rbac.V1.Permission, Palm.Rbac.V1.Empty)
+  rpc(:AddPermission, Palm.Rbac.V1.Permission, Google.Protobuf.Empty)
 
-  rpc(:HasPermission, Palm.Rbac.V1.Permission, Palm.Rbac.V1.Empty)
+  rpc(:HasPermission, Palm.Rbac.V1.Permission, Google.Protobuf.Empty)
 end
 
 defmodule Palm.Rbac.V1.Enforcer.Stub do

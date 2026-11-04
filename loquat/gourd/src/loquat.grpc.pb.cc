@@ -166,23 +166,23 @@ void HMac::Stub::async::Sign(::grpc::ClientContext* context, const ::palm::loqua
   return result;
 }
 
-::grpc::Status HMac::Stub::Verify(::grpc::ClientContext* context, const ::palm::loquat::v1::HMacVerifyRequest& request, ::palm::loquat::v1::Empty* response) {
-  return ::grpc::internal::BlockingUnaryCall< ::palm::loquat::v1::HMacVerifyRequest, ::palm::loquat::v1::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_Verify_, context, request, response);
+::grpc::Status HMac::Stub::Verify(::grpc::ClientContext* context, const ::palm::loquat::v1::HMacVerifyRequest& request, ::google::protobuf::Empty* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::palm::loquat::v1::HMacVerifyRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_Verify_, context, request, response);
 }
 
-void HMac::Stub::async::Verify(::grpc::ClientContext* context, const ::palm::loquat::v1::HMacVerifyRequest* request, ::palm::loquat::v1::Empty* response, std::function<void(::grpc::Status)> f) {
-  ::grpc::internal::CallbackUnaryCall< ::palm::loquat::v1::HMacVerifyRequest, ::palm::loquat::v1::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Verify_, context, request, response, std::move(f));
+void HMac::Stub::async::Verify(::grpc::ClientContext* context, const ::palm::loquat::v1::HMacVerifyRequest* request, ::google::protobuf::Empty* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::palm::loquat::v1::HMacVerifyRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Verify_, context, request, response, std::move(f));
 }
 
-void HMac::Stub::async::Verify(::grpc::ClientContext* context, const ::palm::loquat::v1::HMacVerifyRequest* request, ::palm::loquat::v1::Empty* response, ::grpc::ClientUnaryReactor* reactor) {
+void HMac::Stub::async::Verify(::grpc::ClientContext* context, const ::palm::loquat::v1::HMacVerifyRequest* request, ::google::protobuf::Empty* response, ::grpc::ClientUnaryReactor* reactor) {
   ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Verify_, context, request, response, reactor);
 }
 
-::grpc::ClientAsyncResponseReader< ::palm::loquat::v1::Empty>* HMac::Stub::PrepareAsyncVerifyRaw(::grpc::ClientContext* context, const ::palm::loquat::v1::HMacVerifyRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::palm::loquat::v1::Empty, ::palm::loquat::v1::HMacVerifyRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_Verify_, context, request);
+::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* HMac::Stub::PrepareAsyncVerifyRaw(::grpc::ClientContext* context, const ::palm::loquat::v1::HMacVerifyRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::google::protobuf::Empty, ::palm::loquat::v1::HMacVerifyRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_Verify_, context, request);
 }
 
-::grpc::ClientAsyncResponseReader< ::palm::loquat::v1::Empty>* HMac::Stub::AsyncVerifyRaw(::grpc::ClientContext* context, const ::palm::loquat::v1::HMacVerifyRequest& request, ::grpc::CompletionQueue* cq) {
+::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* HMac::Stub::AsyncVerifyRaw(::grpc::ClientContext* context, const ::palm::loquat::v1::HMacVerifyRequest& request, ::grpc::CompletionQueue* cq) {
   auto* result =
     this->PrepareAsyncVerifyRaw(context, request, cq);
   result->StartCall();
@@ -203,11 +203,11 @@ HMac::Service::Service() {
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       HMac_method_names[1],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< HMac::Service, ::palm::loquat::v1::HMacVerifyRequest, ::palm::loquat::v1::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+      new ::grpc::internal::RpcMethodHandler< HMac::Service, ::palm::loquat::v1::HMacVerifyRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](HMac::Service* service,
              ::grpc::ServerContext* ctx,
              const ::palm::loquat::v1::HMacVerifyRequest* req,
-             ::palm::loquat::v1::Empty* resp) {
+             ::google::protobuf::Empty* resp) {
                return service->Verify(ctx, req, resp);
              }, this)));
 }
@@ -222,7 +222,7 @@ HMac::Service::~Service() {
   return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
 }
 
-::grpc::Status HMac::Service::Verify(::grpc::ServerContext* context, const ::palm::loquat::v1::HMacVerifyRequest* request, ::palm::loquat::v1::Empty* response) {
+::grpc::Status HMac::Service::Verify(::grpc::ServerContext* context, const ::palm::loquat::v1::HMacVerifyRequest* request, ::google::protobuf::Empty* response) {
   (void) context;
   (void) request;
   (void) response;
@@ -372,23 +372,23 @@ void Argon2::Stub::async::Sign(::grpc::ClientContext* context, const ::palm::loq
   return result;
 }
 
-::grpc::Status Argon2::Stub::Verify(::grpc::ClientContext* context, const ::palm::loquat::v1::Argon2VerifyRequest& request, ::palm::loquat::v1::Empty* response) {
-  return ::grpc::internal::BlockingUnaryCall< ::palm::loquat::v1::Argon2VerifyRequest, ::palm::loquat::v1::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_Verify_, context, request, response);
+::grpc::Status Argon2::Stub::Verify(::grpc::ClientContext* context, const ::palm::loquat::v1::Argon2VerifyRequest& request, ::google::protobuf::Empty* response) {
+  return ::grpc::internal::BlockingUnaryCall< ::palm::loquat::v1::Argon2VerifyRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), rpcmethod_Verify_, context, request, response);
 }
 
-void Argon2::Stub::async::Verify(::grpc::ClientContext* context, const ::palm::loquat::v1::Argon2VerifyRequest* request, ::palm::loquat::v1::Empty* response, std::function<void(::grpc::Status)> f) {
-  ::grpc::internal::CallbackUnaryCall< ::palm::loquat::v1::Argon2VerifyRequest, ::palm::loquat::v1::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Verify_, context, request, response, std::move(f));
+void Argon2::Stub::async::Verify(::grpc::ClientContext* context, const ::palm::loquat::v1::Argon2VerifyRequest* request, ::google::protobuf::Empty* response, std::function<void(::grpc::Status)> f) {
+  ::grpc::internal::CallbackUnaryCall< ::palm::loquat::v1::Argon2VerifyRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Verify_, context, request, response, std::move(f));
 }
 
-void Argon2::Stub::async::Verify(::grpc::ClientContext* context, const ::palm::loquat::v1::Argon2VerifyRequest* request, ::palm::loquat::v1::Empty* response, ::grpc::ClientUnaryReactor* reactor) {
+void Argon2::Stub::async::Verify(::grpc::ClientContext* context, const ::palm::loquat::v1::Argon2VerifyRequest* request, ::google::protobuf::Empty* response, ::grpc::ClientUnaryReactor* reactor) {
   ::grpc::internal::ClientCallbackUnaryFactory::Create< ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(stub_->channel_.get(), stub_->rpcmethod_Verify_, context, request, response, reactor);
 }
 
-::grpc::ClientAsyncResponseReader< ::palm::loquat::v1::Empty>* Argon2::Stub::PrepareAsyncVerifyRaw(::grpc::ClientContext* context, const ::palm::loquat::v1::Argon2VerifyRequest& request, ::grpc::CompletionQueue* cq) {
-  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::palm::loquat::v1::Empty, ::palm::loquat::v1::Argon2VerifyRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_Verify_, context, request);
+::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* Argon2::Stub::PrepareAsyncVerifyRaw(::grpc::ClientContext* context, const ::palm::loquat::v1::Argon2VerifyRequest& request, ::grpc::CompletionQueue* cq) {
+  return ::grpc::internal::ClientAsyncResponseReaderHelper::Create< ::google::protobuf::Empty, ::palm::loquat::v1::Argon2VerifyRequest, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(channel_.get(), cq, rpcmethod_Verify_, context, request);
 }
 
-::grpc::ClientAsyncResponseReader< ::palm::loquat::v1::Empty>* Argon2::Stub::AsyncVerifyRaw(::grpc::ClientContext* context, const ::palm::loquat::v1::Argon2VerifyRequest& request, ::grpc::CompletionQueue* cq) {
+::grpc::ClientAsyncResponseReader< ::google::protobuf::Empty>* Argon2::Stub::AsyncVerifyRaw(::grpc::ClientContext* context, const ::palm::loquat::v1::Argon2VerifyRequest& request, ::grpc::CompletionQueue* cq) {
   auto* result =
     this->PrepareAsyncVerifyRaw(context, request, cq);
   result->StartCall();
@@ -409,11 +409,11 @@ Argon2::Service::Service() {
   AddMethod(new ::grpc::internal::RpcServiceMethod(
       Argon2_method_names[1],
       ::grpc::internal::RpcMethod::NORMAL_RPC,
-      new ::grpc::internal::RpcMethodHandler< Argon2::Service, ::palm::loquat::v1::Argon2VerifyRequest, ::palm::loquat::v1::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
+      new ::grpc::internal::RpcMethodHandler< Argon2::Service, ::palm::loquat::v1::Argon2VerifyRequest, ::google::protobuf::Empty, ::grpc::protobuf::MessageLite, ::grpc::protobuf::MessageLite>(
           [](Argon2::Service* service,
              ::grpc::ServerContext* ctx,
              const ::palm::loquat::v1::Argon2VerifyRequest* req,
-             ::palm::loquat::v1::Empty* resp) {
+             ::google::protobuf::Empty* resp) {
                return service->Verify(ctx, req, resp);
              }, this)));
 }
@@ -428,7 +428,7 @@ Argon2::Service::~Service() {
   return ::grpc::Status(::grpc::StatusCode::UNIMPLEMENTED, "");
 }
 
-::grpc::Status Argon2::Service::Verify(::grpc::ServerContext* context, const ::palm::loquat::v1::Argon2VerifyRequest* request, ::palm::loquat::v1::Empty* response) {
+::grpc::Status Argon2::Service::Verify(::grpc::ServerContext* context, const ::palm::loquat::v1::Argon2VerifyRequest* request, ::google::protobuf::Empty* response) {
   (void) context;
   (void) request;
   (void) response;

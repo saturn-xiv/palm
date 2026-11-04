@@ -20,7 +20,6 @@
 #include "google/protobuf/io/coded_stream.h"
 #include "google/protobuf/arena.h"
 #include "google/protobuf/arenastring.h"
-#include "google/protobuf/generated_message_bases.h"
 #include "google/protobuf/generated_message_tctable_decl.h"
 #include "google/protobuf/generated_message_util.h"
 #include "google/protobuf/metadata_lite.h"
@@ -30,6 +29,7 @@
 #include "google/protobuf/repeated_field.h"  // IWYU pragma: export
 #include "google/protobuf/extension_set.h"  // IWYU pragma: export
 #include "google/protobuf/unknown_field_set.h"
+#include "google/protobuf/empty.pb.h"
 // @@protoc_insertion_point(includes)
 
 // Must be included last.
@@ -84,10 +84,6 @@ class Argon2VerifyRequest;
 struct Argon2VerifyRequestDefaultTypeInternal;
 extern Argon2VerifyRequestDefaultTypeInternal _Argon2VerifyRequest_default_instance_;
 extern const ::google::protobuf::internal::ClassDataFull Argon2VerifyRequest_class_data_;
-class Empty;
-struct EmptyDefaultTypeInternal;
-extern EmptyDefaultTypeInternal _Empty_default_instance_;
-extern const ::google::protobuf::internal::ClassDataFull Empty_class_data_;
 class HMacSignRequest;
 struct HMacSignRequestDefaultTypeInternal;
 extern HMacSignRequestDefaultTypeInternal _HMacSignRequest_default_instance_;
@@ -188,7 +184,7 @@ class JwtVerifyResponse final : public ::google::protobuf::Message
     return *reinterpret_cast<const JwtVerifyResponse*>(
         &_JwtVerifyResponse_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 2;
+  static constexpr int kIndexInFileMessages = 1;
   friend void swap(JwtVerifyResponse& a, JwtVerifyResponse& b) { a.Swap(&b); }
   inline void Swap(JwtVerifyResponse* PROTOBUF_NONNULL other) {
     if (other == this) return;
@@ -401,7 +397,7 @@ class JwtVerifyRequest final : public ::google::protobuf::Message
     return *reinterpret_cast<const JwtVerifyRequest*>(
         &_JwtVerifyRequest_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 1;
+  static constexpr int kIndexInFileMessages = 0;
   friend void swap(JwtVerifyRequest& a, JwtVerifyRequest& b) { a.Swap(&b); }
   inline void Swap(JwtVerifyRequest* PROTOBUF_NONNULL other) {
     if (other == this) return;
@@ -630,7 +626,7 @@ class JwtSignResponse final : public ::google::protobuf::Message
     return *reinterpret_cast<const JwtSignResponse*>(
         &_JwtSignResponse_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 4;
+  static constexpr int kIndexInFileMessages = 3;
   friend void swap(JwtSignResponse& a, JwtSignResponse& b) { a.Swap(&b); }
   inline void Swap(JwtSignResponse* PROTOBUF_NONNULL other) {
     if (other == this) return;
@@ -825,7 +821,7 @@ class JwtSignRequest final : public ::google::protobuf::Message
     return *reinterpret_cast<const JwtSignRequest*>(
         &_JwtSignRequest_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 3;
+  static constexpr int kIndexInFileMessages = 2;
   friend void swap(JwtSignRequest& a, JwtSignRequest& b) { a.Swap(&b); }
   inline void Swap(JwtSignRequest* PROTOBUF_NONNULL other) {
     if (other == this) return;
@@ -1151,7 +1147,7 @@ class HMacVerifyRequest final : public ::google::protobuf::Message
     return *reinterpret_cast<const HMacVerifyRequest*>(
         &_HMacVerifyRequest_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 7;
+  static constexpr int kIndexInFileMessages = 6;
   friend void swap(HMacVerifyRequest& a, HMacVerifyRequest& b) { a.Swap(&b); }
   inline void Swap(HMacVerifyRequest* PROTOBUF_NONNULL other) {
     if (other == this) return;
@@ -1363,7 +1359,7 @@ class HMacSignResponse final : public ::google::protobuf::Message
     return *reinterpret_cast<const HMacSignResponse*>(
         &_HMacSignResponse_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 6;
+  static constexpr int kIndexInFileMessages = 5;
   friend void swap(HMacSignResponse& a, HMacSignResponse& b) { a.Swap(&b); }
   inline void Swap(HMacSignResponse* PROTOBUF_NONNULL other) {
     if (other == this) return;
@@ -1558,7 +1554,7 @@ class HMacSignRequest final : public ::google::protobuf::Message
     return *reinterpret_cast<const HMacSignRequest*>(
         &_HMacSignRequest_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 5;
+  static constexpr int kIndexInFileMessages = 4;
   friend void swap(HMacSignRequest& a, HMacSignRequest& b) { a.Swap(&b); }
   inline void Swap(HMacSignRequest* PROTOBUF_NONNULL other) {
     if (other == this) return;
@@ -1698,140 +1694,6 @@ class HMacSignRequest final : public ::google::protobuf::Message
 extern const ::google::protobuf::internal::ClassDataFull HMacSignRequest_class_data_;
 // -------------------------------------------------------------------
 
-class Empty final : public ::google::protobuf::internal::ZeroFieldsBase
-/* @@protoc_insertion_point(class_definition:palm.loquat.v1.Empty) */ {
- public:
-  inline Empty() : Empty(nullptr) {}
-
-#if defined(PROTOBUF_CUSTOM_VTABLE)
-  void operator delete(Empty* PROTOBUF_NONNULL msg, ::std::destroying_delete_t) {
-    SharedDtor(*msg);
-    ::google::protobuf::internal::SizedDelete(msg, sizeof(Empty));
-  }
-#endif
-
-  template <typename = void>
-  explicit PROTOBUF_CONSTEXPR Empty(::google::protobuf::internal::ConstantInitialized);
-
-  inline Empty(const Empty& from) : Empty(nullptr, from) {}
-  inline Empty(Empty&& from) noexcept
-      : Empty(nullptr, ::std::move(from)) {}
-  inline Empty& operator=(const Empty& from) {
-    CopyFrom(from);
-    return *this;
-  }
-  inline Empty& operator=(Empty&& from) noexcept {
-    if (this == &from) return *this;
-    if (::google::protobuf::internal::CanMoveWithInternalSwap(GetArena(), from.GetArena())) {
-      InternalSwap(&from);
-    } else {
-      CopyFrom(from);
-    }
-    return *this;
-  }
-
-  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
-      ABSL_ATTRIBUTE_LIFETIME_BOUND {
-    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
-  }
-  inline ::google::protobuf::UnknownFieldSet* PROTOBUF_NONNULL mutable_unknown_fields()
-      ABSL_ATTRIBUTE_LIFETIME_BOUND {
-    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
-  }
-
-  static const ::google::protobuf::Descriptor* PROTOBUF_NONNULL descriptor() {
-    return GetDescriptor();
-  }
-  static const ::google::protobuf::Descriptor* PROTOBUF_NONNULL GetDescriptor() {
-    return default_instance().GetMetadata().descriptor;
-  }
-  static const ::google::protobuf::Reflection* PROTOBUF_NONNULL GetReflection() {
-    return default_instance().GetMetadata().reflection;
-  }
-  static const Empty& default_instance() {
-    return *reinterpret_cast<const Empty*>(
-        &_Empty_default_instance_);
-  }
-  static constexpr int kIndexInFileMessages = 0;
-  friend void swap(Empty& a, Empty& b) { a.Swap(&b); }
-  inline void Swap(Empty* PROTOBUF_NONNULL other) {
-    if (other == this) return;
-    if (::google::protobuf::internal::CanUseInternalSwap(GetArena(), other->GetArena())) {
-      InternalSwap(other);
-    } else {
-      ::google::protobuf::internal::GenericSwap(this, other);
-    }
-  }
-  void UnsafeArenaSwap(Empty* PROTOBUF_NONNULL other) {
-    if (other == this) return;
-    ABSL_DCHECK(GetArena() == other->GetArena());
-    InternalSwap(other);
-  }
-
-  // implements Message ----------------------------------------------
-
-  Empty* PROTOBUF_NONNULL New(::google::protobuf::Arena* PROTOBUF_NULLABLE arena = nullptr) const {
-    return ::google::protobuf::internal::ZeroFieldsBase::DefaultConstruct<Empty>(arena);
-  }
-  using ::google::protobuf::internal::ZeroFieldsBase::CopyFrom;
-  inline void CopyFrom(const Empty& from) {
-    ::google::protobuf::internal::ZeroFieldsBase::CopyImpl(*this, from);
-  }
-  using ::google::protobuf::internal::ZeroFieldsBase::MergeFrom;
-  void MergeFrom(const Empty& from) {
-    ::google::protobuf::internal::ZeroFieldsBase::MergeImpl(*this, from);
-  }
-
-  public:
-  bool IsInitialized() const {
-    return true;
-  }
- private:
-  template <typename T>
-  friend ::absl::string_view(::google::protobuf::internal::GetAnyMessageName)();
-  static ::absl::string_view FullMessageName() { return "palm.loquat.v1.Empty"; }
-
-  explicit Empty(::google::protobuf::Arena* PROTOBUF_NULLABLE arena);
-  Empty(::google::protobuf::Arena* PROTOBUF_NULLABLE arena, const Empty& from);
-  Empty(
-      ::google::protobuf::Arena* PROTOBUF_NULLABLE arena, Empty&& from) noexcept
-      : Empty(arena) {
-    *this = ::std::move(from);
-  }
-  const ::google::protobuf::internal::ClassData* PROTOBUF_NONNULL GetClassData() const PROTOBUF_FINAL;
-  static void* PROTOBUF_NONNULL PlacementNew_(
-      const void* PROTOBUF_NONNULL, void* PROTOBUF_NONNULL mem,
-      ::google::protobuf::Arena* PROTOBUF_NULLABLE arena);
-  static constexpr auto InternalNewImpl_();
-
- public:
-  static constexpr auto InternalGenerateClassData_();
-
-  ::google::protobuf::Metadata GetMetadata() const;
-  // nested types ----------------------------------------------------
-
-  // accessors -------------------------------------------------------
-  // @@protoc_insertion_point(class_scope:palm.loquat.v1.Empty)
- private:
-  class _Internal;
-  friend class ::google::protobuf::internal::TcParser;
-  static const ::google::protobuf::internal::TcParseTable<0, 0,
-                                   0, 0,
-                                   2>
-      _table_;
-
-  friend class ::google::protobuf::MessageLite;
-  friend class ::google::protobuf::Arena;
-  template <typename T>
-  friend class ::google::protobuf::Arena::InternalHelper;
-  using InternalArenaConstructable_ = void;
-  using DestructorSkippable_ = void;
-  friend struct ::TableStruct_loquat_2eproto;
-};
-
-extern const ::google::protobuf::internal::ClassDataFull Empty_class_data_;
-// -------------------------------------------------------------------
-
 class Argon2VerifyRequest final : public ::google::protobuf::Message
 /* @@protoc_insertion_point(class_definition:palm.loquat.v1.Argon2VerifyRequest) */ {
  public:
@@ -1887,7 +1749,7 @@ class Argon2VerifyRequest final : public ::google::protobuf::Message
     return *reinterpret_cast<const Argon2VerifyRequest*>(
         &_Argon2VerifyRequest_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 14;
+  static constexpr int kIndexInFileMessages = 13;
   friend void swap(Argon2VerifyRequest& a, Argon2VerifyRequest& b) { a.Swap(&b); }
   inline void Swap(Argon2VerifyRequest* PROTOBUF_NONNULL other) {
     if (other == this) return;
@@ -2099,7 +1961,7 @@ class Argon2SignResponse final : public ::google::protobuf::Message
     return *reinterpret_cast<const Argon2SignResponse*>(
         &_Argon2SignResponse_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 13;
+  static constexpr int kIndexInFileMessages = 12;
   friend void swap(Argon2SignResponse& a, Argon2SignResponse& b) { a.Swap(&b); }
   inline void Swap(Argon2SignResponse* PROTOBUF_NONNULL other) {
     if (other == this) return;
@@ -2294,7 +2156,7 @@ class Argon2SignRequest final : public ::google::protobuf::Message
     return *reinterpret_cast<const Argon2SignRequest*>(
         &_Argon2SignRequest_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 12;
+  static constexpr int kIndexInFileMessages = 11;
   friend void swap(Argon2SignRequest& a, Argon2SignRequest& b) { a.Swap(&b); }
   inline void Swap(Argon2SignRequest* PROTOBUF_NONNULL other) {
     if (other == this) return;
@@ -2489,7 +2351,7 @@ class AesEncryptResponse final : public ::google::protobuf::Message
     return *reinterpret_cast<const AesEncryptResponse*>(
         &_AesEncryptResponse_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 9;
+  static constexpr int kIndexInFileMessages = 8;
   friend void swap(AesEncryptResponse& a, AesEncryptResponse& b) { a.Swap(&b); }
   inline void Swap(AesEncryptResponse* PROTOBUF_NONNULL other) {
     if (other == this) return;
@@ -2684,7 +2546,7 @@ class AesEncryptRequest final : public ::google::protobuf::Message
     return *reinterpret_cast<const AesEncryptRequest*>(
         &_AesEncryptRequest_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 8;
+  static constexpr int kIndexInFileMessages = 7;
   friend void swap(AesEncryptRequest& a, AesEncryptRequest& b) { a.Swap(&b); }
   inline void Swap(AesEncryptRequest* PROTOBUF_NONNULL other) {
     if (other == this) return;
@@ -2896,7 +2758,7 @@ class AesDecryptResponse final : public ::google::protobuf::Message
     return *reinterpret_cast<const AesDecryptResponse*>(
         &_AesDecryptResponse_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 11;
+  static constexpr int kIndexInFileMessages = 10;
   friend void swap(AesDecryptResponse& a, AesDecryptResponse& b) { a.Swap(&b); }
   inline void Swap(AesDecryptResponse* PROTOBUF_NONNULL other) {
     if (other == this) return;
@@ -3091,7 +2953,7 @@ class AesDecryptRequest final : public ::google::protobuf::Message
     return *reinterpret_cast<const AesDecryptRequest*>(
         &_AesDecryptRequest_default_instance_);
   }
-  static constexpr int kIndexInFileMessages = 10;
+  static constexpr int kIndexInFileMessages = 9;
   friend void swap(AesDecryptRequest& a, AesDecryptRequest& b) { a.Swap(&b); }
   inline void Swap(AesDecryptRequest* PROTOBUF_NONNULL other) {
     if (other == this) return;
@@ -3259,10 +3121,6 @@ extern const ::google::protobuf::internal::ClassDataFull AesDecryptRequest_class
 #pragma GCC diagnostic push
 #pragma GCC diagnostic ignored "-Wstrict-aliasing"
 #endif  // __GNUC__
-// -------------------------------------------------------------------
-
-// Empty
-
 // -------------------------------------------------------------------
 
 // JwtVerifyRequest

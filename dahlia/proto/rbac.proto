@@ -7,14 +7,14 @@ option go_package = "./;v2";
 option csharp_namespace = "Palm.Plugins.Rbac.Grpc";
 package palm.rbac.v1;
 
-message Empty {}
+import "google/protobuf/empty.proto";
 
 message Object {
   string type = 1;
   oneof by {
     int64  id   = 11;
     string code = 12;
-    Empty  all  = 19;
+    google.protobuf.Empty  all  = 19;
   }
 }
 
@@ -69,26 +69,26 @@ message Permission {
 }
 
 service Enforcer {
-  rpc GetAllSubjects(Empty) returns (SubjectsResponse) {}
-  rpc GetAllObjects(Empty) returns (ObjectsResponse) {}
-  rpc GetAllActions(Empty) returns (ActionsResponse) {}
-  rpc GetAllRoles(Empty) returns (RolesResponse) {}
+  rpc GetAllSubjects(google.protobuf.Empty) returns (SubjectsResponse) {}
+  rpc GetAllObjects(google.protobuf.Empty) returns (ObjectsResponse) {}
+  rpc GetAllActions(google.protobuf.Empty) returns (ActionsResponse) {}
+  rpc GetAllRoles(google.protobuf.Empty) returns (RolesResponse) {}
 
   rpc GetRolesForUser(Subject.User) returns (RolesResponse) {}
   rpc GetImplicitRolesForUser(Subject.User) returns (RolesResponse) {}
   rpc GetUsersForRole(Subject.Role) returns (UsersResponse) {}
   rpc GetImplicitUsersForRole(Subject.Role) returns (UsersResponse) {}
-  rpc HasRoleForUser(UserRoleRequest) returns (Empty) {}
-  rpc AddRoleForUser(UserRoleRequest) returns (Empty) {}
-  rpc DeleteRoleForUser(UserRoleRequest) returns (Empty) {}
-  rpc DeleteUser(Subject.User) returns (Empty) {}
-  rpc DeleteRole(Subject.Role) returns (Empty) {}
+  rpc HasRoleForUser(UserRoleRequest) returns (google.protobuf.Empty) {}
+  rpc AddRoleForUser(UserRoleRequest) returns (google.protobuf.Empty) {}
+  rpc DeleteRoleForUser(UserRoleRequest) returns (google.protobuf.Empty) {}
+  rpc DeleteUser(Subject.User) returns (google.protobuf.Empty) {}
+  rpc DeleteRole(Subject.Role) returns (google.protobuf.Empty) {}
 
   rpc GetPermissions(Subject) returns (PermissionsResponse) {}
   rpc GetImplicitPermissions(Subject) returns (PermissionsResponse) {}
-  rpc DeletePermission(Permission) returns (Empty) {}
-  rpc AddPermission(Permission) returns (Empty) {}
-  rpc HasPermission(Permission) returns (Empty) {}
+  rpc DeletePermission(Permission) returns (google.protobuf.Empty) {}
+  rpc AddPermission(Permission) returns (google.protobuf.Empty) {}
+  rpc HasPermission(Permission) returns (google.protobuf.Empty) {}
 }
 
 message UserRoleRequest {

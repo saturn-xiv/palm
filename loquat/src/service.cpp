@@ -67,7 +67,7 @@ grpc::Status loquat::HMacService::Sign(
 grpc::Status loquat::HMacService::Verify(
     grpc::ServerContext* context,
     const palm::loquat::v1::HMacVerifyRequest* request,
-    palm::loquat::v1::Empty* response) {
+    google::protobuf::Empty* response) {
   spdlog::debug("call {}", __PRETTY_FUNCTION__);
   loquat::HMac mac;
   return mac.verify(request->hashed(), request->plain())
@@ -117,7 +117,7 @@ grpc::Status loquat::Argon2Service::Sign(
 grpc::Status loquat::Argon2Service::Verify(
     grpc::ServerContext* context,
     const palm::loquat::v1::Argon2VerifyRequest* request,
-    palm::loquat::v1::Empty* response) {
+    google::protobuf::Empty* response) {
   spdlog::debug("call {}", __PRETTY_FUNCTION__);
 
   return loquat::argon2id::verify(request->hashed(), request->password())

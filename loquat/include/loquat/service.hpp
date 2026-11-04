@@ -20,7 +20,7 @@ class HMacService final : public palm::loquat::v1::HMac::Service {
                     palm::loquat::v1::HMacSignResponse* response) override;
   grpc::Status Verify(grpc::ServerContext* context,
                       const palm::loquat::v1::HMacVerifyRequest* request,
-                      palm::loquat::v1::Empty* response) override;
+                      google::protobuf::Empty* response) override;
 };
 
 class AesService final : public palm::loquat::v1::Aes::Service {
@@ -38,7 +38,7 @@ class Argon2Service final : public palm::loquat::v1::Argon2::Service {
                     palm::loquat::v1::Argon2SignResponse* response) override;
   grpc::Status Verify(grpc::ServerContext* context,
                       const palm::loquat::v1::Argon2VerifyRequest* request,
-                      palm::loquat::v1::Empty* response) override;
+                      google::protobuf::Empty* response) override;
 };
 
 }  // namespace loquat

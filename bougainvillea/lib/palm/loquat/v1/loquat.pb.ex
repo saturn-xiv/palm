@@ -1,12 +1,3 @@
-defmodule Palm.Loquat.V1.Empty do
-  @moduledoc false
-
-  use Protobuf,
-    full_name: "palm.loquat.v1.Empty",
-    protoc_gen_elixir_version: "0.17.1",
-    syntax: :proto3
-end
-
 defmodule Palm.Loquat.V1.JwtVerifyRequest do
   @moduledoc false
 
@@ -199,7 +190,7 @@ defmodule Palm.Loquat.V1.HMac.Service do
 
   rpc(:Sign, Palm.Loquat.V1.HMacSignRequest, Palm.Loquat.V1.HMacSignResponse)
 
-  rpc(:Verify, Palm.Loquat.V1.HMacVerifyRequest, Palm.Loquat.V1.Empty)
+  rpc(:Verify, Palm.Loquat.V1.HMacVerifyRequest, Google.Protobuf.Empty)
 end
 
 defmodule Palm.Loquat.V1.HMac.Stub do
@@ -231,7 +222,7 @@ defmodule Palm.Loquat.V1.Argon2.Service do
 
   rpc(:Sign, Palm.Loquat.V1.Argon2SignRequest, Palm.Loquat.V1.Argon2SignResponse)
 
-  rpc(:Verify, Palm.Loquat.V1.Argon2VerifyRequest, Palm.Loquat.V1.Empty)
+  rpc(:Verify, Palm.Loquat.V1.Argon2VerifyRequest, Google.Protobuf.Empty)
 end
 
 defmodule Palm.Loquat.V1.Argon2.Stub do
