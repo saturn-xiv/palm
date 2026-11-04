@@ -28,6 +28,7 @@ defmodule Bougainvillea.MixProject do
       {:sweet_xml, "~> 0.7"},
       {:ecto_sql, "~> 3.0"},
       {:postgrex, "~> 0.22"},
+      {:gun, "~> 2.4"},
       {:grpc, "~> 1.0"},
       {:grpc_server, "~> 1.0"},
       {:protobuf, "~> 0.17.1"},

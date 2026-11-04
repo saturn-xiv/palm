@@ -1,12 +1,12 @@
 defmodule BougainvilleaTest.Hibiscus do
   use ExUnit.Case
+  @hi "Hello, Bougainvillea!"
 
-  test "Hibiscus argon2" do
-    # TODO
-    # password = "Hello, Bougainvillea!"
-    # {:ok, hashed} = Hibiscus.Argon2.encode(password)
-    # IO.puts("Hibiscus argon2 encode: #{hashed}")
-    # {:ok, v} = Hibiscus.Argon2.verify(password, hashed)
-    # IO.puts("Hibiscus argon2 verify: #{v}")
+  test "loquat argon2" do
+    Enum.each(1..5, fn i ->
+      {:ok, hashed} = Loquat.Argon2.sign(@hi)
+      IO.puts("argon2 sign(#{i}): #{hashed}")
+      assert Loquat.Argon2.verify?(hashed, @hi)
+    end)
   end
 end

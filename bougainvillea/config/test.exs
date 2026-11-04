@@ -17,10 +17,13 @@ config :bougainvillea, :rabbitmq,
   password: "change-me",
   virtual_host: "bougainvillea.test"
 
-config :bougainvillea, :opensearch, host: "http://127.0.0.1:9200", namespace: "bougainvillea.dev"
+config :bougainvillea, :opensearch,
+  endpoint: "http://127.0.0.1:9200",
+  namespace: "bougainvillea.dev"
 
-config :bougainvillea, :loquat, host: "127.0.0.1", port: 11001
-config :bougainvillea, :dahlia, host: "127.0.0.1", port: 11002
-config :bougainvillea, :marigold, host: "127.0.0.1", port: 11004
+config :bougainvillea, :seaweedfs, endpoint: "http://127.0.0.1:9333"
+config :bougainvillea, :loquat, endpoint: "127.0.0.1:11001"
+config :bougainvillea, :dahlia, endpoint: "127.0.0.1:11002"
+config :bougainvillea, :marigold, endpoint: "127.0.0.1:11004"
 
 config :logger, level: :info

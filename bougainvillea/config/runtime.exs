@@ -28,10 +28,11 @@ if config_env() == :prod do
     virtual_host: doc["rabbitmq"]["virtual-host"]
 
   config :bougainvillea, :opensearch,
-    host: doc["opensearch"]["host"],
+    endpoint: doc["opensearch"]["endpoint"],
     namespace: doc["opensearch"]["namespace"]
 
-  config :bougainvillea, :loquat, host: doc["loquat"]["host"], port: doc["loquat"]["port"]
-  config :bougainvillea, :dahlia, host: doc["dahlia"]["host"], port: doc["dahlia"]["port"]
-  config :bougainvillea, :marigold, host: doc["marigold"]["host"], port: doc["marigold"]["port"]
+  config :bougainvillea, :seaweedfs, endpoint: doc["seaweedfs"]["endpoint"]
+  config :bougainvillea, :loquat, host: doc["loquat"]["endpoint"]
+  config :bougainvillea, :dahlia, host: doc["dahlia"]["endpoint"]
+  config :bougainvillea, :marigold, host: doc["marigold"]["endpoint"]
 end

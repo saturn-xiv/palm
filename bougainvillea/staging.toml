@@ -20,17 +20,17 @@ password = "change-me"
 virtual-host = "bougainvillea"
 
 [opensearch]
-url = "http://127.0.0.1:9200"
+endpoint = "http://127.0.0.1:9200"
 namespace = "bougainvillea"
 
+[seaweedfs]
+endpoint = "http://127.0.0.1:9333"
+
 [loquat]
-host = "127.0.0.1"
-port = 11001
+endpoint = "127.0.0.1:11001"
 
 [dahlia]
-host = "127.0.0.1"
-port = 11002
+endpoint = "127.0.0.1:11002"
 
 [marigold]
-host = "127.0.0.1"
-port = 11004
+endpoint = "127.0.0.1:11004"
