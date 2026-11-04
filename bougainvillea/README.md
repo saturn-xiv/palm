@@ -26,5 +26,3 @@ mix ecto.rollback
 
 mix run --no-halt
 ```
-
-
