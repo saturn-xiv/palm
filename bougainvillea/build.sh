@@ -58,6 +58,7 @@ function build_loquat() {
     cd $WORK_DIR/loquat/
     bash build.sh
     
+    cd $WORK_DIR/loquat/
     local -a targets=("x86_64" "aarch64" "riscv64")
     for t in "${targets[@]}"
     do

@@ -6,9 +6,31 @@ user = "www"
 password = "change-me"
 pool-size = 16
 
+[redis]
+host = "127.0.0.1"
+port = 6379
+db = 0
+pool-size = 16
+
 [rabbitmq]
 host = "127.0.0.1"
 port = 5672
 user = "www"
 password = "change-me"
 virtual-host = "bougainvillea"
+
+[opensearch]
+url = "http://127.0.0.1:9200"
+namespace = "bougainvillea"
+
+[loquat]
+host = "127.0.0.1"
+port = 11001
+
+[dahlia]
+host = "127.0.0.1"
+port = 11002
+
+[marigold]
+host = "127.0.0.1"
+port = 11004
