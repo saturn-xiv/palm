@@ -2,7 +2,6 @@ defmodule Bougainvillea.Repo.Migrations.CreateLocales do
   use Ecto.Migration
 
   def change do
-
     create table(:locales) do
       add :lang, :string, size: 7, null: false
       add :code, :string, size: 255, null: false
@@ -15,6 +14,5 @@ defmodule Bougainvillea.Repo.Migrations.CreateLocales do
     create index(:locales, [:lang])
     create index(:locales, [:code])
     create unique_index(:locales, [:lang, :code])
-
   end
 end

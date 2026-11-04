@@ -18,8 +18,7 @@ mix deps.get --only prod
 mix clean
 mix compile
 mix release --overwrite
-cp -r _build/prod/rel/bougainvillea $TARGET_DIR/$PACKAGE/
-cp README.md $TARGET_DIR/$PACKAGE/BOUGAINVILLEA.md
+cp -r README.md staging.toml _build/prod/rel/bougainvillea $TARGET_DIR/$PACKAGE/
 
 cd $WORK_DIR/
 cp README.md LICENSE $TARGET_DIR/$PACKAGE/
