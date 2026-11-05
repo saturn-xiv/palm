@@ -12,5 +12,9 @@ Usage:
     ./bin/bougainvillea eval 'Bougainvillea.Release.create_user_by_email("Who am I", "change-me@gmail.com", "password")'
     # Set password for email user
     ./bin/bougainvillea eval 'Bougainvillea.Release.set_password_for_email_user("change-me@gmail.com", "password")'
+    # Assigns a role to a user
+    ./bin/bougainvillea eval 'Bougainvillea.Release.add_role_for_user("user.sn", "role.code")'
+    # Removes a role from a user
+    ./bin/bougainvillea eval 'Bougainvillea.Release.delete_role_for_user("user.sn", "role.code")'
 
 https://github.com/saturn-xiv/palm/tree/main/bougainvillea

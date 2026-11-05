@@ -38,10 +38,7 @@ _build/prod/rel/bougainvillea/bin/bougainvillea eval 'Bougainvillea.Release.help
 ```bash
 export BOUGAINVILLEA_ENV=staging
 export BOUGAINVILLEA_HTTP_PORT=3000
-./bin/bougainvillea eval 'Bougainvillea.Release.db_migrate'
-./bin/bougainvillea eval 'Bougainvillea.Release.db_status'
-./bin/bougainvillea eval 'Bougainvillea.Release.db_rollback(20261102053706)'
-./bin/bougainvillea eval 'Bougainvillea.Release.db_seed'
+./bin/bougainvillea eval 'Bougainvillea.Release.help'
 
 ./bin/bougainvillea start
 ```

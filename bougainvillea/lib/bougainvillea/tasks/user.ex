@@ -1,6 +1,26 @@
 defmodule Bougainvillea.Tasks.User do
   require Logger
 
+  def add_role_for_user(user, role) do
+    Logger.warning("Assigns role #{role} to user #{user}")
+    {:ok, role} = Hibiscus.Validator.code(role)
+    user = Bougainvillea.Repo.get_by(Bougainvillea.Portal.Models.User, sn: user)
+    Dahlia.Rbac.Enforcer.add_role_for_user(user.id, role)
+    {:ok, roles} = Dahlia.Rbac.Enforcer.get_implicit_roles_for_user(user.id)
+    Logger.debug("current roles: #{roles}")
+    Logger.info("done.")
+  end
+
+  def delete_role_for_user(user, role) do
+    Logger.warning("Removes role #{role} from user #{user}")
+    {:ok, role} = Hibiscus.Validator.code(role)
+    user = Bougainvillea.Repo.get_by(Bougainvillea.Portal.Models.User, sn: user)
+    Dahlia.Rbac.Enforcer.delete_role_for_user(user.id, role)
+    {:ok, roles} = Dahlia.Rbac.Enforcer.get_implicit_roles_for_user(user.id)
+    Logger.debug("current roles: #{roles}")
+    Logger.info("done.")
+  end
+
   def list do
     IO.puts("SN                                   EMAIL USER")
 
