@@ -1,7 +1,0 @@
-namespace palm.portal.v1;
-
-table Password {    
-    payload: string (required);   
-    salt: double;
-}
-

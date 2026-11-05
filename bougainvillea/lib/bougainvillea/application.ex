@@ -8,7 +8,7 @@ defmodule Bougainvillea.Application do
       {Plug.Cowboy,
        scheme: :http,
        plug: Bougainvillea.Router,
-       options: [port: Application.fetch_env!(:bougainvillea, :http_port)]}
+       options: [port: Application.fetch_env!(:bougainvillea, :http) |> Keyword.fetch!(:port)]}
     ]
 
     opts = [strategy: :one_for_one, name: Bougainvillea.Supervisor]

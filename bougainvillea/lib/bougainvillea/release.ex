@@ -4,6 +4,11 @@ defmodule Bougainvillea.Release do
   # https://ecto-sql.hexdocs.pm/Ecto.Migrator.html#module-example-running-migrations-in-a-release
   @app :bougainvillea
 
+  def generate_token_for_email_user(email, audiences, days) do
+    Application.ensure_all_started(@app)
+    Bougainvillea.Tasks.Token.generate_for_email_user(email, audiences, days)
+  end
+
   def add_role_for_user(user, role) do
     Application.ensure_all_started(@app)
     Bougainvillea.Tasks.User.add_role_for_user(user, role)

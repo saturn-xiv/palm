@@ -8,7 +8,7 @@ defmodule Bougainvillea.Portal.Services.EmailUser do
   @name_max_length 31
 
   def set_password(email, password) do
-    {:ok, email} = Hibiscus.Validator.email(email, @email_max_length)
+    {:ok, email} = Hibiscus.Validator.email(email)
 
     {:ok, password} =
       Hibiscus.Validator.password(password, @password_min_length, @password_max_length)

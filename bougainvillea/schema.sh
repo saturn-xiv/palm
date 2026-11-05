@@ -36,7 +36,7 @@ function generate_bougainvillea() {
     cd $WORK_DIR/bougainvillea/
 
     rm -r lib/palm
-    local -a plugins=("loquat" "dahlia" "marigold/src/main")
+    local -a plugins=("loquat" "dahlia" "marigold/src/main" "bougainvillea/priv")
     for p in "${plugins[@]}"
     do
         $VCPKG_PACKAGES_HOME/protobuf_x64-linux-release/tools/protobuf/protoc -I $VCPKG_PACKAGES_HOME/protobuf_x64-linux-release/include/google/protobuf \

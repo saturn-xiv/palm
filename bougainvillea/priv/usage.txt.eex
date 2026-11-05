@@ -16,5 +16,7 @@ Usage:
     ./bin/bougainvillea eval 'Bougainvillea.Release.add_role_for_user("user.sn", "role.code")'
     # Removes a role from a user
     ./bin/bougainvillea eval 'Bougainvillea.Release.delete_role_for_user("user.sn", "role.code")'
+    # Generate a new JWT token for email user
+    ./bin/bougainvillea eval 'Bougainvillea.Release.generate_token_by_email("change-me@gmail.com", ["sign-in"], 7)'
 
 https://github.com/saturn-xiv/palm/tree/main/bougainvillea

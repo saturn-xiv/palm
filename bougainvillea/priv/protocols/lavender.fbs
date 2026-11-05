@@ -1,9 +1,0 @@
-namespace palm.lavender.v1;
-
-table Task {
-    sn: string (required); 
-    args: [string];
-    script: string (required);   
-    work_dir: string (required);
-}
-
