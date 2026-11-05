@@ -19,6 +19,16 @@ defmodule Bougainvillea.Router do
 
   plug(Bougainvillea.Graphql.Context)
 
+  plug(Plug.Static,
+    at: "/assets",
+    from: {:bougainvillea, "priv/public/statics"}
+  )
+
+  plug(Plug.Static,
+    at: "/3rd",
+    from: {:bougainvillea, "priv/public/vendors"}
+  )
+
   plug(:dispatch)
 
   forward("/graphql", to: Absinthe.Plug, init_opts: [schema: Bougainvillea.Graphql.Schema])
