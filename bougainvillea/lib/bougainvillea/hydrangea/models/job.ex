@@ -1,7 +1,7 @@
-defmodule Bougainvillea.Hydrangea.Models.Task do
+defmodule Bougainvillea.Hydrangea.Models.Job do
   use Ecto.Schema
 
-  schema "locales" do
+  schema "hydrangea_jobs" do
     field :lang, :string
     field :code, :string
     field :message, :string

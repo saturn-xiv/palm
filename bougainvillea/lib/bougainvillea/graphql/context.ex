@@ -30,7 +30,7 @@ defmodule Bougainvillea.Graphql.Context do
     with ["Bearer " <> token] <- get_req_header(conn, "authorization") do
       token
     else
-      _ -> ""
+      _ -> nil
     end
   end
 end
