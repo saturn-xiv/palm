@@ -18,7 +18,7 @@ defmodule Hibiscus.Render do
     |> send_resp(status, Jason.encode!(body))
   end
 
-  def text(conn, status, body) do
+  def text(conn, status, body \\ "") do
     conn
     |> put_resp_content_type(@text_plain)
     |> send_resp(status, body)

@@ -1,15 +1,35 @@
 defmodule Bougainvillea.Router do
   use Plug.Router
 
+  plug(Plug.Logger)
+
+  plug(Plug.Parsers,
+    parsers: [:urlencoded, :multipart, :json, Absinthe.Plug.Parser],
+    pass: ["*/*"],
+    json_decoder: Jason
+  )
+
   plug(:match)
   plug(:dispatch)
 
   get "/api/health-check" do
-    body = Bougainvillea.Controllers.Api.health_check()
+    {:ok, body} = Bougainvillea.Portal.Controllers.Api.health_check()
     Hibiscus.Render.json(conn, 200, body)
   end
 
+  get "/" do
+    {:ok, body} = Bougainvillea.Portal.Controllers.Html.home()
+    Hibiscus.Render.html(conn, 200, body)
+  end
+
+  forward("/graphql", to: Absinthe.Plug, init_opts: [schema: Bougainvillea.Graphql.Schema])
+
+  forward("/graphiql",
+    to: Absinthe.Plug.GraphiQL,
+    init_opts: [schema: Bougainvillea.Graphql.Schema, interface: :simple]
+  )
+
   match _ do
-    send_resp(conn, 404, "Page Not Found")
+    Hibiscus.Render.text(conn, 404)
   end
 end

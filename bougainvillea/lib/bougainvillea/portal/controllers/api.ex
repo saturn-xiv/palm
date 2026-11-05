@@ -1,8 +1,9 @@
-defmodule Bougainvillea.Controllers.Api do
+defmodule Bougainvillea.Portal.Controllers.Api do
   def health_check() do
-    %{
-      version: Application.spec(:bougainvillea, :vsn) |> to_string,
-      created_at: DateTime.utc_now(:microsecond)
-    }
+    {:ok,
+     %{
+       version: Application.spec(:bougainvillea, :vsn) |> to_string,
+       created_at: DateTime.utc_now(:microsecond)
+     }}
   end
 end

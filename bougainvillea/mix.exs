@@ -31,6 +31,8 @@ defmodule Bougainvillea.MixProject do
       {:postgrex, "~> 0.22"},
       {:req, "~> 0.7"},
       {:gun, "~> 2.4"},
+      {:absinthe, "~> 1.12"},
+      {:absinthe_plug, "~> 1.5"},
       {:grpc, "~> 1.0"},
       {:grpc_server, "~> 1.0"},
       {:protobuf, "~> 0.17.1"},
