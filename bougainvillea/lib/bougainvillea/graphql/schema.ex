@@ -1,13 +1,13 @@
 defmodule Bougainvillea.Graphql.Schema do
   use Absinthe.Schema
-  import_types(Bougainvillea.Graphql.ContentTypes)
+  import_types(Bougainvillea.Portal.Graphql.ContentTypes)
 
-  alias Bougainvillea.Graphql.Resolvers
+  alias Bougainvillea.Portal.Graphql.Resolvers, as: PortalResolvers
 
   query do
     @desc "Show version"
     field :version, :string do
-      resolve(&Resolvers.Portal.version/3)
+      resolve(&PortalResolvers.version/3)
     end
   end
 
@@ -20,7 +20,7 @@ defmodule Bougainvillea.Graphql.Schema do
       arg(:lang, non_null(:string))
       arg(:timezone, non_null(:string))
 
-      resolve(&Resolvers.Portal.EmailUser.sign_up/3)
+      resolve(&PortalResolvers.EmailUser.sign_up/3)
     end
   end
 end

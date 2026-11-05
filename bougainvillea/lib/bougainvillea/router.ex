@@ -11,6 +11,12 @@ defmodule Bougainvillea.Router do
     json_decoder: Jason
   )
 
+  plug(Plug.Parsers,
+    parsers: [:urlencoded, :multipart],
+    pass: ["*/*"],
+    length: 1_000_000_000
+  )
+
   plug(Bougainvillea.Graphql.Context)
 
   plug(:dispatch)
@@ -27,8 +33,17 @@ defmodule Bougainvillea.Router do
     Hibiscus.Render.json(conn, 200, body)
   end
 
+  get "/attachments/:sn" do
+    Bougainvillea.Portal.Controllers.Attachments.show(conn, sn)
+  end
+
+  post "/attachments" do
+    {:ok, body} = Bougainvillea.Portal.Controllers.Attachments.create(conn)
+    Hibiscus.Render.json(conn, 200, body)
+  end
+
   get "/" do
-    {:ok, body} = Bougainvillea.Portal.Controllers.Html.home()
+    {:ok, body} = Bougainvillea.Portal.Controllers.Home.index()
     Hibiscus.Render.html(conn, 200, body)
   end
 

@@ -1,4 +1,4 @@
-defmodule Bougainvillea.Graphql.ContentTypes do
+defmodule Bougainvillea.Portal.Graphql.ContentTypes do
   use Absinthe.Schema.Notation
   import_types(Absinthe.Type.Custom)
 
