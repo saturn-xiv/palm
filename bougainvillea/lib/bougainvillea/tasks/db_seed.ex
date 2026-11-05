@@ -1,4 +1,4 @@
-defmodule Bougainvillea.Task.DbSeed do
+defmodule Bougainvillea.Tasks.DbSeed do
   require Logger
   import SweetXml
 

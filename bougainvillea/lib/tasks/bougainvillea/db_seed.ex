@@ -6,6 +6,6 @@ defmodule Mix.Tasks.Bougainvillea.DbSeed do
   @impl true
   def run(_args) do
     Mix.Task.run("app.start")
-    Bougainvillea.Task.DbSeed.run()
+    Bougainvillea.Tasks.DbSeed.run()
   end
 end

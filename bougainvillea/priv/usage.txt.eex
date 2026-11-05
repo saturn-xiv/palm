@@ -7,7 +7,10 @@ Usage:
     ./bin/bougainvillea eval 'Bougainvillea.Release.db_status'              # Show database status
     ./bin/bougainvillea eval 'Bougainvillea.Release.db_rollback(VERSION)'   # Rollback a migration
     ./bin/bougainvillea eval 'Bougainvillea.Release.db_seed'                # Load data into database from priv folder
+    ./bin/bougainvillea eval 'Bougainvillea.Release.list_user'              # List all users
     # Create an user by email address
     ./bin/bougainvillea eval 'Bougainvillea.Release.create_user_by_email("Who am I", "change-me@gmail.com", "password")'
+    # Set password for email user
+    ./bin/bougainvillea eval 'Bougainvillea.Release.set_password_for_email_user("change-me@gmail.com", "password")'
 
 https://github.com/saturn-xiv/palm/tree/main/bougainvillea

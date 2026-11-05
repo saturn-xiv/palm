@@ -20,6 +20,6 @@ defmodule Mix.Tasks.Bougainvillea.CreateUserByEmail do
     name = Keyword.get(parsed_options, :name)
     email = Keyword.get(parsed_options, :email)
     password = Keyword.get(parsed_options, :password)
-    Bougainvillea.Task.User.create_user_by_email(name, email, password)
+    Bougainvillea.Tasks.User.create_user_by_email(name, email, password)
   end
 end
