@@ -4,8 +4,9 @@ defmodule Bougainvillea.Router do
   plug(:match)
   plug(:dispatch)
 
-  get "/hi" do
-    send_resp(conn, 200, "Hello, Bougainvillea!")
+  get "/api/health-check" do
+    body = Bougainvillea.Controllers.Api.health_check()
+    Hibiscus.Render.json(conn, 200, body)
   end
 
   match _ do
