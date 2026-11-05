@@ -4,7 +4,7 @@ defmodule Bougainvillea.Portal.Dao.Locale do
   def exist?(lang, code) do
     Bougainvillea.Portal.Models.Locale
     |> where([x], x.lang == ^lang and x.code == ^code)
-    |> Bougainvillea.Repo.aggregate(:count) == 0
+    |> Bougainvillea.Repo.aggregate(:count) > 0
   end
 
   def create(lang, code, message) do

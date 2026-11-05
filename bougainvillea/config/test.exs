@@ -8,6 +8,10 @@ config :bougainvillea, Bougainvillea.Repo,
   password: "change-me",
   pool_size: 8
 
+config :bougainvillea,
+  http_cookie_key:
+    "836LyhhuxhL282SxrDCEELtB/kkj+Mc1Wgo2NJpCXHO+HbXFE2B3U54FHsyuEwjRTLj5zPbmnrB8xy52hU8Y5hCNY04DZNugFa1YNoh/neGXpcnj+iAkhd7r+fkWIixVs8JQ8F2Wt+3YI6xgeyw4T0HaQ9aOLBTQqpxvaZ/guAY="
+
 config :bougainvillea, :redis, host: "127.0.0.1", port: 6379, db: 2, pool_size: 8
 
 config :bougainvillea, :rabbitmq,

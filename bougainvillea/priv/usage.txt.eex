@@ -1,0 +1,13 @@
+An online education solution(v<%= version %>).
+
+Usage:
+    ./bin/bougainvillea eval 'Bougainvillea.Release.help'                   # Show usage
+    ./bin/bougainvillea eval 'Bougainvillea.Release.version'                # Print version
+    ./bin/bougainvillea eval 'Bougainvillea.Release.db_migrate'             # Apply all migrations
+    ./bin/bougainvillea eval 'Bougainvillea.Release.db_status'              # Show database status
+    ./bin/bougainvillea eval 'Bougainvillea.Release.db_rollback(VERSION)'   # Rollback a migration
+    ./bin/bougainvillea eval 'Bougainvillea.Release.db_seed'                # Load data into database from priv folder
+    # Create an user by email address
+    ./bin/bougainvillea eval 'Bougainvillea.Release.create_user_by_email("Who am I", "change-me@gmail.com", "password")'
+
+https://github.com/saturn-xiv/palm/tree/main/bougainvillea

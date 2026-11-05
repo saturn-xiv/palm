@@ -5,6 +5,7 @@ defmodule Hibiscus.Gravatar do
   end
 
   # https://docs.gravatar.com/rest/hash/
+  @spec hash(binary()) :: binary()
   def hash(email) do
     email |> String.trim() |> String.downcase() |> Hibiscus.Sha256.compute()
   end

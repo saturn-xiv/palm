@@ -30,6 +30,7 @@ mix run --no-halt
 
 MIX_ENV=prod mix release --overwrite
 _build/prod/rel/bougainvillea/bin/bougainvillea eval 'IO.puts("Hello, Bougainvillea!")'
+_build/prod/rel/bougainvillea/bin/bougainvillea eval 'Bougainvillea.Release.help'
 ```
 
 ## Run on production mode

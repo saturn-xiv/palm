@@ -1,3 +1,6 @@
+[http]
+cookie-key = "openssl rand -base64 128"
+
 [postgresql]
 host = "127.0.0.1"
 port = 5432

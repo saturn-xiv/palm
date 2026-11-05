@@ -68,7 +68,6 @@ function build_loquat() {
 }
 
 function amazon_corretto_jdk() {
-    mkdir -p $TARGET_DIR/$PACKAGE/share
     local -a targets=("x64" "aarch64")
     for t in "${targets[@]}"
     do
@@ -77,7 +76,7 @@ function amazon_corretto_jdk() {
         then
             wget -P $WORK_DIR/tmp/ https://corretto.aws/downloads/latest/$f
         fi
-        cp $WORK_DIR/tmp/$f $TARGET_DIR/$PACKAGE/share/
+        # cp $WORK_DIR/tmp/$f $TARGET_DIR/$PACKAGE/share/
     done
 } 
 
@@ -87,6 +86,8 @@ build_java marigold
 build_python3 dahlia
 build_elixir bougainvillea
 build_loquat
+
+mkdir -p $TARGET_DIR/$PACKAGE/share
 amazon_corretto_jdk
 
 cd $WORK_DIR/

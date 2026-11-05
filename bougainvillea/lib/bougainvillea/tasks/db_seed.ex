@@ -1,4 +1,4 @@
-defmodule Bougainvillea.Tasks.DbSeed do
+defmodule Bougainvillea.Task.DbSeed do
   require Logger
   import SweetXml
 
@@ -18,6 +18,8 @@ defmodule Bougainvillea.Tasks.DbSeed do
         Logger.warning("table currencies isn't empty")
       end
     end)
+
+    Logger.info("done.")
   end
 
   defp load_iso4217(file) do
@@ -71,10 +73,10 @@ defmodule Bougainvillea.Tasks.DbSeed do
     Logger.debug("found #{lang}.#{key}")
 
     if Bougainvillea.Portal.Dao.Locale.exist?(lang, key) do
+      {1, 0}
+    else
       {:ok, _} = Bougainvillea.Portal.Dao.Locale.create(lang, key, value)
       {1, 1}
-    else
-      {1, 0}
     end
   end
 

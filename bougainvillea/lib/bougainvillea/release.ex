@@ -4,10 +4,14 @@ defmodule Bougainvillea.Release do
   # https://ecto-sql.hexdocs.pm/Ecto.Migrator.html#module-example-running-migrations-in-a-release
   @app :bougainvillea
 
+  def create_user_by_email(name, email, password) do
+    Application.ensure_all_started(@app)
+    Bougainvillea.Task.User.create_user_by_email(name, email, password)
+  end
+
   def db_seed() do
     Application.ensure_all_started(@app)
-    Bougainvillea.Tasks.DbSeed.run()
-    Logger.info("done.")
+    Bougainvillea.Task.DbSeed.run()
   end
 
   def db_migrate() do
@@ -39,5 +43,18 @@ defmodule Bougainvillea.Release do
         end
       end)
     end
+  end
+
+  def help() do
+    priv_dir = :code.priv_dir(:bougainvillea)
+
+    EEx.eval_file(Path.join(priv_dir, "usage.txt.eex"),
+      version: Application.spec(:bougainvillea, :vsn)
+    )
+    |> IO.puts()
+  end
+
+  def version do
+    IO.puts("Bougainvillea v#{Application.spec(:bougainvillea, :vsn)}")
   end
 end

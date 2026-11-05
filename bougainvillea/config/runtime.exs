@@ -14,6 +14,8 @@ if config_env() == :prod do
     password: doc["postgresql"]["password"],
     pool_size: doc["postgresql"]["pool-size"]
 
+  config :bougainvillea, http_cookie_key: doc["http"]["cookie-key"]
+
   config :bougainvillea, :redis,
     host: doc["redis"]["host"],
     port: doc["redis"]["port"],
