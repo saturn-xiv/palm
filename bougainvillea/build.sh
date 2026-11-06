@@ -84,6 +84,7 @@ function amazon_corretto_jdk() {
 
 build_java marigold
 build_python3 dahlia
+build_python3 hydrangea
 build_elixir bougainvillea
 build_loquat
 

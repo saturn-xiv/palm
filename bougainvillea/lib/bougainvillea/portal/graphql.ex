@@ -16,7 +16,6 @@ defmodule Bougainvillea.Portal.Graphql do
 
     def has?(%Session{id: id}, role) do
       {:ok, it} = Dahlia.Rbac.Enforcer.get_implicit_roles_for_user(id)
-      IO.puts(it)
       (role |> to_string()) in it.others
     end
   end

@@ -1,7 +1,7 @@
 defmodule Bougainvillea.Hydrangea.Graphql.Resolvers.Job do
   require Logger
 
-  @queue "hydrangea-job"
+  @queue "hydrangea.jobs"
 
   def execute(_parent, %{name: name, args: args}, %{
         context: %{token: token, client_ip: client_ip}

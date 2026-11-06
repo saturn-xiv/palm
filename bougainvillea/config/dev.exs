@@ -10,10 +10,10 @@ config :bougainvillea, Bougainvillea.Repo,
 
 config :amqp,
   connections: [
-    bougainvillea_c: [url: "amqp://www:change-me@127.0.0.1:5672/bougainvillea.dev"]
+    bougainvillea: [url: "amqp://www:change-me@127.0.0.1:5672/bougainvillea.dev"]
   ],
   channels: [
-    bougainvillea: [connection: :bougainvillea_c]
+    bougainvillea: [connection: :bougainvillea]
   ]
 
 config :bougainvillea, :token, issuer: "bougainvillea.dev"
