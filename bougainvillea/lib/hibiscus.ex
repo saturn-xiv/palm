@@ -22,4 +22,45 @@ defmodule Hibiscus do
       _ -> {:error, "Unknown"}
     end
   end
+
+  def page(index, size) do
+    {(index - 1) * size, size}
+  end
+
+  def pagination(index, size, total) do
+    total =
+      case total do
+        x when x <= 0 -> 0
+        x -> x
+      end
+
+    size =
+      case size do
+        x when x <= 10 -> 10
+        x when x >= 5000 -> 5000
+        x -> x
+      end
+
+    pages =
+      case rem(total, size) do
+        0 -> div(total, size)
+        _ -> div(total, size) + 1
+      end
+
+    index =
+      case index do
+        x when x <= 1 -> 1
+        x when x >= pages -> pages
+        x -> x
+      end
+
+    %{
+      index: index,
+      size: size,
+      total: total,
+      pages: pages,
+      has_previous: index > 1,
+      has_next: index < pages
+    }
+  end
 end

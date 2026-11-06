@@ -7,11 +7,11 @@ defmodule Bougainvillea.Hydrangea.Graphql.ContentTypes do
   end
 
   object :hydrangea_job do
+    field :id, non_null(:integer)
     field :sn, non_null(:string)
     field :name, non_null(:string)
     field :summary, non_null(:string)
     field :version, non_null(:string)
-    field :working_dir, non_null(:string)
     field :args, non_null(list_of(non_null(:string)))
     field :script, non_null(:string)
     field :launched_at, non_null(:datetime)

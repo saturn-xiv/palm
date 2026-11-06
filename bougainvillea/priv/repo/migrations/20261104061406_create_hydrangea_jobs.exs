@@ -8,11 +8,10 @@ defmodule Bougainvillea.Repo.Migrations.CreateLavenderTasks do
       add :name, :string, size: 63, null: false
       add :summary, :string, size: 511, null: false
       add :version, :string, size: 15, null: false
-      add :working_dir, :string, size: 127, null: false
-      add :args, :map, null: false
+      add :args, :map, null: false, default: fragment("'[]'::jsonb")
       add :script, :text, null: false
       add :launched_at, :utc_datetime_usec, null: false
-      add :elapsed, :utc_datetime_usec, null: false
+      add :elapsed, :string, size: 15, null: false
       add :status_code, :integer, null: false
       add :stdout, :text, null: false
       add :stderr, :text, null: false
@@ -22,7 +21,8 @@ defmodule Bougainvillea.Repo.Migrations.CreateLavenderTasks do
     create index(:hydrangea_jobs, [:name])
     create index(:hydrangea_jobs, [:summary])
     create index(:hydrangea_jobs, [:version])
-    create index(:hydrangea_jobs, [:working_dir])
+    create index(:hydrangea_jobs, [:elapsed])
+    create index(:hydrangea_jobs, [:args], using: :gin)
     create unique_index(:hydrangea_jobs, [:sn])
   end
 end

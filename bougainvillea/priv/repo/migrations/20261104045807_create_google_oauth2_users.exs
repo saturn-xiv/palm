@@ -19,7 +19,7 @@ defmodule Bougainvillea.Repo.Migrations.CreateGoogleOauth2Users do
       add :locale, :string, size: 15
       add :token, :string, size: 127, null: false
       add :refresh_token, :string, size: 127, null: false
-      add :granted_scopes, :map, null: false
+      add :granted_scopes, :map, null: false, default: fragment("'[]'::jsonb")
       add :locked_at, :utc_datetime_usec
       add :deleted_at, :utc_datetime_usec
       add :version, :integer, null: false, default: 0
@@ -33,6 +33,7 @@ defmodule Bougainvillea.Repo.Migrations.CreateGoogleOauth2Users do
     create index(:google_oauth2_users, [:given_name], where: "given_name IS NULL")
     create index(:google_oauth2_users, [:family_name], where: "family_name IS NULL")
     create index(:google_oauth2_users, [:gender], where: "gender IS NULL")
+    create index(:google_oauth2_users, [:granted_scopes], using: :gin)
     create unique_index(:google_oauth2_users, [:client_id, :sub])
     create unique_index(:google_oauth2_users, [:email])
     create unique_index(:google_oauth2_users, [:sn])

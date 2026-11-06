@@ -11,7 +11,7 @@ defmodule Bougainvillea.Tasks.Token do
 
     {:ok, token} =
       Loquat.Jwt.sign(
-        Bougainvillea.token_issuer(),
+        Bougainvillea.Portal.token_issuer(),
         it.sn,
         audiences,
         %Palm.Portal.V1.UserToken.Payload{

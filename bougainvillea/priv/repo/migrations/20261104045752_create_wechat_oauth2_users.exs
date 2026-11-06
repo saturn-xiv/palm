@@ -10,7 +10,7 @@ defmodule Bougainvillea.Repo.Migrations.CreateWechatOauth2Users do
       add :open_id, :string, size: 63, null: false
       add :nickname, :string, size: 63, null: false
       add :head_img_url, :string, size: 127
-      add :privilege, :map, null: false
+      add :privilege, :map, null: false, default: fragment("'[]'::jsonb")
       add :access_token, :string, size: 63, null: false
       add :expires_in, :utc_datetime_usec, null: false
       add :refresh_token, :string, size: 63, null: false
@@ -22,6 +22,7 @@ defmodule Bougainvillea.Repo.Migrations.CreateWechatOauth2Users do
     end
 
     create index(:wechat_oauth2_users, [:nickname])
+    create index(:wechat_oauth2_users, [:privilege], using: :gin)
     create unique_index(:wechat_oauth2_users, [:app_id, :open_id])
     create unique_index(:wechat_oauth2_users, [:union_id])
     create unique_index(:wechat_oauth2_users, [:sn])

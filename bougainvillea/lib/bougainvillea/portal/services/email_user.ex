@@ -14,7 +14,7 @@ defmodule Bougainvillea.Portal.Services.EmailUser do
       Hibiscus.Validator.password(password, @password_min_length, @password_max_length)
 
     it = Bougainvillea.Repo.get_by(Bougainvillea.Portal.Models.EmailUser, email: email)
-    Logger.warning("set password for #{it.name}<#{it.email}>")
+    Logger.warning("set password for #{it}>")
     {:ok, _} = Bougainvillea.Portal.Dao.EmailUser.set_password(it.id, password)
     {:ok, it}
   end

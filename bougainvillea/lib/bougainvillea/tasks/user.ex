@@ -28,7 +28,7 @@ defmodule Bougainvillea.Tasks.User do
     email_users = Bougainvillea.Repo.preload(email_users, :user)
 
     Enum.each(email_users, fn it ->
-      IO.puts("#{it.user.sn} #{it.name}<#{it.email}>")
+      IO.puts("#{it.user.sn} #{it}>")
     end)
   end
 

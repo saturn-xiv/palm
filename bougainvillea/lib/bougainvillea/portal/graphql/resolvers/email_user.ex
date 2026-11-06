@@ -3,13 +3,13 @@ defmodule Bougainvillea.Portal.Graphql.Resolvers.EmailUser do
     # TODO
     IO.inspect(args)
     IO.inspect(context)
-    {:ok, Bougainvillea.Portal.Graphql.Resolvers.succeed()}
+    {:ok, Bougainvillea.Portal.Graphql.succeed()}
   end
 
   def sign_up(_parent, args, %{context: context}) do
     # TODO
     IO.inspect(args)
     IO.inspect(context)
-    {:ok, Bougainvillea.Portal.Graphql.Resolvers.succeed()}
+    {:ok, Bougainvillea.Portal.Graphql.succeed()}
   end
 end
