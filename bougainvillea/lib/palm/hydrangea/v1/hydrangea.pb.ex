@@ -14,20 +14,20 @@ defmodule Palm.Hydrangea.V1.StashJobRequest do
   field :elapsed, 9, type: Google.Protobuf.Duration
 end
 
-defmodule Palm.Hydrangea.V1.Job do
+defmodule Palm.Hydrangea.V1.Task do
   @moduledoc false
 
   use Protobuf,
-    full_name: "palm.hydrangea.v1.Job",
+    full_name: "palm.hydrangea.v1.Task",
     protoc_gen_elixir_version: "0.17.1",
     syntax: :proto3
 
   field :sn, 1, type: :string
-  field :summary, 2, type: :string
-  field :version, 3, type: :string
-  field :working_dir, 11, type: :string, json_name: "workingDir"
-  field :script, 12, type: :string
-  field :args, 13, repeated: true, type: :string
+  field :name, 2, type: :string
+  field :summary, 3, type: :string
+  field :version, 4, type: :string
+  field :script, 11, type: :string
+  field :args, 12, repeated: true, type: :string
 end
 
 defmodule Palm.Hydrangea.V1.Stash.Service do

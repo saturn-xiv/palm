@@ -1,11 +1,38 @@
 defmodule Bougainvillea.Hydrangea.Graphql.Resolvers.Job do
   require Logger
 
+  @queue "hydrangea-job"
+
   def execute(_parent, %{name: name, args: args}, %{
         context: %{token: token, client_ip: client_ip}
       }) do
     {:ok, ss} = can(token)
-    Logger.info("#{ss}@#{client_ip} execute background job #{name} with #{Enum.join(args, ",")} ")
+    Logger.info("#{ss}@#{client_ip} execute background job #{name} with #{Enum.join(args, ",")}")
+
+    {:ok, buf} =
+      File.read(
+        Application.fetch_env!(:bougainvillea, :hydrangea)
+        |> Keyword.fetch!(:jobs_dir)
+        |> Path.join("#{name}.toml")
+      )
+
+    {:ok, doc} = TomlElixir.decode(buf)
+
+    task = %Palm.Hydrangea.V1.Task{
+      sn: Hibiscus.uuid(),
+      name: name,
+      version: doc["version"],
+      summary: doc["summary"],
+      script: doc["script"],
+      args: args
+    }
+
+    Hibiscus.RabbitMq.produce(
+      @queue,
+      Hibiscus.uuid(),
+      Hibiscus.ContentTypes.protobuf(),
+      Protobuf.encode(task)
+    )
 
     {:ok, Bougainvillea.Portal.Graphql.succeed()}
   end

@@ -40,3 +40,7 @@ endpoint = "127.0.0.1:11002"
 
 [marigold]
 endpoint = "127.0.0.1:11004"
+
+[hydrangea]
+jobs-dir = "/var/lib/palm/hydrangea/jobs"
+bcc = ["chang-me@gmail.com"]

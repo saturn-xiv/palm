@@ -8,6 +8,14 @@ config :bougainvillea, Bougainvillea.Repo,
   password: "change-me",
   pool_size: 8
 
+config :amqp,
+  connections: [
+    bougainvillea_c: [url: "amqp://www:change-me@127.0.0.1:5672/bougainvillea.dev"]
+  ],
+  channels: [
+    bougainvillea: [connection: :bougainvillea_c]
+  ]
+
 config :bougainvillea, :token, issuer: "bougainvillea.dev"
 
 config :bougainvillea, :http,
@@ -31,5 +39,6 @@ config :bougainvillea, :seaweedfs, endpoint: "http://127.0.0.1:9333"
 config :bougainvillea, :loquat, endpoint: "127.0.0.1:11001"
 config :bougainvillea, :dahlia, endpoint: "127.0.0.1:11002"
 config :bougainvillea, :marigold, endpoint: "127.0.0.1:11004"
+config :bougainvillea, :hydrangea, jobs_dir: "tmp/jobs"
 
 config :logger, level: :debug

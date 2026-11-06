@@ -14,6 +14,17 @@ if config_env() == :prod do
     password: doc["postgresql"]["password"],
     pool_size: doc["postgresql"]["pool-size"]
 
+  config :amqp,
+    connections: [
+      bougainvillea: [
+        url:
+          "amqp://#{doc["rabbitmq"]["user"]}:#{doc["rabbitmq"]["password"]}@#{doc["rabbitmq"]["host"]}:#{doc["rabbitmq"]["port"]}/#{doc["rabbitmq"]["virtual-host"]}"
+      ]
+    ],
+    channels: [
+      bougainvillea: [connection: :bougainvillea]
+    ]
+
   config :bougainvillea, :token, issuer: doc["token"]["issuer"]
   config :bougainvillea, :http, cookie_key: doc["http"]["cookie-key"]
 
@@ -38,4 +49,5 @@ if config_env() == :prod do
   config :bougainvillea, :loquat, host: doc["loquat"]["endpoint"]
   config :bougainvillea, :dahlia, host: doc["dahlia"]["endpoint"]
   config :bougainvillea, :marigold, host: doc["marigold"]["endpoint"]
+  config :bougainvillea, :hydrangea, jobs_dir: doc["hydrangea"]["jobs-dir"]
 end
