@@ -9,7 +9,7 @@ defmodule Bougainvillea.Graphql.Schema do
   query do
     # ---------------------------------------------------------------------------
     @desc "Show version"
-    field :version, non_null(:string) do
+    field :api_version, non_null(:string) do
       resolve(&PortalResolvers.version/3)
     end
 
@@ -44,7 +44,7 @@ defmodule Bougainvillea.Graphql.Schema do
     # ---------------------------------------------------------------------------
 
     @desc "Execute a background job"
-    field :hydrangea_background_job_execute, type: non_null(:succeed) do
+    field :hydrangea_execute_background_job, type: non_null(:succeed) do
       arg(:name, non_null(:string))
       arg(:args, non_null(list_of(non_null(:string))))
 

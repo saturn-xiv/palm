@@ -1,5 +1,6 @@
 defmodule Bougainvillea.Router do
   use Plug.Router
+  use Plug.ErrorHandler
 
   plug(Plug.Logger)
 
@@ -59,5 +60,10 @@ defmodule Bougainvillea.Router do
 
   match _ do
     Hibiscus.Render.text(conn, 404)
+  end
+
+  @impl Plug.ErrorHandler
+  def handle_errors(conn, %{kind: _kind, reason: reason, stack: _stack}) do
+    Hibiscus.Render.text(conn, conn.status, reason)
   end
 end

@@ -2,7 +2,7 @@ defmodule Bougainvillea.Portal.Graphql do
   require Logger
 
   defmodule Session do
-    defstruct id: nil, name: nil, lang: nil, user: %{id: nil, type: nil}
+    defstruct id: nil, name: nil, lang: nil, user: %{id: nil, code: nil, type: nil}
 
     def administrator?(%Session{id: id}) do
       {:ok, it} = Dahlia.Rbac.Enforcer.get_implicit_roles_for_user(id)
@@ -16,19 +16,20 @@ defmodule Bougainvillea.Portal.Graphql do
 
     def has?(%Session{id: id}, role) do
       {:ok, it} = Dahlia.Rbac.Enforcer.get_implicit_roles_for_user(id)
-      role in it.others
+      IO.puts(it)
+      (role |> to_string()) in it.others
     end
   end
 
   defimpl String.Chars, for: Session do
     def to_string(%Session{id: id, name: name, user: user}) do
-      "User(#{name}, #{id})-(#{user.type}, #{user.id})"
+      "User(#{name}, #{id})-(#{user.type}, #{user.code})"
     end
   end
 
   def current_user(token, audience \\ :SIGN_IN) do
     {:ok, subject, payload} =
-      Loquat.Jwt.verify(token, Bougainvillea.Portal.token_issuer(), audience)
+      Loquat.Jwt.verify(token, Bougainvillea.Portal.token_issuer(), audience |> to_string())
 
     payload = Protobuf.decode(payload, Palm.Portal.V1.UserToken.Payload)
 
@@ -53,10 +54,10 @@ defmodule Bougainvillea.Portal.Graphql do
 
             {:ok,
              %Session{
-               id: x.user_id,
+               id: x.user.id,
+               lang: x.user.lang,
                name: x.name,
-               lang: x.lang,
-               user: %{id: x.id, type: payload.type}
+               user: %{id: x.id, code: x.email, type: payload.type}
              }}
         end
 

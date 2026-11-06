@@ -1,9 +1,11 @@
 defmodule Bougainvillea.Hydrangea.Graphql.Resolvers.Job do
   require Logger
 
-  def execute(_parent, %{sn: sn, args: args}, %{token: token, client_ip: client_ip}) do
+  def execute(_parent, %{name: name, args: args}, %{
+        context: %{token: token, client_ip: client_ip}
+      }) do
     {:ok, ss} = can(token)
-    Logger.info("#{ss}@#{client_ip} execute background job #{sn} with #{Enum.join(args, ",")} ")
+    Logger.info("#{ss}@#{client_ip} execute background job #{name} with #{Enum.join(args, ",")} ")
 
     {:ok, Bougainvillea.Portal.Graphql.succeed()}
   end
@@ -42,7 +44,7 @@ defmodule Bougainvillea.Hydrangea.Graphql.Resolvers.Job do
   defp can(token) do
     {:ok, ss} = Bougainvillea.Portal.Graphql.current_user(token)
 
-    if Bougainvillea.Portal.Graphql.Session.has?(ss, :bougainvillea) do
+    if Bougainvillea.Portal.Graphql.Session.has?(ss, :hydrangea) do
       {:ok, ss}
     else
       {:error, "Forbidden"}
