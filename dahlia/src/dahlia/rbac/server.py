@@ -1,14 +1,22 @@
 import logging
 
-from grpc import StatusCode
 import google.protobuf.empty_pb2 as empty_pb2
+from grpc import StatusCode
 
-from dahlia.protocols import rbac_pb2_grpc, rbac_pb2, from_str, to_str, role_from_str, user_from_str, permission_from_line
+from dahlia.protocols import (
+    from_str,
+    permission_from_line,
+    rbac_pb2,
+    rbac_pb2_grpc,
+    role_from_str,
+    to_str,
+    user_from_str,
+)
 
 logger = logging.getLogger(__name__)
 
 
-class Server(rbac_pb2_grpc.EnforcerServicer):
+class Server(rbac_pb2_grpc.EnforcerServiceServicer):
     def __init__(self, enforcer):
         self.enforcer = enforcer
 
@@ -117,12 +125,14 @@ class Server(rbac_pb2_grpc.EnforcerServicer):
 
     def DeletePermission(self, request, context):
         self.enforcer.delete_permissions_for_user(
-            to_str(request.subject), to_str(request.object), to_str(request.action))
+            to_str(request.subject), to_str(request.object), to_str(request.action)
+        )
         return empty_pb2.Empty()
 
     def AddPermission(self, request, context):
         self.enforcer.add_permission_for_user(
-            to_str(request.subject), to_str(request.object), to_str(request.action))
+            to_str(request.subject), to_str(request.object), to_str(request.action)
+        )
         return empty_pb2.Empty()
 
     def HasPermission(self, request, context):
