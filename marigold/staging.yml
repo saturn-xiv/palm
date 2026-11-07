@@ -1,6 +1,16 @@
 server:
   port: 11003
+logging:
+  level:
+    root: INFO
+    org.hibernate.SQL: DEBUG
+    com.github.saturn_xiv.palm: DEBUG
 spring:
+  jpa:
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
   grpc:
     server:
       port: 11004

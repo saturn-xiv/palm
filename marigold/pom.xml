@@ -64,7 +64,21 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-webmvc</artifactId>
 		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-security</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-liquibase</artifactId>
+		</dependency>
 
+		<!-- Source: https://mvnrepository.com/artifact/com.google.crypto.tink/tink -->
+		<dependency>
+			<groupId>com.google.crypto.tink</groupId>
+			<artifactId>tink</artifactId>
+			<version>1.24.0</version>
+		</dependency>
 		<!-- Source: https://mvnrepository.com/artifact/com.twilio.sdk/twilio -->
 		<dependency>
 			<groupId>com.twilio.sdk</groupId>
@@ -102,16 +116,67 @@
 			<version>5.5.1</version>
 		</dependency>
 
+		<!-- Source: https://mvnrepository.com/artifact/org.casbin/jcasbin -->
 		<dependency>
-			<groupId>com.mysql</groupId>
-			<artifactId>mysql-connector-j</artifactId>
+			<groupId>org.casbin</groupId>
+			<artifactId>jcasbin</artifactId>
+			<version>1.99.0</version>
+		</dependency>
+		<!-- Source: https://mvnrepository.com/artifact/org.casbin/jdbc-adapter -->
+		<dependency>
+			<groupId>org.casbin</groupId>
+			<artifactId>jdbc-adapter</artifactId>
+			<version>2.13.0</version>
+		</dependency>
+		<!-- Source: https://mvnrepository.com/artifact/org.casbin/jcasbin-rabbitmq-watcher -->
+		<dependency>
+			<groupId>org.casbin</groupId>
+			<artifactId>jcasbin-rabbitmq-watcher</artifactId>
+			<version>1.3.0</version>
+		</dependency>
+
+		<!-- Source: https://mvnrepository.com/artifact/com.rabbitmq/amqp-client -->
+		<dependency>
+			<groupId>com.rabbitmq</groupId>
+			<artifactId>amqp-client</artifactId>
+			<version>5.37.0</version>
+		</dependency>
+		<!-- Source: https://mvnrepository.com/artifact/io.lettuce/lettuce-core -->
+		<dependency>
+			<groupId>io.lettuce</groupId>
+			<artifactId>lettuce-core</artifactId>
+			<version>7.9.0.RELEASE</version>
+		</dependency>
+
+		<!-- Source: https://mvnrepository.com/artifact/jakarta.mail/jakarta.mail-api -->
+		<dependency>
+			<groupId>jakarta.mail</groupId>
+			<artifactId>jakarta.mail-api</artifactId>
+			<version>2.2.0-M1</version>
+		</dependency>
+		<!-- Source: https://mvnrepository.com/artifact/org.eclipse.angus/angus-mail -->
+		<dependency>
+			<groupId>org.eclipse.angus</groupId>
+			<artifactId>angus-mail</artifactId>
+			<version>2.1.0-M1</version>
 			<scope>runtime</scope>
 		</dependency>
+
+		<!-- Source: https://mvnrepository.com/artifact/org.postgresql/postgresql -->
 		<dependency>
 			<groupId>org.postgresql</groupId>
 			<artifactId>postgresql</artifactId>
+			<version>42.7.14</version>
 			<scope>runtime</scope>
 		</dependency>
+		<!-- Source: https://mvnrepository.com/artifact/com.mysql/mysql-connector-j -->
+		<dependency>
+			<groupId>com.mysql</groupId>
+			<artifactId>mysql-connector-j</artifactId>
+			<version>26.10.0</version>
+			<scope>runtime</scope>
+		</dependency>
+
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-amqp-test</artifactId>

@@ -1,3 +1,14 @@
 spring:
   application:
-    name: marigold
+    name: Marigold
+  jpa:
+    hibernate:
+      ddl-auto: validate
+  threads:
+    virtual:
+      enabled: true
+  task:
+    execution:
+      thread-name-prefix: "marigold-t-"
+  liquibase:
+    change-log: classpath:db/change-logs/master.xml
