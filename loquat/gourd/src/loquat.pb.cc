@@ -28,6 +28,90 @@ namespace palm {
 namespace loquat {
 namespace v1 {
 
+inline constexpr MacVerifyRequest::Impl_::Impl_(
+    ::_pbi::ConstantInitialized) noexcept
+      : _cached_size_{0},
+        hashed_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()),
+        plain_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()) {}
+
+template <typename>
+PROTOBUF_CONSTEXPR MacVerifyRequest::MacVerifyRequest(::_pbi::ConstantInitialized)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::Message(MacVerifyRequest_class_data_.base()),
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::Message(),
+#endif  // PROTOBUF_CUSTOM_VTABLE
+      _impl_(::_pbi::ConstantInitialized()) {
+}
+struct MacVerifyRequestDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR MacVerifyRequestDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~MacVerifyRequestDefaultTypeInternal() {}
+  union {
+    MacVerifyRequest _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 MacVerifyRequestDefaultTypeInternal _MacVerifyRequest_default_instance_;
+
+inline constexpr MacComputeResponse::Impl_::Impl_(
+    ::_pbi::ConstantInitialized) noexcept
+      : _cached_size_{0},
+        hashed_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()) {}
+
+template <typename>
+PROTOBUF_CONSTEXPR MacComputeResponse::MacComputeResponse(::_pbi::ConstantInitialized)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::Message(MacComputeResponse_class_data_.base()),
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::Message(),
+#endif  // PROTOBUF_CUSTOM_VTABLE
+      _impl_(::_pbi::ConstantInitialized()) {
+}
+struct MacComputeResponseDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR MacComputeResponseDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~MacComputeResponseDefaultTypeInternal() {}
+  union {
+    MacComputeResponse _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 MacComputeResponseDefaultTypeInternal _MacComputeResponse_default_instance_;
+
+inline constexpr MacComputeRequest::Impl_::Impl_(
+    ::_pbi::ConstantInitialized) noexcept
+      : _cached_size_{0},
+        plain_(
+            &::google::protobuf::internal::fixed_address_empty_string,
+            ::_pbi::ConstantInitialized()) {}
+
+template <typename>
+PROTOBUF_CONSTEXPR MacComputeRequest::MacComputeRequest(::_pbi::ConstantInitialized)
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+    : ::google::protobuf::Message(MacComputeRequest_class_data_.base()),
+#else   // PROTOBUF_CUSTOM_VTABLE
+    : ::google::protobuf::Message(),
+#endif  // PROTOBUF_CUSTOM_VTABLE
+      _impl_(::_pbi::ConstantInitialized()) {
+}
+struct MacComputeRequestDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR MacComputeRequestDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~MacComputeRequestDefaultTypeInternal() {}
+  union {
+    MacComputeRequest _instance;
+  };
+};
+
+PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 MacComputeRequestDefaultTypeInternal _MacComputeRequest_default_instance_;
+
 inline constexpr JwtVerifyResponse::Impl_::Impl_(
     ::_pbi::ConstantInitialized) noexcept
       : _cached_size_{0},
@@ -91,7 +175,7 @@ struct JwtVerifyRequestDefaultTypeInternal {
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
     PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 JwtVerifyRequestDefaultTypeInternal _JwtVerifyRequest_default_instance_;
 
-inline constexpr JwtSignResponse::Impl_::Impl_(
+inline constexpr JwtComputeResponse::Impl_::Impl_(
     ::_pbi::ConstantInitialized) noexcept
       : _cached_size_{0},
         token_(
@@ -99,26 +183,26 @@ inline constexpr JwtSignResponse::Impl_::Impl_(
             ::_pbi::ConstantInitialized()) {}
 
 template <typename>
-PROTOBUF_CONSTEXPR JwtSignResponse::JwtSignResponse(::_pbi::ConstantInitialized)
+PROTOBUF_CONSTEXPR JwtComputeResponse::JwtComputeResponse(::_pbi::ConstantInitialized)
 #if defined(PROTOBUF_CUSTOM_VTABLE)
-    : ::google::protobuf::Message(JwtSignResponse_class_data_.base()),
+    : ::google::protobuf::Message(JwtComputeResponse_class_data_.base()),
 #else   // PROTOBUF_CUSTOM_VTABLE
     : ::google::protobuf::Message(),
 #endif  // PROTOBUF_CUSTOM_VTABLE
       _impl_(::_pbi::ConstantInitialized()) {
 }
-struct JwtSignResponseDefaultTypeInternal {
-  PROTOBUF_CONSTEXPR JwtSignResponseDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
-  ~JwtSignResponseDefaultTypeInternal() {}
+struct JwtComputeResponseDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR JwtComputeResponseDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~JwtComputeResponseDefaultTypeInternal() {}
   union {
-    JwtSignResponse _instance;
+    JwtComputeResponse _instance;
   };
 };
 
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
-    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 JwtSignResponseDefaultTypeInternal _JwtSignResponse_default_instance_;
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 JwtComputeResponseDefaultTypeInternal _JwtComputeResponse_default_instance_;
 
-inline constexpr JwtSignRequest::Impl_::Impl_(
+inline constexpr JwtComputeRequest::Impl_::Impl_(
     ::_pbi::ConstantInitialized) noexcept
       : _cached_size_{0},
         audiences_{},
@@ -142,108 +226,24 @@ inline constexpr JwtSignRequest::Impl_::Impl_(
         expired_at_{::int64_t{0}} {}
 
 template <typename>
-PROTOBUF_CONSTEXPR JwtSignRequest::JwtSignRequest(::_pbi::ConstantInitialized)
+PROTOBUF_CONSTEXPR JwtComputeRequest::JwtComputeRequest(::_pbi::ConstantInitialized)
 #if defined(PROTOBUF_CUSTOM_VTABLE)
-    : ::google::protobuf::Message(JwtSignRequest_class_data_.base()),
+    : ::google::protobuf::Message(JwtComputeRequest_class_data_.base()),
 #else   // PROTOBUF_CUSTOM_VTABLE
     : ::google::protobuf::Message(),
 #endif  // PROTOBUF_CUSTOM_VTABLE
       _impl_(::_pbi::ConstantInitialized()) {
 }
-struct JwtSignRequestDefaultTypeInternal {
-  PROTOBUF_CONSTEXPR JwtSignRequestDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
-  ~JwtSignRequestDefaultTypeInternal() {}
+struct JwtComputeRequestDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR JwtComputeRequestDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~JwtComputeRequestDefaultTypeInternal() {}
   union {
-    JwtSignRequest _instance;
+    JwtComputeRequest _instance;
   };
 };
 
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
-    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 JwtSignRequestDefaultTypeInternal _JwtSignRequest_default_instance_;
-
-inline constexpr HMacVerifyRequest::Impl_::Impl_(
-    ::_pbi::ConstantInitialized) noexcept
-      : _cached_size_{0},
-        hashed_(
-            &::google::protobuf::internal::fixed_address_empty_string,
-            ::_pbi::ConstantInitialized()),
-        plain_(
-            &::google::protobuf::internal::fixed_address_empty_string,
-            ::_pbi::ConstantInitialized()) {}
-
-template <typename>
-PROTOBUF_CONSTEXPR HMacVerifyRequest::HMacVerifyRequest(::_pbi::ConstantInitialized)
-#if defined(PROTOBUF_CUSTOM_VTABLE)
-    : ::google::protobuf::Message(HMacVerifyRequest_class_data_.base()),
-#else   // PROTOBUF_CUSTOM_VTABLE
-    : ::google::protobuf::Message(),
-#endif  // PROTOBUF_CUSTOM_VTABLE
-      _impl_(::_pbi::ConstantInitialized()) {
-}
-struct HMacVerifyRequestDefaultTypeInternal {
-  PROTOBUF_CONSTEXPR HMacVerifyRequestDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
-  ~HMacVerifyRequestDefaultTypeInternal() {}
-  union {
-    HMacVerifyRequest _instance;
-  };
-};
-
-PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
-    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 HMacVerifyRequestDefaultTypeInternal _HMacVerifyRequest_default_instance_;
-
-inline constexpr HMacSignResponse::Impl_::Impl_(
-    ::_pbi::ConstantInitialized) noexcept
-      : _cached_size_{0},
-        hashed_(
-            &::google::protobuf::internal::fixed_address_empty_string,
-            ::_pbi::ConstantInitialized()) {}
-
-template <typename>
-PROTOBUF_CONSTEXPR HMacSignResponse::HMacSignResponse(::_pbi::ConstantInitialized)
-#if defined(PROTOBUF_CUSTOM_VTABLE)
-    : ::google::protobuf::Message(HMacSignResponse_class_data_.base()),
-#else   // PROTOBUF_CUSTOM_VTABLE
-    : ::google::protobuf::Message(),
-#endif  // PROTOBUF_CUSTOM_VTABLE
-      _impl_(::_pbi::ConstantInitialized()) {
-}
-struct HMacSignResponseDefaultTypeInternal {
-  PROTOBUF_CONSTEXPR HMacSignResponseDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
-  ~HMacSignResponseDefaultTypeInternal() {}
-  union {
-    HMacSignResponse _instance;
-  };
-};
-
-PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
-    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 HMacSignResponseDefaultTypeInternal _HMacSignResponse_default_instance_;
-
-inline constexpr HMacSignRequest::Impl_::Impl_(
-    ::_pbi::ConstantInitialized) noexcept
-      : _cached_size_{0},
-        plain_(
-            &::google::protobuf::internal::fixed_address_empty_string,
-            ::_pbi::ConstantInitialized()) {}
-
-template <typename>
-PROTOBUF_CONSTEXPR HMacSignRequest::HMacSignRequest(::_pbi::ConstantInitialized)
-#if defined(PROTOBUF_CUSTOM_VTABLE)
-    : ::google::protobuf::Message(HMacSignRequest_class_data_.base()),
-#else   // PROTOBUF_CUSTOM_VTABLE
-    : ::google::protobuf::Message(),
-#endif  // PROTOBUF_CUSTOM_VTABLE
-      _impl_(::_pbi::ConstantInitialized()) {
-}
-struct HMacSignRequestDefaultTypeInternal {
-  PROTOBUF_CONSTEXPR HMacSignRequestDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
-  ~HMacSignRequestDefaultTypeInternal() {}
-  union {
-    HMacSignRequest _instance;
-  };
-};
-
-PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
-    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 HMacSignRequestDefaultTypeInternal _HMacSignRequest_default_instance_;
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 JwtComputeRequestDefaultTypeInternal _JwtComputeRequest_default_instance_;
 
 inline constexpr Argon2VerifyRequest::Impl_::Impl_(
     ::_pbi::ConstantInitialized) noexcept
@@ -275,7 +275,7 @@ struct Argon2VerifyRequestDefaultTypeInternal {
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
     PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 Argon2VerifyRequestDefaultTypeInternal _Argon2VerifyRequest_default_instance_;
 
-inline constexpr Argon2SignResponse::Impl_::Impl_(
+inline constexpr Argon2ComputeResponse::Impl_::Impl_(
     ::_pbi::ConstantInitialized) noexcept
       : _cached_size_{0},
         hashed_(
@@ -283,26 +283,26 @@ inline constexpr Argon2SignResponse::Impl_::Impl_(
             ::_pbi::ConstantInitialized()) {}
 
 template <typename>
-PROTOBUF_CONSTEXPR Argon2SignResponse::Argon2SignResponse(::_pbi::ConstantInitialized)
+PROTOBUF_CONSTEXPR Argon2ComputeResponse::Argon2ComputeResponse(::_pbi::ConstantInitialized)
 #if defined(PROTOBUF_CUSTOM_VTABLE)
-    : ::google::protobuf::Message(Argon2SignResponse_class_data_.base()),
+    : ::google::protobuf::Message(Argon2ComputeResponse_class_data_.base()),
 #else   // PROTOBUF_CUSTOM_VTABLE
     : ::google::protobuf::Message(),
 #endif  // PROTOBUF_CUSTOM_VTABLE
       _impl_(::_pbi::ConstantInitialized()) {
 }
-struct Argon2SignResponseDefaultTypeInternal {
-  PROTOBUF_CONSTEXPR Argon2SignResponseDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
-  ~Argon2SignResponseDefaultTypeInternal() {}
+struct Argon2ComputeResponseDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR Argon2ComputeResponseDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~Argon2ComputeResponseDefaultTypeInternal() {}
   union {
-    Argon2SignResponse _instance;
+    Argon2ComputeResponse _instance;
   };
 };
 
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
-    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 Argon2SignResponseDefaultTypeInternal _Argon2SignResponse_default_instance_;
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 Argon2ComputeResponseDefaultTypeInternal _Argon2ComputeResponse_default_instance_;
 
-inline constexpr Argon2SignRequest::Impl_::Impl_(
+inline constexpr Argon2ComputeRequest::Impl_::Impl_(
     ::_pbi::ConstantInitialized) noexcept
       : _cached_size_{0},
         password_(
@@ -310,26 +310,26 @@ inline constexpr Argon2SignRequest::Impl_::Impl_(
             ::_pbi::ConstantInitialized()) {}
 
 template <typename>
-PROTOBUF_CONSTEXPR Argon2SignRequest::Argon2SignRequest(::_pbi::ConstantInitialized)
+PROTOBUF_CONSTEXPR Argon2ComputeRequest::Argon2ComputeRequest(::_pbi::ConstantInitialized)
 #if defined(PROTOBUF_CUSTOM_VTABLE)
-    : ::google::protobuf::Message(Argon2SignRequest_class_data_.base()),
+    : ::google::protobuf::Message(Argon2ComputeRequest_class_data_.base()),
 #else   // PROTOBUF_CUSTOM_VTABLE
     : ::google::protobuf::Message(),
 #endif  // PROTOBUF_CUSTOM_VTABLE
       _impl_(::_pbi::ConstantInitialized()) {
 }
-struct Argon2SignRequestDefaultTypeInternal {
-  PROTOBUF_CONSTEXPR Argon2SignRequestDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
-  ~Argon2SignRequestDefaultTypeInternal() {}
+struct Argon2ComputeRequestDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR Argon2ComputeRequestDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~Argon2ComputeRequestDefaultTypeInternal() {}
   union {
-    Argon2SignRequest _instance;
+    Argon2ComputeRequest _instance;
   };
 };
 
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
-    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 Argon2SignRequestDefaultTypeInternal _Argon2SignRequest_default_instance_;
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 Argon2ComputeRequestDefaultTypeInternal _Argon2ComputeRequest_default_instance_;
 
-inline constexpr AesEncryptResponse::Impl_::Impl_(
+inline constexpr AeadEncryptResponse::Impl_::Impl_(
     ::_pbi::ConstantInitialized) noexcept
       : _cached_size_{0},
         cipher_(
@@ -337,26 +337,26 @@ inline constexpr AesEncryptResponse::Impl_::Impl_(
             ::_pbi::ConstantInitialized()) {}
 
 template <typename>
-PROTOBUF_CONSTEXPR AesEncryptResponse::AesEncryptResponse(::_pbi::ConstantInitialized)
+PROTOBUF_CONSTEXPR AeadEncryptResponse::AeadEncryptResponse(::_pbi::ConstantInitialized)
 #if defined(PROTOBUF_CUSTOM_VTABLE)
-    : ::google::protobuf::Message(AesEncryptResponse_class_data_.base()),
+    : ::google::protobuf::Message(AeadEncryptResponse_class_data_.base()),
 #else   // PROTOBUF_CUSTOM_VTABLE
     : ::google::protobuf::Message(),
 #endif  // PROTOBUF_CUSTOM_VTABLE
       _impl_(::_pbi::ConstantInitialized()) {
 }
-struct AesEncryptResponseDefaultTypeInternal {
-  PROTOBUF_CONSTEXPR AesEncryptResponseDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
-  ~AesEncryptResponseDefaultTypeInternal() {}
+struct AeadEncryptResponseDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR AeadEncryptResponseDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~AeadEncryptResponseDefaultTypeInternal() {}
   union {
-    AesEncryptResponse _instance;
+    AeadEncryptResponse _instance;
   };
 };
 
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
-    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 AesEncryptResponseDefaultTypeInternal _AesEncryptResponse_default_instance_;
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 AeadEncryptResponseDefaultTypeInternal _AeadEncryptResponse_default_instance_;
 
-inline constexpr AesEncryptRequest::Impl_::Impl_(
+inline constexpr AeadEncryptRequest::Impl_::Impl_(
     ::_pbi::ConstantInitialized) noexcept
       : _cached_size_{0},
         plain_(
@@ -367,26 +367,26 @@ inline constexpr AesEncryptRequest::Impl_::Impl_(
             ::_pbi::ConstantInitialized()) {}
 
 template <typename>
-PROTOBUF_CONSTEXPR AesEncryptRequest::AesEncryptRequest(::_pbi::ConstantInitialized)
+PROTOBUF_CONSTEXPR AeadEncryptRequest::AeadEncryptRequest(::_pbi::ConstantInitialized)
 #if defined(PROTOBUF_CUSTOM_VTABLE)
-    : ::google::protobuf::Message(AesEncryptRequest_class_data_.base()),
+    : ::google::protobuf::Message(AeadEncryptRequest_class_data_.base()),
 #else   // PROTOBUF_CUSTOM_VTABLE
     : ::google::protobuf::Message(),
 #endif  // PROTOBUF_CUSTOM_VTABLE
       _impl_(::_pbi::ConstantInitialized()) {
 }
-struct AesEncryptRequestDefaultTypeInternal {
-  PROTOBUF_CONSTEXPR AesEncryptRequestDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
-  ~AesEncryptRequestDefaultTypeInternal() {}
+struct AeadEncryptRequestDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR AeadEncryptRequestDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~AeadEncryptRequestDefaultTypeInternal() {}
   union {
-    AesEncryptRequest _instance;
+    AeadEncryptRequest _instance;
   };
 };
 
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
-    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 AesEncryptRequestDefaultTypeInternal _AesEncryptRequest_default_instance_;
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 AeadEncryptRequestDefaultTypeInternal _AeadEncryptRequest_default_instance_;
 
-inline constexpr AesDecryptResponse::Impl_::Impl_(
+inline constexpr AeadDecryptResponse::Impl_::Impl_(
     ::_pbi::ConstantInitialized) noexcept
       : _cached_size_{0},
         plain_(
@@ -394,26 +394,26 @@ inline constexpr AesDecryptResponse::Impl_::Impl_(
             ::_pbi::ConstantInitialized()) {}
 
 template <typename>
-PROTOBUF_CONSTEXPR AesDecryptResponse::AesDecryptResponse(::_pbi::ConstantInitialized)
+PROTOBUF_CONSTEXPR AeadDecryptResponse::AeadDecryptResponse(::_pbi::ConstantInitialized)
 #if defined(PROTOBUF_CUSTOM_VTABLE)
-    : ::google::protobuf::Message(AesDecryptResponse_class_data_.base()),
+    : ::google::protobuf::Message(AeadDecryptResponse_class_data_.base()),
 #else   // PROTOBUF_CUSTOM_VTABLE
     : ::google::protobuf::Message(),
 #endif  // PROTOBUF_CUSTOM_VTABLE
       _impl_(::_pbi::ConstantInitialized()) {
 }
-struct AesDecryptResponseDefaultTypeInternal {
-  PROTOBUF_CONSTEXPR AesDecryptResponseDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
-  ~AesDecryptResponseDefaultTypeInternal() {}
+struct AeadDecryptResponseDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR AeadDecryptResponseDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~AeadDecryptResponseDefaultTypeInternal() {}
   union {
-    AesDecryptResponse _instance;
+    AeadDecryptResponse _instance;
   };
 };
 
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
-    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 AesDecryptResponseDefaultTypeInternal _AesDecryptResponse_default_instance_;
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 AeadDecryptResponseDefaultTypeInternal _AeadDecryptResponse_default_instance_;
 
-inline constexpr AesDecryptRequest::Impl_::Impl_(
+inline constexpr AeadDecryptRequest::Impl_::Impl_(
     ::_pbi::ConstantInitialized) noexcept
       : _cached_size_{0},
         cipher_(
@@ -424,24 +424,24 @@ inline constexpr AesDecryptRequest::Impl_::Impl_(
             ::_pbi::ConstantInitialized()) {}
 
 template <typename>
-PROTOBUF_CONSTEXPR AesDecryptRequest::AesDecryptRequest(::_pbi::ConstantInitialized)
+PROTOBUF_CONSTEXPR AeadDecryptRequest::AeadDecryptRequest(::_pbi::ConstantInitialized)
 #if defined(PROTOBUF_CUSTOM_VTABLE)
-    : ::google::protobuf::Message(AesDecryptRequest_class_data_.base()),
+    : ::google::protobuf::Message(AeadDecryptRequest_class_data_.base()),
 #else   // PROTOBUF_CUSTOM_VTABLE
     : ::google::protobuf::Message(),
 #endif  // PROTOBUF_CUSTOM_VTABLE
       _impl_(::_pbi::ConstantInitialized()) {
 }
-struct AesDecryptRequestDefaultTypeInternal {
-  PROTOBUF_CONSTEXPR AesDecryptRequestDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
-  ~AesDecryptRequestDefaultTypeInternal() {}
+struct AeadDecryptRequestDefaultTypeInternal {
+  PROTOBUF_CONSTEXPR AeadDecryptRequestDefaultTypeInternal() : _instance(::_pbi::ConstantInitialized{}) {}
+  ~AeadDecryptRequestDefaultTypeInternal() {}
   union {
-    AesDecryptRequest _instance;
+    AeadDecryptRequest _instance;
   };
 };
 
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT
-    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 AesDecryptRequestDefaultTypeInternal _AesDecryptRequest_default_instance_;
+    PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 AeadDecryptRequestDefaultTypeInternal _AeadDecryptRequest_default_instance_;
 }  // namespace v1
 }  // namespace loquat
 }  // namespace palm
@@ -469,17 +469,17 @@ const ::uint32_t
         0,
         1,
         0x081, // bitmap
-        PROTOBUF_FIELD_OFFSET(::palm::loquat::v1::JwtSignRequest, _impl_._has_bits_),
+        PROTOBUF_FIELD_OFFSET(::palm::loquat::v1::JwtComputeRequest, _impl_._has_bits_),
         12, // hasbit index offset
-        PROTOBUF_FIELD_OFFSET(::palm::loquat::v1::JwtSignRequest, _impl_.jwt_id_),
-        PROTOBUF_FIELD_OFFSET(::palm::loquat::v1::JwtSignRequest, _impl_.key_id_),
-        PROTOBUF_FIELD_OFFSET(::palm::loquat::v1::JwtSignRequest, _impl_.issuer_),
-        PROTOBUF_FIELD_OFFSET(::palm::loquat::v1::JwtSignRequest, _impl_.subject_),
-        PROTOBUF_FIELD_OFFSET(::palm::loquat::v1::JwtSignRequest, _impl_.audiences_),
-        PROTOBUF_FIELD_OFFSET(::palm::loquat::v1::JwtSignRequest, _impl_.issued_at_),
-        PROTOBUF_FIELD_OFFSET(::palm::loquat::v1::JwtSignRequest, _impl_.not_before_),
-        PROTOBUF_FIELD_OFFSET(::palm::loquat::v1::JwtSignRequest, _impl_.expired_at_),
-        PROTOBUF_FIELD_OFFSET(::palm::loquat::v1::JwtSignRequest, _impl_.payload_),
+        PROTOBUF_FIELD_OFFSET(::palm::loquat::v1::JwtComputeRequest, _impl_.jwt_id_),
+        PROTOBUF_FIELD_OFFSET(::palm::loquat::v1::JwtComputeRequest, _impl_.key_id_),
+        PROTOBUF_FIELD_OFFSET(::palm::loquat::v1::JwtComputeRequest, _impl_.issuer_),
+        PROTOBUF_FIELD_OFFSET(::palm::loquat::v1::JwtComputeRequest, _impl_.subject_),
+        PROTOBUF_FIELD_OFFSET(::palm::loquat::v1::JwtComputeRequest, _impl_.audiences_),
+        PROTOBUF_FIELD_OFFSET(::palm::loquat::v1::JwtComputeRequest, _impl_.issued_at_),
+        PROTOBUF_FIELD_OFFSET(::palm::loquat::v1::JwtComputeRequest, _impl_.not_before_),
+        PROTOBUF_FIELD_OFFSET(::palm::loquat::v1::JwtComputeRequest, _impl_.expired_at_),
+        PROTOBUF_FIELD_OFFSET(::palm::loquat::v1::JwtComputeRequest, _impl_.payload_),
         1,
         2,
         3,
@@ -490,60 +490,60 @@ const ::uint32_t
         8,
         5,
         0x081, // bitmap
-        PROTOBUF_FIELD_OFFSET(::palm::loquat::v1::JwtSignResponse, _impl_._has_bits_),
+        PROTOBUF_FIELD_OFFSET(::palm::loquat::v1::JwtComputeResponse, _impl_._has_bits_),
         4, // hasbit index offset
-        PROTOBUF_FIELD_OFFSET(::palm::loquat::v1::JwtSignResponse, _impl_.token_),
+        PROTOBUF_FIELD_OFFSET(::palm::loquat::v1::JwtComputeResponse, _impl_.token_),
         0,
         0x081, // bitmap
-        PROTOBUF_FIELD_OFFSET(::palm::loquat::v1::HMacSignRequest, _impl_._has_bits_),
+        PROTOBUF_FIELD_OFFSET(::palm::loquat::v1::MacComputeRequest, _impl_._has_bits_),
         4, // hasbit index offset
-        PROTOBUF_FIELD_OFFSET(::palm::loquat::v1::HMacSignRequest, _impl_.plain_),
+        PROTOBUF_FIELD_OFFSET(::palm::loquat::v1::MacComputeRequest, _impl_.plain_),
         0,
         0x081, // bitmap
-        PROTOBUF_FIELD_OFFSET(::palm::loquat::v1::HMacSignResponse, _impl_._has_bits_),
+        PROTOBUF_FIELD_OFFSET(::palm::loquat::v1::MacComputeResponse, _impl_._has_bits_),
         4, // hasbit index offset
-        PROTOBUF_FIELD_OFFSET(::palm::loquat::v1::HMacSignResponse, _impl_.hashed_),
+        PROTOBUF_FIELD_OFFSET(::palm::loquat::v1::MacComputeResponse, _impl_.hashed_),
         0,
         0x081, // bitmap
-        PROTOBUF_FIELD_OFFSET(::palm::loquat::v1::HMacVerifyRequest, _impl_._has_bits_),
+        PROTOBUF_FIELD_OFFSET(::palm::loquat::v1::MacVerifyRequest, _impl_._has_bits_),
         5, // hasbit index offset
-        PROTOBUF_FIELD_OFFSET(::palm::loquat::v1::HMacVerifyRequest, _impl_.hashed_),
-        PROTOBUF_FIELD_OFFSET(::palm::loquat::v1::HMacVerifyRequest, _impl_.plain_),
+        PROTOBUF_FIELD_OFFSET(::palm::loquat::v1::MacVerifyRequest, _impl_.hashed_),
+        PROTOBUF_FIELD_OFFSET(::palm::loquat::v1::MacVerifyRequest, _impl_.plain_),
         0,
         1,
         0x081, // bitmap
-        PROTOBUF_FIELD_OFFSET(::palm::loquat::v1::AesEncryptRequest, _impl_._has_bits_),
+        PROTOBUF_FIELD_OFFSET(::palm::loquat::v1::AeadEncryptRequest, _impl_._has_bits_),
         5, // hasbit index offset
-        PROTOBUF_FIELD_OFFSET(::palm::loquat::v1::AesEncryptRequest, _impl_.plain_),
-        PROTOBUF_FIELD_OFFSET(::palm::loquat::v1::AesEncryptRequest, _impl_.associated_data_),
+        PROTOBUF_FIELD_OFFSET(::palm::loquat::v1::AeadEncryptRequest, _impl_.plain_),
+        PROTOBUF_FIELD_OFFSET(::palm::loquat::v1::AeadEncryptRequest, _impl_.associated_data_),
         0,
         1,
         0x081, // bitmap
-        PROTOBUF_FIELD_OFFSET(::palm::loquat::v1::AesEncryptResponse, _impl_._has_bits_),
+        PROTOBUF_FIELD_OFFSET(::palm::loquat::v1::AeadEncryptResponse, _impl_._has_bits_),
         4, // hasbit index offset
-        PROTOBUF_FIELD_OFFSET(::palm::loquat::v1::AesEncryptResponse, _impl_.cipher_),
+        PROTOBUF_FIELD_OFFSET(::palm::loquat::v1::AeadEncryptResponse, _impl_.cipher_),
         0,
         0x081, // bitmap
-        PROTOBUF_FIELD_OFFSET(::palm::loquat::v1::AesDecryptRequest, _impl_._has_bits_),
+        PROTOBUF_FIELD_OFFSET(::palm::loquat::v1::AeadDecryptRequest, _impl_._has_bits_),
         5, // hasbit index offset
-        PROTOBUF_FIELD_OFFSET(::palm::loquat::v1::AesDecryptRequest, _impl_.cipher_),
-        PROTOBUF_FIELD_OFFSET(::palm::loquat::v1::AesDecryptRequest, _impl_.associated_data_),
+        PROTOBUF_FIELD_OFFSET(::palm::loquat::v1::AeadDecryptRequest, _impl_.cipher_),
+        PROTOBUF_FIELD_OFFSET(::palm::loquat::v1::AeadDecryptRequest, _impl_.associated_data_),
         0,
         1,
         0x081, // bitmap
-        PROTOBUF_FIELD_OFFSET(::palm::loquat::v1::AesDecryptResponse, _impl_._has_bits_),
+        PROTOBUF_FIELD_OFFSET(::palm::loquat::v1::AeadDecryptResponse, _impl_._has_bits_),
         4, // hasbit index offset
-        PROTOBUF_FIELD_OFFSET(::palm::loquat::v1::AesDecryptResponse, _impl_.plain_),
+        PROTOBUF_FIELD_OFFSET(::palm::loquat::v1::AeadDecryptResponse, _impl_.plain_),
         0,
         0x081, // bitmap
-        PROTOBUF_FIELD_OFFSET(::palm::loquat::v1::Argon2SignRequest, _impl_._has_bits_),
+        PROTOBUF_FIELD_OFFSET(::palm::loquat::v1::Argon2ComputeRequest, _impl_._has_bits_),
         4, // hasbit index offset
-        PROTOBUF_FIELD_OFFSET(::palm::loquat::v1::Argon2SignRequest, _impl_.password_),
+        PROTOBUF_FIELD_OFFSET(::palm::loquat::v1::Argon2ComputeRequest, _impl_.password_),
         0,
         0x081, // bitmap
-        PROTOBUF_FIELD_OFFSET(::palm::loquat::v1::Argon2SignResponse, _impl_._has_bits_),
+        PROTOBUF_FIELD_OFFSET(::palm::loquat::v1::Argon2ComputeResponse, _impl_._has_bits_),
         4, // hasbit index offset
-        PROTOBUF_FIELD_OFFSET(::palm::loquat::v1::Argon2SignResponse, _impl_.hashed_),
+        PROTOBUF_FIELD_OFFSET(::palm::loquat::v1::Argon2ComputeResponse, _impl_.hashed_),
         0,
         0x081, // bitmap
         PROTOBUF_FIELD_OFFSET(::palm::loquat::v1::Argon2VerifyRequest, _impl_._has_bits_),
@@ -558,33 +558,33 @@ static const ::_pbi::MigrationSchema
     schemas[] ABSL_ATTRIBUTE_SECTION_VARIABLE(protodesc_cold) = {
         {0, sizeof(::palm::loquat::v1::JwtVerifyRequest)},
         {9, sizeof(::palm::loquat::v1::JwtVerifyResponse)},
-        {16, sizeof(::palm::loquat::v1::JwtSignRequest)},
-        {37, sizeof(::palm::loquat::v1::JwtSignResponse)},
-        {42, sizeof(::palm::loquat::v1::HMacSignRequest)},
-        {47, sizeof(::palm::loquat::v1::HMacSignResponse)},
-        {52, sizeof(::palm::loquat::v1::HMacVerifyRequest)},
-        {59, sizeof(::palm::loquat::v1::AesEncryptRequest)},
-        {66, sizeof(::palm::loquat::v1::AesEncryptResponse)},
-        {71, sizeof(::palm::loquat::v1::AesDecryptRequest)},
-        {78, sizeof(::palm::loquat::v1::AesDecryptResponse)},
-        {83, sizeof(::palm::loquat::v1::Argon2SignRequest)},
-        {88, sizeof(::palm::loquat::v1::Argon2SignResponse)},
+        {16, sizeof(::palm::loquat::v1::JwtComputeRequest)},
+        {37, sizeof(::palm::loquat::v1::JwtComputeResponse)},
+        {42, sizeof(::palm::loquat::v1::MacComputeRequest)},
+        {47, sizeof(::palm::loquat::v1::MacComputeResponse)},
+        {52, sizeof(::palm::loquat::v1::MacVerifyRequest)},
+        {59, sizeof(::palm::loquat::v1::AeadEncryptRequest)},
+        {66, sizeof(::palm::loquat::v1::AeadEncryptResponse)},
+        {71, sizeof(::palm::loquat::v1::AeadDecryptRequest)},
+        {78, sizeof(::palm::loquat::v1::AeadDecryptResponse)},
+        {83, sizeof(::palm::loquat::v1::Argon2ComputeRequest)},
+        {88, sizeof(::palm::loquat::v1::Argon2ComputeResponse)},
         {93, sizeof(::palm::loquat::v1::Argon2VerifyRequest)},
 };
 static const ::_pb::Message* PROTOBUF_NONNULL const file_default_instances[] = {
     &::palm::loquat::v1::_JwtVerifyRequest_default_instance_._instance,
     &::palm::loquat::v1::_JwtVerifyResponse_default_instance_._instance,
-    &::palm::loquat::v1::_JwtSignRequest_default_instance_._instance,
-    &::palm::loquat::v1::_JwtSignResponse_default_instance_._instance,
-    &::palm::loquat::v1::_HMacSignRequest_default_instance_._instance,
-    &::palm::loquat::v1::_HMacSignResponse_default_instance_._instance,
-    &::palm::loquat::v1::_HMacVerifyRequest_default_instance_._instance,
-    &::palm::loquat::v1::_AesEncryptRequest_default_instance_._instance,
-    &::palm::loquat::v1::_AesEncryptResponse_default_instance_._instance,
-    &::palm::loquat::v1::_AesDecryptRequest_default_instance_._instance,
-    &::palm::loquat::v1::_AesDecryptResponse_default_instance_._instance,
-    &::palm::loquat::v1::_Argon2SignRequest_default_instance_._instance,
-    &::palm::loquat::v1::_Argon2SignResponse_default_instance_._instance,
+    &::palm::loquat::v1::_JwtComputeRequest_default_instance_._instance,
+    &::palm::loquat::v1::_JwtComputeResponse_default_instance_._instance,
+    &::palm::loquat::v1::_MacComputeRequest_default_instance_._instance,
+    &::palm::loquat::v1::_MacComputeResponse_default_instance_._instance,
+    &::palm::loquat::v1::_MacVerifyRequest_default_instance_._instance,
+    &::palm::loquat::v1::_AeadEncryptRequest_default_instance_._instance,
+    &::palm::loquat::v1::_AeadEncryptResponse_default_instance_._instance,
+    &::palm::loquat::v1::_AeadDecryptRequest_default_instance_._instance,
+    &::palm::loquat::v1::_AeadDecryptResponse_default_instance_._instance,
+    &::palm::loquat::v1::_Argon2ComputeRequest_default_instance_._instance,
+    &::palm::loquat::v1::_Argon2ComputeResponse_default_instance_._instance,
     &::palm::loquat::v1::_Argon2VerifyRequest_default_instance_._instance,
 };
 const char descriptor_table_protodef_loquat_2eproto[] ABSL_ATTRIBUTE_SECTION_VARIABLE(
@@ -594,44 +594,45 @@ const char descriptor_table_protodef_loquat_2eproto[] ABSL_ATTRIBUTE_SECTION_VAR
     "\r\n\005token\030\001 \001(\t\022\016\n\006issuer\030\002 \001(\t\022\020\n\010audien"
     "ce\030\003 \001(\t\"F\n\021JwtVerifyResponse\022\017\n\007subject"
     "\030\001 \001(\t\022\024\n\007payload\030\002 \001(\014H\000\210\001\001B\n\n\010_payload"
-    "\"\341\001\n\016JwtSignRequest\022\023\n\006jwt_id\030\001 \001(\tH\000\210\001\001"
-    "\022\023\n\006key_id\030\002 \001(\tH\001\210\001\001\022\016\n\006issuer\030\003 \001(\t\022\017\n"
-    "\007subject\030\004 \001(\t\022\021\n\taudiences\030\005 \003(\t\022\021\n\tiss"
-    "ued_at\030\006 \001(\003\022\022\n\nnot_before\030\007 \001(\003\022\022\n\nexpi"
-    "red_at\030\010 \001(\003\022\024\n\007payload\030\t \001(\014H\002\210\001\001B\t\n\007_j"
-    "wt_idB\t\n\007_key_idB\n\n\010_payload\" \n\017JwtSignR"
-    "esponse\022\r\n\005token\030\001 \001(\t\" \n\017HMacSignReques"
-    "t\022\r\n\005plain\030\001 \001(\014\"\"\n\020HMacSignResponse\022\016\n\006"
-    "hashed\030\001 \001(\014\"2\n\021HMacVerifyRequest\022\016\n\006has"
-    "hed\030\001 \001(\014\022\r\n\005plain\030\002 \001(\014\";\n\021AesEncryptRe"
-    "quest\022\r\n\005plain\030\001 \001(\014\022\027\n\017associated_data\030"
-    "\002 \001(\014\"$\n\022AesEncryptResponse\022\016\n\006cipher\030\001 "
-    "\001(\014\"<\n\021AesDecryptRequest\022\016\n\006cipher\030\001 \001(\014"
-    "\022\027\n\017associated_data\030\002 \001(\014\"#\n\022AesDecryptR"
-    "esponse\022\r\n\005plain\030\001 \001(\014\"%\n\021Argon2SignRequ"
-    "est\022\020\n\010password\030\001 \001(\t\"$\n\022Argon2SignRespo"
-    "nse\022\016\n\006hashed\030\001 \001(\t\"7\n\023Argon2VerifyReque"
-    "st\022\016\n\006hashed\030\001 \001(\t\022\020\n\010password\030\002 \001(\t2\241\001\n"
-    "\003Jwt\022I\n\004Sign\022\036.palm.loquat.v1.JwtSignReq"
-    "uest\032\037.palm.loquat.v1.JwtSignResponse\"\000\022"
-    "O\n\006Verify\022 .palm.loquat.v1.JwtVerifyRequ"
-    "est\032!.palm.loquat.v1.JwtVerifyResponse\"\000"
-    "2\232\001\n\004HMac\022K\n\004Sign\022\037.palm.loquat.v1.HMacS"
-    "ignRequest\032 .palm.loquat.v1.HMacSignResp"
-    "onse\"\000\022E\n\006Verify\022!.palm.loquat.v1.HMacVe"
-    "rifyRequest\032\026.google.protobuf.Empty\"\0002\255\001"
-    "\n\003Aes\022R\n\007Encrypt\022!.palm.loquat.v1.AesEnc"
-    "ryptRequest\032\".palm.loquat.v1.AesEncryptR"
-    "esponse\"\000\022R\n\007Decrypt\022!.palm.loquat.v1.Ae"
-    "sDecryptRequest\032\".palm.loquat.v1.AesDecr"
-    "yptResponse\"\0002\242\001\n\006Argon2\022O\n\004Sign\022!.palm."
-    "loquat.v1.Argon2SignRequest\032\".palm.loqua"
-    "t.v1.Argon2SignResponse\"\000\022G\n\006Verify\022#.pa"
-    "lm.loquat.v1.Argon2VerifyRequest\032\026.googl"
-    "e.protobuf.Empty\"\000B_\n,com.github.saturn_"
-    "xiv.palm.plugins.loquat.v1B\013LoquatProtoP"
-    "\001Z\005./;v2\252\002\030Palm.Plugins.Loquat.Grpcb\006pro"
-    "to3"
+    "\"\344\001\n\021JwtComputeRequest\022\023\n\006jwt_id\030\001 \001(\tH\000"
+    "\210\001\001\022\023\n\006key_id\030\002 \001(\tH\001\210\001\001\022\016\n\006issuer\030\003 \001(\t"
+    "\022\017\n\007subject\030\004 \001(\t\022\021\n\taudiences\030\005 \003(\t\022\021\n\t"
+    "issued_at\030\006 \001(\003\022\022\n\nnot_before\030\007 \001(\003\022\022\n\ne"
+    "xpired_at\030\010 \001(\003\022\024\n\007payload\030\t \001(\014H\002\210\001\001B\t\n"
+    "\007_jwt_idB\t\n\007_key_idB\n\n\010_payload\"#\n\022JwtCo"
+    "mputeResponse\022\r\n\005token\030\001 \001(\t\"\"\n\021MacCompu"
+    "teRequest\022\r\n\005plain\030\001 \001(\014\"$\n\022MacComputeRe"
+    "sponse\022\016\n\006hashed\030\001 \001(\014\"1\n\020MacVerifyReque"
+    "st\022\016\n\006hashed\030\001 \001(\014\022\r\n\005plain\030\002 \001(\014\"<\n\022Aea"
+    "dEncryptRequest\022\r\n\005plain\030\001 \001(\014\022\027\n\017associ"
+    "ated_data\030\002 \001(\014\"%\n\023AeadEncryptResponse\022\016"
+    "\n\006cipher\030\001 \001(\014\"=\n\022AeadDecryptRequest\022\016\n\006"
+    "cipher\030\001 \001(\014\022\027\n\017associated_data\030\002 \001(\014\"$\n"
+    "\023AeadDecryptResponse\022\r\n\005plain\030\001 \001(\014\"(\n\024A"
+    "rgon2ComputeRequest\022\020\n\010password\030\001 \001(\t\"\'\n"
+    "\025Argon2ComputeResponse\022\016\n\006hashed\030\001 \001(\t\"7"
+    "\n\023Argon2VerifyRequest\022\016\n\006hashed\030\001 \001(\t\022\020\n"
+    "\010password\030\002 \001(\t2\261\001\n\nJwtService\022R\n\007Comput"
+    "e\022!.palm.loquat.v1.JwtComputeRequest\032\".p"
+    "alm.loquat.v1.JwtComputeResponse\"\000\022O\n\006Ve"
+    "rify\022 .palm.loquat.v1.JwtVerifyRequest\032!"
+    ".palm.loquat.v1.JwtVerifyResponse\"\0002\246\001\n\n"
+    "MacService\022R\n\007Compute\022!.palm.loquat.v1.M"
+    "acComputeRequest\032\".palm.loquat.v1.MacCom"
+    "puteResponse\"\000\022D\n\006Verify\022 .palm.loquat.v"
+    "1.MacVerifyRequest\032\026.google.protobuf.Emp"
+    "ty\"\0002\271\001\n\013AeadService\022T\n\007Encrypt\022\".palm.l"
+    "oquat.v1.AeadEncryptRequest\032#.palm.loqua"
+    "t.v1.AeadEncryptResponse\"\000\022T\n\007Decrypt\022\"."
+    "palm.loquat.v1.AeadDecryptRequest\032#.palm"
+    ".loquat.v1.AeadDecryptResponse\"\0002\262\001\n\rArg"
+    "on2Service\022X\n\007Compute\022$.palm.loquat.v1.A"
+    "rgon2ComputeRequest\032%.palm.loquat.v1.Arg"
+    "on2ComputeResponse\"\000\022G\n\006Verify\022#.palm.lo"
+    "quat.v1.Argon2VerifyRequest\032\026.google.pro"
+    "tobuf.Empty\"\000B_\n,com.github.saturn_xiv.p"
+    "alm.plugins.loquat.v1B\013LoquatProtoP\001Z\005./"
+    ";v2\252\002\030Palm.Plugins.Loquat.Grpcb\006proto3"
 };
 static const ::_pbi::DescriptorTable* PROTOBUF_NONNULL const
     descriptor_table_loquat_2eproto_deps[1] = {
@@ -641,7 +642,7 @@ static ::absl::once_flag descriptor_table_loquat_2eproto_once;
 PROTOBUF_CONSTINIT const ::_pbi::DescriptorTable descriptor_table_loquat_2eproto = {
     false,
     false,
-    1683,
+    1758,
     descriptor_table_protodef_loquat_2eproto,
     "loquat.proto",
     &descriptor_table_loquat_2eproto_once,
@@ -1327,27 +1328,27 @@ void JwtVerifyResponse::InternalSwap(JwtVerifyResponse* PROTOBUF_RESTRICT PROTOB
 }
 // ===================================================================
 
-class JwtSignRequest::_Internal {
+class JwtComputeRequest::_Internal {
  public:
   using HasBits =
-      decltype(::std::declval<JwtSignRequest>()._impl_._has_bits_);
+      decltype(::std::declval<JwtComputeRequest>()._impl_._has_bits_);
   static constexpr ::int32_t kHasBitsOffset =
-      8 * PROTOBUF_FIELD_OFFSET(JwtSignRequest, _impl_._has_bits_);
+      8 * PROTOBUF_FIELD_OFFSET(JwtComputeRequest, _impl_._has_bits_);
 };
 
-JwtSignRequest::JwtSignRequest(::google::protobuf::Arena* PROTOBUF_NULLABLE arena)
+JwtComputeRequest::JwtComputeRequest(::google::protobuf::Arena* PROTOBUF_NULLABLE arena)
 #if defined(PROTOBUF_CUSTOM_VTABLE)
-    : ::google::protobuf::Message(arena, JwtSignRequest_class_data_.base()) {
+    : ::google::protobuf::Message(arena, JwtComputeRequest_class_data_.base()) {
 #else   // PROTOBUF_CUSTOM_VTABLE
     : ::google::protobuf::Message(arena) {
 #endif  // PROTOBUF_CUSTOM_VTABLE
   SharedCtor(arena);
-  // @@protoc_insertion_point(arena_constructor:palm.loquat.v1.JwtSignRequest)
+  // @@protoc_insertion_point(arena_constructor:palm.loquat.v1.JwtComputeRequest)
 }
-PROTOBUF_NDEBUG_INLINE JwtSignRequest::Impl_::Impl_(
+PROTOBUF_NDEBUG_INLINE JwtComputeRequest::Impl_::Impl_(
     [[maybe_unused]] ::google::protobuf::internal::InternalVisibility visibility,
     [[maybe_unused]] ::google::protobuf::Arena* PROTOBUF_NULLABLE arena, const Impl_& from,
-    [[maybe_unused]] const ::palm::loquat::v1::JwtSignRequest& from_msg)
+    [[maybe_unused]] const ::palm::loquat::v1::JwtComputeRequest& from_msg)
       : _has_bits_{from._has_bits_},
         _cached_size_{0},
         audiences_{visibility, arena, from.audiences_},
@@ -1357,15 +1358,15 @@ PROTOBUF_NDEBUG_INLINE JwtSignRequest::Impl_::Impl_(
         subject_(arena, from.subject_),
         payload_(arena, from.payload_) {}
 
-JwtSignRequest::JwtSignRequest(
+JwtComputeRequest::JwtComputeRequest(
     ::google::protobuf::Arena* PROTOBUF_NULLABLE arena,
-    const JwtSignRequest& from)
+    const JwtComputeRequest& from)
 #if defined(PROTOBUF_CUSTOM_VTABLE)
-    : ::google::protobuf::Message(arena, JwtSignRequest_class_data_.base()) {
+    : ::google::protobuf::Message(arena, JwtComputeRequest_class_data_.base()) {
 #else   // PROTOBUF_CUSTOM_VTABLE
     : ::google::protobuf::Message(arena) {
 #endif  // PROTOBUF_CUSTOM_VTABLE
-  JwtSignRequest* const _this = this;
+  JwtComputeRequest* const _this = this;
   (void)_this;
   _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
       from._internal_metadata_);
@@ -1378,9 +1379,9 @@ JwtSignRequest::JwtSignRequest(
                offsetof(Impl_, issued_at_) +
                sizeof(Impl_::expired_at_));
 
-  // @@protoc_insertion_point(copy_constructor:palm.loquat.v1.JwtSignRequest)
+  // @@protoc_insertion_point(copy_constructor:palm.loquat.v1.JwtComputeRequest)
 }
-PROTOBUF_NDEBUG_INLINE JwtSignRequest::Impl_::Impl_(
+PROTOBUF_NDEBUG_INLINE JwtComputeRequest::Impl_::Impl_(
     [[maybe_unused]] ::google::protobuf::internal::InternalVisibility visibility,
     [[maybe_unused]] ::google::protobuf::Arena* PROTOBUF_NULLABLE arena)
       : _cached_size_{0},
@@ -1391,7 +1392,7 @@ PROTOBUF_NDEBUG_INLINE JwtSignRequest::Impl_::Impl_(
         subject_(arena),
         payload_(arena) {}
 
-inline void JwtSignRequest::SharedCtor(::_pb::Arena* PROTOBUF_NULLABLE arena) {
+inline void JwtComputeRequest::SharedCtor(::_pb::Arena* PROTOBUF_NULLABLE arena) {
   new (&_impl_) Impl_(internal_visibility(), arena);
   ::memset(reinterpret_cast<char*>(&_impl_) +
                offsetof(Impl_, issued_at_),
@@ -1400,12 +1401,12 @@ inline void JwtSignRequest::SharedCtor(::_pb::Arena* PROTOBUF_NULLABLE arena) {
                offsetof(Impl_, issued_at_) +
                sizeof(Impl_::expired_at_));
 }
-JwtSignRequest::~JwtSignRequest() {
-  // @@protoc_insertion_point(destructor:palm.loquat.v1.JwtSignRequest)
+JwtComputeRequest::~JwtComputeRequest() {
+  // @@protoc_insertion_point(destructor:palm.loquat.v1.JwtComputeRequest)
   SharedDtor(*this);
 }
-inline void JwtSignRequest::SharedDtor(MessageLite& self) {
-  JwtSignRequest& this_ = static_cast<JwtSignRequest&>(self);
+inline void JwtComputeRequest::SharedDtor(MessageLite& self) {
+  JwtComputeRequest& this_ = static_cast<JwtComputeRequest&>(self);
   if constexpr (::_pbi::DebugHardenCheckHasBitConsistency()) {
     this_.CheckHasBitConsistency();
   }
@@ -1419,65 +1420,65 @@ inline void JwtSignRequest::SharedDtor(MessageLite& self) {
   this_._impl_.~Impl_();
 }
 
-inline void* PROTOBUF_NONNULL JwtSignRequest::PlacementNew_(
+inline void* PROTOBUF_NONNULL JwtComputeRequest::PlacementNew_(
     const void* PROTOBUF_NONNULL, void* PROTOBUF_NONNULL mem,
     ::google::protobuf::Arena* PROTOBUF_NULLABLE arena) {
-  return ::new (mem) JwtSignRequest(arena);
+  return ::new (mem) JwtComputeRequest(arena);
 }
-constexpr auto JwtSignRequest::InternalNewImpl_() {
+constexpr auto JwtComputeRequest::InternalNewImpl_() {
   constexpr auto arena_bits = ::google::protobuf::internal::EncodePlacementArenaOffsets({
-      PROTOBUF_FIELD_OFFSET(JwtSignRequest, _impl_.audiences_) +
-          decltype(JwtSignRequest::_impl_.audiences_)::
+      PROTOBUF_FIELD_OFFSET(JwtComputeRequest, _impl_.audiences_) +
+          decltype(JwtComputeRequest::_impl_.audiences_)::
               InternalGetArenaOffset(
                   ::google::protobuf::Message::internal_visibility()),
   });
   if (arena_bits.has_value()) {
     return ::google::protobuf::internal::MessageCreator::CopyInit(
-        sizeof(JwtSignRequest), alignof(JwtSignRequest), *arena_bits);
+        sizeof(JwtComputeRequest), alignof(JwtComputeRequest), *arena_bits);
   } else {
-    return ::google::protobuf::internal::MessageCreator(&JwtSignRequest::PlacementNew_,
-                                 sizeof(JwtSignRequest),
-                                 alignof(JwtSignRequest));
+    return ::google::protobuf::internal::MessageCreator(&JwtComputeRequest::PlacementNew_,
+                                 sizeof(JwtComputeRequest),
+                                 alignof(JwtComputeRequest));
   }
 }
-constexpr auto JwtSignRequest::InternalGenerateClassData_() {
+constexpr auto JwtComputeRequest::InternalGenerateClassData_() {
   return ::google::protobuf::internal::ClassDataFull{
       ::google::protobuf::internal::ClassData{
-          &_JwtSignRequest_default_instance_._instance,
+          &_JwtComputeRequest_default_instance_._instance,
           &_table_.header,
           nullptr,  // OnDemandRegisterArenaDtor
           nullptr,  // IsInitialized
-          &JwtSignRequest::MergeImpl,
-          ::google::protobuf::Message::GetNewImpl<JwtSignRequest>(),
+          &JwtComputeRequest::MergeImpl,
+          ::google::protobuf::Message::GetNewImpl<JwtComputeRequest>(),
 #if defined(PROTOBUF_CUSTOM_VTABLE)
-          &JwtSignRequest::SharedDtor,
-          ::google::protobuf::Message::GetClearImpl<JwtSignRequest>(), &JwtSignRequest::ByteSizeLong,
-              &JwtSignRequest::_InternalSerialize,
+          &JwtComputeRequest::SharedDtor,
+          ::google::protobuf::Message::GetClearImpl<JwtComputeRequest>(), &JwtComputeRequest::ByteSizeLong,
+              &JwtComputeRequest::_InternalSerialize,
 #endif  // PROTOBUF_CUSTOM_VTABLE
-          PROTOBUF_FIELD_OFFSET(JwtSignRequest, _impl_._cached_size_),
+          PROTOBUF_FIELD_OFFSET(JwtComputeRequest, _impl_._cached_size_),
           false,
       },
-      &JwtSignRequest::kDescriptorMethods,
+      &JwtComputeRequest::kDescriptorMethods,
       &descriptor_table_loquat_2eproto,
       nullptr,  // tracker
   };
 }
 
 PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 const
-    ::google::protobuf::internal::ClassDataFull JwtSignRequest_class_data_ =
-        JwtSignRequest::InternalGenerateClassData_();
+    ::google::protobuf::internal::ClassDataFull JwtComputeRequest_class_data_ =
+        JwtComputeRequest::InternalGenerateClassData_();
 
 PROTOBUF_ATTRIBUTE_WEAK const ::google::protobuf::internal::ClassData* PROTOBUF_NONNULL
-JwtSignRequest::GetClassData() const {
-  ::google::protobuf::internal::PrefetchToLocalCache(&JwtSignRequest_class_data_);
-  ::google::protobuf::internal::PrefetchToLocalCache(JwtSignRequest_class_data_.tc_table);
-  return JwtSignRequest_class_data_.base();
+JwtComputeRequest::GetClassData() const {
+  ::google::protobuf::internal::PrefetchToLocalCache(&JwtComputeRequest_class_data_);
+  ::google::protobuf::internal::PrefetchToLocalCache(JwtComputeRequest_class_data_.tc_table);
+  return JwtComputeRequest_class_data_.base();
 }
 PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::_pbi::TcParseTable<4, 9, 0, 80, 2>
-JwtSignRequest::_table_ = {
+const ::_pbi::TcParseTable<4, 9, 0, 83, 2>
+JwtComputeRequest::_table_ = {
   {
-    PROTOBUF_FIELD_OFFSET(JwtSignRequest, _impl_._has_bits_),
+    PROTOBUF_FIELD_OFFSET(JwtComputeRequest, _impl_._has_bits_),
     0, // no _extensions_
     9, 120,  // max_field_number, fast_idx_mask
     offsetof(decltype(_table_), field_lookup_table),
@@ -1486,50 +1487,50 @@ JwtSignRequest::_table_ = {
     9,  // num_field_entries
     0,  // num_aux_entries
     offsetof(decltype(_table_), field_names),  // no aux_entries
-    JwtSignRequest_class_data_.base(),
+    JwtComputeRequest_class_data_.base(),
     nullptr,  // post_loop_handler
     ::_pbi::TcParser::GenericFallback,  // fallback
     #ifdef PROTOBUF_PREFETCH_PARSE_TABLE
-    ::_pbi::TcParser::GetTable<::palm::loquat::v1::JwtSignRequest>(),  // to_prefetch
+    ::_pbi::TcParser::GetTable<::palm::loquat::v1::JwtComputeRequest>(),  // to_prefetch
     #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
   }, {{
     {::_pbi::TcParser::MiniParse, {}},
     // optional string jwt_id = 1;
     {::_pbi::TcParser::FastUS1,
      {10, 1, 0,
-      PROTOBUF_FIELD_OFFSET(JwtSignRequest, _impl_.jwt_id_)}},
+      PROTOBUF_FIELD_OFFSET(JwtComputeRequest, _impl_.jwt_id_)}},
     // optional string key_id = 2;
     {::_pbi::TcParser::FastUS1,
      {18, 2, 0,
-      PROTOBUF_FIELD_OFFSET(JwtSignRequest, _impl_.key_id_)}},
+      PROTOBUF_FIELD_OFFSET(JwtComputeRequest, _impl_.key_id_)}},
     // string issuer = 3;
     {::_pbi::TcParser::FastUS1,
      {26, 3, 0,
-      PROTOBUF_FIELD_OFFSET(JwtSignRequest, _impl_.issuer_)}},
+      PROTOBUF_FIELD_OFFSET(JwtComputeRequest, _impl_.issuer_)}},
     // string subject = 4;
     {::_pbi::TcParser::FastUS1,
      {34, 4, 0,
-      PROTOBUF_FIELD_OFFSET(JwtSignRequest, _impl_.subject_)}},
+      PROTOBUF_FIELD_OFFSET(JwtComputeRequest, _impl_.subject_)}},
     // repeated string audiences = 5;
     {::_pbi::TcParser::FastUR1,
      {42, 0, 0,
-      PROTOBUF_FIELD_OFFSET(JwtSignRequest, _impl_.audiences_)}},
+      PROTOBUF_FIELD_OFFSET(JwtComputeRequest, _impl_.audiences_)}},
     // int64 issued_at = 6;
-    {::_pbi::TcParser::SingularVarintNoZag1<::uint64_t, offsetof(JwtSignRequest, _impl_.issued_at_), 6>(),
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint64_t, offsetof(JwtComputeRequest, _impl_.issued_at_), 6>(),
      {48, 6, 0,
-      PROTOBUF_FIELD_OFFSET(JwtSignRequest, _impl_.issued_at_)}},
+      PROTOBUF_FIELD_OFFSET(JwtComputeRequest, _impl_.issued_at_)}},
     // int64 not_before = 7;
-    {::_pbi::TcParser::SingularVarintNoZag1<::uint64_t, offsetof(JwtSignRequest, _impl_.not_before_), 7>(),
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint64_t, offsetof(JwtComputeRequest, _impl_.not_before_), 7>(),
      {56, 7, 0,
-      PROTOBUF_FIELD_OFFSET(JwtSignRequest, _impl_.not_before_)}},
+      PROTOBUF_FIELD_OFFSET(JwtComputeRequest, _impl_.not_before_)}},
     // int64 expired_at = 8;
-    {::_pbi::TcParser::SingularVarintNoZag1<::uint64_t, offsetof(JwtSignRequest, _impl_.expired_at_), 8>(),
+    {::_pbi::TcParser::SingularVarintNoZag1<::uint64_t, offsetof(JwtComputeRequest, _impl_.expired_at_), 8>(),
      {64, 8, 0,
-      PROTOBUF_FIELD_OFFSET(JwtSignRequest, _impl_.expired_at_)}},
+      PROTOBUF_FIELD_OFFSET(JwtComputeRequest, _impl_.expired_at_)}},
     // optional bytes payload = 9;
     {::_pbi::TcParser::FastBS1,
      {74, 5, 0,
-      PROTOBUF_FIELD_OFFSET(JwtSignRequest, _impl_.payload_)}},
+      PROTOBUF_FIELD_OFFSET(JwtComputeRequest, _impl_.payload_)}},
     {::_pbi::TcParser::MiniParse, {}},
     {::_pbi::TcParser::MiniParse, {}},
     {::_pbi::TcParser::MiniParse, {}},
@@ -1540,28 +1541,28 @@ JwtSignRequest::_table_ = {
     65535, 65535
   }}, {{
     // optional string jwt_id = 1;
-    {PROTOBUF_FIELD_OFFSET(JwtSignRequest, _impl_.jwt_id_), _Internal::kHasBitsOffset + 1, 0, (0 | ::_fl::kFcOptional | ::_fl::kUtf8String | ::_fl::kRepAString)},
+    {PROTOBUF_FIELD_OFFSET(JwtComputeRequest, _impl_.jwt_id_), _Internal::kHasBitsOffset + 1, 0, (0 | ::_fl::kFcOptional | ::_fl::kUtf8String | ::_fl::kRepAString)},
     // optional string key_id = 2;
-    {PROTOBUF_FIELD_OFFSET(JwtSignRequest, _impl_.key_id_), _Internal::kHasBitsOffset + 2, 0, (0 | ::_fl::kFcOptional | ::_fl::kUtf8String | ::_fl::kRepAString)},
+    {PROTOBUF_FIELD_OFFSET(JwtComputeRequest, _impl_.key_id_), _Internal::kHasBitsOffset + 2, 0, (0 | ::_fl::kFcOptional | ::_fl::kUtf8String | ::_fl::kRepAString)},
     // string issuer = 3;
-    {PROTOBUF_FIELD_OFFSET(JwtSignRequest, _impl_.issuer_), _Internal::kHasBitsOffset + 3, 0, (0 | ::_fl::kFcOptional | ::_fl::kUtf8String | ::_fl::kRepAString)},
+    {PROTOBUF_FIELD_OFFSET(JwtComputeRequest, _impl_.issuer_), _Internal::kHasBitsOffset + 3, 0, (0 | ::_fl::kFcOptional | ::_fl::kUtf8String | ::_fl::kRepAString)},
     // string subject = 4;
-    {PROTOBUF_FIELD_OFFSET(JwtSignRequest, _impl_.subject_), _Internal::kHasBitsOffset + 4, 0, (0 | ::_fl::kFcOptional | ::_fl::kUtf8String | ::_fl::kRepAString)},
+    {PROTOBUF_FIELD_OFFSET(JwtComputeRequest, _impl_.subject_), _Internal::kHasBitsOffset + 4, 0, (0 | ::_fl::kFcOptional | ::_fl::kUtf8String | ::_fl::kRepAString)},
     // repeated string audiences = 5;
-    {PROTOBUF_FIELD_OFFSET(JwtSignRequest, _impl_.audiences_), _Internal::kHasBitsOffset + 0, 0, (0 | ::_fl::kFcRepeated | ::_fl::kUtf8String | ::_fl::kRepSString)},
+    {PROTOBUF_FIELD_OFFSET(JwtComputeRequest, _impl_.audiences_), _Internal::kHasBitsOffset + 0, 0, (0 | ::_fl::kFcRepeated | ::_fl::kUtf8String | ::_fl::kRepSString)},
     // int64 issued_at = 6;
-    {PROTOBUF_FIELD_OFFSET(JwtSignRequest, _impl_.issued_at_), _Internal::kHasBitsOffset + 6, 0, (0 | ::_fl::kFcOptional | ::_fl::kInt64)},
+    {PROTOBUF_FIELD_OFFSET(JwtComputeRequest, _impl_.issued_at_), _Internal::kHasBitsOffset + 6, 0, (0 | ::_fl::kFcOptional | ::_fl::kInt64)},
     // int64 not_before = 7;
-    {PROTOBUF_FIELD_OFFSET(JwtSignRequest, _impl_.not_before_), _Internal::kHasBitsOffset + 7, 0, (0 | ::_fl::kFcOptional | ::_fl::kInt64)},
+    {PROTOBUF_FIELD_OFFSET(JwtComputeRequest, _impl_.not_before_), _Internal::kHasBitsOffset + 7, 0, (0 | ::_fl::kFcOptional | ::_fl::kInt64)},
     // int64 expired_at = 8;
-    {PROTOBUF_FIELD_OFFSET(JwtSignRequest, _impl_.expired_at_), _Internal::kHasBitsOffset + 8, 0, (0 | ::_fl::kFcOptional | ::_fl::kInt64)},
+    {PROTOBUF_FIELD_OFFSET(JwtComputeRequest, _impl_.expired_at_), _Internal::kHasBitsOffset + 8, 0, (0 | ::_fl::kFcOptional | ::_fl::kInt64)},
     // optional bytes payload = 9;
-    {PROTOBUF_FIELD_OFFSET(JwtSignRequest, _impl_.payload_), _Internal::kHasBitsOffset + 5, 0, (0 | ::_fl::kFcOptional | ::_fl::kBytes | ::_fl::kRepAString)},
+    {PROTOBUF_FIELD_OFFSET(JwtComputeRequest, _impl_.payload_), _Internal::kHasBitsOffset + 5, 0, (0 | ::_fl::kFcOptional | ::_fl::kBytes | ::_fl::kRepAString)},
   }},
   // no aux_entries
   {{
-    "\35\6\6\6\7\11\0\0\0\0\0\0\0\0\0\0"
-    "palm.loquat.v1.JwtSignRequest"
+    "\40\6\6\6\7\11\0\0\0\0\0\0\0\0\0\0"
+    "palm.loquat.v1.JwtComputeRequest"
     "jwt_id"
     "key_id"
     "issuer"
@@ -1569,8 +1570,8 @@ JwtSignRequest::_table_ = {
     "audiences"
   }},
 };
-PROTOBUF_NOINLINE void JwtSignRequest::Clear() {
-// @@protoc_insertion_point(message_clear_start:palm.loquat.v1.JwtSignRequest)
+PROTOBUF_NOINLINE void JwtComputeRequest::Clear() {
+// @@protoc_insertion_point(message_clear_start:palm.loquat.v1.JwtComputeRequest)
   ::google::protobuf::internal::TSanWrite(&_impl_);
   ::uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
@@ -1608,20 +1609,20 @@ PROTOBUF_NOINLINE void JwtSignRequest::Clear() {
 }
 
 #if defined(PROTOBUF_CUSTOM_VTABLE)
-::uint8_t* PROTOBUF_NONNULL JwtSignRequest::_InternalSerialize(
+::uint8_t* PROTOBUF_NONNULL JwtComputeRequest::_InternalSerialize(
     const ::google::protobuf::MessageLite& base, ::uint8_t* PROTOBUF_NONNULL target,
     ::google::protobuf::io::EpsCopyOutputStream* PROTOBUF_NONNULL stream) {
-  const JwtSignRequest& this_ = static_cast<const JwtSignRequest&>(base);
+  const JwtComputeRequest& this_ = static_cast<const JwtComputeRequest&>(base);
 #else   // PROTOBUF_CUSTOM_VTABLE
-::uint8_t* PROTOBUF_NONNULL JwtSignRequest::_InternalSerialize(
+::uint8_t* PROTOBUF_NONNULL JwtComputeRequest::_InternalSerialize(
     ::uint8_t* PROTOBUF_NONNULL target,
     ::google::protobuf::io::EpsCopyOutputStream* PROTOBUF_NONNULL stream) const {
-  const JwtSignRequest& this_ = *this;
+  const JwtComputeRequest& this_ = *this;
 #endif  // PROTOBUF_CUSTOM_VTABLE
   if constexpr (::_pbi::DebugHardenCheckHasBitConsistency()) {
     this_.CheckHasBitConsistency();
   }
-  // @@protoc_insertion_point(serialize_to_array_start:palm.loquat.v1.JwtSignRequest)
+  // @@protoc_insertion_point(serialize_to_array_start:palm.loquat.v1.JwtComputeRequest)
   ::uint32_t cached_has_bits = 0;
   (void)cached_has_bits;
 
@@ -1630,7 +1631,7 @@ PROTOBUF_NOINLINE void JwtSignRequest::Clear() {
   if (CheckHasBit(cached_has_bits, 0x00000002U)) {
     const ::std::string& _s = this_._internal_jwt_id();
     ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-        _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "palm.loquat.v1.JwtSignRequest.jwt_id");
+        _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "palm.loquat.v1.JwtComputeRequest.jwt_id");
     target = stream->WriteStringMaybeAliased(1, _s, target);
   }
 
@@ -1638,7 +1639,7 @@ PROTOBUF_NOINLINE void JwtSignRequest::Clear() {
   if (CheckHasBit(cached_has_bits, 0x00000004U)) {
     const ::std::string& _s = this_._internal_key_id();
     ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-        _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "palm.loquat.v1.JwtSignRequest.key_id");
+        _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "palm.loquat.v1.JwtComputeRequest.key_id");
     target = stream->WriteStringMaybeAliased(2, _s, target);
   }
 
@@ -1647,7 +1648,7 @@ PROTOBUF_NOINLINE void JwtSignRequest::Clear() {
     if (!this_._internal_issuer().empty()) {
       const ::std::string& _s = this_._internal_issuer();
       ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-          _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "palm.loquat.v1.JwtSignRequest.issuer");
+          _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "palm.loquat.v1.JwtComputeRequest.issuer");
       target = stream->WriteStringMaybeAliased(3, _s, target);
     }
   }
@@ -1657,7 +1658,7 @@ PROTOBUF_NOINLINE void JwtSignRequest::Clear() {
     if (!this_._internal_subject().empty()) {
       const ::std::string& _s = this_._internal_subject();
       ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-          _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "palm.loquat.v1.JwtSignRequest.subject");
+          _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "palm.loquat.v1.JwtComputeRequest.subject");
       target = stream->WriteStringMaybeAliased(4, _s, target);
     }
   }
@@ -1667,7 +1668,7 @@ PROTOBUF_NOINLINE void JwtSignRequest::Clear() {
     for (int i = 0, n = this_._internal_audiences_size(); i < n; ++i) {
       const auto& s = this_._internal_audiences().Get(i);
       ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-          s.data(), static_cast<int>(s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "palm.loquat.v1.JwtSignRequest.audiences");
+          s.data(), static_cast<int>(s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "palm.loquat.v1.JwtComputeRequest.audiences");
       target = stream->WriteString(5, s, target);
     }
   }
@@ -1710,18 +1711,18 @@ PROTOBUF_NOINLINE void JwtSignRequest::Clear() {
         ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
             this_._internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
   }
-  // @@protoc_insertion_point(serialize_to_array_end:palm.loquat.v1.JwtSignRequest)
+  // @@protoc_insertion_point(serialize_to_array_end:palm.loquat.v1.JwtComputeRequest)
   return target;
 }
 
 #if defined(PROTOBUF_CUSTOM_VTABLE)
-::size_t JwtSignRequest::ByteSizeLong(const MessageLite& base) {
-  const JwtSignRequest& this_ = static_cast<const JwtSignRequest&>(base);
+::size_t JwtComputeRequest::ByteSizeLong(const MessageLite& base) {
+  const JwtComputeRequest& this_ = static_cast<const JwtComputeRequest&>(base);
 #else   // PROTOBUF_CUSTOM_VTABLE
-::size_t JwtSignRequest::ByteSizeLong() const {
-  const JwtSignRequest& this_ = *this;
+::size_t JwtComputeRequest::ByteSizeLong() const {
+  const JwtComputeRequest& this_ = *this;
 #endif  // PROTOBUF_CUSTOM_VTABLE
-  // @@protoc_insertion_point(message_byte_size_start:palm.loquat.v1.JwtSignRequest)
+  // @@protoc_insertion_point(message_byte_size_start:palm.loquat.v1.JwtComputeRequest)
   ::size_t total_size = 0;
 
   ::uint32_t cached_has_bits = 0;
@@ -1797,16 +1798,16 @@ PROTOBUF_NOINLINE void JwtSignRequest::Clear() {
                                              &this_._impl_._cached_size_);
 }
 
-void JwtSignRequest::MergeImpl(::google::protobuf::MessageLite& to_msg,
+void JwtComputeRequest::MergeImpl(::google::protobuf::MessageLite& to_msg,
                             const ::google::protobuf::MessageLite& from_msg) {
    auto* const _this =
-      static_cast<JwtSignRequest*>(&to_msg);
-  auto& from = static_cast<const JwtSignRequest&>(from_msg);
+      static_cast<JwtComputeRequest*>(&to_msg);
+  auto& from = static_cast<const JwtComputeRequest&>(from_msg);
   if constexpr (::_pbi::DebugHardenCheckHasBitConsistency()) {
     from.CheckHasBitConsistency();
   }
   ::google::protobuf::Arena* arena = _this->GetArena();
-  // @@protoc_insertion_point(class_specific_merge_from_start:palm.loquat.v1.JwtSignRequest)
+  // @@protoc_insertion_point(class_specific_merge_from_start:palm.loquat.v1.JwtComputeRequest)
   ABSL_DCHECK_NE(&from, _this);
   ::uint32_t cached_has_bits = 0;
   (void)cached_has_bits;
@@ -1866,15 +1867,15 @@ void JwtSignRequest::MergeImpl(::google::protobuf::MessageLite& to_msg,
       from._internal_metadata_);
 }
 
-void JwtSignRequest::CopyFrom(const JwtSignRequest& from) {
-  // @@protoc_insertion_point(class_specific_copy_from_start:palm.loquat.v1.JwtSignRequest)
+void JwtComputeRequest::CopyFrom(const JwtComputeRequest& from) {
+  // @@protoc_insertion_point(class_specific_copy_from_start:palm.loquat.v1.JwtComputeRequest)
   if (&from == this) return;
   Clear();
   MergeFrom(from);
 }
 
 
-void JwtSignRequest::InternalSwap(JwtSignRequest* PROTOBUF_RESTRICT PROTOBUF_NONNULL other) {
+void JwtComputeRequest::InternalSwap(JwtComputeRequest* PROTOBUF_RESTRICT PROTOBUF_NONNULL other) {
   using ::std::swap;
   auto* arena = GetArena();
   ABSL_DCHECK_EQ(arena, other->GetArena());
@@ -1887,74 +1888,74 @@ void JwtSignRequest::InternalSwap(JwtSignRequest* PROTOBUF_RESTRICT PROTOBUF_NON
   ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.subject_, &other->_impl_.subject_, arena);
   ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.payload_, &other->_impl_.payload_, arena);
   ::google::protobuf::internal::memswap<
-      PROTOBUF_FIELD_OFFSET(JwtSignRequest, _impl_.expired_at_)
-      + sizeof(JwtSignRequest::_impl_.expired_at_)
-      - PROTOBUF_FIELD_OFFSET(JwtSignRequest, _impl_.issued_at_)>(
+      PROTOBUF_FIELD_OFFSET(JwtComputeRequest, _impl_.expired_at_)
+      + sizeof(JwtComputeRequest::_impl_.expired_at_)
+      - PROTOBUF_FIELD_OFFSET(JwtComputeRequest, _impl_.issued_at_)>(
           reinterpret_cast<char*>(&_impl_.issued_at_),
           reinterpret_cast<char*>(&other->_impl_.issued_at_));
 }
 
-::google::protobuf::Metadata JwtSignRequest::GetMetadata() const {
+::google::protobuf::Metadata JwtComputeRequest::GetMetadata() const {
   return ::google::protobuf::Message::GetMetadataImpl(GetClassData()->full());
 }
 // ===================================================================
 
-class JwtSignResponse::_Internal {
+class JwtComputeResponse::_Internal {
  public:
   using HasBits =
-      decltype(::std::declval<JwtSignResponse>()._impl_._has_bits_);
+      decltype(::std::declval<JwtComputeResponse>()._impl_._has_bits_);
   static constexpr ::int32_t kHasBitsOffset =
-      8 * PROTOBUF_FIELD_OFFSET(JwtSignResponse, _impl_._has_bits_);
+      8 * PROTOBUF_FIELD_OFFSET(JwtComputeResponse, _impl_._has_bits_);
 };
 
-JwtSignResponse::JwtSignResponse(::google::protobuf::Arena* PROTOBUF_NULLABLE arena)
+JwtComputeResponse::JwtComputeResponse(::google::protobuf::Arena* PROTOBUF_NULLABLE arena)
 #if defined(PROTOBUF_CUSTOM_VTABLE)
-    : ::google::protobuf::Message(arena, JwtSignResponse_class_data_.base()) {
+    : ::google::protobuf::Message(arena, JwtComputeResponse_class_data_.base()) {
 #else   // PROTOBUF_CUSTOM_VTABLE
     : ::google::protobuf::Message(arena) {
 #endif  // PROTOBUF_CUSTOM_VTABLE
   SharedCtor(arena);
-  // @@protoc_insertion_point(arena_constructor:palm.loquat.v1.JwtSignResponse)
+  // @@protoc_insertion_point(arena_constructor:palm.loquat.v1.JwtComputeResponse)
 }
-PROTOBUF_NDEBUG_INLINE JwtSignResponse::Impl_::Impl_(
+PROTOBUF_NDEBUG_INLINE JwtComputeResponse::Impl_::Impl_(
     [[maybe_unused]] ::google::protobuf::internal::InternalVisibility visibility,
     [[maybe_unused]] ::google::protobuf::Arena* PROTOBUF_NULLABLE arena, const Impl_& from,
-    [[maybe_unused]] const ::palm::loquat::v1::JwtSignResponse& from_msg)
+    [[maybe_unused]] const ::palm::loquat::v1::JwtComputeResponse& from_msg)
       : _has_bits_{from._has_bits_},
         _cached_size_{0},
         token_(arena, from.token_) {}
 
-JwtSignResponse::JwtSignResponse(
+JwtComputeResponse::JwtComputeResponse(
     ::google::protobuf::Arena* PROTOBUF_NULLABLE arena,
-    const JwtSignResponse& from)
+    const JwtComputeResponse& from)
 #if defined(PROTOBUF_CUSTOM_VTABLE)
-    : ::google::protobuf::Message(arena, JwtSignResponse_class_data_.base()) {
+    : ::google::protobuf::Message(arena, JwtComputeResponse_class_data_.base()) {
 #else   // PROTOBUF_CUSTOM_VTABLE
     : ::google::protobuf::Message(arena) {
 #endif  // PROTOBUF_CUSTOM_VTABLE
-  JwtSignResponse* const _this = this;
+  JwtComputeResponse* const _this = this;
   (void)_this;
   _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
       from._internal_metadata_);
   new (&_impl_) Impl_(internal_visibility(), arena, from._impl_, from);
 
-  // @@protoc_insertion_point(copy_constructor:palm.loquat.v1.JwtSignResponse)
+  // @@protoc_insertion_point(copy_constructor:palm.loquat.v1.JwtComputeResponse)
 }
-PROTOBUF_NDEBUG_INLINE JwtSignResponse::Impl_::Impl_(
+PROTOBUF_NDEBUG_INLINE JwtComputeResponse::Impl_::Impl_(
     [[maybe_unused]] ::google::protobuf::internal::InternalVisibility visibility,
     [[maybe_unused]] ::google::protobuf::Arena* PROTOBUF_NULLABLE arena)
       : _cached_size_{0},
         token_(arena) {}
 
-inline void JwtSignResponse::SharedCtor(::_pb::Arena* PROTOBUF_NULLABLE arena) {
+inline void JwtComputeResponse::SharedCtor(::_pb::Arena* PROTOBUF_NULLABLE arena) {
   new (&_impl_) Impl_(internal_visibility(), arena);
 }
-JwtSignResponse::~JwtSignResponse() {
-  // @@protoc_insertion_point(destructor:palm.loquat.v1.JwtSignResponse)
+JwtComputeResponse::~JwtComputeResponse() {
+  // @@protoc_insertion_point(destructor:palm.loquat.v1.JwtComputeResponse)
   SharedDtor(*this);
 }
-inline void JwtSignResponse::SharedDtor(MessageLite& self) {
-  JwtSignResponse& this_ = static_cast<JwtSignResponse&>(self);
+inline void JwtComputeResponse::SharedDtor(MessageLite& self) {
+  JwtComputeResponse& this_ = static_cast<JwtComputeResponse&>(self);
   if constexpr (::_pbi::DebugHardenCheckHasBitConsistency()) {
     this_.CheckHasBitConsistency();
   }
@@ -1964,53 +1965,53 @@ inline void JwtSignResponse::SharedDtor(MessageLite& self) {
   this_._impl_.~Impl_();
 }
 
-inline void* PROTOBUF_NONNULL JwtSignResponse::PlacementNew_(
+inline void* PROTOBUF_NONNULL JwtComputeResponse::PlacementNew_(
     const void* PROTOBUF_NONNULL, void* PROTOBUF_NONNULL mem,
     ::google::protobuf::Arena* PROTOBUF_NULLABLE arena) {
-  return ::new (mem) JwtSignResponse(arena);
+  return ::new (mem) JwtComputeResponse(arena);
 }
-constexpr auto JwtSignResponse::InternalNewImpl_() {
-  return ::google::protobuf::internal::MessageCreator::CopyInit(sizeof(JwtSignResponse),
-                                            alignof(JwtSignResponse));
+constexpr auto JwtComputeResponse::InternalNewImpl_() {
+  return ::google::protobuf::internal::MessageCreator::CopyInit(sizeof(JwtComputeResponse),
+                                            alignof(JwtComputeResponse));
 }
-constexpr auto JwtSignResponse::InternalGenerateClassData_() {
+constexpr auto JwtComputeResponse::InternalGenerateClassData_() {
   return ::google::protobuf::internal::ClassDataFull{
       ::google::protobuf::internal::ClassData{
-          &_JwtSignResponse_default_instance_._instance,
+          &_JwtComputeResponse_default_instance_._instance,
           &_table_.header,
           nullptr,  // OnDemandRegisterArenaDtor
           nullptr,  // IsInitialized
-          &JwtSignResponse::MergeImpl,
-          ::google::protobuf::Message::GetNewImpl<JwtSignResponse>(),
+          &JwtComputeResponse::MergeImpl,
+          ::google::protobuf::Message::GetNewImpl<JwtComputeResponse>(),
 #if defined(PROTOBUF_CUSTOM_VTABLE)
-          &JwtSignResponse::SharedDtor,
-          ::google::protobuf::Message::GetClearImpl<JwtSignResponse>(), &JwtSignResponse::ByteSizeLong,
-              &JwtSignResponse::_InternalSerialize,
+          &JwtComputeResponse::SharedDtor,
+          ::google::protobuf::Message::GetClearImpl<JwtComputeResponse>(), &JwtComputeResponse::ByteSizeLong,
+              &JwtComputeResponse::_InternalSerialize,
 #endif  // PROTOBUF_CUSTOM_VTABLE
-          PROTOBUF_FIELD_OFFSET(JwtSignResponse, _impl_._cached_size_),
+          PROTOBUF_FIELD_OFFSET(JwtComputeResponse, _impl_._cached_size_),
           false,
       },
-      &JwtSignResponse::kDescriptorMethods,
+      &JwtComputeResponse::kDescriptorMethods,
       &descriptor_table_loquat_2eproto,
       nullptr,  // tracker
   };
 }
 
 PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 const
-    ::google::protobuf::internal::ClassDataFull JwtSignResponse_class_data_ =
-        JwtSignResponse::InternalGenerateClassData_();
+    ::google::protobuf::internal::ClassDataFull JwtComputeResponse_class_data_ =
+        JwtComputeResponse::InternalGenerateClassData_();
 
 PROTOBUF_ATTRIBUTE_WEAK const ::google::protobuf::internal::ClassData* PROTOBUF_NONNULL
-JwtSignResponse::GetClassData() const {
-  ::google::protobuf::internal::PrefetchToLocalCache(&JwtSignResponse_class_data_);
-  ::google::protobuf::internal::PrefetchToLocalCache(JwtSignResponse_class_data_.tc_table);
-  return JwtSignResponse_class_data_.base();
+JwtComputeResponse::GetClassData() const {
+  ::google::protobuf::internal::PrefetchToLocalCache(&JwtComputeResponse_class_data_);
+  ::google::protobuf::internal::PrefetchToLocalCache(JwtComputeResponse_class_data_.tc_table);
+  return JwtComputeResponse_class_data_.base();
 }
 PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::_pbi::TcParseTable<0, 1, 0, 44, 2>
-JwtSignResponse::_table_ = {
+const ::_pbi::TcParseTable<0, 1, 0, 47, 2>
+JwtComputeResponse::_table_ = {
   {
-    PROTOBUF_FIELD_OFFSET(JwtSignResponse, _impl_._has_bits_),
+    PROTOBUF_FIELD_OFFSET(JwtComputeResponse, _impl_._has_bits_),
     0, // no _extensions_
     1, 0,  // max_field_number, fast_idx_mask
     offsetof(decltype(_table_), field_lookup_table),
@@ -2019,32 +2020,32 @@ JwtSignResponse::_table_ = {
     1,  // num_field_entries
     0,  // num_aux_entries
     offsetof(decltype(_table_), field_names),  // no aux_entries
-    JwtSignResponse_class_data_.base(),
+    JwtComputeResponse_class_data_.base(),
     nullptr,  // post_loop_handler
     ::_pbi::TcParser::GenericFallback,  // fallback
     #ifdef PROTOBUF_PREFETCH_PARSE_TABLE
-    ::_pbi::TcParser::GetTable<::palm::loquat::v1::JwtSignResponse>(),  // to_prefetch
+    ::_pbi::TcParser::GetTable<::palm::loquat::v1::JwtComputeResponse>(),  // to_prefetch
     #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
   }, {{
     // string token = 1;
     {::_pbi::TcParser::FastUS1,
      {10, 0, 0,
-      PROTOBUF_FIELD_OFFSET(JwtSignResponse, _impl_.token_)}},
+      PROTOBUF_FIELD_OFFSET(JwtComputeResponse, _impl_.token_)}},
   }}, {{
     65535, 65535
   }}, {{
     // string token = 1;
-    {PROTOBUF_FIELD_OFFSET(JwtSignResponse, _impl_.token_), _Internal::kHasBitsOffset + 0, 0, (0 | ::_fl::kFcOptional | ::_fl::kUtf8String | ::_fl::kRepAString)},
+    {PROTOBUF_FIELD_OFFSET(JwtComputeResponse, _impl_.token_), _Internal::kHasBitsOffset + 0, 0, (0 | ::_fl::kFcOptional | ::_fl::kUtf8String | ::_fl::kRepAString)},
   }},
   // no aux_entries
   {{
-    "\36\5\0\0\0\0\0\0"
-    "palm.loquat.v1.JwtSignResponse"
+    "\41\5\0\0\0\0\0\0"
+    "palm.loquat.v1.JwtComputeResponse"
     "token"
   }},
 };
-PROTOBUF_NOINLINE void JwtSignResponse::Clear() {
-// @@protoc_insertion_point(message_clear_start:palm.loquat.v1.JwtSignResponse)
+PROTOBUF_NOINLINE void JwtComputeResponse::Clear() {
+// @@protoc_insertion_point(message_clear_start:palm.loquat.v1.JwtComputeResponse)
   ::google::protobuf::internal::TSanWrite(&_impl_);
   ::uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
@@ -2059,20 +2060,20 @@ PROTOBUF_NOINLINE void JwtSignResponse::Clear() {
 }
 
 #if defined(PROTOBUF_CUSTOM_VTABLE)
-::uint8_t* PROTOBUF_NONNULL JwtSignResponse::_InternalSerialize(
+::uint8_t* PROTOBUF_NONNULL JwtComputeResponse::_InternalSerialize(
     const ::google::protobuf::MessageLite& base, ::uint8_t* PROTOBUF_NONNULL target,
     ::google::protobuf::io::EpsCopyOutputStream* PROTOBUF_NONNULL stream) {
-  const JwtSignResponse& this_ = static_cast<const JwtSignResponse&>(base);
+  const JwtComputeResponse& this_ = static_cast<const JwtComputeResponse&>(base);
 #else   // PROTOBUF_CUSTOM_VTABLE
-::uint8_t* PROTOBUF_NONNULL JwtSignResponse::_InternalSerialize(
+::uint8_t* PROTOBUF_NONNULL JwtComputeResponse::_InternalSerialize(
     ::uint8_t* PROTOBUF_NONNULL target,
     ::google::protobuf::io::EpsCopyOutputStream* PROTOBUF_NONNULL stream) const {
-  const JwtSignResponse& this_ = *this;
+  const JwtComputeResponse& this_ = *this;
 #endif  // PROTOBUF_CUSTOM_VTABLE
   if constexpr (::_pbi::DebugHardenCheckHasBitConsistency()) {
     this_.CheckHasBitConsistency();
   }
-  // @@protoc_insertion_point(serialize_to_array_start:palm.loquat.v1.JwtSignResponse)
+  // @@protoc_insertion_point(serialize_to_array_start:palm.loquat.v1.JwtComputeResponse)
   ::uint32_t cached_has_bits = 0;
   (void)cached_has_bits;
 
@@ -2082,7 +2083,7 @@ PROTOBUF_NOINLINE void JwtSignResponse::Clear() {
     if (!this_._internal_token().empty()) {
       const ::std::string& _s = this_._internal_token();
       ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-          _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "palm.loquat.v1.JwtSignResponse.token");
+          _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "palm.loquat.v1.JwtComputeResponse.token");
       target = stream->WriteStringMaybeAliased(1, _s, target);
     }
   }
@@ -2092,18 +2093,18 @@ PROTOBUF_NOINLINE void JwtSignResponse::Clear() {
         ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
             this_._internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
   }
-  // @@protoc_insertion_point(serialize_to_array_end:palm.loquat.v1.JwtSignResponse)
+  // @@protoc_insertion_point(serialize_to_array_end:palm.loquat.v1.JwtComputeResponse)
   return target;
 }
 
 #if defined(PROTOBUF_CUSTOM_VTABLE)
-::size_t JwtSignResponse::ByteSizeLong(const MessageLite& base) {
-  const JwtSignResponse& this_ = static_cast<const JwtSignResponse&>(base);
+::size_t JwtComputeResponse::ByteSizeLong(const MessageLite& base) {
+  const JwtComputeResponse& this_ = static_cast<const JwtComputeResponse&>(base);
 #else   // PROTOBUF_CUSTOM_VTABLE
-::size_t JwtSignResponse::ByteSizeLong() const {
-  const JwtSignResponse& this_ = *this;
+::size_t JwtComputeResponse::ByteSizeLong() const {
+  const JwtComputeResponse& this_ = *this;
 #endif  // PROTOBUF_CUSTOM_VTABLE
-  // @@protoc_insertion_point(message_byte_size_start:palm.loquat.v1.JwtSignResponse)
+  // @@protoc_insertion_point(message_byte_size_start:palm.loquat.v1.JwtComputeResponse)
   ::size_t total_size = 0;
 
   ::uint32_t cached_has_bits = 0;
@@ -2124,15 +2125,15 @@ PROTOBUF_NOINLINE void JwtSignResponse::Clear() {
                                              &this_._impl_._cached_size_);
 }
 
-void JwtSignResponse::MergeImpl(::google::protobuf::MessageLite& to_msg,
+void JwtComputeResponse::MergeImpl(::google::protobuf::MessageLite& to_msg,
                             const ::google::protobuf::MessageLite& from_msg) {
    auto* const _this =
-      static_cast<JwtSignResponse*>(&to_msg);
-  auto& from = static_cast<const JwtSignResponse&>(from_msg);
+      static_cast<JwtComputeResponse*>(&to_msg);
+  auto& from = static_cast<const JwtComputeResponse&>(from_msg);
   if constexpr (::_pbi::DebugHardenCheckHasBitConsistency()) {
     from.CheckHasBitConsistency();
   }
-  // @@protoc_insertion_point(class_specific_merge_from_start:palm.loquat.v1.JwtSignResponse)
+  // @@protoc_insertion_point(class_specific_merge_from_start:palm.loquat.v1.JwtComputeResponse)
   ABSL_DCHECK_NE(&from, _this);
   ::uint32_t cached_has_bits = 0;
   (void)cached_has_bits;
@@ -2152,15 +2153,15 @@ void JwtSignResponse::MergeImpl(::google::protobuf::MessageLite& to_msg,
       from._internal_metadata_);
 }
 
-void JwtSignResponse::CopyFrom(const JwtSignResponse& from) {
-  // @@protoc_insertion_point(class_specific_copy_from_start:palm.loquat.v1.JwtSignResponse)
+void JwtComputeResponse::CopyFrom(const JwtComputeResponse& from) {
+  // @@protoc_insertion_point(class_specific_copy_from_start:palm.loquat.v1.JwtComputeResponse)
   if (&from == this) return;
   Clear();
   MergeFrom(from);
 }
 
 
-void JwtSignResponse::InternalSwap(JwtSignResponse* PROTOBUF_RESTRICT PROTOBUF_NONNULL other) {
+void JwtComputeResponse::InternalSwap(JwtComputeResponse* PROTOBUF_RESTRICT PROTOBUF_NONNULL other) {
   using ::std::swap;
   auto* arena = GetArena();
   ABSL_DCHECK_EQ(arena, other->GetArena());
@@ -2169,67 +2170,67 @@ void JwtSignResponse::InternalSwap(JwtSignResponse* PROTOBUF_RESTRICT PROTOBUF_N
   ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.token_, &other->_impl_.token_, arena);
 }
 
-::google::protobuf::Metadata JwtSignResponse::GetMetadata() const {
+::google::protobuf::Metadata JwtComputeResponse::GetMetadata() const {
   return ::google::protobuf::Message::GetMetadataImpl(GetClassData()->full());
 }
 // ===================================================================
 
-class HMacSignRequest::_Internal {
+class MacComputeRequest::_Internal {
  public:
   using HasBits =
-      decltype(::std::declval<HMacSignRequest>()._impl_._has_bits_);
+      decltype(::std::declval<MacComputeRequest>()._impl_._has_bits_);
   static constexpr ::int32_t kHasBitsOffset =
-      8 * PROTOBUF_FIELD_OFFSET(HMacSignRequest, _impl_._has_bits_);
+      8 * PROTOBUF_FIELD_OFFSET(MacComputeRequest, _impl_._has_bits_);
 };
 
-HMacSignRequest::HMacSignRequest(::google::protobuf::Arena* PROTOBUF_NULLABLE arena)
+MacComputeRequest::MacComputeRequest(::google::protobuf::Arena* PROTOBUF_NULLABLE arena)
 #if defined(PROTOBUF_CUSTOM_VTABLE)
-    : ::google::protobuf::Message(arena, HMacSignRequest_class_data_.base()) {
+    : ::google::protobuf::Message(arena, MacComputeRequest_class_data_.base()) {
 #else   // PROTOBUF_CUSTOM_VTABLE
     : ::google::protobuf::Message(arena) {
 #endif  // PROTOBUF_CUSTOM_VTABLE
   SharedCtor(arena);
-  // @@protoc_insertion_point(arena_constructor:palm.loquat.v1.HMacSignRequest)
+  // @@protoc_insertion_point(arena_constructor:palm.loquat.v1.MacComputeRequest)
 }
-PROTOBUF_NDEBUG_INLINE HMacSignRequest::Impl_::Impl_(
+PROTOBUF_NDEBUG_INLINE MacComputeRequest::Impl_::Impl_(
     [[maybe_unused]] ::google::protobuf::internal::InternalVisibility visibility,
     [[maybe_unused]] ::google::protobuf::Arena* PROTOBUF_NULLABLE arena, const Impl_& from,
-    [[maybe_unused]] const ::palm::loquat::v1::HMacSignRequest& from_msg)
+    [[maybe_unused]] const ::palm::loquat::v1::MacComputeRequest& from_msg)
       : _has_bits_{from._has_bits_},
         _cached_size_{0},
         plain_(arena, from.plain_) {}
 
-HMacSignRequest::HMacSignRequest(
+MacComputeRequest::MacComputeRequest(
     ::google::protobuf::Arena* PROTOBUF_NULLABLE arena,
-    const HMacSignRequest& from)
+    const MacComputeRequest& from)
 #if defined(PROTOBUF_CUSTOM_VTABLE)
-    : ::google::protobuf::Message(arena, HMacSignRequest_class_data_.base()) {
+    : ::google::protobuf::Message(arena, MacComputeRequest_class_data_.base()) {
 #else   // PROTOBUF_CUSTOM_VTABLE
     : ::google::protobuf::Message(arena) {
 #endif  // PROTOBUF_CUSTOM_VTABLE
-  HMacSignRequest* const _this = this;
+  MacComputeRequest* const _this = this;
   (void)_this;
   _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
       from._internal_metadata_);
   new (&_impl_) Impl_(internal_visibility(), arena, from._impl_, from);
 
-  // @@protoc_insertion_point(copy_constructor:palm.loquat.v1.HMacSignRequest)
+  // @@protoc_insertion_point(copy_constructor:palm.loquat.v1.MacComputeRequest)
 }
-PROTOBUF_NDEBUG_INLINE HMacSignRequest::Impl_::Impl_(
+PROTOBUF_NDEBUG_INLINE MacComputeRequest::Impl_::Impl_(
     [[maybe_unused]] ::google::protobuf::internal::InternalVisibility visibility,
     [[maybe_unused]] ::google::protobuf::Arena* PROTOBUF_NULLABLE arena)
       : _cached_size_{0},
         plain_(arena) {}
 
-inline void HMacSignRequest::SharedCtor(::_pb::Arena* PROTOBUF_NULLABLE arena) {
+inline void MacComputeRequest::SharedCtor(::_pb::Arena* PROTOBUF_NULLABLE arena) {
   new (&_impl_) Impl_(internal_visibility(), arena);
 }
-HMacSignRequest::~HMacSignRequest() {
-  // @@protoc_insertion_point(destructor:palm.loquat.v1.HMacSignRequest)
+MacComputeRequest::~MacComputeRequest() {
+  // @@protoc_insertion_point(destructor:palm.loquat.v1.MacComputeRequest)
   SharedDtor(*this);
 }
-inline void HMacSignRequest::SharedDtor(MessageLite& self) {
-  HMacSignRequest& this_ = static_cast<HMacSignRequest&>(self);
+inline void MacComputeRequest::SharedDtor(MessageLite& self) {
+  MacComputeRequest& this_ = static_cast<MacComputeRequest&>(self);
   if constexpr (::_pbi::DebugHardenCheckHasBitConsistency()) {
     this_.CheckHasBitConsistency();
   }
@@ -2239,53 +2240,53 @@ inline void HMacSignRequest::SharedDtor(MessageLite& self) {
   this_._impl_.~Impl_();
 }
 
-inline void* PROTOBUF_NONNULL HMacSignRequest::PlacementNew_(
+inline void* PROTOBUF_NONNULL MacComputeRequest::PlacementNew_(
     const void* PROTOBUF_NONNULL, void* PROTOBUF_NONNULL mem,
     ::google::protobuf::Arena* PROTOBUF_NULLABLE arena) {
-  return ::new (mem) HMacSignRequest(arena);
+  return ::new (mem) MacComputeRequest(arena);
 }
-constexpr auto HMacSignRequest::InternalNewImpl_() {
-  return ::google::protobuf::internal::MessageCreator::CopyInit(sizeof(HMacSignRequest),
-                                            alignof(HMacSignRequest));
+constexpr auto MacComputeRequest::InternalNewImpl_() {
+  return ::google::protobuf::internal::MessageCreator::CopyInit(sizeof(MacComputeRequest),
+                                            alignof(MacComputeRequest));
 }
-constexpr auto HMacSignRequest::InternalGenerateClassData_() {
+constexpr auto MacComputeRequest::InternalGenerateClassData_() {
   return ::google::protobuf::internal::ClassDataFull{
       ::google::protobuf::internal::ClassData{
-          &_HMacSignRequest_default_instance_._instance,
+          &_MacComputeRequest_default_instance_._instance,
           &_table_.header,
           nullptr,  // OnDemandRegisterArenaDtor
           nullptr,  // IsInitialized
-          &HMacSignRequest::MergeImpl,
-          ::google::protobuf::Message::GetNewImpl<HMacSignRequest>(),
+          &MacComputeRequest::MergeImpl,
+          ::google::protobuf::Message::GetNewImpl<MacComputeRequest>(),
 #if defined(PROTOBUF_CUSTOM_VTABLE)
-          &HMacSignRequest::SharedDtor,
-          ::google::protobuf::Message::GetClearImpl<HMacSignRequest>(), &HMacSignRequest::ByteSizeLong,
-              &HMacSignRequest::_InternalSerialize,
+          &MacComputeRequest::SharedDtor,
+          ::google::protobuf::Message::GetClearImpl<MacComputeRequest>(), &MacComputeRequest::ByteSizeLong,
+              &MacComputeRequest::_InternalSerialize,
 #endif  // PROTOBUF_CUSTOM_VTABLE
-          PROTOBUF_FIELD_OFFSET(HMacSignRequest, _impl_._cached_size_),
+          PROTOBUF_FIELD_OFFSET(MacComputeRequest, _impl_._cached_size_),
           false,
       },
-      &HMacSignRequest::kDescriptorMethods,
+      &MacComputeRequest::kDescriptorMethods,
       &descriptor_table_loquat_2eproto,
       nullptr,  // tracker
   };
 }
 
 PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 const
-    ::google::protobuf::internal::ClassDataFull HMacSignRequest_class_data_ =
-        HMacSignRequest::InternalGenerateClassData_();
+    ::google::protobuf::internal::ClassDataFull MacComputeRequest_class_data_ =
+        MacComputeRequest::InternalGenerateClassData_();
 
 PROTOBUF_ATTRIBUTE_WEAK const ::google::protobuf::internal::ClassData* PROTOBUF_NONNULL
-HMacSignRequest::GetClassData() const {
-  ::google::protobuf::internal::PrefetchToLocalCache(&HMacSignRequest_class_data_);
-  ::google::protobuf::internal::PrefetchToLocalCache(HMacSignRequest_class_data_.tc_table);
-  return HMacSignRequest_class_data_.base();
+MacComputeRequest::GetClassData() const {
+  ::google::protobuf::internal::PrefetchToLocalCache(&MacComputeRequest_class_data_);
+  ::google::protobuf::internal::PrefetchToLocalCache(MacComputeRequest_class_data_.tc_table);
+  return MacComputeRequest_class_data_.base();
 }
 PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
 const ::_pbi::TcParseTable<0, 1, 0, 0, 2>
-HMacSignRequest::_table_ = {
+MacComputeRequest::_table_ = {
   {
-    PROTOBUF_FIELD_OFFSET(HMacSignRequest, _impl_._has_bits_),
+    PROTOBUF_FIELD_OFFSET(MacComputeRequest, _impl_._has_bits_),
     0, // no _extensions_
     1, 0,  // max_field_number, fast_idx_mask
     offsetof(decltype(_table_), field_lookup_table),
@@ -2294,29 +2295,29 @@ HMacSignRequest::_table_ = {
     1,  // num_field_entries
     0,  // num_aux_entries
     offsetof(decltype(_table_), field_names),  // no aux_entries
-    HMacSignRequest_class_data_.base(),
+    MacComputeRequest_class_data_.base(),
     nullptr,  // post_loop_handler
     ::_pbi::TcParser::GenericFallback,  // fallback
     #ifdef PROTOBUF_PREFETCH_PARSE_TABLE
-    ::_pbi::TcParser::GetTable<::palm::loquat::v1::HMacSignRequest>(),  // to_prefetch
+    ::_pbi::TcParser::GetTable<::palm::loquat::v1::MacComputeRequest>(),  // to_prefetch
     #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
   }, {{
     // bytes plain = 1;
     {::_pbi::TcParser::FastBS1,
      {10, 0, 0,
-      PROTOBUF_FIELD_OFFSET(HMacSignRequest, _impl_.plain_)}},
+      PROTOBUF_FIELD_OFFSET(MacComputeRequest, _impl_.plain_)}},
   }}, {{
     65535, 65535
   }}, {{
     // bytes plain = 1;
-    {PROTOBUF_FIELD_OFFSET(HMacSignRequest, _impl_.plain_), _Internal::kHasBitsOffset + 0, 0, (0 | ::_fl::kFcOptional | ::_fl::kBytes | ::_fl::kRepAString)},
+    {PROTOBUF_FIELD_OFFSET(MacComputeRequest, _impl_.plain_), _Internal::kHasBitsOffset + 0, 0, (0 | ::_fl::kFcOptional | ::_fl::kBytes | ::_fl::kRepAString)},
   }},
   // no aux_entries
   {{
   }},
 };
-PROTOBUF_NOINLINE void HMacSignRequest::Clear() {
-// @@protoc_insertion_point(message_clear_start:palm.loquat.v1.HMacSignRequest)
+PROTOBUF_NOINLINE void MacComputeRequest::Clear() {
+// @@protoc_insertion_point(message_clear_start:palm.loquat.v1.MacComputeRequest)
   ::google::protobuf::internal::TSanWrite(&_impl_);
   ::uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
@@ -2331,20 +2332,20 @@ PROTOBUF_NOINLINE void HMacSignRequest::Clear() {
 }
 
 #if defined(PROTOBUF_CUSTOM_VTABLE)
-::uint8_t* PROTOBUF_NONNULL HMacSignRequest::_InternalSerialize(
+::uint8_t* PROTOBUF_NONNULL MacComputeRequest::_InternalSerialize(
     const ::google::protobuf::MessageLite& base, ::uint8_t* PROTOBUF_NONNULL target,
     ::google::protobuf::io::EpsCopyOutputStream* PROTOBUF_NONNULL stream) {
-  const HMacSignRequest& this_ = static_cast<const HMacSignRequest&>(base);
+  const MacComputeRequest& this_ = static_cast<const MacComputeRequest&>(base);
 #else   // PROTOBUF_CUSTOM_VTABLE
-::uint8_t* PROTOBUF_NONNULL HMacSignRequest::_InternalSerialize(
+::uint8_t* PROTOBUF_NONNULL MacComputeRequest::_InternalSerialize(
     ::uint8_t* PROTOBUF_NONNULL target,
     ::google::protobuf::io::EpsCopyOutputStream* PROTOBUF_NONNULL stream) const {
-  const HMacSignRequest& this_ = *this;
+  const MacComputeRequest& this_ = *this;
 #endif  // PROTOBUF_CUSTOM_VTABLE
   if constexpr (::_pbi::DebugHardenCheckHasBitConsistency()) {
     this_.CheckHasBitConsistency();
   }
-  // @@protoc_insertion_point(serialize_to_array_start:palm.loquat.v1.HMacSignRequest)
+  // @@protoc_insertion_point(serialize_to_array_start:palm.loquat.v1.MacComputeRequest)
   ::uint32_t cached_has_bits = 0;
   (void)cached_has_bits;
 
@@ -2362,18 +2363,18 @@ PROTOBUF_NOINLINE void HMacSignRequest::Clear() {
         ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
             this_._internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
   }
-  // @@protoc_insertion_point(serialize_to_array_end:palm.loquat.v1.HMacSignRequest)
+  // @@protoc_insertion_point(serialize_to_array_end:palm.loquat.v1.MacComputeRequest)
   return target;
 }
 
 #if defined(PROTOBUF_CUSTOM_VTABLE)
-::size_t HMacSignRequest::ByteSizeLong(const MessageLite& base) {
-  const HMacSignRequest& this_ = static_cast<const HMacSignRequest&>(base);
+::size_t MacComputeRequest::ByteSizeLong(const MessageLite& base) {
+  const MacComputeRequest& this_ = static_cast<const MacComputeRequest&>(base);
 #else   // PROTOBUF_CUSTOM_VTABLE
-::size_t HMacSignRequest::ByteSizeLong() const {
-  const HMacSignRequest& this_ = *this;
+::size_t MacComputeRequest::ByteSizeLong() const {
+  const MacComputeRequest& this_ = *this;
 #endif  // PROTOBUF_CUSTOM_VTABLE
-  // @@protoc_insertion_point(message_byte_size_start:palm.loquat.v1.HMacSignRequest)
+  // @@protoc_insertion_point(message_byte_size_start:palm.loquat.v1.MacComputeRequest)
   ::size_t total_size = 0;
 
   ::uint32_t cached_has_bits = 0;
@@ -2394,15 +2395,15 @@ PROTOBUF_NOINLINE void HMacSignRequest::Clear() {
                                              &this_._impl_._cached_size_);
 }
 
-void HMacSignRequest::MergeImpl(::google::protobuf::MessageLite& to_msg,
+void MacComputeRequest::MergeImpl(::google::protobuf::MessageLite& to_msg,
                             const ::google::protobuf::MessageLite& from_msg) {
    auto* const _this =
-      static_cast<HMacSignRequest*>(&to_msg);
-  auto& from = static_cast<const HMacSignRequest&>(from_msg);
+      static_cast<MacComputeRequest*>(&to_msg);
+  auto& from = static_cast<const MacComputeRequest&>(from_msg);
   if constexpr (::_pbi::DebugHardenCheckHasBitConsistency()) {
     from.CheckHasBitConsistency();
   }
-  // @@protoc_insertion_point(class_specific_merge_from_start:palm.loquat.v1.HMacSignRequest)
+  // @@protoc_insertion_point(class_specific_merge_from_start:palm.loquat.v1.MacComputeRequest)
   ABSL_DCHECK_NE(&from, _this);
   ::uint32_t cached_has_bits = 0;
   (void)cached_has_bits;
@@ -2422,15 +2423,15 @@ void HMacSignRequest::MergeImpl(::google::protobuf::MessageLite& to_msg,
       from._internal_metadata_);
 }
 
-void HMacSignRequest::CopyFrom(const HMacSignRequest& from) {
-  // @@protoc_insertion_point(class_specific_copy_from_start:palm.loquat.v1.HMacSignRequest)
+void MacComputeRequest::CopyFrom(const MacComputeRequest& from) {
+  // @@protoc_insertion_point(class_specific_copy_from_start:palm.loquat.v1.MacComputeRequest)
   if (&from == this) return;
   Clear();
   MergeFrom(from);
 }
 
 
-void HMacSignRequest::InternalSwap(HMacSignRequest* PROTOBUF_RESTRICT PROTOBUF_NONNULL other) {
+void MacComputeRequest::InternalSwap(MacComputeRequest* PROTOBUF_RESTRICT PROTOBUF_NONNULL other) {
   using ::std::swap;
   auto* arena = GetArena();
   ABSL_DCHECK_EQ(arena, other->GetArena());
@@ -2439,67 +2440,67 @@ void HMacSignRequest::InternalSwap(HMacSignRequest* PROTOBUF_RESTRICT PROTOBUF_N
   ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.plain_, &other->_impl_.plain_, arena);
 }
 
-::google::protobuf::Metadata HMacSignRequest::GetMetadata() const {
+::google::protobuf::Metadata MacComputeRequest::GetMetadata() const {
   return ::google::protobuf::Message::GetMetadataImpl(GetClassData()->full());
 }
 // ===================================================================
 
-class HMacSignResponse::_Internal {
+class MacComputeResponse::_Internal {
  public:
   using HasBits =
-      decltype(::std::declval<HMacSignResponse>()._impl_._has_bits_);
+      decltype(::std::declval<MacComputeResponse>()._impl_._has_bits_);
   static constexpr ::int32_t kHasBitsOffset =
-      8 * PROTOBUF_FIELD_OFFSET(HMacSignResponse, _impl_._has_bits_);
+      8 * PROTOBUF_FIELD_OFFSET(MacComputeResponse, _impl_._has_bits_);
 };
 
-HMacSignResponse::HMacSignResponse(::google::protobuf::Arena* PROTOBUF_NULLABLE arena)
+MacComputeResponse::MacComputeResponse(::google::protobuf::Arena* PROTOBUF_NULLABLE arena)
 #if defined(PROTOBUF_CUSTOM_VTABLE)
-    : ::google::protobuf::Message(arena, HMacSignResponse_class_data_.base()) {
+    : ::google::protobuf::Message(arena, MacComputeResponse_class_data_.base()) {
 #else   // PROTOBUF_CUSTOM_VTABLE
     : ::google::protobuf::Message(arena) {
 #endif  // PROTOBUF_CUSTOM_VTABLE
   SharedCtor(arena);
-  // @@protoc_insertion_point(arena_constructor:palm.loquat.v1.HMacSignResponse)
+  // @@protoc_insertion_point(arena_constructor:palm.loquat.v1.MacComputeResponse)
 }
-PROTOBUF_NDEBUG_INLINE HMacSignResponse::Impl_::Impl_(
+PROTOBUF_NDEBUG_INLINE MacComputeResponse::Impl_::Impl_(
     [[maybe_unused]] ::google::protobuf::internal::InternalVisibility visibility,
     [[maybe_unused]] ::google::protobuf::Arena* PROTOBUF_NULLABLE arena, const Impl_& from,
-    [[maybe_unused]] const ::palm::loquat::v1::HMacSignResponse& from_msg)
+    [[maybe_unused]] const ::palm::loquat::v1::MacComputeResponse& from_msg)
       : _has_bits_{from._has_bits_},
         _cached_size_{0},
         hashed_(arena, from.hashed_) {}
 
-HMacSignResponse::HMacSignResponse(
+MacComputeResponse::MacComputeResponse(
     ::google::protobuf::Arena* PROTOBUF_NULLABLE arena,
-    const HMacSignResponse& from)
+    const MacComputeResponse& from)
 #if defined(PROTOBUF_CUSTOM_VTABLE)
-    : ::google::protobuf::Message(arena, HMacSignResponse_class_data_.base()) {
+    : ::google::protobuf::Message(arena, MacComputeResponse_class_data_.base()) {
 #else   // PROTOBUF_CUSTOM_VTABLE
     : ::google::protobuf::Message(arena) {
 #endif  // PROTOBUF_CUSTOM_VTABLE
-  HMacSignResponse* const _this = this;
+  MacComputeResponse* const _this = this;
   (void)_this;
   _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
       from._internal_metadata_);
   new (&_impl_) Impl_(internal_visibility(), arena, from._impl_, from);
 
-  // @@protoc_insertion_point(copy_constructor:palm.loquat.v1.HMacSignResponse)
+  // @@protoc_insertion_point(copy_constructor:palm.loquat.v1.MacComputeResponse)
 }
-PROTOBUF_NDEBUG_INLINE HMacSignResponse::Impl_::Impl_(
+PROTOBUF_NDEBUG_INLINE MacComputeResponse::Impl_::Impl_(
     [[maybe_unused]] ::google::protobuf::internal::InternalVisibility visibility,
     [[maybe_unused]] ::google::protobuf::Arena* PROTOBUF_NULLABLE arena)
       : _cached_size_{0},
         hashed_(arena) {}
 
-inline void HMacSignResponse::SharedCtor(::_pb::Arena* PROTOBUF_NULLABLE arena) {
+inline void MacComputeResponse::SharedCtor(::_pb::Arena* PROTOBUF_NULLABLE arena) {
   new (&_impl_) Impl_(internal_visibility(), arena);
 }
-HMacSignResponse::~HMacSignResponse() {
-  // @@protoc_insertion_point(destructor:palm.loquat.v1.HMacSignResponse)
+MacComputeResponse::~MacComputeResponse() {
+  // @@protoc_insertion_point(destructor:palm.loquat.v1.MacComputeResponse)
   SharedDtor(*this);
 }
-inline void HMacSignResponse::SharedDtor(MessageLite& self) {
-  HMacSignResponse& this_ = static_cast<HMacSignResponse&>(self);
+inline void MacComputeResponse::SharedDtor(MessageLite& self) {
+  MacComputeResponse& this_ = static_cast<MacComputeResponse&>(self);
   if constexpr (::_pbi::DebugHardenCheckHasBitConsistency()) {
     this_.CheckHasBitConsistency();
   }
@@ -2509,53 +2510,53 @@ inline void HMacSignResponse::SharedDtor(MessageLite& self) {
   this_._impl_.~Impl_();
 }
 
-inline void* PROTOBUF_NONNULL HMacSignResponse::PlacementNew_(
+inline void* PROTOBUF_NONNULL MacComputeResponse::PlacementNew_(
     const void* PROTOBUF_NONNULL, void* PROTOBUF_NONNULL mem,
     ::google::protobuf::Arena* PROTOBUF_NULLABLE arena) {
-  return ::new (mem) HMacSignResponse(arena);
+  return ::new (mem) MacComputeResponse(arena);
 }
-constexpr auto HMacSignResponse::InternalNewImpl_() {
-  return ::google::protobuf::internal::MessageCreator::CopyInit(sizeof(HMacSignResponse),
-                                            alignof(HMacSignResponse));
+constexpr auto MacComputeResponse::InternalNewImpl_() {
+  return ::google::protobuf::internal::MessageCreator::CopyInit(sizeof(MacComputeResponse),
+                                            alignof(MacComputeResponse));
 }
-constexpr auto HMacSignResponse::InternalGenerateClassData_() {
+constexpr auto MacComputeResponse::InternalGenerateClassData_() {
   return ::google::protobuf::internal::ClassDataFull{
       ::google::protobuf::internal::ClassData{
-          &_HMacSignResponse_default_instance_._instance,
+          &_MacComputeResponse_default_instance_._instance,
           &_table_.header,
           nullptr,  // OnDemandRegisterArenaDtor
           nullptr,  // IsInitialized
-          &HMacSignResponse::MergeImpl,
-          ::google::protobuf::Message::GetNewImpl<HMacSignResponse>(),
+          &MacComputeResponse::MergeImpl,
+          ::google::protobuf::Message::GetNewImpl<MacComputeResponse>(),
 #if defined(PROTOBUF_CUSTOM_VTABLE)
-          &HMacSignResponse::SharedDtor,
-          ::google::protobuf::Message::GetClearImpl<HMacSignResponse>(), &HMacSignResponse::ByteSizeLong,
-              &HMacSignResponse::_InternalSerialize,
+          &MacComputeResponse::SharedDtor,
+          ::google::protobuf::Message::GetClearImpl<MacComputeResponse>(), &MacComputeResponse::ByteSizeLong,
+              &MacComputeResponse::_InternalSerialize,
 #endif  // PROTOBUF_CUSTOM_VTABLE
-          PROTOBUF_FIELD_OFFSET(HMacSignResponse, _impl_._cached_size_),
+          PROTOBUF_FIELD_OFFSET(MacComputeResponse, _impl_._cached_size_),
           false,
       },
-      &HMacSignResponse::kDescriptorMethods,
+      &MacComputeResponse::kDescriptorMethods,
       &descriptor_table_loquat_2eproto,
       nullptr,  // tracker
   };
 }
 
 PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 const
-    ::google::protobuf::internal::ClassDataFull HMacSignResponse_class_data_ =
-        HMacSignResponse::InternalGenerateClassData_();
+    ::google::protobuf::internal::ClassDataFull MacComputeResponse_class_data_ =
+        MacComputeResponse::InternalGenerateClassData_();
 
 PROTOBUF_ATTRIBUTE_WEAK const ::google::protobuf::internal::ClassData* PROTOBUF_NONNULL
-HMacSignResponse::GetClassData() const {
-  ::google::protobuf::internal::PrefetchToLocalCache(&HMacSignResponse_class_data_);
-  ::google::protobuf::internal::PrefetchToLocalCache(HMacSignResponse_class_data_.tc_table);
-  return HMacSignResponse_class_data_.base();
+MacComputeResponse::GetClassData() const {
+  ::google::protobuf::internal::PrefetchToLocalCache(&MacComputeResponse_class_data_);
+  ::google::protobuf::internal::PrefetchToLocalCache(MacComputeResponse_class_data_.tc_table);
+  return MacComputeResponse_class_data_.base();
 }
 PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
 const ::_pbi::TcParseTable<0, 1, 0, 0, 2>
-HMacSignResponse::_table_ = {
+MacComputeResponse::_table_ = {
   {
-    PROTOBUF_FIELD_OFFSET(HMacSignResponse, _impl_._has_bits_),
+    PROTOBUF_FIELD_OFFSET(MacComputeResponse, _impl_._has_bits_),
     0, // no _extensions_
     1, 0,  // max_field_number, fast_idx_mask
     offsetof(decltype(_table_), field_lookup_table),
@@ -2564,29 +2565,29 @@ HMacSignResponse::_table_ = {
     1,  // num_field_entries
     0,  // num_aux_entries
     offsetof(decltype(_table_), field_names),  // no aux_entries
-    HMacSignResponse_class_data_.base(),
+    MacComputeResponse_class_data_.base(),
     nullptr,  // post_loop_handler
     ::_pbi::TcParser::GenericFallback,  // fallback
     #ifdef PROTOBUF_PREFETCH_PARSE_TABLE
-    ::_pbi::TcParser::GetTable<::palm::loquat::v1::HMacSignResponse>(),  // to_prefetch
+    ::_pbi::TcParser::GetTable<::palm::loquat::v1::MacComputeResponse>(),  // to_prefetch
     #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
   }, {{
     // bytes hashed = 1;
     {::_pbi::TcParser::FastBS1,
      {10, 0, 0,
-      PROTOBUF_FIELD_OFFSET(HMacSignResponse, _impl_.hashed_)}},
+      PROTOBUF_FIELD_OFFSET(MacComputeResponse, _impl_.hashed_)}},
   }}, {{
     65535, 65535
   }}, {{
     // bytes hashed = 1;
-    {PROTOBUF_FIELD_OFFSET(HMacSignResponse, _impl_.hashed_), _Internal::kHasBitsOffset + 0, 0, (0 | ::_fl::kFcOptional | ::_fl::kBytes | ::_fl::kRepAString)},
+    {PROTOBUF_FIELD_OFFSET(MacComputeResponse, _impl_.hashed_), _Internal::kHasBitsOffset + 0, 0, (0 | ::_fl::kFcOptional | ::_fl::kBytes | ::_fl::kRepAString)},
   }},
   // no aux_entries
   {{
   }},
 };
-PROTOBUF_NOINLINE void HMacSignResponse::Clear() {
-// @@protoc_insertion_point(message_clear_start:palm.loquat.v1.HMacSignResponse)
+PROTOBUF_NOINLINE void MacComputeResponse::Clear() {
+// @@protoc_insertion_point(message_clear_start:palm.loquat.v1.MacComputeResponse)
   ::google::protobuf::internal::TSanWrite(&_impl_);
   ::uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
@@ -2601,20 +2602,20 @@ PROTOBUF_NOINLINE void HMacSignResponse::Clear() {
 }
 
 #if defined(PROTOBUF_CUSTOM_VTABLE)
-::uint8_t* PROTOBUF_NONNULL HMacSignResponse::_InternalSerialize(
+::uint8_t* PROTOBUF_NONNULL MacComputeResponse::_InternalSerialize(
     const ::google::protobuf::MessageLite& base, ::uint8_t* PROTOBUF_NONNULL target,
     ::google::protobuf::io::EpsCopyOutputStream* PROTOBUF_NONNULL stream) {
-  const HMacSignResponse& this_ = static_cast<const HMacSignResponse&>(base);
+  const MacComputeResponse& this_ = static_cast<const MacComputeResponse&>(base);
 #else   // PROTOBUF_CUSTOM_VTABLE
-::uint8_t* PROTOBUF_NONNULL HMacSignResponse::_InternalSerialize(
+::uint8_t* PROTOBUF_NONNULL MacComputeResponse::_InternalSerialize(
     ::uint8_t* PROTOBUF_NONNULL target,
     ::google::protobuf::io::EpsCopyOutputStream* PROTOBUF_NONNULL stream) const {
-  const HMacSignResponse& this_ = *this;
+  const MacComputeResponse& this_ = *this;
 #endif  // PROTOBUF_CUSTOM_VTABLE
   if constexpr (::_pbi::DebugHardenCheckHasBitConsistency()) {
     this_.CheckHasBitConsistency();
   }
-  // @@protoc_insertion_point(serialize_to_array_start:palm.loquat.v1.HMacSignResponse)
+  // @@protoc_insertion_point(serialize_to_array_start:palm.loquat.v1.MacComputeResponse)
   ::uint32_t cached_has_bits = 0;
   (void)cached_has_bits;
 
@@ -2632,18 +2633,18 @@ PROTOBUF_NOINLINE void HMacSignResponse::Clear() {
         ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
             this_._internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
   }
-  // @@protoc_insertion_point(serialize_to_array_end:palm.loquat.v1.HMacSignResponse)
+  // @@protoc_insertion_point(serialize_to_array_end:palm.loquat.v1.MacComputeResponse)
   return target;
 }
 
 #if defined(PROTOBUF_CUSTOM_VTABLE)
-::size_t HMacSignResponse::ByteSizeLong(const MessageLite& base) {
-  const HMacSignResponse& this_ = static_cast<const HMacSignResponse&>(base);
+::size_t MacComputeResponse::ByteSizeLong(const MessageLite& base) {
+  const MacComputeResponse& this_ = static_cast<const MacComputeResponse&>(base);
 #else   // PROTOBUF_CUSTOM_VTABLE
-::size_t HMacSignResponse::ByteSizeLong() const {
-  const HMacSignResponse& this_ = *this;
+::size_t MacComputeResponse::ByteSizeLong() const {
+  const MacComputeResponse& this_ = *this;
 #endif  // PROTOBUF_CUSTOM_VTABLE
-  // @@protoc_insertion_point(message_byte_size_start:palm.loquat.v1.HMacSignResponse)
+  // @@protoc_insertion_point(message_byte_size_start:palm.loquat.v1.MacComputeResponse)
   ::size_t total_size = 0;
 
   ::uint32_t cached_has_bits = 0;
@@ -2664,15 +2665,15 @@ PROTOBUF_NOINLINE void HMacSignResponse::Clear() {
                                              &this_._impl_._cached_size_);
 }
 
-void HMacSignResponse::MergeImpl(::google::protobuf::MessageLite& to_msg,
+void MacComputeResponse::MergeImpl(::google::protobuf::MessageLite& to_msg,
                             const ::google::protobuf::MessageLite& from_msg) {
    auto* const _this =
-      static_cast<HMacSignResponse*>(&to_msg);
-  auto& from = static_cast<const HMacSignResponse&>(from_msg);
+      static_cast<MacComputeResponse*>(&to_msg);
+  auto& from = static_cast<const MacComputeResponse&>(from_msg);
   if constexpr (::_pbi::DebugHardenCheckHasBitConsistency()) {
     from.CheckHasBitConsistency();
   }
-  // @@protoc_insertion_point(class_specific_merge_from_start:palm.loquat.v1.HMacSignResponse)
+  // @@protoc_insertion_point(class_specific_merge_from_start:palm.loquat.v1.MacComputeResponse)
   ABSL_DCHECK_NE(&from, _this);
   ::uint32_t cached_has_bits = 0;
   (void)cached_has_bits;
@@ -2692,15 +2693,15 @@ void HMacSignResponse::MergeImpl(::google::protobuf::MessageLite& to_msg,
       from._internal_metadata_);
 }
 
-void HMacSignResponse::CopyFrom(const HMacSignResponse& from) {
-  // @@protoc_insertion_point(class_specific_copy_from_start:palm.loquat.v1.HMacSignResponse)
+void MacComputeResponse::CopyFrom(const MacComputeResponse& from) {
+  // @@protoc_insertion_point(class_specific_copy_from_start:palm.loquat.v1.MacComputeResponse)
   if (&from == this) return;
   Clear();
   MergeFrom(from);
 }
 
 
-void HMacSignResponse::InternalSwap(HMacSignResponse* PROTOBUF_RESTRICT PROTOBUF_NONNULL other) {
+void MacComputeResponse::InternalSwap(MacComputeResponse* PROTOBUF_RESTRICT PROTOBUF_NONNULL other) {
   using ::std::swap;
   auto* arena = GetArena();
   ABSL_DCHECK_EQ(arena, other->GetArena());
@@ -2709,69 +2710,69 @@ void HMacSignResponse::InternalSwap(HMacSignResponse* PROTOBUF_RESTRICT PROTOBUF
   ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.hashed_, &other->_impl_.hashed_, arena);
 }
 
-::google::protobuf::Metadata HMacSignResponse::GetMetadata() const {
+::google::protobuf::Metadata MacComputeResponse::GetMetadata() const {
   return ::google::protobuf::Message::GetMetadataImpl(GetClassData()->full());
 }
 // ===================================================================
 
-class HMacVerifyRequest::_Internal {
+class MacVerifyRequest::_Internal {
  public:
   using HasBits =
-      decltype(::std::declval<HMacVerifyRequest>()._impl_._has_bits_);
+      decltype(::std::declval<MacVerifyRequest>()._impl_._has_bits_);
   static constexpr ::int32_t kHasBitsOffset =
-      8 * PROTOBUF_FIELD_OFFSET(HMacVerifyRequest, _impl_._has_bits_);
+      8 * PROTOBUF_FIELD_OFFSET(MacVerifyRequest, _impl_._has_bits_);
 };
 
-HMacVerifyRequest::HMacVerifyRequest(::google::protobuf::Arena* PROTOBUF_NULLABLE arena)
+MacVerifyRequest::MacVerifyRequest(::google::protobuf::Arena* PROTOBUF_NULLABLE arena)
 #if defined(PROTOBUF_CUSTOM_VTABLE)
-    : ::google::protobuf::Message(arena, HMacVerifyRequest_class_data_.base()) {
+    : ::google::protobuf::Message(arena, MacVerifyRequest_class_data_.base()) {
 #else   // PROTOBUF_CUSTOM_VTABLE
     : ::google::protobuf::Message(arena) {
 #endif  // PROTOBUF_CUSTOM_VTABLE
   SharedCtor(arena);
-  // @@protoc_insertion_point(arena_constructor:palm.loquat.v1.HMacVerifyRequest)
+  // @@protoc_insertion_point(arena_constructor:palm.loquat.v1.MacVerifyRequest)
 }
-PROTOBUF_NDEBUG_INLINE HMacVerifyRequest::Impl_::Impl_(
+PROTOBUF_NDEBUG_INLINE MacVerifyRequest::Impl_::Impl_(
     [[maybe_unused]] ::google::protobuf::internal::InternalVisibility visibility,
     [[maybe_unused]] ::google::protobuf::Arena* PROTOBUF_NULLABLE arena, const Impl_& from,
-    [[maybe_unused]] const ::palm::loquat::v1::HMacVerifyRequest& from_msg)
+    [[maybe_unused]] const ::palm::loquat::v1::MacVerifyRequest& from_msg)
       : _has_bits_{from._has_bits_},
         _cached_size_{0},
         hashed_(arena, from.hashed_),
         plain_(arena, from.plain_) {}
 
-HMacVerifyRequest::HMacVerifyRequest(
+MacVerifyRequest::MacVerifyRequest(
     ::google::protobuf::Arena* PROTOBUF_NULLABLE arena,
-    const HMacVerifyRequest& from)
+    const MacVerifyRequest& from)
 #if defined(PROTOBUF_CUSTOM_VTABLE)
-    : ::google::protobuf::Message(arena, HMacVerifyRequest_class_data_.base()) {
+    : ::google::protobuf::Message(arena, MacVerifyRequest_class_data_.base()) {
 #else   // PROTOBUF_CUSTOM_VTABLE
     : ::google::protobuf::Message(arena) {
 #endif  // PROTOBUF_CUSTOM_VTABLE
-  HMacVerifyRequest* const _this = this;
+  MacVerifyRequest* const _this = this;
   (void)_this;
   _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
       from._internal_metadata_);
   new (&_impl_) Impl_(internal_visibility(), arena, from._impl_, from);
 
-  // @@protoc_insertion_point(copy_constructor:palm.loquat.v1.HMacVerifyRequest)
+  // @@protoc_insertion_point(copy_constructor:palm.loquat.v1.MacVerifyRequest)
 }
-PROTOBUF_NDEBUG_INLINE HMacVerifyRequest::Impl_::Impl_(
+PROTOBUF_NDEBUG_INLINE MacVerifyRequest::Impl_::Impl_(
     [[maybe_unused]] ::google::protobuf::internal::InternalVisibility visibility,
     [[maybe_unused]] ::google::protobuf::Arena* PROTOBUF_NULLABLE arena)
       : _cached_size_{0},
         hashed_(arena),
         plain_(arena) {}
 
-inline void HMacVerifyRequest::SharedCtor(::_pb::Arena* PROTOBUF_NULLABLE arena) {
+inline void MacVerifyRequest::SharedCtor(::_pb::Arena* PROTOBUF_NULLABLE arena) {
   new (&_impl_) Impl_(internal_visibility(), arena);
 }
-HMacVerifyRequest::~HMacVerifyRequest() {
-  // @@protoc_insertion_point(destructor:palm.loquat.v1.HMacVerifyRequest)
+MacVerifyRequest::~MacVerifyRequest() {
+  // @@protoc_insertion_point(destructor:palm.loquat.v1.MacVerifyRequest)
   SharedDtor(*this);
 }
-inline void HMacVerifyRequest::SharedDtor(MessageLite& self) {
-  HMacVerifyRequest& this_ = static_cast<HMacVerifyRequest&>(self);
+inline void MacVerifyRequest::SharedDtor(MessageLite& self) {
+  MacVerifyRequest& this_ = static_cast<MacVerifyRequest&>(self);
   if constexpr (::_pbi::DebugHardenCheckHasBitConsistency()) {
     this_.CheckHasBitConsistency();
   }
@@ -2782,53 +2783,53 @@ inline void HMacVerifyRequest::SharedDtor(MessageLite& self) {
   this_._impl_.~Impl_();
 }
 
-inline void* PROTOBUF_NONNULL HMacVerifyRequest::PlacementNew_(
+inline void* PROTOBUF_NONNULL MacVerifyRequest::PlacementNew_(
     const void* PROTOBUF_NONNULL, void* PROTOBUF_NONNULL mem,
     ::google::protobuf::Arena* PROTOBUF_NULLABLE arena) {
-  return ::new (mem) HMacVerifyRequest(arena);
+  return ::new (mem) MacVerifyRequest(arena);
 }
-constexpr auto HMacVerifyRequest::InternalNewImpl_() {
-  return ::google::protobuf::internal::MessageCreator::CopyInit(sizeof(HMacVerifyRequest),
-                                            alignof(HMacVerifyRequest));
+constexpr auto MacVerifyRequest::InternalNewImpl_() {
+  return ::google::protobuf::internal::MessageCreator::CopyInit(sizeof(MacVerifyRequest),
+                                            alignof(MacVerifyRequest));
 }
-constexpr auto HMacVerifyRequest::InternalGenerateClassData_() {
+constexpr auto MacVerifyRequest::InternalGenerateClassData_() {
   return ::google::protobuf::internal::ClassDataFull{
       ::google::protobuf::internal::ClassData{
-          &_HMacVerifyRequest_default_instance_._instance,
+          &_MacVerifyRequest_default_instance_._instance,
           &_table_.header,
           nullptr,  // OnDemandRegisterArenaDtor
           nullptr,  // IsInitialized
-          &HMacVerifyRequest::MergeImpl,
-          ::google::protobuf::Message::GetNewImpl<HMacVerifyRequest>(),
+          &MacVerifyRequest::MergeImpl,
+          ::google::protobuf::Message::GetNewImpl<MacVerifyRequest>(),
 #if defined(PROTOBUF_CUSTOM_VTABLE)
-          &HMacVerifyRequest::SharedDtor,
-          ::google::protobuf::Message::GetClearImpl<HMacVerifyRequest>(), &HMacVerifyRequest::ByteSizeLong,
-              &HMacVerifyRequest::_InternalSerialize,
+          &MacVerifyRequest::SharedDtor,
+          ::google::protobuf::Message::GetClearImpl<MacVerifyRequest>(), &MacVerifyRequest::ByteSizeLong,
+              &MacVerifyRequest::_InternalSerialize,
 #endif  // PROTOBUF_CUSTOM_VTABLE
-          PROTOBUF_FIELD_OFFSET(HMacVerifyRequest, _impl_._cached_size_),
+          PROTOBUF_FIELD_OFFSET(MacVerifyRequest, _impl_._cached_size_),
           false,
       },
-      &HMacVerifyRequest::kDescriptorMethods,
+      &MacVerifyRequest::kDescriptorMethods,
       &descriptor_table_loquat_2eproto,
       nullptr,  // tracker
   };
 }
 
 PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 const
-    ::google::protobuf::internal::ClassDataFull HMacVerifyRequest_class_data_ =
-        HMacVerifyRequest::InternalGenerateClassData_();
+    ::google::protobuf::internal::ClassDataFull MacVerifyRequest_class_data_ =
+        MacVerifyRequest::InternalGenerateClassData_();
 
 PROTOBUF_ATTRIBUTE_WEAK const ::google::protobuf::internal::ClassData* PROTOBUF_NONNULL
-HMacVerifyRequest::GetClassData() const {
-  ::google::protobuf::internal::PrefetchToLocalCache(&HMacVerifyRequest_class_data_);
-  ::google::protobuf::internal::PrefetchToLocalCache(HMacVerifyRequest_class_data_.tc_table);
-  return HMacVerifyRequest_class_data_.base();
+MacVerifyRequest::GetClassData() const {
+  ::google::protobuf::internal::PrefetchToLocalCache(&MacVerifyRequest_class_data_);
+  ::google::protobuf::internal::PrefetchToLocalCache(MacVerifyRequest_class_data_.tc_table);
+  return MacVerifyRequest_class_data_.base();
 }
 PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
 const ::_pbi::TcParseTable<1, 2, 0, 0, 2>
-HMacVerifyRequest::_table_ = {
+MacVerifyRequest::_table_ = {
   {
-    PROTOBUF_FIELD_OFFSET(HMacVerifyRequest, _impl_._has_bits_),
+    PROTOBUF_FIELD_OFFSET(MacVerifyRequest, _impl_._has_bits_),
     0, // no _extensions_
     2, 8,  // max_field_number, fast_idx_mask
     offsetof(decltype(_table_), field_lookup_table),
@@ -2837,35 +2838,35 @@ HMacVerifyRequest::_table_ = {
     2,  // num_field_entries
     0,  // num_aux_entries
     offsetof(decltype(_table_), field_names),  // no aux_entries
-    HMacVerifyRequest_class_data_.base(),
+    MacVerifyRequest_class_data_.base(),
     nullptr,  // post_loop_handler
     ::_pbi::TcParser::GenericFallback,  // fallback
     #ifdef PROTOBUF_PREFETCH_PARSE_TABLE
-    ::_pbi::TcParser::GetTable<::palm::loquat::v1::HMacVerifyRequest>(),  // to_prefetch
+    ::_pbi::TcParser::GetTable<::palm::loquat::v1::MacVerifyRequest>(),  // to_prefetch
     #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
   }, {{
     // bytes plain = 2;
     {::_pbi::TcParser::FastBS1,
      {18, 1, 0,
-      PROTOBUF_FIELD_OFFSET(HMacVerifyRequest, _impl_.plain_)}},
+      PROTOBUF_FIELD_OFFSET(MacVerifyRequest, _impl_.plain_)}},
     // bytes hashed = 1;
     {::_pbi::TcParser::FastBS1,
      {10, 0, 0,
-      PROTOBUF_FIELD_OFFSET(HMacVerifyRequest, _impl_.hashed_)}},
+      PROTOBUF_FIELD_OFFSET(MacVerifyRequest, _impl_.hashed_)}},
   }}, {{
     65535, 65535
   }}, {{
     // bytes hashed = 1;
-    {PROTOBUF_FIELD_OFFSET(HMacVerifyRequest, _impl_.hashed_), _Internal::kHasBitsOffset + 0, 0, (0 | ::_fl::kFcOptional | ::_fl::kBytes | ::_fl::kRepAString)},
+    {PROTOBUF_FIELD_OFFSET(MacVerifyRequest, _impl_.hashed_), _Internal::kHasBitsOffset + 0, 0, (0 | ::_fl::kFcOptional | ::_fl::kBytes | ::_fl::kRepAString)},
     // bytes plain = 2;
-    {PROTOBUF_FIELD_OFFSET(HMacVerifyRequest, _impl_.plain_), _Internal::kHasBitsOffset + 1, 0, (0 | ::_fl::kFcOptional | ::_fl::kBytes | ::_fl::kRepAString)},
+    {PROTOBUF_FIELD_OFFSET(MacVerifyRequest, _impl_.plain_), _Internal::kHasBitsOffset + 1, 0, (0 | ::_fl::kFcOptional | ::_fl::kBytes | ::_fl::kRepAString)},
   }},
   // no aux_entries
   {{
   }},
 };
-PROTOBUF_NOINLINE void HMacVerifyRequest::Clear() {
-// @@protoc_insertion_point(message_clear_start:palm.loquat.v1.HMacVerifyRequest)
+PROTOBUF_NOINLINE void MacVerifyRequest::Clear() {
+// @@protoc_insertion_point(message_clear_start:palm.loquat.v1.MacVerifyRequest)
   ::google::protobuf::internal::TSanWrite(&_impl_);
   ::uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
@@ -2885,20 +2886,20 @@ PROTOBUF_NOINLINE void HMacVerifyRequest::Clear() {
 }
 
 #if defined(PROTOBUF_CUSTOM_VTABLE)
-::uint8_t* PROTOBUF_NONNULL HMacVerifyRequest::_InternalSerialize(
+::uint8_t* PROTOBUF_NONNULL MacVerifyRequest::_InternalSerialize(
     const ::google::protobuf::MessageLite& base, ::uint8_t* PROTOBUF_NONNULL target,
     ::google::protobuf::io::EpsCopyOutputStream* PROTOBUF_NONNULL stream) {
-  const HMacVerifyRequest& this_ = static_cast<const HMacVerifyRequest&>(base);
+  const MacVerifyRequest& this_ = static_cast<const MacVerifyRequest&>(base);
 #else   // PROTOBUF_CUSTOM_VTABLE
-::uint8_t* PROTOBUF_NONNULL HMacVerifyRequest::_InternalSerialize(
+::uint8_t* PROTOBUF_NONNULL MacVerifyRequest::_InternalSerialize(
     ::uint8_t* PROTOBUF_NONNULL target,
     ::google::protobuf::io::EpsCopyOutputStream* PROTOBUF_NONNULL stream) const {
-  const HMacVerifyRequest& this_ = *this;
+  const MacVerifyRequest& this_ = *this;
 #endif  // PROTOBUF_CUSTOM_VTABLE
   if constexpr (::_pbi::DebugHardenCheckHasBitConsistency()) {
     this_.CheckHasBitConsistency();
   }
-  // @@protoc_insertion_point(serialize_to_array_start:palm.loquat.v1.HMacVerifyRequest)
+  // @@protoc_insertion_point(serialize_to_array_start:palm.loquat.v1.MacVerifyRequest)
   ::uint32_t cached_has_bits = 0;
   (void)cached_has_bits;
 
@@ -2924,18 +2925,18 @@ PROTOBUF_NOINLINE void HMacVerifyRequest::Clear() {
         ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
             this_._internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
   }
-  // @@protoc_insertion_point(serialize_to_array_end:palm.loquat.v1.HMacVerifyRequest)
+  // @@protoc_insertion_point(serialize_to_array_end:palm.loquat.v1.MacVerifyRequest)
   return target;
 }
 
 #if defined(PROTOBUF_CUSTOM_VTABLE)
-::size_t HMacVerifyRequest::ByteSizeLong(const MessageLite& base) {
-  const HMacVerifyRequest& this_ = static_cast<const HMacVerifyRequest&>(base);
+::size_t MacVerifyRequest::ByteSizeLong(const MessageLite& base) {
+  const MacVerifyRequest& this_ = static_cast<const MacVerifyRequest&>(base);
 #else   // PROTOBUF_CUSTOM_VTABLE
-::size_t HMacVerifyRequest::ByteSizeLong() const {
-  const HMacVerifyRequest& this_ = *this;
+::size_t MacVerifyRequest::ByteSizeLong() const {
+  const MacVerifyRequest& this_ = *this;
 #endif  // PROTOBUF_CUSTOM_VTABLE
-  // @@protoc_insertion_point(message_byte_size_start:palm.loquat.v1.HMacVerifyRequest)
+  // @@protoc_insertion_point(message_byte_size_start:palm.loquat.v1.MacVerifyRequest)
   ::size_t total_size = 0;
 
   ::uint32_t cached_has_bits = 0;
@@ -2964,15 +2965,15 @@ PROTOBUF_NOINLINE void HMacVerifyRequest::Clear() {
                                              &this_._impl_._cached_size_);
 }
 
-void HMacVerifyRequest::MergeImpl(::google::protobuf::MessageLite& to_msg,
+void MacVerifyRequest::MergeImpl(::google::protobuf::MessageLite& to_msg,
                             const ::google::protobuf::MessageLite& from_msg) {
    auto* const _this =
-      static_cast<HMacVerifyRequest*>(&to_msg);
-  auto& from = static_cast<const HMacVerifyRequest&>(from_msg);
+      static_cast<MacVerifyRequest*>(&to_msg);
+  auto& from = static_cast<const MacVerifyRequest&>(from_msg);
   if constexpr (::_pbi::DebugHardenCheckHasBitConsistency()) {
     from.CheckHasBitConsistency();
   }
-  // @@protoc_insertion_point(class_specific_merge_from_start:palm.loquat.v1.HMacVerifyRequest)
+  // @@protoc_insertion_point(class_specific_merge_from_start:palm.loquat.v1.MacVerifyRequest)
   ABSL_DCHECK_NE(&from, _this);
   ::uint32_t cached_has_bits = 0;
   (void)cached_has_bits;
@@ -3003,15 +3004,15 @@ void HMacVerifyRequest::MergeImpl(::google::protobuf::MessageLite& to_msg,
       from._internal_metadata_);
 }
 
-void HMacVerifyRequest::CopyFrom(const HMacVerifyRequest& from) {
-  // @@protoc_insertion_point(class_specific_copy_from_start:palm.loquat.v1.HMacVerifyRequest)
+void MacVerifyRequest::CopyFrom(const MacVerifyRequest& from) {
+  // @@protoc_insertion_point(class_specific_copy_from_start:palm.loquat.v1.MacVerifyRequest)
   if (&from == this) return;
   Clear();
   MergeFrom(from);
 }
 
 
-void HMacVerifyRequest::InternalSwap(HMacVerifyRequest* PROTOBUF_RESTRICT PROTOBUF_NONNULL other) {
+void MacVerifyRequest::InternalSwap(MacVerifyRequest* PROTOBUF_RESTRICT PROTOBUF_NONNULL other) {
   using ::std::swap;
   auto* arena = GetArena();
   ABSL_DCHECK_EQ(arena, other->GetArena());
@@ -3021,69 +3022,69 @@ void HMacVerifyRequest::InternalSwap(HMacVerifyRequest* PROTOBUF_RESTRICT PROTOB
   ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.plain_, &other->_impl_.plain_, arena);
 }
 
-::google::protobuf::Metadata HMacVerifyRequest::GetMetadata() const {
+::google::protobuf::Metadata MacVerifyRequest::GetMetadata() const {
   return ::google::protobuf::Message::GetMetadataImpl(GetClassData()->full());
 }
 // ===================================================================
 
-class AesEncryptRequest::_Internal {
+class AeadEncryptRequest::_Internal {
  public:
   using HasBits =
-      decltype(::std::declval<AesEncryptRequest>()._impl_._has_bits_);
+      decltype(::std::declval<AeadEncryptRequest>()._impl_._has_bits_);
   static constexpr ::int32_t kHasBitsOffset =
-      8 * PROTOBUF_FIELD_OFFSET(AesEncryptRequest, _impl_._has_bits_);
+      8 * PROTOBUF_FIELD_OFFSET(AeadEncryptRequest, _impl_._has_bits_);
 };
 
-AesEncryptRequest::AesEncryptRequest(::google::protobuf::Arena* PROTOBUF_NULLABLE arena)
+AeadEncryptRequest::AeadEncryptRequest(::google::protobuf::Arena* PROTOBUF_NULLABLE arena)
 #if defined(PROTOBUF_CUSTOM_VTABLE)
-    : ::google::protobuf::Message(arena, AesEncryptRequest_class_data_.base()) {
+    : ::google::protobuf::Message(arena, AeadEncryptRequest_class_data_.base()) {
 #else   // PROTOBUF_CUSTOM_VTABLE
     : ::google::protobuf::Message(arena) {
 #endif  // PROTOBUF_CUSTOM_VTABLE
   SharedCtor(arena);
-  // @@protoc_insertion_point(arena_constructor:palm.loquat.v1.AesEncryptRequest)
+  // @@protoc_insertion_point(arena_constructor:palm.loquat.v1.AeadEncryptRequest)
 }
-PROTOBUF_NDEBUG_INLINE AesEncryptRequest::Impl_::Impl_(
+PROTOBUF_NDEBUG_INLINE AeadEncryptRequest::Impl_::Impl_(
     [[maybe_unused]] ::google::protobuf::internal::InternalVisibility visibility,
     [[maybe_unused]] ::google::protobuf::Arena* PROTOBUF_NULLABLE arena, const Impl_& from,
-    [[maybe_unused]] const ::palm::loquat::v1::AesEncryptRequest& from_msg)
+    [[maybe_unused]] const ::palm::loquat::v1::AeadEncryptRequest& from_msg)
       : _has_bits_{from._has_bits_},
         _cached_size_{0},
         plain_(arena, from.plain_),
         associated_data_(arena, from.associated_data_) {}
 
-AesEncryptRequest::AesEncryptRequest(
+AeadEncryptRequest::AeadEncryptRequest(
     ::google::protobuf::Arena* PROTOBUF_NULLABLE arena,
-    const AesEncryptRequest& from)
+    const AeadEncryptRequest& from)
 #if defined(PROTOBUF_CUSTOM_VTABLE)
-    : ::google::protobuf::Message(arena, AesEncryptRequest_class_data_.base()) {
+    : ::google::protobuf::Message(arena, AeadEncryptRequest_class_data_.base()) {
 #else   // PROTOBUF_CUSTOM_VTABLE
     : ::google::protobuf::Message(arena) {
 #endif  // PROTOBUF_CUSTOM_VTABLE
-  AesEncryptRequest* const _this = this;
+  AeadEncryptRequest* const _this = this;
   (void)_this;
   _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
       from._internal_metadata_);
   new (&_impl_) Impl_(internal_visibility(), arena, from._impl_, from);
 
-  // @@protoc_insertion_point(copy_constructor:palm.loquat.v1.AesEncryptRequest)
+  // @@protoc_insertion_point(copy_constructor:palm.loquat.v1.AeadEncryptRequest)
 }
-PROTOBUF_NDEBUG_INLINE AesEncryptRequest::Impl_::Impl_(
+PROTOBUF_NDEBUG_INLINE AeadEncryptRequest::Impl_::Impl_(
     [[maybe_unused]] ::google::protobuf::internal::InternalVisibility visibility,
     [[maybe_unused]] ::google::protobuf::Arena* PROTOBUF_NULLABLE arena)
       : _cached_size_{0},
         plain_(arena),
         associated_data_(arena) {}
 
-inline void AesEncryptRequest::SharedCtor(::_pb::Arena* PROTOBUF_NULLABLE arena) {
+inline void AeadEncryptRequest::SharedCtor(::_pb::Arena* PROTOBUF_NULLABLE arena) {
   new (&_impl_) Impl_(internal_visibility(), arena);
 }
-AesEncryptRequest::~AesEncryptRequest() {
-  // @@protoc_insertion_point(destructor:palm.loquat.v1.AesEncryptRequest)
+AeadEncryptRequest::~AeadEncryptRequest() {
+  // @@protoc_insertion_point(destructor:palm.loquat.v1.AeadEncryptRequest)
   SharedDtor(*this);
 }
-inline void AesEncryptRequest::SharedDtor(MessageLite& self) {
-  AesEncryptRequest& this_ = static_cast<AesEncryptRequest&>(self);
+inline void AeadEncryptRequest::SharedDtor(MessageLite& self) {
+  AeadEncryptRequest& this_ = static_cast<AeadEncryptRequest&>(self);
   if constexpr (::_pbi::DebugHardenCheckHasBitConsistency()) {
     this_.CheckHasBitConsistency();
   }
@@ -3094,53 +3095,53 @@ inline void AesEncryptRequest::SharedDtor(MessageLite& self) {
   this_._impl_.~Impl_();
 }
 
-inline void* PROTOBUF_NONNULL AesEncryptRequest::PlacementNew_(
+inline void* PROTOBUF_NONNULL AeadEncryptRequest::PlacementNew_(
     const void* PROTOBUF_NONNULL, void* PROTOBUF_NONNULL mem,
     ::google::protobuf::Arena* PROTOBUF_NULLABLE arena) {
-  return ::new (mem) AesEncryptRequest(arena);
+  return ::new (mem) AeadEncryptRequest(arena);
 }
-constexpr auto AesEncryptRequest::InternalNewImpl_() {
-  return ::google::protobuf::internal::MessageCreator::CopyInit(sizeof(AesEncryptRequest),
-                                            alignof(AesEncryptRequest));
+constexpr auto AeadEncryptRequest::InternalNewImpl_() {
+  return ::google::protobuf::internal::MessageCreator::CopyInit(sizeof(AeadEncryptRequest),
+                                            alignof(AeadEncryptRequest));
 }
-constexpr auto AesEncryptRequest::InternalGenerateClassData_() {
+constexpr auto AeadEncryptRequest::InternalGenerateClassData_() {
   return ::google::protobuf::internal::ClassDataFull{
       ::google::protobuf::internal::ClassData{
-          &_AesEncryptRequest_default_instance_._instance,
+          &_AeadEncryptRequest_default_instance_._instance,
           &_table_.header,
           nullptr,  // OnDemandRegisterArenaDtor
           nullptr,  // IsInitialized
-          &AesEncryptRequest::MergeImpl,
-          ::google::protobuf::Message::GetNewImpl<AesEncryptRequest>(),
+          &AeadEncryptRequest::MergeImpl,
+          ::google::protobuf::Message::GetNewImpl<AeadEncryptRequest>(),
 #if defined(PROTOBUF_CUSTOM_VTABLE)
-          &AesEncryptRequest::SharedDtor,
-          ::google::protobuf::Message::GetClearImpl<AesEncryptRequest>(), &AesEncryptRequest::ByteSizeLong,
-              &AesEncryptRequest::_InternalSerialize,
+          &AeadEncryptRequest::SharedDtor,
+          ::google::protobuf::Message::GetClearImpl<AeadEncryptRequest>(), &AeadEncryptRequest::ByteSizeLong,
+              &AeadEncryptRequest::_InternalSerialize,
 #endif  // PROTOBUF_CUSTOM_VTABLE
-          PROTOBUF_FIELD_OFFSET(AesEncryptRequest, _impl_._cached_size_),
+          PROTOBUF_FIELD_OFFSET(AeadEncryptRequest, _impl_._cached_size_),
           false,
       },
-      &AesEncryptRequest::kDescriptorMethods,
+      &AeadEncryptRequest::kDescriptorMethods,
       &descriptor_table_loquat_2eproto,
       nullptr,  // tracker
   };
 }
 
 PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 const
-    ::google::protobuf::internal::ClassDataFull AesEncryptRequest_class_data_ =
-        AesEncryptRequest::InternalGenerateClassData_();
+    ::google::protobuf::internal::ClassDataFull AeadEncryptRequest_class_data_ =
+        AeadEncryptRequest::InternalGenerateClassData_();
 
 PROTOBUF_ATTRIBUTE_WEAK const ::google::protobuf::internal::ClassData* PROTOBUF_NONNULL
-AesEncryptRequest::GetClassData() const {
-  ::google::protobuf::internal::PrefetchToLocalCache(&AesEncryptRequest_class_data_);
-  ::google::protobuf::internal::PrefetchToLocalCache(AesEncryptRequest_class_data_.tc_table);
-  return AesEncryptRequest_class_data_.base();
+AeadEncryptRequest::GetClassData() const {
+  ::google::protobuf::internal::PrefetchToLocalCache(&AeadEncryptRequest_class_data_);
+  ::google::protobuf::internal::PrefetchToLocalCache(AeadEncryptRequest_class_data_.tc_table);
+  return AeadEncryptRequest_class_data_.base();
 }
 PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
 const ::_pbi::TcParseTable<1, 2, 0, 0, 2>
-AesEncryptRequest::_table_ = {
+AeadEncryptRequest::_table_ = {
   {
-    PROTOBUF_FIELD_OFFSET(AesEncryptRequest, _impl_._has_bits_),
+    PROTOBUF_FIELD_OFFSET(AeadEncryptRequest, _impl_._has_bits_),
     0, // no _extensions_
     2, 8,  // max_field_number, fast_idx_mask
     offsetof(decltype(_table_), field_lookup_table),
@@ -3149,35 +3150,35 @@ AesEncryptRequest::_table_ = {
     2,  // num_field_entries
     0,  // num_aux_entries
     offsetof(decltype(_table_), field_names),  // no aux_entries
-    AesEncryptRequest_class_data_.base(),
+    AeadEncryptRequest_class_data_.base(),
     nullptr,  // post_loop_handler
     ::_pbi::TcParser::GenericFallback,  // fallback
     #ifdef PROTOBUF_PREFETCH_PARSE_TABLE
-    ::_pbi::TcParser::GetTable<::palm::loquat::v1::AesEncryptRequest>(),  // to_prefetch
+    ::_pbi::TcParser::GetTable<::palm::loquat::v1::AeadEncryptRequest>(),  // to_prefetch
     #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
   }, {{
     // bytes associated_data = 2;
     {::_pbi::TcParser::FastBS1,
      {18, 1, 0,
-      PROTOBUF_FIELD_OFFSET(AesEncryptRequest, _impl_.associated_data_)}},
+      PROTOBUF_FIELD_OFFSET(AeadEncryptRequest, _impl_.associated_data_)}},
     // bytes plain = 1;
     {::_pbi::TcParser::FastBS1,
      {10, 0, 0,
-      PROTOBUF_FIELD_OFFSET(AesEncryptRequest, _impl_.plain_)}},
+      PROTOBUF_FIELD_OFFSET(AeadEncryptRequest, _impl_.plain_)}},
   }}, {{
     65535, 65535
   }}, {{
     // bytes plain = 1;
-    {PROTOBUF_FIELD_OFFSET(AesEncryptRequest, _impl_.plain_), _Internal::kHasBitsOffset + 0, 0, (0 | ::_fl::kFcOptional | ::_fl::kBytes | ::_fl::kRepAString)},
+    {PROTOBUF_FIELD_OFFSET(AeadEncryptRequest, _impl_.plain_), _Internal::kHasBitsOffset + 0, 0, (0 | ::_fl::kFcOptional | ::_fl::kBytes | ::_fl::kRepAString)},
     // bytes associated_data = 2;
-    {PROTOBUF_FIELD_OFFSET(AesEncryptRequest, _impl_.associated_data_), _Internal::kHasBitsOffset + 1, 0, (0 | ::_fl::kFcOptional | ::_fl::kBytes | ::_fl::kRepAString)},
+    {PROTOBUF_FIELD_OFFSET(AeadEncryptRequest, _impl_.associated_data_), _Internal::kHasBitsOffset + 1, 0, (0 | ::_fl::kFcOptional | ::_fl::kBytes | ::_fl::kRepAString)},
   }},
   // no aux_entries
   {{
   }},
 };
-PROTOBUF_NOINLINE void AesEncryptRequest::Clear() {
-// @@protoc_insertion_point(message_clear_start:palm.loquat.v1.AesEncryptRequest)
+PROTOBUF_NOINLINE void AeadEncryptRequest::Clear() {
+// @@protoc_insertion_point(message_clear_start:palm.loquat.v1.AeadEncryptRequest)
   ::google::protobuf::internal::TSanWrite(&_impl_);
   ::uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
@@ -3197,20 +3198,20 @@ PROTOBUF_NOINLINE void AesEncryptRequest::Clear() {
 }
 
 #if defined(PROTOBUF_CUSTOM_VTABLE)
-::uint8_t* PROTOBUF_NONNULL AesEncryptRequest::_InternalSerialize(
+::uint8_t* PROTOBUF_NONNULL AeadEncryptRequest::_InternalSerialize(
     const ::google::protobuf::MessageLite& base, ::uint8_t* PROTOBUF_NONNULL target,
     ::google::protobuf::io::EpsCopyOutputStream* PROTOBUF_NONNULL stream) {
-  const AesEncryptRequest& this_ = static_cast<const AesEncryptRequest&>(base);
+  const AeadEncryptRequest& this_ = static_cast<const AeadEncryptRequest&>(base);
 #else   // PROTOBUF_CUSTOM_VTABLE
-::uint8_t* PROTOBUF_NONNULL AesEncryptRequest::_InternalSerialize(
+::uint8_t* PROTOBUF_NONNULL AeadEncryptRequest::_InternalSerialize(
     ::uint8_t* PROTOBUF_NONNULL target,
     ::google::protobuf::io::EpsCopyOutputStream* PROTOBUF_NONNULL stream) const {
-  const AesEncryptRequest& this_ = *this;
+  const AeadEncryptRequest& this_ = *this;
 #endif  // PROTOBUF_CUSTOM_VTABLE
   if constexpr (::_pbi::DebugHardenCheckHasBitConsistency()) {
     this_.CheckHasBitConsistency();
   }
-  // @@protoc_insertion_point(serialize_to_array_start:palm.loquat.v1.AesEncryptRequest)
+  // @@protoc_insertion_point(serialize_to_array_start:palm.loquat.v1.AeadEncryptRequest)
   ::uint32_t cached_has_bits = 0;
   (void)cached_has_bits;
 
@@ -3236,18 +3237,18 @@ PROTOBUF_NOINLINE void AesEncryptRequest::Clear() {
         ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
             this_._internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
   }
-  // @@protoc_insertion_point(serialize_to_array_end:palm.loquat.v1.AesEncryptRequest)
+  // @@protoc_insertion_point(serialize_to_array_end:palm.loquat.v1.AeadEncryptRequest)
   return target;
 }
 
 #if defined(PROTOBUF_CUSTOM_VTABLE)
-::size_t AesEncryptRequest::ByteSizeLong(const MessageLite& base) {
-  const AesEncryptRequest& this_ = static_cast<const AesEncryptRequest&>(base);
+::size_t AeadEncryptRequest::ByteSizeLong(const MessageLite& base) {
+  const AeadEncryptRequest& this_ = static_cast<const AeadEncryptRequest&>(base);
 #else   // PROTOBUF_CUSTOM_VTABLE
-::size_t AesEncryptRequest::ByteSizeLong() const {
-  const AesEncryptRequest& this_ = *this;
+::size_t AeadEncryptRequest::ByteSizeLong() const {
+  const AeadEncryptRequest& this_ = *this;
 #endif  // PROTOBUF_CUSTOM_VTABLE
-  // @@protoc_insertion_point(message_byte_size_start:palm.loquat.v1.AesEncryptRequest)
+  // @@protoc_insertion_point(message_byte_size_start:palm.loquat.v1.AeadEncryptRequest)
   ::size_t total_size = 0;
 
   ::uint32_t cached_has_bits = 0;
@@ -3276,15 +3277,15 @@ PROTOBUF_NOINLINE void AesEncryptRequest::Clear() {
                                              &this_._impl_._cached_size_);
 }
 
-void AesEncryptRequest::MergeImpl(::google::protobuf::MessageLite& to_msg,
+void AeadEncryptRequest::MergeImpl(::google::protobuf::MessageLite& to_msg,
                             const ::google::protobuf::MessageLite& from_msg) {
    auto* const _this =
-      static_cast<AesEncryptRequest*>(&to_msg);
-  auto& from = static_cast<const AesEncryptRequest&>(from_msg);
+      static_cast<AeadEncryptRequest*>(&to_msg);
+  auto& from = static_cast<const AeadEncryptRequest&>(from_msg);
   if constexpr (::_pbi::DebugHardenCheckHasBitConsistency()) {
     from.CheckHasBitConsistency();
   }
-  // @@protoc_insertion_point(class_specific_merge_from_start:palm.loquat.v1.AesEncryptRequest)
+  // @@protoc_insertion_point(class_specific_merge_from_start:palm.loquat.v1.AeadEncryptRequest)
   ABSL_DCHECK_NE(&from, _this);
   ::uint32_t cached_has_bits = 0;
   (void)cached_has_bits;
@@ -3315,15 +3316,15 @@ void AesEncryptRequest::MergeImpl(::google::protobuf::MessageLite& to_msg,
       from._internal_metadata_);
 }
 
-void AesEncryptRequest::CopyFrom(const AesEncryptRequest& from) {
-  // @@protoc_insertion_point(class_specific_copy_from_start:palm.loquat.v1.AesEncryptRequest)
+void AeadEncryptRequest::CopyFrom(const AeadEncryptRequest& from) {
+  // @@protoc_insertion_point(class_specific_copy_from_start:palm.loquat.v1.AeadEncryptRequest)
   if (&from == this) return;
   Clear();
   MergeFrom(from);
 }
 
 
-void AesEncryptRequest::InternalSwap(AesEncryptRequest* PROTOBUF_RESTRICT PROTOBUF_NONNULL other) {
+void AeadEncryptRequest::InternalSwap(AeadEncryptRequest* PROTOBUF_RESTRICT PROTOBUF_NONNULL other) {
   using ::std::swap;
   auto* arena = GetArena();
   ABSL_DCHECK_EQ(arena, other->GetArena());
@@ -3333,67 +3334,67 @@ void AesEncryptRequest::InternalSwap(AesEncryptRequest* PROTOBUF_RESTRICT PROTOB
   ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.associated_data_, &other->_impl_.associated_data_, arena);
 }
 
-::google::protobuf::Metadata AesEncryptRequest::GetMetadata() const {
+::google::protobuf::Metadata AeadEncryptRequest::GetMetadata() const {
   return ::google::protobuf::Message::GetMetadataImpl(GetClassData()->full());
 }
 // ===================================================================
 
-class AesEncryptResponse::_Internal {
+class AeadEncryptResponse::_Internal {
  public:
   using HasBits =
-      decltype(::std::declval<AesEncryptResponse>()._impl_._has_bits_);
+      decltype(::std::declval<AeadEncryptResponse>()._impl_._has_bits_);
   static constexpr ::int32_t kHasBitsOffset =
-      8 * PROTOBUF_FIELD_OFFSET(AesEncryptResponse, _impl_._has_bits_);
+      8 * PROTOBUF_FIELD_OFFSET(AeadEncryptResponse, _impl_._has_bits_);
 };
 
-AesEncryptResponse::AesEncryptResponse(::google::protobuf::Arena* PROTOBUF_NULLABLE arena)
+AeadEncryptResponse::AeadEncryptResponse(::google::protobuf::Arena* PROTOBUF_NULLABLE arena)
 #if defined(PROTOBUF_CUSTOM_VTABLE)
-    : ::google::protobuf::Message(arena, AesEncryptResponse_class_data_.base()) {
+    : ::google::protobuf::Message(arena, AeadEncryptResponse_class_data_.base()) {
 #else   // PROTOBUF_CUSTOM_VTABLE
     : ::google::protobuf::Message(arena) {
 #endif  // PROTOBUF_CUSTOM_VTABLE
   SharedCtor(arena);
-  // @@protoc_insertion_point(arena_constructor:palm.loquat.v1.AesEncryptResponse)
+  // @@protoc_insertion_point(arena_constructor:palm.loquat.v1.AeadEncryptResponse)
 }
-PROTOBUF_NDEBUG_INLINE AesEncryptResponse::Impl_::Impl_(
+PROTOBUF_NDEBUG_INLINE AeadEncryptResponse::Impl_::Impl_(
     [[maybe_unused]] ::google::protobuf::internal::InternalVisibility visibility,
     [[maybe_unused]] ::google::protobuf::Arena* PROTOBUF_NULLABLE arena, const Impl_& from,
-    [[maybe_unused]] const ::palm::loquat::v1::AesEncryptResponse& from_msg)
+    [[maybe_unused]] const ::palm::loquat::v1::AeadEncryptResponse& from_msg)
       : _has_bits_{from._has_bits_},
         _cached_size_{0},
         cipher_(arena, from.cipher_) {}
 
-AesEncryptResponse::AesEncryptResponse(
+AeadEncryptResponse::AeadEncryptResponse(
     ::google::protobuf::Arena* PROTOBUF_NULLABLE arena,
-    const AesEncryptResponse& from)
+    const AeadEncryptResponse& from)
 #if defined(PROTOBUF_CUSTOM_VTABLE)
-    : ::google::protobuf::Message(arena, AesEncryptResponse_class_data_.base()) {
+    : ::google::protobuf::Message(arena, AeadEncryptResponse_class_data_.base()) {
 #else   // PROTOBUF_CUSTOM_VTABLE
     : ::google::protobuf::Message(arena) {
 #endif  // PROTOBUF_CUSTOM_VTABLE
-  AesEncryptResponse* const _this = this;
+  AeadEncryptResponse* const _this = this;
   (void)_this;
   _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
       from._internal_metadata_);
   new (&_impl_) Impl_(internal_visibility(), arena, from._impl_, from);
 
-  // @@protoc_insertion_point(copy_constructor:palm.loquat.v1.AesEncryptResponse)
+  // @@protoc_insertion_point(copy_constructor:palm.loquat.v1.AeadEncryptResponse)
 }
-PROTOBUF_NDEBUG_INLINE AesEncryptResponse::Impl_::Impl_(
+PROTOBUF_NDEBUG_INLINE AeadEncryptResponse::Impl_::Impl_(
     [[maybe_unused]] ::google::protobuf::internal::InternalVisibility visibility,
     [[maybe_unused]] ::google::protobuf::Arena* PROTOBUF_NULLABLE arena)
       : _cached_size_{0},
         cipher_(arena) {}
 
-inline void AesEncryptResponse::SharedCtor(::_pb::Arena* PROTOBUF_NULLABLE arena) {
+inline void AeadEncryptResponse::SharedCtor(::_pb::Arena* PROTOBUF_NULLABLE arena) {
   new (&_impl_) Impl_(internal_visibility(), arena);
 }
-AesEncryptResponse::~AesEncryptResponse() {
-  // @@protoc_insertion_point(destructor:palm.loquat.v1.AesEncryptResponse)
+AeadEncryptResponse::~AeadEncryptResponse() {
+  // @@protoc_insertion_point(destructor:palm.loquat.v1.AeadEncryptResponse)
   SharedDtor(*this);
 }
-inline void AesEncryptResponse::SharedDtor(MessageLite& self) {
-  AesEncryptResponse& this_ = static_cast<AesEncryptResponse&>(self);
+inline void AeadEncryptResponse::SharedDtor(MessageLite& self) {
+  AeadEncryptResponse& this_ = static_cast<AeadEncryptResponse&>(self);
   if constexpr (::_pbi::DebugHardenCheckHasBitConsistency()) {
     this_.CheckHasBitConsistency();
   }
@@ -3403,53 +3404,53 @@ inline void AesEncryptResponse::SharedDtor(MessageLite& self) {
   this_._impl_.~Impl_();
 }
 
-inline void* PROTOBUF_NONNULL AesEncryptResponse::PlacementNew_(
+inline void* PROTOBUF_NONNULL AeadEncryptResponse::PlacementNew_(
     const void* PROTOBUF_NONNULL, void* PROTOBUF_NONNULL mem,
     ::google::protobuf::Arena* PROTOBUF_NULLABLE arena) {
-  return ::new (mem) AesEncryptResponse(arena);
+  return ::new (mem) AeadEncryptResponse(arena);
 }
-constexpr auto AesEncryptResponse::InternalNewImpl_() {
-  return ::google::protobuf::internal::MessageCreator::CopyInit(sizeof(AesEncryptResponse),
-                                            alignof(AesEncryptResponse));
+constexpr auto AeadEncryptResponse::InternalNewImpl_() {
+  return ::google::protobuf::internal::MessageCreator::CopyInit(sizeof(AeadEncryptResponse),
+                                            alignof(AeadEncryptResponse));
 }
-constexpr auto AesEncryptResponse::InternalGenerateClassData_() {
+constexpr auto AeadEncryptResponse::InternalGenerateClassData_() {
   return ::google::protobuf::internal::ClassDataFull{
       ::google::protobuf::internal::ClassData{
-          &_AesEncryptResponse_default_instance_._instance,
+          &_AeadEncryptResponse_default_instance_._instance,
           &_table_.header,
           nullptr,  // OnDemandRegisterArenaDtor
           nullptr,  // IsInitialized
-          &AesEncryptResponse::MergeImpl,
-          ::google::protobuf::Message::GetNewImpl<AesEncryptResponse>(),
+          &AeadEncryptResponse::MergeImpl,
+          ::google::protobuf::Message::GetNewImpl<AeadEncryptResponse>(),
 #if defined(PROTOBUF_CUSTOM_VTABLE)
-          &AesEncryptResponse::SharedDtor,
-          ::google::protobuf::Message::GetClearImpl<AesEncryptResponse>(), &AesEncryptResponse::ByteSizeLong,
-              &AesEncryptResponse::_InternalSerialize,
+          &AeadEncryptResponse::SharedDtor,
+          ::google::protobuf::Message::GetClearImpl<AeadEncryptResponse>(), &AeadEncryptResponse::ByteSizeLong,
+              &AeadEncryptResponse::_InternalSerialize,
 #endif  // PROTOBUF_CUSTOM_VTABLE
-          PROTOBUF_FIELD_OFFSET(AesEncryptResponse, _impl_._cached_size_),
+          PROTOBUF_FIELD_OFFSET(AeadEncryptResponse, _impl_._cached_size_),
           false,
       },
-      &AesEncryptResponse::kDescriptorMethods,
+      &AeadEncryptResponse::kDescriptorMethods,
       &descriptor_table_loquat_2eproto,
       nullptr,  // tracker
   };
 }
 
 PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 const
-    ::google::protobuf::internal::ClassDataFull AesEncryptResponse_class_data_ =
-        AesEncryptResponse::InternalGenerateClassData_();
+    ::google::protobuf::internal::ClassDataFull AeadEncryptResponse_class_data_ =
+        AeadEncryptResponse::InternalGenerateClassData_();
 
 PROTOBUF_ATTRIBUTE_WEAK const ::google::protobuf::internal::ClassData* PROTOBUF_NONNULL
-AesEncryptResponse::GetClassData() const {
-  ::google::protobuf::internal::PrefetchToLocalCache(&AesEncryptResponse_class_data_);
-  ::google::protobuf::internal::PrefetchToLocalCache(AesEncryptResponse_class_data_.tc_table);
-  return AesEncryptResponse_class_data_.base();
+AeadEncryptResponse::GetClassData() const {
+  ::google::protobuf::internal::PrefetchToLocalCache(&AeadEncryptResponse_class_data_);
+  ::google::protobuf::internal::PrefetchToLocalCache(AeadEncryptResponse_class_data_.tc_table);
+  return AeadEncryptResponse_class_data_.base();
 }
 PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
 const ::_pbi::TcParseTable<0, 1, 0, 0, 2>
-AesEncryptResponse::_table_ = {
+AeadEncryptResponse::_table_ = {
   {
-    PROTOBUF_FIELD_OFFSET(AesEncryptResponse, _impl_._has_bits_),
+    PROTOBUF_FIELD_OFFSET(AeadEncryptResponse, _impl_._has_bits_),
     0, // no _extensions_
     1, 0,  // max_field_number, fast_idx_mask
     offsetof(decltype(_table_), field_lookup_table),
@@ -3458,29 +3459,29 @@ AesEncryptResponse::_table_ = {
     1,  // num_field_entries
     0,  // num_aux_entries
     offsetof(decltype(_table_), field_names),  // no aux_entries
-    AesEncryptResponse_class_data_.base(),
+    AeadEncryptResponse_class_data_.base(),
     nullptr,  // post_loop_handler
     ::_pbi::TcParser::GenericFallback,  // fallback
     #ifdef PROTOBUF_PREFETCH_PARSE_TABLE
-    ::_pbi::TcParser::GetTable<::palm::loquat::v1::AesEncryptResponse>(),  // to_prefetch
+    ::_pbi::TcParser::GetTable<::palm::loquat::v1::AeadEncryptResponse>(),  // to_prefetch
     #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
   }, {{
     // bytes cipher = 1;
     {::_pbi::TcParser::FastBS1,
      {10, 0, 0,
-      PROTOBUF_FIELD_OFFSET(AesEncryptResponse, _impl_.cipher_)}},
+      PROTOBUF_FIELD_OFFSET(AeadEncryptResponse, _impl_.cipher_)}},
   }}, {{
     65535, 65535
   }}, {{
     // bytes cipher = 1;
-    {PROTOBUF_FIELD_OFFSET(AesEncryptResponse, _impl_.cipher_), _Internal::kHasBitsOffset + 0, 0, (0 | ::_fl::kFcOptional | ::_fl::kBytes | ::_fl::kRepAString)},
+    {PROTOBUF_FIELD_OFFSET(AeadEncryptResponse, _impl_.cipher_), _Internal::kHasBitsOffset + 0, 0, (0 | ::_fl::kFcOptional | ::_fl::kBytes | ::_fl::kRepAString)},
   }},
   // no aux_entries
   {{
   }},
 };
-PROTOBUF_NOINLINE void AesEncryptResponse::Clear() {
-// @@protoc_insertion_point(message_clear_start:palm.loquat.v1.AesEncryptResponse)
+PROTOBUF_NOINLINE void AeadEncryptResponse::Clear() {
+// @@protoc_insertion_point(message_clear_start:palm.loquat.v1.AeadEncryptResponse)
   ::google::protobuf::internal::TSanWrite(&_impl_);
   ::uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
@@ -3495,20 +3496,20 @@ PROTOBUF_NOINLINE void AesEncryptResponse::Clear() {
 }
 
 #if defined(PROTOBUF_CUSTOM_VTABLE)
-::uint8_t* PROTOBUF_NONNULL AesEncryptResponse::_InternalSerialize(
+::uint8_t* PROTOBUF_NONNULL AeadEncryptResponse::_InternalSerialize(
     const ::google::protobuf::MessageLite& base, ::uint8_t* PROTOBUF_NONNULL target,
     ::google::protobuf::io::EpsCopyOutputStream* PROTOBUF_NONNULL stream) {
-  const AesEncryptResponse& this_ = static_cast<const AesEncryptResponse&>(base);
+  const AeadEncryptResponse& this_ = static_cast<const AeadEncryptResponse&>(base);
 #else   // PROTOBUF_CUSTOM_VTABLE
-::uint8_t* PROTOBUF_NONNULL AesEncryptResponse::_InternalSerialize(
+::uint8_t* PROTOBUF_NONNULL AeadEncryptResponse::_InternalSerialize(
     ::uint8_t* PROTOBUF_NONNULL target,
     ::google::protobuf::io::EpsCopyOutputStream* PROTOBUF_NONNULL stream) const {
-  const AesEncryptResponse& this_ = *this;
+  const AeadEncryptResponse& this_ = *this;
 #endif  // PROTOBUF_CUSTOM_VTABLE
   if constexpr (::_pbi::DebugHardenCheckHasBitConsistency()) {
     this_.CheckHasBitConsistency();
   }
-  // @@protoc_insertion_point(serialize_to_array_start:palm.loquat.v1.AesEncryptResponse)
+  // @@protoc_insertion_point(serialize_to_array_start:palm.loquat.v1.AeadEncryptResponse)
   ::uint32_t cached_has_bits = 0;
   (void)cached_has_bits;
 
@@ -3526,18 +3527,18 @@ PROTOBUF_NOINLINE void AesEncryptResponse::Clear() {
         ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
             this_._internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
   }
-  // @@protoc_insertion_point(serialize_to_array_end:palm.loquat.v1.AesEncryptResponse)
+  // @@protoc_insertion_point(serialize_to_array_end:palm.loquat.v1.AeadEncryptResponse)
   return target;
 }
 
 #if defined(PROTOBUF_CUSTOM_VTABLE)
-::size_t AesEncryptResponse::ByteSizeLong(const MessageLite& base) {
-  const AesEncryptResponse& this_ = static_cast<const AesEncryptResponse&>(base);
+::size_t AeadEncryptResponse::ByteSizeLong(const MessageLite& base) {
+  const AeadEncryptResponse& this_ = static_cast<const AeadEncryptResponse&>(base);
 #else   // PROTOBUF_CUSTOM_VTABLE
-::size_t AesEncryptResponse::ByteSizeLong() const {
-  const AesEncryptResponse& this_ = *this;
+::size_t AeadEncryptResponse::ByteSizeLong() const {
+  const AeadEncryptResponse& this_ = *this;
 #endif  // PROTOBUF_CUSTOM_VTABLE
-  // @@protoc_insertion_point(message_byte_size_start:palm.loquat.v1.AesEncryptResponse)
+  // @@protoc_insertion_point(message_byte_size_start:palm.loquat.v1.AeadEncryptResponse)
   ::size_t total_size = 0;
 
   ::uint32_t cached_has_bits = 0;
@@ -3558,15 +3559,15 @@ PROTOBUF_NOINLINE void AesEncryptResponse::Clear() {
                                              &this_._impl_._cached_size_);
 }
 
-void AesEncryptResponse::MergeImpl(::google::protobuf::MessageLite& to_msg,
+void AeadEncryptResponse::MergeImpl(::google::protobuf::MessageLite& to_msg,
                             const ::google::protobuf::MessageLite& from_msg) {
    auto* const _this =
-      static_cast<AesEncryptResponse*>(&to_msg);
-  auto& from = static_cast<const AesEncryptResponse&>(from_msg);
+      static_cast<AeadEncryptResponse*>(&to_msg);
+  auto& from = static_cast<const AeadEncryptResponse&>(from_msg);
   if constexpr (::_pbi::DebugHardenCheckHasBitConsistency()) {
     from.CheckHasBitConsistency();
   }
-  // @@protoc_insertion_point(class_specific_merge_from_start:palm.loquat.v1.AesEncryptResponse)
+  // @@protoc_insertion_point(class_specific_merge_from_start:palm.loquat.v1.AeadEncryptResponse)
   ABSL_DCHECK_NE(&from, _this);
   ::uint32_t cached_has_bits = 0;
   (void)cached_has_bits;
@@ -3586,15 +3587,15 @@ void AesEncryptResponse::MergeImpl(::google::protobuf::MessageLite& to_msg,
       from._internal_metadata_);
 }
 
-void AesEncryptResponse::CopyFrom(const AesEncryptResponse& from) {
-  // @@protoc_insertion_point(class_specific_copy_from_start:palm.loquat.v1.AesEncryptResponse)
+void AeadEncryptResponse::CopyFrom(const AeadEncryptResponse& from) {
+  // @@protoc_insertion_point(class_specific_copy_from_start:palm.loquat.v1.AeadEncryptResponse)
   if (&from == this) return;
   Clear();
   MergeFrom(from);
 }
 
 
-void AesEncryptResponse::InternalSwap(AesEncryptResponse* PROTOBUF_RESTRICT PROTOBUF_NONNULL other) {
+void AeadEncryptResponse::InternalSwap(AeadEncryptResponse* PROTOBUF_RESTRICT PROTOBUF_NONNULL other) {
   using ::std::swap;
   auto* arena = GetArena();
   ABSL_DCHECK_EQ(arena, other->GetArena());
@@ -3603,69 +3604,69 @@ void AesEncryptResponse::InternalSwap(AesEncryptResponse* PROTOBUF_RESTRICT PROT
   ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.cipher_, &other->_impl_.cipher_, arena);
 }
 
-::google::protobuf::Metadata AesEncryptResponse::GetMetadata() const {
+::google::protobuf::Metadata AeadEncryptResponse::GetMetadata() const {
   return ::google::protobuf::Message::GetMetadataImpl(GetClassData()->full());
 }
 // ===================================================================
 
-class AesDecryptRequest::_Internal {
+class AeadDecryptRequest::_Internal {
  public:
   using HasBits =
-      decltype(::std::declval<AesDecryptRequest>()._impl_._has_bits_);
+      decltype(::std::declval<AeadDecryptRequest>()._impl_._has_bits_);
   static constexpr ::int32_t kHasBitsOffset =
-      8 * PROTOBUF_FIELD_OFFSET(AesDecryptRequest, _impl_._has_bits_);
+      8 * PROTOBUF_FIELD_OFFSET(AeadDecryptRequest, _impl_._has_bits_);
 };
 
-AesDecryptRequest::AesDecryptRequest(::google::protobuf::Arena* PROTOBUF_NULLABLE arena)
+AeadDecryptRequest::AeadDecryptRequest(::google::protobuf::Arena* PROTOBUF_NULLABLE arena)
 #if defined(PROTOBUF_CUSTOM_VTABLE)
-    : ::google::protobuf::Message(arena, AesDecryptRequest_class_data_.base()) {
+    : ::google::protobuf::Message(arena, AeadDecryptRequest_class_data_.base()) {
 #else   // PROTOBUF_CUSTOM_VTABLE
     : ::google::protobuf::Message(arena) {
 #endif  // PROTOBUF_CUSTOM_VTABLE
   SharedCtor(arena);
-  // @@protoc_insertion_point(arena_constructor:palm.loquat.v1.AesDecryptRequest)
+  // @@protoc_insertion_point(arena_constructor:palm.loquat.v1.AeadDecryptRequest)
 }
-PROTOBUF_NDEBUG_INLINE AesDecryptRequest::Impl_::Impl_(
+PROTOBUF_NDEBUG_INLINE AeadDecryptRequest::Impl_::Impl_(
     [[maybe_unused]] ::google::protobuf::internal::InternalVisibility visibility,
     [[maybe_unused]] ::google::protobuf::Arena* PROTOBUF_NULLABLE arena, const Impl_& from,
-    [[maybe_unused]] const ::palm::loquat::v1::AesDecryptRequest& from_msg)
+    [[maybe_unused]] const ::palm::loquat::v1::AeadDecryptRequest& from_msg)
       : _has_bits_{from._has_bits_},
         _cached_size_{0},
         cipher_(arena, from.cipher_),
         associated_data_(arena, from.associated_data_) {}
 
-AesDecryptRequest::AesDecryptRequest(
+AeadDecryptRequest::AeadDecryptRequest(
     ::google::protobuf::Arena* PROTOBUF_NULLABLE arena,
-    const AesDecryptRequest& from)
+    const AeadDecryptRequest& from)
 #if defined(PROTOBUF_CUSTOM_VTABLE)
-    : ::google::protobuf::Message(arena, AesDecryptRequest_class_data_.base()) {
+    : ::google::protobuf::Message(arena, AeadDecryptRequest_class_data_.base()) {
 #else   // PROTOBUF_CUSTOM_VTABLE
     : ::google::protobuf::Message(arena) {
 #endif  // PROTOBUF_CUSTOM_VTABLE
-  AesDecryptRequest* const _this = this;
+  AeadDecryptRequest* const _this = this;
   (void)_this;
   _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
       from._internal_metadata_);
   new (&_impl_) Impl_(internal_visibility(), arena, from._impl_, from);
 
-  // @@protoc_insertion_point(copy_constructor:palm.loquat.v1.AesDecryptRequest)
+  // @@protoc_insertion_point(copy_constructor:palm.loquat.v1.AeadDecryptRequest)
 }
-PROTOBUF_NDEBUG_INLINE AesDecryptRequest::Impl_::Impl_(
+PROTOBUF_NDEBUG_INLINE AeadDecryptRequest::Impl_::Impl_(
     [[maybe_unused]] ::google::protobuf::internal::InternalVisibility visibility,
     [[maybe_unused]] ::google::protobuf::Arena* PROTOBUF_NULLABLE arena)
       : _cached_size_{0},
         cipher_(arena),
         associated_data_(arena) {}
 
-inline void AesDecryptRequest::SharedCtor(::_pb::Arena* PROTOBUF_NULLABLE arena) {
+inline void AeadDecryptRequest::SharedCtor(::_pb::Arena* PROTOBUF_NULLABLE arena) {
   new (&_impl_) Impl_(internal_visibility(), arena);
 }
-AesDecryptRequest::~AesDecryptRequest() {
-  // @@protoc_insertion_point(destructor:palm.loquat.v1.AesDecryptRequest)
+AeadDecryptRequest::~AeadDecryptRequest() {
+  // @@protoc_insertion_point(destructor:palm.loquat.v1.AeadDecryptRequest)
   SharedDtor(*this);
 }
-inline void AesDecryptRequest::SharedDtor(MessageLite& self) {
-  AesDecryptRequest& this_ = static_cast<AesDecryptRequest&>(self);
+inline void AeadDecryptRequest::SharedDtor(MessageLite& self) {
+  AeadDecryptRequest& this_ = static_cast<AeadDecryptRequest&>(self);
   if constexpr (::_pbi::DebugHardenCheckHasBitConsistency()) {
     this_.CheckHasBitConsistency();
   }
@@ -3676,53 +3677,53 @@ inline void AesDecryptRequest::SharedDtor(MessageLite& self) {
   this_._impl_.~Impl_();
 }
 
-inline void* PROTOBUF_NONNULL AesDecryptRequest::PlacementNew_(
+inline void* PROTOBUF_NONNULL AeadDecryptRequest::PlacementNew_(
     const void* PROTOBUF_NONNULL, void* PROTOBUF_NONNULL mem,
     ::google::protobuf::Arena* PROTOBUF_NULLABLE arena) {
-  return ::new (mem) AesDecryptRequest(arena);
+  return ::new (mem) AeadDecryptRequest(arena);
 }
-constexpr auto AesDecryptRequest::InternalNewImpl_() {
-  return ::google::protobuf::internal::MessageCreator::CopyInit(sizeof(AesDecryptRequest),
-                                            alignof(AesDecryptRequest));
+constexpr auto AeadDecryptRequest::InternalNewImpl_() {
+  return ::google::protobuf::internal::MessageCreator::CopyInit(sizeof(AeadDecryptRequest),
+                                            alignof(AeadDecryptRequest));
 }
-constexpr auto AesDecryptRequest::InternalGenerateClassData_() {
+constexpr auto AeadDecryptRequest::InternalGenerateClassData_() {
   return ::google::protobuf::internal::ClassDataFull{
       ::google::protobuf::internal::ClassData{
-          &_AesDecryptRequest_default_instance_._instance,
+          &_AeadDecryptRequest_default_instance_._instance,
           &_table_.header,
           nullptr,  // OnDemandRegisterArenaDtor
           nullptr,  // IsInitialized
-          &AesDecryptRequest::MergeImpl,
-          ::google::protobuf::Message::GetNewImpl<AesDecryptRequest>(),
+          &AeadDecryptRequest::MergeImpl,
+          ::google::protobuf::Message::GetNewImpl<AeadDecryptRequest>(),
 #if defined(PROTOBUF_CUSTOM_VTABLE)
-          &AesDecryptRequest::SharedDtor,
-          ::google::protobuf::Message::GetClearImpl<AesDecryptRequest>(), &AesDecryptRequest::ByteSizeLong,
-              &AesDecryptRequest::_InternalSerialize,
+          &AeadDecryptRequest::SharedDtor,
+          ::google::protobuf::Message::GetClearImpl<AeadDecryptRequest>(), &AeadDecryptRequest::ByteSizeLong,
+              &AeadDecryptRequest::_InternalSerialize,
 #endif  // PROTOBUF_CUSTOM_VTABLE
-          PROTOBUF_FIELD_OFFSET(AesDecryptRequest, _impl_._cached_size_),
+          PROTOBUF_FIELD_OFFSET(AeadDecryptRequest, _impl_._cached_size_),
           false,
       },
-      &AesDecryptRequest::kDescriptorMethods,
+      &AeadDecryptRequest::kDescriptorMethods,
       &descriptor_table_loquat_2eproto,
       nullptr,  // tracker
   };
 }
 
 PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 const
-    ::google::protobuf::internal::ClassDataFull AesDecryptRequest_class_data_ =
-        AesDecryptRequest::InternalGenerateClassData_();
+    ::google::protobuf::internal::ClassDataFull AeadDecryptRequest_class_data_ =
+        AeadDecryptRequest::InternalGenerateClassData_();
 
 PROTOBUF_ATTRIBUTE_WEAK const ::google::protobuf::internal::ClassData* PROTOBUF_NONNULL
-AesDecryptRequest::GetClassData() const {
-  ::google::protobuf::internal::PrefetchToLocalCache(&AesDecryptRequest_class_data_);
-  ::google::protobuf::internal::PrefetchToLocalCache(AesDecryptRequest_class_data_.tc_table);
-  return AesDecryptRequest_class_data_.base();
+AeadDecryptRequest::GetClassData() const {
+  ::google::protobuf::internal::PrefetchToLocalCache(&AeadDecryptRequest_class_data_);
+  ::google::protobuf::internal::PrefetchToLocalCache(AeadDecryptRequest_class_data_.tc_table);
+  return AeadDecryptRequest_class_data_.base();
 }
 PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
 const ::_pbi::TcParseTable<1, 2, 0, 0, 2>
-AesDecryptRequest::_table_ = {
+AeadDecryptRequest::_table_ = {
   {
-    PROTOBUF_FIELD_OFFSET(AesDecryptRequest, _impl_._has_bits_),
+    PROTOBUF_FIELD_OFFSET(AeadDecryptRequest, _impl_._has_bits_),
     0, // no _extensions_
     2, 8,  // max_field_number, fast_idx_mask
     offsetof(decltype(_table_), field_lookup_table),
@@ -3731,35 +3732,35 @@ AesDecryptRequest::_table_ = {
     2,  // num_field_entries
     0,  // num_aux_entries
     offsetof(decltype(_table_), field_names),  // no aux_entries
-    AesDecryptRequest_class_data_.base(),
+    AeadDecryptRequest_class_data_.base(),
     nullptr,  // post_loop_handler
     ::_pbi::TcParser::GenericFallback,  // fallback
     #ifdef PROTOBUF_PREFETCH_PARSE_TABLE
-    ::_pbi::TcParser::GetTable<::palm::loquat::v1::AesDecryptRequest>(),  // to_prefetch
+    ::_pbi::TcParser::GetTable<::palm::loquat::v1::AeadDecryptRequest>(),  // to_prefetch
     #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
   }, {{
     // bytes associated_data = 2;
     {::_pbi::TcParser::FastBS1,
      {18, 1, 0,
-      PROTOBUF_FIELD_OFFSET(AesDecryptRequest, _impl_.associated_data_)}},
+      PROTOBUF_FIELD_OFFSET(AeadDecryptRequest, _impl_.associated_data_)}},
     // bytes cipher = 1;
     {::_pbi::TcParser::FastBS1,
      {10, 0, 0,
-      PROTOBUF_FIELD_OFFSET(AesDecryptRequest, _impl_.cipher_)}},
+      PROTOBUF_FIELD_OFFSET(AeadDecryptRequest, _impl_.cipher_)}},
   }}, {{
     65535, 65535
   }}, {{
     // bytes cipher = 1;
-    {PROTOBUF_FIELD_OFFSET(AesDecryptRequest, _impl_.cipher_), _Internal::kHasBitsOffset + 0, 0, (0 | ::_fl::kFcOptional | ::_fl::kBytes | ::_fl::kRepAString)},
+    {PROTOBUF_FIELD_OFFSET(AeadDecryptRequest, _impl_.cipher_), _Internal::kHasBitsOffset + 0, 0, (0 | ::_fl::kFcOptional | ::_fl::kBytes | ::_fl::kRepAString)},
     // bytes associated_data = 2;
-    {PROTOBUF_FIELD_OFFSET(AesDecryptRequest, _impl_.associated_data_), _Internal::kHasBitsOffset + 1, 0, (0 | ::_fl::kFcOptional | ::_fl::kBytes | ::_fl::kRepAString)},
+    {PROTOBUF_FIELD_OFFSET(AeadDecryptRequest, _impl_.associated_data_), _Internal::kHasBitsOffset + 1, 0, (0 | ::_fl::kFcOptional | ::_fl::kBytes | ::_fl::kRepAString)},
   }},
   // no aux_entries
   {{
   }},
 };
-PROTOBUF_NOINLINE void AesDecryptRequest::Clear() {
-// @@protoc_insertion_point(message_clear_start:palm.loquat.v1.AesDecryptRequest)
+PROTOBUF_NOINLINE void AeadDecryptRequest::Clear() {
+// @@protoc_insertion_point(message_clear_start:palm.loquat.v1.AeadDecryptRequest)
   ::google::protobuf::internal::TSanWrite(&_impl_);
   ::uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
@@ -3779,20 +3780,20 @@ PROTOBUF_NOINLINE void AesDecryptRequest::Clear() {
 }
 
 #if defined(PROTOBUF_CUSTOM_VTABLE)
-::uint8_t* PROTOBUF_NONNULL AesDecryptRequest::_InternalSerialize(
+::uint8_t* PROTOBUF_NONNULL AeadDecryptRequest::_InternalSerialize(
     const ::google::protobuf::MessageLite& base, ::uint8_t* PROTOBUF_NONNULL target,
     ::google::protobuf::io::EpsCopyOutputStream* PROTOBUF_NONNULL stream) {
-  const AesDecryptRequest& this_ = static_cast<const AesDecryptRequest&>(base);
+  const AeadDecryptRequest& this_ = static_cast<const AeadDecryptRequest&>(base);
 #else   // PROTOBUF_CUSTOM_VTABLE
-::uint8_t* PROTOBUF_NONNULL AesDecryptRequest::_InternalSerialize(
+::uint8_t* PROTOBUF_NONNULL AeadDecryptRequest::_InternalSerialize(
     ::uint8_t* PROTOBUF_NONNULL target,
     ::google::protobuf::io::EpsCopyOutputStream* PROTOBUF_NONNULL stream) const {
-  const AesDecryptRequest& this_ = *this;
+  const AeadDecryptRequest& this_ = *this;
 #endif  // PROTOBUF_CUSTOM_VTABLE
   if constexpr (::_pbi::DebugHardenCheckHasBitConsistency()) {
     this_.CheckHasBitConsistency();
   }
-  // @@protoc_insertion_point(serialize_to_array_start:palm.loquat.v1.AesDecryptRequest)
+  // @@protoc_insertion_point(serialize_to_array_start:palm.loquat.v1.AeadDecryptRequest)
   ::uint32_t cached_has_bits = 0;
   (void)cached_has_bits;
 
@@ -3818,18 +3819,18 @@ PROTOBUF_NOINLINE void AesDecryptRequest::Clear() {
         ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
             this_._internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
   }
-  // @@protoc_insertion_point(serialize_to_array_end:palm.loquat.v1.AesDecryptRequest)
+  // @@protoc_insertion_point(serialize_to_array_end:palm.loquat.v1.AeadDecryptRequest)
   return target;
 }
 
 #if defined(PROTOBUF_CUSTOM_VTABLE)
-::size_t AesDecryptRequest::ByteSizeLong(const MessageLite& base) {
-  const AesDecryptRequest& this_ = static_cast<const AesDecryptRequest&>(base);
+::size_t AeadDecryptRequest::ByteSizeLong(const MessageLite& base) {
+  const AeadDecryptRequest& this_ = static_cast<const AeadDecryptRequest&>(base);
 #else   // PROTOBUF_CUSTOM_VTABLE
-::size_t AesDecryptRequest::ByteSizeLong() const {
-  const AesDecryptRequest& this_ = *this;
+::size_t AeadDecryptRequest::ByteSizeLong() const {
+  const AeadDecryptRequest& this_ = *this;
 #endif  // PROTOBUF_CUSTOM_VTABLE
-  // @@protoc_insertion_point(message_byte_size_start:palm.loquat.v1.AesDecryptRequest)
+  // @@protoc_insertion_point(message_byte_size_start:palm.loquat.v1.AeadDecryptRequest)
   ::size_t total_size = 0;
 
   ::uint32_t cached_has_bits = 0;
@@ -3858,15 +3859,15 @@ PROTOBUF_NOINLINE void AesDecryptRequest::Clear() {
                                              &this_._impl_._cached_size_);
 }
 
-void AesDecryptRequest::MergeImpl(::google::protobuf::MessageLite& to_msg,
+void AeadDecryptRequest::MergeImpl(::google::protobuf::MessageLite& to_msg,
                             const ::google::protobuf::MessageLite& from_msg) {
    auto* const _this =
-      static_cast<AesDecryptRequest*>(&to_msg);
-  auto& from = static_cast<const AesDecryptRequest&>(from_msg);
+      static_cast<AeadDecryptRequest*>(&to_msg);
+  auto& from = static_cast<const AeadDecryptRequest&>(from_msg);
   if constexpr (::_pbi::DebugHardenCheckHasBitConsistency()) {
     from.CheckHasBitConsistency();
   }
-  // @@protoc_insertion_point(class_specific_merge_from_start:palm.loquat.v1.AesDecryptRequest)
+  // @@protoc_insertion_point(class_specific_merge_from_start:palm.loquat.v1.AeadDecryptRequest)
   ABSL_DCHECK_NE(&from, _this);
   ::uint32_t cached_has_bits = 0;
   (void)cached_has_bits;
@@ -3897,15 +3898,15 @@ void AesDecryptRequest::MergeImpl(::google::protobuf::MessageLite& to_msg,
       from._internal_metadata_);
 }
 
-void AesDecryptRequest::CopyFrom(const AesDecryptRequest& from) {
-  // @@protoc_insertion_point(class_specific_copy_from_start:palm.loquat.v1.AesDecryptRequest)
+void AeadDecryptRequest::CopyFrom(const AeadDecryptRequest& from) {
+  // @@protoc_insertion_point(class_specific_copy_from_start:palm.loquat.v1.AeadDecryptRequest)
   if (&from == this) return;
   Clear();
   MergeFrom(from);
 }
 
 
-void AesDecryptRequest::InternalSwap(AesDecryptRequest* PROTOBUF_RESTRICT PROTOBUF_NONNULL other) {
+void AeadDecryptRequest::InternalSwap(AeadDecryptRequest* PROTOBUF_RESTRICT PROTOBUF_NONNULL other) {
   using ::std::swap;
   auto* arena = GetArena();
   ABSL_DCHECK_EQ(arena, other->GetArena());
@@ -3915,67 +3916,67 @@ void AesDecryptRequest::InternalSwap(AesDecryptRequest* PROTOBUF_RESTRICT PROTOB
   ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.associated_data_, &other->_impl_.associated_data_, arena);
 }
 
-::google::protobuf::Metadata AesDecryptRequest::GetMetadata() const {
+::google::protobuf::Metadata AeadDecryptRequest::GetMetadata() const {
   return ::google::protobuf::Message::GetMetadataImpl(GetClassData()->full());
 }
 // ===================================================================
 
-class AesDecryptResponse::_Internal {
+class AeadDecryptResponse::_Internal {
  public:
   using HasBits =
-      decltype(::std::declval<AesDecryptResponse>()._impl_._has_bits_);
+      decltype(::std::declval<AeadDecryptResponse>()._impl_._has_bits_);
   static constexpr ::int32_t kHasBitsOffset =
-      8 * PROTOBUF_FIELD_OFFSET(AesDecryptResponse, _impl_._has_bits_);
+      8 * PROTOBUF_FIELD_OFFSET(AeadDecryptResponse, _impl_._has_bits_);
 };
 
-AesDecryptResponse::AesDecryptResponse(::google::protobuf::Arena* PROTOBUF_NULLABLE arena)
+AeadDecryptResponse::AeadDecryptResponse(::google::protobuf::Arena* PROTOBUF_NULLABLE arena)
 #if defined(PROTOBUF_CUSTOM_VTABLE)
-    : ::google::protobuf::Message(arena, AesDecryptResponse_class_data_.base()) {
+    : ::google::protobuf::Message(arena, AeadDecryptResponse_class_data_.base()) {
 #else   // PROTOBUF_CUSTOM_VTABLE
     : ::google::protobuf::Message(arena) {
 #endif  // PROTOBUF_CUSTOM_VTABLE
   SharedCtor(arena);
-  // @@protoc_insertion_point(arena_constructor:palm.loquat.v1.AesDecryptResponse)
+  // @@protoc_insertion_point(arena_constructor:palm.loquat.v1.AeadDecryptResponse)
 }
-PROTOBUF_NDEBUG_INLINE AesDecryptResponse::Impl_::Impl_(
+PROTOBUF_NDEBUG_INLINE AeadDecryptResponse::Impl_::Impl_(
     [[maybe_unused]] ::google::protobuf::internal::InternalVisibility visibility,
     [[maybe_unused]] ::google::protobuf::Arena* PROTOBUF_NULLABLE arena, const Impl_& from,
-    [[maybe_unused]] const ::palm::loquat::v1::AesDecryptResponse& from_msg)
+    [[maybe_unused]] const ::palm::loquat::v1::AeadDecryptResponse& from_msg)
       : _has_bits_{from._has_bits_},
         _cached_size_{0},
         plain_(arena, from.plain_) {}
 
-AesDecryptResponse::AesDecryptResponse(
+AeadDecryptResponse::AeadDecryptResponse(
     ::google::protobuf::Arena* PROTOBUF_NULLABLE arena,
-    const AesDecryptResponse& from)
+    const AeadDecryptResponse& from)
 #if defined(PROTOBUF_CUSTOM_VTABLE)
-    : ::google::protobuf::Message(arena, AesDecryptResponse_class_data_.base()) {
+    : ::google::protobuf::Message(arena, AeadDecryptResponse_class_data_.base()) {
 #else   // PROTOBUF_CUSTOM_VTABLE
     : ::google::protobuf::Message(arena) {
 #endif  // PROTOBUF_CUSTOM_VTABLE
-  AesDecryptResponse* const _this = this;
+  AeadDecryptResponse* const _this = this;
   (void)_this;
   _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
       from._internal_metadata_);
   new (&_impl_) Impl_(internal_visibility(), arena, from._impl_, from);
 
-  // @@protoc_insertion_point(copy_constructor:palm.loquat.v1.AesDecryptResponse)
+  // @@protoc_insertion_point(copy_constructor:palm.loquat.v1.AeadDecryptResponse)
 }
-PROTOBUF_NDEBUG_INLINE AesDecryptResponse::Impl_::Impl_(
+PROTOBUF_NDEBUG_INLINE AeadDecryptResponse::Impl_::Impl_(
     [[maybe_unused]] ::google::protobuf::internal::InternalVisibility visibility,
     [[maybe_unused]] ::google::protobuf::Arena* PROTOBUF_NULLABLE arena)
       : _cached_size_{0},
         plain_(arena) {}
 
-inline void AesDecryptResponse::SharedCtor(::_pb::Arena* PROTOBUF_NULLABLE arena) {
+inline void AeadDecryptResponse::SharedCtor(::_pb::Arena* PROTOBUF_NULLABLE arena) {
   new (&_impl_) Impl_(internal_visibility(), arena);
 }
-AesDecryptResponse::~AesDecryptResponse() {
-  // @@protoc_insertion_point(destructor:palm.loquat.v1.AesDecryptResponse)
+AeadDecryptResponse::~AeadDecryptResponse() {
+  // @@protoc_insertion_point(destructor:palm.loquat.v1.AeadDecryptResponse)
   SharedDtor(*this);
 }
-inline void AesDecryptResponse::SharedDtor(MessageLite& self) {
-  AesDecryptResponse& this_ = static_cast<AesDecryptResponse&>(self);
+inline void AeadDecryptResponse::SharedDtor(MessageLite& self) {
+  AeadDecryptResponse& this_ = static_cast<AeadDecryptResponse&>(self);
   if constexpr (::_pbi::DebugHardenCheckHasBitConsistency()) {
     this_.CheckHasBitConsistency();
   }
@@ -3985,53 +3986,53 @@ inline void AesDecryptResponse::SharedDtor(MessageLite& self) {
   this_._impl_.~Impl_();
 }
 
-inline void* PROTOBUF_NONNULL AesDecryptResponse::PlacementNew_(
+inline void* PROTOBUF_NONNULL AeadDecryptResponse::PlacementNew_(
     const void* PROTOBUF_NONNULL, void* PROTOBUF_NONNULL mem,
     ::google::protobuf::Arena* PROTOBUF_NULLABLE arena) {
-  return ::new (mem) AesDecryptResponse(arena);
+  return ::new (mem) AeadDecryptResponse(arena);
 }
-constexpr auto AesDecryptResponse::InternalNewImpl_() {
-  return ::google::protobuf::internal::MessageCreator::CopyInit(sizeof(AesDecryptResponse),
-                                            alignof(AesDecryptResponse));
+constexpr auto AeadDecryptResponse::InternalNewImpl_() {
+  return ::google::protobuf::internal::MessageCreator::CopyInit(sizeof(AeadDecryptResponse),
+                                            alignof(AeadDecryptResponse));
 }
-constexpr auto AesDecryptResponse::InternalGenerateClassData_() {
+constexpr auto AeadDecryptResponse::InternalGenerateClassData_() {
   return ::google::protobuf::internal::ClassDataFull{
       ::google::protobuf::internal::ClassData{
-          &_AesDecryptResponse_default_instance_._instance,
+          &_AeadDecryptResponse_default_instance_._instance,
           &_table_.header,
           nullptr,  // OnDemandRegisterArenaDtor
           nullptr,  // IsInitialized
-          &AesDecryptResponse::MergeImpl,
-          ::google::protobuf::Message::GetNewImpl<AesDecryptResponse>(),
+          &AeadDecryptResponse::MergeImpl,
+          ::google::protobuf::Message::GetNewImpl<AeadDecryptResponse>(),
 #if defined(PROTOBUF_CUSTOM_VTABLE)
-          &AesDecryptResponse::SharedDtor,
-          ::google::protobuf::Message::GetClearImpl<AesDecryptResponse>(), &AesDecryptResponse::ByteSizeLong,
-              &AesDecryptResponse::_InternalSerialize,
+          &AeadDecryptResponse::SharedDtor,
+          ::google::protobuf::Message::GetClearImpl<AeadDecryptResponse>(), &AeadDecryptResponse::ByteSizeLong,
+              &AeadDecryptResponse::_InternalSerialize,
 #endif  // PROTOBUF_CUSTOM_VTABLE
-          PROTOBUF_FIELD_OFFSET(AesDecryptResponse, _impl_._cached_size_),
+          PROTOBUF_FIELD_OFFSET(AeadDecryptResponse, _impl_._cached_size_),
           false,
       },
-      &AesDecryptResponse::kDescriptorMethods,
+      &AeadDecryptResponse::kDescriptorMethods,
       &descriptor_table_loquat_2eproto,
       nullptr,  // tracker
   };
 }
 
 PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 const
-    ::google::protobuf::internal::ClassDataFull AesDecryptResponse_class_data_ =
-        AesDecryptResponse::InternalGenerateClassData_();
+    ::google::protobuf::internal::ClassDataFull AeadDecryptResponse_class_data_ =
+        AeadDecryptResponse::InternalGenerateClassData_();
 
 PROTOBUF_ATTRIBUTE_WEAK const ::google::protobuf::internal::ClassData* PROTOBUF_NONNULL
-AesDecryptResponse::GetClassData() const {
-  ::google::protobuf::internal::PrefetchToLocalCache(&AesDecryptResponse_class_data_);
-  ::google::protobuf::internal::PrefetchToLocalCache(AesDecryptResponse_class_data_.tc_table);
-  return AesDecryptResponse_class_data_.base();
+AeadDecryptResponse::GetClassData() const {
+  ::google::protobuf::internal::PrefetchToLocalCache(&AeadDecryptResponse_class_data_);
+  ::google::protobuf::internal::PrefetchToLocalCache(AeadDecryptResponse_class_data_.tc_table);
+  return AeadDecryptResponse_class_data_.base();
 }
 PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
 const ::_pbi::TcParseTable<0, 1, 0, 0, 2>
-AesDecryptResponse::_table_ = {
+AeadDecryptResponse::_table_ = {
   {
-    PROTOBUF_FIELD_OFFSET(AesDecryptResponse, _impl_._has_bits_),
+    PROTOBUF_FIELD_OFFSET(AeadDecryptResponse, _impl_._has_bits_),
     0, // no _extensions_
     1, 0,  // max_field_number, fast_idx_mask
     offsetof(decltype(_table_), field_lookup_table),
@@ -4040,29 +4041,29 @@ AesDecryptResponse::_table_ = {
     1,  // num_field_entries
     0,  // num_aux_entries
     offsetof(decltype(_table_), field_names),  // no aux_entries
-    AesDecryptResponse_class_data_.base(),
+    AeadDecryptResponse_class_data_.base(),
     nullptr,  // post_loop_handler
     ::_pbi::TcParser::GenericFallback,  // fallback
     #ifdef PROTOBUF_PREFETCH_PARSE_TABLE
-    ::_pbi::TcParser::GetTable<::palm::loquat::v1::AesDecryptResponse>(),  // to_prefetch
+    ::_pbi::TcParser::GetTable<::palm::loquat::v1::AeadDecryptResponse>(),  // to_prefetch
     #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
   }, {{
     // bytes plain = 1;
     {::_pbi::TcParser::FastBS1,
      {10, 0, 0,
-      PROTOBUF_FIELD_OFFSET(AesDecryptResponse, _impl_.plain_)}},
+      PROTOBUF_FIELD_OFFSET(AeadDecryptResponse, _impl_.plain_)}},
   }}, {{
     65535, 65535
   }}, {{
     // bytes plain = 1;
-    {PROTOBUF_FIELD_OFFSET(AesDecryptResponse, _impl_.plain_), _Internal::kHasBitsOffset + 0, 0, (0 | ::_fl::kFcOptional | ::_fl::kBytes | ::_fl::kRepAString)},
+    {PROTOBUF_FIELD_OFFSET(AeadDecryptResponse, _impl_.plain_), _Internal::kHasBitsOffset + 0, 0, (0 | ::_fl::kFcOptional | ::_fl::kBytes | ::_fl::kRepAString)},
   }},
   // no aux_entries
   {{
   }},
 };
-PROTOBUF_NOINLINE void AesDecryptResponse::Clear() {
-// @@protoc_insertion_point(message_clear_start:palm.loquat.v1.AesDecryptResponse)
+PROTOBUF_NOINLINE void AeadDecryptResponse::Clear() {
+// @@protoc_insertion_point(message_clear_start:palm.loquat.v1.AeadDecryptResponse)
   ::google::protobuf::internal::TSanWrite(&_impl_);
   ::uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
@@ -4077,20 +4078,20 @@ PROTOBUF_NOINLINE void AesDecryptResponse::Clear() {
 }
 
 #if defined(PROTOBUF_CUSTOM_VTABLE)
-::uint8_t* PROTOBUF_NONNULL AesDecryptResponse::_InternalSerialize(
+::uint8_t* PROTOBUF_NONNULL AeadDecryptResponse::_InternalSerialize(
     const ::google::protobuf::MessageLite& base, ::uint8_t* PROTOBUF_NONNULL target,
     ::google::protobuf::io::EpsCopyOutputStream* PROTOBUF_NONNULL stream) {
-  const AesDecryptResponse& this_ = static_cast<const AesDecryptResponse&>(base);
+  const AeadDecryptResponse& this_ = static_cast<const AeadDecryptResponse&>(base);
 #else   // PROTOBUF_CUSTOM_VTABLE
-::uint8_t* PROTOBUF_NONNULL AesDecryptResponse::_InternalSerialize(
+::uint8_t* PROTOBUF_NONNULL AeadDecryptResponse::_InternalSerialize(
     ::uint8_t* PROTOBUF_NONNULL target,
     ::google::protobuf::io::EpsCopyOutputStream* PROTOBUF_NONNULL stream) const {
-  const AesDecryptResponse& this_ = *this;
+  const AeadDecryptResponse& this_ = *this;
 #endif  // PROTOBUF_CUSTOM_VTABLE
   if constexpr (::_pbi::DebugHardenCheckHasBitConsistency()) {
     this_.CheckHasBitConsistency();
   }
-  // @@protoc_insertion_point(serialize_to_array_start:palm.loquat.v1.AesDecryptResponse)
+  // @@protoc_insertion_point(serialize_to_array_start:palm.loquat.v1.AeadDecryptResponse)
   ::uint32_t cached_has_bits = 0;
   (void)cached_has_bits;
 
@@ -4108,18 +4109,18 @@ PROTOBUF_NOINLINE void AesDecryptResponse::Clear() {
         ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
             this_._internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
   }
-  // @@protoc_insertion_point(serialize_to_array_end:palm.loquat.v1.AesDecryptResponse)
+  // @@protoc_insertion_point(serialize_to_array_end:palm.loquat.v1.AeadDecryptResponse)
   return target;
 }
 
 #if defined(PROTOBUF_CUSTOM_VTABLE)
-::size_t AesDecryptResponse::ByteSizeLong(const MessageLite& base) {
-  const AesDecryptResponse& this_ = static_cast<const AesDecryptResponse&>(base);
+::size_t AeadDecryptResponse::ByteSizeLong(const MessageLite& base) {
+  const AeadDecryptResponse& this_ = static_cast<const AeadDecryptResponse&>(base);
 #else   // PROTOBUF_CUSTOM_VTABLE
-::size_t AesDecryptResponse::ByteSizeLong() const {
-  const AesDecryptResponse& this_ = *this;
+::size_t AeadDecryptResponse::ByteSizeLong() const {
+  const AeadDecryptResponse& this_ = *this;
 #endif  // PROTOBUF_CUSTOM_VTABLE
-  // @@protoc_insertion_point(message_byte_size_start:palm.loquat.v1.AesDecryptResponse)
+  // @@protoc_insertion_point(message_byte_size_start:palm.loquat.v1.AeadDecryptResponse)
   ::size_t total_size = 0;
 
   ::uint32_t cached_has_bits = 0;
@@ -4140,15 +4141,15 @@ PROTOBUF_NOINLINE void AesDecryptResponse::Clear() {
                                              &this_._impl_._cached_size_);
 }
 
-void AesDecryptResponse::MergeImpl(::google::protobuf::MessageLite& to_msg,
+void AeadDecryptResponse::MergeImpl(::google::protobuf::MessageLite& to_msg,
                             const ::google::protobuf::MessageLite& from_msg) {
    auto* const _this =
-      static_cast<AesDecryptResponse*>(&to_msg);
-  auto& from = static_cast<const AesDecryptResponse&>(from_msg);
+      static_cast<AeadDecryptResponse*>(&to_msg);
+  auto& from = static_cast<const AeadDecryptResponse&>(from_msg);
   if constexpr (::_pbi::DebugHardenCheckHasBitConsistency()) {
     from.CheckHasBitConsistency();
   }
-  // @@protoc_insertion_point(class_specific_merge_from_start:palm.loquat.v1.AesDecryptResponse)
+  // @@protoc_insertion_point(class_specific_merge_from_start:palm.loquat.v1.AeadDecryptResponse)
   ABSL_DCHECK_NE(&from, _this);
   ::uint32_t cached_has_bits = 0;
   (void)cached_has_bits;
@@ -4168,15 +4169,15 @@ void AesDecryptResponse::MergeImpl(::google::protobuf::MessageLite& to_msg,
       from._internal_metadata_);
 }
 
-void AesDecryptResponse::CopyFrom(const AesDecryptResponse& from) {
-  // @@protoc_insertion_point(class_specific_copy_from_start:palm.loquat.v1.AesDecryptResponse)
+void AeadDecryptResponse::CopyFrom(const AeadDecryptResponse& from) {
+  // @@protoc_insertion_point(class_specific_copy_from_start:palm.loquat.v1.AeadDecryptResponse)
   if (&from == this) return;
   Clear();
   MergeFrom(from);
 }
 
 
-void AesDecryptResponse::InternalSwap(AesDecryptResponse* PROTOBUF_RESTRICT PROTOBUF_NONNULL other) {
+void AeadDecryptResponse::InternalSwap(AeadDecryptResponse* PROTOBUF_RESTRICT PROTOBUF_NONNULL other) {
   using ::std::swap;
   auto* arena = GetArena();
   ABSL_DCHECK_EQ(arena, other->GetArena());
@@ -4185,67 +4186,67 @@ void AesDecryptResponse::InternalSwap(AesDecryptResponse* PROTOBUF_RESTRICT PROT
   ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.plain_, &other->_impl_.plain_, arena);
 }
 
-::google::protobuf::Metadata AesDecryptResponse::GetMetadata() const {
+::google::protobuf::Metadata AeadDecryptResponse::GetMetadata() const {
   return ::google::protobuf::Message::GetMetadataImpl(GetClassData()->full());
 }
 // ===================================================================
 
-class Argon2SignRequest::_Internal {
+class Argon2ComputeRequest::_Internal {
  public:
   using HasBits =
-      decltype(::std::declval<Argon2SignRequest>()._impl_._has_bits_);
+      decltype(::std::declval<Argon2ComputeRequest>()._impl_._has_bits_);
   static constexpr ::int32_t kHasBitsOffset =
-      8 * PROTOBUF_FIELD_OFFSET(Argon2SignRequest, _impl_._has_bits_);
+      8 * PROTOBUF_FIELD_OFFSET(Argon2ComputeRequest, _impl_._has_bits_);
 };
 
-Argon2SignRequest::Argon2SignRequest(::google::protobuf::Arena* PROTOBUF_NULLABLE arena)
+Argon2ComputeRequest::Argon2ComputeRequest(::google::protobuf::Arena* PROTOBUF_NULLABLE arena)
 #if defined(PROTOBUF_CUSTOM_VTABLE)
-    : ::google::protobuf::Message(arena, Argon2SignRequest_class_data_.base()) {
+    : ::google::protobuf::Message(arena, Argon2ComputeRequest_class_data_.base()) {
 #else   // PROTOBUF_CUSTOM_VTABLE
     : ::google::protobuf::Message(arena) {
 #endif  // PROTOBUF_CUSTOM_VTABLE
   SharedCtor(arena);
-  // @@protoc_insertion_point(arena_constructor:palm.loquat.v1.Argon2SignRequest)
+  // @@protoc_insertion_point(arena_constructor:palm.loquat.v1.Argon2ComputeRequest)
 }
-PROTOBUF_NDEBUG_INLINE Argon2SignRequest::Impl_::Impl_(
+PROTOBUF_NDEBUG_INLINE Argon2ComputeRequest::Impl_::Impl_(
     [[maybe_unused]] ::google::protobuf::internal::InternalVisibility visibility,
     [[maybe_unused]] ::google::protobuf::Arena* PROTOBUF_NULLABLE arena, const Impl_& from,
-    [[maybe_unused]] const ::palm::loquat::v1::Argon2SignRequest& from_msg)
+    [[maybe_unused]] const ::palm::loquat::v1::Argon2ComputeRequest& from_msg)
       : _has_bits_{from._has_bits_},
         _cached_size_{0},
         password_(arena, from.password_) {}
 
-Argon2SignRequest::Argon2SignRequest(
+Argon2ComputeRequest::Argon2ComputeRequest(
     ::google::protobuf::Arena* PROTOBUF_NULLABLE arena,
-    const Argon2SignRequest& from)
+    const Argon2ComputeRequest& from)
 #if defined(PROTOBUF_CUSTOM_VTABLE)
-    : ::google::protobuf::Message(arena, Argon2SignRequest_class_data_.base()) {
+    : ::google::protobuf::Message(arena, Argon2ComputeRequest_class_data_.base()) {
 #else   // PROTOBUF_CUSTOM_VTABLE
     : ::google::protobuf::Message(arena) {
 #endif  // PROTOBUF_CUSTOM_VTABLE
-  Argon2SignRequest* const _this = this;
+  Argon2ComputeRequest* const _this = this;
   (void)_this;
   _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
       from._internal_metadata_);
   new (&_impl_) Impl_(internal_visibility(), arena, from._impl_, from);
 
-  // @@protoc_insertion_point(copy_constructor:palm.loquat.v1.Argon2SignRequest)
+  // @@protoc_insertion_point(copy_constructor:palm.loquat.v1.Argon2ComputeRequest)
 }
-PROTOBUF_NDEBUG_INLINE Argon2SignRequest::Impl_::Impl_(
+PROTOBUF_NDEBUG_INLINE Argon2ComputeRequest::Impl_::Impl_(
     [[maybe_unused]] ::google::protobuf::internal::InternalVisibility visibility,
     [[maybe_unused]] ::google::protobuf::Arena* PROTOBUF_NULLABLE arena)
       : _cached_size_{0},
         password_(arena) {}
 
-inline void Argon2SignRequest::SharedCtor(::_pb::Arena* PROTOBUF_NULLABLE arena) {
+inline void Argon2ComputeRequest::SharedCtor(::_pb::Arena* PROTOBUF_NULLABLE arena) {
   new (&_impl_) Impl_(internal_visibility(), arena);
 }
-Argon2SignRequest::~Argon2SignRequest() {
-  // @@protoc_insertion_point(destructor:palm.loquat.v1.Argon2SignRequest)
+Argon2ComputeRequest::~Argon2ComputeRequest() {
+  // @@protoc_insertion_point(destructor:palm.loquat.v1.Argon2ComputeRequest)
   SharedDtor(*this);
 }
-inline void Argon2SignRequest::SharedDtor(MessageLite& self) {
-  Argon2SignRequest& this_ = static_cast<Argon2SignRequest&>(self);
+inline void Argon2ComputeRequest::SharedDtor(MessageLite& self) {
+  Argon2ComputeRequest& this_ = static_cast<Argon2ComputeRequest&>(self);
   if constexpr (::_pbi::DebugHardenCheckHasBitConsistency()) {
     this_.CheckHasBitConsistency();
   }
@@ -4255,53 +4256,53 @@ inline void Argon2SignRequest::SharedDtor(MessageLite& self) {
   this_._impl_.~Impl_();
 }
 
-inline void* PROTOBUF_NONNULL Argon2SignRequest::PlacementNew_(
+inline void* PROTOBUF_NONNULL Argon2ComputeRequest::PlacementNew_(
     const void* PROTOBUF_NONNULL, void* PROTOBUF_NONNULL mem,
     ::google::protobuf::Arena* PROTOBUF_NULLABLE arena) {
-  return ::new (mem) Argon2SignRequest(arena);
+  return ::new (mem) Argon2ComputeRequest(arena);
 }
-constexpr auto Argon2SignRequest::InternalNewImpl_() {
-  return ::google::protobuf::internal::MessageCreator::CopyInit(sizeof(Argon2SignRequest),
-                                            alignof(Argon2SignRequest));
+constexpr auto Argon2ComputeRequest::InternalNewImpl_() {
+  return ::google::protobuf::internal::MessageCreator::CopyInit(sizeof(Argon2ComputeRequest),
+                                            alignof(Argon2ComputeRequest));
 }
-constexpr auto Argon2SignRequest::InternalGenerateClassData_() {
+constexpr auto Argon2ComputeRequest::InternalGenerateClassData_() {
   return ::google::protobuf::internal::ClassDataFull{
       ::google::protobuf::internal::ClassData{
-          &_Argon2SignRequest_default_instance_._instance,
+          &_Argon2ComputeRequest_default_instance_._instance,
           &_table_.header,
           nullptr,  // OnDemandRegisterArenaDtor
           nullptr,  // IsInitialized
-          &Argon2SignRequest::MergeImpl,
-          ::google::protobuf::Message::GetNewImpl<Argon2SignRequest>(),
+          &Argon2ComputeRequest::MergeImpl,
+          ::google::protobuf::Message::GetNewImpl<Argon2ComputeRequest>(),
 #if defined(PROTOBUF_CUSTOM_VTABLE)
-          &Argon2SignRequest::SharedDtor,
-          ::google::protobuf::Message::GetClearImpl<Argon2SignRequest>(), &Argon2SignRequest::ByteSizeLong,
-              &Argon2SignRequest::_InternalSerialize,
+          &Argon2ComputeRequest::SharedDtor,
+          ::google::protobuf::Message::GetClearImpl<Argon2ComputeRequest>(), &Argon2ComputeRequest::ByteSizeLong,
+              &Argon2ComputeRequest::_InternalSerialize,
 #endif  // PROTOBUF_CUSTOM_VTABLE
-          PROTOBUF_FIELD_OFFSET(Argon2SignRequest, _impl_._cached_size_),
+          PROTOBUF_FIELD_OFFSET(Argon2ComputeRequest, _impl_._cached_size_),
           false,
       },
-      &Argon2SignRequest::kDescriptorMethods,
+      &Argon2ComputeRequest::kDescriptorMethods,
       &descriptor_table_loquat_2eproto,
       nullptr,  // tracker
   };
 }
 
 PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 const
-    ::google::protobuf::internal::ClassDataFull Argon2SignRequest_class_data_ =
-        Argon2SignRequest::InternalGenerateClassData_();
+    ::google::protobuf::internal::ClassDataFull Argon2ComputeRequest_class_data_ =
+        Argon2ComputeRequest::InternalGenerateClassData_();
 
 PROTOBUF_ATTRIBUTE_WEAK const ::google::protobuf::internal::ClassData* PROTOBUF_NONNULL
-Argon2SignRequest::GetClassData() const {
-  ::google::protobuf::internal::PrefetchToLocalCache(&Argon2SignRequest_class_data_);
-  ::google::protobuf::internal::PrefetchToLocalCache(Argon2SignRequest_class_data_.tc_table);
-  return Argon2SignRequest_class_data_.base();
+Argon2ComputeRequest::GetClassData() const {
+  ::google::protobuf::internal::PrefetchToLocalCache(&Argon2ComputeRequest_class_data_);
+  ::google::protobuf::internal::PrefetchToLocalCache(Argon2ComputeRequest_class_data_.tc_table);
+  return Argon2ComputeRequest_class_data_.base();
 }
 PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::_pbi::TcParseTable<0, 1, 0, 49, 2>
-Argon2SignRequest::_table_ = {
+const ::_pbi::TcParseTable<0, 1, 0, 52, 2>
+Argon2ComputeRequest::_table_ = {
   {
-    PROTOBUF_FIELD_OFFSET(Argon2SignRequest, _impl_._has_bits_),
+    PROTOBUF_FIELD_OFFSET(Argon2ComputeRequest, _impl_._has_bits_),
     0, // no _extensions_
     1, 0,  // max_field_number, fast_idx_mask
     offsetof(decltype(_table_), field_lookup_table),
@@ -4310,32 +4311,32 @@ Argon2SignRequest::_table_ = {
     1,  // num_field_entries
     0,  // num_aux_entries
     offsetof(decltype(_table_), field_names),  // no aux_entries
-    Argon2SignRequest_class_data_.base(),
+    Argon2ComputeRequest_class_data_.base(),
     nullptr,  // post_loop_handler
     ::_pbi::TcParser::GenericFallback,  // fallback
     #ifdef PROTOBUF_PREFETCH_PARSE_TABLE
-    ::_pbi::TcParser::GetTable<::palm::loquat::v1::Argon2SignRequest>(),  // to_prefetch
+    ::_pbi::TcParser::GetTable<::palm::loquat::v1::Argon2ComputeRequest>(),  // to_prefetch
     #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
   }, {{
     // string password = 1;
     {::_pbi::TcParser::FastUS1,
      {10, 0, 0,
-      PROTOBUF_FIELD_OFFSET(Argon2SignRequest, _impl_.password_)}},
+      PROTOBUF_FIELD_OFFSET(Argon2ComputeRequest, _impl_.password_)}},
   }}, {{
     65535, 65535
   }}, {{
     // string password = 1;
-    {PROTOBUF_FIELD_OFFSET(Argon2SignRequest, _impl_.password_), _Internal::kHasBitsOffset + 0, 0, (0 | ::_fl::kFcOptional | ::_fl::kUtf8String | ::_fl::kRepAString)},
+    {PROTOBUF_FIELD_OFFSET(Argon2ComputeRequest, _impl_.password_), _Internal::kHasBitsOffset + 0, 0, (0 | ::_fl::kFcOptional | ::_fl::kUtf8String | ::_fl::kRepAString)},
   }},
   // no aux_entries
   {{
-    "\40\10\0\0\0\0\0\0"
-    "palm.loquat.v1.Argon2SignRequest"
+    "\43\10\0\0\0\0\0\0"
+    "palm.loquat.v1.Argon2ComputeRequest"
     "password"
   }},
 };
-PROTOBUF_NOINLINE void Argon2SignRequest::Clear() {
-// @@protoc_insertion_point(message_clear_start:palm.loquat.v1.Argon2SignRequest)
+PROTOBUF_NOINLINE void Argon2ComputeRequest::Clear() {
+// @@protoc_insertion_point(message_clear_start:palm.loquat.v1.Argon2ComputeRequest)
   ::google::protobuf::internal::TSanWrite(&_impl_);
   ::uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
@@ -4350,20 +4351,20 @@ PROTOBUF_NOINLINE void Argon2SignRequest::Clear() {
 }
 
 #if defined(PROTOBUF_CUSTOM_VTABLE)
-::uint8_t* PROTOBUF_NONNULL Argon2SignRequest::_InternalSerialize(
+::uint8_t* PROTOBUF_NONNULL Argon2ComputeRequest::_InternalSerialize(
     const ::google::protobuf::MessageLite& base, ::uint8_t* PROTOBUF_NONNULL target,
     ::google::protobuf::io::EpsCopyOutputStream* PROTOBUF_NONNULL stream) {
-  const Argon2SignRequest& this_ = static_cast<const Argon2SignRequest&>(base);
+  const Argon2ComputeRequest& this_ = static_cast<const Argon2ComputeRequest&>(base);
 #else   // PROTOBUF_CUSTOM_VTABLE
-::uint8_t* PROTOBUF_NONNULL Argon2SignRequest::_InternalSerialize(
+::uint8_t* PROTOBUF_NONNULL Argon2ComputeRequest::_InternalSerialize(
     ::uint8_t* PROTOBUF_NONNULL target,
     ::google::protobuf::io::EpsCopyOutputStream* PROTOBUF_NONNULL stream) const {
-  const Argon2SignRequest& this_ = *this;
+  const Argon2ComputeRequest& this_ = *this;
 #endif  // PROTOBUF_CUSTOM_VTABLE
   if constexpr (::_pbi::DebugHardenCheckHasBitConsistency()) {
     this_.CheckHasBitConsistency();
   }
-  // @@protoc_insertion_point(serialize_to_array_start:palm.loquat.v1.Argon2SignRequest)
+  // @@protoc_insertion_point(serialize_to_array_start:palm.loquat.v1.Argon2ComputeRequest)
   ::uint32_t cached_has_bits = 0;
   (void)cached_has_bits;
 
@@ -4373,7 +4374,7 @@ PROTOBUF_NOINLINE void Argon2SignRequest::Clear() {
     if (!this_._internal_password().empty()) {
       const ::std::string& _s = this_._internal_password();
       ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-          _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "palm.loquat.v1.Argon2SignRequest.password");
+          _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "palm.loquat.v1.Argon2ComputeRequest.password");
       target = stream->WriteStringMaybeAliased(1, _s, target);
     }
   }
@@ -4383,18 +4384,18 @@ PROTOBUF_NOINLINE void Argon2SignRequest::Clear() {
         ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
             this_._internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
   }
-  // @@protoc_insertion_point(serialize_to_array_end:palm.loquat.v1.Argon2SignRequest)
+  // @@protoc_insertion_point(serialize_to_array_end:palm.loquat.v1.Argon2ComputeRequest)
   return target;
 }
 
 #if defined(PROTOBUF_CUSTOM_VTABLE)
-::size_t Argon2SignRequest::ByteSizeLong(const MessageLite& base) {
-  const Argon2SignRequest& this_ = static_cast<const Argon2SignRequest&>(base);
+::size_t Argon2ComputeRequest::ByteSizeLong(const MessageLite& base) {
+  const Argon2ComputeRequest& this_ = static_cast<const Argon2ComputeRequest&>(base);
 #else   // PROTOBUF_CUSTOM_VTABLE
-::size_t Argon2SignRequest::ByteSizeLong() const {
-  const Argon2SignRequest& this_ = *this;
+::size_t Argon2ComputeRequest::ByteSizeLong() const {
+  const Argon2ComputeRequest& this_ = *this;
 #endif  // PROTOBUF_CUSTOM_VTABLE
-  // @@protoc_insertion_point(message_byte_size_start:palm.loquat.v1.Argon2SignRequest)
+  // @@protoc_insertion_point(message_byte_size_start:palm.loquat.v1.Argon2ComputeRequest)
   ::size_t total_size = 0;
 
   ::uint32_t cached_has_bits = 0;
@@ -4415,15 +4416,15 @@ PROTOBUF_NOINLINE void Argon2SignRequest::Clear() {
                                              &this_._impl_._cached_size_);
 }
 
-void Argon2SignRequest::MergeImpl(::google::protobuf::MessageLite& to_msg,
+void Argon2ComputeRequest::MergeImpl(::google::protobuf::MessageLite& to_msg,
                             const ::google::protobuf::MessageLite& from_msg) {
    auto* const _this =
-      static_cast<Argon2SignRequest*>(&to_msg);
-  auto& from = static_cast<const Argon2SignRequest&>(from_msg);
+      static_cast<Argon2ComputeRequest*>(&to_msg);
+  auto& from = static_cast<const Argon2ComputeRequest&>(from_msg);
   if constexpr (::_pbi::DebugHardenCheckHasBitConsistency()) {
     from.CheckHasBitConsistency();
   }
-  // @@protoc_insertion_point(class_specific_merge_from_start:palm.loquat.v1.Argon2SignRequest)
+  // @@protoc_insertion_point(class_specific_merge_from_start:palm.loquat.v1.Argon2ComputeRequest)
   ABSL_DCHECK_NE(&from, _this);
   ::uint32_t cached_has_bits = 0;
   (void)cached_has_bits;
@@ -4443,15 +4444,15 @@ void Argon2SignRequest::MergeImpl(::google::protobuf::MessageLite& to_msg,
       from._internal_metadata_);
 }
 
-void Argon2SignRequest::CopyFrom(const Argon2SignRequest& from) {
-  // @@protoc_insertion_point(class_specific_copy_from_start:palm.loquat.v1.Argon2SignRequest)
+void Argon2ComputeRequest::CopyFrom(const Argon2ComputeRequest& from) {
+  // @@protoc_insertion_point(class_specific_copy_from_start:palm.loquat.v1.Argon2ComputeRequest)
   if (&from == this) return;
   Clear();
   MergeFrom(from);
 }
 
 
-void Argon2SignRequest::InternalSwap(Argon2SignRequest* PROTOBUF_RESTRICT PROTOBUF_NONNULL other) {
+void Argon2ComputeRequest::InternalSwap(Argon2ComputeRequest* PROTOBUF_RESTRICT PROTOBUF_NONNULL other) {
   using ::std::swap;
   auto* arena = GetArena();
   ABSL_DCHECK_EQ(arena, other->GetArena());
@@ -4460,67 +4461,67 @@ void Argon2SignRequest::InternalSwap(Argon2SignRequest* PROTOBUF_RESTRICT PROTOB
   ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.password_, &other->_impl_.password_, arena);
 }
 
-::google::protobuf::Metadata Argon2SignRequest::GetMetadata() const {
+::google::protobuf::Metadata Argon2ComputeRequest::GetMetadata() const {
   return ::google::protobuf::Message::GetMetadataImpl(GetClassData()->full());
 }
 // ===================================================================
 
-class Argon2SignResponse::_Internal {
+class Argon2ComputeResponse::_Internal {
  public:
   using HasBits =
-      decltype(::std::declval<Argon2SignResponse>()._impl_._has_bits_);
+      decltype(::std::declval<Argon2ComputeResponse>()._impl_._has_bits_);
   static constexpr ::int32_t kHasBitsOffset =
-      8 * PROTOBUF_FIELD_OFFSET(Argon2SignResponse, _impl_._has_bits_);
+      8 * PROTOBUF_FIELD_OFFSET(Argon2ComputeResponse, _impl_._has_bits_);
 };
 
-Argon2SignResponse::Argon2SignResponse(::google::protobuf::Arena* PROTOBUF_NULLABLE arena)
+Argon2ComputeResponse::Argon2ComputeResponse(::google::protobuf::Arena* PROTOBUF_NULLABLE arena)
 #if defined(PROTOBUF_CUSTOM_VTABLE)
-    : ::google::protobuf::Message(arena, Argon2SignResponse_class_data_.base()) {
+    : ::google::protobuf::Message(arena, Argon2ComputeResponse_class_data_.base()) {
 #else   // PROTOBUF_CUSTOM_VTABLE
     : ::google::protobuf::Message(arena) {
 #endif  // PROTOBUF_CUSTOM_VTABLE
   SharedCtor(arena);
-  // @@protoc_insertion_point(arena_constructor:palm.loquat.v1.Argon2SignResponse)
+  // @@protoc_insertion_point(arena_constructor:palm.loquat.v1.Argon2ComputeResponse)
 }
-PROTOBUF_NDEBUG_INLINE Argon2SignResponse::Impl_::Impl_(
+PROTOBUF_NDEBUG_INLINE Argon2ComputeResponse::Impl_::Impl_(
     [[maybe_unused]] ::google::protobuf::internal::InternalVisibility visibility,
     [[maybe_unused]] ::google::protobuf::Arena* PROTOBUF_NULLABLE arena, const Impl_& from,
-    [[maybe_unused]] const ::palm::loquat::v1::Argon2SignResponse& from_msg)
+    [[maybe_unused]] const ::palm::loquat::v1::Argon2ComputeResponse& from_msg)
       : _has_bits_{from._has_bits_},
         _cached_size_{0},
         hashed_(arena, from.hashed_) {}
 
-Argon2SignResponse::Argon2SignResponse(
+Argon2ComputeResponse::Argon2ComputeResponse(
     ::google::protobuf::Arena* PROTOBUF_NULLABLE arena,
-    const Argon2SignResponse& from)
+    const Argon2ComputeResponse& from)
 #if defined(PROTOBUF_CUSTOM_VTABLE)
-    : ::google::protobuf::Message(arena, Argon2SignResponse_class_data_.base()) {
+    : ::google::protobuf::Message(arena, Argon2ComputeResponse_class_data_.base()) {
 #else   // PROTOBUF_CUSTOM_VTABLE
     : ::google::protobuf::Message(arena) {
 #endif  // PROTOBUF_CUSTOM_VTABLE
-  Argon2SignResponse* const _this = this;
+  Argon2ComputeResponse* const _this = this;
   (void)_this;
   _internal_metadata_.MergeFrom<::google::protobuf::UnknownFieldSet>(
       from._internal_metadata_);
   new (&_impl_) Impl_(internal_visibility(), arena, from._impl_, from);
 
-  // @@protoc_insertion_point(copy_constructor:palm.loquat.v1.Argon2SignResponse)
+  // @@protoc_insertion_point(copy_constructor:palm.loquat.v1.Argon2ComputeResponse)
 }
-PROTOBUF_NDEBUG_INLINE Argon2SignResponse::Impl_::Impl_(
+PROTOBUF_NDEBUG_INLINE Argon2ComputeResponse::Impl_::Impl_(
     [[maybe_unused]] ::google::protobuf::internal::InternalVisibility visibility,
     [[maybe_unused]] ::google::protobuf::Arena* PROTOBUF_NULLABLE arena)
       : _cached_size_{0},
         hashed_(arena) {}
 
-inline void Argon2SignResponse::SharedCtor(::_pb::Arena* PROTOBUF_NULLABLE arena) {
+inline void Argon2ComputeResponse::SharedCtor(::_pb::Arena* PROTOBUF_NULLABLE arena) {
   new (&_impl_) Impl_(internal_visibility(), arena);
 }
-Argon2SignResponse::~Argon2SignResponse() {
-  // @@protoc_insertion_point(destructor:palm.loquat.v1.Argon2SignResponse)
+Argon2ComputeResponse::~Argon2ComputeResponse() {
+  // @@protoc_insertion_point(destructor:palm.loquat.v1.Argon2ComputeResponse)
   SharedDtor(*this);
 }
-inline void Argon2SignResponse::SharedDtor(MessageLite& self) {
-  Argon2SignResponse& this_ = static_cast<Argon2SignResponse&>(self);
+inline void Argon2ComputeResponse::SharedDtor(MessageLite& self) {
+  Argon2ComputeResponse& this_ = static_cast<Argon2ComputeResponse&>(self);
   if constexpr (::_pbi::DebugHardenCheckHasBitConsistency()) {
     this_.CheckHasBitConsistency();
   }
@@ -4530,53 +4531,53 @@ inline void Argon2SignResponse::SharedDtor(MessageLite& self) {
   this_._impl_.~Impl_();
 }
 
-inline void* PROTOBUF_NONNULL Argon2SignResponse::PlacementNew_(
+inline void* PROTOBUF_NONNULL Argon2ComputeResponse::PlacementNew_(
     const void* PROTOBUF_NONNULL, void* PROTOBUF_NONNULL mem,
     ::google::protobuf::Arena* PROTOBUF_NULLABLE arena) {
-  return ::new (mem) Argon2SignResponse(arena);
+  return ::new (mem) Argon2ComputeResponse(arena);
 }
-constexpr auto Argon2SignResponse::InternalNewImpl_() {
-  return ::google::protobuf::internal::MessageCreator::CopyInit(sizeof(Argon2SignResponse),
-                                            alignof(Argon2SignResponse));
+constexpr auto Argon2ComputeResponse::InternalNewImpl_() {
+  return ::google::protobuf::internal::MessageCreator::CopyInit(sizeof(Argon2ComputeResponse),
+                                            alignof(Argon2ComputeResponse));
 }
-constexpr auto Argon2SignResponse::InternalGenerateClassData_() {
+constexpr auto Argon2ComputeResponse::InternalGenerateClassData_() {
   return ::google::protobuf::internal::ClassDataFull{
       ::google::protobuf::internal::ClassData{
-          &_Argon2SignResponse_default_instance_._instance,
+          &_Argon2ComputeResponse_default_instance_._instance,
           &_table_.header,
           nullptr,  // OnDemandRegisterArenaDtor
           nullptr,  // IsInitialized
-          &Argon2SignResponse::MergeImpl,
-          ::google::protobuf::Message::GetNewImpl<Argon2SignResponse>(),
+          &Argon2ComputeResponse::MergeImpl,
+          ::google::protobuf::Message::GetNewImpl<Argon2ComputeResponse>(),
 #if defined(PROTOBUF_CUSTOM_VTABLE)
-          &Argon2SignResponse::SharedDtor,
-          ::google::protobuf::Message::GetClearImpl<Argon2SignResponse>(), &Argon2SignResponse::ByteSizeLong,
-              &Argon2SignResponse::_InternalSerialize,
+          &Argon2ComputeResponse::SharedDtor,
+          ::google::protobuf::Message::GetClearImpl<Argon2ComputeResponse>(), &Argon2ComputeResponse::ByteSizeLong,
+              &Argon2ComputeResponse::_InternalSerialize,
 #endif  // PROTOBUF_CUSTOM_VTABLE
-          PROTOBUF_FIELD_OFFSET(Argon2SignResponse, _impl_._cached_size_),
+          PROTOBUF_FIELD_OFFSET(Argon2ComputeResponse, _impl_._cached_size_),
           false,
       },
-      &Argon2SignResponse::kDescriptorMethods,
+      &Argon2ComputeResponse::kDescriptorMethods,
       &descriptor_table_loquat_2eproto,
       nullptr,  // tracker
   };
 }
 
 PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 const
-    ::google::protobuf::internal::ClassDataFull Argon2SignResponse_class_data_ =
-        Argon2SignResponse::InternalGenerateClassData_();
+    ::google::protobuf::internal::ClassDataFull Argon2ComputeResponse_class_data_ =
+        Argon2ComputeResponse::InternalGenerateClassData_();
 
 PROTOBUF_ATTRIBUTE_WEAK const ::google::protobuf::internal::ClassData* PROTOBUF_NONNULL
-Argon2SignResponse::GetClassData() const {
-  ::google::protobuf::internal::PrefetchToLocalCache(&Argon2SignResponse_class_data_);
-  ::google::protobuf::internal::PrefetchToLocalCache(Argon2SignResponse_class_data_.tc_table);
-  return Argon2SignResponse_class_data_.base();
+Argon2ComputeResponse::GetClassData() const {
+  ::google::protobuf::internal::PrefetchToLocalCache(&Argon2ComputeResponse_class_data_);
+  ::google::protobuf::internal::PrefetchToLocalCache(Argon2ComputeResponse_class_data_.tc_table);
+  return Argon2ComputeResponse_class_data_.base();
 }
 PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1
-const ::_pbi::TcParseTable<0, 1, 0, 48, 2>
-Argon2SignResponse::_table_ = {
+const ::_pbi::TcParseTable<0, 1, 0, 51, 2>
+Argon2ComputeResponse::_table_ = {
   {
-    PROTOBUF_FIELD_OFFSET(Argon2SignResponse, _impl_._has_bits_),
+    PROTOBUF_FIELD_OFFSET(Argon2ComputeResponse, _impl_._has_bits_),
     0, // no _extensions_
     1, 0,  // max_field_number, fast_idx_mask
     offsetof(decltype(_table_), field_lookup_table),
@@ -4585,32 +4586,32 @@ Argon2SignResponse::_table_ = {
     1,  // num_field_entries
     0,  // num_aux_entries
     offsetof(decltype(_table_), field_names),  // no aux_entries
-    Argon2SignResponse_class_data_.base(),
+    Argon2ComputeResponse_class_data_.base(),
     nullptr,  // post_loop_handler
     ::_pbi::TcParser::GenericFallback,  // fallback
     #ifdef PROTOBUF_PREFETCH_PARSE_TABLE
-    ::_pbi::TcParser::GetTable<::palm::loquat::v1::Argon2SignResponse>(),  // to_prefetch
+    ::_pbi::TcParser::GetTable<::palm::loquat::v1::Argon2ComputeResponse>(),  // to_prefetch
     #endif  // PROTOBUF_PREFETCH_PARSE_TABLE
   }, {{
     // string hashed = 1;
     {::_pbi::TcParser::FastUS1,
      {10, 0, 0,
-      PROTOBUF_FIELD_OFFSET(Argon2SignResponse, _impl_.hashed_)}},
+      PROTOBUF_FIELD_OFFSET(Argon2ComputeResponse, _impl_.hashed_)}},
   }}, {{
     65535, 65535
   }}, {{
     // string hashed = 1;
-    {PROTOBUF_FIELD_OFFSET(Argon2SignResponse, _impl_.hashed_), _Internal::kHasBitsOffset + 0, 0, (0 | ::_fl::kFcOptional | ::_fl::kUtf8String | ::_fl::kRepAString)},
+    {PROTOBUF_FIELD_OFFSET(Argon2ComputeResponse, _impl_.hashed_), _Internal::kHasBitsOffset + 0, 0, (0 | ::_fl::kFcOptional | ::_fl::kUtf8String | ::_fl::kRepAString)},
   }},
   // no aux_entries
   {{
-    "\41\6\0\0\0\0\0\0"
-    "palm.loquat.v1.Argon2SignResponse"
+    "\44\6\0\0\0\0\0\0"
+    "palm.loquat.v1.Argon2ComputeResponse"
     "hashed"
   }},
 };
-PROTOBUF_NOINLINE void Argon2SignResponse::Clear() {
-// @@protoc_insertion_point(message_clear_start:palm.loquat.v1.Argon2SignResponse)
+PROTOBUF_NOINLINE void Argon2ComputeResponse::Clear() {
+// @@protoc_insertion_point(message_clear_start:palm.loquat.v1.Argon2ComputeResponse)
   ::google::protobuf::internal::TSanWrite(&_impl_);
   ::uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
@@ -4625,20 +4626,20 @@ PROTOBUF_NOINLINE void Argon2SignResponse::Clear() {
 }
 
 #if defined(PROTOBUF_CUSTOM_VTABLE)
-::uint8_t* PROTOBUF_NONNULL Argon2SignResponse::_InternalSerialize(
+::uint8_t* PROTOBUF_NONNULL Argon2ComputeResponse::_InternalSerialize(
     const ::google::protobuf::MessageLite& base, ::uint8_t* PROTOBUF_NONNULL target,
     ::google::protobuf::io::EpsCopyOutputStream* PROTOBUF_NONNULL stream) {
-  const Argon2SignResponse& this_ = static_cast<const Argon2SignResponse&>(base);
+  const Argon2ComputeResponse& this_ = static_cast<const Argon2ComputeResponse&>(base);
 #else   // PROTOBUF_CUSTOM_VTABLE
-::uint8_t* PROTOBUF_NONNULL Argon2SignResponse::_InternalSerialize(
+::uint8_t* PROTOBUF_NONNULL Argon2ComputeResponse::_InternalSerialize(
     ::uint8_t* PROTOBUF_NONNULL target,
     ::google::protobuf::io::EpsCopyOutputStream* PROTOBUF_NONNULL stream) const {
-  const Argon2SignResponse& this_ = *this;
+  const Argon2ComputeResponse& this_ = *this;
 #endif  // PROTOBUF_CUSTOM_VTABLE
   if constexpr (::_pbi::DebugHardenCheckHasBitConsistency()) {
     this_.CheckHasBitConsistency();
   }
-  // @@protoc_insertion_point(serialize_to_array_start:palm.loquat.v1.Argon2SignResponse)
+  // @@protoc_insertion_point(serialize_to_array_start:palm.loquat.v1.Argon2ComputeResponse)
   ::uint32_t cached_has_bits = 0;
   (void)cached_has_bits;
 
@@ -4648,7 +4649,7 @@ PROTOBUF_NOINLINE void Argon2SignResponse::Clear() {
     if (!this_._internal_hashed().empty()) {
       const ::std::string& _s = this_._internal_hashed();
       ::google::protobuf::internal::WireFormatLite::VerifyUtf8String(
-          _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "palm.loquat.v1.Argon2SignResponse.hashed");
+          _s.data(), static_cast<int>(_s.length()), ::google::protobuf::internal::WireFormatLite::SERIALIZE, "palm.loquat.v1.Argon2ComputeResponse.hashed");
       target = stream->WriteStringMaybeAliased(1, _s, target);
     }
   }
@@ -4658,18 +4659,18 @@ PROTOBUF_NOINLINE void Argon2SignResponse::Clear() {
         ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
             this_._internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance), target, stream);
   }
-  // @@protoc_insertion_point(serialize_to_array_end:palm.loquat.v1.Argon2SignResponse)
+  // @@protoc_insertion_point(serialize_to_array_end:palm.loquat.v1.Argon2ComputeResponse)
   return target;
 }
 
 #if defined(PROTOBUF_CUSTOM_VTABLE)
-::size_t Argon2SignResponse::ByteSizeLong(const MessageLite& base) {
-  const Argon2SignResponse& this_ = static_cast<const Argon2SignResponse&>(base);
+::size_t Argon2ComputeResponse::ByteSizeLong(const MessageLite& base) {
+  const Argon2ComputeResponse& this_ = static_cast<const Argon2ComputeResponse&>(base);
 #else   // PROTOBUF_CUSTOM_VTABLE
-::size_t Argon2SignResponse::ByteSizeLong() const {
-  const Argon2SignResponse& this_ = *this;
+::size_t Argon2ComputeResponse::ByteSizeLong() const {
+  const Argon2ComputeResponse& this_ = *this;
 #endif  // PROTOBUF_CUSTOM_VTABLE
-  // @@protoc_insertion_point(message_byte_size_start:palm.loquat.v1.Argon2SignResponse)
+  // @@protoc_insertion_point(message_byte_size_start:palm.loquat.v1.Argon2ComputeResponse)
   ::size_t total_size = 0;
 
   ::uint32_t cached_has_bits = 0;
@@ -4690,15 +4691,15 @@ PROTOBUF_NOINLINE void Argon2SignResponse::Clear() {
                                              &this_._impl_._cached_size_);
 }
 
-void Argon2SignResponse::MergeImpl(::google::protobuf::MessageLite& to_msg,
+void Argon2ComputeResponse::MergeImpl(::google::protobuf::MessageLite& to_msg,
                             const ::google::protobuf::MessageLite& from_msg) {
    auto* const _this =
-      static_cast<Argon2SignResponse*>(&to_msg);
-  auto& from = static_cast<const Argon2SignResponse&>(from_msg);
+      static_cast<Argon2ComputeResponse*>(&to_msg);
+  auto& from = static_cast<const Argon2ComputeResponse&>(from_msg);
   if constexpr (::_pbi::DebugHardenCheckHasBitConsistency()) {
     from.CheckHasBitConsistency();
   }
-  // @@protoc_insertion_point(class_specific_merge_from_start:palm.loquat.v1.Argon2SignResponse)
+  // @@protoc_insertion_point(class_specific_merge_from_start:palm.loquat.v1.Argon2ComputeResponse)
   ABSL_DCHECK_NE(&from, _this);
   ::uint32_t cached_has_bits = 0;
   (void)cached_has_bits;
@@ -4718,15 +4719,15 @@ void Argon2SignResponse::MergeImpl(::google::protobuf::MessageLite& to_msg,
       from._internal_metadata_);
 }
 
-void Argon2SignResponse::CopyFrom(const Argon2SignResponse& from) {
-  // @@protoc_insertion_point(class_specific_copy_from_start:palm.loquat.v1.Argon2SignResponse)
+void Argon2ComputeResponse::CopyFrom(const Argon2ComputeResponse& from) {
+  // @@protoc_insertion_point(class_specific_copy_from_start:palm.loquat.v1.Argon2ComputeResponse)
   if (&from == this) return;
   Clear();
   MergeFrom(from);
 }
 
 
-void Argon2SignResponse::InternalSwap(Argon2SignResponse* PROTOBUF_RESTRICT PROTOBUF_NONNULL other) {
+void Argon2ComputeResponse::InternalSwap(Argon2ComputeResponse* PROTOBUF_RESTRICT PROTOBUF_NONNULL other) {
   using ::std::swap;
   auto* arena = GetArena();
   ABSL_DCHECK_EQ(arena, other->GetArena());
@@ -4735,7 +4736,7 @@ void Argon2SignResponse::InternalSwap(Argon2SignResponse* PROTOBUF_RESTRICT PROT
   ::_pbi::ArenaStringPtr::InternalSwap(&_impl_.hashed_, &other->_impl_.hashed_, arena);
 }
 
-::google::protobuf::Metadata Argon2SignResponse::GetMetadata() const {
+::google::protobuf::Metadata Argon2ComputeResponse::GetMetadata() const {
   return ::google::protobuf::Message::GetMetadataImpl(GetClassData()->full());
 }
 // ===================================================================

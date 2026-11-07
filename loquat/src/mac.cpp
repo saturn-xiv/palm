@@ -1,6 +1,6 @@
 #include "loquat/env.hpp"
 
-std::optional<std::string> loquat::HMac::sign(const std::string& plain) {
+std::optional<std::string> loquat::Mac::compute(const std::string& plain) {
   auto mac = this->load();
   auto code_r = mac->ComputeMac(plain);
   {
@@ -14,7 +14,7 @@ std::optional<std::string> loquat::HMac::sign(const std::string& plain) {
   return code;
 }
 
-bool loquat::HMac::verify(const std::string& code, const std::string& plain) {
+bool loquat::Mac::verify(const std::string& code, const std::string& plain) {
   auto mac = this->load();
   auto status = mac->VerifyMac(code, plain);
   if (status.ok()) {
@@ -24,7 +24,7 @@ bool loquat::HMac::verify(const std::string& code, const std::string& plain) {
   return false;
 }
 
-std::unique_ptr<crypto::tink::Mac> loquat::HMac::load() {
+std::unique_ptr<crypto::tink::Mac> loquat::Mac::load() {
   auto keyset = this->Keyset::load(crypto::tink::MacKeyTemplates::HmacSha512());
   auto mac_r = keyset->GetPrimitive<crypto::tink::Mac>(
       crypto::tink::ConfigGlobalRegistry());

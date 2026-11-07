@@ -1,10 +1,10 @@
 #include "loquat/service.hpp"
 #include "loquat/env.hpp"
 
-grpc::Status loquat::JwtService::Sign(
+grpc::Status loquat::JwtService::Compute(
     grpc::ServerContext* context,
-    const palm::loquat::v1::JwtSignRequest* request,
-    palm::loquat::v1::JwtSignResponse* response) {
+    const palm::loquat::v1::JwtComputeRequest* request,
+    palm::loquat::v1::JwtComputeResponse* response) {
   spdlog::debug("call {}", __PRETTY_FUNCTION__);
   loquat::Jwt jwt;
 
@@ -23,15 +23,15 @@ grpc::Status loquat::JwtService::Sign(
     audiences.insert(it);
   }
   const auto token =
-      jwt.sign(jwt_id, key_id, request->issuer(), request->subject(), audiences,
-               absl::FromUnixSeconds(request->issued_at()),
-               absl::FromUnixSeconds(request->not_before()),
-               absl::FromUnixSeconds(request->expired_at()), payload);
+      jwt.compute(jwt_id, key_id, request->issuer(), request->subject(),
+                  audiences, absl::FromUnixSeconds(request->issued_at()),
+                  absl::FromUnixSeconds(request->not_before()),
+                  absl::FromUnixSeconds(request->expired_at()), payload);
   if (token) {
     response->set_token(token.value());
     return grpc::Status::OK;
   }
-  return grpc::Status(grpc::StatusCode::INTERNAL, "Jwt sign failed");
+  return grpc::Status(grpc::StatusCode::INTERNAL, "Jwt compute failed");
 }
 grpc::Status loquat::JwtService::Verify(
     grpc::ServerContext* context,
@@ -51,37 +51,37 @@ grpc::Status loquat::JwtService::Verify(
   return grpc::Status(grpc::StatusCode::INVALID_ARGUMENT,
                       "JWT verification check failed");
 }
-grpc::Status loquat::HMacService::Sign(
+grpc::Status loquat::MacService::Compute(
     grpc::ServerContext* context,
-    const palm::loquat::v1::HMacSignRequest* request,
-    palm::loquat::v1::HMacSignResponse* response) {
+    const palm::loquat::v1::MacComputeRequest* request,
+    palm::loquat::v1::MacComputeResponse* response) {
   spdlog::debug("call {}", __PRETTY_FUNCTION__);
-  loquat::HMac mac;
-  const auto hashed = mac.sign(request->plain());
+  loquat::Mac mac;
+  const auto hashed = mac.compute(request->plain());
   if (hashed) {
     response->set_hashed(hashed.value());
     return grpc::Status::OK;
   }
   return grpc::Status(grpc::StatusCode::INTERNAL, "HMac sign failed");
 }
-grpc::Status loquat::HMacService::Verify(
+grpc::Status loquat::MacService::Verify(
     grpc::ServerContext* context,
-    const palm::loquat::v1::HMacVerifyRequest* request,
+    const palm::loquat::v1::MacVerifyRequest* request,
     google::protobuf::Empty* response) {
   spdlog::debug("call {}", __PRETTY_FUNCTION__);
-  loquat::HMac mac;
+  loquat::Mac mac;
   return mac.verify(request->hashed(), request->plain())
              ? grpc::Status::OK
              : grpc::Status(grpc::StatusCode::INVALID_ARGUMENT,
                             "HMac verification check failed");
   ;
 }
-grpc::Status loquat::AesService::Encrypt(
+grpc::Status loquat::AeadService::Encrypt(
     grpc::ServerContext* context,
-    const palm::loquat::v1::AesEncryptRequest* request,
-    palm::loquat::v1::AesEncryptResponse* response) {
+    const palm::loquat::v1::AeadEncryptRequest* request,
+    palm::loquat::v1::AeadEncryptResponse* response) {
   spdlog::debug("call {}", __PRETTY_FUNCTION__);
-  loquat::Aes aes;
+  loquat::Aead aes;
   const auto cipher = aes.encrypt(request->plain(), request->associated_data());
   if (cipher) {
     response->set_cipher(cipher.value());
@@ -89,12 +89,12 @@ grpc::Status loquat::AesService::Encrypt(
   }
   return grpc::Status(grpc::StatusCode::INTERNAL, "AES encrypt failed");
 }
-grpc::Status loquat::AesService::Decrypt(
+grpc::Status loquat::AeadService::Decrypt(
     grpc::ServerContext* context,
-    const palm::loquat::v1::AesDecryptRequest* request,
-    palm::loquat::v1::AesDecryptResponse* response) {
+    const palm::loquat::v1::AeadDecryptRequest* request,
+    palm::loquat::v1::AeadDecryptResponse* response) {
   spdlog::debug("call {}", __PRETTY_FUNCTION__);
-  loquat::Aes aes;
+  loquat::Aead aes;
   const auto plain = aes.decrypt(request->cipher(), request->associated_data());
   if (plain) {
     response->set_plain(plain.value());
@@ -102,12 +102,12 @@ grpc::Status loquat::AesService::Decrypt(
   }
   return grpc::Status(grpc::StatusCode::INTERNAL, "AES decrypt failed");
 }
-grpc::Status loquat::Argon2Service::Sign(
+grpc::Status loquat::Argon2Service::Compute(
     grpc::ServerContext* context,
-    const palm::loquat::v1::Argon2SignRequest* request,
-    palm::loquat::v1::Argon2SignResponse* response) {
+    const palm::loquat::v1::Argon2ComputeRequest* request,
+    palm::loquat::v1::Argon2ComputeResponse* response) {
   spdlog::debug("call {}", __PRETTY_FUNCTION__);
-  const auto it = loquat::argon2id::sign(request->password());
+  const auto it = loquat::argon2id::compute(request->password());
   if (it) {
     response->set_hashed(it.value());
     return grpc::Status::OK;

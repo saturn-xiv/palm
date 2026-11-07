@@ -26,8 +26,8 @@ void loquat::Application::launch_rpc_server(
     uint16_t port, std::optional<loquat::Ssl> ssl) const {
   const std::string address = std::format("0.0.0.0:{}", port);
   loquat::JwtService jwt_service;
-  loquat::HMacService hmac_service;
-  loquat::AesService aes_service;
+  loquat::MacService mac_service;
+  loquat::AeadService aead_service;
   loquat::Argon2Service argon2_service;
 
   grpc::EnableDefaultHealthCheckService(true);
@@ -56,8 +56,8 @@ void loquat::Application::launch_rpc_server(
     builder.AddListeningPort(address, grpc::InsecureServerCredentials());
   }
   builder.RegisterService(&jwt_service);
-  builder.RegisterService(&aes_service);
-  builder.RegisterService(&hmac_service);
+  builder.RegisterService(&aead_service);
+  builder.RegisterService(&mac_service);
   builder.RegisterService(&argon2_service);
   std::unique_ptr<grpc::Server> server(builder.BuildAndStart());
 

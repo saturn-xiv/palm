@@ -23,11 +23,11 @@ defmodule Palm.Loquat.V1.JwtVerifyResponse do
   field :payload, 2, proto3_optional: true, type: :bytes
 end
 
-defmodule Palm.Loquat.V1.JwtSignRequest do
+defmodule Palm.Loquat.V1.JwtComputeRequest do
   @moduledoc false
 
   use Protobuf,
-    full_name: "palm.loquat.v1.JwtSignRequest",
+    full_name: "palm.loquat.v1.JwtComputeRequest",
     protoc_gen_elixir_version: "0.17.1",
     syntax: :proto3
 
@@ -42,44 +42,44 @@ defmodule Palm.Loquat.V1.JwtSignRequest do
   field :payload, 9, proto3_optional: true, type: :bytes
 end
 
-defmodule Palm.Loquat.V1.JwtSignResponse do
+defmodule Palm.Loquat.V1.JwtComputeResponse do
   @moduledoc false
 
   use Protobuf,
-    full_name: "palm.loquat.v1.JwtSignResponse",
+    full_name: "palm.loquat.v1.JwtComputeResponse",
     protoc_gen_elixir_version: "0.17.1",
     syntax: :proto3
 
   field :token, 1, type: :string
 end
 
-defmodule Palm.Loquat.V1.HMacSignRequest do
+defmodule Palm.Loquat.V1.MacComputeRequest do
   @moduledoc false
 
   use Protobuf,
-    full_name: "palm.loquat.v1.HMacSignRequest",
+    full_name: "palm.loquat.v1.MacComputeRequest",
     protoc_gen_elixir_version: "0.17.1",
     syntax: :proto3
 
   field :plain, 1, type: :bytes
 end
 
-defmodule Palm.Loquat.V1.HMacSignResponse do
+defmodule Palm.Loquat.V1.MacComputeResponse do
   @moduledoc false
 
   use Protobuf,
-    full_name: "palm.loquat.v1.HMacSignResponse",
+    full_name: "palm.loquat.v1.MacComputeResponse",
     protoc_gen_elixir_version: "0.17.1",
     syntax: :proto3
 
   field :hashed, 1, type: :bytes
 end
 
-defmodule Palm.Loquat.V1.HMacVerifyRequest do
+defmodule Palm.Loquat.V1.MacVerifyRequest do
   @moduledoc false
 
   use Protobuf,
-    full_name: "palm.loquat.v1.HMacVerifyRequest",
+    full_name: "palm.loquat.v1.MacVerifyRequest",
     protoc_gen_elixir_version: "0.17.1",
     syntax: :proto3
 
@@ -87,11 +87,11 @@ defmodule Palm.Loquat.V1.HMacVerifyRequest do
   field :plain, 2, type: :bytes
 end
 
-defmodule Palm.Loquat.V1.AesEncryptRequest do
+defmodule Palm.Loquat.V1.AeadEncryptRequest do
   @moduledoc false
 
   use Protobuf,
-    full_name: "palm.loquat.v1.AesEncryptRequest",
+    full_name: "palm.loquat.v1.AeadEncryptRequest",
     protoc_gen_elixir_version: "0.17.1",
     syntax: :proto3
 
@@ -99,22 +99,22 @@ defmodule Palm.Loquat.V1.AesEncryptRequest do
   field :associated_data, 2, type: :bytes, json_name: "associatedData"
 end
 
-defmodule Palm.Loquat.V1.AesEncryptResponse do
+defmodule Palm.Loquat.V1.AeadEncryptResponse do
   @moduledoc false
 
   use Protobuf,
-    full_name: "palm.loquat.v1.AesEncryptResponse",
+    full_name: "palm.loquat.v1.AeadEncryptResponse",
     protoc_gen_elixir_version: "0.17.1",
     syntax: :proto3
 
   field :cipher, 1, type: :bytes
 end
 
-defmodule Palm.Loquat.V1.AesDecryptRequest do
+defmodule Palm.Loquat.V1.AeadDecryptRequest do
   @moduledoc false
 
   use Protobuf,
-    full_name: "palm.loquat.v1.AesDecryptRequest",
+    full_name: "palm.loquat.v1.AeadDecryptRequest",
     protoc_gen_elixir_version: "0.17.1",
     syntax: :proto3
 
@@ -122,33 +122,33 @@ defmodule Palm.Loquat.V1.AesDecryptRequest do
   field :associated_data, 2, type: :bytes, json_name: "associatedData"
 end
 
-defmodule Palm.Loquat.V1.AesDecryptResponse do
+defmodule Palm.Loquat.V1.AeadDecryptResponse do
   @moduledoc false
 
   use Protobuf,
-    full_name: "palm.loquat.v1.AesDecryptResponse",
+    full_name: "palm.loquat.v1.AeadDecryptResponse",
     protoc_gen_elixir_version: "0.17.1",
     syntax: :proto3
 
   field :plain, 1, type: :bytes
 end
 
-defmodule Palm.Loquat.V1.Argon2SignRequest do
+defmodule Palm.Loquat.V1.Argon2ComputeRequest do
   @moduledoc false
 
   use Protobuf,
-    full_name: "palm.loquat.v1.Argon2SignRequest",
+    full_name: "palm.loquat.v1.Argon2ComputeRequest",
     protoc_gen_elixir_version: "0.17.1",
     syntax: :proto3
 
   field :password, 1, type: :string
 end
 
-defmodule Palm.Loquat.V1.Argon2SignResponse do
+defmodule Palm.Loquat.V1.Argon2ComputeResponse do
   @moduledoc false
 
   use Protobuf,
-    full_name: "palm.loquat.v1.Argon2SignResponse",
+    full_name: "palm.loquat.v1.Argon2ComputeResponse",
     protoc_gen_elixir_version: "0.17.1",
     syntax: :proto3
 
@@ -167,66 +167,66 @@ defmodule Palm.Loquat.V1.Argon2VerifyRequest do
   field :password, 2, type: :string
 end
 
-defmodule Palm.Loquat.V1.Jwt.Service do
+defmodule Palm.Loquat.V1.JwtService.Service do
   @moduledoc false
 
-  use GRPC.Service, name: "palm.loquat.v1.Jwt", protoc_gen_elixir_version: "0.17.1"
+  use GRPC.Service, name: "palm.loquat.v1.JwtService", protoc_gen_elixir_version: "0.17.1"
 
-  rpc(:Sign, Palm.Loquat.V1.JwtSignRequest, Palm.Loquat.V1.JwtSignResponse)
+  rpc(:Compute, Palm.Loquat.V1.JwtComputeRequest, Palm.Loquat.V1.JwtComputeResponse)
 
   rpc(:Verify, Palm.Loquat.V1.JwtVerifyRequest, Palm.Loquat.V1.JwtVerifyResponse)
 end
 
-defmodule Palm.Loquat.V1.Jwt.Stub do
+defmodule Palm.Loquat.V1.JwtService.Stub do
   @moduledoc false
 
-  use GRPC.Stub, service: Palm.Loquat.V1.Jwt.Service
+  use GRPC.Stub, service: Palm.Loquat.V1.JwtService.Service
 end
 
-defmodule Palm.Loquat.V1.HMac.Service do
+defmodule Palm.Loquat.V1.MacService.Service do
   @moduledoc false
 
-  use GRPC.Service, name: "palm.loquat.v1.HMac", protoc_gen_elixir_version: "0.17.1"
+  use GRPC.Service, name: "palm.loquat.v1.MacService", protoc_gen_elixir_version: "0.17.1"
 
-  rpc(:Sign, Palm.Loquat.V1.HMacSignRequest, Palm.Loquat.V1.HMacSignResponse)
+  rpc(:Compute, Palm.Loquat.V1.MacComputeRequest, Palm.Loquat.V1.MacComputeResponse)
 
-  rpc(:Verify, Palm.Loquat.V1.HMacVerifyRequest, Google.Protobuf.Empty)
+  rpc(:Verify, Palm.Loquat.V1.MacVerifyRequest, Google.Protobuf.Empty)
 end
 
-defmodule Palm.Loquat.V1.HMac.Stub do
+defmodule Palm.Loquat.V1.MacService.Stub do
   @moduledoc false
 
-  use GRPC.Stub, service: Palm.Loquat.V1.HMac.Service
+  use GRPC.Stub, service: Palm.Loquat.V1.MacService.Service
 end
 
-defmodule Palm.Loquat.V1.Aes.Service do
+defmodule Palm.Loquat.V1.AeadService.Service do
   @moduledoc false
 
-  use GRPC.Service, name: "palm.loquat.v1.Aes", protoc_gen_elixir_version: "0.17.1"
+  use GRPC.Service, name: "palm.loquat.v1.AeadService", protoc_gen_elixir_version: "0.17.1"
 
-  rpc(:Encrypt, Palm.Loquat.V1.AesEncryptRequest, Palm.Loquat.V1.AesEncryptResponse)
+  rpc(:Encrypt, Palm.Loquat.V1.AeadEncryptRequest, Palm.Loquat.V1.AeadEncryptResponse)
 
-  rpc(:Decrypt, Palm.Loquat.V1.AesDecryptRequest, Palm.Loquat.V1.AesDecryptResponse)
+  rpc(:Decrypt, Palm.Loquat.V1.AeadDecryptRequest, Palm.Loquat.V1.AeadDecryptResponse)
 end
 
-defmodule Palm.Loquat.V1.Aes.Stub do
+defmodule Palm.Loquat.V1.AeadService.Stub do
   @moduledoc false
 
-  use GRPC.Stub, service: Palm.Loquat.V1.Aes.Service
+  use GRPC.Stub, service: Palm.Loquat.V1.AeadService.Service
 end
 
-defmodule Palm.Loquat.V1.Argon2.Service do
+defmodule Palm.Loquat.V1.Argon2Service.Service do
   @moduledoc false
 
-  use GRPC.Service, name: "palm.loquat.v1.Argon2", protoc_gen_elixir_version: "0.17.1"
+  use GRPC.Service, name: "palm.loquat.v1.Argon2Service", protoc_gen_elixir_version: "0.17.1"
 
-  rpc(:Sign, Palm.Loquat.V1.Argon2SignRequest, Palm.Loquat.V1.Argon2SignResponse)
+  rpc(:Compute, Palm.Loquat.V1.Argon2ComputeRequest, Palm.Loquat.V1.Argon2ComputeResponse)
 
   rpc(:Verify, Palm.Loquat.V1.Argon2VerifyRequest, Google.Protobuf.Empty)
 end
 
-defmodule Palm.Loquat.V1.Argon2.Stub do
+defmodule Palm.Loquat.V1.Argon2Service.Stub do
   @moduledoc false
 
-  use GRPC.Stub, service: Palm.Loquat.V1.Argon2.Service
+  use GRPC.Stub, service: Palm.Loquat.V1.Argon2Service.Service
 end

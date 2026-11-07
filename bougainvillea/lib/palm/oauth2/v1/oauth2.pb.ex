@@ -91,10 +91,10 @@ defmodule Palm.Oauth2.V1.GoogleUserInfoResponse do
   field :link, 11, proto3_optional: true, type: :string
 end
 
-defmodule Palm.Oauth2.V1.Google.Service do
+defmodule Palm.Oauth2.V1.GoogleService.Service do
   @moduledoc false
 
-  use GRPC.Service, name: "palm.oauth2.v1.Google", protoc_gen_elixir_version: "0.17.1"
+  use GRPC.Service, name: "palm.oauth2.v1.GoogleService", protoc_gen_elixir_version: "0.17.1"
 
   rpc(:SignInUrl, Palm.Oauth2.V1.GoogleSignInUrlRequest, Palm.Oauth2.V1.GoogleSignInUrlResponse)
 
@@ -117,8 +117,8 @@ defmodule Palm.Oauth2.V1.Google.Service do
   )
 end
 
-defmodule Palm.Oauth2.V1.Google.Stub do
+defmodule Palm.Oauth2.V1.GoogleService.Stub do
   @moduledoc false
 
-  use GRPC.Stub, service: Palm.Oauth2.V1.Google.Service
+  use GRPC.Stub, service: Palm.Oauth2.V1.GoogleService.Service
 end

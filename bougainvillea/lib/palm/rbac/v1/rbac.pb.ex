@@ -250,10 +250,10 @@ defmodule Palm.Rbac.V1.PermissionsResponse do
   field :items, 1, repeated: true, type: Palm.Rbac.V1.Permission
 end
 
-defmodule Palm.Rbac.V1.Enforcer.Service do
+defmodule Palm.Rbac.V1.EnforcerService.Service do
   @moduledoc false
 
-  use GRPC.Service, name: "palm.rbac.v1.Enforcer", protoc_gen_elixir_version: "0.17.1"
+  use GRPC.Service, name: "palm.rbac.v1.EnforcerService", protoc_gen_elixir_version: "0.17.1"
 
   rpc(:GetAllSubjects, Google.Protobuf.Empty, Palm.Rbac.V1.SubjectsResponse)
 
@@ -292,8 +292,8 @@ defmodule Palm.Rbac.V1.Enforcer.Service do
   rpc(:HasPermission, Palm.Rbac.V1.Permission, Google.Protobuf.Empty)
 end
 
-defmodule Palm.Rbac.V1.Enforcer.Stub do
+defmodule Palm.Rbac.V1.EnforcerService.Stub do
   @moduledoc false
 
-  use GRPC.Stub, service: Palm.Rbac.V1.Enforcer.Service
+  use GRPC.Stub, service: Palm.Rbac.V1.EnforcerService.Service
 end

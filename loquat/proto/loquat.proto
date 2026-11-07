@@ -11,7 +11,7 @@ option java_package = "com.github.saturn_xiv.palm.plugins.loquat.v1";
 
 // --------------------------------------------------------
 service JwtService {
-  rpc Sign(JwtSignRequest) returns (JwtSignResponse) {}
+  rpc Compute(JwtComputeRequest) returns (JwtComputeResponse) {}
   rpc Verify(JwtVerifyRequest) returns (JwtVerifyResponse) {}
 }
 
@@ -26,7 +26,7 @@ message JwtVerifyResponse {
   optional bytes payload = 2;
 }
 
-message JwtSignRequest {
+message JwtComputeRequest {
   optional string jwt_id = 1;
   optional string key_id = 2;
   string issuer = 3;
@@ -38,64 +38,64 @@ message JwtSignRequest {
   optional bytes payload = 9;
 }
 
-message JwtSignResponse {
+message JwtComputeResponse {
   string token = 1;
 }
 
 // --------------------------------------------------------
-service HMacService {
-  rpc Sign(HMacSignRequest) returns (HMacSignResponse) {}
-  rpc Verify(HMacVerifyRequest) returns (google.protobuf.Empty) {}
+service MacService {
+  rpc Compute(MacComputeRequest) returns (MacComputeResponse) {}
+  rpc Verify(MacVerifyRequest) returns (google.protobuf.Empty) {}
 }
 
-message HMacSignRequest {
+message MacComputeRequest {
   bytes plain = 1;
 }
 
-message HMacSignResponse {
+message MacComputeResponse {
   bytes hashed = 1;
 }
 
-message HMacVerifyRequest {
+message MacVerifyRequest {
   bytes hashed = 1;
   bytes plain = 2;
 }
 
 // --------------------------------------------------------
-service AesService {
-  rpc Encrypt(AesEncryptRequest) returns (AesEncryptResponse) {}
-  rpc Decrypt(AesDecryptRequest) returns (AesDecryptResponse) {}
+service AeadService {
+  rpc Encrypt(AeadEncryptRequest) returns (AeadEncryptResponse) {}
+  rpc Decrypt(AeadDecryptRequest) returns (AeadDecryptResponse) {}
 }
 
-message AesEncryptRequest {
+message AeadEncryptRequest {
   bytes plain = 1;
   bytes associated_data = 2;
 }
 
-message AesEncryptResponse {
+message AeadEncryptResponse {
   bytes cipher = 1;
 }
 
-message AesDecryptRequest {
+message AeadDecryptRequest {
   bytes cipher = 1;
   bytes associated_data = 2;
 }
 
-message AesDecryptResponse {
+message AeadDecryptResponse {
   bytes plain = 1;
 }
 
 // --------------------------------------------------------
 service Argon2Service {
-  rpc Sign(Argon2SignRequest) returns (Argon2SignResponse) {}
+  rpc Compute(Argon2ComputeRequest) returns (Argon2ComputeResponse) {}
   rpc Verify(Argon2VerifyRequest) returns (google.protobuf.Empty) {}
 }
 
-message Argon2SignRequest {
+message Argon2ComputeRequest {
   string password = 1;
 }
 
-message Argon2SignResponse {
+message Argon2ComputeResponse {
   string hashed = 1;
 }
 

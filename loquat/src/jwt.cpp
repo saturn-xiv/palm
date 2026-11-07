@@ -7,7 +7,7 @@
 #include <tink/jwt/jwt_validator.h>
 #include <tink/jwt/raw_jwt.h>
 
-std::optional<std::string> loquat::Jwt::sign(
+std::optional<std::string> loquat::Jwt::compute(
     const std::optional<std::string> jwt_id,
     const std::optional<std::string> key_id, const std::string& issuer,
     const std::string& subject, const std::set<std::string> audiences,

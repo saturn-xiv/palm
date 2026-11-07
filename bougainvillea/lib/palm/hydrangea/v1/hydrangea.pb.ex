@@ -30,16 +30,16 @@ defmodule Palm.Hydrangea.V1.Task do
   field :args, 12, repeated: true, type: :string
 end
 
-defmodule Palm.Hydrangea.V1.Stash.Service do
+defmodule Palm.Hydrangea.V1.StashService.Service do
   @moduledoc false
 
-  use GRPC.Service, name: "palm.hydrangea.v1.Stash", protoc_gen_elixir_version: "0.17.1"
+  use GRPC.Service, name: "palm.hydrangea.v1.StashService", protoc_gen_elixir_version: "0.17.1"
 
   rpc(:Job, Palm.Hydrangea.V1.StashJobRequest, Google.Protobuf.Empty)
 end
 
-defmodule Palm.Hydrangea.V1.Stash.Stub do
+defmodule Palm.Hydrangea.V1.StashService.Stub do
   @moduledoc false
 
-  use GRPC.Stub, service: Palm.Hydrangea.V1.Stash.Service
+  use GRPC.Stub, service: Palm.Hydrangea.V1.StashService.Service
 end

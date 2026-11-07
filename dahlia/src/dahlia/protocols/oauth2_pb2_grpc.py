@@ -25,7 +25,7 @@ if _version_not_supported:
     )
 
 
-class GoogleStub:
+class GoogleServiceStub:
     """Missing associated documentation comment in .proto file."""
 
     def __init__(self, channel):
@@ -35,28 +35,28 @@ class GoogleStub:
             channel: A grpc.Channel.
         """
         self.SignInUrl = channel.unary_unary(
-                '/palm.oauth2.v1.Google/SignInUrl',
+                '/palm.oauth2.v1.GoogleService/SignInUrl',
                 request_serializer=dahlia_dot_protocols_dot_oauth2__pb2.GoogleSignInUrlRequest.SerializeToString,
                 response_deserializer=dahlia_dot_protocols_dot_oauth2__pb2.GoogleSignInUrlResponse.FromString,
                 _registered_method=True)
         self.FetchToken = channel.unary_unary(
-                '/palm.oauth2.v1.Google/FetchToken',
+                '/palm.oauth2.v1.GoogleService/FetchToken',
                 request_serializer=dahlia_dot_protocols_dot_oauth2__pb2.GoogleFetchTokenRequest.SerializeToString,
                 response_deserializer=dahlia_dot_protocols_dot_oauth2__pb2.GoogleFetchTokenResponse.FromString,
                 _registered_method=True)
         self.UserInfo = channel.unary_unary(
-                '/palm.oauth2.v1.Google/UserInfo',
+                '/palm.oauth2.v1.GoogleService/UserInfo',
                 request_serializer=dahlia_dot_protocols_dot_oauth2__pb2.GoogleFetchTokenResponse.Credentials.SerializeToString,
                 response_deserializer=dahlia_dot_protocols_dot_oauth2__pb2.GoogleUserInfoResponse.FromString,
                 _registered_method=True)
         self.Revoke = channel.unary_unary(
-                '/palm.oauth2.v1.Google/Revoke',
+                '/palm.oauth2.v1.GoogleService/Revoke',
                 request_serializer=dahlia_dot_protocols_dot_oauth2__pb2.GoogleFetchTokenResponse.Credentials.SerializeToString,
                 response_deserializer=dahlia_dot_protocols_dot_oauth2__pb2.GoogleRevokeResponse.FromString,
                 _registered_method=True)
 
 
-class GoogleServicer:
+class GoogleServiceServicer:
     """Missing associated documentation comment in .proto file."""
 
     def SignInUrl(self, request, context):
@@ -84,7 +84,7 @@ class GoogleServicer:
         raise NotImplementedError('Method not implemented!')
 
 
-def add_GoogleServicer_to_server(servicer, server):
+def add_GoogleServiceServicer_to_server(servicer, server):
     rpc_method_handlers = {
             'SignInUrl': grpc.unary_unary_rpc_method_handler(
                     servicer.SignInUrl,
@@ -108,13 +108,13 @@ def add_GoogleServicer_to_server(servicer, server):
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
-            'palm.oauth2.v1.Google', rpc_method_handlers)
+            'palm.oauth2.v1.GoogleService', rpc_method_handlers)
     server.add_generic_rpc_handlers((generic_handler,))
-    server.add_registered_method_handlers('palm.oauth2.v1.Google', rpc_method_handlers)
+    server.add_registered_method_handlers('palm.oauth2.v1.GoogleService', rpc_method_handlers)
 
 
  # This class is part of an EXPERIMENTAL API.
-class Google:
+class GoogleService:
     """Missing associated documentation comment in .proto file."""
 
     @staticmethod
@@ -131,7 +131,7 @@ class Google:
         return grpc.experimental.unary_unary(
             request,
             target,
-            '/palm.oauth2.v1.Google/SignInUrl',
+            '/palm.oauth2.v1.GoogleService/SignInUrl',
             dahlia_dot_protocols_dot_oauth2__pb2.GoogleSignInUrlRequest.SerializeToString,
             dahlia_dot_protocols_dot_oauth2__pb2.GoogleSignInUrlResponse.FromString,
             options,
@@ -158,7 +158,7 @@ class Google:
         return grpc.experimental.unary_unary(
             request,
             target,
-            '/palm.oauth2.v1.Google/FetchToken',
+            '/palm.oauth2.v1.GoogleService/FetchToken',
             dahlia_dot_protocols_dot_oauth2__pb2.GoogleFetchTokenRequest.SerializeToString,
             dahlia_dot_protocols_dot_oauth2__pb2.GoogleFetchTokenResponse.FromString,
             options,
@@ -185,7 +185,7 @@ class Google:
         return grpc.experimental.unary_unary(
             request,
             target,
-            '/palm.oauth2.v1.Google/UserInfo',
+            '/palm.oauth2.v1.GoogleService/UserInfo',
             dahlia_dot_protocols_dot_oauth2__pb2.GoogleFetchTokenResponse.Credentials.SerializeToString,
             dahlia_dot_protocols_dot_oauth2__pb2.GoogleUserInfoResponse.FromString,
             options,
@@ -212,7 +212,7 @@ class Google:
         return grpc.experimental.unary_unary(
             request,
             target,
-            '/palm.oauth2.v1.Google/Revoke',
+            '/palm.oauth2.v1.GoogleService/Revoke',
             dahlia_dot_protocols_dot_oauth2__pb2.GoogleFetchTokenResponse.Credentials.SerializeToString,
             dahlia_dot_protocols_dot_oauth2__pb2.GoogleRevokeResponse.FromString,
             options,

@@ -56,54 +56,42 @@ extern const ::google::protobuf::internal::DescriptorTable descriptor_table_loqu
 namespace palm {
 namespace loquat {
 namespace v1 {
-class AesDecryptRequest;
-struct AesDecryptRequestDefaultTypeInternal;
-extern AesDecryptRequestDefaultTypeInternal _AesDecryptRequest_default_instance_;
-extern const ::google::protobuf::internal::ClassDataFull AesDecryptRequest_class_data_;
-class AesDecryptResponse;
-struct AesDecryptResponseDefaultTypeInternal;
-extern AesDecryptResponseDefaultTypeInternal _AesDecryptResponse_default_instance_;
-extern const ::google::protobuf::internal::ClassDataFull AesDecryptResponse_class_data_;
-class AesEncryptRequest;
-struct AesEncryptRequestDefaultTypeInternal;
-extern AesEncryptRequestDefaultTypeInternal _AesEncryptRequest_default_instance_;
-extern const ::google::protobuf::internal::ClassDataFull AesEncryptRequest_class_data_;
-class AesEncryptResponse;
-struct AesEncryptResponseDefaultTypeInternal;
-extern AesEncryptResponseDefaultTypeInternal _AesEncryptResponse_default_instance_;
-extern const ::google::protobuf::internal::ClassDataFull AesEncryptResponse_class_data_;
-class Argon2SignRequest;
-struct Argon2SignRequestDefaultTypeInternal;
-extern Argon2SignRequestDefaultTypeInternal _Argon2SignRequest_default_instance_;
-extern const ::google::protobuf::internal::ClassDataFull Argon2SignRequest_class_data_;
-class Argon2SignResponse;
-struct Argon2SignResponseDefaultTypeInternal;
-extern Argon2SignResponseDefaultTypeInternal _Argon2SignResponse_default_instance_;
-extern const ::google::protobuf::internal::ClassDataFull Argon2SignResponse_class_data_;
+class AeadDecryptRequest;
+struct AeadDecryptRequestDefaultTypeInternal;
+extern AeadDecryptRequestDefaultTypeInternal _AeadDecryptRequest_default_instance_;
+extern const ::google::protobuf::internal::ClassDataFull AeadDecryptRequest_class_data_;
+class AeadDecryptResponse;
+struct AeadDecryptResponseDefaultTypeInternal;
+extern AeadDecryptResponseDefaultTypeInternal _AeadDecryptResponse_default_instance_;
+extern const ::google::protobuf::internal::ClassDataFull AeadDecryptResponse_class_data_;
+class AeadEncryptRequest;
+struct AeadEncryptRequestDefaultTypeInternal;
+extern AeadEncryptRequestDefaultTypeInternal _AeadEncryptRequest_default_instance_;
+extern const ::google::protobuf::internal::ClassDataFull AeadEncryptRequest_class_data_;
+class AeadEncryptResponse;
+struct AeadEncryptResponseDefaultTypeInternal;
+extern AeadEncryptResponseDefaultTypeInternal _AeadEncryptResponse_default_instance_;
+extern const ::google::protobuf::internal::ClassDataFull AeadEncryptResponse_class_data_;
+class Argon2ComputeRequest;
+struct Argon2ComputeRequestDefaultTypeInternal;
+extern Argon2ComputeRequestDefaultTypeInternal _Argon2ComputeRequest_default_instance_;
+extern const ::google::protobuf::internal::ClassDataFull Argon2ComputeRequest_class_data_;
+class Argon2ComputeResponse;
+struct Argon2ComputeResponseDefaultTypeInternal;
+extern Argon2ComputeResponseDefaultTypeInternal _Argon2ComputeResponse_default_instance_;
+extern const ::google::protobuf::internal::ClassDataFull Argon2ComputeResponse_class_data_;
 class Argon2VerifyRequest;
 struct Argon2VerifyRequestDefaultTypeInternal;
 extern Argon2VerifyRequestDefaultTypeInternal _Argon2VerifyRequest_default_instance_;
 extern const ::google::protobuf::internal::ClassDataFull Argon2VerifyRequest_class_data_;
-class HMacSignRequest;
-struct HMacSignRequestDefaultTypeInternal;
-extern HMacSignRequestDefaultTypeInternal _HMacSignRequest_default_instance_;
-extern const ::google::protobuf::internal::ClassDataFull HMacSignRequest_class_data_;
-class HMacSignResponse;
-struct HMacSignResponseDefaultTypeInternal;
-extern HMacSignResponseDefaultTypeInternal _HMacSignResponse_default_instance_;
-extern const ::google::protobuf::internal::ClassDataFull HMacSignResponse_class_data_;
-class HMacVerifyRequest;
-struct HMacVerifyRequestDefaultTypeInternal;
-extern HMacVerifyRequestDefaultTypeInternal _HMacVerifyRequest_default_instance_;
-extern const ::google::protobuf::internal::ClassDataFull HMacVerifyRequest_class_data_;
-class JwtSignRequest;
-struct JwtSignRequestDefaultTypeInternal;
-extern JwtSignRequestDefaultTypeInternal _JwtSignRequest_default_instance_;
-extern const ::google::protobuf::internal::ClassDataFull JwtSignRequest_class_data_;
-class JwtSignResponse;
-struct JwtSignResponseDefaultTypeInternal;
-extern JwtSignResponseDefaultTypeInternal _JwtSignResponse_default_instance_;
-extern const ::google::protobuf::internal::ClassDataFull JwtSignResponse_class_data_;
+class JwtComputeRequest;
+struct JwtComputeRequestDefaultTypeInternal;
+extern JwtComputeRequestDefaultTypeInternal _JwtComputeRequest_default_instance_;
+extern const ::google::protobuf::internal::ClassDataFull JwtComputeRequest_class_data_;
+class JwtComputeResponse;
+struct JwtComputeResponseDefaultTypeInternal;
+extern JwtComputeResponseDefaultTypeInternal _JwtComputeResponse_default_instance_;
+extern const ::google::protobuf::internal::ClassDataFull JwtComputeResponse_class_data_;
 class JwtVerifyRequest;
 struct JwtVerifyRequestDefaultTypeInternal;
 extern JwtVerifyRequestDefaultTypeInternal _JwtVerifyRequest_default_instance_;
@@ -112,6 +100,18 @@ class JwtVerifyResponse;
 struct JwtVerifyResponseDefaultTypeInternal;
 extern JwtVerifyResponseDefaultTypeInternal _JwtVerifyResponse_default_instance_;
 extern const ::google::protobuf::internal::ClassDataFull JwtVerifyResponse_class_data_;
+class MacComputeRequest;
+struct MacComputeRequestDefaultTypeInternal;
+extern MacComputeRequestDefaultTypeInternal _MacComputeRequest_default_instance_;
+extern const ::google::protobuf::internal::ClassDataFull MacComputeRequest_class_data_;
+class MacComputeResponse;
+struct MacComputeResponseDefaultTypeInternal;
+extern MacComputeResponseDefaultTypeInternal _MacComputeResponse_default_instance_;
+extern const ::google::protobuf::internal::ClassDataFull MacComputeResponse_class_data_;
+class MacVerifyRequest;
+struct MacVerifyRequestDefaultTypeInternal;
+extern MacVerifyRequestDefaultTypeInternal _MacVerifyRequest_default_instance_;
+extern const ::google::protobuf::internal::ClassDataFull MacVerifyRequest_class_data_;
 }  // namespace v1
 }  // namespace loquat
 }  // namespace palm
@@ -127,6 +127,608 @@ namespace v1 {
 // ===================================================================
 
 
+// -------------------------------------------------------------------
+
+class MacVerifyRequest final : public ::google::protobuf::Message
+/* @@protoc_insertion_point(class_definition:palm.loquat.v1.MacVerifyRequest) */ {
+ public:
+  inline MacVerifyRequest() : MacVerifyRequest(nullptr) {}
+  ~MacVerifyRequest() PROTOBUF_FINAL;
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+  void operator delete(MacVerifyRequest* PROTOBUF_NONNULL msg, ::std::destroying_delete_t) {
+    SharedDtor(*msg);
+    ::google::protobuf::internal::SizedDelete(msg, sizeof(MacVerifyRequest));
+  }
+#endif
+
+  template <typename = void>
+  explicit PROTOBUF_CONSTEXPR MacVerifyRequest(::google::protobuf::internal::ConstantInitialized);
+
+  inline MacVerifyRequest(const MacVerifyRequest& from) : MacVerifyRequest(nullptr, from) {}
+  inline MacVerifyRequest(MacVerifyRequest&& from) noexcept
+      : MacVerifyRequest(nullptr, ::std::move(from)) {}
+  inline MacVerifyRequest& operator=(const MacVerifyRequest& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline MacVerifyRequest& operator=(MacVerifyRequest&& from) noexcept {
+    if (this == &from) return *this;
+    if (::google::protobuf::internal::CanMoveWithInternalSwap(GetArena(), from.GetArena())) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* PROTOBUF_NONNULL mutable_unknown_fields()
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* PROTOBUF_NONNULL descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* PROTOBUF_NONNULL GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* PROTOBUF_NONNULL GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const MacVerifyRequest& default_instance() {
+    return *reinterpret_cast<const MacVerifyRequest*>(
+        &_MacVerifyRequest_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages = 6;
+  friend void swap(MacVerifyRequest& a, MacVerifyRequest& b) { a.Swap(&b); }
+  inline void Swap(MacVerifyRequest* PROTOBUF_NONNULL other) {
+    if (other == this) return;
+    if (::google::protobuf::internal::CanUseInternalSwap(GetArena(), other->GetArena())) {
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(MacVerifyRequest* PROTOBUF_NONNULL other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  MacVerifyRequest* PROTOBUF_NONNULL New(::google::protobuf::Arena* PROTOBUF_NULLABLE arena = nullptr) const {
+    return ::google::protobuf::Message::DefaultConstruct<MacVerifyRequest>(arena);
+  }
+  using ::google::protobuf::Message::CopyFrom;
+  void CopyFrom(const MacVerifyRequest& from);
+  using ::google::protobuf::Message::MergeFrom;
+  void MergeFrom(const MacVerifyRequest& from) { MacVerifyRequest::MergeImpl(*this, from); }
+
+  private:
+  static void MergeImpl(::google::protobuf::MessageLite& to_msg,
+                        const ::google::protobuf::MessageLite& from_msg);
+
+  public:
+  bool IsInitialized() const {
+    return true;
+  }
+  ABSL_ATTRIBUTE_REINITIALIZES void Clear() PROTOBUF_FINAL;
+  #if defined(PROTOBUF_CUSTOM_VTABLE)
+  private:
+  static ::size_t ByteSizeLong(const ::google::protobuf::MessageLite& msg);
+  static ::uint8_t* PROTOBUF_NONNULL _InternalSerialize(
+      const ::google::protobuf::MessageLite& msg, ::uint8_t* PROTOBUF_NONNULL target,
+      ::google::protobuf::io::EpsCopyOutputStream* PROTOBUF_NONNULL stream);
+
+  public:
+  ::size_t ByteSizeLong() const { return ByteSizeLong(*this); }
+  ::uint8_t* PROTOBUF_NONNULL _InternalSerialize(
+      ::uint8_t* PROTOBUF_NONNULL target,
+      ::google::protobuf::io::EpsCopyOutputStream* PROTOBUF_NONNULL stream) const {
+    return _InternalSerialize(*this, target, stream);
+  }
+  #else   // PROTOBUF_CUSTOM_VTABLE
+  ::size_t ByteSizeLong() const final;
+  ::uint8_t* PROTOBUF_NONNULL _InternalSerialize(
+      ::uint8_t* PROTOBUF_NONNULL target,
+      ::google::protobuf::io::EpsCopyOutputStream* PROTOBUF_NONNULL stream) const final;
+  #endif  // PROTOBUF_CUSTOM_VTABLE
+  int GetCachedSize() const { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::google::protobuf::Arena* PROTOBUF_NULLABLE arena);
+  static void SharedDtor(MessageLite& self);
+  void InternalSwap(MacVerifyRequest* PROTOBUF_NONNULL other);
+ private:
+  template <typename T>
+  friend ::absl::string_view(::google::protobuf::internal::GetAnyMessageName)();
+  static ::absl::string_view FullMessageName() { return "palm.loquat.v1.MacVerifyRequest"; }
+
+  explicit MacVerifyRequest(::google::protobuf::Arena* PROTOBUF_NULLABLE arena);
+  MacVerifyRequest(::google::protobuf::Arena* PROTOBUF_NULLABLE arena, const MacVerifyRequest& from);
+  MacVerifyRequest(
+      ::google::protobuf::Arena* PROTOBUF_NULLABLE arena, MacVerifyRequest&& from) noexcept
+      : MacVerifyRequest(arena) {
+    *this = ::std::move(from);
+  }
+  const ::google::protobuf::internal::ClassData* PROTOBUF_NONNULL GetClassData() const PROTOBUF_FINAL;
+  static void* PROTOBUF_NONNULL PlacementNew_(
+      const void* PROTOBUF_NONNULL, void* PROTOBUF_NONNULL mem,
+      ::google::protobuf::Arena* PROTOBUF_NULLABLE arena);
+  static constexpr auto InternalNewImpl_();
+
+ public:
+  static constexpr auto InternalGenerateClassData_();
+
+  ::google::protobuf::Metadata GetMetadata() const;
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+  enum : int {
+    kHashedFieldNumber = 1,
+    kPlainFieldNumber = 2,
+  };
+  // bytes hashed = 1;
+  void clear_hashed() ;
+  const ::std::string& hashed() const;
+  template <typename Arg_ = const ::std::string&, typename... Args_>
+  void set_hashed(Arg_&& arg, Args_... args);
+  ::std::string* PROTOBUF_NONNULL mutable_hashed();
+  [[nodiscard]] ::std::string* PROTOBUF_NULLABLE release_hashed();
+  void set_allocated_hashed(::std::string* PROTOBUF_NULLABLE value);
+
+  private:
+  const ::std::string& _internal_hashed() const;
+  PROTOBUF_ALWAYS_INLINE void _internal_set_hashed(const ::std::string& value);
+  ::std::string* PROTOBUF_NONNULL _internal_mutable_hashed();
+
+  public:
+  // bytes plain = 2;
+  void clear_plain() ;
+  const ::std::string& plain() const;
+  template <typename Arg_ = const ::std::string&, typename... Args_>
+  void set_plain(Arg_&& arg, Args_... args);
+  ::std::string* PROTOBUF_NONNULL mutable_plain();
+  [[nodiscard]] ::std::string* PROTOBUF_NULLABLE release_plain();
+  void set_allocated_plain(::std::string* PROTOBUF_NULLABLE value);
+
+  private:
+  const ::std::string& _internal_plain() const;
+  PROTOBUF_ALWAYS_INLINE void _internal_set_plain(const ::std::string& value);
+  ::std::string* PROTOBUF_NONNULL _internal_mutable_plain();
+
+  public:
+  // @@protoc_insertion_point(class_scope:palm.loquat.v1.MacVerifyRequest)
+ private:
+  class _Internal;
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<1, 2,
+                                   0, 0,
+                                   2>
+      _table_;
+
+  friend class ::google::protobuf::MessageLite;
+  friend class ::google::protobuf::Arena;
+  template <typename T>
+  friend class ::google::protobuf::Arena::InternalHelper;
+  using InternalArenaConstructable_ = void;
+  using DestructorSkippable_ = void;
+  struct Impl_ {
+    inline explicit constexpr Impl_(::google::protobuf::internal::ConstantInitialized) noexcept;
+    inline explicit Impl_(
+        ::google::protobuf::internal::InternalVisibility visibility,
+        ::google::protobuf::Arena* PROTOBUF_NULLABLE arena);
+    inline explicit Impl_(
+        ::google::protobuf::internal::InternalVisibility visibility,
+        ::google::protobuf::Arena* PROTOBUF_NULLABLE arena, const Impl_& from,
+        const MacVerifyRequest& from_msg);
+    ::google::protobuf::internal::HasBits<1> _has_bits_;
+    ::google::protobuf::internal::CachedSize _cached_size_;
+    ::google::protobuf::internal::ArenaStringPtr hashed_;
+    ::google::protobuf::internal::ArenaStringPtr plain_;
+    PROTOBUF_TSAN_DECLARE_MEMBER
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_loquat_2eproto;
+};
+
+extern const ::google::protobuf::internal::ClassDataFull MacVerifyRequest_class_data_;
+// -------------------------------------------------------------------
+
+class MacComputeResponse final : public ::google::protobuf::Message
+/* @@protoc_insertion_point(class_definition:palm.loquat.v1.MacComputeResponse) */ {
+ public:
+  inline MacComputeResponse() : MacComputeResponse(nullptr) {}
+  ~MacComputeResponse() PROTOBUF_FINAL;
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+  void operator delete(MacComputeResponse* PROTOBUF_NONNULL msg, ::std::destroying_delete_t) {
+    SharedDtor(*msg);
+    ::google::protobuf::internal::SizedDelete(msg, sizeof(MacComputeResponse));
+  }
+#endif
+
+  template <typename = void>
+  explicit PROTOBUF_CONSTEXPR MacComputeResponse(::google::protobuf::internal::ConstantInitialized);
+
+  inline MacComputeResponse(const MacComputeResponse& from) : MacComputeResponse(nullptr, from) {}
+  inline MacComputeResponse(MacComputeResponse&& from) noexcept
+      : MacComputeResponse(nullptr, ::std::move(from)) {}
+  inline MacComputeResponse& operator=(const MacComputeResponse& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline MacComputeResponse& operator=(MacComputeResponse&& from) noexcept {
+    if (this == &from) return *this;
+    if (::google::protobuf::internal::CanMoveWithInternalSwap(GetArena(), from.GetArena())) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* PROTOBUF_NONNULL mutable_unknown_fields()
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* PROTOBUF_NONNULL descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* PROTOBUF_NONNULL GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* PROTOBUF_NONNULL GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const MacComputeResponse& default_instance() {
+    return *reinterpret_cast<const MacComputeResponse*>(
+        &_MacComputeResponse_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages = 5;
+  friend void swap(MacComputeResponse& a, MacComputeResponse& b) { a.Swap(&b); }
+  inline void Swap(MacComputeResponse* PROTOBUF_NONNULL other) {
+    if (other == this) return;
+    if (::google::protobuf::internal::CanUseInternalSwap(GetArena(), other->GetArena())) {
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(MacComputeResponse* PROTOBUF_NONNULL other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  MacComputeResponse* PROTOBUF_NONNULL New(::google::protobuf::Arena* PROTOBUF_NULLABLE arena = nullptr) const {
+    return ::google::protobuf::Message::DefaultConstruct<MacComputeResponse>(arena);
+  }
+  using ::google::protobuf::Message::CopyFrom;
+  void CopyFrom(const MacComputeResponse& from);
+  using ::google::protobuf::Message::MergeFrom;
+  void MergeFrom(const MacComputeResponse& from) { MacComputeResponse::MergeImpl(*this, from); }
+
+  private:
+  static void MergeImpl(::google::protobuf::MessageLite& to_msg,
+                        const ::google::protobuf::MessageLite& from_msg);
+
+  public:
+  bool IsInitialized() const {
+    return true;
+  }
+  ABSL_ATTRIBUTE_REINITIALIZES void Clear() PROTOBUF_FINAL;
+  #if defined(PROTOBUF_CUSTOM_VTABLE)
+  private:
+  static ::size_t ByteSizeLong(const ::google::protobuf::MessageLite& msg);
+  static ::uint8_t* PROTOBUF_NONNULL _InternalSerialize(
+      const ::google::protobuf::MessageLite& msg, ::uint8_t* PROTOBUF_NONNULL target,
+      ::google::protobuf::io::EpsCopyOutputStream* PROTOBUF_NONNULL stream);
+
+  public:
+  ::size_t ByteSizeLong() const { return ByteSizeLong(*this); }
+  ::uint8_t* PROTOBUF_NONNULL _InternalSerialize(
+      ::uint8_t* PROTOBUF_NONNULL target,
+      ::google::protobuf::io::EpsCopyOutputStream* PROTOBUF_NONNULL stream) const {
+    return _InternalSerialize(*this, target, stream);
+  }
+  #else   // PROTOBUF_CUSTOM_VTABLE
+  ::size_t ByteSizeLong() const final;
+  ::uint8_t* PROTOBUF_NONNULL _InternalSerialize(
+      ::uint8_t* PROTOBUF_NONNULL target,
+      ::google::protobuf::io::EpsCopyOutputStream* PROTOBUF_NONNULL stream) const final;
+  #endif  // PROTOBUF_CUSTOM_VTABLE
+  int GetCachedSize() const { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::google::protobuf::Arena* PROTOBUF_NULLABLE arena);
+  static void SharedDtor(MessageLite& self);
+  void InternalSwap(MacComputeResponse* PROTOBUF_NONNULL other);
+ private:
+  template <typename T>
+  friend ::absl::string_view(::google::protobuf::internal::GetAnyMessageName)();
+  static ::absl::string_view FullMessageName() { return "palm.loquat.v1.MacComputeResponse"; }
+
+  explicit MacComputeResponse(::google::protobuf::Arena* PROTOBUF_NULLABLE arena);
+  MacComputeResponse(::google::protobuf::Arena* PROTOBUF_NULLABLE arena, const MacComputeResponse& from);
+  MacComputeResponse(
+      ::google::protobuf::Arena* PROTOBUF_NULLABLE arena, MacComputeResponse&& from) noexcept
+      : MacComputeResponse(arena) {
+    *this = ::std::move(from);
+  }
+  const ::google::protobuf::internal::ClassData* PROTOBUF_NONNULL GetClassData() const PROTOBUF_FINAL;
+  static void* PROTOBUF_NONNULL PlacementNew_(
+      const void* PROTOBUF_NONNULL, void* PROTOBUF_NONNULL mem,
+      ::google::protobuf::Arena* PROTOBUF_NULLABLE arena);
+  static constexpr auto InternalNewImpl_();
+
+ public:
+  static constexpr auto InternalGenerateClassData_();
+
+  ::google::protobuf::Metadata GetMetadata() const;
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+  enum : int {
+    kHashedFieldNumber = 1,
+  };
+  // bytes hashed = 1;
+  void clear_hashed() ;
+  const ::std::string& hashed() const;
+  template <typename Arg_ = const ::std::string&, typename... Args_>
+  void set_hashed(Arg_&& arg, Args_... args);
+  ::std::string* PROTOBUF_NONNULL mutable_hashed();
+  [[nodiscard]] ::std::string* PROTOBUF_NULLABLE release_hashed();
+  void set_allocated_hashed(::std::string* PROTOBUF_NULLABLE value);
+
+  private:
+  const ::std::string& _internal_hashed() const;
+  PROTOBUF_ALWAYS_INLINE void _internal_set_hashed(const ::std::string& value);
+  ::std::string* PROTOBUF_NONNULL _internal_mutable_hashed();
+
+  public:
+  // @@protoc_insertion_point(class_scope:palm.loquat.v1.MacComputeResponse)
+ private:
+  class _Internal;
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<0, 1,
+                                   0, 0,
+                                   2>
+      _table_;
+
+  friend class ::google::protobuf::MessageLite;
+  friend class ::google::protobuf::Arena;
+  template <typename T>
+  friend class ::google::protobuf::Arena::InternalHelper;
+  using InternalArenaConstructable_ = void;
+  using DestructorSkippable_ = void;
+  struct Impl_ {
+    inline explicit constexpr Impl_(::google::protobuf::internal::ConstantInitialized) noexcept;
+    inline explicit Impl_(
+        ::google::protobuf::internal::InternalVisibility visibility,
+        ::google::protobuf::Arena* PROTOBUF_NULLABLE arena);
+    inline explicit Impl_(
+        ::google::protobuf::internal::InternalVisibility visibility,
+        ::google::protobuf::Arena* PROTOBUF_NULLABLE arena, const Impl_& from,
+        const MacComputeResponse& from_msg);
+    ::google::protobuf::internal::HasBits<1> _has_bits_;
+    ::google::protobuf::internal::CachedSize _cached_size_;
+    ::google::protobuf::internal::ArenaStringPtr hashed_;
+    PROTOBUF_TSAN_DECLARE_MEMBER
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_loquat_2eproto;
+};
+
+extern const ::google::protobuf::internal::ClassDataFull MacComputeResponse_class_data_;
+// -------------------------------------------------------------------
+
+class MacComputeRequest final : public ::google::protobuf::Message
+/* @@protoc_insertion_point(class_definition:palm.loquat.v1.MacComputeRequest) */ {
+ public:
+  inline MacComputeRequest() : MacComputeRequest(nullptr) {}
+  ~MacComputeRequest() PROTOBUF_FINAL;
+
+#if defined(PROTOBUF_CUSTOM_VTABLE)
+  void operator delete(MacComputeRequest* PROTOBUF_NONNULL msg, ::std::destroying_delete_t) {
+    SharedDtor(*msg);
+    ::google::protobuf::internal::SizedDelete(msg, sizeof(MacComputeRequest));
+  }
+#endif
+
+  template <typename = void>
+  explicit PROTOBUF_CONSTEXPR MacComputeRequest(::google::protobuf::internal::ConstantInitialized);
+
+  inline MacComputeRequest(const MacComputeRequest& from) : MacComputeRequest(nullptr, from) {}
+  inline MacComputeRequest(MacComputeRequest&& from) noexcept
+      : MacComputeRequest(nullptr, ::std::move(from)) {}
+  inline MacComputeRequest& operator=(const MacComputeRequest& from) {
+    CopyFrom(from);
+    return *this;
+  }
+  inline MacComputeRequest& operator=(MacComputeRequest&& from) noexcept {
+    if (this == &from) return *this;
+    if (::google::protobuf::internal::CanMoveWithInternalSwap(GetArena(), from.GetArena())) {
+      InternalSwap(&from);
+    } else {
+      CopyFrom(from);
+    }
+    return *this;
+  }
+
+  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
+  }
+  inline ::google::protobuf::UnknownFieldSet* PROTOBUF_NONNULL mutable_unknown_fields()
+      ABSL_ATTRIBUTE_LIFETIME_BOUND {
+    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
+  }
+
+  static const ::google::protobuf::Descriptor* PROTOBUF_NONNULL descriptor() {
+    return GetDescriptor();
+  }
+  static const ::google::protobuf::Descriptor* PROTOBUF_NONNULL GetDescriptor() {
+    return default_instance().GetMetadata().descriptor;
+  }
+  static const ::google::protobuf::Reflection* PROTOBUF_NONNULL GetReflection() {
+    return default_instance().GetMetadata().reflection;
+  }
+  static const MacComputeRequest& default_instance() {
+    return *reinterpret_cast<const MacComputeRequest*>(
+        &_MacComputeRequest_default_instance_);
+  }
+  static constexpr int kIndexInFileMessages = 4;
+  friend void swap(MacComputeRequest& a, MacComputeRequest& b) { a.Swap(&b); }
+  inline void Swap(MacComputeRequest* PROTOBUF_NONNULL other) {
+    if (other == this) return;
+    if (::google::protobuf::internal::CanUseInternalSwap(GetArena(), other->GetArena())) {
+      InternalSwap(other);
+    } else {
+      ::google::protobuf::internal::GenericSwap(this, other);
+    }
+  }
+  void UnsafeArenaSwap(MacComputeRequest* PROTOBUF_NONNULL other) {
+    if (other == this) return;
+    ABSL_DCHECK(GetArena() == other->GetArena());
+    InternalSwap(other);
+  }
+
+  // implements Message ----------------------------------------------
+
+  MacComputeRequest* PROTOBUF_NONNULL New(::google::protobuf::Arena* PROTOBUF_NULLABLE arena = nullptr) const {
+    return ::google::protobuf::Message::DefaultConstruct<MacComputeRequest>(arena);
+  }
+  using ::google::protobuf::Message::CopyFrom;
+  void CopyFrom(const MacComputeRequest& from);
+  using ::google::protobuf::Message::MergeFrom;
+  void MergeFrom(const MacComputeRequest& from) { MacComputeRequest::MergeImpl(*this, from); }
+
+  private:
+  static void MergeImpl(::google::protobuf::MessageLite& to_msg,
+                        const ::google::protobuf::MessageLite& from_msg);
+
+  public:
+  bool IsInitialized() const {
+    return true;
+  }
+  ABSL_ATTRIBUTE_REINITIALIZES void Clear() PROTOBUF_FINAL;
+  #if defined(PROTOBUF_CUSTOM_VTABLE)
+  private:
+  static ::size_t ByteSizeLong(const ::google::protobuf::MessageLite& msg);
+  static ::uint8_t* PROTOBUF_NONNULL _InternalSerialize(
+      const ::google::protobuf::MessageLite& msg, ::uint8_t* PROTOBUF_NONNULL target,
+      ::google::protobuf::io::EpsCopyOutputStream* PROTOBUF_NONNULL stream);
+
+  public:
+  ::size_t ByteSizeLong() const { return ByteSizeLong(*this); }
+  ::uint8_t* PROTOBUF_NONNULL _InternalSerialize(
+      ::uint8_t* PROTOBUF_NONNULL target,
+      ::google::protobuf::io::EpsCopyOutputStream* PROTOBUF_NONNULL stream) const {
+    return _InternalSerialize(*this, target, stream);
+  }
+  #else   // PROTOBUF_CUSTOM_VTABLE
+  ::size_t ByteSizeLong() const final;
+  ::uint8_t* PROTOBUF_NONNULL _InternalSerialize(
+      ::uint8_t* PROTOBUF_NONNULL target,
+      ::google::protobuf::io::EpsCopyOutputStream* PROTOBUF_NONNULL stream) const final;
+  #endif  // PROTOBUF_CUSTOM_VTABLE
+  int GetCachedSize() const { return _impl_._cached_size_.Get(); }
+
+  private:
+  void SharedCtor(::google::protobuf::Arena* PROTOBUF_NULLABLE arena);
+  static void SharedDtor(MessageLite& self);
+  void InternalSwap(MacComputeRequest* PROTOBUF_NONNULL other);
+ private:
+  template <typename T>
+  friend ::absl::string_view(::google::protobuf::internal::GetAnyMessageName)();
+  static ::absl::string_view FullMessageName() { return "palm.loquat.v1.MacComputeRequest"; }
+
+  explicit MacComputeRequest(::google::protobuf::Arena* PROTOBUF_NULLABLE arena);
+  MacComputeRequest(::google::protobuf::Arena* PROTOBUF_NULLABLE arena, const MacComputeRequest& from);
+  MacComputeRequest(
+      ::google::protobuf::Arena* PROTOBUF_NULLABLE arena, MacComputeRequest&& from) noexcept
+      : MacComputeRequest(arena) {
+    *this = ::std::move(from);
+  }
+  const ::google::protobuf::internal::ClassData* PROTOBUF_NONNULL GetClassData() const PROTOBUF_FINAL;
+  static void* PROTOBUF_NONNULL PlacementNew_(
+      const void* PROTOBUF_NONNULL, void* PROTOBUF_NONNULL mem,
+      ::google::protobuf::Arena* PROTOBUF_NULLABLE arena);
+  static constexpr auto InternalNewImpl_();
+
+ public:
+  static constexpr auto InternalGenerateClassData_();
+
+  ::google::protobuf::Metadata GetMetadata() const;
+  // nested types ----------------------------------------------------
+
+  // accessors -------------------------------------------------------
+  enum : int {
+    kPlainFieldNumber = 1,
+  };
+  // bytes plain = 1;
+  void clear_plain() ;
+  const ::std::string& plain() const;
+  template <typename Arg_ = const ::std::string&, typename... Args_>
+  void set_plain(Arg_&& arg, Args_... args);
+  ::std::string* PROTOBUF_NONNULL mutable_plain();
+  [[nodiscard]] ::std::string* PROTOBUF_NULLABLE release_plain();
+  void set_allocated_plain(::std::string* PROTOBUF_NULLABLE value);
+
+  private:
+  const ::std::string& _internal_plain() const;
+  PROTOBUF_ALWAYS_INLINE void _internal_set_plain(const ::std::string& value);
+  ::std::string* PROTOBUF_NONNULL _internal_mutable_plain();
+
+  public:
+  // @@protoc_insertion_point(class_scope:palm.loquat.v1.MacComputeRequest)
+ private:
+  class _Internal;
+  friend class ::google::protobuf::internal::TcParser;
+  static const ::google::protobuf::internal::TcParseTable<0, 1,
+                                   0, 0,
+                                   2>
+      _table_;
+
+  friend class ::google::protobuf::MessageLite;
+  friend class ::google::protobuf::Arena;
+  template <typename T>
+  friend class ::google::protobuf::Arena::InternalHelper;
+  using InternalArenaConstructable_ = void;
+  using DestructorSkippable_ = void;
+  struct Impl_ {
+    inline explicit constexpr Impl_(::google::protobuf::internal::ConstantInitialized) noexcept;
+    inline explicit Impl_(
+        ::google::protobuf::internal::InternalVisibility visibility,
+        ::google::protobuf::Arena* PROTOBUF_NULLABLE arena);
+    inline explicit Impl_(
+        ::google::protobuf::internal::InternalVisibility visibility,
+        ::google::protobuf::Arena* PROTOBUF_NULLABLE arena, const Impl_& from,
+        const MacComputeRequest& from_msg);
+    ::google::protobuf::internal::HasBits<1> _has_bits_;
+    ::google::protobuf::internal::CachedSize _cached_size_;
+    ::google::protobuf::internal::ArenaStringPtr plain_;
+    PROTOBUF_TSAN_DECLARE_MEMBER
+  };
+  union { Impl_ _impl_; };
+  friend struct ::TableStruct_loquat_2eproto;
+};
+
+extern const ::google::protobuf::internal::ClassDataFull MacComputeRequest_class_data_;
 // -------------------------------------------------------------------
 
 class JwtVerifyResponse final : public ::google::protobuf::Message
@@ -571,30 +1173,30 @@ class JwtVerifyRequest final : public ::google::protobuf::Message
 extern const ::google::protobuf::internal::ClassDataFull JwtVerifyRequest_class_data_;
 // -------------------------------------------------------------------
 
-class JwtSignResponse final : public ::google::protobuf::Message
-/* @@protoc_insertion_point(class_definition:palm.loquat.v1.JwtSignResponse) */ {
+class JwtComputeResponse final : public ::google::protobuf::Message
+/* @@protoc_insertion_point(class_definition:palm.loquat.v1.JwtComputeResponse) */ {
  public:
-  inline JwtSignResponse() : JwtSignResponse(nullptr) {}
-  ~JwtSignResponse() PROTOBUF_FINAL;
+  inline JwtComputeResponse() : JwtComputeResponse(nullptr) {}
+  ~JwtComputeResponse() PROTOBUF_FINAL;
 
 #if defined(PROTOBUF_CUSTOM_VTABLE)
-  void operator delete(JwtSignResponse* PROTOBUF_NONNULL msg, ::std::destroying_delete_t) {
+  void operator delete(JwtComputeResponse* PROTOBUF_NONNULL msg, ::std::destroying_delete_t) {
     SharedDtor(*msg);
-    ::google::protobuf::internal::SizedDelete(msg, sizeof(JwtSignResponse));
+    ::google::protobuf::internal::SizedDelete(msg, sizeof(JwtComputeResponse));
   }
 #endif
 
   template <typename = void>
-  explicit PROTOBUF_CONSTEXPR JwtSignResponse(::google::protobuf::internal::ConstantInitialized);
+  explicit PROTOBUF_CONSTEXPR JwtComputeResponse(::google::protobuf::internal::ConstantInitialized);
 
-  inline JwtSignResponse(const JwtSignResponse& from) : JwtSignResponse(nullptr, from) {}
-  inline JwtSignResponse(JwtSignResponse&& from) noexcept
-      : JwtSignResponse(nullptr, ::std::move(from)) {}
-  inline JwtSignResponse& operator=(const JwtSignResponse& from) {
+  inline JwtComputeResponse(const JwtComputeResponse& from) : JwtComputeResponse(nullptr, from) {}
+  inline JwtComputeResponse(JwtComputeResponse&& from) noexcept
+      : JwtComputeResponse(nullptr, ::std::move(from)) {}
+  inline JwtComputeResponse& operator=(const JwtComputeResponse& from) {
     CopyFrom(from);
     return *this;
   }
-  inline JwtSignResponse& operator=(JwtSignResponse&& from) noexcept {
+  inline JwtComputeResponse& operator=(JwtComputeResponse&& from) noexcept {
     if (this == &from) return *this;
     if (::google::protobuf::internal::CanMoveWithInternalSwap(GetArena(), from.GetArena())) {
       InternalSwap(&from);
@@ -622,13 +1224,13 @@ class JwtSignResponse final : public ::google::protobuf::Message
   static const ::google::protobuf::Reflection* PROTOBUF_NONNULL GetReflection() {
     return default_instance().GetMetadata().reflection;
   }
-  static const JwtSignResponse& default_instance() {
-    return *reinterpret_cast<const JwtSignResponse*>(
-        &_JwtSignResponse_default_instance_);
+  static const JwtComputeResponse& default_instance() {
+    return *reinterpret_cast<const JwtComputeResponse*>(
+        &_JwtComputeResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages = 3;
-  friend void swap(JwtSignResponse& a, JwtSignResponse& b) { a.Swap(&b); }
-  inline void Swap(JwtSignResponse* PROTOBUF_NONNULL other) {
+  friend void swap(JwtComputeResponse& a, JwtComputeResponse& b) { a.Swap(&b); }
+  inline void Swap(JwtComputeResponse* PROTOBUF_NONNULL other) {
     if (other == this) return;
     if (::google::protobuf::internal::CanUseInternalSwap(GetArena(), other->GetArena())) {
       InternalSwap(other);
@@ -636,7 +1238,7 @@ class JwtSignResponse final : public ::google::protobuf::Message
       ::google::protobuf::internal::GenericSwap(this, other);
     }
   }
-  void UnsafeArenaSwap(JwtSignResponse* PROTOBUF_NONNULL other) {
+  void UnsafeArenaSwap(JwtComputeResponse* PROTOBUF_NONNULL other) {
     if (other == this) return;
     ABSL_DCHECK(GetArena() == other->GetArena());
     InternalSwap(other);
@@ -644,13 +1246,13 @@ class JwtSignResponse final : public ::google::protobuf::Message
 
   // implements Message ----------------------------------------------
 
-  JwtSignResponse* PROTOBUF_NONNULL New(::google::protobuf::Arena* PROTOBUF_NULLABLE arena = nullptr) const {
-    return ::google::protobuf::Message::DefaultConstruct<JwtSignResponse>(arena);
+  JwtComputeResponse* PROTOBUF_NONNULL New(::google::protobuf::Arena* PROTOBUF_NULLABLE arena = nullptr) const {
+    return ::google::protobuf::Message::DefaultConstruct<JwtComputeResponse>(arena);
   }
   using ::google::protobuf::Message::CopyFrom;
-  void CopyFrom(const JwtSignResponse& from);
+  void CopyFrom(const JwtComputeResponse& from);
   using ::google::protobuf::Message::MergeFrom;
-  void MergeFrom(const JwtSignResponse& from) { JwtSignResponse::MergeImpl(*this, from); }
+  void MergeFrom(const JwtComputeResponse& from) { JwtComputeResponse::MergeImpl(*this, from); }
 
   private:
   static void MergeImpl(::google::protobuf::MessageLite& to_msg,
@@ -686,17 +1288,17 @@ class JwtSignResponse final : public ::google::protobuf::Message
   private:
   void SharedCtor(::google::protobuf::Arena* PROTOBUF_NULLABLE arena);
   static void SharedDtor(MessageLite& self);
-  void InternalSwap(JwtSignResponse* PROTOBUF_NONNULL other);
+  void InternalSwap(JwtComputeResponse* PROTOBUF_NONNULL other);
  private:
   template <typename T>
   friend ::absl::string_view(::google::protobuf::internal::GetAnyMessageName)();
-  static ::absl::string_view FullMessageName() { return "palm.loquat.v1.JwtSignResponse"; }
+  static ::absl::string_view FullMessageName() { return "palm.loquat.v1.JwtComputeResponse"; }
 
-  explicit JwtSignResponse(::google::protobuf::Arena* PROTOBUF_NULLABLE arena);
-  JwtSignResponse(::google::protobuf::Arena* PROTOBUF_NULLABLE arena, const JwtSignResponse& from);
-  JwtSignResponse(
-      ::google::protobuf::Arena* PROTOBUF_NULLABLE arena, JwtSignResponse&& from) noexcept
-      : JwtSignResponse(arena) {
+  explicit JwtComputeResponse(::google::protobuf::Arena* PROTOBUF_NULLABLE arena);
+  JwtComputeResponse(::google::protobuf::Arena* PROTOBUF_NULLABLE arena, const JwtComputeResponse& from);
+  JwtComputeResponse(
+      ::google::protobuf::Arena* PROTOBUF_NULLABLE arena, JwtComputeResponse&& from) noexcept
+      : JwtComputeResponse(arena) {
     *this = ::std::move(from);
   }
   const ::google::protobuf::internal::ClassData* PROTOBUF_NONNULL GetClassData() const PROTOBUF_FINAL;
@@ -730,12 +1332,12 @@ class JwtSignResponse final : public ::google::protobuf::Message
   ::std::string* PROTOBUF_NONNULL _internal_mutable_token();
 
   public:
-  // @@protoc_insertion_point(class_scope:palm.loquat.v1.JwtSignResponse)
+  // @@protoc_insertion_point(class_scope:palm.loquat.v1.JwtComputeResponse)
  private:
   class _Internal;
   friend class ::google::protobuf::internal::TcParser;
   static const ::google::protobuf::internal::TcParseTable<0, 1,
-                                   0, 44,
+                                   0, 47,
                                    2>
       _table_;
 
@@ -753,7 +1355,7 @@ class JwtSignResponse final : public ::google::protobuf::Message
     inline explicit Impl_(
         ::google::protobuf::internal::InternalVisibility visibility,
         ::google::protobuf::Arena* PROTOBUF_NULLABLE arena, const Impl_& from,
-        const JwtSignResponse& from_msg);
+        const JwtComputeResponse& from_msg);
     ::google::protobuf::internal::HasBits<1> _has_bits_;
     ::google::protobuf::internal::CachedSize _cached_size_;
     ::google::protobuf::internal::ArenaStringPtr token_;
@@ -763,33 +1365,33 @@ class JwtSignResponse final : public ::google::protobuf::Message
   friend struct ::TableStruct_loquat_2eproto;
 };
 
-extern const ::google::protobuf::internal::ClassDataFull JwtSignResponse_class_data_;
+extern const ::google::protobuf::internal::ClassDataFull JwtComputeResponse_class_data_;
 // -------------------------------------------------------------------
 
-class JwtSignRequest final : public ::google::protobuf::Message
-/* @@protoc_insertion_point(class_definition:palm.loquat.v1.JwtSignRequest) */ {
+class JwtComputeRequest final : public ::google::protobuf::Message
+/* @@protoc_insertion_point(class_definition:palm.loquat.v1.JwtComputeRequest) */ {
  public:
-  inline JwtSignRequest() : JwtSignRequest(nullptr) {}
-  ~JwtSignRequest() PROTOBUF_FINAL;
+  inline JwtComputeRequest() : JwtComputeRequest(nullptr) {}
+  ~JwtComputeRequest() PROTOBUF_FINAL;
 
 #if defined(PROTOBUF_CUSTOM_VTABLE)
-  void operator delete(JwtSignRequest* PROTOBUF_NONNULL msg, ::std::destroying_delete_t) {
+  void operator delete(JwtComputeRequest* PROTOBUF_NONNULL msg, ::std::destroying_delete_t) {
     SharedDtor(*msg);
-    ::google::protobuf::internal::SizedDelete(msg, sizeof(JwtSignRequest));
+    ::google::protobuf::internal::SizedDelete(msg, sizeof(JwtComputeRequest));
   }
 #endif
 
   template <typename = void>
-  explicit PROTOBUF_CONSTEXPR JwtSignRequest(::google::protobuf::internal::ConstantInitialized);
+  explicit PROTOBUF_CONSTEXPR JwtComputeRequest(::google::protobuf::internal::ConstantInitialized);
 
-  inline JwtSignRequest(const JwtSignRequest& from) : JwtSignRequest(nullptr, from) {}
-  inline JwtSignRequest(JwtSignRequest&& from) noexcept
-      : JwtSignRequest(nullptr, ::std::move(from)) {}
-  inline JwtSignRequest& operator=(const JwtSignRequest& from) {
+  inline JwtComputeRequest(const JwtComputeRequest& from) : JwtComputeRequest(nullptr, from) {}
+  inline JwtComputeRequest(JwtComputeRequest&& from) noexcept
+      : JwtComputeRequest(nullptr, ::std::move(from)) {}
+  inline JwtComputeRequest& operator=(const JwtComputeRequest& from) {
     CopyFrom(from);
     return *this;
   }
-  inline JwtSignRequest& operator=(JwtSignRequest&& from) noexcept {
+  inline JwtComputeRequest& operator=(JwtComputeRequest&& from) noexcept {
     if (this == &from) return *this;
     if (::google::protobuf::internal::CanMoveWithInternalSwap(GetArena(), from.GetArena())) {
       InternalSwap(&from);
@@ -817,13 +1419,13 @@ class JwtSignRequest final : public ::google::protobuf::Message
   static const ::google::protobuf::Reflection* PROTOBUF_NONNULL GetReflection() {
     return default_instance().GetMetadata().reflection;
   }
-  static const JwtSignRequest& default_instance() {
-    return *reinterpret_cast<const JwtSignRequest*>(
-        &_JwtSignRequest_default_instance_);
+  static const JwtComputeRequest& default_instance() {
+    return *reinterpret_cast<const JwtComputeRequest*>(
+        &_JwtComputeRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages = 2;
-  friend void swap(JwtSignRequest& a, JwtSignRequest& b) { a.Swap(&b); }
-  inline void Swap(JwtSignRequest* PROTOBUF_NONNULL other) {
+  friend void swap(JwtComputeRequest& a, JwtComputeRequest& b) { a.Swap(&b); }
+  inline void Swap(JwtComputeRequest* PROTOBUF_NONNULL other) {
     if (other == this) return;
     if (::google::protobuf::internal::CanUseInternalSwap(GetArena(), other->GetArena())) {
       InternalSwap(other);
@@ -831,7 +1433,7 @@ class JwtSignRequest final : public ::google::protobuf::Message
       ::google::protobuf::internal::GenericSwap(this, other);
     }
   }
-  void UnsafeArenaSwap(JwtSignRequest* PROTOBUF_NONNULL other) {
+  void UnsafeArenaSwap(JwtComputeRequest* PROTOBUF_NONNULL other) {
     if (other == this) return;
     ABSL_DCHECK(GetArena() == other->GetArena());
     InternalSwap(other);
@@ -839,13 +1441,13 @@ class JwtSignRequest final : public ::google::protobuf::Message
 
   // implements Message ----------------------------------------------
 
-  JwtSignRequest* PROTOBUF_NONNULL New(::google::protobuf::Arena* PROTOBUF_NULLABLE arena = nullptr) const {
-    return ::google::protobuf::Message::DefaultConstruct<JwtSignRequest>(arena);
+  JwtComputeRequest* PROTOBUF_NONNULL New(::google::protobuf::Arena* PROTOBUF_NULLABLE arena = nullptr) const {
+    return ::google::protobuf::Message::DefaultConstruct<JwtComputeRequest>(arena);
   }
   using ::google::protobuf::Message::CopyFrom;
-  void CopyFrom(const JwtSignRequest& from);
+  void CopyFrom(const JwtComputeRequest& from);
   using ::google::protobuf::Message::MergeFrom;
-  void MergeFrom(const JwtSignRequest& from) { JwtSignRequest::MergeImpl(*this, from); }
+  void MergeFrom(const JwtComputeRequest& from) { JwtComputeRequest::MergeImpl(*this, from); }
 
   private:
   static void MergeImpl(::google::protobuf::MessageLite& to_msg,
@@ -881,17 +1483,17 @@ class JwtSignRequest final : public ::google::protobuf::Message
   private:
   void SharedCtor(::google::protobuf::Arena* PROTOBUF_NULLABLE arena);
   static void SharedDtor(MessageLite& self);
-  void InternalSwap(JwtSignRequest* PROTOBUF_NONNULL other);
+  void InternalSwap(JwtComputeRequest* PROTOBUF_NONNULL other);
  private:
   template <typename T>
   friend ::absl::string_view(::google::protobuf::internal::GetAnyMessageName)();
-  static ::absl::string_view FullMessageName() { return "palm.loquat.v1.JwtSignRequest"; }
+  static ::absl::string_view FullMessageName() { return "palm.loquat.v1.JwtComputeRequest"; }
 
-  explicit JwtSignRequest(::google::protobuf::Arena* PROTOBUF_NULLABLE arena);
-  JwtSignRequest(::google::protobuf::Arena* PROTOBUF_NULLABLE arena, const JwtSignRequest& from);
-  JwtSignRequest(
-      ::google::protobuf::Arena* PROTOBUF_NULLABLE arena, JwtSignRequest&& from) noexcept
-      : JwtSignRequest(arena) {
+  explicit JwtComputeRequest(::google::protobuf::Arena* PROTOBUF_NULLABLE arena);
+  JwtComputeRequest(::google::protobuf::Arena* PROTOBUF_NULLABLE arena, const JwtComputeRequest& from);
+  JwtComputeRequest(
+      ::google::protobuf::Arena* PROTOBUF_NULLABLE arena, JwtComputeRequest&& from) noexcept
+      : JwtComputeRequest(arena) {
     *this = ::std::move(from);
   }
   const ::google::protobuf::internal::ClassData* PROTOBUF_NONNULL GetClassData() const PROTOBUF_FINAL;
@@ -1048,12 +1650,12 @@ class JwtSignRequest final : public ::google::protobuf::Message
   void _internal_set_expired_at(::int64_t value);
 
   public:
-  // @@protoc_insertion_point(class_scope:palm.loquat.v1.JwtSignRequest)
+  // @@protoc_insertion_point(class_scope:palm.loquat.v1.JwtComputeRequest)
  private:
   class _Internal;
   friend class ::google::protobuf::internal::TcParser;
   static const ::google::protobuf::internal::TcParseTable<4, 9,
-                                   0, 80,
+                                   0, 83,
                                    2>
       _table_;
 
@@ -1071,7 +1673,7 @@ class JwtSignRequest final : public ::google::protobuf::Message
     inline explicit Impl_(
         ::google::protobuf::internal::InternalVisibility visibility,
         ::google::protobuf::Arena* PROTOBUF_NULLABLE arena, const Impl_& from,
-        const JwtSignRequest& from_msg);
+        const JwtComputeRequest& from_msg);
     ::google::protobuf::internal::HasBits<1> _has_bits_;
     ::google::protobuf::internal::CachedSize _cached_size_;
     ::google::protobuf::RepeatedPtrField<::std::string> audiences_;
@@ -1089,609 +1691,7 @@ class JwtSignRequest final : public ::google::protobuf::Message
   friend struct ::TableStruct_loquat_2eproto;
 };
 
-extern const ::google::protobuf::internal::ClassDataFull JwtSignRequest_class_data_;
-// -------------------------------------------------------------------
-
-class HMacVerifyRequest final : public ::google::protobuf::Message
-/* @@protoc_insertion_point(class_definition:palm.loquat.v1.HMacVerifyRequest) */ {
- public:
-  inline HMacVerifyRequest() : HMacVerifyRequest(nullptr) {}
-  ~HMacVerifyRequest() PROTOBUF_FINAL;
-
-#if defined(PROTOBUF_CUSTOM_VTABLE)
-  void operator delete(HMacVerifyRequest* PROTOBUF_NONNULL msg, ::std::destroying_delete_t) {
-    SharedDtor(*msg);
-    ::google::protobuf::internal::SizedDelete(msg, sizeof(HMacVerifyRequest));
-  }
-#endif
-
-  template <typename = void>
-  explicit PROTOBUF_CONSTEXPR HMacVerifyRequest(::google::protobuf::internal::ConstantInitialized);
-
-  inline HMacVerifyRequest(const HMacVerifyRequest& from) : HMacVerifyRequest(nullptr, from) {}
-  inline HMacVerifyRequest(HMacVerifyRequest&& from) noexcept
-      : HMacVerifyRequest(nullptr, ::std::move(from)) {}
-  inline HMacVerifyRequest& operator=(const HMacVerifyRequest& from) {
-    CopyFrom(from);
-    return *this;
-  }
-  inline HMacVerifyRequest& operator=(HMacVerifyRequest&& from) noexcept {
-    if (this == &from) return *this;
-    if (::google::protobuf::internal::CanMoveWithInternalSwap(GetArena(), from.GetArena())) {
-      InternalSwap(&from);
-    } else {
-      CopyFrom(from);
-    }
-    return *this;
-  }
-
-  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
-      ABSL_ATTRIBUTE_LIFETIME_BOUND {
-    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
-  }
-  inline ::google::protobuf::UnknownFieldSet* PROTOBUF_NONNULL mutable_unknown_fields()
-      ABSL_ATTRIBUTE_LIFETIME_BOUND {
-    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
-  }
-
-  static const ::google::protobuf::Descriptor* PROTOBUF_NONNULL descriptor() {
-    return GetDescriptor();
-  }
-  static const ::google::protobuf::Descriptor* PROTOBUF_NONNULL GetDescriptor() {
-    return default_instance().GetMetadata().descriptor;
-  }
-  static const ::google::protobuf::Reflection* PROTOBUF_NONNULL GetReflection() {
-    return default_instance().GetMetadata().reflection;
-  }
-  static const HMacVerifyRequest& default_instance() {
-    return *reinterpret_cast<const HMacVerifyRequest*>(
-        &_HMacVerifyRequest_default_instance_);
-  }
-  static constexpr int kIndexInFileMessages = 6;
-  friend void swap(HMacVerifyRequest& a, HMacVerifyRequest& b) { a.Swap(&b); }
-  inline void Swap(HMacVerifyRequest* PROTOBUF_NONNULL other) {
-    if (other == this) return;
-    if (::google::protobuf::internal::CanUseInternalSwap(GetArena(), other->GetArena())) {
-      InternalSwap(other);
-    } else {
-      ::google::protobuf::internal::GenericSwap(this, other);
-    }
-  }
-  void UnsafeArenaSwap(HMacVerifyRequest* PROTOBUF_NONNULL other) {
-    if (other == this) return;
-    ABSL_DCHECK(GetArena() == other->GetArena());
-    InternalSwap(other);
-  }
-
-  // implements Message ----------------------------------------------
-
-  HMacVerifyRequest* PROTOBUF_NONNULL New(::google::protobuf::Arena* PROTOBUF_NULLABLE arena = nullptr) const {
-    return ::google::protobuf::Message::DefaultConstruct<HMacVerifyRequest>(arena);
-  }
-  using ::google::protobuf::Message::CopyFrom;
-  void CopyFrom(const HMacVerifyRequest& from);
-  using ::google::protobuf::Message::MergeFrom;
-  void MergeFrom(const HMacVerifyRequest& from) { HMacVerifyRequest::MergeImpl(*this, from); }
-
-  private:
-  static void MergeImpl(::google::protobuf::MessageLite& to_msg,
-                        const ::google::protobuf::MessageLite& from_msg);
-
-  public:
-  bool IsInitialized() const {
-    return true;
-  }
-  ABSL_ATTRIBUTE_REINITIALIZES void Clear() PROTOBUF_FINAL;
-  #if defined(PROTOBUF_CUSTOM_VTABLE)
-  private:
-  static ::size_t ByteSizeLong(const ::google::protobuf::MessageLite& msg);
-  static ::uint8_t* PROTOBUF_NONNULL _InternalSerialize(
-      const ::google::protobuf::MessageLite& msg, ::uint8_t* PROTOBUF_NONNULL target,
-      ::google::protobuf::io::EpsCopyOutputStream* PROTOBUF_NONNULL stream);
-
-  public:
-  ::size_t ByteSizeLong() const { return ByteSizeLong(*this); }
-  ::uint8_t* PROTOBUF_NONNULL _InternalSerialize(
-      ::uint8_t* PROTOBUF_NONNULL target,
-      ::google::protobuf::io::EpsCopyOutputStream* PROTOBUF_NONNULL stream) const {
-    return _InternalSerialize(*this, target, stream);
-  }
-  #else   // PROTOBUF_CUSTOM_VTABLE
-  ::size_t ByteSizeLong() const final;
-  ::uint8_t* PROTOBUF_NONNULL _InternalSerialize(
-      ::uint8_t* PROTOBUF_NONNULL target,
-      ::google::protobuf::io::EpsCopyOutputStream* PROTOBUF_NONNULL stream) const final;
-  #endif  // PROTOBUF_CUSTOM_VTABLE
-  int GetCachedSize() const { return _impl_._cached_size_.Get(); }
-
-  private:
-  void SharedCtor(::google::protobuf::Arena* PROTOBUF_NULLABLE arena);
-  static void SharedDtor(MessageLite& self);
-  void InternalSwap(HMacVerifyRequest* PROTOBUF_NONNULL other);
- private:
-  template <typename T>
-  friend ::absl::string_view(::google::protobuf::internal::GetAnyMessageName)();
-  static ::absl::string_view FullMessageName() { return "palm.loquat.v1.HMacVerifyRequest"; }
-
-  explicit HMacVerifyRequest(::google::protobuf::Arena* PROTOBUF_NULLABLE arena);
-  HMacVerifyRequest(::google::protobuf::Arena* PROTOBUF_NULLABLE arena, const HMacVerifyRequest& from);
-  HMacVerifyRequest(
-      ::google::protobuf::Arena* PROTOBUF_NULLABLE arena, HMacVerifyRequest&& from) noexcept
-      : HMacVerifyRequest(arena) {
-    *this = ::std::move(from);
-  }
-  const ::google::protobuf::internal::ClassData* PROTOBUF_NONNULL GetClassData() const PROTOBUF_FINAL;
-  static void* PROTOBUF_NONNULL PlacementNew_(
-      const void* PROTOBUF_NONNULL, void* PROTOBUF_NONNULL mem,
-      ::google::protobuf::Arena* PROTOBUF_NULLABLE arena);
-  static constexpr auto InternalNewImpl_();
-
- public:
-  static constexpr auto InternalGenerateClassData_();
-
-  ::google::protobuf::Metadata GetMetadata() const;
-  // nested types ----------------------------------------------------
-
-  // accessors -------------------------------------------------------
-  enum : int {
-    kHashedFieldNumber = 1,
-    kPlainFieldNumber = 2,
-  };
-  // bytes hashed = 1;
-  void clear_hashed() ;
-  const ::std::string& hashed() const;
-  template <typename Arg_ = const ::std::string&, typename... Args_>
-  void set_hashed(Arg_&& arg, Args_... args);
-  ::std::string* PROTOBUF_NONNULL mutable_hashed();
-  [[nodiscard]] ::std::string* PROTOBUF_NULLABLE release_hashed();
-  void set_allocated_hashed(::std::string* PROTOBUF_NULLABLE value);
-
-  private:
-  const ::std::string& _internal_hashed() const;
-  PROTOBUF_ALWAYS_INLINE void _internal_set_hashed(const ::std::string& value);
-  ::std::string* PROTOBUF_NONNULL _internal_mutable_hashed();
-
-  public:
-  // bytes plain = 2;
-  void clear_plain() ;
-  const ::std::string& plain() const;
-  template <typename Arg_ = const ::std::string&, typename... Args_>
-  void set_plain(Arg_&& arg, Args_... args);
-  ::std::string* PROTOBUF_NONNULL mutable_plain();
-  [[nodiscard]] ::std::string* PROTOBUF_NULLABLE release_plain();
-  void set_allocated_plain(::std::string* PROTOBUF_NULLABLE value);
-
-  private:
-  const ::std::string& _internal_plain() const;
-  PROTOBUF_ALWAYS_INLINE void _internal_set_plain(const ::std::string& value);
-  ::std::string* PROTOBUF_NONNULL _internal_mutable_plain();
-
-  public:
-  // @@protoc_insertion_point(class_scope:palm.loquat.v1.HMacVerifyRequest)
- private:
-  class _Internal;
-  friend class ::google::protobuf::internal::TcParser;
-  static const ::google::protobuf::internal::TcParseTable<1, 2,
-                                   0, 0,
-                                   2>
-      _table_;
-
-  friend class ::google::protobuf::MessageLite;
-  friend class ::google::protobuf::Arena;
-  template <typename T>
-  friend class ::google::protobuf::Arena::InternalHelper;
-  using InternalArenaConstructable_ = void;
-  using DestructorSkippable_ = void;
-  struct Impl_ {
-    inline explicit constexpr Impl_(::google::protobuf::internal::ConstantInitialized) noexcept;
-    inline explicit Impl_(
-        ::google::protobuf::internal::InternalVisibility visibility,
-        ::google::protobuf::Arena* PROTOBUF_NULLABLE arena);
-    inline explicit Impl_(
-        ::google::protobuf::internal::InternalVisibility visibility,
-        ::google::protobuf::Arena* PROTOBUF_NULLABLE arena, const Impl_& from,
-        const HMacVerifyRequest& from_msg);
-    ::google::protobuf::internal::HasBits<1> _has_bits_;
-    ::google::protobuf::internal::CachedSize _cached_size_;
-    ::google::protobuf::internal::ArenaStringPtr hashed_;
-    ::google::protobuf::internal::ArenaStringPtr plain_;
-    PROTOBUF_TSAN_DECLARE_MEMBER
-  };
-  union { Impl_ _impl_; };
-  friend struct ::TableStruct_loquat_2eproto;
-};
-
-extern const ::google::protobuf::internal::ClassDataFull HMacVerifyRequest_class_data_;
-// -------------------------------------------------------------------
-
-class HMacSignResponse final : public ::google::protobuf::Message
-/* @@protoc_insertion_point(class_definition:palm.loquat.v1.HMacSignResponse) */ {
- public:
-  inline HMacSignResponse() : HMacSignResponse(nullptr) {}
-  ~HMacSignResponse() PROTOBUF_FINAL;
-
-#if defined(PROTOBUF_CUSTOM_VTABLE)
-  void operator delete(HMacSignResponse* PROTOBUF_NONNULL msg, ::std::destroying_delete_t) {
-    SharedDtor(*msg);
-    ::google::protobuf::internal::SizedDelete(msg, sizeof(HMacSignResponse));
-  }
-#endif
-
-  template <typename = void>
-  explicit PROTOBUF_CONSTEXPR HMacSignResponse(::google::protobuf::internal::ConstantInitialized);
-
-  inline HMacSignResponse(const HMacSignResponse& from) : HMacSignResponse(nullptr, from) {}
-  inline HMacSignResponse(HMacSignResponse&& from) noexcept
-      : HMacSignResponse(nullptr, ::std::move(from)) {}
-  inline HMacSignResponse& operator=(const HMacSignResponse& from) {
-    CopyFrom(from);
-    return *this;
-  }
-  inline HMacSignResponse& operator=(HMacSignResponse&& from) noexcept {
-    if (this == &from) return *this;
-    if (::google::protobuf::internal::CanMoveWithInternalSwap(GetArena(), from.GetArena())) {
-      InternalSwap(&from);
-    } else {
-      CopyFrom(from);
-    }
-    return *this;
-  }
-
-  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
-      ABSL_ATTRIBUTE_LIFETIME_BOUND {
-    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
-  }
-  inline ::google::protobuf::UnknownFieldSet* PROTOBUF_NONNULL mutable_unknown_fields()
-      ABSL_ATTRIBUTE_LIFETIME_BOUND {
-    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
-  }
-
-  static const ::google::protobuf::Descriptor* PROTOBUF_NONNULL descriptor() {
-    return GetDescriptor();
-  }
-  static const ::google::protobuf::Descriptor* PROTOBUF_NONNULL GetDescriptor() {
-    return default_instance().GetMetadata().descriptor;
-  }
-  static const ::google::protobuf::Reflection* PROTOBUF_NONNULL GetReflection() {
-    return default_instance().GetMetadata().reflection;
-  }
-  static const HMacSignResponse& default_instance() {
-    return *reinterpret_cast<const HMacSignResponse*>(
-        &_HMacSignResponse_default_instance_);
-  }
-  static constexpr int kIndexInFileMessages = 5;
-  friend void swap(HMacSignResponse& a, HMacSignResponse& b) { a.Swap(&b); }
-  inline void Swap(HMacSignResponse* PROTOBUF_NONNULL other) {
-    if (other == this) return;
-    if (::google::protobuf::internal::CanUseInternalSwap(GetArena(), other->GetArena())) {
-      InternalSwap(other);
-    } else {
-      ::google::protobuf::internal::GenericSwap(this, other);
-    }
-  }
-  void UnsafeArenaSwap(HMacSignResponse* PROTOBUF_NONNULL other) {
-    if (other == this) return;
-    ABSL_DCHECK(GetArena() == other->GetArena());
-    InternalSwap(other);
-  }
-
-  // implements Message ----------------------------------------------
-
-  HMacSignResponse* PROTOBUF_NONNULL New(::google::protobuf::Arena* PROTOBUF_NULLABLE arena = nullptr) const {
-    return ::google::protobuf::Message::DefaultConstruct<HMacSignResponse>(arena);
-  }
-  using ::google::protobuf::Message::CopyFrom;
-  void CopyFrom(const HMacSignResponse& from);
-  using ::google::protobuf::Message::MergeFrom;
-  void MergeFrom(const HMacSignResponse& from) { HMacSignResponse::MergeImpl(*this, from); }
-
-  private:
-  static void MergeImpl(::google::protobuf::MessageLite& to_msg,
-                        const ::google::protobuf::MessageLite& from_msg);
-
-  public:
-  bool IsInitialized() const {
-    return true;
-  }
-  ABSL_ATTRIBUTE_REINITIALIZES void Clear() PROTOBUF_FINAL;
-  #if defined(PROTOBUF_CUSTOM_VTABLE)
-  private:
-  static ::size_t ByteSizeLong(const ::google::protobuf::MessageLite& msg);
-  static ::uint8_t* PROTOBUF_NONNULL _InternalSerialize(
-      const ::google::protobuf::MessageLite& msg, ::uint8_t* PROTOBUF_NONNULL target,
-      ::google::protobuf::io::EpsCopyOutputStream* PROTOBUF_NONNULL stream);
-
-  public:
-  ::size_t ByteSizeLong() const { return ByteSizeLong(*this); }
-  ::uint8_t* PROTOBUF_NONNULL _InternalSerialize(
-      ::uint8_t* PROTOBUF_NONNULL target,
-      ::google::protobuf::io::EpsCopyOutputStream* PROTOBUF_NONNULL stream) const {
-    return _InternalSerialize(*this, target, stream);
-  }
-  #else   // PROTOBUF_CUSTOM_VTABLE
-  ::size_t ByteSizeLong() const final;
-  ::uint8_t* PROTOBUF_NONNULL _InternalSerialize(
-      ::uint8_t* PROTOBUF_NONNULL target,
-      ::google::protobuf::io::EpsCopyOutputStream* PROTOBUF_NONNULL stream) const final;
-  #endif  // PROTOBUF_CUSTOM_VTABLE
-  int GetCachedSize() const { return _impl_._cached_size_.Get(); }
-
-  private:
-  void SharedCtor(::google::protobuf::Arena* PROTOBUF_NULLABLE arena);
-  static void SharedDtor(MessageLite& self);
-  void InternalSwap(HMacSignResponse* PROTOBUF_NONNULL other);
- private:
-  template <typename T>
-  friend ::absl::string_view(::google::protobuf::internal::GetAnyMessageName)();
-  static ::absl::string_view FullMessageName() { return "palm.loquat.v1.HMacSignResponse"; }
-
-  explicit HMacSignResponse(::google::protobuf::Arena* PROTOBUF_NULLABLE arena);
-  HMacSignResponse(::google::protobuf::Arena* PROTOBUF_NULLABLE arena, const HMacSignResponse& from);
-  HMacSignResponse(
-      ::google::protobuf::Arena* PROTOBUF_NULLABLE arena, HMacSignResponse&& from) noexcept
-      : HMacSignResponse(arena) {
-    *this = ::std::move(from);
-  }
-  const ::google::protobuf::internal::ClassData* PROTOBUF_NONNULL GetClassData() const PROTOBUF_FINAL;
-  static void* PROTOBUF_NONNULL PlacementNew_(
-      const void* PROTOBUF_NONNULL, void* PROTOBUF_NONNULL mem,
-      ::google::protobuf::Arena* PROTOBUF_NULLABLE arena);
-  static constexpr auto InternalNewImpl_();
-
- public:
-  static constexpr auto InternalGenerateClassData_();
-
-  ::google::protobuf::Metadata GetMetadata() const;
-  // nested types ----------------------------------------------------
-
-  // accessors -------------------------------------------------------
-  enum : int {
-    kHashedFieldNumber = 1,
-  };
-  // bytes hashed = 1;
-  void clear_hashed() ;
-  const ::std::string& hashed() const;
-  template <typename Arg_ = const ::std::string&, typename... Args_>
-  void set_hashed(Arg_&& arg, Args_... args);
-  ::std::string* PROTOBUF_NONNULL mutable_hashed();
-  [[nodiscard]] ::std::string* PROTOBUF_NULLABLE release_hashed();
-  void set_allocated_hashed(::std::string* PROTOBUF_NULLABLE value);
-
-  private:
-  const ::std::string& _internal_hashed() const;
-  PROTOBUF_ALWAYS_INLINE void _internal_set_hashed(const ::std::string& value);
-  ::std::string* PROTOBUF_NONNULL _internal_mutable_hashed();
-
-  public:
-  // @@protoc_insertion_point(class_scope:palm.loquat.v1.HMacSignResponse)
- private:
-  class _Internal;
-  friend class ::google::protobuf::internal::TcParser;
-  static const ::google::protobuf::internal::TcParseTable<0, 1,
-                                   0, 0,
-                                   2>
-      _table_;
-
-  friend class ::google::protobuf::MessageLite;
-  friend class ::google::protobuf::Arena;
-  template <typename T>
-  friend class ::google::protobuf::Arena::InternalHelper;
-  using InternalArenaConstructable_ = void;
-  using DestructorSkippable_ = void;
-  struct Impl_ {
-    inline explicit constexpr Impl_(::google::protobuf::internal::ConstantInitialized) noexcept;
-    inline explicit Impl_(
-        ::google::protobuf::internal::InternalVisibility visibility,
-        ::google::protobuf::Arena* PROTOBUF_NULLABLE arena);
-    inline explicit Impl_(
-        ::google::protobuf::internal::InternalVisibility visibility,
-        ::google::protobuf::Arena* PROTOBUF_NULLABLE arena, const Impl_& from,
-        const HMacSignResponse& from_msg);
-    ::google::protobuf::internal::HasBits<1> _has_bits_;
-    ::google::protobuf::internal::CachedSize _cached_size_;
-    ::google::protobuf::internal::ArenaStringPtr hashed_;
-    PROTOBUF_TSAN_DECLARE_MEMBER
-  };
-  union { Impl_ _impl_; };
-  friend struct ::TableStruct_loquat_2eproto;
-};
-
-extern const ::google::protobuf::internal::ClassDataFull HMacSignResponse_class_data_;
-// -------------------------------------------------------------------
-
-class HMacSignRequest final : public ::google::protobuf::Message
-/* @@protoc_insertion_point(class_definition:palm.loquat.v1.HMacSignRequest) */ {
- public:
-  inline HMacSignRequest() : HMacSignRequest(nullptr) {}
-  ~HMacSignRequest() PROTOBUF_FINAL;
-
-#if defined(PROTOBUF_CUSTOM_VTABLE)
-  void operator delete(HMacSignRequest* PROTOBUF_NONNULL msg, ::std::destroying_delete_t) {
-    SharedDtor(*msg);
-    ::google::protobuf::internal::SizedDelete(msg, sizeof(HMacSignRequest));
-  }
-#endif
-
-  template <typename = void>
-  explicit PROTOBUF_CONSTEXPR HMacSignRequest(::google::protobuf::internal::ConstantInitialized);
-
-  inline HMacSignRequest(const HMacSignRequest& from) : HMacSignRequest(nullptr, from) {}
-  inline HMacSignRequest(HMacSignRequest&& from) noexcept
-      : HMacSignRequest(nullptr, ::std::move(from)) {}
-  inline HMacSignRequest& operator=(const HMacSignRequest& from) {
-    CopyFrom(from);
-    return *this;
-  }
-  inline HMacSignRequest& operator=(HMacSignRequest&& from) noexcept {
-    if (this == &from) return *this;
-    if (::google::protobuf::internal::CanMoveWithInternalSwap(GetArena(), from.GetArena())) {
-      InternalSwap(&from);
-    } else {
-      CopyFrom(from);
-    }
-    return *this;
-  }
-
-  inline const ::google::protobuf::UnknownFieldSet& unknown_fields() const
-      ABSL_ATTRIBUTE_LIFETIME_BOUND {
-    return _internal_metadata_.unknown_fields<::google::protobuf::UnknownFieldSet>(::google::protobuf::UnknownFieldSet::default_instance);
-  }
-  inline ::google::protobuf::UnknownFieldSet* PROTOBUF_NONNULL mutable_unknown_fields()
-      ABSL_ATTRIBUTE_LIFETIME_BOUND {
-    return _internal_metadata_.mutable_unknown_fields<::google::protobuf::UnknownFieldSet>();
-  }
-
-  static const ::google::protobuf::Descriptor* PROTOBUF_NONNULL descriptor() {
-    return GetDescriptor();
-  }
-  static const ::google::protobuf::Descriptor* PROTOBUF_NONNULL GetDescriptor() {
-    return default_instance().GetMetadata().descriptor;
-  }
-  static const ::google::protobuf::Reflection* PROTOBUF_NONNULL GetReflection() {
-    return default_instance().GetMetadata().reflection;
-  }
-  static const HMacSignRequest& default_instance() {
-    return *reinterpret_cast<const HMacSignRequest*>(
-        &_HMacSignRequest_default_instance_);
-  }
-  static constexpr int kIndexInFileMessages = 4;
-  friend void swap(HMacSignRequest& a, HMacSignRequest& b) { a.Swap(&b); }
-  inline void Swap(HMacSignRequest* PROTOBUF_NONNULL other) {
-    if (other == this) return;
-    if (::google::protobuf::internal::CanUseInternalSwap(GetArena(), other->GetArena())) {
-      InternalSwap(other);
-    } else {
-      ::google::protobuf::internal::GenericSwap(this, other);
-    }
-  }
-  void UnsafeArenaSwap(HMacSignRequest* PROTOBUF_NONNULL other) {
-    if (other == this) return;
-    ABSL_DCHECK(GetArena() == other->GetArena());
-    InternalSwap(other);
-  }
-
-  // implements Message ----------------------------------------------
-
-  HMacSignRequest* PROTOBUF_NONNULL New(::google::protobuf::Arena* PROTOBUF_NULLABLE arena = nullptr) const {
-    return ::google::protobuf::Message::DefaultConstruct<HMacSignRequest>(arena);
-  }
-  using ::google::protobuf::Message::CopyFrom;
-  void CopyFrom(const HMacSignRequest& from);
-  using ::google::protobuf::Message::MergeFrom;
-  void MergeFrom(const HMacSignRequest& from) { HMacSignRequest::MergeImpl(*this, from); }
-
-  private:
-  static void MergeImpl(::google::protobuf::MessageLite& to_msg,
-                        const ::google::protobuf::MessageLite& from_msg);
-
-  public:
-  bool IsInitialized() const {
-    return true;
-  }
-  ABSL_ATTRIBUTE_REINITIALIZES void Clear() PROTOBUF_FINAL;
-  #if defined(PROTOBUF_CUSTOM_VTABLE)
-  private:
-  static ::size_t ByteSizeLong(const ::google::protobuf::MessageLite& msg);
-  static ::uint8_t* PROTOBUF_NONNULL _InternalSerialize(
-      const ::google::protobuf::MessageLite& msg, ::uint8_t* PROTOBUF_NONNULL target,
-      ::google::protobuf::io::EpsCopyOutputStream* PROTOBUF_NONNULL stream);
-
-  public:
-  ::size_t ByteSizeLong() const { return ByteSizeLong(*this); }
-  ::uint8_t* PROTOBUF_NONNULL _InternalSerialize(
-      ::uint8_t* PROTOBUF_NONNULL target,
-      ::google::protobuf::io::EpsCopyOutputStream* PROTOBUF_NONNULL stream) const {
-    return _InternalSerialize(*this, target, stream);
-  }
-  #else   // PROTOBUF_CUSTOM_VTABLE
-  ::size_t ByteSizeLong() const final;
-  ::uint8_t* PROTOBUF_NONNULL _InternalSerialize(
-      ::uint8_t* PROTOBUF_NONNULL target,
-      ::google::protobuf::io::EpsCopyOutputStream* PROTOBUF_NONNULL stream) const final;
-  #endif  // PROTOBUF_CUSTOM_VTABLE
-  int GetCachedSize() const { return _impl_._cached_size_.Get(); }
-
-  private:
-  void SharedCtor(::google::protobuf::Arena* PROTOBUF_NULLABLE arena);
-  static void SharedDtor(MessageLite& self);
-  void InternalSwap(HMacSignRequest* PROTOBUF_NONNULL other);
- private:
-  template <typename T>
-  friend ::absl::string_view(::google::protobuf::internal::GetAnyMessageName)();
-  static ::absl::string_view FullMessageName() { return "palm.loquat.v1.HMacSignRequest"; }
-
-  explicit HMacSignRequest(::google::protobuf::Arena* PROTOBUF_NULLABLE arena);
-  HMacSignRequest(::google::protobuf::Arena* PROTOBUF_NULLABLE arena, const HMacSignRequest& from);
-  HMacSignRequest(
-      ::google::protobuf::Arena* PROTOBUF_NULLABLE arena, HMacSignRequest&& from) noexcept
-      : HMacSignRequest(arena) {
-    *this = ::std::move(from);
-  }
-  const ::google::protobuf::internal::ClassData* PROTOBUF_NONNULL GetClassData() const PROTOBUF_FINAL;
-  static void* PROTOBUF_NONNULL PlacementNew_(
-      const void* PROTOBUF_NONNULL, void* PROTOBUF_NONNULL mem,
-      ::google::protobuf::Arena* PROTOBUF_NULLABLE arena);
-  static constexpr auto InternalNewImpl_();
-
- public:
-  static constexpr auto InternalGenerateClassData_();
-
-  ::google::protobuf::Metadata GetMetadata() const;
-  // nested types ----------------------------------------------------
-
-  // accessors -------------------------------------------------------
-  enum : int {
-    kPlainFieldNumber = 1,
-  };
-  // bytes plain = 1;
-  void clear_plain() ;
-  const ::std::string& plain() const;
-  template <typename Arg_ = const ::std::string&, typename... Args_>
-  void set_plain(Arg_&& arg, Args_... args);
-  ::std::string* PROTOBUF_NONNULL mutable_plain();
-  [[nodiscard]] ::std::string* PROTOBUF_NULLABLE release_plain();
-  void set_allocated_plain(::std::string* PROTOBUF_NULLABLE value);
-
-  private:
-  const ::std::string& _internal_plain() const;
-  PROTOBUF_ALWAYS_INLINE void _internal_set_plain(const ::std::string& value);
-  ::std::string* PROTOBUF_NONNULL _internal_mutable_plain();
-
-  public:
-  // @@protoc_insertion_point(class_scope:palm.loquat.v1.HMacSignRequest)
- private:
-  class _Internal;
-  friend class ::google::protobuf::internal::TcParser;
-  static const ::google::protobuf::internal::TcParseTable<0, 1,
-                                   0, 0,
-                                   2>
-      _table_;
-
-  friend class ::google::protobuf::MessageLite;
-  friend class ::google::protobuf::Arena;
-  template <typename T>
-  friend class ::google::protobuf::Arena::InternalHelper;
-  using InternalArenaConstructable_ = void;
-  using DestructorSkippable_ = void;
-  struct Impl_ {
-    inline explicit constexpr Impl_(::google::protobuf::internal::ConstantInitialized) noexcept;
-    inline explicit Impl_(
-        ::google::protobuf::internal::InternalVisibility visibility,
-        ::google::protobuf::Arena* PROTOBUF_NULLABLE arena);
-    inline explicit Impl_(
-        ::google::protobuf::internal::InternalVisibility visibility,
-        ::google::protobuf::Arena* PROTOBUF_NULLABLE arena, const Impl_& from,
-        const HMacSignRequest& from_msg);
-    ::google::protobuf::internal::HasBits<1> _has_bits_;
-    ::google::protobuf::internal::CachedSize _cached_size_;
-    ::google::protobuf::internal::ArenaStringPtr plain_;
-    PROTOBUF_TSAN_DECLARE_MEMBER
-  };
-  union { Impl_ _impl_; };
-  friend struct ::TableStruct_loquat_2eproto;
-};
-
-extern const ::google::protobuf::internal::ClassDataFull HMacSignRequest_class_data_;
+extern const ::google::protobuf::internal::ClassDataFull JwtComputeRequest_class_data_;
 // -------------------------------------------------------------------
 
 class Argon2VerifyRequest final : public ::google::protobuf::Message
@@ -1906,30 +1906,30 @@ class Argon2VerifyRequest final : public ::google::protobuf::Message
 extern const ::google::protobuf::internal::ClassDataFull Argon2VerifyRequest_class_data_;
 // -------------------------------------------------------------------
 
-class Argon2SignResponse final : public ::google::protobuf::Message
-/* @@protoc_insertion_point(class_definition:palm.loquat.v1.Argon2SignResponse) */ {
+class Argon2ComputeResponse final : public ::google::protobuf::Message
+/* @@protoc_insertion_point(class_definition:palm.loquat.v1.Argon2ComputeResponse) */ {
  public:
-  inline Argon2SignResponse() : Argon2SignResponse(nullptr) {}
-  ~Argon2SignResponse() PROTOBUF_FINAL;
+  inline Argon2ComputeResponse() : Argon2ComputeResponse(nullptr) {}
+  ~Argon2ComputeResponse() PROTOBUF_FINAL;
 
 #if defined(PROTOBUF_CUSTOM_VTABLE)
-  void operator delete(Argon2SignResponse* PROTOBUF_NONNULL msg, ::std::destroying_delete_t) {
+  void operator delete(Argon2ComputeResponse* PROTOBUF_NONNULL msg, ::std::destroying_delete_t) {
     SharedDtor(*msg);
-    ::google::protobuf::internal::SizedDelete(msg, sizeof(Argon2SignResponse));
+    ::google::protobuf::internal::SizedDelete(msg, sizeof(Argon2ComputeResponse));
   }
 #endif
 
   template <typename = void>
-  explicit PROTOBUF_CONSTEXPR Argon2SignResponse(::google::protobuf::internal::ConstantInitialized);
+  explicit PROTOBUF_CONSTEXPR Argon2ComputeResponse(::google::protobuf::internal::ConstantInitialized);
 
-  inline Argon2SignResponse(const Argon2SignResponse& from) : Argon2SignResponse(nullptr, from) {}
-  inline Argon2SignResponse(Argon2SignResponse&& from) noexcept
-      : Argon2SignResponse(nullptr, ::std::move(from)) {}
-  inline Argon2SignResponse& operator=(const Argon2SignResponse& from) {
+  inline Argon2ComputeResponse(const Argon2ComputeResponse& from) : Argon2ComputeResponse(nullptr, from) {}
+  inline Argon2ComputeResponse(Argon2ComputeResponse&& from) noexcept
+      : Argon2ComputeResponse(nullptr, ::std::move(from)) {}
+  inline Argon2ComputeResponse& operator=(const Argon2ComputeResponse& from) {
     CopyFrom(from);
     return *this;
   }
-  inline Argon2SignResponse& operator=(Argon2SignResponse&& from) noexcept {
+  inline Argon2ComputeResponse& operator=(Argon2ComputeResponse&& from) noexcept {
     if (this == &from) return *this;
     if (::google::protobuf::internal::CanMoveWithInternalSwap(GetArena(), from.GetArena())) {
       InternalSwap(&from);
@@ -1957,13 +1957,13 @@ class Argon2SignResponse final : public ::google::protobuf::Message
   static const ::google::protobuf::Reflection* PROTOBUF_NONNULL GetReflection() {
     return default_instance().GetMetadata().reflection;
   }
-  static const Argon2SignResponse& default_instance() {
-    return *reinterpret_cast<const Argon2SignResponse*>(
-        &_Argon2SignResponse_default_instance_);
+  static const Argon2ComputeResponse& default_instance() {
+    return *reinterpret_cast<const Argon2ComputeResponse*>(
+        &_Argon2ComputeResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages = 12;
-  friend void swap(Argon2SignResponse& a, Argon2SignResponse& b) { a.Swap(&b); }
-  inline void Swap(Argon2SignResponse* PROTOBUF_NONNULL other) {
+  friend void swap(Argon2ComputeResponse& a, Argon2ComputeResponse& b) { a.Swap(&b); }
+  inline void Swap(Argon2ComputeResponse* PROTOBUF_NONNULL other) {
     if (other == this) return;
     if (::google::protobuf::internal::CanUseInternalSwap(GetArena(), other->GetArena())) {
       InternalSwap(other);
@@ -1971,7 +1971,7 @@ class Argon2SignResponse final : public ::google::protobuf::Message
       ::google::protobuf::internal::GenericSwap(this, other);
     }
   }
-  void UnsafeArenaSwap(Argon2SignResponse* PROTOBUF_NONNULL other) {
+  void UnsafeArenaSwap(Argon2ComputeResponse* PROTOBUF_NONNULL other) {
     if (other == this) return;
     ABSL_DCHECK(GetArena() == other->GetArena());
     InternalSwap(other);
@@ -1979,13 +1979,13 @@ class Argon2SignResponse final : public ::google::protobuf::Message
 
   // implements Message ----------------------------------------------
 
-  Argon2SignResponse* PROTOBUF_NONNULL New(::google::protobuf::Arena* PROTOBUF_NULLABLE arena = nullptr) const {
-    return ::google::protobuf::Message::DefaultConstruct<Argon2SignResponse>(arena);
+  Argon2ComputeResponse* PROTOBUF_NONNULL New(::google::protobuf::Arena* PROTOBUF_NULLABLE arena = nullptr) const {
+    return ::google::protobuf::Message::DefaultConstruct<Argon2ComputeResponse>(arena);
   }
   using ::google::protobuf::Message::CopyFrom;
-  void CopyFrom(const Argon2SignResponse& from);
+  void CopyFrom(const Argon2ComputeResponse& from);
   using ::google::protobuf::Message::MergeFrom;
-  void MergeFrom(const Argon2SignResponse& from) { Argon2SignResponse::MergeImpl(*this, from); }
+  void MergeFrom(const Argon2ComputeResponse& from) { Argon2ComputeResponse::MergeImpl(*this, from); }
 
   private:
   static void MergeImpl(::google::protobuf::MessageLite& to_msg,
@@ -2021,17 +2021,17 @@ class Argon2SignResponse final : public ::google::protobuf::Message
   private:
   void SharedCtor(::google::protobuf::Arena* PROTOBUF_NULLABLE arena);
   static void SharedDtor(MessageLite& self);
-  void InternalSwap(Argon2SignResponse* PROTOBUF_NONNULL other);
+  void InternalSwap(Argon2ComputeResponse* PROTOBUF_NONNULL other);
  private:
   template <typename T>
   friend ::absl::string_view(::google::protobuf::internal::GetAnyMessageName)();
-  static ::absl::string_view FullMessageName() { return "palm.loquat.v1.Argon2SignResponse"; }
+  static ::absl::string_view FullMessageName() { return "palm.loquat.v1.Argon2ComputeResponse"; }
 
-  explicit Argon2SignResponse(::google::protobuf::Arena* PROTOBUF_NULLABLE arena);
-  Argon2SignResponse(::google::protobuf::Arena* PROTOBUF_NULLABLE arena, const Argon2SignResponse& from);
-  Argon2SignResponse(
-      ::google::protobuf::Arena* PROTOBUF_NULLABLE arena, Argon2SignResponse&& from) noexcept
-      : Argon2SignResponse(arena) {
+  explicit Argon2ComputeResponse(::google::protobuf::Arena* PROTOBUF_NULLABLE arena);
+  Argon2ComputeResponse(::google::protobuf::Arena* PROTOBUF_NULLABLE arena, const Argon2ComputeResponse& from);
+  Argon2ComputeResponse(
+      ::google::protobuf::Arena* PROTOBUF_NULLABLE arena, Argon2ComputeResponse&& from) noexcept
+      : Argon2ComputeResponse(arena) {
     *this = ::std::move(from);
   }
   const ::google::protobuf::internal::ClassData* PROTOBUF_NONNULL GetClassData() const PROTOBUF_FINAL;
@@ -2065,12 +2065,12 @@ class Argon2SignResponse final : public ::google::protobuf::Message
   ::std::string* PROTOBUF_NONNULL _internal_mutable_hashed();
 
   public:
-  // @@protoc_insertion_point(class_scope:palm.loquat.v1.Argon2SignResponse)
+  // @@protoc_insertion_point(class_scope:palm.loquat.v1.Argon2ComputeResponse)
  private:
   class _Internal;
   friend class ::google::protobuf::internal::TcParser;
   static const ::google::protobuf::internal::TcParseTable<0, 1,
-                                   0, 48,
+                                   0, 51,
                                    2>
       _table_;
 
@@ -2088,7 +2088,7 @@ class Argon2SignResponse final : public ::google::protobuf::Message
     inline explicit Impl_(
         ::google::protobuf::internal::InternalVisibility visibility,
         ::google::protobuf::Arena* PROTOBUF_NULLABLE arena, const Impl_& from,
-        const Argon2SignResponse& from_msg);
+        const Argon2ComputeResponse& from_msg);
     ::google::protobuf::internal::HasBits<1> _has_bits_;
     ::google::protobuf::internal::CachedSize _cached_size_;
     ::google::protobuf::internal::ArenaStringPtr hashed_;
@@ -2098,33 +2098,33 @@ class Argon2SignResponse final : public ::google::protobuf::Message
   friend struct ::TableStruct_loquat_2eproto;
 };
 
-extern const ::google::protobuf::internal::ClassDataFull Argon2SignResponse_class_data_;
+extern const ::google::protobuf::internal::ClassDataFull Argon2ComputeResponse_class_data_;
 // -------------------------------------------------------------------
 
-class Argon2SignRequest final : public ::google::protobuf::Message
-/* @@protoc_insertion_point(class_definition:palm.loquat.v1.Argon2SignRequest) */ {
+class Argon2ComputeRequest final : public ::google::protobuf::Message
+/* @@protoc_insertion_point(class_definition:palm.loquat.v1.Argon2ComputeRequest) */ {
  public:
-  inline Argon2SignRequest() : Argon2SignRequest(nullptr) {}
-  ~Argon2SignRequest() PROTOBUF_FINAL;
+  inline Argon2ComputeRequest() : Argon2ComputeRequest(nullptr) {}
+  ~Argon2ComputeRequest() PROTOBUF_FINAL;
 
 #if defined(PROTOBUF_CUSTOM_VTABLE)
-  void operator delete(Argon2SignRequest* PROTOBUF_NONNULL msg, ::std::destroying_delete_t) {
+  void operator delete(Argon2ComputeRequest* PROTOBUF_NONNULL msg, ::std::destroying_delete_t) {
     SharedDtor(*msg);
-    ::google::protobuf::internal::SizedDelete(msg, sizeof(Argon2SignRequest));
+    ::google::protobuf::internal::SizedDelete(msg, sizeof(Argon2ComputeRequest));
   }
 #endif
 
   template <typename = void>
-  explicit PROTOBUF_CONSTEXPR Argon2SignRequest(::google::protobuf::internal::ConstantInitialized);
+  explicit PROTOBUF_CONSTEXPR Argon2ComputeRequest(::google::protobuf::internal::ConstantInitialized);
 
-  inline Argon2SignRequest(const Argon2SignRequest& from) : Argon2SignRequest(nullptr, from) {}
-  inline Argon2SignRequest(Argon2SignRequest&& from) noexcept
-      : Argon2SignRequest(nullptr, ::std::move(from)) {}
-  inline Argon2SignRequest& operator=(const Argon2SignRequest& from) {
+  inline Argon2ComputeRequest(const Argon2ComputeRequest& from) : Argon2ComputeRequest(nullptr, from) {}
+  inline Argon2ComputeRequest(Argon2ComputeRequest&& from) noexcept
+      : Argon2ComputeRequest(nullptr, ::std::move(from)) {}
+  inline Argon2ComputeRequest& operator=(const Argon2ComputeRequest& from) {
     CopyFrom(from);
     return *this;
   }
-  inline Argon2SignRequest& operator=(Argon2SignRequest&& from) noexcept {
+  inline Argon2ComputeRequest& operator=(Argon2ComputeRequest&& from) noexcept {
     if (this == &from) return *this;
     if (::google::protobuf::internal::CanMoveWithInternalSwap(GetArena(), from.GetArena())) {
       InternalSwap(&from);
@@ -2152,13 +2152,13 @@ class Argon2SignRequest final : public ::google::protobuf::Message
   static const ::google::protobuf::Reflection* PROTOBUF_NONNULL GetReflection() {
     return default_instance().GetMetadata().reflection;
   }
-  static const Argon2SignRequest& default_instance() {
-    return *reinterpret_cast<const Argon2SignRequest*>(
-        &_Argon2SignRequest_default_instance_);
+  static const Argon2ComputeRequest& default_instance() {
+    return *reinterpret_cast<const Argon2ComputeRequest*>(
+        &_Argon2ComputeRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages = 11;
-  friend void swap(Argon2SignRequest& a, Argon2SignRequest& b) { a.Swap(&b); }
-  inline void Swap(Argon2SignRequest* PROTOBUF_NONNULL other) {
+  friend void swap(Argon2ComputeRequest& a, Argon2ComputeRequest& b) { a.Swap(&b); }
+  inline void Swap(Argon2ComputeRequest* PROTOBUF_NONNULL other) {
     if (other == this) return;
     if (::google::protobuf::internal::CanUseInternalSwap(GetArena(), other->GetArena())) {
       InternalSwap(other);
@@ -2166,7 +2166,7 @@ class Argon2SignRequest final : public ::google::protobuf::Message
       ::google::protobuf::internal::GenericSwap(this, other);
     }
   }
-  void UnsafeArenaSwap(Argon2SignRequest* PROTOBUF_NONNULL other) {
+  void UnsafeArenaSwap(Argon2ComputeRequest* PROTOBUF_NONNULL other) {
     if (other == this) return;
     ABSL_DCHECK(GetArena() == other->GetArena());
     InternalSwap(other);
@@ -2174,13 +2174,13 @@ class Argon2SignRequest final : public ::google::protobuf::Message
 
   // implements Message ----------------------------------------------
 
-  Argon2SignRequest* PROTOBUF_NONNULL New(::google::protobuf::Arena* PROTOBUF_NULLABLE arena = nullptr) const {
-    return ::google::protobuf::Message::DefaultConstruct<Argon2SignRequest>(arena);
+  Argon2ComputeRequest* PROTOBUF_NONNULL New(::google::protobuf::Arena* PROTOBUF_NULLABLE arena = nullptr) const {
+    return ::google::protobuf::Message::DefaultConstruct<Argon2ComputeRequest>(arena);
   }
   using ::google::protobuf::Message::CopyFrom;
-  void CopyFrom(const Argon2SignRequest& from);
+  void CopyFrom(const Argon2ComputeRequest& from);
   using ::google::protobuf::Message::MergeFrom;
-  void MergeFrom(const Argon2SignRequest& from) { Argon2SignRequest::MergeImpl(*this, from); }
+  void MergeFrom(const Argon2ComputeRequest& from) { Argon2ComputeRequest::MergeImpl(*this, from); }
 
   private:
   static void MergeImpl(::google::protobuf::MessageLite& to_msg,
@@ -2216,17 +2216,17 @@ class Argon2SignRequest final : public ::google::protobuf::Message
   private:
   void SharedCtor(::google::protobuf::Arena* PROTOBUF_NULLABLE arena);
   static void SharedDtor(MessageLite& self);
-  void InternalSwap(Argon2SignRequest* PROTOBUF_NONNULL other);
+  void InternalSwap(Argon2ComputeRequest* PROTOBUF_NONNULL other);
  private:
   template <typename T>
   friend ::absl::string_view(::google::protobuf::internal::GetAnyMessageName)();
-  static ::absl::string_view FullMessageName() { return "palm.loquat.v1.Argon2SignRequest"; }
+  static ::absl::string_view FullMessageName() { return "palm.loquat.v1.Argon2ComputeRequest"; }
 
-  explicit Argon2SignRequest(::google::protobuf::Arena* PROTOBUF_NULLABLE arena);
-  Argon2SignRequest(::google::protobuf::Arena* PROTOBUF_NULLABLE arena, const Argon2SignRequest& from);
-  Argon2SignRequest(
-      ::google::protobuf::Arena* PROTOBUF_NULLABLE arena, Argon2SignRequest&& from) noexcept
-      : Argon2SignRequest(arena) {
+  explicit Argon2ComputeRequest(::google::protobuf::Arena* PROTOBUF_NULLABLE arena);
+  Argon2ComputeRequest(::google::protobuf::Arena* PROTOBUF_NULLABLE arena, const Argon2ComputeRequest& from);
+  Argon2ComputeRequest(
+      ::google::protobuf::Arena* PROTOBUF_NULLABLE arena, Argon2ComputeRequest&& from) noexcept
+      : Argon2ComputeRequest(arena) {
     *this = ::std::move(from);
   }
   const ::google::protobuf::internal::ClassData* PROTOBUF_NONNULL GetClassData() const PROTOBUF_FINAL;
@@ -2260,12 +2260,12 @@ class Argon2SignRequest final : public ::google::protobuf::Message
   ::std::string* PROTOBUF_NONNULL _internal_mutable_password();
 
   public:
-  // @@protoc_insertion_point(class_scope:palm.loquat.v1.Argon2SignRequest)
+  // @@protoc_insertion_point(class_scope:palm.loquat.v1.Argon2ComputeRequest)
  private:
   class _Internal;
   friend class ::google::protobuf::internal::TcParser;
   static const ::google::protobuf::internal::TcParseTable<0, 1,
-                                   0, 49,
+                                   0, 52,
                                    2>
       _table_;
 
@@ -2283,7 +2283,7 @@ class Argon2SignRequest final : public ::google::protobuf::Message
     inline explicit Impl_(
         ::google::protobuf::internal::InternalVisibility visibility,
         ::google::protobuf::Arena* PROTOBUF_NULLABLE arena, const Impl_& from,
-        const Argon2SignRequest& from_msg);
+        const Argon2ComputeRequest& from_msg);
     ::google::protobuf::internal::HasBits<1> _has_bits_;
     ::google::protobuf::internal::CachedSize _cached_size_;
     ::google::protobuf::internal::ArenaStringPtr password_;
@@ -2293,33 +2293,33 @@ class Argon2SignRequest final : public ::google::protobuf::Message
   friend struct ::TableStruct_loquat_2eproto;
 };
 
-extern const ::google::protobuf::internal::ClassDataFull Argon2SignRequest_class_data_;
+extern const ::google::protobuf::internal::ClassDataFull Argon2ComputeRequest_class_data_;
 // -------------------------------------------------------------------
 
-class AesEncryptResponse final : public ::google::protobuf::Message
-/* @@protoc_insertion_point(class_definition:palm.loquat.v1.AesEncryptResponse) */ {
+class AeadEncryptResponse final : public ::google::protobuf::Message
+/* @@protoc_insertion_point(class_definition:palm.loquat.v1.AeadEncryptResponse) */ {
  public:
-  inline AesEncryptResponse() : AesEncryptResponse(nullptr) {}
-  ~AesEncryptResponse() PROTOBUF_FINAL;
+  inline AeadEncryptResponse() : AeadEncryptResponse(nullptr) {}
+  ~AeadEncryptResponse() PROTOBUF_FINAL;
 
 #if defined(PROTOBUF_CUSTOM_VTABLE)
-  void operator delete(AesEncryptResponse* PROTOBUF_NONNULL msg, ::std::destroying_delete_t) {
+  void operator delete(AeadEncryptResponse* PROTOBUF_NONNULL msg, ::std::destroying_delete_t) {
     SharedDtor(*msg);
-    ::google::protobuf::internal::SizedDelete(msg, sizeof(AesEncryptResponse));
+    ::google::protobuf::internal::SizedDelete(msg, sizeof(AeadEncryptResponse));
   }
 #endif
 
   template <typename = void>
-  explicit PROTOBUF_CONSTEXPR AesEncryptResponse(::google::protobuf::internal::ConstantInitialized);
+  explicit PROTOBUF_CONSTEXPR AeadEncryptResponse(::google::protobuf::internal::ConstantInitialized);
 
-  inline AesEncryptResponse(const AesEncryptResponse& from) : AesEncryptResponse(nullptr, from) {}
-  inline AesEncryptResponse(AesEncryptResponse&& from) noexcept
-      : AesEncryptResponse(nullptr, ::std::move(from)) {}
-  inline AesEncryptResponse& operator=(const AesEncryptResponse& from) {
+  inline AeadEncryptResponse(const AeadEncryptResponse& from) : AeadEncryptResponse(nullptr, from) {}
+  inline AeadEncryptResponse(AeadEncryptResponse&& from) noexcept
+      : AeadEncryptResponse(nullptr, ::std::move(from)) {}
+  inline AeadEncryptResponse& operator=(const AeadEncryptResponse& from) {
     CopyFrom(from);
     return *this;
   }
-  inline AesEncryptResponse& operator=(AesEncryptResponse&& from) noexcept {
+  inline AeadEncryptResponse& operator=(AeadEncryptResponse&& from) noexcept {
     if (this == &from) return *this;
     if (::google::protobuf::internal::CanMoveWithInternalSwap(GetArena(), from.GetArena())) {
       InternalSwap(&from);
@@ -2347,13 +2347,13 @@ class AesEncryptResponse final : public ::google::protobuf::Message
   static const ::google::protobuf::Reflection* PROTOBUF_NONNULL GetReflection() {
     return default_instance().GetMetadata().reflection;
   }
-  static const AesEncryptResponse& default_instance() {
-    return *reinterpret_cast<const AesEncryptResponse*>(
-        &_AesEncryptResponse_default_instance_);
+  static const AeadEncryptResponse& default_instance() {
+    return *reinterpret_cast<const AeadEncryptResponse*>(
+        &_AeadEncryptResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages = 8;
-  friend void swap(AesEncryptResponse& a, AesEncryptResponse& b) { a.Swap(&b); }
-  inline void Swap(AesEncryptResponse* PROTOBUF_NONNULL other) {
+  friend void swap(AeadEncryptResponse& a, AeadEncryptResponse& b) { a.Swap(&b); }
+  inline void Swap(AeadEncryptResponse* PROTOBUF_NONNULL other) {
     if (other == this) return;
     if (::google::protobuf::internal::CanUseInternalSwap(GetArena(), other->GetArena())) {
       InternalSwap(other);
@@ -2361,7 +2361,7 @@ class AesEncryptResponse final : public ::google::protobuf::Message
       ::google::protobuf::internal::GenericSwap(this, other);
     }
   }
-  void UnsafeArenaSwap(AesEncryptResponse* PROTOBUF_NONNULL other) {
+  void UnsafeArenaSwap(AeadEncryptResponse* PROTOBUF_NONNULL other) {
     if (other == this) return;
     ABSL_DCHECK(GetArena() == other->GetArena());
     InternalSwap(other);
@@ -2369,13 +2369,13 @@ class AesEncryptResponse final : public ::google::protobuf::Message
 
   // implements Message ----------------------------------------------
 
-  AesEncryptResponse* PROTOBUF_NONNULL New(::google::protobuf::Arena* PROTOBUF_NULLABLE arena = nullptr) const {
-    return ::google::protobuf::Message::DefaultConstruct<AesEncryptResponse>(arena);
+  AeadEncryptResponse* PROTOBUF_NONNULL New(::google::protobuf::Arena* PROTOBUF_NULLABLE arena = nullptr) const {
+    return ::google::protobuf::Message::DefaultConstruct<AeadEncryptResponse>(arena);
   }
   using ::google::protobuf::Message::CopyFrom;
-  void CopyFrom(const AesEncryptResponse& from);
+  void CopyFrom(const AeadEncryptResponse& from);
   using ::google::protobuf::Message::MergeFrom;
-  void MergeFrom(const AesEncryptResponse& from) { AesEncryptResponse::MergeImpl(*this, from); }
+  void MergeFrom(const AeadEncryptResponse& from) { AeadEncryptResponse::MergeImpl(*this, from); }
 
   private:
   static void MergeImpl(::google::protobuf::MessageLite& to_msg,
@@ -2411,17 +2411,17 @@ class AesEncryptResponse final : public ::google::protobuf::Message
   private:
   void SharedCtor(::google::protobuf::Arena* PROTOBUF_NULLABLE arena);
   static void SharedDtor(MessageLite& self);
-  void InternalSwap(AesEncryptResponse* PROTOBUF_NONNULL other);
+  void InternalSwap(AeadEncryptResponse* PROTOBUF_NONNULL other);
  private:
   template <typename T>
   friend ::absl::string_view(::google::protobuf::internal::GetAnyMessageName)();
-  static ::absl::string_view FullMessageName() { return "palm.loquat.v1.AesEncryptResponse"; }
+  static ::absl::string_view FullMessageName() { return "palm.loquat.v1.AeadEncryptResponse"; }
 
-  explicit AesEncryptResponse(::google::protobuf::Arena* PROTOBUF_NULLABLE arena);
-  AesEncryptResponse(::google::protobuf::Arena* PROTOBUF_NULLABLE arena, const AesEncryptResponse& from);
-  AesEncryptResponse(
-      ::google::protobuf::Arena* PROTOBUF_NULLABLE arena, AesEncryptResponse&& from) noexcept
-      : AesEncryptResponse(arena) {
+  explicit AeadEncryptResponse(::google::protobuf::Arena* PROTOBUF_NULLABLE arena);
+  AeadEncryptResponse(::google::protobuf::Arena* PROTOBUF_NULLABLE arena, const AeadEncryptResponse& from);
+  AeadEncryptResponse(
+      ::google::protobuf::Arena* PROTOBUF_NULLABLE arena, AeadEncryptResponse&& from) noexcept
+      : AeadEncryptResponse(arena) {
     *this = ::std::move(from);
   }
   const ::google::protobuf::internal::ClassData* PROTOBUF_NONNULL GetClassData() const PROTOBUF_FINAL;
@@ -2455,7 +2455,7 @@ class AesEncryptResponse final : public ::google::protobuf::Message
   ::std::string* PROTOBUF_NONNULL _internal_mutable_cipher();
 
   public:
-  // @@protoc_insertion_point(class_scope:palm.loquat.v1.AesEncryptResponse)
+  // @@protoc_insertion_point(class_scope:palm.loquat.v1.AeadEncryptResponse)
  private:
   class _Internal;
   friend class ::google::protobuf::internal::TcParser;
@@ -2478,7 +2478,7 @@ class AesEncryptResponse final : public ::google::protobuf::Message
     inline explicit Impl_(
         ::google::protobuf::internal::InternalVisibility visibility,
         ::google::protobuf::Arena* PROTOBUF_NULLABLE arena, const Impl_& from,
-        const AesEncryptResponse& from_msg);
+        const AeadEncryptResponse& from_msg);
     ::google::protobuf::internal::HasBits<1> _has_bits_;
     ::google::protobuf::internal::CachedSize _cached_size_;
     ::google::protobuf::internal::ArenaStringPtr cipher_;
@@ -2488,33 +2488,33 @@ class AesEncryptResponse final : public ::google::protobuf::Message
   friend struct ::TableStruct_loquat_2eproto;
 };
 
-extern const ::google::protobuf::internal::ClassDataFull AesEncryptResponse_class_data_;
+extern const ::google::protobuf::internal::ClassDataFull AeadEncryptResponse_class_data_;
 // -------------------------------------------------------------------
 
-class AesEncryptRequest final : public ::google::protobuf::Message
-/* @@protoc_insertion_point(class_definition:palm.loquat.v1.AesEncryptRequest) */ {
+class AeadEncryptRequest final : public ::google::protobuf::Message
+/* @@protoc_insertion_point(class_definition:palm.loquat.v1.AeadEncryptRequest) */ {
  public:
-  inline AesEncryptRequest() : AesEncryptRequest(nullptr) {}
-  ~AesEncryptRequest() PROTOBUF_FINAL;
+  inline AeadEncryptRequest() : AeadEncryptRequest(nullptr) {}
+  ~AeadEncryptRequest() PROTOBUF_FINAL;
 
 #if defined(PROTOBUF_CUSTOM_VTABLE)
-  void operator delete(AesEncryptRequest* PROTOBUF_NONNULL msg, ::std::destroying_delete_t) {
+  void operator delete(AeadEncryptRequest* PROTOBUF_NONNULL msg, ::std::destroying_delete_t) {
     SharedDtor(*msg);
-    ::google::protobuf::internal::SizedDelete(msg, sizeof(AesEncryptRequest));
+    ::google::protobuf::internal::SizedDelete(msg, sizeof(AeadEncryptRequest));
   }
 #endif
 
   template <typename = void>
-  explicit PROTOBUF_CONSTEXPR AesEncryptRequest(::google::protobuf::internal::ConstantInitialized);
+  explicit PROTOBUF_CONSTEXPR AeadEncryptRequest(::google::protobuf::internal::ConstantInitialized);
 
-  inline AesEncryptRequest(const AesEncryptRequest& from) : AesEncryptRequest(nullptr, from) {}
-  inline AesEncryptRequest(AesEncryptRequest&& from) noexcept
-      : AesEncryptRequest(nullptr, ::std::move(from)) {}
-  inline AesEncryptRequest& operator=(const AesEncryptRequest& from) {
+  inline AeadEncryptRequest(const AeadEncryptRequest& from) : AeadEncryptRequest(nullptr, from) {}
+  inline AeadEncryptRequest(AeadEncryptRequest&& from) noexcept
+      : AeadEncryptRequest(nullptr, ::std::move(from)) {}
+  inline AeadEncryptRequest& operator=(const AeadEncryptRequest& from) {
     CopyFrom(from);
     return *this;
   }
-  inline AesEncryptRequest& operator=(AesEncryptRequest&& from) noexcept {
+  inline AeadEncryptRequest& operator=(AeadEncryptRequest&& from) noexcept {
     if (this == &from) return *this;
     if (::google::protobuf::internal::CanMoveWithInternalSwap(GetArena(), from.GetArena())) {
       InternalSwap(&from);
@@ -2542,13 +2542,13 @@ class AesEncryptRequest final : public ::google::protobuf::Message
   static const ::google::protobuf::Reflection* PROTOBUF_NONNULL GetReflection() {
     return default_instance().GetMetadata().reflection;
   }
-  static const AesEncryptRequest& default_instance() {
-    return *reinterpret_cast<const AesEncryptRequest*>(
-        &_AesEncryptRequest_default_instance_);
+  static const AeadEncryptRequest& default_instance() {
+    return *reinterpret_cast<const AeadEncryptRequest*>(
+        &_AeadEncryptRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages = 7;
-  friend void swap(AesEncryptRequest& a, AesEncryptRequest& b) { a.Swap(&b); }
-  inline void Swap(AesEncryptRequest* PROTOBUF_NONNULL other) {
+  friend void swap(AeadEncryptRequest& a, AeadEncryptRequest& b) { a.Swap(&b); }
+  inline void Swap(AeadEncryptRequest* PROTOBUF_NONNULL other) {
     if (other == this) return;
     if (::google::protobuf::internal::CanUseInternalSwap(GetArena(), other->GetArena())) {
       InternalSwap(other);
@@ -2556,7 +2556,7 @@ class AesEncryptRequest final : public ::google::protobuf::Message
       ::google::protobuf::internal::GenericSwap(this, other);
     }
   }
-  void UnsafeArenaSwap(AesEncryptRequest* PROTOBUF_NONNULL other) {
+  void UnsafeArenaSwap(AeadEncryptRequest* PROTOBUF_NONNULL other) {
     if (other == this) return;
     ABSL_DCHECK(GetArena() == other->GetArena());
     InternalSwap(other);
@@ -2564,13 +2564,13 @@ class AesEncryptRequest final : public ::google::protobuf::Message
 
   // implements Message ----------------------------------------------
 
-  AesEncryptRequest* PROTOBUF_NONNULL New(::google::protobuf::Arena* PROTOBUF_NULLABLE arena = nullptr) const {
-    return ::google::protobuf::Message::DefaultConstruct<AesEncryptRequest>(arena);
+  AeadEncryptRequest* PROTOBUF_NONNULL New(::google::protobuf::Arena* PROTOBUF_NULLABLE arena = nullptr) const {
+    return ::google::protobuf::Message::DefaultConstruct<AeadEncryptRequest>(arena);
   }
   using ::google::protobuf::Message::CopyFrom;
-  void CopyFrom(const AesEncryptRequest& from);
+  void CopyFrom(const AeadEncryptRequest& from);
   using ::google::protobuf::Message::MergeFrom;
-  void MergeFrom(const AesEncryptRequest& from) { AesEncryptRequest::MergeImpl(*this, from); }
+  void MergeFrom(const AeadEncryptRequest& from) { AeadEncryptRequest::MergeImpl(*this, from); }
 
   private:
   static void MergeImpl(::google::protobuf::MessageLite& to_msg,
@@ -2606,17 +2606,17 @@ class AesEncryptRequest final : public ::google::protobuf::Message
   private:
   void SharedCtor(::google::protobuf::Arena* PROTOBUF_NULLABLE arena);
   static void SharedDtor(MessageLite& self);
-  void InternalSwap(AesEncryptRequest* PROTOBUF_NONNULL other);
+  void InternalSwap(AeadEncryptRequest* PROTOBUF_NONNULL other);
  private:
   template <typename T>
   friend ::absl::string_view(::google::protobuf::internal::GetAnyMessageName)();
-  static ::absl::string_view FullMessageName() { return "palm.loquat.v1.AesEncryptRequest"; }
+  static ::absl::string_view FullMessageName() { return "palm.loquat.v1.AeadEncryptRequest"; }
 
-  explicit AesEncryptRequest(::google::protobuf::Arena* PROTOBUF_NULLABLE arena);
-  AesEncryptRequest(::google::protobuf::Arena* PROTOBUF_NULLABLE arena, const AesEncryptRequest& from);
-  AesEncryptRequest(
-      ::google::protobuf::Arena* PROTOBUF_NULLABLE arena, AesEncryptRequest&& from) noexcept
-      : AesEncryptRequest(arena) {
+  explicit AeadEncryptRequest(::google::protobuf::Arena* PROTOBUF_NULLABLE arena);
+  AeadEncryptRequest(::google::protobuf::Arena* PROTOBUF_NULLABLE arena, const AeadEncryptRequest& from);
+  AeadEncryptRequest(
+      ::google::protobuf::Arena* PROTOBUF_NULLABLE arena, AeadEncryptRequest&& from) noexcept
+      : AeadEncryptRequest(arena) {
     *this = ::std::move(from);
   }
   const ::google::protobuf::internal::ClassData* PROTOBUF_NONNULL GetClassData() const PROTOBUF_FINAL;
@@ -2666,7 +2666,7 @@ class AesEncryptRequest final : public ::google::protobuf::Message
   ::std::string* PROTOBUF_NONNULL _internal_mutable_associated_data();
 
   public:
-  // @@protoc_insertion_point(class_scope:palm.loquat.v1.AesEncryptRequest)
+  // @@protoc_insertion_point(class_scope:palm.loquat.v1.AeadEncryptRequest)
  private:
   class _Internal;
   friend class ::google::protobuf::internal::TcParser;
@@ -2689,7 +2689,7 @@ class AesEncryptRequest final : public ::google::protobuf::Message
     inline explicit Impl_(
         ::google::protobuf::internal::InternalVisibility visibility,
         ::google::protobuf::Arena* PROTOBUF_NULLABLE arena, const Impl_& from,
-        const AesEncryptRequest& from_msg);
+        const AeadEncryptRequest& from_msg);
     ::google::protobuf::internal::HasBits<1> _has_bits_;
     ::google::protobuf::internal::CachedSize _cached_size_;
     ::google::protobuf::internal::ArenaStringPtr plain_;
@@ -2700,33 +2700,33 @@ class AesEncryptRequest final : public ::google::protobuf::Message
   friend struct ::TableStruct_loquat_2eproto;
 };
 
-extern const ::google::protobuf::internal::ClassDataFull AesEncryptRequest_class_data_;
+extern const ::google::protobuf::internal::ClassDataFull AeadEncryptRequest_class_data_;
 // -------------------------------------------------------------------
 
-class AesDecryptResponse final : public ::google::protobuf::Message
-/* @@protoc_insertion_point(class_definition:palm.loquat.v1.AesDecryptResponse) */ {
+class AeadDecryptResponse final : public ::google::protobuf::Message
+/* @@protoc_insertion_point(class_definition:palm.loquat.v1.AeadDecryptResponse) */ {
  public:
-  inline AesDecryptResponse() : AesDecryptResponse(nullptr) {}
-  ~AesDecryptResponse() PROTOBUF_FINAL;
+  inline AeadDecryptResponse() : AeadDecryptResponse(nullptr) {}
+  ~AeadDecryptResponse() PROTOBUF_FINAL;
 
 #if defined(PROTOBUF_CUSTOM_VTABLE)
-  void operator delete(AesDecryptResponse* PROTOBUF_NONNULL msg, ::std::destroying_delete_t) {
+  void operator delete(AeadDecryptResponse* PROTOBUF_NONNULL msg, ::std::destroying_delete_t) {
     SharedDtor(*msg);
-    ::google::protobuf::internal::SizedDelete(msg, sizeof(AesDecryptResponse));
+    ::google::protobuf::internal::SizedDelete(msg, sizeof(AeadDecryptResponse));
   }
 #endif
 
   template <typename = void>
-  explicit PROTOBUF_CONSTEXPR AesDecryptResponse(::google::protobuf::internal::ConstantInitialized);
+  explicit PROTOBUF_CONSTEXPR AeadDecryptResponse(::google::protobuf::internal::ConstantInitialized);
 
-  inline AesDecryptResponse(const AesDecryptResponse& from) : AesDecryptResponse(nullptr, from) {}
-  inline AesDecryptResponse(AesDecryptResponse&& from) noexcept
-      : AesDecryptResponse(nullptr, ::std::move(from)) {}
-  inline AesDecryptResponse& operator=(const AesDecryptResponse& from) {
+  inline AeadDecryptResponse(const AeadDecryptResponse& from) : AeadDecryptResponse(nullptr, from) {}
+  inline AeadDecryptResponse(AeadDecryptResponse&& from) noexcept
+      : AeadDecryptResponse(nullptr, ::std::move(from)) {}
+  inline AeadDecryptResponse& operator=(const AeadDecryptResponse& from) {
     CopyFrom(from);
     return *this;
   }
-  inline AesDecryptResponse& operator=(AesDecryptResponse&& from) noexcept {
+  inline AeadDecryptResponse& operator=(AeadDecryptResponse&& from) noexcept {
     if (this == &from) return *this;
     if (::google::protobuf::internal::CanMoveWithInternalSwap(GetArena(), from.GetArena())) {
       InternalSwap(&from);
@@ -2754,13 +2754,13 @@ class AesDecryptResponse final : public ::google::protobuf::Message
   static const ::google::protobuf::Reflection* PROTOBUF_NONNULL GetReflection() {
     return default_instance().GetMetadata().reflection;
   }
-  static const AesDecryptResponse& default_instance() {
-    return *reinterpret_cast<const AesDecryptResponse*>(
-        &_AesDecryptResponse_default_instance_);
+  static const AeadDecryptResponse& default_instance() {
+    return *reinterpret_cast<const AeadDecryptResponse*>(
+        &_AeadDecryptResponse_default_instance_);
   }
   static constexpr int kIndexInFileMessages = 10;
-  friend void swap(AesDecryptResponse& a, AesDecryptResponse& b) { a.Swap(&b); }
-  inline void Swap(AesDecryptResponse* PROTOBUF_NONNULL other) {
+  friend void swap(AeadDecryptResponse& a, AeadDecryptResponse& b) { a.Swap(&b); }
+  inline void Swap(AeadDecryptResponse* PROTOBUF_NONNULL other) {
     if (other == this) return;
     if (::google::protobuf::internal::CanUseInternalSwap(GetArena(), other->GetArena())) {
       InternalSwap(other);
@@ -2768,7 +2768,7 @@ class AesDecryptResponse final : public ::google::protobuf::Message
       ::google::protobuf::internal::GenericSwap(this, other);
     }
   }
-  void UnsafeArenaSwap(AesDecryptResponse* PROTOBUF_NONNULL other) {
+  void UnsafeArenaSwap(AeadDecryptResponse* PROTOBUF_NONNULL other) {
     if (other == this) return;
     ABSL_DCHECK(GetArena() == other->GetArena());
     InternalSwap(other);
@@ -2776,13 +2776,13 @@ class AesDecryptResponse final : public ::google::protobuf::Message
 
   // implements Message ----------------------------------------------
 
-  AesDecryptResponse* PROTOBUF_NONNULL New(::google::protobuf::Arena* PROTOBUF_NULLABLE arena = nullptr) const {
-    return ::google::protobuf::Message::DefaultConstruct<AesDecryptResponse>(arena);
+  AeadDecryptResponse* PROTOBUF_NONNULL New(::google::protobuf::Arena* PROTOBUF_NULLABLE arena = nullptr) const {
+    return ::google::protobuf::Message::DefaultConstruct<AeadDecryptResponse>(arena);
   }
   using ::google::protobuf::Message::CopyFrom;
-  void CopyFrom(const AesDecryptResponse& from);
+  void CopyFrom(const AeadDecryptResponse& from);
   using ::google::protobuf::Message::MergeFrom;
-  void MergeFrom(const AesDecryptResponse& from) { AesDecryptResponse::MergeImpl(*this, from); }
+  void MergeFrom(const AeadDecryptResponse& from) { AeadDecryptResponse::MergeImpl(*this, from); }
 
   private:
   static void MergeImpl(::google::protobuf::MessageLite& to_msg,
@@ -2818,17 +2818,17 @@ class AesDecryptResponse final : public ::google::protobuf::Message
   private:
   void SharedCtor(::google::protobuf::Arena* PROTOBUF_NULLABLE arena);
   static void SharedDtor(MessageLite& self);
-  void InternalSwap(AesDecryptResponse* PROTOBUF_NONNULL other);
+  void InternalSwap(AeadDecryptResponse* PROTOBUF_NONNULL other);
  private:
   template <typename T>
   friend ::absl::string_view(::google::protobuf::internal::GetAnyMessageName)();
-  static ::absl::string_view FullMessageName() { return "palm.loquat.v1.AesDecryptResponse"; }
+  static ::absl::string_view FullMessageName() { return "palm.loquat.v1.AeadDecryptResponse"; }
 
-  explicit AesDecryptResponse(::google::protobuf::Arena* PROTOBUF_NULLABLE arena);
-  AesDecryptResponse(::google::protobuf::Arena* PROTOBUF_NULLABLE arena, const AesDecryptResponse& from);
-  AesDecryptResponse(
-      ::google::protobuf::Arena* PROTOBUF_NULLABLE arena, AesDecryptResponse&& from) noexcept
-      : AesDecryptResponse(arena) {
+  explicit AeadDecryptResponse(::google::protobuf::Arena* PROTOBUF_NULLABLE arena);
+  AeadDecryptResponse(::google::protobuf::Arena* PROTOBUF_NULLABLE arena, const AeadDecryptResponse& from);
+  AeadDecryptResponse(
+      ::google::protobuf::Arena* PROTOBUF_NULLABLE arena, AeadDecryptResponse&& from) noexcept
+      : AeadDecryptResponse(arena) {
     *this = ::std::move(from);
   }
   const ::google::protobuf::internal::ClassData* PROTOBUF_NONNULL GetClassData() const PROTOBUF_FINAL;
@@ -2862,7 +2862,7 @@ class AesDecryptResponse final : public ::google::protobuf::Message
   ::std::string* PROTOBUF_NONNULL _internal_mutable_plain();
 
   public:
-  // @@protoc_insertion_point(class_scope:palm.loquat.v1.AesDecryptResponse)
+  // @@protoc_insertion_point(class_scope:palm.loquat.v1.AeadDecryptResponse)
  private:
   class _Internal;
   friend class ::google::protobuf::internal::TcParser;
@@ -2885,7 +2885,7 @@ class AesDecryptResponse final : public ::google::protobuf::Message
     inline explicit Impl_(
         ::google::protobuf::internal::InternalVisibility visibility,
         ::google::protobuf::Arena* PROTOBUF_NULLABLE arena, const Impl_& from,
-        const AesDecryptResponse& from_msg);
+        const AeadDecryptResponse& from_msg);
     ::google::protobuf::internal::HasBits<1> _has_bits_;
     ::google::protobuf::internal::CachedSize _cached_size_;
     ::google::protobuf::internal::ArenaStringPtr plain_;
@@ -2895,33 +2895,33 @@ class AesDecryptResponse final : public ::google::protobuf::Message
   friend struct ::TableStruct_loquat_2eproto;
 };
 
-extern const ::google::protobuf::internal::ClassDataFull AesDecryptResponse_class_data_;
+extern const ::google::protobuf::internal::ClassDataFull AeadDecryptResponse_class_data_;
 // -------------------------------------------------------------------
 
-class AesDecryptRequest final : public ::google::protobuf::Message
-/* @@protoc_insertion_point(class_definition:palm.loquat.v1.AesDecryptRequest) */ {
+class AeadDecryptRequest final : public ::google::protobuf::Message
+/* @@protoc_insertion_point(class_definition:palm.loquat.v1.AeadDecryptRequest) */ {
  public:
-  inline AesDecryptRequest() : AesDecryptRequest(nullptr) {}
-  ~AesDecryptRequest() PROTOBUF_FINAL;
+  inline AeadDecryptRequest() : AeadDecryptRequest(nullptr) {}
+  ~AeadDecryptRequest() PROTOBUF_FINAL;
 
 #if defined(PROTOBUF_CUSTOM_VTABLE)
-  void operator delete(AesDecryptRequest* PROTOBUF_NONNULL msg, ::std::destroying_delete_t) {
+  void operator delete(AeadDecryptRequest* PROTOBUF_NONNULL msg, ::std::destroying_delete_t) {
     SharedDtor(*msg);
-    ::google::protobuf::internal::SizedDelete(msg, sizeof(AesDecryptRequest));
+    ::google::protobuf::internal::SizedDelete(msg, sizeof(AeadDecryptRequest));
   }
 #endif
 
   template <typename = void>
-  explicit PROTOBUF_CONSTEXPR AesDecryptRequest(::google::protobuf::internal::ConstantInitialized);
+  explicit PROTOBUF_CONSTEXPR AeadDecryptRequest(::google::protobuf::internal::ConstantInitialized);
 
-  inline AesDecryptRequest(const AesDecryptRequest& from) : AesDecryptRequest(nullptr, from) {}
-  inline AesDecryptRequest(AesDecryptRequest&& from) noexcept
-      : AesDecryptRequest(nullptr, ::std::move(from)) {}
-  inline AesDecryptRequest& operator=(const AesDecryptRequest& from) {
+  inline AeadDecryptRequest(const AeadDecryptRequest& from) : AeadDecryptRequest(nullptr, from) {}
+  inline AeadDecryptRequest(AeadDecryptRequest&& from) noexcept
+      : AeadDecryptRequest(nullptr, ::std::move(from)) {}
+  inline AeadDecryptRequest& operator=(const AeadDecryptRequest& from) {
     CopyFrom(from);
     return *this;
   }
-  inline AesDecryptRequest& operator=(AesDecryptRequest&& from) noexcept {
+  inline AeadDecryptRequest& operator=(AeadDecryptRequest&& from) noexcept {
     if (this == &from) return *this;
     if (::google::protobuf::internal::CanMoveWithInternalSwap(GetArena(), from.GetArena())) {
       InternalSwap(&from);
@@ -2949,13 +2949,13 @@ class AesDecryptRequest final : public ::google::protobuf::Message
   static const ::google::protobuf::Reflection* PROTOBUF_NONNULL GetReflection() {
     return default_instance().GetMetadata().reflection;
   }
-  static const AesDecryptRequest& default_instance() {
-    return *reinterpret_cast<const AesDecryptRequest*>(
-        &_AesDecryptRequest_default_instance_);
+  static const AeadDecryptRequest& default_instance() {
+    return *reinterpret_cast<const AeadDecryptRequest*>(
+        &_AeadDecryptRequest_default_instance_);
   }
   static constexpr int kIndexInFileMessages = 9;
-  friend void swap(AesDecryptRequest& a, AesDecryptRequest& b) { a.Swap(&b); }
-  inline void Swap(AesDecryptRequest* PROTOBUF_NONNULL other) {
+  friend void swap(AeadDecryptRequest& a, AeadDecryptRequest& b) { a.Swap(&b); }
+  inline void Swap(AeadDecryptRequest* PROTOBUF_NONNULL other) {
     if (other == this) return;
     if (::google::protobuf::internal::CanUseInternalSwap(GetArena(), other->GetArena())) {
       InternalSwap(other);
@@ -2963,7 +2963,7 @@ class AesDecryptRequest final : public ::google::protobuf::Message
       ::google::protobuf::internal::GenericSwap(this, other);
     }
   }
-  void UnsafeArenaSwap(AesDecryptRequest* PROTOBUF_NONNULL other) {
+  void UnsafeArenaSwap(AeadDecryptRequest* PROTOBUF_NONNULL other) {
     if (other == this) return;
     ABSL_DCHECK(GetArena() == other->GetArena());
     InternalSwap(other);
@@ -2971,13 +2971,13 @@ class AesDecryptRequest final : public ::google::protobuf::Message
 
   // implements Message ----------------------------------------------
 
-  AesDecryptRequest* PROTOBUF_NONNULL New(::google::protobuf::Arena* PROTOBUF_NULLABLE arena = nullptr) const {
-    return ::google::protobuf::Message::DefaultConstruct<AesDecryptRequest>(arena);
+  AeadDecryptRequest* PROTOBUF_NONNULL New(::google::protobuf::Arena* PROTOBUF_NULLABLE arena = nullptr) const {
+    return ::google::protobuf::Message::DefaultConstruct<AeadDecryptRequest>(arena);
   }
   using ::google::protobuf::Message::CopyFrom;
-  void CopyFrom(const AesDecryptRequest& from);
+  void CopyFrom(const AeadDecryptRequest& from);
   using ::google::protobuf::Message::MergeFrom;
-  void MergeFrom(const AesDecryptRequest& from) { AesDecryptRequest::MergeImpl(*this, from); }
+  void MergeFrom(const AeadDecryptRequest& from) { AeadDecryptRequest::MergeImpl(*this, from); }
 
   private:
   static void MergeImpl(::google::protobuf::MessageLite& to_msg,
@@ -3013,17 +3013,17 @@ class AesDecryptRequest final : public ::google::protobuf::Message
   private:
   void SharedCtor(::google::protobuf::Arena* PROTOBUF_NULLABLE arena);
   static void SharedDtor(MessageLite& self);
-  void InternalSwap(AesDecryptRequest* PROTOBUF_NONNULL other);
+  void InternalSwap(AeadDecryptRequest* PROTOBUF_NONNULL other);
  private:
   template <typename T>
   friend ::absl::string_view(::google::protobuf::internal::GetAnyMessageName)();
-  static ::absl::string_view FullMessageName() { return "palm.loquat.v1.AesDecryptRequest"; }
+  static ::absl::string_view FullMessageName() { return "palm.loquat.v1.AeadDecryptRequest"; }
 
-  explicit AesDecryptRequest(::google::protobuf::Arena* PROTOBUF_NULLABLE arena);
-  AesDecryptRequest(::google::protobuf::Arena* PROTOBUF_NULLABLE arena, const AesDecryptRequest& from);
-  AesDecryptRequest(
-      ::google::protobuf::Arena* PROTOBUF_NULLABLE arena, AesDecryptRequest&& from) noexcept
-      : AesDecryptRequest(arena) {
+  explicit AeadDecryptRequest(::google::protobuf::Arena* PROTOBUF_NULLABLE arena);
+  AeadDecryptRequest(::google::protobuf::Arena* PROTOBUF_NULLABLE arena, const AeadDecryptRequest& from);
+  AeadDecryptRequest(
+      ::google::protobuf::Arena* PROTOBUF_NULLABLE arena, AeadDecryptRequest&& from) noexcept
+      : AeadDecryptRequest(arena) {
     *this = ::std::move(from);
   }
   const ::google::protobuf::internal::ClassData* PROTOBUF_NONNULL GetClassData() const PROTOBUF_FINAL;
@@ -3073,7 +3073,7 @@ class AesDecryptRequest final : public ::google::protobuf::Message
   ::std::string* PROTOBUF_NONNULL _internal_mutable_associated_data();
 
   public:
-  // @@protoc_insertion_point(class_scope:palm.loquat.v1.AesDecryptRequest)
+  // @@protoc_insertion_point(class_scope:palm.loquat.v1.AeadDecryptRequest)
  private:
   class _Internal;
   friend class ::google::protobuf::internal::TcParser;
@@ -3096,7 +3096,7 @@ class AesDecryptRequest final : public ::google::protobuf::Message
     inline explicit Impl_(
         ::google::protobuf::internal::InternalVisibility visibility,
         ::google::protobuf::Arena* PROTOBUF_NULLABLE arena, const Impl_& from,
-        const AesDecryptRequest& from_msg);
+        const AeadDecryptRequest& from_msg);
     ::google::protobuf::internal::HasBits<1> _has_bits_;
     ::google::protobuf::internal::CachedSize _cached_size_;
     ::google::protobuf::internal::ArenaStringPtr cipher_;
@@ -3107,7 +3107,7 @@ class AesDecryptRequest final : public ::google::protobuf::Message
   friend struct ::TableStruct_loquat_2eproto;
 };
 
-extern const ::google::protobuf::internal::ClassDataFull AesDecryptRequest_class_data_;
+extern const ::google::protobuf::internal::ClassDataFull AeadDecryptRequest_class_data_;
 
 // ===================================================================
 
@@ -3460,53 +3460,53 @@ inline void JwtVerifyResponse::set_allocated_payload(::std::string* PROTOBUF_NUL
 
 // -------------------------------------------------------------------
 
-// JwtSignRequest
+// JwtComputeRequest
 
 // optional string jwt_id = 1;
-inline bool JwtSignRequest::has_jwt_id() const {
+inline bool JwtComputeRequest::has_jwt_id() const {
   bool value = CheckHasBit(_impl_._has_bits_[0], 0x00000002U);
   return value;
 }
-inline void JwtSignRequest::clear_jwt_id() {
+inline void JwtComputeRequest::clear_jwt_id() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_.jwt_id_.ClearToEmpty();
   ClearHasBit(_impl_._has_bits_[0],
                   0x00000002U);
 }
-inline const ::std::string& JwtSignRequest::jwt_id() const
+inline const ::std::string& JwtComputeRequest::jwt_id() const
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:palm.loquat.v1.JwtSignRequest.jwt_id)
+  // @@protoc_insertion_point(field_get:palm.loquat.v1.JwtComputeRequest.jwt_id)
   return _internal_jwt_id();
 }
 template <typename Arg_, typename... Args_>
-PROTOBUF_ALWAYS_INLINE void JwtSignRequest::set_jwt_id(Arg_&& arg, Args_... args) {
+PROTOBUF_ALWAYS_INLINE void JwtComputeRequest::set_jwt_id(Arg_&& arg, Args_... args) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   SetHasBit(_impl_._has_bits_[0], 0x00000002U);
   _impl_.jwt_id_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
-  // @@protoc_insertion_point(field_set:palm.loquat.v1.JwtSignRequest.jwt_id)
+  // @@protoc_insertion_point(field_set:palm.loquat.v1.JwtComputeRequest.jwt_id)
 }
-inline ::std::string* PROTOBUF_NONNULL JwtSignRequest::mutable_jwt_id()
+inline ::std::string* PROTOBUF_NONNULL JwtComputeRequest::mutable_jwt_id()
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
   SetHasBit(_impl_._has_bits_[0], 0x00000002U);
   ::std::string* _s = _internal_mutable_jwt_id();
-  // @@protoc_insertion_point(field_mutable:palm.loquat.v1.JwtSignRequest.jwt_id)
+  // @@protoc_insertion_point(field_mutable:palm.loquat.v1.JwtComputeRequest.jwt_id)
   return _s;
 }
-inline const ::std::string& JwtSignRequest::_internal_jwt_id() const {
+inline const ::std::string& JwtComputeRequest::_internal_jwt_id() const {
   ::google::protobuf::internal::TSanRead(&_impl_);
   return _impl_.jwt_id_.Get();
 }
-inline void JwtSignRequest::_internal_set_jwt_id(const ::std::string& value) {
+inline void JwtComputeRequest::_internal_set_jwt_id(const ::std::string& value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_.jwt_id_.Set(value, GetArena());
 }
-inline ::std::string* PROTOBUF_NONNULL JwtSignRequest::_internal_mutable_jwt_id() {
+inline ::std::string* PROTOBUF_NONNULL JwtComputeRequest::_internal_mutable_jwt_id() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   return _impl_.jwt_id_.Mutable( GetArena());
 }
-inline ::std::string* PROTOBUF_NULLABLE JwtSignRequest::release_jwt_id() {
+inline ::std::string* PROTOBUF_NULLABLE JwtComputeRequest::release_jwt_id() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  // @@protoc_insertion_point(field_release:palm.loquat.v1.JwtSignRequest.jwt_id)
+  // @@protoc_insertion_point(field_release:palm.loquat.v1.JwtComputeRequest.jwt_id)
   if (!CheckHasBit(_impl_._has_bits_[0], 0x00000002U)) {
     return nullptr;
   }
@@ -3517,7 +3517,7 @@ inline ::std::string* PROTOBUF_NULLABLE JwtSignRequest::release_jwt_id() {
   }
   return released;
 }
-inline void JwtSignRequest::set_allocated_jwt_id(::std::string* PROTOBUF_NULLABLE value) {
+inline void JwtComputeRequest::set_allocated_jwt_id(::std::string* PROTOBUF_NULLABLE value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   if (value != nullptr) {
     SetHasBit(_impl_._has_bits_[0], 0x00000002U);
@@ -3528,54 +3528,54 @@ inline void JwtSignRequest::set_allocated_jwt_id(::std::string* PROTOBUF_NULLABL
   if (::google::protobuf::internal::DebugHardenForceCopyDefaultString() && _impl_.jwt_id_.IsDefault()) {
     _impl_.jwt_id_.Set("", GetArena());
   }
-  // @@protoc_insertion_point(field_set_allocated:palm.loquat.v1.JwtSignRequest.jwt_id)
+  // @@protoc_insertion_point(field_set_allocated:palm.loquat.v1.JwtComputeRequest.jwt_id)
 }
 
 // optional string key_id = 2;
-inline bool JwtSignRequest::has_key_id() const {
+inline bool JwtComputeRequest::has_key_id() const {
   bool value = CheckHasBit(_impl_._has_bits_[0], 0x00000004U);
   return value;
 }
-inline void JwtSignRequest::clear_key_id() {
+inline void JwtComputeRequest::clear_key_id() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_.key_id_.ClearToEmpty();
   ClearHasBit(_impl_._has_bits_[0],
                   0x00000004U);
 }
-inline const ::std::string& JwtSignRequest::key_id() const
+inline const ::std::string& JwtComputeRequest::key_id() const
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:palm.loquat.v1.JwtSignRequest.key_id)
+  // @@protoc_insertion_point(field_get:palm.loquat.v1.JwtComputeRequest.key_id)
   return _internal_key_id();
 }
 template <typename Arg_, typename... Args_>
-PROTOBUF_ALWAYS_INLINE void JwtSignRequest::set_key_id(Arg_&& arg, Args_... args) {
+PROTOBUF_ALWAYS_INLINE void JwtComputeRequest::set_key_id(Arg_&& arg, Args_... args) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   SetHasBit(_impl_._has_bits_[0], 0x00000004U);
   _impl_.key_id_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
-  // @@protoc_insertion_point(field_set:palm.loquat.v1.JwtSignRequest.key_id)
+  // @@protoc_insertion_point(field_set:palm.loquat.v1.JwtComputeRequest.key_id)
 }
-inline ::std::string* PROTOBUF_NONNULL JwtSignRequest::mutable_key_id()
+inline ::std::string* PROTOBUF_NONNULL JwtComputeRequest::mutable_key_id()
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
   SetHasBit(_impl_._has_bits_[0], 0x00000004U);
   ::std::string* _s = _internal_mutable_key_id();
-  // @@protoc_insertion_point(field_mutable:palm.loquat.v1.JwtSignRequest.key_id)
+  // @@protoc_insertion_point(field_mutable:palm.loquat.v1.JwtComputeRequest.key_id)
   return _s;
 }
-inline const ::std::string& JwtSignRequest::_internal_key_id() const {
+inline const ::std::string& JwtComputeRequest::_internal_key_id() const {
   ::google::protobuf::internal::TSanRead(&_impl_);
   return _impl_.key_id_.Get();
 }
-inline void JwtSignRequest::_internal_set_key_id(const ::std::string& value) {
+inline void JwtComputeRequest::_internal_set_key_id(const ::std::string& value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_.key_id_.Set(value, GetArena());
 }
-inline ::std::string* PROTOBUF_NONNULL JwtSignRequest::_internal_mutable_key_id() {
+inline ::std::string* PROTOBUF_NONNULL JwtComputeRequest::_internal_mutable_key_id() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   return _impl_.key_id_.Mutable( GetArena());
 }
-inline ::std::string* PROTOBUF_NULLABLE JwtSignRequest::release_key_id() {
+inline ::std::string* PROTOBUF_NULLABLE JwtComputeRequest::release_key_id() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  // @@protoc_insertion_point(field_release:palm.loquat.v1.JwtSignRequest.key_id)
+  // @@protoc_insertion_point(field_release:palm.loquat.v1.JwtComputeRequest.key_id)
   if (!CheckHasBit(_impl_._has_bits_[0], 0x00000004U)) {
     return nullptr;
   }
@@ -3586,7 +3586,7 @@ inline ::std::string* PROTOBUF_NULLABLE JwtSignRequest::release_key_id() {
   }
   return released;
 }
-inline void JwtSignRequest::set_allocated_key_id(::std::string* PROTOBUF_NULLABLE value) {
+inline void JwtComputeRequest::set_allocated_key_id(::std::string* PROTOBUF_NULLABLE value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   if (value != nullptr) {
     SetHasBit(_impl_._has_bits_[0], 0x00000004U);
@@ -3597,50 +3597,50 @@ inline void JwtSignRequest::set_allocated_key_id(::std::string* PROTOBUF_NULLABL
   if (::google::protobuf::internal::DebugHardenForceCopyDefaultString() && _impl_.key_id_.IsDefault()) {
     _impl_.key_id_.Set("", GetArena());
   }
-  // @@protoc_insertion_point(field_set_allocated:palm.loquat.v1.JwtSignRequest.key_id)
+  // @@protoc_insertion_point(field_set_allocated:palm.loquat.v1.JwtComputeRequest.key_id)
 }
 
 // string issuer = 3;
-inline void JwtSignRequest::clear_issuer() {
+inline void JwtComputeRequest::clear_issuer() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_.issuer_.ClearToEmpty();
   ClearHasBit(_impl_._has_bits_[0],
                   0x00000008U);
 }
-inline const ::std::string& JwtSignRequest::issuer() const
+inline const ::std::string& JwtComputeRequest::issuer() const
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:palm.loquat.v1.JwtSignRequest.issuer)
+  // @@protoc_insertion_point(field_get:palm.loquat.v1.JwtComputeRequest.issuer)
   return _internal_issuer();
 }
 template <typename Arg_, typename... Args_>
-PROTOBUF_ALWAYS_INLINE void JwtSignRequest::set_issuer(Arg_&& arg, Args_... args) {
+PROTOBUF_ALWAYS_INLINE void JwtComputeRequest::set_issuer(Arg_&& arg, Args_... args) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   SetHasBit(_impl_._has_bits_[0], 0x00000008U);
   _impl_.issuer_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
-  // @@protoc_insertion_point(field_set:palm.loquat.v1.JwtSignRequest.issuer)
+  // @@protoc_insertion_point(field_set:palm.loquat.v1.JwtComputeRequest.issuer)
 }
-inline ::std::string* PROTOBUF_NONNULL JwtSignRequest::mutable_issuer()
+inline ::std::string* PROTOBUF_NONNULL JwtComputeRequest::mutable_issuer()
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
   SetHasBit(_impl_._has_bits_[0], 0x00000008U);
   ::std::string* _s = _internal_mutable_issuer();
-  // @@protoc_insertion_point(field_mutable:palm.loquat.v1.JwtSignRequest.issuer)
+  // @@protoc_insertion_point(field_mutable:palm.loquat.v1.JwtComputeRequest.issuer)
   return _s;
 }
-inline const ::std::string& JwtSignRequest::_internal_issuer() const {
+inline const ::std::string& JwtComputeRequest::_internal_issuer() const {
   ::google::protobuf::internal::TSanRead(&_impl_);
   return _impl_.issuer_.Get();
 }
-inline void JwtSignRequest::_internal_set_issuer(const ::std::string& value) {
+inline void JwtComputeRequest::_internal_set_issuer(const ::std::string& value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_.issuer_.Set(value, GetArena());
 }
-inline ::std::string* PROTOBUF_NONNULL JwtSignRequest::_internal_mutable_issuer() {
+inline ::std::string* PROTOBUF_NONNULL JwtComputeRequest::_internal_mutable_issuer() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   return _impl_.issuer_.Mutable( GetArena());
 }
-inline ::std::string* PROTOBUF_NULLABLE JwtSignRequest::release_issuer() {
+inline ::std::string* PROTOBUF_NULLABLE JwtComputeRequest::release_issuer() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  // @@protoc_insertion_point(field_release:palm.loquat.v1.JwtSignRequest.issuer)
+  // @@protoc_insertion_point(field_release:palm.loquat.v1.JwtComputeRequest.issuer)
   if (!CheckHasBit(_impl_._has_bits_[0], 0x00000008U)) {
     return nullptr;
   }
@@ -3651,7 +3651,7 @@ inline ::std::string* PROTOBUF_NULLABLE JwtSignRequest::release_issuer() {
   }
   return released;
 }
-inline void JwtSignRequest::set_allocated_issuer(::std::string* PROTOBUF_NULLABLE value) {
+inline void JwtComputeRequest::set_allocated_issuer(::std::string* PROTOBUF_NULLABLE value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   if (value != nullptr) {
     SetHasBit(_impl_._has_bits_[0], 0x00000008U);
@@ -3662,50 +3662,50 @@ inline void JwtSignRequest::set_allocated_issuer(::std::string* PROTOBUF_NULLABL
   if (::google::protobuf::internal::DebugHardenForceCopyDefaultString() && _impl_.issuer_.IsDefault()) {
     _impl_.issuer_.Set("", GetArena());
   }
-  // @@protoc_insertion_point(field_set_allocated:palm.loquat.v1.JwtSignRequest.issuer)
+  // @@protoc_insertion_point(field_set_allocated:palm.loquat.v1.JwtComputeRequest.issuer)
 }
 
 // string subject = 4;
-inline void JwtSignRequest::clear_subject() {
+inline void JwtComputeRequest::clear_subject() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_.subject_.ClearToEmpty();
   ClearHasBit(_impl_._has_bits_[0],
                   0x00000010U);
 }
-inline const ::std::string& JwtSignRequest::subject() const
+inline const ::std::string& JwtComputeRequest::subject() const
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:palm.loquat.v1.JwtSignRequest.subject)
+  // @@protoc_insertion_point(field_get:palm.loquat.v1.JwtComputeRequest.subject)
   return _internal_subject();
 }
 template <typename Arg_, typename... Args_>
-PROTOBUF_ALWAYS_INLINE void JwtSignRequest::set_subject(Arg_&& arg, Args_... args) {
+PROTOBUF_ALWAYS_INLINE void JwtComputeRequest::set_subject(Arg_&& arg, Args_... args) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   SetHasBit(_impl_._has_bits_[0], 0x00000010U);
   _impl_.subject_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
-  // @@protoc_insertion_point(field_set:palm.loquat.v1.JwtSignRequest.subject)
+  // @@protoc_insertion_point(field_set:palm.loquat.v1.JwtComputeRequest.subject)
 }
-inline ::std::string* PROTOBUF_NONNULL JwtSignRequest::mutable_subject()
+inline ::std::string* PROTOBUF_NONNULL JwtComputeRequest::mutable_subject()
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
   SetHasBit(_impl_._has_bits_[0], 0x00000010U);
   ::std::string* _s = _internal_mutable_subject();
-  // @@protoc_insertion_point(field_mutable:palm.loquat.v1.JwtSignRequest.subject)
+  // @@protoc_insertion_point(field_mutable:palm.loquat.v1.JwtComputeRequest.subject)
   return _s;
 }
-inline const ::std::string& JwtSignRequest::_internal_subject() const {
+inline const ::std::string& JwtComputeRequest::_internal_subject() const {
   ::google::protobuf::internal::TSanRead(&_impl_);
   return _impl_.subject_.Get();
 }
-inline void JwtSignRequest::_internal_set_subject(const ::std::string& value) {
+inline void JwtComputeRequest::_internal_set_subject(const ::std::string& value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_.subject_.Set(value, GetArena());
 }
-inline ::std::string* PROTOBUF_NONNULL JwtSignRequest::_internal_mutable_subject() {
+inline ::std::string* PROTOBUF_NONNULL JwtComputeRequest::_internal_mutable_subject() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   return _impl_.subject_.Mutable( GetArena());
 }
-inline ::std::string* PROTOBUF_NULLABLE JwtSignRequest::release_subject() {
+inline ::std::string* PROTOBUF_NULLABLE JwtComputeRequest::release_subject() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  // @@protoc_insertion_point(field_release:palm.loquat.v1.JwtSignRequest.subject)
+  // @@protoc_insertion_point(field_release:palm.loquat.v1.JwtComputeRequest.subject)
   if (!CheckHasBit(_impl_._has_bits_[0], 0x00000010U)) {
     return nullptr;
   }
@@ -3716,7 +3716,7 @@ inline ::std::string* PROTOBUF_NULLABLE JwtSignRequest::release_subject() {
   }
   return released;
 }
-inline void JwtSignRequest::set_allocated_subject(::std::string* PROTOBUF_NULLABLE value) {
+inline void JwtComputeRequest::set_allocated_subject(::std::string* PROTOBUF_NULLABLE value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   if (value != nullptr) {
     SetHasBit(_impl_._has_bits_[0], 0x00000010U);
@@ -3727,201 +3727,201 @@ inline void JwtSignRequest::set_allocated_subject(::std::string* PROTOBUF_NULLAB
   if (::google::protobuf::internal::DebugHardenForceCopyDefaultString() && _impl_.subject_.IsDefault()) {
     _impl_.subject_.Set("", GetArena());
   }
-  // @@protoc_insertion_point(field_set_allocated:palm.loquat.v1.JwtSignRequest.subject)
+  // @@protoc_insertion_point(field_set_allocated:palm.loquat.v1.JwtComputeRequest.subject)
 }
 
 // repeated string audiences = 5;
-inline int JwtSignRequest::_internal_audiences_size() const {
+inline int JwtComputeRequest::_internal_audiences_size() const {
   return _internal_audiences().size();
 }
-inline int JwtSignRequest::audiences_size() const {
+inline int JwtComputeRequest::audiences_size() const {
   return _internal_audiences_size();
 }
-inline void JwtSignRequest::clear_audiences() {
+inline void JwtComputeRequest::clear_audiences() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_.audiences_.Clear();
   ClearHasBitForRepeated(_impl_._has_bits_[0],
                   0x00000001U);
 }
-inline ::std::string* PROTOBUF_NONNULL JwtSignRequest::add_audiences()
+inline ::std::string* PROTOBUF_NONNULL JwtComputeRequest::add_audiences()
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   ::std::string* _s =
       _internal_mutable_audiences()->InternalAddWithArena(
           ::google::protobuf::MessageLite::internal_visibility(), GetArena());
   SetHasBitForRepeated(_impl_._has_bits_[0], 0x00000001U);
-  // @@protoc_insertion_point(field_add_mutable:palm.loquat.v1.JwtSignRequest.audiences)
+  // @@protoc_insertion_point(field_add_mutable:palm.loquat.v1.JwtComputeRequest.audiences)
   return _s;
 }
-inline const ::std::string& JwtSignRequest::audiences(int index) const
+inline const ::std::string& JwtComputeRequest::audiences(int index) const
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:palm.loquat.v1.JwtSignRequest.audiences)
+  // @@protoc_insertion_point(field_get:palm.loquat.v1.JwtComputeRequest.audiences)
   return _internal_audiences().Get(index);
 }
-inline ::std::string* PROTOBUF_NONNULL JwtSignRequest::mutable_audiences(int index)
+inline ::std::string* PROTOBUF_NONNULL JwtComputeRequest::mutable_audiences(int index)
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_mutable:palm.loquat.v1.JwtSignRequest.audiences)
+  // @@protoc_insertion_point(field_mutable:palm.loquat.v1.JwtComputeRequest.audiences)
   return _internal_mutable_audiences()->Mutable(index);
 }
 template <typename Arg_, typename... Args_>
-inline void JwtSignRequest::set_audiences(int index, Arg_&& value, Args_... args) {
+inline void JwtComputeRequest::set_audiences(int index, Arg_&& value, Args_... args) {
   ::google::protobuf::internal::AssignToString(*_internal_mutable_audiences()->Mutable(index), ::std::forward<Arg_>(value),
                         args... );
-  // @@protoc_insertion_point(field_set:palm.loquat.v1.JwtSignRequest.audiences)
+  // @@protoc_insertion_point(field_set:palm.loquat.v1.JwtComputeRequest.audiences)
 }
 template <typename Arg_, typename... Args_>
-inline void JwtSignRequest::add_audiences(Arg_&& value, Args_... args) {
+inline void JwtComputeRequest::add_audiences(Arg_&& value, Args_... args) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   ::google::protobuf::internal::AddToRepeatedPtrField(
       ::google::protobuf::MessageLite::internal_visibility(), GetArena(),
       *_internal_mutable_audiences(), ::std::forward<Arg_>(value),
       args... );
   SetHasBitForRepeated(_impl_._has_bits_[0], 0x00000001U);
-  // @@protoc_insertion_point(field_add:palm.loquat.v1.JwtSignRequest.audiences)
+  // @@protoc_insertion_point(field_add:palm.loquat.v1.JwtComputeRequest.audiences)
 }
-inline const ::google::protobuf::RepeatedPtrField<::std::string>& JwtSignRequest::audiences()
+inline const ::google::protobuf::RepeatedPtrField<::std::string>& JwtComputeRequest::audiences()
     const ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_list:palm.loquat.v1.JwtSignRequest.audiences)
+  // @@protoc_insertion_point(field_list:palm.loquat.v1.JwtComputeRequest.audiences)
   return _internal_audiences();
 }
 inline ::google::protobuf::RepeatedPtrField<::std::string>* PROTOBUF_NONNULL
-JwtSignRequest::mutable_audiences() ABSL_ATTRIBUTE_LIFETIME_BOUND {
+JwtComputeRequest::mutable_audiences() ABSL_ATTRIBUTE_LIFETIME_BOUND {
   SetHasBitForRepeated(_impl_._has_bits_[0], 0x00000001U);
-  // @@protoc_insertion_point(field_mutable_list:palm.loquat.v1.JwtSignRequest.audiences)
+  // @@protoc_insertion_point(field_mutable_list:palm.loquat.v1.JwtComputeRequest.audiences)
   ::google::protobuf::internal::TSanWrite(&_impl_);
   return _internal_mutable_audiences();
 }
 inline const ::google::protobuf::RepeatedPtrField<::std::string>&
-JwtSignRequest::_internal_audiences() const {
+JwtComputeRequest::_internal_audiences() const {
   ::google::protobuf::internal::TSanRead(&_impl_);
   return _impl_.audiences_;
 }
 inline ::google::protobuf::RepeatedPtrField<::std::string>* PROTOBUF_NONNULL
-JwtSignRequest::_internal_mutable_audiences() {
+JwtComputeRequest::_internal_mutable_audiences() {
   ::google::protobuf::internal::TSanRead(&_impl_);
   return &_impl_.audiences_;
 }
 
 // int64 issued_at = 6;
-inline void JwtSignRequest::clear_issued_at() {
+inline void JwtComputeRequest::clear_issued_at() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_.issued_at_ = ::int64_t{0};
   ClearHasBit(_impl_._has_bits_[0],
                   0x00000040U);
 }
-inline ::int64_t JwtSignRequest::issued_at() const {
-  // @@protoc_insertion_point(field_get:palm.loquat.v1.JwtSignRequest.issued_at)
+inline ::int64_t JwtComputeRequest::issued_at() const {
+  // @@protoc_insertion_point(field_get:palm.loquat.v1.JwtComputeRequest.issued_at)
   return _internal_issued_at();
 }
-inline void JwtSignRequest::set_issued_at(::int64_t value) {
+inline void JwtComputeRequest::set_issued_at(::int64_t value) {
   _internal_set_issued_at(value);
   SetHasBit(_impl_._has_bits_[0], 0x00000040U);
-  // @@protoc_insertion_point(field_set:palm.loquat.v1.JwtSignRequest.issued_at)
+  // @@protoc_insertion_point(field_set:palm.loquat.v1.JwtComputeRequest.issued_at)
 }
-inline ::int64_t JwtSignRequest::_internal_issued_at() const {
+inline ::int64_t JwtComputeRequest::_internal_issued_at() const {
   ::google::protobuf::internal::TSanRead(&_impl_);
   return _impl_.issued_at_;
 }
-inline void JwtSignRequest::_internal_set_issued_at(::int64_t value) {
+inline void JwtComputeRequest::_internal_set_issued_at(::int64_t value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_.issued_at_ = value;
 }
 
 // int64 not_before = 7;
-inline void JwtSignRequest::clear_not_before() {
+inline void JwtComputeRequest::clear_not_before() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_.not_before_ = ::int64_t{0};
   ClearHasBit(_impl_._has_bits_[0],
                   0x00000080U);
 }
-inline ::int64_t JwtSignRequest::not_before() const {
-  // @@protoc_insertion_point(field_get:palm.loquat.v1.JwtSignRequest.not_before)
+inline ::int64_t JwtComputeRequest::not_before() const {
+  // @@protoc_insertion_point(field_get:palm.loquat.v1.JwtComputeRequest.not_before)
   return _internal_not_before();
 }
-inline void JwtSignRequest::set_not_before(::int64_t value) {
+inline void JwtComputeRequest::set_not_before(::int64_t value) {
   _internal_set_not_before(value);
   SetHasBit(_impl_._has_bits_[0], 0x00000080U);
-  // @@protoc_insertion_point(field_set:palm.loquat.v1.JwtSignRequest.not_before)
+  // @@protoc_insertion_point(field_set:palm.loquat.v1.JwtComputeRequest.not_before)
 }
-inline ::int64_t JwtSignRequest::_internal_not_before() const {
+inline ::int64_t JwtComputeRequest::_internal_not_before() const {
   ::google::protobuf::internal::TSanRead(&_impl_);
   return _impl_.not_before_;
 }
-inline void JwtSignRequest::_internal_set_not_before(::int64_t value) {
+inline void JwtComputeRequest::_internal_set_not_before(::int64_t value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_.not_before_ = value;
 }
 
 // int64 expired_at = 8;
-inline void JwtSignRequest::clear_expired_at() {
+inline void JwtComputeRequest::clear_expired_at() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_.expired_at_ = ::int64_t{0};
   ClearHasBit(_impl_._has_bits_[0],
                   0x00000100U);
 }
-inline ::int64_t JwtSignRequest::expired_at() const {
-  // @@protoc_insertion_point(field_get:palm.loquat.v1.JwtSignRequest.expired_at)
+inline ::int64_t JwtComputeRequest::expired_at() const {
+  // @@protoc_insertion_point(field_get:palm.loquat.v1.JwtComputeRequest.expired_at)
   return _internal_expired_at();
 }
-inline void JwtSignRequest::set_expired_at(::int64_t value) {
+inline void JwtComputeRequest::set_expired_at(::int64_t value) {
   _internal_set_expired_at(value);
   SetHasBit(_impl_._has_bits_[0], 0x00000100U);
-  // @@protoc_insertion_point(field_set:palm.loquat.v1.JwtSignRequest.expired_at)
+  // @@protoc_insertion_point(field_set:palm.loquat.v1.JwtComputeRequest.expired_at)
 }
-inline ::int64_t JwtSignRequest::_internal_expired_at() const {
+inline ::int64_t JwtComputeRequest::_internal_expired_at() const {
   ::google::protobuf::internal::TSanRead(&_impl_);
   return _impl_.expired_at_;
 }
-inline void JwtSignRequest::_internal_set_expired_at(::int64_t value) {
+inline void JwtComputeRequest::_internal_set_expired_at(::int64_t value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_.expired_at_ = value;
 }
 
 // optional bytes payload = 9;
-inline bool JwtSignRequest::has_payload() const {
+inline bool JwtComputeRequest::has_payload() const {
   bool value = CheckHasBit(_impl_._has_bits_[0], 0x00000020U);
   return value;
 }
-inline void JwtSignRequest::clear_payload() {
+inline void JwtComputeRequest::clear_payload() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_.payload_.ClearToEmpty();
   ClearHasBit(_impl_._has_bits_[0],
                   0x00000020U);
 }
-inline const ::std::string& JwtSignRequest::payload() const
+inline const ::std::string& JwtComputeRequest::payload() const
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:palm.loquat.v1.JwtSignRequest.payload)
+  // @@protoc_insertion_point(field_get:palm.loquat.v1.JwtComputeRequest.payload)
   return _internal_payload();
 }
 template <typename Arg_, typename... Args_>
-PROTOBUF_ALWAYS_INLINE void JwtSignRequest::set_payload(Arg_&& arg, Args_... args) {
+PROTOBUF_ALWAYS_INLINE void JwtComputeRequest::set_payload(Arg_&& arg, Args_... args) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   SetHasBit(_impl_._has_bits_[0], 0x00000020U);
   _impl_.payload_.SetBytes(static_cast<Arg_&&>(arg), args..., GetArena());
-  // @@protoc_insertion_point(field_set:palm.loquat.v1.JwtSignRequest.payload)
+  // @@protoc_insertion_point(field_set:palm.loquat.v1.JwtComputeRequest.payload)
 }
-inline ::std::string* PROTOBUF_NONNULL JwtSignRequest::mutable_payload()
+inline ::std::string* PROTOBUF_NONNULL JwtComputeRequest::mutable_payload()
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
   SetHasBit(_impl_._has_bits_[0], 0x00000020U);
   ::std::string* _s = _internal_mutable_payload();
-  // @@protoc_insertion_point(field_mutable:palm.loquat.v1.JwtSignRequest.payload)
+  // @@protoc_insertion_point(field_mutable:palm.loquat.v1.JwtComputeRequest.payload)
   return _s;
 }
-inline const ::std::string& JwtSignRequest::_internal_payload() const {
+inline const ::std::string& JwtComputeRequest::_internal_payload() const {
   ::google::protobuf::internal::TSanRead(&_impl_);
   return _impl_.payload_.Get();
 }
-inline void JwtSignRequest::_internal_set_payload(const ::std::string& value) {
+inline void JwtComputeRequest::_internal_set_payload(const ::std::string& value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_.payload_.Set(value, GetArena());
 }
-inline ::std::string* PROTOBUF_NONNULL JwtSignRequest::_internal_mutable_payload() {
+inline ::std::string* PROTOBUF_NONNULL JwtComputeRequest::_internal_mutable_payload() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   return _impl_.payload_.Mutable( GetArena());
 }
-inline ::std::string* PROTOBUF_NULLABLE JwtSignRequest::release_payload() {
+inline ::std::string* PROTOBUF_NULLABLE JwtComputeRequest::release_payload() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  // @@protoc_insertion_point(field_release:palm.loquat.v1.JwtSignRequest.payload)
+  // @@protoc_insertion_point(field_release:palm.loquat.v1.JwtComputeRequest.payload)
   if (!CheckHasBit(_impl_._has_bits_[0], 0x00000020U)) {
     return nullptr;
   }
@@ -3932,7 +3932,7 @@ inline ::std::string* PROTOBUF_NULLABLE JwtSignRequest::release_payload() {
   }
   return released;
 }
-inline void JwtSignRequest::set_allocated_payload(::std::string* PROTOBUF_NULLABLE value) {
+inline void JwtComputeRequest::set_allocated_payload(::std::string* PROTOBUF_NULLABLE value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   if (value != nullptr) {
     SetHasBit(_impl_._has_bits_[0], 0x00000020U);
@@ -3943,54 +3943,54 @@ inline void JwtSignRequest::set_allocated_payload(::std::string* PROTOBUF_NULLAB
   if (::google::protobuf::internal::DebugHardenForceCopyDefaultString() && _impl_.payload_.IsDefault()) {
     _impl_.payload_.Set("", GetArena());
   }
-  // @@protoc_insertion_point(field_set_allocated:palm.loquat.v1.JwtSignRequest.payload)
+  // @@protoc_insertion_point(field_set_allocated:palm.loquat.v1.JwtComputeRequest.payload)
 }
 
 // -------------------------------------------------------------------
 
-// JwtSignResponse
+// JwtComputeResponse
 
 // string token = 1;
-inline void JwtSignResponse::clear_token() {
+inline void JwtComputeResponse::clear_token() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_.token_.ClearToEmpty();
   ClearHasBit(_impl_._has_bits_[0],
                   0x00000001U);
 }
-inline const ::std::string& JwtSignResponse::token() const
+inline const ::std::string& JwtComputeResponse::token() const
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:palm.loquat.v1.JwtSignResponse.token)
+  // @@protoc_insertion_point(field_get:palm.loquat.v1.JwtComputeResponse.token)
   return _internal_token();
 }
 template <typename Arg_, typename... Args_>
-PROTOBUF_ALWAYS_INLINE void JwtSignResponse::set_token(Arg_&& arg, Args_... args) {
+PROTOBUF_ALWAYS_INLINE void JwtComputeResponse::set_token(Arg_&& arg, Args_... args) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   SetHasBit(_impl_._has_bits_[0], 0x00000001U);
   _impl_.token_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
-  // @@protoc_insertion_point(field_set:palm.loquat.v1.JwtSignResponse.token)
+  // @@protoc_insertion_point(field_set:palm.loquat.v1.JwtComputeResponse.token)
 }
-inline ::std::string* PROTOBUF_NONNULL JwtSignResponse::mutable_token()
+inline ::std::string* PROTOBUF_NONNULL JwtComputeResponse::mutable_token()
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
   SetHasBit(_impl_._has_bits_[0], 0x00000001U);
   ::std::string* _s = _internal_mutable_token();
-  // @@protoc_insertion_point(field_mutable:palm.loquat.v1.JwtSignResponse.token)
+  // @@protoc_insertion_point(field_mutable:palm.loquat.v1.JwtComputeResponse.token)
   return _s;
 }
-inline const ::std::string& JwtSignResponse::_internal_token() const {
+inline const ::std::string& JwtComputeResponse::_internal_token() const {
   ::google::protobuf::internal::TSanRead(&_impl_);
   return _impl_.token_.Get();
 }
-inline void JwtSignResponse::_internal_set_token(const ::std::string& value) {
+inline void JwtComputeResponse::_internal_set_token(const ::std::string& value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_.token_.Set(value, GetArena());
 }
-inline ::std::string* PROTOBUF_NONNULL JwtSignResponse::_internal_mutable_token() {
+inline ::std::string* PROTOBUF_NONNULL JwtComputeResponse::_internal_mutable_token() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   return _impl_.token_.Mutable( GetArena());
 }
-inline ::std::string* PROTOBUF_NULLABLE JwtSignResponse::release_token() {
+inline ::std::string* PROTOBUF_NULLABLE JwtComputeResponse::release_token() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  // @@protoc_insertion_point(field_release:palm.loquat.v1.JwtSignResponse.token)
+  // @@protoc_insertion_point(field_release:palm.loquat.v1.JwtComputeResponse.token)
   if (!CheckHasBit(_impl_._has_bits_[0], 0x00000001U)) {
     return nullptr;
   }
@@ -4001,7 +4001,7 @@ inline ::std::string* PROTOBUF_NULLABLE JwtSignResponse::release_token() {
   }
   return released;
 }
-inline void JwtSignResponse::set_allocated_token(::std::string* PROTOBUF_NULLABLE value) {
+inline void JwtComputeResponse::set_allocated_token(::std::string* PROTOBUF_NULLABLE value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   if (value != nullptr) {
     SetHasBit(_impl_._has_bits_[0], 0x00000001U);
@@ -4012,54 +4012,54 @@ inline void JwtSignResponse::set_allocated_token(::std::string* PROTOBUF_NULLABL
   if (::google::protobuf::internal::DebugHardenForceCopyDefaultString() && _impl_.token_.IsDefault()) {
     _impl_.token_.Set("", GetArena());
   }
-  // @@protoc_insertion_point(field_set_allocated:palm.loquat.v1.JwtSignResponse.token)
+  // @@protoc_insertion_point(field_set_allocated:palm.loquat.v1.JwtComputeResponse.token)
 }
 
 // -------------------------------------------------------------------
 
-// HMacSignRequest
+// MacComputeRequest
 
 // bytes plain = 1;
-inline void HMacSignRequest::clear_plain() {
+inline void MacComputeRequest::clear_plain() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_.plain_.ClearToEmpty();
   ClearHasBit(_impl_._has_bits_[0],
                   0x00000001U);
 }
-inline const ::std::string& HMacSignRequest::plain() const
+inline const ::std::string& MacComputeRequest::plain() const
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:palm.loquat.v1.HMacSignRequest.plain)
+  // @@protoc_insertion_point(field_get:palm.loquat.v1.MacComputeRequest.plain)
   return _internal_plain();
 }
 template <typename Arg_, typename... Args_>
-PROTOBUF_ALWAYS_INLINE void HMacSignRequest::set_plain(Arg_&& arg, Args_... args) {
+PROTOBUF_ALWAYS_INLINE void MacComputeRequest::set_plain(Arg_&& arg, Args_... args) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   SetHasBit(_impl_._has_bits_[0], 0x00000001U);
   _impl_.plain_.SetBytes(static_cast<Arg_&&>(arg), args..., GetArena());
-  // @@protoc_insertion_point(field_set:palm.loquat.v1.HMacSignRequest.plain)
+  // @@protoc_insertion_point(field_set:palm.loquat.v1.MacComputeRequest.plain)
 }
-inline ::std::string* PROTOBUF_NONNULL HMacSignRequest::mutable_plain()
+inline ::std::string* PROTOBUF_NONNULL MacComputeRequest::mutable_plain()
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
   SetHasBit(_impl_._has_bits_[0], 0x00000001U);
   ::std::string* _s = _internal_mutable_plain();
-  // @@protoc_insertion_point(field_mutable:palm.loquat.v1.HMacSignRequest.plain)
+  // @@protoc_insertion_point(field_mutable:palm.loquat.v1.MacComputeRequest.plain)
   return _s;
 }
-inline const ::std::string& HMacSignRequest::_internal_plain() const {
+inline const ::std::string& MacComputeRequest::_internal_plain() const {
   ::google::protobuf::internal::TSanRead(&_impl_);
   return _impl_.plain_.Get();
 }
-inline void HMacSignRequest::_internal_set_plain(const ::std::string& value) {
+inline void MacComputeRequest::_internal_set_plain(const ::std::string& value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_.plain_.Set(value, GetArena());
 }
-inline ::std::string* PROTOBUF_NONNULL HMacSignRequest::_internal_mutable_plain() {
+inline ::std::string* PROTOBUF_NONNULL MacComputeRequest::_internal_mutable_plain() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   return _impl_.plain_.Mutable( GetArena());
 }
-inline ::std::string* PROTOBUF_NULLABLE HMacSignRequest::release_plain() {
+inline ::std::string* PROTOBUF_NULLABLE MacComputeRequest::release_plain() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  // @@protoc_insertion_point(field_release:palm.loquat.v1.HMacSignRequest.plain)
+  // @@protoc_insertion_point(field_release:palm.loquat.v1.MacComputeRequest.plain)
   if (!CheckHasBit(_impl_._has_bits_[0], 0x00000001U)) {
     return nullptr;
   }
@@ -4070,7 +4070,7 @@ inline ::std::string* PROTOBUF_NULLABLE HMacSignRequest::release_plain() {
   }
   return released;
 }
-inline void HMacSignRequest::set_allocated_plain(::std::string* PROTOBUF_NULLABLE value) {
+inline void MacComputeRequest::set_allocated_plain(::std::string* PROTOBUF_NULLABLE value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   if (value != nullptr) {
     SetHasBit(_impl_._has_bits_[0], 0x00000001U);
@@ -4081,54 +4081,54 @@ inline void HMacSignRequest::set_allocated_plain(::std::string* PROTOBUF_NULLABL
   if (::google::protobuf::internal::DebugHardenForceCopyDefaultString() && _impl_.plain_.IsDefault()) {
     _impl_.plain_.Set("", GetArena());
   }
-  // @@protoc_insertion_point(field_set_allocated:palm.loquat.v1.HMacSignRequest.plain)
+  // @@protoc_insertion_point(field_set_allocated:palm.loquat.v1.MacComputeRequest.plain)
 }
 
 // -------------------------------------------------------------------
 
-// HMacSignResponse
+// MacComputeResponse
 
 // bytes hashed = 1;
-inline void HMacSignResponse::clear_hashed() {
+inline void MacComputeResponse::clear_hashed() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_.hashed_.ClearToEmpty();
   ClearHasBit(_impl_._has_bits_[0],
                   0x00000001U);
 }
-inline const ::std::string& HMacSignResponse::hashed() const
+inline const ::std::string& MacComputeResponse::hashed() const
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:palm.loquat.v1.HMacSignResponse.hashed)
+  // @@protoc_insertion_point(field_get:palm.loquat.v1.MacComputeResponse.hashed)
   return _internal_hashed();
 }
 template <typename Arg_, typename... Args_>
-PROTOBUF_ALWAYS_INLINE void HMacSignResponse::set_hashed(Arg_&& arg, Args_... args) {
+PROTOBUF_ALWAYS_INLINE void MacComputeResponse::set_hashed(Arg_&& arg, Args_... args) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   SetHasBit(_impl_._has_bits_[0], 0x00000001U);
   _impl_.hashed_.SetBytes(static_cast<Arg_&&>(arg), args..., GetArena());
-  // @@protoc_insertion_point(field_set:palm.loquat.v1.HMacSignResponse.hashed)
+  // @@protoc_insertion_point(field_set:palm.loquat.v1.MacComputeResponse.hashed)
 }
-inline ::std::string* PROTOBUF_NONNULL HMacSignResponse::mutable_hashed()
+inline ::std::string* PROTOBUF_NONNULL MacComputeResponse::mutable_hashed()
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
   SetHasBit(_impl_._has_bits_[0], 0x00000001U);
   ::std::string* _s = _internal_mutable_hashed();
-  // @@protoc_insertion_point(field_mutable:palm.loquat.v1.HMacSignResponse.hashed)
+  // @@protoc_insertion_point(field_mutable:palm.loquat.v1.MacComputeResponse.hashed)
   return _s;
 }
-inline const ::std::string& HMacSignResponse::_internal_hashed() const {
+inline const ::std::string& MacComputeResponse::_internal_hashed() const {
   ::google::protobuf::internal::TSanRead(&_impl_);
   return _impl_.hashed_.Get();
 }
-inline void HMacSignResponse::_internal_set_hashed(const ::std::string& value) {
+inline void MacComputeResponse::_internal_set_hashed(const ::std::string& value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_.hashed_.Set(value, GetArena());
 }
-inline ::std::string* PROTOBUF_NONNULL HMacSignResponse::_internal_mutable_hashed() {
+inline ::std::string* PROTOBUF_NONNULL MacComputeResponse::_internal_mutable_hashed() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   return _impl_.hashed_.Mutable( GetArena());
 }
-inline ::std::string* PROTOBUF_NULLABLE HMacSignResponse::release_hashed() {
+inline ::std::string* PROTOBUF_NULLABLE MacComputeResponse::release_hashed() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  // @@protoc_insertion_point(field_release:palm.loquat.v1.HMacSignResponse.hashed)
+  // @@protoc_insertion_point(field_release:palm.loquat.v1.MacComputeResponse.hashed)
   if (!CheckHasBit(_impl_._has_bits_[0], 0x00000001U)) {
     return nullptr;
   }
@@ -4139,7 +4139,7 @@ inline ::std::string* PROTOBUF_NULLABLE HMacSignResponse::release_hashed() {
   }
   return released;
 }
-inline void HMacSignResponse::set_allocated_hashed(::std::string* PROTOBUF_NULLABLE value) {
+inline void MacComputeResponse::set_allocated_hashed(::std::string* PROTOBUF_NULLABLE value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   if (value != nullptr) {
     SetHasBit(_impl_._has_bits_[0], 0x00000001U);
@@ -4150,54 +4150,54 @@ inline void HMacSignResponse::set_allocated_hashed(::std::string* PROTOBUF_NULLA
   if (::google::protobuf::internal::DebugHardenForceCopyDefaultString() && _impl_.hashed_.IsDefault()) {
     _impl_.hashed_.Set("", GetArena());
   }
-  // @@protoc_insertion_point(field_set_allocated:palm.loquat.v1.HMacSignResponse.hashed)
+  // @@protoc_insertion_point(field_set_allocated:palm.loquat.v1.MacComputeResponse.hashed)
 }
 
 // -------------------------------------------------------------------
 
-// HMacVerifyRequest
+// MacVerifyRequest
 
 // bytes hashed = 1;
-inline void HMacVerifyRequest::clear_hashed() {
+inline void MacVerifyRequest::clear_hashed() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_.hashed_.ClearToEmpty();
   ClearHasBit(_impl_._has_bits_[0],
                   0x00000001U);
 }
-inline const ::std::string& HMacVerifyRequest::hashed() const
+inline const ::std::string& MacVerifyRequest::hashed() const
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:palm.loquat.v1.HMacVerifyRequest.hashed)
+  // @@protoc_insertion_point(field_get:palm.loquat.v1.MacVerifyRequest.hashed)
   return _internal_hashed();
 }
 template <typename Arg_, typename... Args_>
-PROTOBUF_ALWAYS_INLINE void HMacVerifyRequest::set_hashed(Arg_&& arg, Args_... args) {
+PROTOBUF_ALWAYS_INLINE void MacVerifyRequest::set_hashed(Arg_&& arg, Args_... args) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   SetHasBit(_impl_._has_bits_[0], 0x00000001U);
   _impl_.hashed_.SetBytes(static_cast<Arg_&&>(arg), args..., GetArena());
-  // @@protoc_insertion_point(field_set:palm.loquat.v1.HMacVerifyRequest.hashed)
+  // @@protoc_insertion_point(field_set:palm.loquat.v1.MacVerifyRequest.hashed)
 }
-inline ::std::string* PROTOBUF_NONNULL HMacVerifyRequest::mutable_hashed()
+inline ::std::string* PROTOBUF_NONNULL MacVerifyRequest::mutable_hashed()
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
   SetHasBit(_impl_._has_bits_[0], 0x00000001U);
   ::std::string* _s = _internal_mutable_hashed();
-  // @@protoc_insertion_point(field_mutable:palm.loquat.v1.HMacVerifyRequest.hashed)
+  // @@protoc_insertion_point(field_mutable:palm.loquat.v1.MacVerifyRequest.hashed)
   return _s;
 }
-inline const ::std::string& HMacVerifyRequest::_internal_hashed() const {
+inline const ::std::string& MacVerifyRequest::_internal_hashed() const {
   ::google::protobuf::internal::TSanRead(&_impl_);
   return _impl_.hashed_.Get();
 }
-inline void HMacVerifyRequest::_internal_set_hashed(const ::std::string& value) {
+inline void MacVerifyRequest::_internal_set_hashed(const ::std::string& value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_.hashed_.Set(value, GetArena());
 }
-inline ::std::string* PROTOBUF_NONNULL HMacVerifyRequest::_internal_mutable_hashed() {
+inline ::std::string* PROTOBUF_NONNULL MacVerifyRequest::_internal_mutable_hashed() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   return _impl_.hashed_.Mutable( GetArena());
 }
-inline ::std::string* PROTOBUF_NULLABLE HMacVerifyRequest::release_hashed() {
+inline ::std::string* PROTOBUF_NULLABLE MacVerifyRequest::release_hashed() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  // @@protoc_insertion_point(field_release:palm.loquat.v1.HMacVerifyRequest.hashed)
+  // @@protoc_insertion_point(field_release:palm.loquat.v1.MacVerifyRequest.hashed)
   if (!CheckHasBit(_impl_._has_bits_[0], 0x00000001U)) {
     return nullptr;
   }
@@ -4208,7 +4208,7 @@ inline ::std::string* PROTOBUF_NULLABLE HMacVerifyRequest::release_hashed() {
   }
   return released;
 }
-inline void HMacVerifyRequest::set_allocated_hashed(::std::string* PROTOBUF_NULLABLE value) {
+inline void MacVerifyRequest::set_allocated_hashed(::std::string* PROTOBUF_NULLABLE value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   if (value != nullptr) {
     SetHasBit(_impl_._has_bits_[0], 0x00000001U);
@@ -4219,50 +4219,50 @@ inline void HMacVerifyRequest::set_allocated_hashed(::std::string* PROTOBUF_NULL
   if (::google::protobuf::internal::DebugHardenForceCopyDefaultString() && _impl_.hashed_.IsDefault()) {
     _impl_.hashed_.Set("", GetArena());
   }
-  // @@protoc_insertion_point(field_set_allocated:palm.loquat.v1.HMacVerifyRequest.hashed)
+  // @@protoc_insertion_point(field_set_allocated:palm.loquat.v1.MacVerifyRequest.hashed)
 }
 
 // bytes plain = 2;
-inline void HMacVerifyRequest::clear_plain() {
+inline void MacVerifyRequest::clear_plain() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_.plain_.ClearToEmpty();
   ClearHasBit(_impl_._has_bits_[0],
                   0x00000002U);
 }
-inline const ::std::string& HMacVerifyRequest::plain() const
+inline const ::std::string& MacVerifyRequest::plain() const
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:palm.loquat.v1.HMacVerifyRequest.plain)
+  // @@protoc_insertion_point(field_get:palm.loquat.v1.MacVerifyRequest.plain)
   return _internal_plain();
 }
 template <typename Arg_, typename... Args_>
-PROTOBUF_ALWAYS_INLINE void HMacVerifyRequest::set_plain(Arg_&& arg, Args_... args) {
+PROTOBUF_ALWAYS_INLINE void MacVerifyRequest::set_plain(Arg_&& arg, Args_... args) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   SetHasBit(_impl_._has_bits_[0], 0x00000002U);
   _impl_.plain_.SetBytes(static_cast<Arg_&&>(arg), args..., GetArena());
-  // @@protoc_insertion_point(field_set:palm.loquat.v1.HMacVerifyRequest.plain)
+  // @@protoc_insertion_point(field_set:palm.loquat.v1.MacVerifyRequest.plain)
 }
-inline ::std::string* PROTOBUF_NONNULL HMacVerifyRequest::mutable_plain()
+inline ::std::string* PROTOBUF_NONNULL MacVerifyRequest::mutable_plain()
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
   SetHasBit(_impl_._has_bits_[0], 0x00000002U);
   ::std::string* _s = _internal_mutable_plain();
-  // @@protoc_insertion_point(field_mutable:palm.loquat.v1.HMacVerifyRequest.plain)
+  // @@protoc_insertion_point(field_mutable:palm.loquat.v1.MacVerifyRequest.plain)
   return _s;
 }
-inline const ::std::string& HMacVerifyRequest::_internal_plain() const {
+inline const ::std::string& MacVerifyRequest::_internal_plain() const {
   ::google::protobuf::internal::TSanRead(&_impl_);
   return _impl_.plain_.Get();
 }
-inline void HMacVerifyRequest::_internal_set_plain(const ::std::string& value) {
+inline void MacVerifyRequest::_internal_set_plain(const ::std::string& value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_.plain_.Set(value, GetArena());
 }
-inline ::std::string* PROTOBUF_NONNULL HMacVerifyRequest::_internal_mutable_plain() {
+inline ::std::string* PROTOBUF_NONNULL MacVerifyRequest::_internal_mutable_plain() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   return _impl_.plain_.Mutable( GetArena());
 }
-inline ::std::string* PROTOBUF_NULLABLE HMacVerifyRequest::release_plain() {
+inline ::std::string* PROTOBUF_NULLABLE MacVerifyRequest::release_plain() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  // @@protoc_insertion_point(field_release:palm.loquat.v1.HMacVerifyRequest.plain)
+  // @@protoc_insertion_point(field_release:palm.loquat.v1.MacVerifyRequest.plain)
   if (!CheckHasBit(_impl_._has_bits_[0], 0x00000002U)) {
     return nullptr;
   }
@@ -4273,7 +4273,7 @@ inline ::std::string* PROTOBUF_NULLABLE HMacVerifyRequest::release_plain() {
   }
   return released;
 }
-inline void HMacVerifyRequest::set_allocated_plain(::std::string* PROTOBUF_NULLABLE value) {
+inline void MacVerifyRequest::set_allocated_plain(::std::string* PROTOBUF_NULLABLE value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   if (value != nullptr) {
     SetHasBit(_impl_._has_bits_[0], 0x00000002U);
@@ -4284,54 +4284,54 @@ inline void HMacVerifyRequest::set_allocated_plain(::std::string* PROTOBUF_NULLA
   if (::google::protobuf::internal::DebugHardenForceCopyDefaultString() && _impl_.plain_.IsDefault()) {
     _impl_.plain_.Set("", GetArena());
   }
-  // @@protoc_insertion_point(field_set_allocated:palm.loquat.v1.HMacVerifyRequest.plain)
+  // @@protoc_insertion_point(field_set_allocated:palm.loquat.v1.MacVerifyRequest.plain)
 }
 
 // -------------------------------------------------------------------
 
-// AesEncryptRequest
+// AeadEncryptRequest
 
 // bytes plain = 1;
-inline void AesEncryptRequest::clear_plain() {
+inline void AeadEncryptRequest::clear_plain() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_.plain_.ClearToEmpty();
   ClearHasBit(_impl_._has_bits_[0],
                   0x00000001U);
 }
-inline const ::std::string& AesEncryptRequest::plain() const
+inline const ::std::string& AeadEncryptRequest::plain() const
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:palm.loquat.v1.AesEncryptRequest.plain)
+  // @@protoc_insertion_point(field_get:palm.loquat.v1.AeadEncryptRequest.plain)
   return _internal_plain();
 }
 template <typename Arg_, typename... Args_>
-PROTOBUF_ALWAYS_INLINE void AesEncryptRequest::set_plain(Arg_&& arg, Args_... args) {
+PROTOBUF_ALWAYS_INLINE void AeadEncryptRequest::set_plain(Arg_&& arg, Args_... args) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   SetHasBit(_impl_._has_bits_[0], 0x00000001U);
   _impl_.plain_.SetBytes(static_cast<Arg_&&>(arg), args..., GetArena());
-  // @@protoc_insertion_point(field_set:palm.loquat.v1.AesEncryptRequest.plain)
+  // @@protoc_insertion_point(field_set:palm.loquat.v1.AeadEncryptRequest.plain)
 }
-inline ::std::string* PROTOBUF_NONNULL AesEncryptRequest::mutable_plain()
+inline ::std::string* PROTOBUF_NONNULL AeadEncryptRequest::mutable_plain()
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
   SetHasBit(_impl_._has_bits_[0], 0x00000001U);
   ::std::string* _s = _internal_mutable_plain();
-  // @@protoc_insertion_point(field_mutable:palm.loquat.v1.AesEncryptRequest.plain)
+  // @@protoc_insertion_point(field_mutable:palm.loquat.v1.AeadEncryptRequest.plain)
   return _s;
 }
-inline const ::std::string& AesEncryptRequest::_internal_plain() const {
+inline const ::std::string& AeadEncryptRequest::_internal_plain() const {
   ::google::protobuf::internal::TSanRead(&_impl_);
   return _impl_.plain_.Get();
 }
-inline void AesEncryptRequest::_internal_set_plain(const ::std::string& value) {
+inline void AeadEncryptRequest::_internal_set_plain(const ::std::string& value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_.plain_.Set(value, GetArena());
 }
-inline ::std::string* PROTOBUF_NONNULL AesEncryptRequest::_internal_mutable_plain() {
+inline ::std::string* PROTOBUF_NONNULL AeadEncryptRequest::_internal_mutable_plain() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   return _impl_.plain_.Mutable( GetArena());
 }
-inline ::std::string* PROTOBUF_NULLABLE AesEncryptRequest::release_plain() {
+inline ::std::string* PROTOBUF_NULLABLE AeadEncryptRequest::release_plain() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  // @@protoc_insertion_point(field_release:palm.loquat.v1.AesEncryptRequest.plain)
+  // @@protoc_insertion_point(field_release:palm.loquat.v1.AeadEncryptRequest.plain)
   if (!CheckHasBit(_impl_._has_bits_[0], 0x00000001U)) {
     return nullptr;
   }
@@ -4342,7 +4342,7 @@ inline ::std::string* PROTOBUF_NULLABLE AesEncryptRequest::release_plain() {
   }
   return released;
 }
-inline void AesEncryptRequest::set_allocated_plain(::std::string* PROTOBUF_NULLABLE value) {
+inline void AeadEncryptRequest::set_allocated_plain(::std::string* PROTOBUF_NULLABLE value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   if (value != nullptr) {
     SetHasBit(_impl_._has_bits_[0], 0x00000001U);
@@ -4353,50 +4353,50 @@ inline void AesEncryptRequest::set_allocated_plain(::std::string* PROTOBUF_NULLA
   if (::google::protobuf::internal::DebugHardenForceCopyDefaultString() && _impl_.plain_.IsDefault()) {
     _impl_.plain_.Set("", GetArena());
   }
-  // @@protoc_insertion_point(field_set_allocated:palm.loquat.v1.AesEncryptRequest.plain)
+  // @@protoc_insertion_point(field_set_allocated:palm.loquat.v1.AeadEncryptRequest.plain)
 }
 
 // bytes associated_data = 2;
-inline void AesEncryptRequest::clear_associated_data() {
+inline void AeadEncryptRequest::clear_associated_data() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_.associated_data_.ClearToEmpty();
   ClearHasBit(_impl_._has_bits_[0],
                   0x00000002U);
 }
-inline const ::std::string& AesEncryptRequest::associated_data() const
+inline const ::std::string& AeadEncryptRequest::associated_data() const
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:palm.loquat.v1.AesEncryptRequest.associated_data)
+  // @@protoc_insertion_point(field_get:palm.loquat.v1.AeadEncryptRequest.associated_data)
   return _internal_associated_data();
 }
 template <typename Arg_, typename... Args_>
-PROTOBUF_ALWAYS_INLINE void AesEncryptRequest::set_associated_data(Arg_&& arg, Args_... args) {
+PROTOBUF_ALWAYS_INLINE void AeadEncryptRequest::set_associated_data(Arg_&& arg, Args_... args) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   SetHasBit(_impl_._has_bits_[0], 0x00000002U);
   _impl_.associated_data_.SetBytes(static_cast<Arg_&&>(arg), args..., GetArena());
-  // @@protoc_insertion_point(field_set:palm.loquat.v1.AesEncryptRequest.associated_data)
+  // @@protoc_insertion_point(field_set:palm.loquat.v1.AeadEncryptRequest.associated_data)
 }
-inline ::std::string* PROTOBUF_NONNULL AesEncryptRequest::mutable_associated_data()
+inline ::std::string* PROTOBUF_NONNULL AeadEncryptRequest::mutable_associated_data()
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
   SetHasBit(_impl_._has_bits_[0], 0x00000002U);
   ::std::string* _s = _internal_mutable_associated_data();
-  // @@protoc_insertion_point(field_mutable:palm.loquat.v1.AesEncryptRequest.associated_data)
+  // @@protoc_insertion_point(field_mutable:palm.loquat.v1.AeadEncryptRequest.associated_data)
   return _s;
 }
-inline const ::std::string& AesEncryptRequest::_internal_associated_data() const {
+inline const ::std::string& AeadEncryptRequest::_internal_associated_data() const {
   ::google::protobuf::internal::TSanRead(&_impl_);
   return _impl_.associated_data_.Get();
 }
-inline void AesEncryptRequest::_internal_set_associated_data(const ::std::string& value) {
+inline void AeadEncryptRequest::_internal_set_associated_data(const ::std::string& value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_.associated_data_.Set(value, GetArena());
 }
-inline ::std::string* PROTOBUF_NONNULL AesEncryptRequest::_internal_mutable_associated_data() {
+inline ::std::string* PROTOBUF_NONNULL AeadEncryptRequest::_internal_mutable_associated_data() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   return _impl_.associated_data_.Mutable( GetArena());
 }
-inline ::std::string* PROTOBUF_NULLABLE AesEncryptRequest::release_associated_data() {
+inline ::std::string* PROTOBUF_NULLABLE AeadEncryptRequest::release_associated_data() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  // @@protoc_insertion_point(field_release:palm.loquat.v1.AesEncryptRequest.associated_data)
+  // @@protoc_insertion_point(field_release:palm.loquat.v1.AeadEncryptRequest.associated_data)
   if (!CheckHasBit(_impl_._has_bits_[0], 0x00000002U)) {
     return nullptr;
   }
@@ -4407,7 +4407,7 @@ inline ::std::string* PROTOBUF_NULLABLE AesEncryptRequest::release_associated_da
   }
   return released;
 }
-inline void AesEncryptRequest::set_allocated_associated_data(::std::string* PROTOBUF_NULLABLE value) {
+inline void AeadEncryptRequest::set_allocated_associated_data(::std::string* PROTOBUF_NULLABLE value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   if (value != nullptr) {
     SetHasBit(_impl_._has_bits_[0], 0x00000002U);
@@ -4418,54 +4418,54 @@ inline void AesEncryptRequest::set_allocated_associated_data(::std::string* PROT
   if (::google::protobuf::internal::DebugHardenForceCopyDefaultString() && _impl_.associated_data_.IsDefault()) {
     _impl_.associated_data_.Set("", GetArena());
   }
-  // @@protoc_insertion_point(field_set_allocated:palm.loquat.v1.AesEncryptRequest.associated_data)
+  // @@protoc_insertion_point(field_set_allocated:palm.loquat.v1.AeadEncryptRequest.associated_data)
 }
 
 // -------------------------------------------------------------------
 
-// AesEncryptResponse
+// AeadEncryptResponse
 
 // bytes cipher = 1;
-inline void AesEncryptResponse::clear_cipher() {
+inline void AeadEncryptResponse::clear_cipher() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_.cipher_.ClearToEmpty();
   ClearHasBit(_impl_._has_bits_[0],
                   0x00000001U);
 }
-inline const ::std::string& AesEncryptResponse::cipher() const
+inline const ::std::string& AeadEncryptResponse::cipher() const
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:palm.loquat.v1.AesEncryptResponse.cipher)
+  // @@protoc_insertion_point(field_get:palm.loquat.v1.AeadEncryptResponse.cipher)
   return _internal_cipher();
 }
 template <typename Arg_, typename... Args_>
-PROTOBUF_ALWAYS_INLINE void AesEncryptResponse::set_cipher(Arg_&& arg, Args_... args) {
+PROTOBUF_ALWAYS_INLINE void AeadEncryptResponse::set_cipher(Arg_&& arg, Args_... args) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   SetHasBit(_impl_._has_bits_[0], 0x00000001U);
   _impl_.cipher_.SetBytes(static_cast<Arg_&&>(arg), args..., GetArena());
-  // @@protoc_insertion_point(field_set:palm.loquat.v1.AesEncryptResponse.cipher)
+  // @@protoc_insertion_point(field_set:palm.loquat.v1.AeadEncryptResponse.cipher)
 }
-inline ::std::string* PROTOBUF_NONNULL AesEncryptResponse::mutable_cipher()
+inline ::std::string* PROTOBUF_NONNULL AeadEncryptResponse::mutable_cipher()
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
   SetHasBit(_impl_._has_bits_[0], 0x00000001U);
   ::std::string* _s = _internal_mutable_cipher();
-  // @@protoc_insertion_point(field_mutable:palm.loquat.v1.AesEncryptResponse.cipher)
+  // @@protoc_insertion_point(field_mutable:palm.loquat.v1.AeadEncryptResponse.cipher)
   return _s;
 }
-inline const ::std::string& AesEncryptResponse::_internal_cipher() const {
+inline const ::std::string& AeadEncryptResponse::_internal_cipher() const {
   ::google::protobuf::internal::TSanRead(&_impl_);
   return _impl_.cipher_.Get();
 }
-inline void AesEncryptResponse::_internal_set_cipher(const ::std::string& value) {
+inline void AeadEncryptResponse::_internal_set_cipher(const ::std::string& value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_.cipher_.Set(value, GetArena());
 }
-inline ::std::string* PROTOBUF_NONNULL AesEncryptResponse::_internal_mutable_cipher() {
+inline ::std::string* PROTOBUF_NONNULL AeadEncryptResponse::_internal_mutable_cipher() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   return _impl_.cipher_.Mutable( GetArena());
 }
-inline ::std::string* PROTOBUF_NULLABLE AesEncryptResponse::release_cipher() {
+inline ::std::string* PROTOBUF_NULLABLE AeadEncryptResponse::release_cipher() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  // @@protoc_insertion_point(field_release:palm.loquat.v1.AesEncryptResponse.cipher)
+  // @@protoc_insertion_point(field_release:palm.loquat.v1.AeadEncryptResponse.cipher)
   if (!CheckHasBit(_impl_._has_bits_[0], 0x00000001U)) {
     return nullptr;
   }
@@ -4476,7 +4476,7 @@ inline ::std::string* PROTOBUF_NULLABLE AesEncryptResponse::release_cipher() {
   }
   return released;
 }
-inline void AesEncryptResponse::set_allocated_cipher(::std::string* PROTOBUF_NULLABLE value) {
+inline void AeadEncryptResponse::set_allocated_cipher(::std::string* PROTOBUF_NULLABLE value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   if (value != nullptr) {
     SetHasBit(_impl_._has_bits_[0], 0x00000001U);
@@ -4487,54 +4487,54 @@ inline void AesEncryptResponse::set_allocated_cipher(::std::string* PROTOBUF_NUL
   if (::google::protobuf::internal::DebugHardenForceCopyDefaultString() && _impl_.cipher_.IsDefault()) {
     _impl_.cipher_.Set("", GetArena());
   }
-  // @@protoc_insertion_point(field_set_allocated:palm.loquat.v1.AesEncryptResponse.cipher)
+  // @@protoc_insertion_point(field_set_allocated:palm.loquat.v1.AeadEncryptResponse.cipher)
 }
 
 // -------------------------------------------------------------------
 
-// AesDecryptRequest
+// AeadDecryptRequest
 
 // bytes cipher = 1;
-inline void AesDecryptRequest::clear_cipher() {
+inline void AeadDecryptRequest::clear_cipher() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_.cipher_.ClearToEmpty();
   ClearHasBit(_impl_._has_bits_[0],
                   0x00000001U);
 }
-inline const ::std::string& AesDecryptRequest::cipher() const
+inline const ::std::string& AeadDecryptRequest::cipher() const
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:palm.loquat.v1.AesDecryptRequest.cipher)
+  // @@protoc_insertion_point(field_get:palm.loquat.v1.AeadDecryptRequest.cipher)
   return _internal_cipher();
 }
 template <typename Arg_, typename... Args_>
-PROTOBUF_ALWAYS_INLINE void AesDecryptRequest::set_cipher(Arg_&& arg, Args_... args) {
+PROTOBUF_ALWAYS_INLINE void AeadDecryptRequest::set_cipher(Arg_&& arg, Args_... args) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   SetHasBit(_impl_._has_bits_[0], 0x00000001U);
   _impl_.cipher_.SetBytes(static_cast<Arg_&&>(arg), args..., GetArena());
-  // @@protoc_insertion_point(field_set:palm.loquat.v1.AesDecryptRequest.cipher)
+  // @@protoc_insertion_point(field_set:palm.loquat.v1.AeadDecryptRequest.cipher)
 }
-inline ::std::string* PROTOBUF_NONNULL AesDecryptRequest::mutable_cipher()
+inline ::std::string* PROTOBUF_NONNULL AeadDecryptRequest::mutable_cipher()
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
   SetHasBit(_impl_._has_bits_[0], 0x00000001U);
   ::std::string* _s = _internal_mutable_cipher();
-  // @@protoc_insertion_point(field_mutable:palm.loquat.v1.AesDecryptRequest.cipher)
+  // @@protoc_insertion_point(field_mutable:palm.loquat.v1.AeadDecryptRequest.cipher)
   return _s;
 }
-inline const ::std::string& AesDecryptRequest::_internal_cipher() const {
+inline const ::std::string& AeadDecryptRequest::_internal_cipher() const {
   ::google::protobuf::internal::TSanRead(&_impl_);
   return _impl_.cipher_.Get();
 }
-inline void AesDecryptRequest::_internal_set_cipher(const ::std::string& value) {
+inline void AeadDecryptRequest::_internal_set_cipher(const ::std::string& value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_.cipher_.Set(value, GetArena());
 }
-inline ::std::string* PROTOBUF_NONNULL AesDecryptRequest::_internal_mutable_cipher() {
+inline ::std::string* PROTOBUF_NONNULL AeadDecryptRequest::_internal_mutable_cipher() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   return _impl_.cipher_.Mutable( GetArena());
 }
-inline ::std::string* PROTOBUF_NULLABLE AesDecryptRequest::release_cipher() {
+inline ::std::string* PROTOBUF_NULLABLE AeadDecryptRequest::release_cipher() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  // @@protoc_insertion_point(field_release:palm.loquat.v1.AesDecryptRequest.cipher)
+  // @@protoc_insertion_point(field_release:palm.loquat.v1.AeadDecryptRequest.cipher)
   if (!CheckHasBit(_impl_._has_bits_[0], 0x00000001U)) {
     return nullptr;
   }
@@ -4545,7 +4545,7 @@ inline ::std::string* PROTOBUF_NULLABLE AesDecryptRequest::release_cipher() {
   }
   return released;
 }
-inline void AesDecryptRequest::set_allocated_cipher(::std::string* PROTOBUF_NULLABLE value) {
+inline void AeadDecryptRequest::set_allocated_cipher(::std::string* PROTOBUF_NULLABLE value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   if (value != nullptr) {
     SetHasBit(_impl_._has_bits_[0], 0x00000001U);
@@ -4556,50 +4556,50 @@ inline void AesDecryptRequest::set_allocated_cipher(::std::string* PROTOBUF_NULL
   if (::google::protobuf::internal::DebugHardenForceCopyDefaultString() && _impl_.cipher_.IsDefault()) {
     _impl_.cipher_.Set("", GetArena());
   }
-  // @@protoc_insertion_point(field_set_allocated:palm.loquat.v1.AesDecryptRequest.cipher)
+  // @@protoc_insertion_point(field_set_allocated:palm.loquat.v1.AeadDecryptRequest.cipher)
 }
 
 // bytes associated_data = 2;
-inline void AesDecryptRequest::clear_associated_data() {
+inline void AeadDecryptRequest::clear_associated_data() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_.associated_data_.ClearToEmpty();
   ClearHasBit(_impl_._has_bits_[0],
                   0x00000002U);
 }
-inline const ::std::string& AesDecryptRequest::associated_data() const
+inline const ::std::string& AeadDecryptRequest::associated_data() const
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:palm.loquat.v1.AesDecryptRequest.associated_data)
+  // @@protoc_insertion_point(field_get:palm.loquat.v1.AeadDecryptRequest.associated_data)
   return _internal_associated_data();
 }
 template <typename Arg_, typename... Args_>
-PROTOBUF_ALWAYS_INLINE void AesDecryptRequest::set_associated_data(Arg_&& arg, Args_... args) {
+PROTOBUF_ALWAYS_INLINE void AeadDecryptRequest::set_associated_data(Arg_&& arg, Args_... args) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   SetHasBit(_impl_._has_bits_[0], 0x00000002U);
   _impl_.associated_data_.SetBytes(static_cast<Arg_&&>(arg), args..., GetArena());
-  // @@protoc_insertion_point(field_set:palm.loquat.v1.AesDecryptRequest.associated_data)
+  // @@protoc_insertion_point(field_set:palm.loquat.v1.AeadDecryptRequest.associated_data)
 }
-inline ::std::string* PROTOBUF_NONNULL AesDecryptRequest::mutable_associated_data()
+inline ::std::string* PROTOBUF_NONNULL AeadDecryptRequest::mutable_associated_data()
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
   SetHasBit(_impl_._has_bits_[0], 0x00000002U);
   ::std::string* _s = _internal_mutable_associated_data();
-  // @@protoc_insertion_point(field_mutable:palm.loquat.v1.AesDecryptRequest.associated_data)
+  // @@protoc_insertion_point(field_mutable:palm.loquat.v1.AeadDecryptRequest.associated_data)
   return _s;
 }
-inline const ::std::string& AesDecryptRequest::_internal_associated_data() const {
+inline const ::std::string& AeadDecryptRequest::_internal_associated_data() const {
   ::google::protobuf::internal::TSanRead(&_impl_);
   return _impl_.associated_data_.Get();
 }
-inline void AesDecryptRequest::_internal_set_associated_data(const ::std::string& value) {
+inline void AeadDecryptRequest::_internal_set_associated_data(const ::std::string& value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_.associated_data_.Set(value, GetArena());
 }
-inline ::std::string* PROTOBUF_NONNULL AesDecryptRequest::_internal_mutable_associated_data() {
+inline ::std::string* PROTOBUF_NONNULL AeadDecryptRequest::_internal_mutable_associated_data() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   return _impl_.associated_data_.Mutable( GetArena());
 }
-inline ::std::string* PROTOBUF_NULLABLE AesDecryptRequest::release_associated_data() {
+inline ::std::string* PROTOBUF_NULLABLE AeadDecryptRequest::release_associated_data() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  // @@protoc_insertion_point(field_release:palm.loquat.v1.AesDecryptRequest.associated_data)
+  // @@protoc_insertion_point(field_release:palm.loquat.v1.AeadDecryptRequest.associated_data)
   if (!CheckHasBit(_impl_._has_bits_[0], 0x00000002U)) {
     return nullptr;
   }
@@ -4610,7 +4610,7 @@ inline ::std::string* PROTOBUF_NULLABLE AesDecryptRequest::release_associated_da
   }
   return released;
 }
-inline void AesDecryptRequest::set_allocated_associated_data(::std::string* PROTOBUF_NULLABLE value) {
+inline void AeadDecryptRequest::set_allocated_associated_data(::std::string* PROTOBUF_NULLABLE value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   if (value != nullptr) {
     SetHasBit(_impl_._has_bits_[0], 0x00000002U);
@@ -4621,54 +4621,54 @@ inline void AesDecryptRequest::set_allocated_associated_data(::std::string* PROT
   if (::google::protobuf::internal::DebugHardenForceCopyDefaultString() && _impl_.associated_data_.IsDefault()) {
     _impl_.associated_data_.Set("", GetArena());
   }
-  // @@protoc_insertion_point(field_set_allocated:palm.loquat.v1.AesDecryptRequest.associated_data)
+  // @@protoc_insertion_point(field_set_allocated:palm.loquat.v1.AeadDecryptRequest.associated_data)
 }
 
 // -------------------------------------------------------------------
 
-// AesDecryptResponse
+// AeadDecryptResponse
 
 // bytes plain = 1;
-inline void AesDecryptResponse::clear_plain() {
+inline void AeadDecryptResponse::clear_plain() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_.plain_.ClearToEmpty();
   ClearHasBit(_impl_._has_bits_[0],
                   0x00000001U);
 }
-inline const ::std::string& AesDecryptResponse::plain() const
+inline const ::std::string& AeadDecryptResponse::plain() const
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:palm.loquat.v1.AesDecryptResponse.plain)
+  // @@protoc_insertion_point(field_get:palm.loquat.v1.AeadDecryptResponse.plain)
   return _internal_plain();
 }
 template <typename Arg_, typename... Args_>
-PROTOBUF_ALWAYS_INLINE void AesDecryptResponse::set_plain(Arg_&& arg, Args_... args) {
+PROTOBUF_ALWAYS_INLINE void AeadDecryptResponse::set_plain(Arg_&& arg, Args_... args) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   SetHasBit(_impl_._has_bits_[0], 0x00000001U);
   _impl_.plain_.SetBytes(static_cast<Arg_&&>(arg), args..., GetArena());
-  // @@protoc_insertion_point(field_set:palm.loquat.v1.AesDecryptResponse.plain)
+  // @@protoc_insertion_point(field_set:palm.loquat.v1.AeadDecryptResponse.plain)
 }
-inline ::std::string* PROTOBUF_NONNULL AesDecryptResponse::mutable_plain()
+inline ::std::string* PROTOBUF_NONNULL AeadDecryptResponse::mutable_plain()
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
   SetHasBit(_impl_._has_bits_[0], 0x00000001U);
   ::std::string* _s = _internal_mutable_plain();
-  // @@protoc_insertion_point(field_mutable:palm.loquat.v1.AesDecryptResponse.plain)
+  // @@protoc_insertion_point(field_mutable:palm.loquat.v1.AeadDecryptResponse.plain)
   return _s;
 }
-inline const ::std::string& AesDecryptResponse::_internal_plain() const {
+inline const ::std::string& AeadDecryptResponse::_internal_plain() const {
   ::google::protobuf::internal::TSanRead(&_impl_);
   return _impl_.plain_.Get();
 }
-inline void AesDecryptResponse::_internal_set_plain(const ::std::string& value) {
+inline void AeadDecryptResponse::_internal_set_plain(const ::std::string& value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_.plain_.Set(value, GetArena());
 }
-inline ::std::string* PROTOBUF_NONNULL AesDecryptResponse::_internal_mutable_plain() {
+inline ::std::string* PROTOBUF_NONNULL AeadDecryptResponse::_internal_mutable_plain() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   return _impl_.plain_.Mutable( GetArena());
 }
-inline ::std::string* PROTOBUF_NULLABLE AesDecryptResponse::release_plain() {
+inline ::std::string* PROTOBUF_NULLABLE AeadDecryptResponse::release_plain() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  // @@protoc_insertion_point(field_release:palm.loquat.v1.AesDecryptResponse.plain)
+  // @@protoc_insertion_point(field_release:palm.loquat.v1.AeadDecryptResponse.plain)
   if (!CheckHasBit(_impl_._has_bits_[0], 0x00000001U)) {
     return nullptr;
   }
@@ -4679,7 +4679,7 @@ inline ::std::string* PROTOBUF_NULLABLE AesDecryptResponse::release_plain() {
   }
   return released;
 }
-inline void AesDecryptResponse::set_allocated_plain(::std::string* PROTOBUF_NULLABLE value) {
+inline void AeadDecryptResponse::set_allocated_plain(::std::string* PROTOBUF_NULLABLE value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   if (value != nullptr) {
     SetHasBit(_impl_._has_bits_[0], 0x00000001U);
@@ -4690,54 +4690,54 @@ inline void AesDecryptResponse::set_allocated_plain(::std::string* PROTOBUF_NULL
   if (::google::protobuf::internal::DebugHardenForceCopyDefaultString() && _impl_.plain_.IsDefault()) {
     _impl_.plain_.Set("", GetArena());
   }
-  // @@protoc_insertion_point(field_set_allocated:palm.loquat.v1.AesDecryptResponse.plain)
+  // @@protoc_insertion_point(field_set_allocated:palm.loquat.v1.AeadDecryptResponse.plain)
 }
 
 // -------------------------------------------------------------------
 
-// Argon2SignRequest
+// Argon2ComputeRequest
 
 // string password = 1;
-inline void Argon2SignRequest::clear_password() {
+inline void Argon2ComputeRequest::clear_password() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_.password_.ClearToEmpty();
   ClearHasBit(_impl_._has_bits_[0],
                   0x00000001U);
 }
-inline const ::std::string& Argon2SignRequest::password() const
+inline const ::std::string& Argon2ComputeRequest::password() const
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:palm.loquat.v1.Argon2SignRequest.password)
+  // @@protoc_insertion_point(field_get:palm.loquat.v1.Argon2ComputeRequest.password)
   return _internal_password();
 }
 template <typename Arg_, typename... Args_>
-PROTOBUF_ALWAYS_INLINE void Argon2SignRequest::set_password(Arg_&& arg, Args_... args) {
+PROTOBUF_ALWAYS_INLINE void Argon2ComputeRequest::set_password(Arg_&& arg, Args_... args) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   SetHasBit(_impl_._has_bits_[0], 0x00000001U);
   _impl_.password_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
-  // @@protoc_insertion_point(field_set:palm.loquat.v1.Argon2SignRequest.password)
+  // @@protoc_insertion_point(field_set:palm.loquat.v1.Argon2ComputeRequest.password)
 }
-inline ::std::string* PROTOBUF_NONNULL Argon2SignRequest::mutable_password()
+inline ::std::string* PROTOBUF_NONNULL Argon2ComputeRequest::mutable_password()
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
   SetHasBit(_impl_._has_bits_[0], 0x00000001U);
   ::std::string* _s = _internal_mutable_password();
-  // @@protoc_insertion_point(field_mutable:palm.loquat.v1.Argon2SignRequest.password)
+  // @@protoc_insertion_point(field_mutable:palm.loquat.v1.Argon2ComputeRequest.password)
   return _s;
 }
-inline const ::std::string& Argon2SignRequest::_internal_password() const {
+inline const ::std::string& Argon2ComputeRequest::_internal_password() const {
   ::google::protobuf::internal::TSanRead(&_impl_);
   return _impl_.password_.Get();
 }
-inline void Argon2SignRequest::_internal_set_password(const ::std::string& value) {
+inline void Argon2ComputeRequest::_internal_set_password(const ::std::string& value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_.password_.Set(value, GetArena());
 }
-inline ::std::string* PROTOBUF_NONNULL Argon2SignRequest::_internal_mutable_password() {
+inline ::std::string* PROTOBUF_NONNULL Argon2ComputeRequest::_internal_mutable_password() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   return _impl_.password_.Mutable( GetArena());
 }
-inline ::std::string* PROTOBUF_NULLABLE Argon2SignRequest::release_password() {
+inline ::std::string* PROTOBUF_NULLABLE Argon2ComputeRequest::release_password() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  // @@protoc_insertion_point(field_release:palm.loquat.v1.Argon2SignRequest.password)
+  // @@protoc_insertion_point(field_release:palm.loquat.v1.Argon2ComputeRequest.password)
   if (!CheckHasBit(_impl_._has_bits_[0], 0x00000001U)) {
     return nullptr;
   }
@@ -4748,7 +4748,7 @@ inline ::std::string* PROTOBUF_NULLABLE Argon2SignRequest::release_password() {
   }
   return released;
 }
-inline void Argon2SignRequest::set_allocated_password(::std::string* PROTOBUF_NULLABLE value) {
+inline void Argon2ComputeRequest::set_allocated_password(::std::string* PROTOBUF_NULLABLE value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   if (value != nullptr) {
     SetHasBit(_impl_._has_bits_[0], 0x00000001U);
@@ -4759,54 +4759,54 @@ inline void Argon2SignRequest::set_allocated_password(::std::string* PROTOBUF_NU
   if (::google::protobuf::internal::DebugHardenForceCopyDefaultString() && _impl_.password_.IsDefault()) {
     _impl_.password_.Set("", GetArena());
   }
-  // @@protoc_insertion_point(field_set_allocated:palm.loquat.v1.Argon2SignRequest.password)
+  // @@protoc_insertion_point(field_set_allocated:palm.loquat.v1.Argon2ComputeRequest.password)
 }
 
 // -------------------------------------------------------------------
 
-// Argon2SignResponse
+// Argon2ComputeResponse
 
 // string hashed = 1;
-inline void Argon2SignResponse::clear_hashed() {
+inline void Argon2ComputeResponse::clear_hashed() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_.hashed_.ClearToEmpty();
   ClearHasBit(_impl_._has_bits_[0],
                   0x00000001U);
 }
-inline const ::std::string& Argon2SignResponse::hashed() const
+inline const ::std::string& Argon2ComputeResponse::hashed() const
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
-  // @@protoc_insertion_point(field_get:palm.loquat.v1.Argon2SignResponse.hashed)
+  // @@protoc_insertion_point(field_get:palm.loquat.v1.Argon2ComputeResponse.hashed)
   return _internal_hashed();
 }
 template <typename Arg_, typename... Args_>
-PROTOBUF_ALWAYS_INLINE void Argon2SignResponse::set_hashed(Arg_&& arg, Args_... args) {
+PROTOBUF_ALWAYS_INLINE void Argon2ComputeResponse::set_hashed(Arg_&& arg, Args_... args) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   SetHasBit(_impl_._has_bits_[0], 0x00000001U);
   _impl_.hashed_.Set(static_cast<Arg_&&>(arg), args..., GetArena());
-  // @@protoc_insertion_point(field_set:palm.loquat.v1.Argon2SignResponse.hashed)
+  // @@protoc_insertion_point(field_set:palm.loquat.v1.Argon2ComputeResponse.hashed)
 }
-inline ::std::string* PROTOBUF_NONNULL Argon2SignResponse::mutable_hashed()
+inline ::std::string* PROTOBUF_NONNULL Argon2ComputeResponse::mutable_hashed()
     ABSL_ATTRIBUTE_LIFETIME_BOUND {
   SetHasBit(_impl_._has_bits_[0], 0x00000001U);
   ::std::string* _s = _internal_mutable_hashed();
-  // @@protoc_insertion_point(field_mutable:palm.loquat.v1.Argon2SignResponse.hashed)
+  // @@protoc_insertion_point(field_mutable:palm.loquat.v1.Argon2ComputeResponse.hashed)
   return _s;
 }
-inline const ::std::string& Argon2SignResponse::_internal_hashed() const {
+inline const ::std::string& Argon2ComputeResponse::_internal_hashed() const {
   ::google::protobuf::internal::TSanRead(&_impl_);
   return _impl_.hashed_.Get();
 }
-inline void Argon2SignResponse::_internal_set_hashed(const ::std::string& value) {
+inline void Argon2ComputeResponse::_internal_set_hashed(const ::std::string& value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   _impl_.hashed_.Set(value, GetArena());
 }
-inline ::std::string* PROTOBUF_NONNULL Argon2SignResponse::_internal_mutable_hashed() {
+inline ::std::string* PROTOBUF_NONNULL Argon2ComputeResponse::_internal_mutable_hashed() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   return _impl_.hashed_.Mutable( GetArena());
 }
-inline ::std::string* PROTOBUF_NULLABLE Argon2SignResponse::release_hashed() {
+inline ::std::string* PROTOBUF_NULLABLE Argon2ComputeResponse::release_hashed() {
   ::google::protobuf::internal::TSanWrite(&_impl_);
-  // @@protoc_insertion_point(field_release:palm.loquat.v1.Argon2SignResponse.hashed)
+  // @@protoc_insertion_point(field_release:palm.loquat.v1.Argon2ComputeResponse.hashed)
   if (!CheckHasBit(_impl_._has_bits_[0], 0x00000001U)) {
     return nullptr;
   }
@@ -4817,7 +4817,7 @@ inline ::std::string* PROTOBUF_NULLABLE Argon2SignResponse::release_hashed() {
   }
   return released;
 }
-inline void Argon2SignResponse::set_allocated_hashed(::std::string* PROTOBUF_NULLABLE value) {
+inline void Argon2ComputeResponse::set_allocated_hashed(::std::string* PROTOBUF_NULLABLE value) {
   ::google::protobuf::internal::TSanWrite(&_impl_);
   if (value != nullptr) {
     SetHasBit(_impl_._has_bits_[0], 0x00000001U);
@@ -4828,7 +4828,7 @@ inline void Argon2SignResponse::set_allocated_hashed(::std::string* PROTOBUF_NUL
   if (::google::protobuf::internal::DebugHardenForceCopyDefaultString() && _impl_.hashed_.IsDefault()) {
     _impl_.hashed_.Set("", GetArena());
   }
-  // @@protoc_insertion_point(field_set_allocated:palm.loquat.v1.Argon2SignResponse.hashed)
+  // @@protoc_insertion_point(field_set_allocated:palm.loquat.v1.Argon2ComputeResponse.hashed)
 }
 
 // -------------------------------------------------------------------

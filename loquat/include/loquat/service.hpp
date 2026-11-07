@@ -5,37 +5,40 @@
 
 namespace loquat {
 
-class JwtService final : public palm::loquat::v1::Jwt::Service {
-  grpc::Status Sign(grpc::ServerContext* context,
-                    const palm::loquat::v1::JwtSignRequest* request,
-                    palm::loquat::v1::JwtSignResponse* response) override;
+class JwtService final : public palm::loquat::v1::JwtService::Service {
+  grpc::Status Compute(grpc::ServerContext* context,
+                       const palm::loquat::v1::JwtComputeRequest* request,
+                       palm::loquat::v1::JwtComputeResponse* response) override;
   grpc::Status Verify(grpc::ServerContext* context,
                       const palm::loquat::v1::JwtVerifyRequest* request,
                       palm::loquat::v1::JwtVerifyResponse* response) override;
 };
 
-class HMacService final : public palm::loquat::v1::HMac::Service {
-  grpc::Status Sign(grpc::ServerContext* context,
-                    const palm::loquat::v1::HMacSignRequest* request,
-                    palm::loquat::v1::HMacSignResponse* response) override;
+class MacService final : public palm::loquat::v1::MacService::Service {
+  grpc::Status Compute(grpc::ServerContext* context,
+                       const palm::loquat::v1::MacComputeRequest* request,
+                       palm::loquat::v1::MacComputeResponse* response) override;
   grpc::Status Verify(grpc::ServerContext* context,
-                      const palm::loquat::v1::HMacVerifyRequest* request,
+                      const palm::loquat::v1::MacVerifyRequest* request,
                       google::protobuf::Empty* response) override;
 };
 
-class AesService final : public palm::loquat::v1::Aes::Service {
-  grpc::Status Encrypt(grpc::ServerContext* context,
-                       const palm::loquat::v1::AesEncryptRequest* request,
-                       palm::loquat::v1::AesEncryptResponse* response) override;
-  grpc::Status Decrypt(grpc::ServerContext* context,
-                       const palm::loquat::v1::AesDecryptRequest* request,
-                       palm::loquat::v1::AesDecryptResponse* response) override;
+class AeadService final : public palm::loquat::v1::AeadService::Service {
+  grpc::Status Encrypt(
+      grpc::ServerContext* context,
+      const palm::loquat::v1::AeadEncryptRequest* request,
+      palm::loquat::v1::AeadEncryptResponse* response) override;
+  grpc::Status Decrypt(
+      grpc::ServerContext* context,
+      const palm::loquat::v1::AeadDecryptRequest* request,
+      palm::loquat::v1::AeadDecryptResponse* response) override;
 };
 
-class Argon2Service final : public palm::loquat::v1::Argon2::Service {
-  grpc::Status Sign(grpc::ServerContext* context,
-                    const palm::loquat::v1::Argon2SignRequest* request,
-                    palm::loquat::v1::Argon2SignResponse* response) override;
+class Argon2Service final : public palm::loquat::v1::Argon2Service::Service {
+  grpc::Status Compute(
+      grpc::ServerContext* context,
+      const palm::loquat::v1::Argon2ComputeRequest* request,
+      palm::loquat::v1::Argon2ComputeResponse* response) override;
   grpc::Status Verify(grpc::ServerContext* context,
                       const palm::loquat::v1::Argon2VerifyRequest* request,
                       google::protobuf::Empty* response) override;

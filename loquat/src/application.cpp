@@ -192,9 +192,9 @@ void loquat::Application::generate_token(const std::string& key_id,
 
   auto now = absl::Now();
   const auto token =
-      jwt.sign(std::nullopt, std::optional<std::string>{key_id}, issuer,
-               subject, audiences, now, now - absl::Seconds(1),
-               now + absl::Seconds(ttl.count()), std::nullopt);
+      jwt.compute(std::nullopt, std::optional<std::string>{key_id}, issuer,
+                  subject, audiences, now, now - absl::Seconds(1),
+                  now + absl::Seconds(ttl.count()), std::nullopt);
 
   std::cout << token.value() << std::endl;
 }

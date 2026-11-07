@@ -24,6 +24,7 @@ function generate_loquat() {
 }
 
 function generate_dahlia() {
+    echo "generate dahlia protocols"
     cd $WORK_DIR/dahlia/src/
     rm -f dahlia/protocols/*_pb2*
 
@@ -34,20 +35,24 @@ function generate_dahlia() {
 }
 
 function generate_hydrangea() {
+    echo "generate hydrangea protocols"
     cd $WORK_DIR/hydrangea/src/
     rm -f hydrangea/protocols/*_pb2*
 
     python -m grpc_tools.protoc -I $VCPKG_PACKAGES_HOME/protobuf_x64-linux-release/include/google/protobuf \
-        -Ihydrangea/protocols=$WORK_DIR/bougainvillea/proto \
+        -Ihydrangea/protocols=$WORK_DIR/bougainvillea/priv/proto \
         --python_out=. --pyi_out=. --grpc_python_out=. \
-        $WORK_DIR/bougainvillea/proto/tex.proto $WORK_DIR/bougainvillea/proto/cups.proto $WORK_DIR/bougainvillea/proto/hydrangea.proto
+        $WORK_DIR/bougainvillea/priv/proto/tex.proto \
+        $WORK_DIR/bougainvillea/priv/proto/cups.proto \
+        $WORK_DIR/bougainvillea/priv/proto/hydrangea.proto
     python -m grpc_tools.protoc -I $VCPKG_PACKAGES_HOME/protobuf_x64-linux-release/include/google/protobuf \
-        -Ihydrangea/protocols=$WORK_DIR/marigold/proto \
+        -Ihydrangea/protocols=$WORK_DIR/marigold/src/main/proto \
         --python_out=. --pyi_out=. --grpc_python_out=. \
-        $WORK_DIR/marigold/proto/email.proto $WORK_DIR/marigold/proto/sms.proto
+        $WORK_DIR/marigold/src/main/proto/email.proto $WORK_DIR/marigold/src/main/proto/sms.proto
 }
 
 function generate_bougainvillea() {
+    echo "generate bougainvillea protocols"
     cd $WORK_DIR/bougainvillea/
 
     rm -r lib/palm
@@ -68,6 +73,10 @@ function format_sources() {
     echo "format dahlia"
     cd $WORK_DIR/dahlia/
     autopep8 --in-place --recursive src --exclude="src/dahlia/protocols/*"
+
+    echo "format hydrangea"
+    cd $WORK_DIR/hydrangea/
+    autopep8 --in-place --recursive src --exclude="src/hydrangea/protocols/*"
 
     echo "format bougainvillea"
     cd $WORK_DIR/bougainvillea/
@@ -102,4 +111,5 @@ generate_hydrangea
 
 format_sources
 
+echo 'done.'
 exit 0

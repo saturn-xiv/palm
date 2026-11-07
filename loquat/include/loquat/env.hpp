@@ -73,7 +73,7 @@ class Jwt final : public Keyset {
   std::optional<std::pair<std::string, std::optional<std::string>>> verify(
       const std::string& token, const std::string& issuer,
       const std::string& audience);
-  std::optional<std::string> sign(
+  std::optional<std::string> compute(
       const std::optional<std::string> jwt_id,
       const std::optional<std::string> key_id, const std::string& issuer,
       const std::string& subject, const std::set<std::string> audiences,
@@ -82,22 +82,22 @@ class Jwt final : public Keyset {
 
  private:
   std::unique_ptr<crypto::tink::JwtMac> load();
-  inline static const std::string PAYLOAD_KEY = "pyd";
+  inline static const std::string PAYLOAD_KEY = "ext";
 };
 
-class HMac final : public Keyset {
+class Mac final : public Keyset {
  public:
-  HMac() : Keyset("hmac") {}
-  std::optional<std::string> sign(const std::string& plain);
+  Mac() : Keyset("mac") {}
+  std::optional<std::string> compute(const std::string& plain);
   bool verify(const std::string& code, const std::string& plain);
 
  private:
   std::unique_ptr<crypto::tink::Mac> load();
 };
 
-class Aes final : public Keyset {
+class Aead final : public Keyset {
  public:
-  Aes() : Keyset("aes") {}
+  Aead() : Keyset("aead") {}
   std::optional<std::string> encrypt(const std::string& plain,
                                      const std::string& associated_data);
   std::optional<std::string> decrypt(const std::string& cipher,
@@ -108,7 +108,7 @@ class Aes final : public Keyset {
 };
 
 namespace argon2id {
-std::optional<std::string> sign(const std::string& password);
+std::optional<std::string> compute(const std::string& password);
 bool verify(const std::string& hashed, const std::string& password);
 }  // namespace argon2id
 }  // namespace loquat
