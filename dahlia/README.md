@@ -1,20 +1,5 @@
 # DAHLIA - RBAC services
 
-## Setup
-
-- PostgreSql
-
-  ```sql
-  CREATE DATABASE dahlia_dev WITH OWNER www;
-  ```
-
-- RabbitMq
-
-  ```bash
-  sudo rabbitmqctl add_vhost dahlia.dev
-  sudo rabbitmqctl set_permissions -p dahlia.dev www ".*" ".*" ".*"
-  ```
-
 ## Usage
 
 ```bash

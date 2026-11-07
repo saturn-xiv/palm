@@ -1,5 +1,24 @@
 # PALM - An open-source online education solution
 
+## Setup
+
+- PostgreSql
+
+  ```sql
+  CREATE USER 'www' WITH PASSWORD 'change-me';
+
+  CREATE DATABASE palm_dev WITH OWNER 'www' ENCODING='UTF8';
+  ```
+
+- RabbitMq
+
+  ```bash
+  sudo rabbitmqctl add_user www "change-me"
+
+  sudo rabbitmqctl add_vhost palm.dev
+  sudo rabbitmqctl set_permissions -p palm.dev www ".*" ".*" ".*"
+  ```
+
 ## Usage
 
 ```bash

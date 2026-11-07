@@ -1,6 +1,9 @@
 spring:
   application:
     name: Marigold
+  mustache:
+    prefix: classpath:/templates/
+    suffix: .mustache
   jpa:
     open-in-view: false
     hibernate:
