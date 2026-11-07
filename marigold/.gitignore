@@ -1,5 +1,5 @@
 /target/
 /.git-versioned-pom.xml
 
-/application.yaml
+/application.yml
 /*.bin
