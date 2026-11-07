@@ -1,0 +1,23 @@
+syntax = "proto3";
+package palm.tex.v1;
+
+option csharp_namespace = "Palm.Plugins.Tex.Grpc";
+option go_package = "./;v2";
+option java_multiple_files = true;
+option java_outer_classname = "TexProto";
+option java_package = "com.github.saturn_xiv.palm.plugins.tex.v1";
+
+message Task {
+  enum Class {
+    ARTICLE = 0;
+    REPORT = 1;
+    BOOK = 2;
+    LETTER = 3;
+    BEAMER = 4;
+  }
+
+  string entry = 1;
+  Class class = 2;
+  map<string, bytes> files = 3;
+  string output = 4;
+}

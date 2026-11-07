@@ -1,20 +1,20 @@
 syntax = "proto3";
-
-option java_multiple_files = true;
-option java_package = "com.github.saturn_xiv.palm.plugins.rbac.v1";
-option java_outer_classname = "RbacProto";
-option go_package = "./;v2";
-option csharp_namespace = "Palm.Plugins.Rbac.Grpc";
 package palm.rbac.v1;
 
 import "google/protobuf/empty.proto";
 
+option csharp_namespace = "Palm.Plugins.Rbac.Grpc";
+option go_package = "./;v2";
+option java_multiple_files = true;
+option java_outer_classname = "RbacProto";
+option java_package = "com.github.saturn_xiv.palm.plugins.rbac.v1";
+
 message Object {
   string type = 1;
   oneof by {
-    int64  id   = 11;
+    int64 id = 11;
     string code = 12;
-    google.protobuf.Empty  all  = 19;
+    google.protobuf.Empty all = 19;
   }
 }
 
@@ -23,15 +23,15 @@ message Subject {
     message Root {}
     message Administrator {}
     oneof by {
-      Root          root          = 1;
+      Root root = 1;
       Administrator administrator = 2;
-      int64         id            = 8;
-      string        code          = 9;
+      int64 id = 8;
+      string code = 9;
     }
   }
   message User {
     oneof by {
-      int64  id   = 1;
+      int64 id = 1;
       string code = 2;
     }
   }
@@ -51,24 +51,24 @@ message Action {
   message Inquiry {}
 
   oneof by {
-    Read    read    = 1;
-    Write   write   = 2;
-    Append  append  = 3;
+    Read read = 1;
+    Write write = 2;
+    Append append = 3;
     Execute execute = 4;
-    Credit  credit  = 5;
-    Debit   debit   = 6;
+    Credit credit = 5;
+    Debit debit = 6;
     Inquiry inquiry = 7;
-    string  code    = 9;
+    string code = 9;
   }
 }
 
 message Permission {
   Subject subject = 1;
-  Object  object  = 2;
-  Action  action  = 3;
+  Object object = 2;
+  Action action = 3;
 }
 
-service Enforcer {
+service EnforcerService {
   rpc GetAllSubjects(google.protobuf.Empty) returns (SubjectsResponse) {}
   rpc GetAllObjects(google.protobuf.Empty) returns (ObjectsResponse) {}
   rpc GetAllActions(google.protobuf.Empty) returns (ActionsResponse) {}

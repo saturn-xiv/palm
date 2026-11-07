@@ -26,10 +26,25 @@ function generate_loquat() {
 function generate_dahlia() {
     cd $WORK_DIR/dahlia/src/
     rm -f dahlia/protocols/*_pb2*
+
     python -m grpc_tools.protoc -I $VCPKG_PACKAGES_HOME/protobuf_x64-linux-release/include/google/protobuf \
         -Idahlia/protocols=$WORK_DIR/dahlia/proto \
         --python_out=. --pyi_out=. --grpc_python_out=. \
         $WORK_DIR/dahlia/proto/*.proto
+}
+
+function generate_hydrangea() {
+    cd $WORK_DIR/hydrangea/src/
+    rm -f hydrangea/protocols/*_pb2*
+
+    python -m grpc_tools.protoc -I $VCPKG_PACKAGES_HOME/protobuf_x64-linux-release/include/google/protobuf \
+        -Ihydrangea/protocols=$WORK_DIR/bougainvillea/proto \
+        --python_out=. --pyi_out=. --grpc_python_out=. \
+        $WORK_DIR/bougainvillea/proto/tex.proto $WORK_DIR/bougainvillea/proto/cups.proto $WORK_DIR/bougainvillea/proto/hydrangea.proto
+    python -m grpc_tools.protoc -I $VCPKG_PACKAGES_HOME/protobuf_x64-linux-release/include/google/protobuf \
+        -Ihydrangea/protocols=$WORK_DIR/marigold/proto \
+        --python_out=. --pyi_out=. --grpc_python_out=. \
+        $WORK_DIR/marigold/proto/email.proto $WORK_DIR/marigold/proto/sms.proto
 }
 
 function generate_bougainvillea() {
@@ -83,6 +98,7 @@ fi
 generate_loquat
 generate_dahlia
 generate_bougainvillea
+generate_hydrangea
 
 format_sources
 

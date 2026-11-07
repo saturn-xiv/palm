@@ -1,41 +1,41 @@
 syntax = "proto3";
-
-option java_multiple_files = true;
-option java_package = "com.github.saturn_xiv.palm.plugins.loquat.v1";
-option java_outer_classname = "LoquatProto";
-option go_package = "./;v2";
-option csharp_namespace = "Palm.Plugins.Loquat.Grpc";
 package palm.loquat.v1;
 
 import "google/protobuf/empty.proto";
 
+option csharp_namespace = "Palm.Plugins.Loquat.Grpc";
+option go_package = "./;v2";
+option java_multiple_files = true;
+option java_outer_classname = "LoquatProto";
+option java_package = "com.github.saturn_xiv.palm.plugins.loquat.v1";
+
 // --------------------------------------------------------
-service Jwt {
-  rpc Sign(JwtSignRequest) returns (JwtSignResponse){}
+service JwtService {
+  rpc Sign(JwtSignRequest) returns (JwtSignResponse) {}
   rpc Verify(JwtVerifyRequest) returns (JwtVerifyResponse) {}
 }
 
 message JwtVerifyRequest {
-  string token    = 1;
-  string issuer   = 2;
+  string token = 1;
+  string issuer = 2;
   string audience = 3;
 }
 
-message JwtVerifyResponse{
-  string         subject = 1;
+message JwtVerifyResponse {
+  string subject = 1;
   optional bytes payload = 2;
 }
 
-message JwtSignRequest{
-  optional string jwt_id     = 1;
-  optional string key_id     = 2;
-  string          issuer     = 3;
-  string          subject    = 4;
-  repeated string audiences  = 5;
-  int64           issued_at  = 6;
-  int64           not_before = 7;
-  int64           expired_at = 8;
-  optional bytes  payload    = 9;
+message JwtSignRequest {
+  optional string jwt_id = 1;
+  optional string key_id = 2;
+  string issuer = 3;
+  string subject = 4;
+  repeated string audiences = 5;
+  int64 issued_at = 6;
+  int64 not_before = 7;
+  int64 expired_at = 8;
+  optional bytes payload = 9;
 }
 
 message JwtSignResponse {
@@ -43,8 +43,8 @@ message JwtSignResponse {
 }
 
 // --------------------------------------------------------
-service HMac {
-  rpc Sign(HMacSignRequest) returns (HMacSignResponse){}
+service HMacService {
+  rpc Sign(HMacSignRequest) returns (HMacSignResponse) {}
   rpc Verify(HMacVerifyRequest) returns (google.protobuf.Empty) {}
 }
 
@@ -58,17 +58,17 @@ message HMacSignResponse {
 
 message HMacVerifyRequest {
   bytes hashed = 1;
-  bytes plain  = 2;
+  bytes plain = 2;
 }
 
 // --------------------------------------------------------
-service Aes {
-  rpc Encrypt(AesEncryptRequest) returns (AesEncryptResponse){}
+service AesService {
+  rpc Encrypt(AesEncryptRequest) returns (AesEncryptResponse) {}
   rpc Decrypt(AesDecryptRequest) returns (AesDecryptResponse) {}
 }
 
 message AesEncryptRequest {
-  bytes plain           = 1;
+  bytes plain = 1;
   bytes associated_data = 2;
 }
 
@@ -77,7 +77,7 @@ message AesEncryptResponse {
 }
 
 message AesDecryptRequest {
-  bytes cipher          = 1;
+  bytes cipher = 1;
   bytes associated_data = 2;
 }
 
@@ -86,8 +86,8 @@ message AesDecryptResponse {
 }
 
 // --------------------------------------------------------
-service Argon2 {
-  rpc Sign(Argon2SignRequest) returns (Argon2SignResponse){}
+service Argon2Service {
+  rpc Sign(Argon2SignRequest) returns (Argon2SignResponse) {}
   rpc Verify(Argon2VerifyRequest) returns (google.protobuf.Empty) {}
 }
 
@@ -100,7 +100,7 @@ message Argon2SignResponse {
 }
 
 message Argon2VerifyRequest {
-  string hashed   = 1;
+  string hashed = 1;
   string password = 2;
 }
 // --------------------------------------------------------

@@ -6,3 +6,28 @@ option go_package = "./;v2";
 option java_multiple_files = true;
 option java_outer_classname = "EmailProto";
 option java_package = "com.github.saturn_xiv.palm.plugins.email.v1";
+
+message Task {
+  message Address {
+    optional string name = 1;
+    string email = 2;
+  }
+  message Body {
+    bool html = 1;
+    string content = 2;
+  }
+  message Attachment {
+    optional string inline_id = 1;
+    string name = 2;
+    string content_type = 3;
+    bytes content = 9;
+  }
+
+  Address to = 1;
+  optional Address reply_to = 2;
+  repeated Address cc = 3;
+  repeated Address bcc = 4;
+  string subject = 11;
+  Body body = 12;
+  repeated Attachment attachments = 19;
+}
