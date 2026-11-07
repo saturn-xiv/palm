@@ -1,21 +1,16 @@
-
 syntax = "proto3";
-
-option java_multiple_files = true;
-option java_package = "com.github.saturn_xiv.palm.plugins.wechat_pay.v1";
-option java_outer_classname = "WeChatPayProto";
-option go_package = "./;v2";
-option csharp_namespace = "Palm.Plugins.WeChatPay.Grpc";
 package palm.wechat_pay.v1;
 
-service WeChatPay {
+option csharp_namespace = "Palm.Plugins.WeChatPay.Grpc";
+option go_package = "./;v2";
+option java_multiple_files = true;
+option java_outer_classname = "WeChatPayProto";
+option java_package = "com.github.saturn_xiv.palm.plugins.wechat_pay.v1";
+
+service WeChatPayService {
   rpc BillPull(BillPullRequest) returns (BillPullResponse) {}
 }
 
-message BillPullRequest {
+message BillPullRequest {}
 
-}
-
-message BillPullResponse {
-
-}
+message BillPullResponse {}

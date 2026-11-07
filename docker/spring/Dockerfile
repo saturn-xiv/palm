@@ -14,7 +14,7 @@ RUN pacman imagemagick ffmpeg xorg-font-util \
     pandoc graphviz \
     hspell nuspell libvoikko hunspell hunspell-en_us \
     -S --needed --noconfirm && pacman -Scc --noconfirm
-RUN pacman base-devel clang llvm lld lldb mold bison flex ninja bazel \
+RUN pacman base-devel clang llvm lld lldb mold bison flex ninja bazel nasm \
     cmake thrift capnproto grpc flatbuffers \
     -S --needed --noconfirm && pacman -Scc --noconfirm
 RUN pacman aarch64-linux-gnu-gcc risc-v \

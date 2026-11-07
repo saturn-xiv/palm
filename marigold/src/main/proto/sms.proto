@@ -1,0 +1,8 @@
+syntax = "proto3";
+package palm.sms.v1;
+
+option csharp_namespace = "Palm.Plugins.Sms.Grpc";
+option go_package = "./;v2";
+option java_multiple_files = true;
+option java_outer_classname = "SmsProto";
+option java_package = "com.github.saturn_xiv.palm.plugins.sms.v1";

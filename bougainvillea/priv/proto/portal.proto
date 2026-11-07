@@ -1,19 +1,20 @@
 syntax = "proto3";
-
-option java_multiple_files = true;
-option java_package = "com.github.saturn_xiv.palm.plugins.portal.v1";
-option java_outer_classname = "PortalProto";
-option go_package = "./;v2";
-option csharp_namespace = "Palm.Plugins.Portal.Grpc";
 package palm.portal.v1;
+
+option csharp_namespace = "Palm.Plugins.Portal.Grpc";
+option go_package = "./;v2";
+option java_multiple_files = true;
+option java_outer_classname = "PortalProto";
+option java_package = "com.github.saturn_xiv.palm.plugins.portal.v1";
 
 message PasswordRequest {
   string plain = 1;
   double salt = 2;
 }
+
 message UserIndexResponse {
-  message Item{
-    enum Type{
+  message Item {
+    enum Type {
       EMAIL = 0;
       SMS = 1;
       GOOGLE_OAUTH2 = 11;
@@ -26,19 +27,18 @@ message UserIndexResponse {
   repeated Item items = 1;
 }
 
-
 message UserToken {
   enum Audience {
     SIGN_IN = 0;
-    HYDRANGEA_JOB = 1;    
+    HYDRANGEA_JOB = 1;
   }
   message Payload {
-    UserIndexResponse.Item.Type type = 1;  
-  }  
+    UserIndexResponse.Item.Type type = 1;
+  }
 }
 
 message SmsTask {
-  repeated string to =1;
+  repeated string to = 1;
   string body = 2;
   optional string status_callback = 9;
 }
@@ -51,7 +51,7 @@ message TexTask {
     Letter = 3;
     Beamer = 4;
   }
-    
+
   string entry = 1;
   Class class = 2;
   map<string, bytes> files = 3;
@@ -73,7 +73,7 @@ message EmailTask {
     string content_type = 3;
     bytes content = 9;
   }
-  
+
   Address to = 1;
   optional Address reply_to = 2;
   repeated Address cc = 3;
@@ -95,8 +95,8 @@ message CupsTask {
   enum Media {
     A4 = 0;
     A3 = 2;
-    Letter = 3;
-  } 
+    LETTER = 3;
+  }
   enum Orientation {
     LandscapeCounterClockwise90 = 0;
     LandscapeClockwise90 = 1;
@@ -116,11 +116,10 @@ message CupsTask {
   string name = 1;
   bytes document = 2;
   uint32 number_up = 8;
-  uint32 copies = 9;    
+  uint32 copies = 9;
   JobSheet job_sheet = 11;
   Media media = 12;
   Orientation orientation = 13;
   Quality quality = 14;
   Sides sides = 15;
 }
-

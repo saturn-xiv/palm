@@ -17,7 +17,9 @@ execute_process(COMMAND git describe --tags --always --dirty
 )
 string(STRIP "${GIT_REV}" GIT_REV)
 string(TIMESTAMP BUILD_TIME UTC)
-configure_file(include/loquat/version.h.in ${PROJECT_SOURCE_DIR}/include/loquat/version.hpp)
+configure_file(
+  include/loquat/version.h.in ${PROJECT_SOURCE_DIR}/include/loquat/version.hpp
+)
 # --------------------------------------------------------
 find_package(argparse CONFIG REQUIRED)
 find_package(nlohmann_json CONFIG REQUIRED)
@@ -31,8 +33,6 @@ find_package(Boost CONFIG REQUIRED COMPONENTS exception)
 # https://github.com/tink-crypto/tink-cc
 FetchContent_Declare(tink
   GIT_REPOSITORY  "https://github.com/tink-crypto/tink-cc.git"
-  # https://github.com/tink-crypto/tink-cc/blob/main/cmake/TinkWorkspace.cmake#L107C75-L107C94
-  # abseil-cpp-20260526
   GIT_TAG         "v2.8.0"
 )
 
@@ -51,8 +51,10 @@ target_link_libraries(loquat gourd
   argparse::argparse
   pantor::inja nlohmann_json::nlohmann_json
   spdlog::spdlog_header_only
-  OpenSSL::SSL OpenSSL::Crypto unofficial-sodium::sodium
-  tink::static tink::jwt::jwt_key_templates tink::jwt::jwt_mac tink::jwt::jwt_mac_config
+  OpenSSL::SSL OpenSSL::Crypto
+  unofficial-sodium::sodium
+  tink::static 
+  tink::jwt::jwt_key_templates tink::jwt::jwt_mac tink::jwt::jwt_mac_config
 )
 
 target_include_directories(loquat PUBLIC
