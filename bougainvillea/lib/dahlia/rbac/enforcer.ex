@@ -6,7 +6,7 @@ defmodule Dahlia.Rbac.Enforcer do
     {:ok, ch} = Dahlia.open()
 
     {:ok, res} =
-      Palm.Rbac.V1.Enforcer.Stub.get_implicit_roles_for_user(ch, user_by_id(user))
+      Palm.Rbac.V1.EnforcerService.Stub.get_implicit_roles_for_user(ch, user_by_id(user))
 
     {:ok,
      %Dahlia.Rbac.Roles{
@@ -38,14 +38,14 @@ defmodule Dahlia.Rbac.Enforcer do
     {:ok, ch} = Dahlia.open()
 
     {:ok, _} =
-      Palm.Rbac.V1.Enforcer.Stub.add_role_for_user(ch, user_role_request(user, role))
+      Palm.Rbac.V1.EnforcerService.Stub.add_role_for_user(ch, user_role_request(user, role))
   end
 
   def delete_role_for_user(user, role) do
     {:ok, ch} = Dahlia.open()
 
     {:ok, _} =
-      Palm.Rbac.V1.Enforcer.Stub.delete_role_for_user(ch, user_role_request(user, role))
+      Palm.Rbac.V1.EnforcerService.Stub.delete_role_for_user(ch, user_role_request(user, role))
   end
 
   defp user_by_id(id) do

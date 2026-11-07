@@ -6,7 +6,7 @@ defmodule Loquat.Jwt do
     now = DateTime.utc_now(:microsecond)
 
     {:ok, res} =
-      Palm.Loquat.V1.Jwt.Stub.sign(ch, %Palm.Loquat.V1.JwtSignRequest{
+      Palm.Loquat.V1.JwtService.Stub.compute(ch, %Palm.Loquat.V1.JwtComputeRequest{
         subject: subject,
         audiences: audiences,
         payload: payload |> Protobuf.encode(),
@@ -23,7 +23,7 @@ defmodule Loquat.Jwt do
     {:ok, ch} = Loquat.open()
 
     {:ok, res} =
-      Palm.Loquat.V1.Jwt.Stub.verify(ch, %Palm.Loquat.V1.JwtVerifyRequest{
+      Palm.Loquat.V1.JwtService.Stub.verify(ch, %Palm.Loquat.V1.JwtVerifyRequest{
         token: token,
         audience: audience,
         issuer: issuer
