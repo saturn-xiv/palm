@@ -1,4 +1,4 @@
-package com.github.saturn_xiv.palm.marigold.controllers;
+package com.github.saturn_xiv.palm.marigold.controllers.api;
 
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,9 +11,9 @@ import com.github.saturn_xiv.palm.marigold.services.LogService;
 
 import jakarta.annotation.Resource;
 
-@RestController("c.status")
+@RestController("c.api.home")
 @RequestMapping("/api")
-public class StatusController {
+public class HomeController {
 
     @GetMapping("/health-check")
     @PreAuthorize("permitAll()")

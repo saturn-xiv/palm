@@ -34,3 +34,7 @@ spring:
     username: "www"
     password: "change-me"
     virtual-host: "marigold.dev"
+  security:
+    user:
+      name: "www"
+      password: "change-me"

@@ -72,7 +72,7 @@ function amazon_corretto_jdk() {
     for t in "${targets[@]}"
     do
         local f=amazon-corretto-27-${t}-linux-jdk.tar.gz
-        if [ ! -f $WORK_DIR/tmp/ ]
+        if [ ! -f $WORK_DIR/tmp/$f ]
         then
             wget -P $WORK_DIR/tmp/ https://corretto.aws/downloads/latest/$f
         fi
