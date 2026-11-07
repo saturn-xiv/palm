@@ -34,7 +34,7 @@ public class CasbinEnforcer {
                 rabbitmqVirtualHost);
         watcher = new RabbitMQWatcher(
                 String.format("amqp://%s:%s@%s:%d/%s", rabbitmqUsername, rabbitmqPassword, rabbitmqHost, rabbitmqPort,
-                        rabbitmqVirtualHost));
+                        rabbitmqVirtualHost), "marigold.casbin");
         enforcer = new Enforcer(model, adapter);
 
         watcher.setUpdateCallback(() -> {

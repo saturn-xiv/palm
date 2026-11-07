@@ -30,7 +30,7 @@ def open_enforcer(db, rabbitmq):
     logger.debug("open rabbitmq watcher %s@%s:%d/%s",
                  rabbitmq['user'], rabbitmq['host'], rabbitmq['port'], rabbitmq['virtual-host'])
     watcher = casbin_rabbitmq_watcher.new_watcher(host=rabbitmq['host'], port=rabbitmq['port'],
-                                                  username=rabbitmq['user'], password=rabbitmq['password'], virtual_host=rabbitmq['virtual-host'])
+                                                  username=rabbitmq['user'], password=rabbitmq['password'], virtual_host=rabbitmq['virtual-host'], key="dahlia.casbin")
     watcher.set_update_callback(update_callback_func)
 
     # https://casbin.apache.org/docs/supported-models/
