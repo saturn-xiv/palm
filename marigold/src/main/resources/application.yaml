@@ -16,3 +16,12 @@ spring:
       thread-name-prefix: "marigold-t-"
   liquibase:
     change-log: classpath:db/change-logs/master.xml
+  rabbitmq:
+    listener:
+      simple:
+        acknowledge-mode: manual
+        retry:
+          enabled: true
+          initial-interval: 1000ms
+          max-attempts: 3
+          multiplier: 2.0

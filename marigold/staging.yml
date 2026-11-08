@@ -41,6 +41,14 @@ spring:
       name: "www"
       password: "change-me"
 palm:
-  queues:
-    email-send: "email.send"
-    sms-send: "sms.send"
+  twilio:
+    account-sid: ""
+    api-key: ""
+    api-secret: ""
+  rabbitmq:
+    email-send:
+      exchange: "ex.email-send"
+      queue: "qu.email-send"
+    sms-send:
+      exchange: "ex.sms-send"
+      queue: "qu.sms-send"

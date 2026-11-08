@@ -8,7 +8,12 @@ option java_outer_classname = "SmsProto";
 option java_package = "com.github.saturn_xiv.palm.plugins.sms.v1";
 
 message Task {
-  repeated string to = 1;
-  string body = 2;
-  optional string status_callback = 9;
+  enum By{
+    TWILIO = 0;
+  }
+  string from = 1;
+  repeated string to = 2;
+  string body = 3;
+  optional string status_callback = 8;
+  By by = 9;
 }

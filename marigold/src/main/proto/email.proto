@@ -23,7 +23,7 @@ message Task {
     bytes content = 9;
   }
 
-  Address to = 1;
+  optional Address to = 1;
   optional Address reply_to = 2;
   repeated Address cc = 3;
   repeated Address bcc = 4;
