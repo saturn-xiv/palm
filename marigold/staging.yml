@@ -36,6 +36,11 @@ spring:
     username: "www"
     password: "change-me"
     virtual-host: "marigold.dev"
+  mail:
+    host: "smtp.gmail.com"
+    port: 465
+    username: "change-me@gmail.com"
+    password: "change-me"
   security:
     user:
       name: "www"
