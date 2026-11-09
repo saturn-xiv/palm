@@ -62,7 +62,7 @@ RUN update-alternatives --set editor /usr/bin/vim.basic
 RUN echo 'ubuntu ALL=(ALL:ALL) NOPASSWD: ALL' > /etc/sudoers.d/101-ubuntu
 RUN echo "ubuntu:ubuntu" | chpasswd
 
-ADD neo4j /usr/local/sbin/
+ADD neo4j.sh /usr/local/sbin/
 
 USER ubuntu
 
