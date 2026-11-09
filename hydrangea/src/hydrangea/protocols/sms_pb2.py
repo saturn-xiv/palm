@@ -24,7 +24,7 @@ _sym_db = _symbol_database.Default()
 
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x1dhydrangea/protocols/sms.proto\x12\x0bpalm.sms.v1\"R\n\x04Task\x12\n\n\x02to\x18\x01 \x03(\t\x12\x0c\n\x04\x62ody\x18\x02 \x01(\t\x12\x1c\n\x0fstatus_callback\x18\t \x01(\tH\x00\x88\x01\x01\x42\x12\n\x10_status_callbackBV\n)com.github.saturn_xiv.palm.plugins.sms.v1B\x08SmsProtoP\x01Z\x05./;v2\xaa\x02\x15Palm.Plugins.Sms.Grpcb\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x1dhydrangea/protocols/sms.proto\x12\x0bpalm.sms.v1\"\x94\x01\n\x04Task\x12\x0c\n\x04\x66rom\x18\x01 \x01(\t\x12\n\n\x02to\x18\x02 \x03(\t\x12\x0c\n\x04\x62ody\x18\x03 \x01(\t\x12\x1c\n\x0fstatus_callback\x18\x08 \x01(\tH\x00\x88\x01\x01\x12 \n\x02\x62y\x18\t \x01(\x0e\x32\x14.palm.sms.v1.Task.By\"\x10\n\x02\x42y\x12\n\n\x06TWILIO\x10\x00\x42\x12\n\x10_status_callbackBV\n)com.github.saturn_xiv.palm.plugins.sms.v1B\x08SmsProtoP\x01Z\x05./;v2\xaa\x02\x15Palm.Plugins.Sms.Grpcb\x06proto3')
 
 _globals = globals()
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, _globals)
@@ -32,6 +32,8 @@ _builder.BuildTopDescriptorsAndMessages(DESCRIPTOR, 'hydrangea.protocols.sms_pb2
 if not _descriptor._USE_C_DESCRIPTORS:
   _globals['DESCRIPTOR']._loaded_options = None
   _globals['DESCRIPTOR']._serialized_options = b'\n)com.github.saturn_xiv.palm.plugins.sms.v1B\010SmsProtoP\001Z\005./;v2\252\002\025Palm.Plugins.Sms.Grpc'
-  _globals['_TASK']._serialized_start=46
-  _globals['_TASK']._serialized_end=128
+  _globals['_TASK']._serialized_start=47
+  _globals['_TASK']._serialized_end=195
+  _globals['_TASK_BY']._serialized_start=159
+  _globals['_TASK_BY']._serialized_end=175
 # @@protoc_insertion_point(module_scope)

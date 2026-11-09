@@ -2,7 +2,8 @@
 
 #include <sodium.h>
 
-std::optional<std::string> loquat::argon2id::compute(const std::string& password) {
+std::optional<std::string> loquat::argon2id::compute(
+    const std::string& password) {
   char hashed[crypto_pwhash_STRBYTES];
   if (crypto_pwhash_str(hashed, password.data(), password.size(),
                         crypto_pwhash_OPSLIMIT_SENSITIVE,

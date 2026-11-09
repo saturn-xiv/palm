@@ -3,7 +3,9 @@ defmodule Loquat.Argon2 do
     {:ok, ch} = Loquat.open()
 
     {:ok, res} =
-      Palm.Loquat.V1.Argon2Service.Stub.compute(ch, %Palm.Loquat.V1.Argon2ComputeRequest{password: password})
+      Palm.Loquat.V1.Argon2Service.Stub.compute(ch, %Palm.Loquat.V1.Argon2ComputeRequest{
+        password: password
+      })
 
     {:ok, res.hashed}
   end

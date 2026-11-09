@@ -44,7 +44,7 @@ defmodule Palm.Email.V1.Task do
     protoc_gen_elixir_version: "0.17.1",
     syntax: :proto3
 
-  field :to, 1, type: Palm.Email.V1.Task.Address
+  field :to, 1, repeated: true, type: Palm.Email.V1.Task.Address
 
   field :reply_to, 2,
     proto3_optional: true,

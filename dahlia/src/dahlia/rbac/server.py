@@ -125,13 +125,15 @@ class Server(rbac_pb2_grpc.EnforcerServiceServicer):
 
     def DeletePermission(self, request, context):
         self.enforcer.delete_permissions_for_user(
-            to_str(request.subject), to_str(request.object), to_str(request.action)
+            to_str(request.subject), to_str(
+                request.object), to_str(request.action)
         )
         return empty_pb2.Empty()
 
     def AddPermission(self, request, context):
         self.enforcer.add_permission_for_user(
-            to_str(request.subject), to_str(request.object), to_str(request.action)
+            to_str(request.subject), to_str(
+                request.object), to_str(request.action)
         )
         return empty_pb2.Empty()
 

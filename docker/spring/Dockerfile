@@ -79,7 +79,7 @@ RUN wget -q -O $HOME/downloads/bazel https://github.com/bazelbuild/bazelisk/rele
 
 # https://github.com/seaweedfs/seaweedfs/tags
 # https://github.com/seaweedfs/seaweedfs/wiki/Quick-Start-with-weed-mini
-ENV SEAWEEDFS_VERSION="4.48"
+ENV SEAWEEDFS_VERSION="4.53"
 RUN wget -q -P $HOME/downloads/ https://github.com/seaweedfs/seaweedfs/releases/download/${SEAWEEDFS_VERSION}/linux_amd64.tar.gz \
     && cd $HOME/downloads/ \
     && tar xf linux_amd64.tar.gz \
@@ -148,9 +148,9 @@ RUN zsh -c "source $HOME/.zshrc && asdf plugin add erlang && asdf install erlang
 RUN zsh -c "source $HOME/.zshrc && asdf plugin add elixir && asdf install elixir 1.20.5-otp-29 && asdf set --home elixir 1.20.5-otp-29"
 RUN echo "export HEX_HTTP_CONCURRENCY=1" >> $HOME/.zshrc && echo "export HEX_HTTP_TIMEOUT=120" >> $HOME/.zshrc
 # https://thrift.apache.org/lib/java.html
-RUN zsh -c "source $HOME/.zshrc && asdf plugin add java && asdf install java corretto-27.0.0.35.1 && asdf set --home java corretto-27.0.0.35.1"
+RUN zsh -c "source $HOME/.zshrc && asdf plugin add java && asdf install java corretto-27.0.1.0.11 && asdf set --home java corretto-27.0.1.0.11"
 # https://docs.gradle.org/current/userguide/compatibility.html
-RUN zsh -c "source $HOME/.zshrc && asdf plugin add gradle && asdf install gradle 9.8.2 && asdf set --home gradle 9.8.2"
+RUN zsh -c "source $HOME/.zshrc && asdf plugin add gradle && asdf install gradle 9.9.0 && asdf set --home gradle 9.9.0"
 RUN zsh -c "source $HOME/.zshrc && asdf plugin add maven && asdf install maven latest && asdf set --home maven latest"
 
 RUN zsh -c "source $HOME/.zshrc && asdf plugin add golang && asdf install golang latest && asdf set --home golang latest"

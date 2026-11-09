@@ -40,11 +40,11 @@ class Task(_message.Message):
     SUBJECT_FIELD_NUMBER: _ClassVar[int]
     BODY_FIELD_NUMBER: _ClassVar[int]
     ATTACHMENTS_FIELD_NUMBER: _ClassVar[int]
-    to: Task.Address
+    to: _containers.RepeatedCompositeFieldContainer[Task.Address]
     reply_to: Task.Address
     cc: _containers.RepeatedCompositeFieldContainer[Task.Address]
     bcc: _containers.RepeatedCompositeFieldContainer[Task.Address]
     subject: str
     body: Task.Body
     attachments: _containers.RepeatedCompositeFieldContainer[Task.Attachment]
-    def __init__(self, to: _Optional[_Union[Task.Address, _Mapping]] = ..., reply_to: _Optional[_Union[Task.Address, _Mapping]] = ..., cc: _Optional[_Iterable[_Union[Task.Address, _Mapping]]] = ..., bcc: _Optional[_Iterable[_Union[Task.Address, _Mapping]]] = ..., subject: _Optional[str] = ..., body: _Optional[_Union[Task.Body, _Mapping]] = ..., attachments: _Optional[_Iterable[_Union[Task.Attachment, _Mapping]]] = ...) -> None: ...
+    def __init__(self, to: _Optional[_Iterable[_Union[Task.Address, _Mapping]]] = ..., reply_to: _Optional[_Union[Task.Address, _Mapping]] = ..., cc: _Optional[_Iterable[_Union[Task.Address, _Mapping]]] = ..., bcc: _Optional[_Iterable[_Union[Task.Address, _Mapping]]] = ..., subject: _Optional[str] = ..., body: _Optional[_Union[Task.Body, _Mapping]] = ..., attachments: _Optional[_Iterable[_Union[Task.Attachment, _Mapping]]] = ...) -> None: ...

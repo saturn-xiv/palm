@@ -46,14 +46,23 @@ RUN apt install -y libssl-dev libsodium-dev libpq-dev libmysqlclient-dev libsqli
 RUN bash -c "$(wget -O - https://apt.llvm.org/llvm.sh)"
 RUN apt clean -y && apt autoremove -y
 
+# https://neo4j.com/docs/operations-manual/current/installation/linux/debian/
+# https://neo4j.com/docs/operations-manual/current/configuration/ports/
+RUN wget -O - https://debian.neo4j.com/neotechnology.gpg.key | gpg --dearmor -o /etc/apt/keyrings/neotechnology.gpg > /dev/null \
+    && echo 'deb [signed-by=/etc/apt/keyrings/neotechnology.gpg] https://debian.neo4j.com stable latest' | tee -a /etc/apt/sources.list.d/neo4j.list > /dev/null \
+    && apt-get update \
+    && apt-get install neo4j -y \
+    && apt clean -y
+
 RUN update-alternatives --install /usr/bin/clang clang /usr/bin/clang-22 100
 RUN update-alternatives --install /usr/bin/clang++ clang++ /usr/bin/clang++-22 100
-
 
 RUN echo "en_US.UTF-8 UTF-8" > /etc/locale.gen && locale-gen && update-locale LANG=en_US.UTF-8 && update-locale LANGUAGE=en_US.UTF-8 && update-locale LC_ALL=en_US.UTF-8
 RUN update-alternatives --set editor /usr/bin/vim.basic
 RUN echo 'ubuntu ALL=(ALL:ALL) NOPASSWD: ALL' > /etc/sudoers.d/101-ubuntu
 RUN echo "ubuntu:ubuntu" | chpasswd
+
+ADD neo4j /usr/local/sbin/
 
 USER ubuntu
 
@@ -70,9 +79,9 @@ RUN echo 'set nobackup' >>$HOME/.vimrc && echo 'set nowritebackup' >> $HOME/.vim
 
 ARG TARGETARCH
 
-# https://github.com/seaweedfs/seaweedfs/tags
+# https://github.com/seaweedfs/seaweedfs
 # https://github.com/seaweedfs/seaweedfs/wiki/Quick-Start-with-weed-mini
-ENV SEAWEEDFS_VERSION="4.48"
+ENV SEAWEEDFS_VERSION="4.53"
 RUN wget -q -P $HOME/downloads/ https://github.com/seaweedfs/seaweedfs/releases/download/${SEAWEEDFS_VERSION}/linux_${TARGETARCH}.tar.gz \
     && cd $HOME/downloads/ \
     && tar xf linux_${TARGETARCH}.tar.gz \
@@ -117,9 +126,9 @@ RUN bash -c "source $HOME/.profile && asdf plugin add erlang && asdf install erl
 RUN bash -c "source $HOME/.profile && asdf plugin add elixir && asdf install elixir 1.20.5-otp-29 && asdf set --home elixir 1.20.5-otp-29"
 RUN echo "export HEX_HTTP_CONCURRENCY=1" >> $HOME/.profile && echo "export HEX_HTTP_TIMEOUT=120" >> $HOME/.profile
 # https://thrift.apache.org/lib/java.html
-RUN bash -c "source $HOME/.profile && asdf plugin add java && asdf install java corretto-27.0.0.35.1 && asdf set --home java corretto-27.0.0.35.1"
+RUN bash -c "source $HOME/.profile && asdf plugin add java && asdf install java corretto-27.0.1.0.11 && asdf set --home java corretto-27.0.1.0.11"
 # https://docs.gradle.org/current/userguide/compatibility.html
-RUN bash -c "source $HOME/.profile && asdf plugin add gradle && asdf install gradle 9.8.2 && asdf set --home gradle 9.8.2"
+RUN bash -c "source $HOME/.profile && asdf plugin add gradle && asdf install gradle 9.9.0 && asdf set --home gradle 9.9.0"
 RUN bash -c "source $HOME/.profile && asdf plugin add maven && asdf install maven latest && asdf set --home maven latest"
 
 RUN bash -c "source $HOME/.profile && asdf plugin add golang && asdf install golang latest && asdf set --home golang latest"
@@ -176,6 +185,7 @@ RUN tar xf $HOME/downloads/opensearch-${OPENSEARCH_VERSION}-linux-${TARGETARCH}.
     && bin/opensearch-plugin install https://github.com/aparo/opensearch-analysis-stconvert/releases/download/${OPENSEARCH_VERSION}/opensearch-analysis-stconvert.zip \
     && bin/opensearch-plugin install https://github.com/aparo/opensearch-analysis-pinyin/releases/download/${OPENSEARCH_VERSION}/opensearch-analysis-pinyin.zip
 
+
 # https://code.claude.com/docs/en/setup#install-with-npm
 RUN bash -c "source $HOME/.profile && npm install -g @anthropic-ai/claude-code"
 
@@ -205,6 +215,8 @@ RUN cd /opt/opensearch/ \
     && touch config/opensearch-performance-analyzer/plugin-stats-metadata \
     && cp -r config/opensearch-analysis-ik plugins/opensearch-analysis-ik/config
 
+RUN echo 'server.default_listen_address=0.0.0.0' | sudo tee -a /etc/neo4j/neo4j.conf
+
 # https://www.rabbitmq.com/access-control.html#loopback-users
 RUN sudo chown -R rabbitmq:rabbitmq /var/lib/rabbitmq \
     && echo 'loopback_users = none' | sudo tee -a /etc/rabbitmq/rabbitmq.conf \
@@ -224,7 +236,6 @@ RUN sudo sed -i 's/memory_limit =.*/memory_limit = 2G/' /etc/php/${PHP_VERSION}/
     && sudo sed -i 's/^;*\(pm.max_requests\s*=\s*\).*/\11000/' /etc/php/${PHP_VERSION}/fpm/pool.d/www.conf \
     && sudo sed -i 's/^;*\(pm.max_children\s*=\s*\).*/\120/' /etc/php/${PHP_VERSION}/fpm/pool.d/www.conf \
     && sudo sed -i '259i pm.status_path = /status' /etc/php/${PHP_VERSION}/fpm/pool.d/www.conf
-
 
 # /usr/sbin/sshd -D -e -4 -p 10022
 RUN sudo tee -a /etc/ssh/sshd_config > /dev/null <<EOF

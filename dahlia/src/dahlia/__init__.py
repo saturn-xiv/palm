@@ -29,12 +29,15 @@ def main():
     parser.add_argument(
         "-c", "--config", default="config.toml", help="config file path"
     )
-    parser.add_argument("-s", "--tls", action="store_true", help="with mutal-TLS mode")
-    parser.add_argument("-p", "--port", type=int, default=8080, help="port to listen")
+    parser.add_argument("-s", "--tls", action="store_true",
+                        help="with mutal-TLS mode")
+    parser.add_argument("-p", "--port", type=int,
+                        default=8080, help="port to listen")
     parser.add_argument(
         "-w", "--workers", type=int, default=os.cpu_count(), help="max of workers"
     )
-    parser.add_argument("-d", "--debug", action="store_true", help="run on debug mode")
+    parser.add_argument("-d", "--debug", action="store_true",
+                        help="run on debug mode")
     parser.add_argument(
         "-v", "--verbose", action="version", version=version(__package__)
     )
@@ -55,9 +58,11 @@ def launch_grpc_server(config, port, workers, tls):
     server = grpc.server(futures.ThreadPoolExecutor(max_workers=workers))
 
     enforcer = rbac.open_enforcer(config["postgresql"], config["rabbitmq"])
-    rbac_pb2_grpc.add_EnforcerServiceServicer_to_server(RbacServer(enforcer), server)
+    rbac_pb2_grpc.add_EnforcerServiceServicer_to_server(
+        RbacServer(enforcer), server)
     oauth2_pb2_grpc.add_GoogleServiceServicer_to_server(
-        GoogleOauth2Server(config["google-oauth2"]["client-secret-file"]), server
+        GoogleOauth2Server(config["google-oauth2"]
+                           ["client-secret-file"]), server
     )
 
     reflection.enable_server_reflection(
@@ -71,7 +76,8 @@ def launch_grpc_server(config, port, workers, tls):
 
     health_servicer = health.HealthServicer(
         experimental_non_blocking=True,
-        experimental_thread_pool=futures.ThreadPoolExecutor(max_workers=workers),
+        experimental_thread_pool=futures.ThreadPoolExecutor(
+            max_workers=workers),
     )
     health_pb2_grpc.add_HealthServicer_to_server(health_servicer, server)
 
@@ -102,7 +108,8 @@ def launch_grpc_server(config, port, workers, tls):
         )
         server.add_secure_port(addr, credentials)
     else:
-        logger.info("start gRPC server on tcp://%s with %d workers", addr, workers)
+        logger.info(
+            "start gRPC server on tcp://%s with %d workers", addr, workers)
         server.add_insecure_port(addr)
 
     server.start()
