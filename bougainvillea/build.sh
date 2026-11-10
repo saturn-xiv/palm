@@ -2,6 +2,8 @@
 
 set -e
 
+source /etc/os-release
+
 export WORK_DIR=$PWD
 export PACKAGE=palm_"$(git describe --tags --always --dirty)-${VERSION_CODENAME}-$(uname -m)"
 export TARGET_DIR=$WORK_DIR/tmp
