@@ -1,3 +1,5 @@
+working-dir = '/tmp/hydrangea.jobs'
+
 [opensearch]
 host = "127.0.0.1"
 port = 9200
@@ -7,14 +9,11 @@ host = "127.0.0.1"
 port = 5672
 user = "www"
 password = "change-me"
-virtual-host = "hydrangea"
+virtual-host = "hydrangea.dev"
 
 [seaweedfs]
 host = "127.0.0.1"
 port = 9333
 
-[smtp]
-host = "smtp.gmail.com"
-port = 465
-user = "change-me@gmail.com"
-password = "change-me"
+[marigold]
+email-queue = "marigold.emails"

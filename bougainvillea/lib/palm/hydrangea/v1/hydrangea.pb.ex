@@ -6,7 +6,7 @@ defmodule Palm.Hydrangea.V1.StashJobRequest do
     protoc_gen_elixir_version: "0.17.1",
     syntax: :proto3
 
-  field :sn, 1, type: :string
+  field :task, 1, type: Palm.Hydrangea.V1.Task
   field :status_code, 2, type: :int32, json_name: "statusCode"
   field :stdout, 3, type: :string
   field :stderr, 4, type: :string

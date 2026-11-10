@@ -12,20 +12,20 @@ from typing import ClassVar as _ClassVar, Optional as _Optional, Union as _Union
 DESCRIPTOR: _descriptor.FileDescriptor
 
 class StashJobRequest(_message.Message):
-    __slots__ = ("sn", "status_code", "stdout", "stderr", "launched_at", "elapsed")
-    SN_FIELD_NUMBER: _ClassVar[int]
+    __slots__ = ("task", "status_code", "stdout", "stderr", "launched_at", "elapsed")
+    TASK_FIELD_NUMBER: _ClassVar[int]
     STATUS_CODE_FIELD_NUMBER: _ClassVar[int]
     STDOUT_FIELD_NUMBER: _ClassVar[int]
     STDERR_FIELD_NUMBER: _ClassVar[int]
     LAUNCHED_AT_FIELD_NUMBER: _ClassVar[int]
     ELAPSED_FIELD_NUMBER: _ClassVar[int]
-    sn: str
+    task: Task
     status_code: int
     stdout: str
     stderr: str
     launched_at: _timestamp_pb2.Timestamp
     elapsed: _duration_pb2.Duration
-    def __init__(self, sn: _Optional[str] = ..., status_code: _Optional[int] = ..., stdout: _Optional[str] = ..., stderr: _Optional[str] = ..., launched_at: _Optional[_Union[datetime.datetime, _timestamp_pb2.Timestamp, _Mapping]] = ..., elapsed: _Optional[_Union[datetime.timedelta, _duration_pb2.Duration, _Mapping]] = ...) -> None: ...
+    def __init__(self, task: _Optional[_Union[Task, _Mapping]] = ..., status_code: _Optional[int] = ..., stdout: _Optional[str] = ..., stderr: _Optional[str] = ..., launched_at: _Optional[_Union[datetime.datetime, _timestamp_pb2.Timestamp, _Mapping]] = ..., elapsed: _Optional[_Union[datetime.timedelta, _duration_pb2.Duration, _Mapping]] = ...) -> None: ...
 
 class Task(_message.Message):
     __slots__ = ("sn", "name", "summary", "version", "script", "args")

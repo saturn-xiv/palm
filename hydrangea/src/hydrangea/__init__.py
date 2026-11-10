@@ -5,7 +5,7 @@ import tomllib
 from importlib.metadata import version, metadata
 
 from .rpc import launch as launch_rpc_server
-from .workers import run_shell_script, send_email, send_sms_by_twilio
+from .workers import run_shell_script
 
 logger = logging.getLogger(__name__)
 
@@ -36,16 +36,6 @@ def main():
     parser_rpc.add_argument('--server-crt', default='server.crt')
     parser_rpc.add_argument('--ca-crt', default='ca.crt')
 
-    parser_send_email = sub_parsers.add_parser(
-        "send-email", help="Launch a email-send worker")
-    parser_send_email.add_argument(
-        '-q', '--queue', required=True, help="queue name")
-
-    parser_send_sms_by_twilio = sub_parsers.add_parser(
-        "send-sms-by-twilio", help="Launch a sms-send(by Twilio) worker")
-    parser_send_sms_by_twilio.add_argument(
-        '-q', '--queue', required=True, help="queue name")
-
     parser_run_shell_script = sub_parsers.add_parser(
         "run-shell-script", help="Launch a shell-script worker")
     parser_run_shell_script.add_argument(
@@ -62,9 +52,5 @@ def main():
     if args.command == "rpc":
         launch_rpc_server(config, args.port, args.workers, args.tls,
                           args.ca_crt, args.server_key, args.server_crt)
-    elif args.command == "send-email":
-        send_email.launch(config, args.queue)
-    elif args.command == "send-sms-by-twilio":
-        send_sms_by_twilio.launch(config, args.queue)
     elif args.command == "run-shell-script":
         run_shell_script.launch(config, args.queue)

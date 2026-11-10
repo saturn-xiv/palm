@@ -16,7 +16,7 @@ service StashService {
 }
 
 message StashJobRequest {
-  string sn = 1;
+  Task task = 1;
   int32 status_code = 2;
   string stdout = 3;
   string stderr = 4;

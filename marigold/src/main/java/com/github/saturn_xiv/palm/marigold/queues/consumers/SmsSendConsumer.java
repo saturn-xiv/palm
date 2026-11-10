@@ -5,9 +5,7 @@ import java.util.Optional;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.amqp.rabbit.annotation.Exchange;
 import org.springframework.amqp.rabbit.annotation.Queue;
-import org.springframework.amqp.rabbit.annotation.QueueBinding;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.stereotype.Component;
 import org.springframework.messaging.handler.annotation.Header;
@@ -22,8 +20,11 @@ import jakarta.annotation.Resource;
 @Component("q.c.sms-send")
 public class SmsSendConsumer {
 
-    
-    @RabbitListener(bindings = @QueueBinding(value = @Queue(value = "${palm.rabbitmq.sms-send.queue}", durable = "true"), exchange = @Exchange(value = "${palm.rabbitmq.sms-send.exchange}", type = "topic"), key = "${palm.rabbitmq.sms-send.queue}"))
+    // @RabbitListener(bindings = @QueueBinding(value = @Queue(value =
+    // "${palm.rabbitmq.sms-send.queue}", durable = "true"), exchange =
+    // @Exchange(value = "${palm.rabbitmq.sms-send.exchange}", type = "topic"), key
+    // = "${palm.rabbitmq.sms-send.queue}"))
+    @RabbitListener(queuesToDeclare = @Queue(value = "${palm.queues.sms-send}", durable = "true"))
     public void handle(byte[] payload, Channel channel, @Header(AmqpHeaders.DELIVERY_TAG) long deliveryTag,
             @Header(AmqpHeaders.MESSAGE_ID) String messageId,
             @Header(AmqpHeaders.CONTENT_TYPE) String contentType) throws IOException {

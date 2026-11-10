@@ -191,5 +191,6 @@
   "java.compile.nullAnalysis.mode": "automatic",
   "todo-tree.ripgrep.ripgrep": "/usr/bin/rg",
   "cmake.sourceDirectory": "${workspaceFolder}/loquat",
-  "elixirLS.projectDir": "bougainvillea"
+  "elixirLS.projectDir": "bougainvillea",
+  "python.analysis.exclude": ["**/dist", "**/tmp/**"]
 }

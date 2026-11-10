@@ -5,9 +5,7 @@ import java.io.UnsupportedEncodingException;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.amqp.rabbit.annotation.Exchange;
 import org.springframework.amqp.rabbit.annotation.Queue;
-import org.springframework.amqp.rabbit.annotation.QueueBinding;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.amqp.support.AmqpHeaders;
 import org.springframework.beans.factory.annotation.Value;
@@ -29,7 +27,11 @@ import jakarta.mail.internet.InternetAddress;
 @Component("q.c.email-sender")
 public class EmailSendConsumer {
 
-    @RabbitListener(bindings = @QueueBinding(value = @Queue(value = "${palm.rabbitmq.email-send.queue}", durable = "true"), exchange = @Exchange(value = "${palm.rabbitmq.email-send.exchange}", type = "topic"), key = "${palm.rabbitmq.email-send.queue}"))
+    // @RabbitListener(bindings = @QueueBinding(value = @Queue(value =
+    // "${palm.rabbitmq.email-send.queue}", durable = "true"), exchange =
+    // @Exchange(value = "${palm.rabbitmq.email-send.exchange}", type = "topic"),
+    // key = "${palm.rabbitmq.email-send.queue}"))
+    @RabbitListener(queuesToDeclare = @Queue(value = "${palm.queues.email-send}", durable = "true"))
     public void handle(byte[] payload, Channel channel, @Header(AmqpHeaders.DELIVERY_TAG) long deliveryTag,
             @Header(AmqpHeaders.MESSAGE_ID) String messageId,
             @Header(AmqpHeaders.CONTENT_TYPE) String contentType) throws IOException, MessagingException {

@@ -14,21 +14,15 @@ $ source $PWD/tmp/python/bin/activate
 
 # Install dependencies for development
 > python3 -m pip install -e .
+# start rpc server
+> python3 -m hydrangea -h
+> python3 -m hydrangea -d worker -w 2
+> sudo -E env PATH="$PATH" python3 -m hydrangea -d worker -w 2
 
 # Install for production
 > python3 -m build
 > pip install dist/hydrangea-0.1.0.post1.dev169+g37e9387f1.d20261106-py3-none-any.whl
 > hydrangea -h
-```
-
-## Testing
-
-```bash
-# start rpc server
-python3 -m hydrangea -h
-
-PYTHON_GIL=0 python3 -m hydrangea -d worker -w 2
-sudo -E env PATH="$PATH" PYTHON_GIL=0 python3 -m hydrangea -d worker -w 2
 ```
 
 ## Documents

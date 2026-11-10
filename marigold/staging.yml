@@ -50,10 +50,6 @@ palm:
     account-sid: ""
     api-key: ""
     api-secret: ""
-  rabbitmq:
-    email-send:
-      exchange: "ex.email-send"
-      queue: "qu.email-send"
-    sms-send:
-      exchange: "ex.sms-send"
-      queue: "qu.sms-send"
+  queues:
+    email-send: "marigold.emails"
+    sms-send: "marigold.sms"
