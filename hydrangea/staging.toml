@@ -1,4 +1,6 @@
 working-dir = '/tmp/hydrangea.jobs'
+bcc = ["user-1@gmail.com"]
+cc = ["user-2@gmail.com"]
 
 [opensearch]
 host = "127.0.0.1"

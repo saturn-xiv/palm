@@ -1,12 +1,13 @@
 import logging
 import signal
 import subprocess
-from datetime import datetime
+from datetime import datetime, timedelta, UTC
 from pathlib import Path
+
 
 from ..etc import rabbitmq as open_rabbitmq, is_stopped
 from ..protocols import email_pb2, hydrangea_pb2
-from . import time_it
+from . import time_it, to_timestamp, to_duration, render, protobuf_message_properties
 
 logger = logging.getLogger(__name__)
 
@@ -16,25 +17,33 @@ def launch(config, queue):
         return
 
     working_dir = Path(config['working-dir'])
-    report_email_queue = config['marigold']['email-queue']
+    email_queue = config['marigold']['email-queue']
 
     channel = open_rabbitmq(config)
     channel.queue_declare(queue=queue, durable=True,
                           arguments={})
+    channel.basic_qos(prefetch_count=1)
 
     def callback(channel, method, properties, body):
         logger.info("receive message %s %s",
                     properties.message_id, properties.content_type)
         channel.basic_ack(delivery_tag=method.delivery_tag)
 
-        launched_at = datetime.now()
+        launched_at = datetime.now(UTC)
+
         task = hydrangea_pb2.Task()
         task.ParseFromString(body)
         result, elapsed = execute(working_dir, task)
         logger.debug("%d \n%s\n%s", result.returncode,
                      result.stdout, result.stderr)
-        send_mail(channel, report_email_queue, task,
-                  result, launched_at, elapsed)
+        req = hydrangea_pb2.StashJobRequest(
+            task=task,
+            status_code=result.returncode, stdout=result.stdout, stderr=result.stderr,
+            launched_at=to_timestamp(launched_at),
+            elapsed=to_duration(elapsed),
+        )
+        send_mail(channel, email_queue, config['cc'],
+                  config['bcc'], req, timedelta(seconds=elapsed))
         # TODO report by grpc
 
     def handle_shutdown(signum, frame):
@@ -70,9 +79,21 @@ def execute(working_dir, task: hydrangea_pb2.Task):
     return subprocess.run(["/bin/sh", shell]+list(task.args), cwd=working_dir, capture_output=True, text=True)
 
 
-def send_mail(channel, queue, task, launched_at, result, elapsed):
-    msg = email_pb2.Task()
-    msg.subject = f"Execute {task.name}({task.version}) {'succeed' if result.returncode == 0 else 'failed'} in {elapsed:.6f} seconds"
-    msg.body = email_pb2.Task.Body(
-        html=False, content=f"{result.returncode}\n------\n{result.stdout}------\n{result.stderr}\n------")
-    logger.debug("report to %s", queue)
+def send_mail(channel, queue, cc, bcc, req, elapsed):
+    args = {"req": req, "elapsed": elapsed}
+    subject = render("shell-job-report/subject.mustache", args)
+    body = render("shell-job-report/body.mustache", args)
+    # logger.debug("%s\n%s", subject, body)
+
+    task = email_pb2.Task(subject=subject.strip(),
+                          body=email_pb2.Task.Body(html=True, content=body))
+    for it in cc:
+        task.cc.append(email_pb2.Task.Address(email=it))
+    for it in bcc:
+        task.bcc.append(email_pb2.Task.Address(email=it))
+
+    properties = protobuf_message_properties()
+    logger.debug("publish message to %s://%s/%s", queue,
+                 properties.content_type, properties.message_id)
+    channel.basic_publish(exchange='', routing_key=queue,
+                          body=task.SerializeToString(), properties=properties)

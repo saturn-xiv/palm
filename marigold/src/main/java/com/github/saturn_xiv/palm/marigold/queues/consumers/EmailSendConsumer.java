@@ -10,11 +10,12 @@ import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.amqp.support.AmqpHeaders;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.ByteArrayResource;
-import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Component;
 import org.springframework.messaging.handler.annotation.Header;
+import org.springframework.messaging.handler.annotation.Payload;
 
+import com.github.saturn_xiv.palm.marigold.utils.EmailSender;
 import com.github.saturn_xiv.palm.plugins.email.v1.Task;
 import com.github.saturn_xiv.palm.plugins.email.v1.Task.Address;
 import com.rabbitmq.client.Channel;
@@ -32,17 +33,20 @@ public class EmailSendConsumer {
     // @Exchange(value = "${palm.rabbitmq.email-send.exchange}", type = "topic"),
     // key = "${palm.rabbitmq.email-send.queue}"))
     @RabbitListener(queuesToDeclare = @Queue(value = "${palm.queues.email-send}", durable = "true"))
-    public void handle(byte[] payload, Channel channel, @Header(AmqpHeaders.DELIVERY_TAG) long deliveryTag,
+    public void handle(@Payload byte[] payload, Channel channel, @Header(AmqpHeaders.DELIVERY_TAG) long deliveryTag,
             @Header(AmqpHeaders.MESSAGE_ID) String messageId,
             @Header(AmqpHeaders.CONTENT_TYPE) String contentType) throws IOException, MessagingException {
         logger.info("receive message {}://{}", contentType, messageId);
         channel.basicAck(deliveryTag, false);
 
         final var task = Task.parseFrom(payload);
-        var message = mailSender.createMimeMessage();
+        var message = this.sender.createMimeMessage();
         var helper = new MimeMessageHelper(message, true, "UTF-8");
         helper.setSubject(task.getSubject());
         helper.setFrom(this.from);
+        if (task.hasReplyTo()) {
+            helper.setReplyTo(toAddress(task.getReplyTo()));
+        }
         for (var it : task.getToList()) {
             helper.addTo(toAddress(it));
         }
@@ -71,17 +75,17 @@ public class EmailSendConsumer {
             }
         }
 
-        mailSender.send(message);
+        this.sender.send(message);
     }
 
     private InternetAddress toAddress(Address it) throws UnsupportedEncodingException, AddressException {
         return it.hasName() ? new InternetAddress(it.getEmail(), it.getName()) : new InternetAddress(it.getEmail());
     }
 
-    @Resource
-    JavaMailSender mailSender;
     @Value("${spring.mail.username}")
     String from;
+    @Resource
+    EmailSender sender;
 
     private static final Logger logger = LoggerFactory.getLogger(EmailSendConsumer.class);
 }

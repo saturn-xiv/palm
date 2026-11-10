@@ -9,6 +9,7 @@ import org.springframework.amqp.rabbit.annotation.Queue;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.stereotype.Component;
 import org.springframework.messaging.handler.annotation.Header;
+import org.springframework.messaging.handler.annotation.Payload;
 import org.springframework.amqp.support.AmqpHeaders;
 
 import com.github.saturn_xiv.palm.marigold.utils.TwilioClient;
@@ -25,7 +26,7 @@ public class SmsSendConsumer {
     // @Exchange(value = "${palm.rabbitmq.sms-send.exchange}", type = "topic"), key
     // = "${palm.rabbitmq.sms-send.queue}"))
     @RabbitListener(queuesToDeclare = @Queue(value = "${palm.queues.sms-send}", durable = "true"))
-    public void handle(byte[] payload, Channel channel, @Header(AmqpHeaders.DELIVERY_TAG) long deliveryTag,
+    public void handle(@Payload byte[] payload, Channel channel, @Header(AmqpHeaders.DELIVERY_TAG) long deliveryTag,
             @Header(AmqpHeaders.MESSAGE_ID) String messageId,
             @Header(AmqpHeaders.CONTENT_TYPE) String contentType) throws IOException {
         logger.info("receive message {}://{}", contentType, messageId);

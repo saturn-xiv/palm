@@ -18,17 +18,15 @@ spring:
     change-log: classpath:db/change-logs/master.xml
   rabbitmq:
     listener:
+      direct:
+        prefetch: 1
       simple:
         acknowledge-mode: manual
+        prefetch: 1
         retry:
           enabled: true
           initial-interval: 1000ms
           max-attempts: 3
           multiplier: 2.0
   mail:
-    properties:
-      mail:
-        smtp:
-          auth: true
-          starttls:
-            enable: true
+    default-encoding: UTF-8

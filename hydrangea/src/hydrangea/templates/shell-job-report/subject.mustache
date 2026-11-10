@@ -1,1 +1,1 @@
-{{ status }} to execute {{ name }}({{ version }}) in {{ elapsed }} seconds.
+{{#req.status}}Failed{{/req.status}}{{^req.status}}Succeed{{/req.status}} to execute {{req.task.name}}({{req.task.version}}) in {{elapsed}} seconds.

@@ -1,8 +1,8 @@
-<h2>{{ task.name }}({{ task.version }})</h2>
+<h2>{{req.task.name}}({{req.task.version}})</h2>
+{{req.task.summary}}
 <hr />
-{{ status_code }} {{ elapsed }} seconds.
-{{ summary }}
+{{req.status_code}} {{elapsed}} seconds.
 <br />
-<pre>{{ stdout }}</pre>
+<pre>{{req.stdout}}</pre>
 <br />
-<pre> {{ stderr}} </pre>
+<pre> {{req.stderr}} </pre>
