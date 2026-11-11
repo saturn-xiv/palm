@@ -1,44 +1,41 @@
 import Config
 
+# Configure your database
+#
+# The MIX_TEST_PARTITION environment variable can be used
+# to provide built-in test partitioning in CI environment.
+# Run `mix help test` for more information.
 config :bougainvillea, Bougainvillea.Repo,
-  hostname: "127.0.0.1",
-  port: 5432,
-  database: "bougainvillea_test",
-  username: "www",
-  password: "change-me",
-  pool_size: 8
+  username: "postgres",
+  password: "postgres",
+  hostname: "localhost",
+  database: "bougainvillea_test#{System.get_env("MIX_TEST_PARTITION")}",
+  pool: Ecto.Adapters.SQL.Sandbox,
+  pool_size: System.schedulers_online() * 2
 
-config :amqp,
-  connections: [
-    bougainvillea: [url: "amqp://www:change-me@127.0.0.1:5672/bougainvillea.dev"]
-  ],
-  channels: [
-    bougainvillea: [connection: :bougainvillea]
-  ]
+# We don't run a server during test. If one is required,
+# you can enable the server option below.
+config :bougainvillea, BougainvilleaWeb.Endpoint,
+  http: [ip: {127, 0, 0, 1}, port: 4002],
+  secret_key_base: "1wRK9ED55Y4U7LpwTbajsfb/Mi/SUhk6gVVq+RZ7hDjHc5RiW/FANsCifq1wNk9w",
+  server: false
 
-config :bougainvillea, :token, issuer: "bougainvillea.test"
+# In test we don't send emails
+config :bougainvillea, Bougainvillea.Mailer, adapter: Swoosh.Adapters.Test
 
-config :bougainvillea, :http,
-  cookie_key:
-    "836LyhhuxhL282SxrDCEELtB/kkj+Mc1Wgo2NJpCXHO+HbXFE2B3U54FHsyuEwjRTLj5zPbmnrB8xy52hU8Y5hCNY04DZNugFa1YNoh/neGXpcnj+iAkhd7r+fkWIixVs8JQ8F2Wt+3YI6xgeyw4T0HaQ9aOLBTQqpxvaZ/guAY="
+# Disable swoosh api client as it is only required for production adapters
+config :swoosh, :api_client, false
 
-config :bougainvillea, :redis, host: "127.0.0.1", port: 6379, db: 2, pool_size: 8
+# Print only warnings and errors during test
+config :logger, level: :warning
 
-config :bougainvillea, :rabbitmq,
-  host: "127.0.0.1",
-  port: 5672,
-  user: "www",
-  password: "change-me",
-  virtual_host: "bougainvillea.test"
+# Initialize plugs at runtime for faster test compilation
+config :phoenix, :plug_init_mode, :runtime
 
-config :bougainvillea, :opensearch,
-  endpoint: "http://127.0.0.1:9200",
-  namespace: "bougainvillea.dev"
+# Enable helpful, but potentially expensive runtime checks
+config :phoenix_live_view,
+  enable_expensive_runtime_checks: true
 
-config :bougainvillea, :seaweedfs, endpoint: "http://127.0.0.1:9333"
-config :bougainvillea, :loquat, endpoint: "127.0.0.1:11001"
-config :bougainvillea, :dahlia, endpoint: "127.0.0.1:11002"
-config :bougainvillea, :marigold, endpoint: "127.0.0.1:11004"
-config :bougainvillea, :hydrangea, jobs_dir: "tmp/jobs-test"
-
-config :logger, level: :info
+# Sort query params output of verified routes for robust url comparisons
+config :phoenix,
+  sort_verified_routes_query_params: true

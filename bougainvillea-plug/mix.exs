@@ -1,0 +1,44 @@
+defmodule Bougainvillea.MixProject do
+  use Mix.Project
+
+  def project do
+    [
+      app: :bougainvillea,
+      version: "2026.11.2",
+      elixir: "~> 1.20",
+      start_permanent: Mix.env() == :prod,
+      deps: deps()
+    ]
+  end
+
+  # Run "mix help compile.app" to learn about applications.
+  def application do
+    [
+      extra_applications: [:logger],
+      mod: {Bougainvillea.Application, []}
+    ]
+  end
+
+  # Run "mix help deps" to learn about dependencies.
+  defp deps do
+    [
+      {:uuid, "~> 1.1"},
+      {:jason, "~> 1.4"},
+      {:toml_elixir, "~> 3.3"},
+      {:yaml_elixir, "~> 2.12"},
+      {:sweet_xml, "~> 0.7"},
+      {:ecto_sql, "~> 3.0"},
+      {:postgrex, "~> 0.22"},
+      {:amqp, "~> 4.3"},
+      {:req, "~> 0.7"},
+      {:gun, "~> 2.4"},
+      {:absinthe, "~> 1.12"},
+      {:absinthe_plug, "~> 1.5"},
+      {:grpc, "~> 1.0"},
+      {:grpc_server, "~> 1.0"},
+      {:protobuf, "~> 0.17.1"},
+      {:grpc_reflection, "~> 0.5"},
+      {:plug_cowboy, "~> 2.0"}
+    ]
+  end
+end

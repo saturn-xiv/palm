@@ -1,33 +1,18 @@
-# BOUGAINVILLEA - An online education solution
+# Bougainvillea
 
-## Run on development mode
+To start your Phoenix server:
 
-```bash
-mix deps.get
-mix compile
-iex -S mix
+* Run `mix setup` to install and setup dependencies
+* Start Phoenix endpoint with `mix phx.server` or inside IEx with `iex -S mix phx.server`
 
-mix ecto.gen.migration create_xxx
-mix ecto.migrate
-mix ecto.rollback
+Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.
 
-mix run --no-halt
+Ready to run in production? Please [check our deployment guides](https://phoenix.hexdocs.pm/deployment.html).
 
-MIX_ENV=prod mix release --overwrite
-_build/prod/rel/bougainvillea/bin/bougainvillea eval 'IO.puts("Hello, Bougainvillea!")'
-_build/prod/rel/bougainvillea/bin/bougainvillea eval 'Bougainvillea.Release.help'
-```
+## Learn more
 
-## Run on production mode
-
-```bash
-export BOUGAINVILLEA_ENV=staging
-export BOUGAINVILLEA_HTTP_PORT=3000
-./bin/bougainvillea eval 'Bougainvillea.Release.help'
-
-./bin/bougainvillea start
-```
-
-## Documents
-
-- [gRPC: Supported formats](https://github.com/elixir-grpc/grpc#supported-formats)
+* Official website: https://www.phoenixframework.org/
+* Guides: https://phoenix.hexdocs.pm/overview.html
+* Docs: https://phoenix.hexdocs.pm
+* Forum: https://elixirforum.com/c/phoenix-forum
+* Source: https://github.com/phoenixframework/phoenix
