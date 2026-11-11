@@ -39,9 +39,19 @@ defmodule Bougainvillea.Router do
     init_opts: [schema: Bougainvillea.Graphql.Schema, interface: :simple]
   )
 
+  post "/api/webhooks/github/:id" do
+    {:ok, reply} = Bougainvillea.Hydrangea.Controllers.Github.webhook()
+    Hibiscus.Render.json(conn, 200, reply)
+  end
+
+  post "/api/webhooks/gogs/:id" do
+    {:ok, conn, reply} = Bougainvillea.Hydrangea.Controllers.Gogs.webhook(conn)
+    Hibiscus.Render.json(conn, 200, reply)
+  end
+
   get "/api/health-check" do
-    {:ok, body} = Bougainvillea.Portal.Controllers.Api.health_check()
-    Hibiscus.Render.json(conn, 200, body)
+    {:ok, reply} = Bougainvillea.Portal.Controllers.Api.health_check()
+    Hibiscus.Render.json(conn, 200, reply)
   end
 
   get "/attachments/:sn" do
@@ -49,13 +59,13 @@ defmodule Bougainvillea.Router do
   end
 
   post "/attachments" do
-    {:ok, body} = Bougainvillea.Portal.Controllers.Attachments.create(conn)
-    Hibiscus.Render.json(conn, 200, body)
+    {:ok, reply} = Bougainvillea.Portal.Controllers.Attachments.create(conn)
+    Hibiscus.Render.json(conn, 200, reply)
   end
 
   get "/" do
-    {:ok, body} = Bougainvillea.Portal.Controllers.Home.index()
-    Hibiscus.Render.html(conn, 200, body)
+    {:ok, reply} = Bougainvillea.Portal.Controllers.Home.index()
+    Hibiscus.Render.html(conn, 200, reply)
   end
 
   match _ do
