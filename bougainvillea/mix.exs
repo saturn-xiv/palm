@@ -4,7 +4,7 @@ defmodule Bougainvillea.MixProject do
   def project do
     [
       app: :bougainvillea,
-      version: "0.1.0",
+      version: "2026.11.11",
       elixir: "~> 1.17",
       elixirc_paths: elixirc_paths(Mix.env()),
       start_permanent: Mix.env() == :prod,

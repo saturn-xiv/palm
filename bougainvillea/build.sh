@@ -42,18 +42,20 @@ function build_java() {
     cp README.md staging.yml target/$1-*.jar $TARGET_DIR/$PACKAGE/$1/
 }
 
-function build_elixir() {
+# https://phoenix.hexdocs.pm/deployment.html
+function build_phoenix() {
     cd $WORK_DIR/$1/
-    
-    export MIX_ENV=prod
-    mix deps.get --only prod
-    mix clean
-    mix compile
-    mix release --overwrite
+        
+    mix deps.get --only prod    
+    MIX_ENV=prod mix compile
+    MIX_ENV=prod mix phx.digest.clean --all
+    MIX_ENV=prod mix assets.deploy
+    mix phx.gen.release
+    MIX_ENV=prod mix release
 
     mkdir -p $TARGET_DIR/$PACKAGE/$1
     cp -r _build/prod/rel/$1 $TARGET_DIR/$PACKAGE/
-    cp -r README.md staging.toml $TARGET_DIR/$PACKAGE/$1/
+    cp -r README.md $TARGET_DIR/$PACKAGE/$1/
 }
 
 function build_loquat() {
@@ -87,7 +89,7 @@ function amazon_corretto_jdk() {
 build_java marigold
 build_python3 dahlia
 build_python3 hydrangea
-build_elixir bougainvillea
+build_phoenix bougainvillea
 build_loquat
 
 mkdir -p $TARGET_DIR/$PACKAGE/share
