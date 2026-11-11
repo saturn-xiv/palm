@@ -30,6 +30,7 @@
       - tcpdump
       - lm-sensors
       - btop
+      - iotop
       - dmidecode
       - net-tools
       - iputils-arping
