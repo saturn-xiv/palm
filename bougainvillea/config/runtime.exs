@@ -76,14 +76,16 @@ if config_env() == :prod do
   config :bougainvillea, :dns_cluster_query, System.get_env("DNS_CLUSTER_QUERY")
 
   config :bougainvillea, BougainvilleaWeb.Endpoint,
-    url: [host: host, port: String.to_integer(System.get_env("PORT") || "4000"), scheme: "https"],
+    url: [host: host, port: 443, scheme: "https"],
     http: [
       # Enable IPv6 and bind on all interfaces.
       # Set it to  {0, 0, 0, 0, 0, 0, 0, 1} for local network only access.
       # See the documentation on https://bandit.hexdocs.pm/Bandit.html#t:options/0
       # for details about using IPv6 vs IPv4 and loopback vs public addresses.
-      ip: {0, 0, 0, 0, 0, 0, 0, 0}
+      ip: {0, 0, 0, 0, 0, 0, 0, 0},
+      port: String.to_integer(System.get_env("PORT") || "4000")
     ],
+    server: true,
     secret_key_base: secret_key_base
 
   # ## SSL Support
