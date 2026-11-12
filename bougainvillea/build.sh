@@ -46,16 +46,27 @@ function build_java() {
 function build_phoenix() {
     cd $WORK_DIR/$1/
         
-    mix deps.get --only prod    
-    MIX_ENV=prod mix compile
-    MIX_ENV=prod mix phx.digest.clean --all
-    MIX_ENV=prod mix assets.deploy
-    mix phx.gen.release
-    MIX_ENV=prod mix release
+    mix deps.get --only prod
+    
+    if [ -d _build/prod/rel/$1 ]
+    then
+        rm -r _build/prod/rel/$1
+    fi
 
-    mkdir -p $TARGET_DIR/$PACKAGE/$1
+    export MIX_ENV=prod
+    mix compile
+    mix phx.digest.clean --all
+    git clean -fd rel/ lib/$1/release.ex
+    mix assets.deploy
+    mix phx.gen.release
+    mix release --overwrite
+    
     cp -r _build/prod/rel/$1 $TARGET_DIR/$PACKAGE/
-    cp -r README.md $TARGET_DIR/$PACKAGE/$1/
+    mkdir -p $TARGET_DIR/$PACKAGE/$1/etc
+    cp -r README.md .env.staging $TARGET_DIR/$PACKAGE/$1/etc/
+    
+    mix phx.digest.clean --all
+    git clean -fd rel/ lib/$1/release.ex
 }
 
 function build_loquat() {
@@ -85,6 +96,16 @@ function amazon_corretto_jdk() {
 } 
 
 # -----------------------------------------------------------------------------
+
+if [ -f $TARGET_DIR/$PACKAGE.md5 ]
+then
+    echo "building $PACKAGE already exists."
+    exit 0
+fi
+if [ -d $TARGET_DIR/$PACKAGE ]
+then
+    rm -r $TARGET_DIR/$PACKAGE
+fi
 
 build_java marigold
 build_python3 dahlia
