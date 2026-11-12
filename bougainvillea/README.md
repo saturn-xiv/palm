@@ -30,6 +30,8 @@ cp etc/staging.env prod.env
 set -a && source prod.env && set +a
 
 bin/bougainvillea eval "Bougainvillea.Release.migrate"
+bin/bougainvillea eval "Bougainvillea.Release.seeds"
+
 PHX_SERVER=true bin/bougainvillea start
 ```
 
