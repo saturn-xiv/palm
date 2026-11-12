@@ -1,14 +1,24 @@
 # BOUGAINVILLEA - An online education solution
 
+## Development
+
 ```bash
 $ mix deps.get
 # Generate a secret key
 $ mix phx.gen.secret
 
+$ mix compile
 $ mix phx.server
-
 $ iex -S mix phx.server
 >
+```
+
+### Issues
+
+-- no route found for GET /assets/css/app.css
+
+```bash
+mix tailwind.install https://github.com/tailwindlabs/tailwindcss/releases/download/v4.3.3/tailwindcss-linux-x64
 ```
 
 ## Deployment

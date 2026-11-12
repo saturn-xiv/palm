@@ -21,8 +21,9 @@
 # clean & build
 mvn clean
 mvn package -Dmaven.test.skip=true
-# running on development mode
-java -jar target/marigold-*.jar --spring.config.name=staging
+
+# running on staging mode
+java -Xmx2048m -Xms256m -jar target/marigold-*.jar --spring.config.name=staging
 ```
 
 ## Resources

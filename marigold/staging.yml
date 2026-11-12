@@ -40,24 +40,24 @@ spring:
     host: "smtp.gmail.com"
     username: "change-me@gmail.com"
     password: "change-me"
-    port: 465
-    properties:
-      mail:
-        smtp:
-          auth: true
-          socketFactory:
-            port: 465
-            class: javax.net.ssl.SSLSocketFactory
-          ssl:
-            enable: true
-    # port: 587
+    # port: 465
     # properties:
     #   mail:
     #     smtp:
     #       auth: true
-    #       starttls:
+    #       socketFactory:
+    #         port: 465
+    #         class: javax.net.ssl.SSLSocketFactory
+    #       ssl:
     #         enable: true
-    #         required: true
+    port: 587
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+            required: true
   security:
     user:
       name: "www"

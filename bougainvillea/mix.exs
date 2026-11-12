@@ -4,7 +4,7 @@ defmodule Bougainvillea.MixProject do
   def project do
     [
       app: :bougainvillea,
-      version: "2026.11.11",
+      version: git_version(),
       elixir: "~> 1.17",
       elixirc_paths: elixirc_paths(Mix.env()),
       start_permanent: Mix.env() == :prod,
@@ -110,5 +110,12 @@ defmodule Bougainvillea.MixProject do
       ],
       precommit: ["compile --warnings-as-errors", "deps.unlock --unused", "format", "test"]
     ]
+  end
+
+  defp git_version do
+    case System.cmd("git", ["describe", "--tags", "--always", "--dirty"], stderr_to_stdout: true) do
+      {sha, 0} -> String.trim(sha) |> String.slice(1..-1//1)
+      _ -> "unknown"
+    end
   end
 end
