@@ -1,0 +1,49 @@
+syntax = "proto3";
+package palm.cups.v1;
+
+option csharp_namespace = "Palm.Plugins.Cups.Grpc";
+option go_package = "./;v2";
+option java_multiple_files = true;
+option java_outer_classname = "CupsProto";
+option java_package = "com.github.saturn_xiv.palm.plugins.cups.v1";
+
+message Task {
+  enum JobSheet {
+    STANDARD = 0;
+    UNCLASSIFIED = 1;
+    CLASSIFIED = 2;
+    CONFIDENTIAL = 3;
+    SECRET = 4;
+    TOP_SECRET = 5;
+  }
+  enum Media {
+    A4 = 0;
+    A3 = 2;
+    LETTER = 3;
+  }
+  enum Orientation {
+    LABDSCAPE_COUNTER_CLOCKWISE90 = 0;
+    LABDSCAPE_CLOCKWISE90 = 1;
+    REVERSE_PORTRAIT = 2;
+  }
+  enum Quality {
+    DRAFT = 0;
+    NORMAL = 1;
+    BEST = 2;
+  }
+  enum Sides {
+    ONE = 0;
+    TWO_LONG = 1;
+    TWO_SHORT = 2;
+  }
+
+  string name = 1;
+  bytes document = 2;
+  uint32 number_up = 8;
+  uint32 copies = 9;
+  JobSheet job_sheet = 11;
+  Media media = 12;
+  Orientation orientation = 13;
+  Quality quality = 14;
+  Sides sides = 15;
+}
