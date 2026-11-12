@@ -77,8 +77,8 @@ function build_loquat() {
     local -a targets=("x86_64" "aarch64" "riscv64")
     for t in "${targets[@]}"
     do
-        mkdir -p $TARGET_DIR/$PACKAGE/$t/bin
-        cp build/$t/loquat $TARGET_DIR/$PACKAGE/$t/bin/
+        mkdir -p $TARGET_DIR/$PACKAGE/bin/$t
+        cp build/$t/loquat $TARGET_DIR/$PACKAGE/bin/$t/
     done
 }
 

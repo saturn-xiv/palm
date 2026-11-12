@@ -72,7 +72,20 @@ defmodule Bougainvillea.MixProject do
       {:gettext, "~> 1.0"},
       {:jason, "~> 1.2"},
       {:dns_cluster, "~> 0.2.0"},
-      {:bandit, "~> 1.5"}
+      {:bandit, "~> 1.5"},
+      # my add
+      {:uuid, "~> 1.1"},
+      {:toml_elixir, "~> 3.3"},
+      {:yaml_elixir, "~> 2.12"},
+      {:sweet_xml, "~> 0.7"},
+      {:amqp, "~> 4.3"},
+      {:gun, "~> 2.4"},
+      {:absinthe, "~> 1.12"},
+      {:absinthe_plug, "~> 1.5"},
+      {:grpc, "~> 1.0"},
+      {:grpc_server, "~> 1.0"},
+      {:protobuf, "~> 0.17.1"},
+      {:grpc_reflection, "~> 0.5"}
     ]
   end
 
