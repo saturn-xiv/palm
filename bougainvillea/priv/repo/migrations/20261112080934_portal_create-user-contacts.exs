@@ -1,4 +1,4 @@
-defmodule Bougainvillea.Repo.Migrations.CreateUserContacts do
+defmodule Bougainvillea.Repo.Migrations.Portal.CreateUserContacts do
   use Ecto.Migration
 
   def change do
@@ -8,8 +8,8 @@ defmodule Bougainvillea.Repo.Migrations.CreateUserContacts do
       add :value, :map, null: false, default: fragment("'{}'::jsonb")
       add :deleted_at, :utc_datetime_usec
       add :version, :integer, null: false, default: 0
-      add :updated_at, :utc_datetime_usec, null: false
-      add :created_at, :utc_datetime_usec, null: false, default: fragment("now()")
+
+      timestamps(type: :utc_datetime_usec)
     end
 
     create index(:user_contacts, [:value], using: :gin)

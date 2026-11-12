@@ -1,4 +1,4 @@
-defmodule Bougainvillea.Repo.Migrations.CreateLocales do
+defmodule Bougainvillea.Repo.Migrations.Portal.CreateLocales do
   use Ecto.Migration
 
   def change do
@@ -7,8 +7,8 @@ defmodule Bougainvillea.Repo.Migrations.CreateLocales do
       add :code, :string, size: 255, null: false
       add :message, :text, null: false
       add :version, :integer, null: false, default: 0
-      add :updated_at, :utc_datetime_usec, null: false
-      add :created_at, :utc_datetime_usec, null: false, default: fragment("now()")
+
+      timestamps(type: :utc_datetime_usec)
     end
 
     create index(:locales, [:lang])

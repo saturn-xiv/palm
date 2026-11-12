@@ -1,4 +1,4 @@
-defmodule Bougainvillea.Repo.Migrations.CreateCurrencies do
+defmodule Bougainvillea.Repo.Migrations.Portal.CreateCurrencies do
   use Ecto.Migration
 
   def change do
@@ -9,7 +9,8 @@ defmodule Bougainvillea.Repo.Migrations.CreateCurrencies do
       add :number, :string, size: 3, null: false
       add :units, :integer
       add :fund, :boolean
-      add :created_at, :utc_datetime_usec, null: false, default: fragment("now()")
+
+      timestamps(type: :utc_datetime_usec, updated_at: false)
     end
 
     create index(:currencies, [:name])

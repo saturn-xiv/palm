@@ -1,8 +1,8 @@
-defmodule Bougainvillea.Repo.Migrations.CreateLavenderTasks do
+defmodule Bougainvillea.Repo.Migrations.Hydrangea.CreateJobs do
   use Ecto.Migration
 
   def change do
-    create table(:hydrangea_jobs) do
+    create table(:hydrangea_job_logs) do
       add :user_id, references(:users, on_delete: :delete_all), null: false
       add :sn, :string, size: 36, null: false
       add :name, :string, size: 63, null: false
@@ -15,14 +15,15 @@ defmodule Bougainvillea.Repo.Migrations.CreateLavenderTasks do
       add :status_code, :integer, null: false
       add :stdout, :text, null: false
       add :stderr, :text, null: false
-      add :created_at, :utc_datetime_usec, null: false, default: fragment("now()")
+
+      timestamps(type: :utc_datetime_usec, updated_at: false)
     end
 
-    create index(:hydrangea_jobs, [:name])
-    create index(:hydrangea_jobs, [:summary])
-    create index(:hydrangea_jobs, [:version])
-    create index(:hydrangea_jobs, [:elapsed])
-    create index(:hydrangea_jobs, [:args], using: :gin)
-    create unique_index(:hydrangea_jobs, [:sn])
+    create index(:hydrangea_job_logs, [:name])
+    create index(:hydrangea_job_logs, [:summary])
+    create index(:hydrangea_job_logs, [:version])
+    create index(:hydrangea_job_logs, [:elapsed])
+    create index(:hydrangea_job_logs, [:args], using: :gin)
+    create unique_index(:hydrangea_job_logs, [:sn])
   end
 end

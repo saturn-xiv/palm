@@ -1,4 +1,4 @@
-defmodule Bougainvillea.Repo.Migrations.CreateLogs do
+defmodule Bougainvillea.Repo.Migrations.Portal.CreateLogs do
   use Ecto.Migration
 
   def change do
@@ -8,7 +8,8 @@ defmodule Bougainvillea.Repo.Migrations.CreateLogs do
       add :level, :string, size: 7, null: false
       add :ip, :string, size: 45, null: false
       add :message, :text, null: false
-      add :created_at, :utc_datetime_usec, null: false, default: fragment("now()")
+
+      timestamps(type: :utc_datetime_usec, updated_at: false)
     end
 
     create index(:logs, [:plugin])

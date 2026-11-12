@@ -1,4 +1,4 @@
-defmodule Bougainvillea.Repo.Migrations.CreateUsers do
+defmodule Bougainvillea.Repo.Migrations.Portal.CreateUsers do
   use Ecto.Migration
 
   def change do
@@ -16,8 +16,8 @@ defmodule Bougainvillea.Repo.Migrations.CreateUsers do
       add :locked_at, :utc_datetime_usec
       add :deleted_at, :utc_datetime_usec
       add :version, :integer, null: false, default: 0
-      add :updated_at, :utc_datetime_usec, null: false
-      add :created_at, :utc_datetime_usec, null: false, default: fragment("now()")
+
+      timestamps(type: :utc_datetime_usec)
     end
 
     create index(:users, [:name])

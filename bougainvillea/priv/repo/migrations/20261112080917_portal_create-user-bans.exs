@@ -1,4 +1,4 @@
-defmodule Bougainvillea.Repo.Migrations.CreateUserBans do
+defmodule Bougainvillea.Repo.Migrations.Portal.CreateUserBans do
   use Ecto.Migration
 
   def change do
@@ -9,7 +9,8 @@ defmodule Bougainvillea.Repo.Migrations.CreateUserBans do
       add :reason, :text, null: false
       add :expired_at, :utc_datetime_usec
       add :deleted_at, :utc_datetime_usec
-      add :created_at, :utc_datetime_usec, null: false, default: fragment("now()")
+
+      timestamps(type: :utc_datetime_usec, updated_at: false)
     end
 
     create index(:user_bans, [:ip])

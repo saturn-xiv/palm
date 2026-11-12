@@ -1,4 +1,4 @@
-defmodule Bougainvillea.Repo.Migrations.CreateShortenLinks do
+defmodule Bougainvillea.Repo.Migrations.Portal.Portal.CreateShortenLinks do
   use Ecto.Migration
 
   def change do
@@ -6,8 +6,8 @@ defmodule Bougainvillea.Repo.Migrations.CreateShortenLinks do
       add :title, :string, size: 127, null: false
       add :url, :string, size: 127, null: false
       add :version, :integer, null: false, default: 0
-      add :updated_at, :utc_datetime_usec, null: false
-      add :created_at, :utc_datetime_usec, null: false, default: fragment("now()")
+
+      timestamps(type: :utc_datetime_usec)
     end
 
     create index(:shorten_links, [:title])

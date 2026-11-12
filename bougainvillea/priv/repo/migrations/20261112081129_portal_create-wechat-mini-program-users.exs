@@ -1,4 +1,4 @@
-defmodule Bougainvillea.Repo.Migrations.CreateWechatMiniProgramUsers do
+defmodule Bougainvillea.Repo.Migrations.Portal.CreateWechatMiniProgramUser do
   use Ecto.Migration
 
   def change do
@@ -14,8 +14,8 @@ defmodule Bougainvillea.Repo.Migrations.CreateWechatMiniProgramUsers do
       add :locked_at, :utc_datetime_usec
       add :deleted_at, :utc_datetime_usec
       add :version, :integer, null: false, default: 0
-      add :updated_at, :utc_datetime_usec, null: false
-      add :created_at, :utc_datetime_usec, null: false, default: fragment("now()")
+
+      timestamps(type: :utc_datetime_usec)
     end
 
     create index(:wechat_mini_program_users, [:nickname], where: "nickname IS NULL")

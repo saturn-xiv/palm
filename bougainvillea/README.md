@@ -8,6 +8,8 @@ $ mix deps.get
 $ mix phx.gen.secret
 
 $ mix compile
+# https://phoenix.hexdocs.pm/ecto.html#using-phx-gen-schema
+$ mix ecto.migrate
 $ mix phx.server
 $ iex -S mix phx.server
 >
@@ -28,7 +30,7 @@ cp etc/staging.env prod.env
 set -a && source prod.env && set +a
 
 bin/bougainvillea eval "Bougainvillea.Release.migrate"
-bin/bougainvillea start
+PHX_SERVER=true bin/bougainvillea start
 ```
 
 ## Documents
