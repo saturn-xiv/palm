@@ -2,9 +2,10 @@ import Config
 
 # Configure your database
 config :bougainvillea, Bougainvillea.Repo,
-  username: "postgres",
-  password: "postgres",
-  hostname: "localhost",
+  username: "www",
+  password: "change-me",
+  hostname: "127.0.0.1",
+  port: 5432,
   database: "bougainvillea_dev",
   stacktrace: true,
   show_sensitive_data_on_connection_error: true,

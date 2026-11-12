@@ -63,7 +63,7 @@ function build_phoenix() {
     
     cp -r _build/prod/rel/$1 $TARGET_DIR/$PACKAGE/
     mkdir -p $TARGET_DIR/$PACKAGE/$1/etc
-    cp -r README.md .env.staging $TARGET_DIR/$PACKAGE/$1/etc/
+    cp -r README.md staging.env $TARGET_DIR/$PACKAGE/$1/etc/
     
     mix phx.digest.clean --all
     git clean -fd rel/ lib/$1/release.ex
