@@ -30,6 +30,14 @@ spring:
     hikari:
       maximum-pool-size: 10
       minimum-idle: 5
+  data:
+    redis:
+      host: "127.0.0.1"
+      port: 6379
+      database: 6
+  cache:
+    redis:
+      key-prefix: "marigold://"
   rabbitmq:
     host: "127.0.0.1"
     port: 5672

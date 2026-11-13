@@ -15,10 +15,20 @@ public class HealthCheckResponse implements Serializable {
     }
 
     private boolean database;
+    private boolean cache;
     private boolean messageBroker;
+
     private Date createdAt;
     private Date buildTime;
     private String version;
+
+    public boolean isCache() {
+        return cache;
+    }
+
+    public void setCache(boolean cache) {
+        this.cache = cache;
+    }
 
     public boolean isMessageBroker() {
         return messageBroker;
