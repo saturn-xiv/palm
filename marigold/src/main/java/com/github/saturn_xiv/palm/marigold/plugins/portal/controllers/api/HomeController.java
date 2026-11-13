@@ -2,6 +2,7 @@ package com.github.saturn_xiv.palm.marigold.plugins.portal.controllers.api;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.amqp.AmqpException;
 import org.springframework.boot.info.BuildProperties;
 import org.springframework.dao.DataAccessException;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -10,9 +11,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.github.saturn_xiv.palm.marigold.plugins.portal.controllers.responses.HealthCheckResponse;
+import com.github.saturn_xiv.palm.marigold.plugins.portal.queues.MessageSender;
 import com.github.saturn_xiv.palm.marigold.plugins.portal.repositories.SettingRepository;
-import com.github.saturn_xiv.palm.marigold.plugins.portal.services.AttachmentService;
-import com.github.saturn_xiv.palm.marigold.plugins.portal.services.LogService;
 
 import jakarta.annotation.Resource;
 
@@ -31,16 +31,21 @@ public class HomeController {
             logger.error("check database status", e);
             reply.setDatabase(false);
         }
+        try {
+            var it = messageSender.isUp();
+            reply.setMessageBroker(it.right);
+        } catch (AmqpException e) {
+            logger.error("check message booker status", e);
+            reply.setMessageBroker(false);
+        }
         return reply;
     }
 
     @Resource
-    LogService logService;
-    @Resource
-    AttachmentService attachmentService;
-    @Resource
     BuildProperties buildProperties;
     @Resource
     SettingRepository settingRepository;
+    @Resource
+    MessageSender messageSender;
     private final static Logger logger = LoggerFactory.getLogger(HomeController.class);
 }

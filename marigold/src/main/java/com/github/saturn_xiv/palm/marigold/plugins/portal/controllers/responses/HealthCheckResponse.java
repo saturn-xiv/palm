@@ -15,9 +15,18 @@ public class HealthCheckResponse implements Serializable {
     }
 
     private boolean database;
+    private boolean messageBroker;
     private Date createdAt;
     private Date buildTime;
     private String version;
+
+    public boolean isMessageBroker() {
+        return messageBroker;
+    }
+
+    public void setMessageBroker(boolean messageBroker) {
+        this.messageBroker = messageBroker;
+    }
 
     public boolean isDatabase() {
         return database;
