@@ -81,6 +81,7 @@
             <column name="url" type="varchar(127)">
                 <constraints nullable="false" />
             </column>
+            <column name="logo" type="varchar(127)" />
             <column name="version" type="int" defaultValueNumeric="0">
                 <constraints nullable="false" />
             </column>

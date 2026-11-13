@@ -23,9 +23,6 @@ import jakarta.validation.constraints.Size;
 public class Attachment implements Serializable {
     private static final long serialVersionUID = 1L;
 
-    public Attachment() {
-    }
-
     public sealed interface Storage extends Serializable permits S3, SeaweedFs {
 
     }
@@ -58,12 +55,12 @@ public class Attachment implements Serializable {
     @Column(name = "public", nullable = false)
     private boolean public_;
     @JdbcTypeCode(SqlTypes.JSON)
-    @Column(name = "storage", columnDefinition = "jsonb")
+    @Column(columnDefinition = "jsonb", nullable = false)
     private Storage storage;
     private Date uploadedAt;
     private Date deletedAt;
-    @Column(nullable = false)
     private int version;
+    @Column(nullable = false)
     private Date updatedAt;
     @Column(nullable = false)
     private Date createdAt;

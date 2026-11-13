@@ -38,7 +38,7 @@
             <column name="given_name" type="varchar(63)" />
             <column name="gender" type="varchar(63)" />
             <column name="link" type="varchar(127)" />
-            <column name="family_name" type="varchar(31)" />
+            <column name="family_name" type="varchar(63)" />
             <column name="name" type="varchar(63)" />
             <column name="picture" type="varchar(127)" />
             <column name="locale" type="varchar(15)" />

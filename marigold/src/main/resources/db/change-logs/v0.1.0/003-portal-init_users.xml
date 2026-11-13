@@ -317,7 +317,7 @@
             <column name="ip" type="varchar(45)">
                 <constraints nullable="false" />
             </column>
-            <column name="stars" type="tinyint">
+            <column name="stars" type="smallint">
                 <constraints nullable="false" />
             </column>
             <column name="comment" type="jsonb">
