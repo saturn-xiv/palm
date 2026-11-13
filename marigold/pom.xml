@@ -236,6 +236,16 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
+				<executions>
+					<execution>
+						<goals>
+							<goal>build-info</goal>
+						</goals>
+						<configuration>
+							<time>${maven.build.timestamp}</time>
+						</configuration>
+					</execution>
+				</executions>
 			</plugin>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
@@ -243,7 +253,7 @@
 				<configuration>
 					<archive>
 						<manifestEntries>
-							<Implementation-Title>WeChat Pay services</Implementation-Title>
+							<Implementation-Title>An online education solution</Implementation-Title>
 						</manifestEntries>
 					</archive>
 				</configuration>

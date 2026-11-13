@@ -1,4 +1,4 @@
-# MARIGOLD - WechatPay services
+# MARIGOLD - An online education solution
 
 ## Development
 
