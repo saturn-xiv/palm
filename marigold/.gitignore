@@ -3,3 +3,7 @@
 
 /application.yml
 /*.bin
+
+/liquibase_libs/
+/liquibase.json
+/liquibase.properties

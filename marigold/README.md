@@ -1,21 +1,20 @@
 # MARIGOLD - WechatPay services
 
-## Setup
+## Development
 
-- PostgreSql
+- Database schemes
 
-  ```sql
-  CREATE DATABASE marigold_dev WITH OWNER www;
-  ```
+```bash
+# add postgresql driver
+$ ~/local/liquibase-5.0.4/liquibase lpm add postgresql
 
-- RabbitMq
+$ ~/local/liquibase-5.0.4/liquibase update
+$ ~/local/liquibase-5.0.4/liquibase rollback-count --count=1
+$ ~/local/liquibase-5.0.4/liquibase validate
+$ ~/local/liquibase-5.0.4/liquibase status
+```
 
-  ```bash
-  sudo rabbitmqctl add_vhost marigold.dev
-  sudo rabbitmqctl set_permissions -p marigold.dev www ".*" ".*" ".*"
-  ```
-
-## Usage
+## Deployment
 
 ```bash
 # clean & build
