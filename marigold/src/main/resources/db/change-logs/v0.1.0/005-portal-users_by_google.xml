@@ -1,0 +1,93 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd
+                        http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+
+
+    <changeSet id="20261113070011.create-google-oauth2-users" author="Jeremy Zheng">
+        <createTable tableName="google_oauth2_users">
+            <column name="id" type="int" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false" />
+            </column>
+            <column name="user_id" type="int">
+                <constraints
+                    nullable="false"
+                    foreignKeyName="idx_attachments_user"
+                    referencedTableName="users"
+                    referencedColumnNames="id"
+                    deleteCascade="true" />
+            </column>
+            <column name="sn" type="varchar(36)">
+                <constraints nullable="false" />
+            </column>
+            <column name="client_id" type="varchar(63)">
+                <constraints nullable="false" />
+            </column>
+            <column name="sub" type="varchar(63)">
+                <constraints nullable="false" />
+            </column>
+            <column name="email" type="varchar(127)">
+                <constraints nullable="false" />
+            </column>
+            <column name="email_verified" type="boolean">
+                <constraints nullable="false" />
+            </column>
+            <column name="hosted_domain" type="varchar(63)" />
+            <column name="given_name" type="varchar(63)" />
+            <column name="gender" type="varchar(63)" />
+            <column name="link" type="varchar(127)" />
+            <column name="family_name" type="varchar(31)" />
+            <column name="name" type="varchar(63)" />
+            <column name="picture" type="varchar(127)" />
+            <column name="locale" type="varchar(15)" />
+            <column name="token" type="varchar(127)">
+                <constraints nullable="false" />
+            </column>
+            <column name="refresh_token" type="varchar(127)">
+                <constraints nullable="false" />
+            </column>
+            <column name="granted_scopes" type="jsonb">
+                <constraints nullable="false" />
+            </column>
+            <column name="locked_at" type="datetime" />
+            <column name="deleted_at" type="datetime" />
+            <column name="version" type="int" defaultValueNumeric="0">
+                <constraints nullable="false" />
+            </column>
+            <column name="updated_at" type="datetime">
+                <constraints nullable="false" />
+            </column>
+            <column name="created_at" type="datetime" defaultValueComputed="CURRENT_TIMESTAMP">
+                <constraints nullable="false" />
+            </column>
+        </createTable>
+
+
+        <createIndex tableName="google_oauth2_users"
+            indexName="idx_google_oauth2_users_granted_scopes" using="gin">
+            <column name="granted_scopes" />
+        </createIndex>
+        <createIndex tableName="google_oauth2_users" indexName="idx_google_oauth2_users_sn"
+            unique="true">
+            <column name="sn" />
+        </createIndex>
+        <createIndex tableName="google_oauth2_users" indexName="idx_google_oauth2_users_client_sub"
+            unique="true">
+            <column name="client_id" />
+            <column name="sub" />
+        </createIndex>
+        <createIndex tableName="google_oauth2_users"
+            indexName="idx_google_oauth2_users_client_email" unique="true">
+            <column name="client_id" />
+            <column name="email" />
+        </createIndex>
+
+
+        <rollback>
+            <dropTable tableName="google_oauth2_users" />
+        </rollback>
+    </changeSet>
+
+</databaseChangeLog>

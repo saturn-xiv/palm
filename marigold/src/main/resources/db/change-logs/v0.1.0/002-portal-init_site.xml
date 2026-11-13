@@ -1,0 +1,106 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd
+                        http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+
+    <changeSet id="20261113060344.create-categories" author="Jeremy Zheng">
+
+        <createTable tableName="categories">
+            <column name="id" type="int" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false" />
+            </column>
+            <column name="code" type="varchar(31)">
+                <constraints nullable="false" />
+            </column>
+            <column name="left" type="int">
+                <constraints nullable="false" />
+            </column>
+            <column name="right" type="int">
+                <constraints nullable="false" />
+            </column>
+            <column name="version" type="int" defaultValueNumeric="0">
+                <constraints nullable="false" />
+            </column>
+            <column name="updated_at" type="datetime">
+                <constraints nullable="false" />
+            </column>
+            <column name="created_at" type="datetime" defaultValueComputed="CURRENT_TIMESTAMP">
+                <constraints nullable="false" />
+            </column>
+        </createTable>
+
+        <createIndex tableName="categories" indexName="idx_categories_code" unique="true">
+            <column name="code" />
+        </createIndex>
+
+        <rollback>
+            <dropTable tableName="categories" />
+        </rollback>
+    </changeSet>
+
+
+    <changeSet id="20261113060552.create-tags" author="Jeremy Zheng">
+        <createTable tableName="tags">
+            <column name="id" type="int" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false" />
+            </column>
+            <column name="code" type="varchar(31)">
+                <constraints nullable="false" />
+            </column>
+            <column name="version" type="int" defaultValueNumeric="0">
+                <constraints nullable="false" />
+            </column>
+            <column name="updated_at" type="datetime">
+                <constraints nullable="false" />
+            </column>
+            <column name="created_at" type="datetime" defaultValueComputed="CURRENT_TIMESTAMP">
+                <constraints nullable="false" />
+            </column>
+        </createTable>
+
+        <createIndex tableName="tags" indexName="idx_tags_code" unique="true">
+            <column name="code" />
+        </createIndex>
+
+        <rollback>
+            <dropTable tableName="tags" />
+        </rollback>
+    </changeSet>
+
+
+    <changeSet id="20261113060658.create-shorten_links" author="Jeremy Zheng">
+        <createTable tableName="shorten_links">
+            <column name="id" type="int" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false" />
+            </column>
+            <column name="title" type="varchar(127)">
+                <constraints nullable="false" />
+            </column>
+            <column name="url" type="varchar(127)">
+                <constraints nullable="false" />
+            </column>
+            <column name="version" type="int" defaultValueNumeric="0">
+                <constraints nullable="false" />
+            </column>
+            <column name="updated_at" type="datetime">
+                <constraints nullable="false" />
+            </column>
+            <column name="created_at" type="datetime" defaultValueComputed="CURRENT_TIMESTAMP">
+                <constraints nullable="false" />
+            </column>
+        </createTable>
+
+        <createIndex tableName="shorten_links" indexName="idx_shorten_links_title">
+            <column name="title" />
+        </createIndex>
+        <createIndex tableName="shorten_links" indexName="idx_shorten_links_url" unique="true">
+            <column name="url" />
+        </createIndex>
+
+        <rollback>
+            <dropTable tableName="shorten_links" />
+        </rollback>
+    </changeSet>
+</databaseChangeLog>

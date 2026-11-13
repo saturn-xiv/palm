@@ -1,0 +1,82 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd
+                        http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+    <changeSet id="20261113065051.create-job-logs" author="Jeremy Zheng">
+        <createTable tableName="hydrangea_job_logs">
+            <column name="id" type="int" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false" />
+            </column>
+            <column name="user_id" type="int">
+                <constraints
+                    nullable="true"
+                    foreignKeyName="idx_user_contacts_user"
+                    referencedTableName="users"
+                    referencedColumnNames="id"
+                    deleteCascade="true" />
+            </column>
+            <column name="sn" type="varchar(36)">
+                <constraints nullable="false" />
+            </column>
+            <column name="ip" type="varchar(45)">
+                <constraints nullable="false" />
+            </column>
+            <column name="name" type="varchar(31)">
+                <constraints nullable="false" />
+            </column>
+            <column name="version" type="varchar(15)">
+                <constraints nullable="false" />
+            </column>
+            <column name="summary" type="varchar(511)">
+                <constraints nullable="false" />
+            </column>
+            <column name="args" type="jsonb">
+                <constraints nullable="false" />
+            </column>
+            <column name="script" type="text">
+                <constraints nullable="false" />
+            </column>
+            <column name="launched_at" type="datetime" />
+            <column name="elapsed" type="varchar(31)" />
+            <column name="status_code" type="int" />
+            <column name="stdout" type="text" />
+            <column name="stderr" type="text" />
+            <column name="updated_at" type="datetime">
+                <constraints nullable="false" />
+            </column>
+            <column name="created_at" type="datetime" defaultValueComputed="CURRENT_TIMESTAMP">
+                <constraints nullable="false" />
+            </column>
+        </createTable>
+
+        <createIndex tableName="hydrangea_job_logs" indexName="idx_hydrangea_job_logs_ip">
+            <column name="ip" />
+        </createIndex>
+        <createIndex tableName="hydrangea_job_logs" indexName="idx_hydrangea_job_logs_name">
+            <column name="name" />
+        </createIndex>
+        <createIndex tableName="hydrangea_job_logs" indexName="idx_hydrangea_job_logs_version">
+            <column name="version" />
+        </createIndex>
+        <createIndex tableName="hydrangea_job_logs" indexName="idx_hydrangea_job_logs_summary">
+            <column name="summary" />
+        </createIndex>
+        <createIndex tableName="hydrangea_job_logs" indexName="idx_hydrangea_job_logs_elapsed">
+            <column name="elapsed" />
+        </createIndex>
+        <createIndex tableName="hydrangea_job_logs" indexName="idx_hydrangea_job_logs_args"
+            using="gin">
+            <column name="args" />
+        </createIndex>
+        <createIndex tableName="hydrangea_job_logs" indexName="idx_hydrangea_job_logs_sn"
+            unique="true">
+            <column name="sn" />
+        </createIndex>
+
+        <rollback>
+            <dropTable tableName="hydrangea_job_logs" />
+        </rollback>
+    </changeSet>
+</databaseChangeLog>

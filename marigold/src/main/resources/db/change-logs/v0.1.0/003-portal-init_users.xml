@@ -1,0 +1,351 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd
+                        http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+
+    <changeSet id="20261113060938.create-users" author="Jeremy Zheng">
+        <createTable tableName="users">
+            <column name="id" type="int" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false" />
+            </column>
+            <column name="sn" type="varchar(36)">
+                <constraints nullable="false" />
+            </column>
+            <column name="name" type="varchar(31)">
+                <constraints nullable="false" />
+            </column>
+            <column name="avatar" type="varchar(127)" />
+            <column name="lang" type="varchar(17)" defaultValue="en-US">
+                <constraints nullable="false" />
+            </column>
+            <column name="timezone" type="varchar(31)" defaultValue="UTC">
+                <constraints nullable="false" />
+            </column>
+            <column name="sign_in_count" type="int" defaultValueNumeric="0">
+                <constraints nullable="false" />
+            </column>
+            <column name="current_sign_in_at" type="datetime" />
+            <column name="current_sign_in_ip" type="varchar(45)" />
+            <column name="last_sign_in_at" type="datetime" />
+            <column name="last_sign_in_ip" type="varchar(45)" />
+            <column name="locked_at" type="datetime" />
+            <column name="deleted_at" type="datetime" />
+            <column name="version" type="int" defaultValueNumeric="0">
+                <constraints nullable="false" />
+            </column>
+            <column name="updated_at" type="datetime">
+                <constraints nullable="false" />
+            </column>
+            <column name="created_at" type="datetime" defaultValueComputed="CURRENT_TIMESTAMP">
+                <constraints nullable="false" />
+            </column>
+        </createTable>
+
+        <createIndex tableName="users" indexName="idx_users_name">
+            <column name="name" />
+        </createIndex>
+        <createIndex tableName="users" indexName="idx_users_lang">
+            <column name="lang" />
+        </createIndex>
+        <createIndex tableName="users" indexName="idx_users_timezone">
+            <column name="timezone" />
+        </createIndex>
+        <createIndex tableName="users" indexName="idx_users_sn" unique="true">
+            <column name="sn" />
+        </createIndex>
+
+        <rollback>
+            <dropTable tableName="users" />
+        </rollback>
+    </changeSet>
+
+
+    <changeSet id="20261113061841.create-attachments" author="Jeremy Zheng">
+        <createTable tableName="attachments">
+            <column name="id" type="int" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false" />
+            </column>
+            <column name="user_id" type="int">
+                <constraints
+                    nullable="false"
+                    foreignKeyName="idx_attachments_user"
+                    referencedTableName="users"
+                    referencedColumnNames="id"
+                    deleteCascade="true" />
+            </column>
+            <column name="sn" type="varchar(36)">
+                <constraints nullable="false" />
+            </column>
+            <column name="storage" type="jsonb">
+                <constraints nullable="false" />
+            </column>
+            <column name="title" type="varchar(63)">
+                <constraints nullable="false" />
+            </column>
+            <column name="content_type" type="varchar(127)">
+                <constraints nullable="false" />
+            </column>
+            <column name="public" type="boolean">
+                <constraints nullable="false" />
+            </column>
+            <column name="size" type="int">
+                <constraints nullable="false" />
+            </column>
+            <column name="uploaded_at" type="datetime" />
+            <column name="deleted_at" type="datetime" />
+            <column name="version" type="int" defaultValueNumeric="0">
+                <constraints nullable="false" />
+            </column>
+            <column name="updated_at" type="datetime">
+                <constraints nullable="false" />
+            </column>
+            <column name="created_at" type="datetime" defaultValueComputed="CURRENT_TIMESTAMP">
+                <constraints nullable="false" />
+            </column>
+        </createTable>
+
+        <createIndex tableName="attachments" indexName="idx_attachments_title">
+            <column name="title" />
+        </createIndex>
+        <createIndex tableName="attachments" indexName="idx_attachments_content_type">
+            <column name="content_type" />
+        </createIndex>
+        <createIndex tableName="attachments" indexName="idx_attachments_storage" using="gin">
+            <column name="storage" />
+        </createIndex>
+        <createIndex tableName="attachments" indexName="idx_attachments_sn" unique="true">
+            <column name="sn" />
+        </createIndex>
+
+        <rollback>
+            <dropTable tableName="attachments" />
+        </rollback>
+    </changeSet>
+
+
+    <changeSet id="20261113062916.create-logs" author="Jeremy Zheng">
+        <createTable tableName="logs">
+            <column name="id" type="int" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false" />
+            </column>
+            <column name="user_id" type="int">
+                <constraints
+                    nullable="false"
+                    foreignKeyName="idx_logs_user"
+                    referencedTableName="users"
+                    referencedColumnNames="id"
+                    deleteCascade="true" />
+            </column>
+            <column name="plugin" type="varchar(63)">
+                <constraints nullable="false" />
+            </column>
+            <column name="level" type="varchar(63)">
+                <constraints nullable="false" />
+            </column>
+            <column name="ip" type="varchar(45)">
+                <constraints nullable="false" />
+            </column>
+            <column name="message" type="text">
+                <constraints nullable="false" />
+            </column>
+            <column name="created_at" type="datetime" defaultValueComputed="CURRENT_TIMESTAMP">
+                <constraints nullable="false" />
+            </column>
+        </createTable>
+
+        <createIndex tableName="logs" indexName="idx_logs_plugin">
+            <column name="plugin" />
+        </createIndex>
+        <createIndex tableName="logs" indexName="idx_logs_level">
+            <column name="level" />
+        </createIndex>
+        <createIndex tableName="logs" indexName="idx_logs_ip">
+            <column name="ip" />
+        </createIndex>
+
+        <rollback>
+            <dropTable tableName="logs" />
+        </rollback>
+    </changeSet>
+
+
+    <changeSet id="20261113063145.create-settings" author="Jeremy Zheng">
+        <createTable tableName="settings">
+            <column name="id" type="int" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false" />
+            </column>
+            <column name="user_id" type="int">
+                <constraints
+                    foreignKeyName="idx_settings_user"
+                    referencedTableName="users"
+                    referencedColumnNames="id"
+                    deleteCascade="true" />
+            </column>
+            <column name="key" type="varchar(255)">
+                <constraints nullable="false" />
+            </column>
+            <column name="value" type="jsonb">
+                <constraints nullable="false" />
+            </column>
+            <column name="version" type="int" defaultValueNumeric="0">
+                <constraints nullable="false" />
+            </column>
+            <column name="updated_at" type="datetime">
+                <constraints nullable="false" />
+            </column>
+            <column name="created_at" type="datetime" defaultValueComputed="CURRENT_TIMESTAMP">
+                <constraints nullable="false" />
+            </column>
+        </createTable>
+
+        <createIndex tableName="settings" indexName="idx_settings_key">
+            <column name="key" />
+        </createIndex>
+
+        <rollback>
+            <dropTable tableName="settings" />
+        </rollback>
+    </changeSet>
+
+    <changeSet id="20261113064433.create-user_bans" author="Jeremy Zheng">
+        <createTable tableName="user_bans">
+            <column name="id" type="int" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false" />
+            </column>
+            <column name="user_id" type="int">
+                <constraints
+                    nullable="false"
+                    foreignKeyName="idx_user_bans_user"
+                    referencedTableName="users"
+                    referencedColumnNames="id"
+                    deleteCascade="true" />
+            </column>
+            <column name="creator_id" type="int">
+                <constraints
+                    nullable="false"
+                    foreignKeyName="idx_user_bans_creator"
+                    referencedTableName="users"
+                    referencedColumnNames="id"
+                    deleteCascade="true" />
+            </column>
+            <column name="ip" type="varchar(45)">
+                <constraints nullable="false" />
+            </column>
+            <column name="reason" type="jsonb">
+                <constraints nullable="false" />
+            </column>
+            <column name="expires_at" type="datetime">
+                <constraints nullable="false" />
+            </column>
+            <column name="deleted_at" type="datetime" />
+            <column name="created_at" type="datetime" defaultValueComputed="CURRENT_TIMESTAMP">
+                <constraints nullable="false" />
+            </column>
+        </createTable>
+
+        <createIndex tableName="user_bans" indexName="idx_user_bans_ip">
+            <column name="ip" />
+        </createIndex>
+        <createIndex tableName="user_bans" indexName="idx_user_bans_reason" using="gin">
+            <column name="reason" />
+        </createIndex>
+
+        <rollback>
+            <dropTable tableName="user_bans" />
+        </rollback>
+    </changeSet>
+
+
+    <changeSet id="20261113064452.create-user_contacts" author="Jeremy Zheng">
+        <createTable tableName="user_contacts">
+            <column name="id" type="int" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false" />
+            </column>
+            <column name="user_id" type="int">
+                <constraints
+                    nullable="false"
+                    foreignKeyName="idx_user_contacts_user"
+                    referencedTableName="users"
+                    referencedColumnNames="id"
+                    deleteCascade="true" />
+            </column>
+            <column name="key" type="varchar(255)">
+                <constraints nullable="false" />
+            </column>
+            <column name="value" type="jsonb">
+                <constraints nullable="false" />
+            </column>
+            <column name="version" type="int" defaultValueNumeric="0">
+                <constraints nullable="false" />
+            </column>
+            <column name="updated_at" type="datetime">
+                <constraints nullable="false" />
+            </column>
+            <column name="created_at" type="datetime" defaultValueComputed="CURRENT_TIMESTAMP">
+                <constraints nullable="false" />
+            </column>
+        </createTable>
+
+        <createIndex tableName="user_contacts" indexName="idx_user_contacts_key">
+            <column name="key" />
+        </createIndex>
+        <createIndex tableName="user_contacts" indexName="idx_user_contacts_value" using="gin">
+            <column name="value" />
+        </createIndex>
+
+        <rollback>
+            <dropTable tableName="user_contacts" />
+        </rollback>
+    </changeSet>
+
+
+    <changeSet id="20261113064821.create-votes" author="Jeremy Zheng">
+        <createTable tableName="votes">
+            <column name="id" type="int" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false" />
+            </column>
+            <column name="user_id" type="int">
+                <constraints
+                    nullable="false"
+                    foreignKeyName="idx_user_contacts_user"
+                    referencedTableName="users"
+                    referencedColumnNames="id"
+                    deleteCascade="true" />
+            </column>
+            <column name="ip" type="varchar(45)">
+                <constraints nullable="false" />
+            </column>
+            <column name="stars" type="tinyint">
+                <constraints nullable="false" />
+            </column>
+            <column name="comment" type="jsonb">
+                <constraints nullable="false" />
+            </column>
+            <column name="published_at" type="datetime" />
+            <column name="deleted_at" type="datetime" />
+            <column name="version" type="int" defaultValueNumeric="0">
+                <constraints nullable="false" />
+            </column>
+            <column name="updated_at" type="datetime">
+                <constraints nullable="false" />
+            </column>
+            <column name="created_at" type="datetime" defaultValueComputed="CURRENT_TIMESTAMP">
+                <constraints nullable="false" />
+            </column>
+        </createTable>
+
+        <createIndex tableName="votes" indexName="idx_votes_ip">
+            <column name="ip" />
+        </createIndex>
+        <createIndex tableName="votes" indexName="idx_votes_comment" using="gin">
+            <column name="comment" />
+        </createIndex>
+
+        <rollback>
+            <dropTable tableName="votes" />
+        </rollback>
+    </changeSet>
+
+</databaseChangeLog>

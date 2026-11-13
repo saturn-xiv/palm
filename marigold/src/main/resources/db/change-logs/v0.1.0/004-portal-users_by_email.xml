@@ -1,0 +1,68 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd
+                        http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+
+
+    <changeSet id="20261113065958.create-email-users" author="Jeremy Zheng">
+        <createTable tableName="email_users">
+            <column name="id" type="int" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false" />
+            </column>
+            <column name="user_id" type="int">
+                <constraints
+                    nullable="false"
+                    foreignKeyName="idx_attachments_user"
+                    referencedTableName="users"
+                    referencedColumnNames="id"
+                    deleteCascade="true" />
+            </column>
+            <column name="sn" type="varchar(36)">
+                <constraints nullable="false" />
+            </column>
+            <column name="name" type="varchar(31)">
+                <constraints nullable="false" />
+            </column>
+            <column name="email" type="varchar(63)">
+                <constraints nullable="false" />
+            </column>
+            <column name="password" type="varchar(255)">
+                <constraints nullable="false" />
+            </column>
+            <column name="avatar" type="varchar(127)">
+                <constraints nullable="false" />
+            </column>
+            <column name="confirmed_at" type="datetime" />
+            <column name="locked_at" type="datetime" />
+            <column name="deleted_at" type="datetime" />
+            <column name="version" type="int" defaultValueNumeric="0">
+                <constraints nullable="false" />
+            </column>
+            <column name="updated_at" type="datetime">
+                <constraints nullable="false" />
+            </column>
+            <column name="created_at" type="datetime" defaultValueComputed="CURRENT_TIMESTAMP">
+                <constraints nullable="false" />
+            </column>
+        </createTable>
+
+        <createIndex tableName="email_users" indexName="idx_email_users_name">
+            <column name="name" />
+        </createIndex>
+        <createIndex tableName="email_users" indexName="idx_email_users_sn" unique="true">
+            <column name="sn" />
+        </createIndex>
+        <createIndex tableName="email_users" indexName="idx_email_users_email" unique="true">
+            <column name="email" />
+        </createIndex>
+
+
+        <rollback>
+            <dropTable tableName="email_users" />
+        </rollback>
+    </changeSet>
+
+
+</databaseChangeLog>

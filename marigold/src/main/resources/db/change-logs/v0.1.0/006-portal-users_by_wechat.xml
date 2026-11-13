@@ -1,0 +1,139 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd
+                        http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+
+    <changeSet id="20261113070022.create-wechat-oauth2-users" author="Jeremy Zheng">
+        <createTable tableName="wechat_oauth2_users">
+            <column name="id" type="int" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false" />
+            </column>
+            <column name="user_id" type="int">
+                <constraints
+                    nullable="false"
+                    foreignKeyName="idx_attachments_user"
+                    referencedTableName="users"
+                    referencedColumnNames="id"
+                    deleteCascade="true" />
+            </column>
+            <column name="sn" type="varchar(36)">
+                <constraints nullable="false" />
+            </column>
+            <column name="union_id" type="varchar(63)">
+                <constraints nullable="false" />
+            </column>
+            <column name="app_id" type="varchar(63)">
+                <constraints nullable="false" />
+            </column>
+            <column name="open_id" type="varchar(63)">
+                <constraints nullable="false" />
+            </column>
+            <column name="nickname" type="varchar(63)">
+                <constraints nullable="false" />
+            </column>
+            <column name="head_img_url" type="varchar(127)" />
+            <column name="privilege" type="jsonb">
+                <constraints nullable="false" />
+            </column>
+            <column name="access_token" type="varchar(63)">
+                <constraints nullable="false" />
+            </column>
+            <column name="refresh_token" type="varchar(63)">
+                <constraints nullable="false" />
+            </column>
+            <column name="locked_at" type="datetime" />
+            <column name="deleted_at" type="datetime" />
+            <column name="version" type="int" defaultValueNumeric="0">
+                <constraints nullable="false" />
+            </column>
+            <column name="updated_at" type="datetime">
+                <constraints nullable="false" />
+            </column>
+            <column name="created_at" type="datetime" defaultValueComputed="CURRENT_TIMESTAMP">
+                <constraints nullable="false" />
+            </column>
+        </createTable>
+
+        <createIndex tableName="wechat_oauth2_users" indexName="idx_wechat_oauth2_users_nickname">
+            <column name="nickname" />
+        </createIndex>
+        <createIndex tableName="wechat_oauth2_users" indexName="idx_wechat_oauth2_users_privilege"
+            using="gin">
+            <column name="privilege" />
+        </createIndex>
+        <createIndex tableName="wechat_oauth2_users" indexName="idx_wechat_oauth2_users_sn"
+            unique="true">
+            <column name="sn" />
+        </createIndex>
+        <createIndex tableName="wechat_oauth2_users"
+            indexName="idx_wechat_oauth2_users_app_open_ids" unique="true">
+            <column name="app_id" />
+            <column name="open_id" />
+        </createIndex>
+        <createIndex tableName="wechat_oauth2_users" indexName="idx_wechat_oauth2_users_union_id"
+            unique="true">
+            <column name="union_id" />
+        </createIndex>
+
+        <rollback>
+            <dropTable tableName="wechat_oauth2_users" />
+        </rollback>
+    </changeSet>
+
+
+    <changeSet id="20261113070040.create-wechat-mini-program-users" author="Jeremy Zheng">
+        <createTable tableName="wechat_mini_program_users">
+            <column name="id" type="int" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false" />
+            </column>
+            <column name="user_id" type="int">
+                <constraints
+                    nullable="false"
+                    foreignKeyName="idx_attachments_user"
+                    referencedTableName="users"
+                    referencedColumnNames="id"
+                    deleteCascade="true" />
+            </column>
+            <column name="sn" type="varchar(36)">
+                <constraints nullable="false" />
+            </column>
+            <column name="union_id" type="varchar(63)">
+                <constraints nullable="false" />
+            </column>
+            <column name="app_id" type="varchar(63)">
+                <constraints nullable="false" />
+            </column>
+            <column name="open_id" type="varchar(63)">
+                <constraints nullable="false" />
+            </column>
+            <column name="nickname" type="varchar(63)" />
+            <column name="avatar" type="varchar(127)" />
+            <column name="session_key" type="varchar(127)">
+                <constraints nullable="false" />
+            </column>
+            <column name="locked_at" type="datetime" />
+            <column name="deleted_at" type="datetime" />
+            <column name="version" type="int" defaultValueNumeric="0">
+                <constraints nullable="false" />
+            </column>
+            <column name="updated_at" type="datetime">
+                <constraints nullable="false" />
+            </column>
+            <column name="created_at" type="datetime" defaultValueComputed="CURRENT_TIMESTAMP">
+                <constraints nullable="false" />
+            </column>
+        </createTable>
+
+        <createIndex tableName="wechat_mini_program_users"
+            indexName="idx_wechat_mini_program_users_sn" unique="true">
+            <column name="sn" />
+        </createIndex>
+
+        <rollback>
+            <dropTable tableName="wechat_mini_program_users" />
+        </rollback>
+    </changeSet>
+
+</databaseChangeLog>
