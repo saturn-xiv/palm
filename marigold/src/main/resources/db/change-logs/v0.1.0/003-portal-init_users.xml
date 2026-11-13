@@ -141,7 +141,7 @@
             <column name="plugin" type="varchar(63)">
                 <constraints nullable="false" />
             </column>
-            <column name="level" type="varchar(63)">
+            <column name="level" type="varchar(7)">
                 <constraints nullable="false" />
             </column>
             <column name="ip" type="varchar(45)">
