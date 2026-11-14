@@ -11,6 +11,9 @@ spring:
   threads:
     virtual:
       enabled: true
+  graphql:
+    graphiql:
+      enabled: true
   cache:
     type: redis
     redis:

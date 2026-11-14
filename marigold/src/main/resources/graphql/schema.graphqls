@@ -1,0 +1,10 @@
+scalar Date
+scalar Time
+scalar DateTime
+scalar Url
+scalar UUID
+
+type Query {
+  apiVersion: String!
+  buildTime: DateTime!
+}

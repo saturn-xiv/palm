@@ -89,6 +89,13 @@
 			<artifactId>spring-boot-starter-liquibase</artifactId>
 		</dependency>
 
+		<!-- Source:
+		https://mvnrepository.com/artifact/com.graphql-java/graphql-java-extended-scalars -->
+		<dependency>
+			<groupId>com.graphql-java</groupId>
+			<artifactId>graphql-java-extended-scalars</artifactId>
+			<version>24.0</version>
+		</dependency>
 		<!-- Source: https://mvnrepository.com/artifact/com.google.crypto.tink/tink -->
 		<dependency>
 			<groupId>com.google.crypto.tink</groupId>
