@@ -1,10 +1,15 @@
 package com.github.saturn_xiv.palm.marigold.plugins.portal.models;
 
 import java.io.Serializable;
-import java.util.Date;
+import java.time.Instant;
+
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EntityListeners;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -12,6 +17,7 @@ import jakarta.persistence.Table;
 import jakarta.validation.constraints.Size;
 
 @Entity
+@EntityListeners(AuditingEntityListener.class)
 @Table(name = "locales")
 public class Locale implements Serializable {
     private static final long serialVersionUID = 1L;
@@ -20,7 +26,7 @@ public class Locale implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     @Column(nullable = false)
-    @Size(min = 2, max = 7)
+    @Size(min = 2, max = 15)
     private String lang;
     @Column(nullable = false)
     @Size(min = 2, max = 255)
@@ -28,10 +34,12 @@ public class Locale implements Serializable {
     @Column(nullable = false)
     private String message;
     private int version;
+    @LastModifiedDate
     @Column(nullable = false)
-    private Date updatedAt;
-    @Column(nullable = false)
-    private Date createdAt;
+    private Instant updatedAt;
+    @CreatedDate
+    @Column(nullable = false, updatable = false)
+    private Instant createdAt;
 
     public Integer getId() {
         return id;
@@ -73,19 +81,19 @@ public class Locale implements Serializable {
         this.version = version;
     }
 
-    public Date getUpdatedAt() {
+    public Instant getUpdatedAt() {
         return updatedAt;
     }
 
-    public void setUpdatedAt(Date updatedAt) {
+    public void setUpdatedAt(Instant updatedAt) {
         this.updatedAt = updatedAt;
     }
 
-    public Date getCreatedAt() {
+    public Instant getCreatedAt() {
         return createdAt;
     }
 
-    public void setCreatedAt(Date createdAt) {
+    public void setCreatedAt(Instant createdAt) {
         this.createdAt = createdAt;
     }
 

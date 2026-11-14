@@ -1,0 +1,9 @@
+email:
+  label: "Email"
+  placeholder: "your@email.com"
+username:
+  label: "Username"
+  placeholder: "Your name"
+password:
+  label: "Password"
+  placeholder: "••••••"

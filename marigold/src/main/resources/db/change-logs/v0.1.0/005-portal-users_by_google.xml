@@ -85,6 +85,19 @@
         </createIndex>
 
 
+        <sql> CREATE INDEX idx_google_oauth2_users_given_name ON google_oauth2_users(given_name)
+            WHERE given_name IS NOT NULL; </sql>
+        <sql> CREATE INDEX idx_google_oauth2_users_gender ON google_oauth2_users(gender) WHERE
+            gender IS NOT NULL; </sql>
+        <sql> CREATE INDEX idx_google_oauth2_users_hosted_domain ON
+            google_oauth2_users(hosted_domain) WHERE hosted_domain IS NOT NULL; </sql>
+        <sql> CREATE INDEX idx_google_oauth2_users_family_name ON google_oauth2_users(family_name)
+            WHERE family_name IS NOT NULL; </sql>
+        <sql> CREATE INDEX idx_google_oauth2_users_name ON google_oauth2_users(name) WHERE name IS
+            NOT NULL; </sql>
+        <sql> CREATE INDEX idx_google_oauth2_users_locale ON google_oauth2_users(locale) WHERE
+            locale IS NOT NULL; </sql>
+
         <rollback>
             <dropTable tableName="google_oauth2_users" />
         </rollback>

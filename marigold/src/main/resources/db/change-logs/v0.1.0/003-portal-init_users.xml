@@ -17,7 +17,7 @@
                 <constraints nullable="false" />
             </column>
             <column name="avatar" type="varchar(127)" />
-            <column name="lang" type="varchar(17)" defaultValue="en-US">
+            <column name="lang" type="varchar(15)" defaultValue="en-US">
                 <constraints nullable="false" />
             </column>
             <column name="timezone" type="varchar(31)" defaultValue="UTC">
@@ -203,6 +203,11 @@
         <createIndex tableName="settings" indexName="idx_settings_key">
             <column name="key" />
         </createIndex>
+
+        <sql> CREATE UNIQUE INDEX idx_settings_key_without_user ON settings(key) WHERE user_id IS
+            NULL; </sql>
+        <sql> CREATE UNIQUE INDEX idx_settings_key_with_user ON settings(key, user_id) WHERE user_id
+            IS NOT NULL; </sql>
 
         <rollback>
             <dropTable tableName="settings" />

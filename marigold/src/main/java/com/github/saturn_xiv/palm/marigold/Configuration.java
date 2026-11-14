@@ -1,6 +1,7 @@
 package com.github.saturn_xiv.palm.marigold;
 
 import org.springframework.context.annotation.Bean;
+import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 import org.springframework.graphql.execution.RuntimeWiringConfigurer;
 import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.scheduling.annotation.EnableScheduling;
@@ -18,6 +19,7 @@ import graphql.scalars.ExtendedScalars;
 @EnableScheduling
 @EnableWebSecurity
 @EnableMethodSecurity
+@EnableJpaAuditing
 public class Configuration {
     @Bean
     public RuntimeWiringConfigurer runtimeWiringConfigurer() {

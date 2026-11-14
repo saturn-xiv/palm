@@ -4,6 +4,8 @@ spring:
   mustache:
     prefix: classpath:/templates/
     suffix: .mustache
+  jackson:
+    time-zone: UTC
   jpa:
     open-in-view: false
     hibernate:

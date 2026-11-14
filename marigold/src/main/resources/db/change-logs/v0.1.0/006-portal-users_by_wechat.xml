@@ -131,6 +131,9 @@
             <column name="sn" />
         </createIndex>
 
+        <sql> CREATE INDEX idx_wechat_mini_program_users_nickname ON
+            wechat_mini_program_users(nickname) WHERE nickname IS NOT NULL; </sql>
+
         <rollback>
             <dropTable tableName="wechat_mini_program_users" />
         </rollback>

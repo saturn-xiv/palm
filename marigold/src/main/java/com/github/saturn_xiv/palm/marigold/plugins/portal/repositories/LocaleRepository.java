@@ -13,6 +13,9 @@ import com.github.saturn_xiv.palm.marigold.plugins.portal.models.Locale;
 public interface LocaleRepository extends ListCrudRepository<Locale, Integer> {
     Optional<Locale> findByLangAndCode(String lang, String code);
 
+    List<Locale> findByLang(String lang);
+
     @Query("SELECT DISTINCT p.lang FROM Locale p")
     List<String> findDistinctLanguages();
+
 }
