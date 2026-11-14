@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.github.saturn_xiv.palm.marigold.plugins.portal.controllers.responses.HealthCheckResponse;
+import com.github.saturn_xiv.palm.marigold.plugins.portal.controllers.api.responses.HealthCheckResponse;
 import com.github.saturn_xiv.palm.marigold.plugins.portal.queues.MessageSender;
 import com.github.saturn_xiv.palm.marigold.plugins.portal.repositories.SettingRepository;
 import com.github.saturn_xiv.palm.marigold.plugins.portal.utils.RedisClient;

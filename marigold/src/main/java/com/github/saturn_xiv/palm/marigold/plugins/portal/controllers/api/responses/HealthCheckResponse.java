@@ -1,4 +1,4 @@
-package com.github.saturn_xiv.palm.marigold.plugins.portal.controllers.responses;
+package com.github.saturn_xiv.palm.marigold.plugins.portal.controllers.api.responses;
 
 import java.io.Serializable;
 import java.util.Date;
