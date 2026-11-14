@@ -1,10 +1,14 @@
 package com.github.saturn_xiv.palm.marigold.plugins.portal.models;
 
 import java.io.Serializable;
-import java.util.Date;
+import java.time.Instant;
+
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EntityListeners;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -12,6 +16,7 @@ import jakarta.persistence.Table;
 import jakarta.validation.constraints.Size;
 
 @Entity
+@EntityListeners(AuditingEntityListener.class)
 @Table(name = "currencies")
 public class Currency implements Serializable {
     private static final long serialVersionUID = 1L;
@@ -22,6 +27,8 @@ public class Currency implements Serializable {
     @Column(nullable = false)
     @Size(min = 2, max = 127)
     private String name;
+    @Size(min = 2, max = 127)
+    private String country;
     @Column(nullable = false)
     @Size(min = 3, max = 3)
     private String code;
@@ -30,8 +37,9 @@ public class Currency implements Serializable {
     private String number;
     private Integer units;
     private Boolean fund;
-    @Column(nullable = false)
-    private Date createdAt;
+    @CreatedDate
+    @Column(nullable = false, updatable = false)
+    private Instant createdAt;
 
     public Integer getId() {
         return id;
@@ -43,6 +51,14 @@ public class Currency implements Serializable {
 
     public String getName() {
         return name;
+    }
+
+    public String getCountry() {
+        return country;
+    }
+
+    public void setCountry(String country) {
+        this.country = country;
     }
 
     public void setName(String name) {
@@ -81,11 +97,11 @@ public class Currency implements Serializable {
         this.fund = fund;
     }
 
-    public Date getCreatedAt() {
+    public Instant getCreatedAt() {
         return createdAt;
     }
 
-    public void setCreatedAt(Date createdAt) {
+    public void setCreatedAt(Instant createdAt) {
         this.createdAt = createdAt;
     }
 
