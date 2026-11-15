@@ -42,7 +42,7 @@ public class Item implements Serializable {
     @Size(min = 2, max = 15)
     private String lang;
     @Column(nullable = false)
-    @Size(min = 3, max = 31)
+    @Size(min = 2, max = 31)
     private String timezone;
     private int signInCount;
     private Instant currentSignInAt;

@@ -33,12 +33,13 @@ public class Configuration {
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        http.authorizeHttpRequests(auth -> auth.anyRequest().permitAll()).csrf(csrf -> csrf.disable());
+        http.authorizeHttpRequests(auth -> auth.anyRequest().permitAll())
+                .csrf(x -> x.ignoringRequestMatchers("/graphql", "/api/**"));
         return http.build();
     }
 
     @Bean
     public PasswordEncoder passwordEncoder() {
-        return new Argon2PasswordEncoder(16, 32, 2, 65536, 3);
+        return Argon2PasswordEncoder.defaultsForSpringSecurity_v5_8();
     }
 }

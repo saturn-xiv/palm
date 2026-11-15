@@ -2,6 +2,9 @@ package com.github.saturn_xiv.palm.marigold.plugins.portal.utils;
 
 import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
+import java.util.Base64;
+import java.util.List;
 
 import javax.sql.DataSource;
 
@@ -16,11 +19,93 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
+import com.github.saturn_xiv.palm.plugins.rbac.v1.Subject;
+import com.github.saturn_xiv.palm.plugins.rbac.v1.Subject.Role;
+import com.github.saturn_xiv.palm.plugins.rbac.v1.Subject.User;
+import com.github.saturn_xiv.palm.plugins.rbac.v1.Subject.Role.Administrator;
+import com.github.saturn_xiv.palm.plugins.rbac.v1.Subject.Role.Root;
+import com.google.protobuf.InvalidProtocolBufferException;
+import com.google.protobuf.Message;
+import com.google.protobuf.Parser;
+
 import jakarta.annotation.PostConstruct;
 import jakarta.annotation.Resource;
 
 @Component("portal.u.casbin-enforcer")
 public class CasbinEnforcer {
+
+    public void addRoleForUser(int user, Role role) {
+        if (enforcer.addRoleForUser(subject(user), subject(role))) {
+            watcher.update();
+        }
+    }
+
+    public void deleteRoleForUser(int user, Role role) {
+        if (enforcer.deleteRoleForUser(subject(user), subject(role))) {
+            watcher.update();
+        }
+    }
+
+    public List<Role> getImplicitRolesForUser(int user) throws InvalidProtocolBufferException {
+        List<Role> items = new ArrayList<>();
+        for (var it : enforcer.getImplicitRolesForUser(subject(user))) {
+            var subject = string2message(it, Subject.parser());
+            if (subject.hasRole()) {
+                items.add(subject.getRole());
+            }
+        }
+        return items;
+    }
+
+    public List<Role> getRolesForUser(int user) throws InvalidProtocolBufferException {
+        List<Role> items = new ArrayList<>();
+        for (var it : enforcer.getRolesForUser(subject(user))) {
+            var subject = string2message(it, Subject.parser());
+            if (subject.hasRole()) {
+                items.add(subject.getRole());
+            }
+        }
+        return items;
+    }
+
+    public boolean has(int user, Role role) {
+        final var roles = enforcer.getImplicitRolesForUser(subject(user));
+        return roles.contains(subject(role));
+    }
+
+    public static Role administrator() {
+        return Role.newBuilder().setAdministrator(Administrator.newBuilder().build()).build();
+    }
+
+    public static Role root() {
+        return Role.newBuilder().setRoot(Root.newBuilder().build()).build();
+    }
+
+    public static Role role(String code) {
+        return Role.newBuilder().setCode(code).build();
+    }
+
+    private static String subject(int user) {
+        var it = Subject.newBuilder().setUser(User.newBuilder().setId(user).build()).build();
+        return message2string(it);
+    }
+
+    private static String subject(Role role) {
+        var it = Subject.newBuilder().setRole(role).build();
+        return message2string(it);
+    }
+
+    private static <T extends Message> String message2string(T message) {
+        final var buf = message.toByteArray();
+        return Base64.getUrlEncoder().withoutPadding().encodeToString(buf);
+    }
+
+    private static <T extends Message> T string2message(String message, Parser<T> clazz)
+            throws InvalidProtocolBufferException {
+        final var buf = Base64.getUrlDecoder().decode(message);
+        return clazz.parseFrom(buf);
+    }
+
     @PostConstruct
     void init() throws Exception {
         InputStream modelStream = getClass().getClassLoader().getResourceAsStream("rbac_model.conf");
@@ -34,7 +119,8 @@ public class CasbinEnforcer {
                 rabbitmqVirtualHost);
         watcher = new RabbitMQWatcher(
                 String.format("amqp://%s:%s@%s:%d/%s", rabbitmqUsername, rabbitmqPassword, rabbitmqHost, rabbitmqPort,
-                        rabbitmqVirtualHost), "marigold.casbin");
+                        rabbitmqVirtualHost),
+                "marigold.casbin");
         enforcer = new Enforcer(model, adapter);
 
         watcher.setUpdateCallback(() -> {
@@ -43,12 +129,6 @@ public class CasbinEnforcer {
         });
         enforcer.setWatcher(watcher);
         enforcer.loadPolicy();
-    }
-
-    public void addRoleForUser(String user, String role) {
-        if (enforcer.addRoleForUser(user, role)) {
-            watcher.update();
-        }
     }
 
     @Resource

@@ -11,6 +11,7 @@ import com.github.saturn_xiv.palm.marigold.plugins.portal.services.I18nService;
 
 public class Layout implements Serializable {
     private static final long serialVersionUID = 1L;
+
     public static final String TITLE = "site.title";
     public static final String SUBHEAD = "site.subhead";
     public static final String DESCRIPTION = "site.description";
@@ -18,7 +19,10 @@ public class Layout implements Serializable {
     public static final String AUTHOR = "site.author";
 
     public Layout(Locale locale, BuildProperties buildProperties, I18nService i18n, LocaleRepository localeRepository) {
-        this.locale = locale.toString();
+        // TODO
+        this.timezone = "UTC";
+
+        this.locale = locale.toLanguageTag();
         this.title = i18n.t(locale, TITLE);
         this.subhead = i18n.t(locale, SUBHEAD);
         this.description = i18n.t(locale, DESCRIPTION);
@@ -32,12 +36,13 @@ public class Layout implements Serializable {
     }
 
     private String locale;
+    private String timezone;
     private String title;
     private String subhead;
     private String copyright;
     private String description;
-    private List<String> languages;
     private Project project;
+    private List<String> languages;
 
     public List<String> getLanguages() {
         return languages;
@@ -93,6 +98,14 @@ public class Layout implements Serializable {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public String getTimezone() {
+        return timezone;
+    }
+
+    public void setTimezone(String timezone) {
+        this.timezone = timezone;
     }
 
 }

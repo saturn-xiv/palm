@@ -1,6 +1,8 @@
 spring:
   application:
     name: Marigold
+  server:
+    forward-headers-strategy: framework
   mustache:
     prefix: classpath:/templates/
     suffix: .mustache
