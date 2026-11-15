@@ -7,7 +7,7 @@ option java_multiple_files = true;
 option java_outer_classname = "WeChatPayProto";
 option java_package = "com.github.saturn_xiv.palm.plugins.wechat_pay.v1";
 
-service WeChatPayService {
+service WechatPayService {
   rpc BillPull(BillPullRequest) returns (BillPullResponse) {}
 }
 
