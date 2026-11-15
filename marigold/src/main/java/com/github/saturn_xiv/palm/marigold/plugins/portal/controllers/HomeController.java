@@ -16,9 +16,11 @@ import jakarta.annotation.Resource;
 
 @Controller("portal.c.home")
 public class HomeController {
+
     @GetMapping("/install")
-    public String getInstall(Locale locale, Model model) {
-        setModel(model, locale, buildProperties, i18nService, localeRepository, "pages.install.title");
+    public String getInstall(Model model, Locale locale) {
+        setModel(model, locale, buildProperties, i18nService, localeRepository);
+        model.addAttribute("title", "pages.install.title");
         return "install";
     }
 
@@ -32,12 +34,9 @@ public class HomeController {
     }
 
     public static void setModel(Model model, Locale locale, BuildProperties buildProperties, I18nService i18nService,
-            LocaleRepository localeRepository, String title) {
-        var lang = i18nService.detect(locale);
-        var layout = new Layout(lang, buildProperties, i18nService, localeRepository);
+            LocaleRepository localeRepository) {
+        var layout = new Layout(locale, buildProperties, i18nService, localeRepository);
         model.addAttribute("layout", layout);
-        model.addAttribute("tr", i18nService.messages(lang));
-        model.addAttribute("title", i18nService.t(locale, title));
     }
 
     @Resource

@@ -20,12 +20,8 @@ import jakarta.annotation.Resource;
 
 @Service("portal.s.i18n")
 public class I18nService {
-    public String t(Locale locale, String code) {
-        return t(locale, code, null);
-    }
 
-    public String t(Locale locale, String code, Object args) {
-        final var lang = locale.toLanguageTag();
+    public String t(String lang, String code, Object args) {
         final var it = localeRepository.findByLangAndCode(lang, code);
         return it.map(x -> {
             if (args == null) {
@@ -34,6 +30,19 @@ public class I18nService {
             var tpl = Mustache.compiler().compile(x.getMessage());
             return tpl.execute(args);
         }).orElse(String.format("%s.%s", lang, code));
+    }
+
+    public String t(String lang, String code) {
+        return t(lang, code, null);
+    }
+
+    public String t(Locale locale, String code, Object args) {
+        final var lang = locale.toLanguageTag();
+        return this.t(lang, code, args);
+    }
+
+    public String t(Locale locale, String code) {
+        return t(locale, code, null);
     }
 
     public Locale detect(Locale l) {

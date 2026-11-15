@@ -14,6 +14,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import jakarta.persistence.Version;
 import jakarta.validation.constraints.Size;
 
 @Entity
@@ -33,6 +34,7 @@ public class Locale implements Serializable {
     private String code;
     @Column(nullable = false)
     private String message;
+    @Version
     private int version;
     @LastModifiedDate
     @Column(nullable = false)

@@ -4,6 +4,10 @@ spring:
   mustache:
     prefix: classpath:/templates/
     suffix: .mustache
+  messages:
+    basename: i18n/messages
+    encoding: UTF-8
+    fallback-to-system-locale: false
   jackson:
     time-zone: UTC
   jpa:

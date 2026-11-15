@@ -1,18 +1,29 @@
 package com.github.saturn_xiv.palm.marigold.plugins.portal.models.user;
 
 import java.io.Serializable;
-import java.util.Date;
+import java.time.Instant;
+
+import org.hibernate.annotations.SQLDelete;
+import org.hibernate.annotations.SQLRestriction;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EntityListeners;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import jakarta.persistence.Version;
 import jakarta.validation.constraints.Size;
 
 @Entity
+@EntityListeners(AuditingEntityListener.class)
 @Table(name = "users")
+@SQLDelete(sql = "UPDATE users SET deleted_at = CURRENT_TIMESTAMP WHERE id = ?")
+@SQLRestriction("deleted_at IS NULL")
 public class Item implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -34,16 +45,19 @@ public class Item implements Serializable {
     @Size(min = 3, max = 31)
     private String timezone;
     private int signInCount;
-    private Date currentSignInAt;
+    private Instant currentSignInAt;
     private String currentSignInIp;
-    private Date lastSignInAt;
+    private Instant lastSignInAt;
     private String lastSignInIp;
-    private Date lockedAt;
+    private Instant lockedAt;
+    @Version
     private int version;
+    @LastModifiedDate
     @Column(nullable = false)
-    private Date updatedAt;
-    @Column(nullable = false)
-    private Date createdAt;
+    private Instant updatedAt;
+    @CreatedDate
+    @Column(nullable = false, updatable = false)
+    private Instant createdAt;
 
     public Integer getId() {
         return id;
@@ -101,28 +115,12 @@ public class Item implements Serializable {
         this.signInCount = signInCount;
     }
 
-    public Date getCurrentSignInAt() {
-        return currentSignInAt;
-    }
-
-    public void setCurrentSignInAt(Date currentSignInAt) {
-        this.currentSignInAt = currentSignInAt;
-    }
-
     public String getCurrentSignInIp() {
         return currentSignInIp;
     }
 
     public void setCurrentSignInIp(String currentSignInIp) {
         this.currentSignInIp = currentSignInIp;
-    }
-
-    public Date getLastSignInAt() {
-        return lastSignInAt;
-    }
-
-    public void setLastSignInAt(Date lastSignInAt) {
-        this.lastSignInAt = lastSignInAt;
     }
 
     public String getLastSignInIp() {
@@ -133,14 +131,6 @@ public class Item implements Serializable {
         this.lastSignInIp = lastSignInIp;
     }
 
-    public Date getLockedAt() {
-        return lockedAt;
-    }
-
-    public void setLockedAt(Date lockedAt) {
-        this.lockedAt = lockedAt;
-    }
-
     public int getVersion() {
         return version;
     }
@@ -149,19 +139,43 @@ public class Item implements Serializable {
         this.version = version;
     }
 
-    public Date getUpdatedAt() {
+    public Instant getCurrentSignInAt() {
+        return currentSignInAt;
+    }
+
+    public void setCurrentSignInAt(Instant currentSignInAt) {
+        this.currentSignInAt = currentSignInAt;
+    }
+
+    public Instant getLastSignInAt() {
+        return lastSignInAt;
+    }
+
+    public void setLastSignInAt(Instant lastSignInAt) {
+        this.lastSignInAt = lastSignInAt;
+    }
+
+    public Instant getLockedAt() {
+        return lockedAt;
+    }
+
+    public void setLockedAt(Instant lockedAt) {
+        this.lockedAt = lockedAt;
+    }
+
+    public Instant getUpdatedAt() {
         return updatedAt;
     }
 
-    public void setUpdatedAt(Date updatedAt) {
+    public void setUpdatedAt(Instant updatedAt) {
         this.updatedAt = updatedAt;
     }
 
-    public Date getCreatedAt() {
+    public Instant getCreatedAt() {
         return createdAt;
     }
 
-    public void setCreatedAt(Date createdAt) {
+    public void setCreatedAt(Instant createdAt) {
         this.createdAt = createdAt;
     }
 

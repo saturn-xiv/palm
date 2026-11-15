@@ -3,8 +3,11 @@
     <p>
       {{ layout.copyright }}.      
       &nbsp; Powered by <a href="{{ layout.project.url }}" target="_blank" rel="noopener noreferrer">{{ layout.project.name }}</a>({{ layout.project.version }}).
+      <br />
       &nbsp; The source code is licensed <a href="https://opensource.org/license/mit" target="_blank" rel="noopener noreferrer">MIT</a>.
       &nbsp; The website content is licensed <a href="https://creativecommons.org/licenses/by-nc-sa/4.0//"  target="_blank" rel="noopener noreferrer">CC BY NC SA 4.0</a>.
+      <br />
+      {{#layout.languages}}<a href="?locale={{.}}">{{#tr}}languages.{{.}}{{/tr}}</a>&nbsp;{{/layout.languages}}
     </p>
   </div>
 </footer>

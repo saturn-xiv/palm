@@ -1,7 +1,5 @@
 {{> partials/bulma/header}}
-<h1 class="title">
-  {{ title }}
-</h1>
+<h1 class="title">{{#tr}}{{ title }}{{/tr}}</h1>
 
 <div class="field">
   <label class="label">Name</label>
@@ -10,7 +8,7 @@
   </div>
 </div>
 
-<div class="field">
+<div class="field">  
   <label class="label">{{#tr}}form.fields.username.label{{/tr}}</label>
   <div class="control has-icons-left has-icons-right">
     <input class="input is-success" type="text" placeholder="Text input" value="bulma">
