@@ -1,12 +1,16 @@
 package com.github.saturn_xiv.palm.marigold.plugins.portal.models;
 
 import java.io.Serializable;
-import java.util.Date;
+import java.time.Instant;
+
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import com.github.saturn_xiv.palm.marigold.plugins.portal.models.user.Item;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EntityListeners;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
@@ -18,6 +22,7 @@ import jakarta.persistence.Table;
 import jakarta.validation.constraints.Size;
 
 @Entity
+@EntityListeners(AuditingEntityListener.class)
 @Table(name = "logs")
 public class Log implements Serializable {
     private static final long serialVersionUID = 1L;
@@ -32,19 +37,20 @@ public class Log implements Serializable {
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)
     private Item user;
-    @Column(nullable = false)
+    @Column(nullable = false, updatable = false)
     @Size(min = 2, max = 63)
     private String plugin;
     @Enumerated(EnumType.STRING)
-    @Column(nullable = false)
+    @Column(nullable = false, updatable = false)
     private Level level;
-    @Column(nullable = false)
+    @Column(nullable = false, updatable = false)
     @Size(min = 7, max = 45)
     private String ip;
-    @Column(nullable = false)
+    @Column(nullable = false, updatable = false)
     private String message;
-    @Column(nullable = false)
-    private Date createdAt;
+    @CreatedDate
+    @Column(nullable = false, updatable = false)
+    private Instant createdAt;
 
     public Integer getId() {
         return id;
@@ -94,11 +100,11 @@ public class Log implements Serializable {
         this.message = message;
     }
 
-    public Date getCreatedAt() {
+    public Instant getCreatedAt() {
         return createdAt;
     }
 
-    public void setCreatedAt(Date createdAt) {
+    public void setCreatedAt(Instant createdAt) {
         this.createdAt = createdAt;
     }
 

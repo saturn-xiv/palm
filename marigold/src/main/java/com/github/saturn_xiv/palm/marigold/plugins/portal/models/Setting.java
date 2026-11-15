@@ -1,24 +1,30 @@
 package com.github.saturn_xiv.palm.marigold.plugins.portal.models;
 
 import java.io.Serializable;
-import java.util.Date;
+import java.time.Instant;
 
 import org.hibernate.annotations.JdbcTypeCode;
 import org.hibernate.type.SqlTypes;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import com.github.saturn_xiv.palm.marigold.plugins.portal.models.user.Item;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EntityListeners;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import jakarta.persistence.Version;
 import jakarta.validation.constraints.Size;
 
 @Entity
+@EntityListeners(AuditingEntityListener.class)
 @Table(name = "settings")
 public class Setting implements Serializable {
     private static final long serialVersionUID = 1L;
@@ -32,17 +38,20 @@ public class Setting implements Serializable {
     @ManyToOne
     @JoinColumn(name = "user_id")
     private Item user;
-    @Column(nullable = false)
+    @Column(nullable = false, updatable = false)
     @Size(max = 255)
     private String key;
     @JdbcTypeCode(SqlTypes.JSON)
     @Column(columnDefinition = "jsonb", nullable = false)
     private Value value;
+    @Version
     private int version;
+    @LastModifiedDate
     @Column(nullable = false)
-    private Date updatedAt;
-    @Column(nullable = false)
-    private Date createdAt;
+    private Instant updatedAt;
+    @CreatedDate
+    @Column(nullable = false, updatable = false)
+    private Instant createdAt;
 
     public Integer getId() {
         return id;
@@ -84,19 +93,19 @@ public class Setting implements Serializable {
         this.version = version;
     }
 
-    public Date getUpdatedAt() {
+    public Instant getUpdatedAt() {
         return updatedAt;
     }
 
-    public void setUpdatedAt(Date updatedAt) {
+    public void setUpdatedAt(Instant updatedAt) {
         this.updatedAt = updatedAt;
     }
 
-    public Date getCreatedAt() {
+    public Instant getCreatedAt() {
         return createdAt;
     }
 
-    public void setCreatedAt(Date createdAt) {
+    public void setCreatedAt(Instant createdAt) {
         this.createdAt = createdAt;
     }
 

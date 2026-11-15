@@ -1,7 +1,7 @@
 package com.github.saturn_xiv.palm.marigold.plugins.portal.controllers.api.responses;
 
 import java.io.Serializable;
-import java.util.Date;
+import java.time.Instant;
 
 import org.springframework.boot.info.BuildProperties;
 
@@ -10,16 +10,16 @@ public class HealthCheckResponse implements Serializable {
 
     public HealthCheckResponse(BuildProperties buildProperties) {
         this.version = buildProperties.getVersion();
-        this.buildTime = Date.from(buildProperties.getTime());
-        this.createdAt = new Date();
+        this.buildTime = buildProperties.getTime();
+        this.createdAt = Instant.now();
     }
 
     private boolean database;
     private boolean cache;
     private boolean messageBroker;
 
-    private Date createdAt;
-    private Date buildTime;
+    private Instant createdAt;
+    private Instant buildTime;
     private String version;
 
     public boolean isCache() {
@@ -46,14 +46,6 @@ public class HealthCheckResponse implements Serializable {
         this.database = database;
     }
 
-    public Date getBuildTime() {
-        return buildTime;
-    }
-
-    public void setBuildTime(Date buildTime) {
-        this.buildTime = buildTime;
-    }
-
     public String getVersion() {
         return version;
     }
@@ -62,12 +54,20 @@ public class HealthCheckResponse implements Serializable {
         this.version = version;
     }
 
-    public Date getCreatedAt() {
+    public Instant getCreatedAt() {
         return createdAt;
     }
 
-    public void setCreatedAt(Date createdAt) {
+    public void setCreatedAt(Instant createdAt) {
         this.createdAt = createdAt;
+    }
+
+    public Instant getBuildTime() {
+        return buildTime;
+    }
+
+    public void setBuildTime(Instant buildTime) {
+        this.buildTime = buildTime;
     }
 
 }

@@ -1,15 +1,20 @@
 package com.github.saturn_xiv.palm.marigold.plugins.portal.models;
 
 import java.io.Serializable;
-import java.util.Date;
+import java.time.Instant;
 
 import org.hibernate.annotations.JdbcTypeCode;
+import org.hibernate.annotations.SQLDelete;
+import org.hibernate.annotations.SQLRestriction;
 import org.hibernate.type.SqlTypes;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import com.github.saturn_xiv.palm.marigold.plugins.portal.models.user.Item;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EntityListeners;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -19,7 +24,10 @@ import jakarta.persistence.Table;
 import jakarta.validation.constraints.Size;
 
 @Entity
+@EntityListeners(AuditingEntityListener.class)
 @Table(name = "user_bans")
+@SQLDelete(sql = "UPDATE user_bans SET deleted_at = CURRENT_TIMESTAMP WHERE id = ?")
+@SQLRestriction("deleted_at IS NULL")
 public class Ban implements Serializable {
     private static final long serialVersionUID = 1L;
 
@@ -39,10 +47,11 @@ public class Ban implements Serializable {
     @Column(columnDefinition = "jsonb", nullable = false)
     private MediaContent reason;
     @Column(nullable = false)
-    private Date expiresAt;
-    private Date deletedAt;
-    @Column(nullable = false)
-    private Date createdAt;
+    private Instant expiresAt;
+    private Instant deletedAt;
+    @CreatedDate
+    @Column(nullable = false, updatable = false)
+    private Instant createdAt;
 
     public Integer getId() {
         return id;
@@ -84,27 +93,27 @@ public class Ban implements Serializable {
         this.reason = reason;
     }
 
-    public Date getExpiresAt() {
+    public Instant getExpiresAt() {
         return expiresAt;
     }
 
-    public void setExpiresAt(Date expiresAt) {
+    public void setExpiresAt(Instant expiresAt) {
         this.expiresAt = expiresAt;
     }
 
-    public Date getDeletedAt() {
+    public Instant getDeletedAt() {
         return deletedAt;
     }
 
-    public void setDeletedAt(Date deletedAt) {
+    public void setDeletedAt(Instant deletedAt) {
         this.deletedAt = deletedAt;
     }
 
-    public Date getCreatedAt() {
+    public Instant getCreatedAt() {
         return createdAt;
     }
 
-    public void setCreatedAt(Date createdAt) {
+    public void setCreatedAt(Instant createdAt) {
         this.createdAt = createdAt;
     }
 

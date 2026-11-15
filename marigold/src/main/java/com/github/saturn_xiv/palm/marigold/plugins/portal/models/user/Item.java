@@ -50,6 +50,7 @@ public class Item implements Serializable {
     private Instant lastSignInAt;
     private String lastSignInIp;
     private Instant lockedAt;
+    private Instant deletedAt;
     @Version
     private int version;
     @LastModifiedDate
@@ -73,6 +74,14 @@ public class Item implements Serializable {
 
     public void setSn(String sn) {
         this.sn = sn;
+    }
+
+    public Instant getDeletedAt() {
+        return deletedAt;
+    }
+
+    public void setDeletedAt(Instant deletedAt) {
+        this.deletedAt = deletedAt;
     }
 
     public String getName() {

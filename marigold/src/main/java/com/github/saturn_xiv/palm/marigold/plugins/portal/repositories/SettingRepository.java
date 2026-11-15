@@ -1,6 +1,6 @@
 package com.github.saturn_xiv.palm.marigold.plugins.portal.repositories;
 
-import java.util.Date;
+import java.time.Instant;
 
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.ListCrudRepository;
@@ -14,5 +14,5 @@ public interface SettingRepository extends ListCrudRepository<Setting, Integer> 
     String getDatabaseVersion();
 
     @Query(value = "SELECT CURRENT_TIMESTAMP", nativeQuery = true)
-    Date getDatabaseCurrentTimestamp();
+    Instant getDatabaseCurrentTimestamp();
 }

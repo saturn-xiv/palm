@@ -1,19 +1,26 @@
 package com.github.saturn_xiv.palm.marigold.plugins.portal.models.user;
 
 import java.io.Serializable;
-import java.util.Date;
+import java.time.Instant;
+
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EntityListeners;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import jakarta.persistence.Version;
 import jakarta.validation.constraints.Size;
 
 @Entity
+@EntityListeners(AuditingEntityListener.class)
 @Table(name = "email_users")
 public class ByEmail implements Serializable {
     private static final long serialVersionUID = 1L;
@@ -39,14 +46,17 @@ public class ByEmail implements Serializable {
     @Column(nullable = false)
     @Size(min = 9, max = 127)
     private String avatar;
-    private Date confirmedAt;
-    private Date lockedAt;
-    private Date deletedAt;
+    private Instant confirmedAt;
+    private Instant lockedAt;
+    private Instant deletedAt;
+    @Version
     private int version;
+    @LastModifiedDate
     @Column(nullable = false)
-    private Date updatedAt;
-    @Column(nullable = false)
-    private Date createdAt;
+    private Instant updatedAt;
+    @CreatedDate
+    @Column(nullable = false, updatable = false)
+    private Instant createdAt;
 
     public Integer getId() {
         return id;
@@ -104,30 +114,6 @@ public class ByEmail implements Serializable {
         this.avatar = avatar;
     }
 
-    public Date getConfirmedAt() {
-        return confirmedAt;
-    }
-
-    public void setConfirmedAt(Date confirmedAt) {
-        this.confirmedAt = confirmedAt;
-    }
-
-    public Date getLockedAt() {
-        return lockedAt;
-    }
-
-    public void setLockedAt(Date lockedAt) {
-        this.lockedAt = lockedAt;
-    }
-
-    public Date getDeletedAt() {
-        return deletedAt;
-    }
-
-    public void setDeletedAt(Date deletedAt) {
-        this.deletedAt = deletedAt;
-    }
-
     public int getVersion() {
         return version;
     }
@@ -136,19 +122,43 @@ public class ByEmail implements Serializable {
         this.version = version;
     }
 
-    public Date getUpdatedAt() {
+    public Instant getConfirmedAt() {
+        return confirmedAt;
+    }
+
+    public void setConfirmedAt(Instant confirmedAt) {
+        this.confirmedAt = confirmedAt;
+    }
+
+    public Instant getLockedAt() {
+        return lockedAt;
+    }
+
+    public void setLockedAt(Instant lockedAt) {
+        this.lockedAt = lockedAt;
+    }
+
+    public Instant getDeletedAt() {
+        return deletedAt;
+    }
+
+    public void setDeletedAt(Instant deletedAt) {
+        this.deletedAt = deletedAt;
+    }
+
+    public Instant getUpdatedAt() {
         return updatedAt;
     }
 
-    public void setUpdatedAt(Date updatedAt) {
+    public void setUpdatedAt(Instant updatedAt) {
         this.updatedAt = updatedAt;
     }
 
-    public Date getCreatedAt() {
+    public Instant getCreatedAt() {
         return createdAt;
     }
 
-    public void setCreatedAt(Date createdAt) {
+    public void setCreatedAt(Instant createdAt) {
         this.createdAt = createdAt;
     }
 
