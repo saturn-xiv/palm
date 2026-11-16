@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.server.ResponseStatusException;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.github.saturn_xiv.palm.marigold.plugins.portal.controllers.forms.InstallForm;
 import com.github.saturn_xiv.palm.marigold.plugins.portal.repositories.LocaleRepository;
@@ -33,10 +34,15 @@ import jakarta.validation.Valid;
 @RequestMapping("/install")
 public class InstallController {
     @PostMapping
-    public String postInstall(HttpServletRequest request, @Valid @ModelAttribute(HomeController.FORM) InstallForm form,
+    public String postInstall(HttpServletRequest request, RedirectAttributes redirectAttributes,
+            @Valid @ModelAttribute(HomeController.FORM) InstallForm form,
             BindingResult result,
             Model model,
             Locale locale) {
+        if (userRepository.count() > 0) {
+            throw new ResponseStatusException(HttpStatus.FORBIDDEN);
+        }
+
         if (result.hasErrors()) {
             HomeController.setErrors(model, result);
         } else if (!form.getPassword().equals(form.getPasswordConfirmation())) {
@@ -53,7 +59,14 @@ public class InstallController {
             try {
                 userService.install(name, email, form.getPassword(),
                         Locale.forLanguageTag(form.getLang()), ZoneId.of(form.getTimezone()), ip);
+                HomeController.succeed(redirectAttributes,
+                        messageSource.getMessage("pages.install.succeed", null, locale));
+                return HomeController.REDIRECT_HOME;
             } catch (Exception e) {
+                logger.error("install", e);
+                Map<String, String> errors = new HashMap<>();
+                errors.putIfAbsent("form", e.getMessage());
+                model.addAttribute(HomeController.ERRORS, errors);
             }
         }
         return layout(model, locale);

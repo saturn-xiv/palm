@@ -1,18 +1,28 @@
 <!DOCTYPE html>
 <html lang="en_US" data-theme="dark">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>{{status}}-{{error}}</title>
-        <link rel="stylesheet" href="/bulma-1.0.4/css/bulma.min.css">
-    </head>
-    <body>
-        <section class="section">
-            <div class="container">
-                <h1>Something went wrong ({{status}} - {{error}})</h1>
-                <p>Path: {{path}} <a href="/">Go back home</a></p>                
+  <head>
+    {{> partials/bulma/assets}}
+    <title>{{status}}-{{error}}</title>
+  </head>
+  <body>
+    <section class="section">
+      <div class="container">
+          <section class="hero is-danger">
+            <div class="hero-head">
+              <div>{{timestamp}} <b>{{#tr}}flashes.failed{{/tr}}</b></div>
             </div>
-        </section>
-    </body>
+            <div class="hero-body">
+              <p class="title">Something went wrong ({{status}} - {{error}})</p>
+              <p class="subtitle">Path: {{path}}</p>
+            </div>
+            <div class="hero-foot">
+              <div class="buttons is-right">
+                <a class="button is-link is-light" href="/">Go back home</a>
+              </div>
+            </div>
+          </section>        
+      </div>
+    </section>
+  </body>
 </html>
 

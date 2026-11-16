@@ -1,0 +1,23 @@
+{{#flashSucceedMessage}}
+<article class="message is-info">
+  <div class="message-header">
+    <p>{{#tr}}flashes.succeed{{/tr}}</p>
+    <button class="delete" aria-label="delete"></button>
+  </div>
+  <div class="message-body">
+    {{flashSucceedMessage}}
+  </div>
+</article>
+{{/flashSucceedMessage}}
+
+{{#flashFailedMessage}}
+<article class="message is-danger">
+  <div class="message-header">
+    <p>{{#tr}}flashes.failed{{/tr}}</p>
+    <button class="delete" aria-label="delete"></button>
+  </div>
+  <div class="message-body">
+    {{ flashFailedMessage }}
+  </div>
+</article>
+{{/flashFailedMessage}}

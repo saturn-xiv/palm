@@ -1,81 +1,97 @@
 {{> partials/bulma/header}}
+
 <h1 class="title">{{#tr}}{{ title }}{{/tr}}</h1>
+{{> partials/bulma/flashes}}
+{{#errors.form}}
+<article class="message is-danger">
+  <div class="message-header">
+    <p>{{#tr}}flashes.failed{{/tr}}</p>
+    <button class="delete" aria-label="delete"></button>
+  </div>
+  <div class="message-body">
+    {{ errors.form }}
+  </div>
+</article>
+{{/errors.form}}
 
 <form action="/install" method="post">
-<input type="hidden" name="{{_csrf.parameterName}}" value="{{_csrf.token}}" />
-<input type="hidden" name="lang" value="{{layout.locale}}" />
-<input type="hidden" name="timezone" value="{{layout.timezone}}" />
-<div class="field">  
-  <label class="label">{{#tr}}form.fields.username.label{{/tr}}</label>
-  <div class="control has-icons-left has-icons-right">
-    <input name="name" class="input {{#errors.name}}is-danger{{/errors.name}}" type="text" value="{{form.name}}" />
-    <span class="icon is-small is-left">
-      <i class="fas fa-user"></i>
-    </span>
-    <span class="icon is-small is-right">
-      <i class="fas fa-check"></i>
-    </span>
-  </div>
-  {{#errors.name}}<p class="help is-danger">{{errors.name}}</p>{{/errors.name}}
-</div>
-<div class="field">
-  <label class="label">{{#tr}}form.fields.email.label{{/tr}}</label>
-  <div class="control has-icons-left has-icons-right">
-    <input name="email" class="input {{#errors.email}}is-danger{{/errors.email}}" type="email" value="{{form.email}}" >
-    <span class="icon is-small is-left">
-      <i class="fas fa-envelope"></i>
-    </span>
-    <span class="icon is-small is-right">
-      <i class="fas fa-exclamation-triangle"></i>
-    </span>
-  </div>
-  {{#errors.email}}<p class="help is-danger">{{errors.email}}</p>{{/errors.email}}
-</div>
-<div class="field">
-  <label class="label">{{#tr}}form.fields.password.label{{/tr}}</label>
-  <div class="control has-icons-left has-icons-right">
-    <input name="password" class="input {{#errors.password}}is-danger{{/errors.password}}" type="password">
-    <span class="icon is-small is-left">
-      <i class="fas fa-envelope"></i>
-    </span>
-    <span class="icon is-small is-right">
-      <i class="fas fa-exclamation-triangle"></i>
-    </span>
-  </div>
-  {{#errors.password}}<p class="help is-danger">{{errors.password}}</p>{{/errors.password}}
-</div>
-<div class="field">
-  <label class="label">{{#tr}}form.fields.password-confirmation.label{{/tr}}</label>
-  <div class="control has-icons-left has-icons-right">
-    <input name="passwordConfirmation" class="input {{#errors.passwordConfirmation}}is-danger{{/errors.passwordConfirmation}}" type="password">
-    <span class="icon is-small is-left">
-      <i class="fas fa-envelope"></i>
-    </span>
-    <span class="icon is-small is-right">
-      <i class="fas fa-exclamation-triangle"></i>
-    </span>
-  </div>
-  {{#errors.passwordConfirmation}}<p class="help is-danger">{{errors.passwordConfirmation}}</p>{{/errors.passwordConfirmation}}
-</div>
-<div class="field">
-  <div class="control">
-    <label class="checkbox">
-      <input name="agree" type="checkbox" {{#form.agree}}checked{{/form.agree}}/>
-      {{#tr}}pages.term-and-conditions.agree.1{{/tr}}
-      &nbsp;
-      <a href="/term-and-conditions" target="_blank" rel="noopener noreferrer">{{#tr}}pages.term-and-conditions.agree.2{{/tr}}</a>
-    </label>
-  </div>
-  {{#errors.agree}}<p class="help is-danger">{{errors.agree}}</p>{{/errors.agree}}
-</div>
 
-<div class="field is-grouped">
-  <div class="control">
-    <button type="submit" class="button is-link">{{#tr}}buttons.submit{{/tr}}</button>
+  <input type="hidden" name="{{_csrf.parameterName}}" value="{{_csrf.token}}" />
+  <input type="hidden" name="lang" value="{{layout.locale}}" />
+  <input type="hidden" name="timezone" value="{{layout.timezone}}" />
+
+  <div class="field">  
+    <label class="label">{{#tr}}form.fields.username.label{{/tr}}</label>
+    <div class="control has-icons-left has-icons-right">
+      <input name="name" class="input {{#errors.name}}is-danger{{/errors.name}}" type="text" value="{{form.name}}" />
+      <span class="icon is-small is-left">
+        <i class="fas fa-user"></i>
+      </span>
+      <span class="icon is-small is-right">
+        <i class="fas fa-check"></i>
+      </span>
+    </div>
+    {{#errors.name}}<p class="help is-danger">{{errors.name}}</p>{{/errors.name}}
   </div>
-  <div class="control">
-    <button type="reset" class="button is-link is-light">{{#tr}}buttons.cancel{{/tr}}</button>
+  <div class="field">
+    <label class="label">{{#tr}}form.fields.email.label{{/tr}}</label>
+    <div class="control has-icons-left has-icons-right">
+      <input name="email" class="input {{#errors.email}}is-danger{{/errors.email}}" type="email" value="{{form.email}}" >
+      <span class="icon is-small is-left">
+        <i class="fas fa-envelope"></i>
+      </span>
+      <span class="icon is-small is-right">
+        <i class="fas fa-exclamation-triangle"></i>
+      </span>
+    </div>
+    {{#errors.email}}<p class="help is-danger">{{errors.email}}</p>{{/errors.email}}
   </div>
-</div>
+  <div class="field">
+    <label class="label">{{#tr}}form.fields.password.label{{/tr}}</label>
+    <div class="control has-icons-left has-icons-right">
+      <input name="password" class="input {{#errors.password}}is-danger{{/errors.password}}" type="password">
+      <span class="icon is-small is-left">
+        <i class="fas fa-envelope"></i>
+      </span>
+      <span class="icon is-small is-right">
+        <i class="fas fa-exclamation-triangle"></i>
+      </span>
+    </div>
+    {{#errors.password}}<p class="help is-danger">{{errors.password}}</p>{{/errors.password}}
+  </div>
+  <div class="field">
+    <label class="label">{{#tr}}form.fields.password-confirmation.label{{/tr}}</label>
+    <div class="control has-icons-left has-icons-right">
+      <input name="passwordConfirmation" class="input {{#errors.passwordConfirmation}}is-danger{{/errors.passwordConfirmation}}" type="password">
+      <span class="icon is-small is-left">
+        <i class="fas fa-envelope"></i>
+      </span>
+      <span class="icon is-small is-right">
+        <i class="fas fa-exclamation-triangle"></i>
+      </span>
+    </div>
+    {{#errors.passwordConfirmation}}<p class="help is-danger">{{errors.passwordConfirmation}}</p>{{/errors.passwordConfirmation}}
+  </div>
+  <div class="field">
+    <div class="control">
+      <label class="checkbox">
+        <input name="agree" type="checkbox" {{#form.agree}}checked{{/form.agree}}/>
+        {{#tr}}pages.term-and-conditions.agree.1{{/tr}}
+        &nbsp;
+        <a href="/term-and-conditions" target="_blank" rel="noopener noreferrer">{{#tr}}pages.term-and-conditions.agree.2{{/tr}}</a>
+      </label>
+    </div>
+    {{#errors.agree}}<p class="help is-danger">{{errors.agree}}</p>{{/errors.agree}}
+  </div>
+
+  <div class="field is-grouped">
+    <div class="control">
+      <button type="submit" class="button is-link">{{#tr}}buttons.submit{{/tr}}</button>
+    </div>
+    <div class="control">
+      <button type="reset" class="button is-link is-light">{{#tr}}buttons.cancel{{/tr}}</button>
+    </div>
+  </div>
 </form>
+        
 {{> partials/bulma/footer}}
