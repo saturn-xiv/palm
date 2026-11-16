@@ -3,7 +3,8 @@ package com.github.saturn_xiv.palm.marigold.plugins.hydrangea.controllers.api;
 import java.io.IOException;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
-import java.util.UUID;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -15,10 +16,9 @@ import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.github.saturn_xiv.palm.marigold.plugins.hydrangea.models.GogsWebhooksProperties;
+import com.github.saturn_xiv.palm.marigold.plugins.hydrangea.etc.GogsWebhooksProperties;
 import com.github.saturn_xiv.palm.marigold.plugins.hydrangea.services.JobLogService;
 import com.github.saturn_xiv.palm.marigold.plugins.portal.queues.MessageSender;
-import com.github.saturn_xiv.palm.plugins.hydrangea.v1.Task;
 
 import jakarta.annotation.PostConstruct;
 import jakarta.annotation.Resource;
@@ -30,20 +30,18 @@ public class GogsController {
     // https://gogs.io/advancing/webhooks
     @GetMapping("/webhooks/{name}")
     public void webhooks(HttpServletRequest request, @PathVariable String name,
-            @RequestHeader(value = "X-Gogs-Delivery", required = false) String delivery,
-            @RequestHeader(value = "X-Gogs-Event", required = false) String event,
-            @RequestHeader(value = "X-Gogs-Signature", required = false) String signature, @RequestBody String body)
+            @RequestHeader(value = "X-Gogs-Delivery", required = true) String delivery,
+            @RequestHeader(value = "X-Gogs-Event", required = true) String event,
+            @RequestHeader(value = "X-Gogs-Signature", required = true) String signature, @RequestBody String body)
             throws NoSuchAlgorithmException, InvalidKeyException, IOException {
         logger.info("receive Gogs webhook {} {}", event, delivery);
-        final var hook = webhooksProperties.webhooks().get(name);
-        hook.verify(body);
-        final var script = hook.script(delivery, event, signature, body);
-        final var sn = UUID.randomUUID().toString();
+
+        Map<String, String> headers = new HashMap<>();
+        headers.put("delivery", delivery);
+        headers.put("event", event);
         final var summary = String.format("called by Gogs webhook %s %s", event, delivery);
-        final var ip = request.getRemoteHost();
-        messageSender.produce(this.queue, sn, Task.newBuilder().setSn(sn).setName(name).setVersion(hook.version())
-                .setSummary(summary).setScript(script).build());
-        jobLogService.create(sn, ip, name, ip, summary, script);
+        final var hook = webhooksProperties.webhooks().get(name);
+        hook.handle(request, jobLogService, messageSender, headers, signature, name, summary, body);
     }
 
     @PostConstruct

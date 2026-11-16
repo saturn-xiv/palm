@@ -72,11 +72,17 @@ spring:
       password: "change-me"
 palm:
   hydrangea:
+    github:
+      webhooks:
+        echo:
+          version: "2026.11.16-b"
+          file: "tmp/echo.sh"
+          secret: "change-me"
     gogs:
       webhooks:
         echo:
-          version: "2026.11.16"
-          job: "tmp/echo.sh"
+          version: "2026.11.16-s"
+          file: "tmp/echo.sh"
           secret: "change-me"
   twilio:
     account-sid: ""
