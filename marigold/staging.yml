@@ -71,10 +71,20 @@ spring:
       name: "www"
       password: "change-me"
 palm:
+  hydrangea:
+    gogs:
+      webhooks:
+        echo:
+          version: "2026.11.16"
+          job: "tmp/echo.sh"
+          secret: "change-me"
   twilio:
     account-sid: ""
     api-key: ""
     api-secret: ""
   queues:
-    email-send: "marigold.emails"
-    sms-send: "marigold.sms"
+    portal:
+      email-send: "marigold.emails"
+      sms-send: "marigold.sms"
+    hydrangea:
+      shell-run: "hydrangea.shell"

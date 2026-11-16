@@ -25,7 +25,7 @@ public class SmsSendConsumer {
     // "${palm.rabbitmq.sms-send.queue}", durable = "true"), exchange =
     // @Exchange(value = "${palm.rabbitmq.sms-send.exchange}", type = "topic"), key
     // = "${palm.rabbitmq.sms-send.queue}"))
-    @RabbitListener(queuesToDeclare = @Queue(value = "${palm.queues.sms-send}", durable = "true"))
+    @RabbitListener(queuesToDeclare = @Queue(value = "${palm.queues.portal.sms-send}", durable = "true"))
     public void handle(@Payload byte[] payload, Channel channel, @Header(AmqpHeaders.DELIVERY_TAG) long deliveryTag,
             @Header(AmqpHeaders.MESSAGE_ID) String messageId,
             @Header(AmqpHeaders.CONTENT_TYPE) String contentType) throws IOException {

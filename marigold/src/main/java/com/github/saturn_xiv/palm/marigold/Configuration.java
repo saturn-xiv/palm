@@ -1,5 +1,6 @@
 package com.github.saturn_xiv.palm.marigold;
 
+import org.springframework.boot.context.properties.ConfigurationPropertiesScan;
 import org.springframework.context.annotation.Bean;
 import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 import org.springframework.graphql.execution.RuntimeWiringConfigurer;
@@ -20,6 +21,7 @@ import graphql.scalars.ExtendedScalars;
 @EnableWebSecurity
 @EnableMethodSecurity
 @EnableJpaAuditing
+@ConfigurationPropertiesScan
 public class Configuration {
     @Bean
     public RuntimeWiringConfigurer runtimeWiringConfigurer() {

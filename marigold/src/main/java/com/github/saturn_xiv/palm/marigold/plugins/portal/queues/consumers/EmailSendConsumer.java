@@ -32,7 +32,7 @@ public class EmailSendConsumer {
     // "${palm.rabbitmq.email-send.queue}", durable = "true"), exchange =
     // @Exchange(value = "${palm.rabbitmq.email-send.exchange}", type = "topic"),
     // key = "${palm.rabbitmq.email-send.queue}"))
-    @RabbitListener(queuesToDeclare = @Queue(value = "${palm.queues.email-send}", durable = "true"))
+    @RabbitListener(queuesToDeclare = @Queue(value = "${palm.queues.portal.email-send}", durable = "true"))
     public void handle(@Payload byte[] payload, Channel channel, @Header(AmqpHeaders.DELIVERY_TAG) long deliveryTag,
             @Header(AmqpHeaders.MESSAGE_ID) String messageId,
             @Header(AmqpHeaders.CONTENT_TYPE) String contentType) throws IOException, MessagingException {

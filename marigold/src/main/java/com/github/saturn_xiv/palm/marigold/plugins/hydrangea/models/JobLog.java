@@ -50,7 +50,7 @@ public class JobLog implements Serializable {
     @Size(min = 2, max = 31)
     private String name;
     @Column(nullable = false)
-    @Size(min = 1, max = 15)
+    @Size(max = 15)
     private String version;
     @Size(max = 511)
     private String summary;
