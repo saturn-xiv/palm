@@ -4,8 +4,10 @@ import subprocess
 from datetime import datetime, timedelta, UTC
 from pathlib import Path
 
+import psycopg
+import isodate
 
-from ..etc import rabbitmq as open_rabbitmq, is_stopped
+from ..etc import rabbitmq as open_rabbitmq, is_stopped, postgresql as open_postgresql
 from ..protocols import email_pb2, hydrangea_pb2
 from . import time_it, to_timestamp, to_duration, render, protobuf_message_properties
 
@@ -17,9 +19,10 @@ def launch(config, queue):
         return
 
     working_dir = Path(config['working-dir'])
-    email_queue = config['marigold']['email-queue']
+    email_queue = config['marigold']['portal']['email-queue']
+    db_url = open_postgresql(config['marigold']['postgresql'])
 
-    channel = open_rabbitmq(config)
+    channel = open_rabbitmq(config['rabbitmq'])
     channel.queue_declare(queue=queue, durable=True,
                           arguments={})
     channel.basic_qos(prefetch_count=1)
@@ -44,7 +47,13 @@ def launch(config, queue):
         )
         send_mail(channel, email_queue, config['cc'],
                   config['bcc'], req, timedelta(seconds=elapsed))
-        # TODO report by grpc
+        with psycopg.connect(db_url) as db:
+            with db.cursor() as cur:
+                cur.execute(
+                    "UPDATE hydrangea_job_logs SET launched_at=%s elapsed=%s status_code=%s stdout=%s stderr=%s updated_at=CURRENT_TIMESTAMP version=version+1 WHERE sn=%s",
+                    (launched_at, isodate.duration_isoformat(timedelta(seconds=elapsed)),  result.returncode,
+                     result.stdout, result.stderr, task.sn)
+                )
 
     def handle_shutdown(signum, frame):
         logger.warning(

@@ -16,9 +16,9 @@ logger = logging.getLogger(__name__)
 def time_it(func):
     @wraps(func)
     def wrapper(*args, **kwargs):
-        start = time.perf_counter()
+        start = time.perf_counter_ns()
         result = func(*args, **kwargs)
-        elapsed = time.perf_counter() - start
+        elapsed = time.perf_counter_ns() - start
         logger.debug("%s took %s seconds to run",
                      func.__name__, f"{elapsed:.6f}")
         return (result, elapsed)
@@ -27,8 +27,7 @@ def time_it(func):
 
 def to_duration(dt):
     it = Duration()
-    it.seconds = int(dt)
-    it.nanos = int((dt - it.seconds) * 1e9)
+    it.FromNanoseconds(dt)
     return it
 
 

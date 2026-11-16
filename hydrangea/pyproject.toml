@@ -14,7 +14,7 @@ dependencies = [
     "grpcio~=1.82",
     "grpcio-reflection",
     "grpcio-health-checking",
-    "psycopg[c,pool]",
+    "psycopg[binary,pool]",
     "mysql-connector-python",
     "redis[hiredis]",
     "pika",
@@ -27,6 +27,7 @@ dependencies = [
     "numpy",
     "pystache",
     "fcgi-client",
+    "isodate",
 ]
 dynamic = ["version"]
 
