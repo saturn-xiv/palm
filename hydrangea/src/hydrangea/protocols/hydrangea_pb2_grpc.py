@@ -3,8 +3,6 @@
 import grpc
 import warnings
 
-from google.protobuf import empty_pb2 as google_dot_protobuf_dot_empty__pb2
-from hydrangea.protocols import hydrangea_pb2 as hydrangea_dot_protocols_dot_hydrangea__pb2
 
 GRPC_GENERATED_VERSION = '1.85.1'
 GRPC_VERSION = grpc.__version__
@@ -35,30 +33,14 @@ class StashServiceStub:
         Args:
             channel: A grpc.Channel.
         """
-        self.Job = channel.unary_unary(
-                '/palm.hydrangea.v1.StashService/Job',
-                request_serializer=hydrangea_dot_protocols_dot_hydrangea__pb2.StashJobRequest.SerializeToString,
-                response_deserializer=google_dot_protobuf_dot_empty__pb2.Empty.FromString,
-                _registered_method=True)
 
 
 class StashServiceServicer:
     """Missing associated documentation comment in .proto file."""
 
-    def Job(self, request, context):
-        """Missing associated documentation comment in .proto file."""
-        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
-        context.set_details('Method not implemented!')
-        raise NotImplementedError('Method not implemented!')
-
 
 def add_StashServiceServicer_to_server(servicer, server):
     rpc_method_handlers = {
-            'Job': grpc.unary_unary_rpc_method_handler(
-                    servicer.Job,
-                    request_deserializer=hydrangea_dot_protocols_dot_hydrangea__pb2.StashJobRequest.FromString,
-                    response_serializer=google_dot_protobuf_dot_empty__pb2.Empty.SerializeToString,
-            ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
             'palm.hydrangea.v1.StashService', rpc_method_handlers)
@@ -69,30 +51,3 @@ def add_StashServiceServicer_to_server(servicer, server):
  # This class is part of an EXPERIMENTAL API.
 class StashService:
     """Missing associated documentation comment in .proto file."""
-
-    @staticmethod
-    def Job(request,
-            target,
-            options=(),
-            channel_credentials=None,
-            call_credentials=None,
-            insecure=False,
-            compression=None,
-            wait_for_ready=None,
-            timeout=None,
-            metadata=None):
-        return grpc.experimental.unary_unary(
-            request,
-            target,
-            '/palm.hydrangea.v1.StashService/Job',
-            hydrangea_dot_protocols_dot_hydrangea__pb2.StashJobRequest.SerializeToString,
-            google_dot_protobuf_dot_empty__pb2.Empty.FromString,
-            options,
-            channel_credentials,
-            insecure,
-            call_credentials,
-            compression,
-            wait_for_ready,
-            timeout,
-            metadata,
-            _registered_method=True)
