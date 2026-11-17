@@ -27,6 +27,7 @@ public class JobLogService {
         it.setSn(sn);
         it.setIp(ip);
         it.setName(name);
+        it.setScript(script);
         it.setVersion(version);
         it.setSummary(summary);
         it.setArgs(args);

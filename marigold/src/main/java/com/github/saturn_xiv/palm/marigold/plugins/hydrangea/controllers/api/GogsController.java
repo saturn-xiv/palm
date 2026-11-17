@@ -9,8 +9,9 @@ import java.util.Map;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,6 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.github.saturn_xiv.palm.marigold.plugins.hydrangea.etc.GogsWebhooksProperties;
 import com.github.saturn_xiv.palm.marigold.plugins.hydrangea.services.JobLogService;
+import com.github.saturn_xiv.palm.marigold.plugins.portal.controllers.responses.Succeed;
 import com.github.saturn_xiv.palm.marigold.plugins.portal.queues.MessageSender;
 
 import jakarta.annotation.PostConstruct;
@@ -28,8 +30,8 @@ import jakarta.servlet.http.HttpServletRequest;
 @RequestMapping("/api/gogs")
 public class GogsController {
     // https://gogs.io/advancing/webhooks
-    @GetMapping("/webhooks/{name}")
-    public void webhooks(HttpServletRequest request, @PathVariable String name,
+    @PostMapping(value = "/webhooks/{name}", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+    public Succeed webhooks(HttpServletRequest request, @PathVariable String name,
             @RequestHeader(value = "X-Gogs-Delivery", required = true) String delivery,
             @RequestHeader(value = "X-Gogs-Event", required = true) String event,
             @RequestHeader(value = "X-Gogs-Signature", required = true) String signature, @RequestBody String body)
@@ -41,7 +43,9 @@ public class GogsController {
         headers.put("event", event);
         final var summary = String.format("called by Gogs webhook %s %s", event, delivery);
         final var hook = webhooksProperties.webhooks().get(name);
-        hook.handle(request, jobLogService, messageSender, headers, signature, name, summary, body);
+        hook.handle(request, jobLogService, messageSender, headers, this.queue, name, summary, body);
+
+        return new Succeed();
     }
 
     @PostConstruct

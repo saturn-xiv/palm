@@ -12,12 +12,12 @@
               <div>{{timestamp}} <b>{{#tr}}flashes.failed{{/tr}}</b></div>
             </div>
             <div class="hero-body">
-              <p class="title">Something went wrong ({{status}} - {{error}})</p>
-              <p class="subtitle">Path: {{path}}</p>
+              <p class="title">{{#tr}}pages.errors.title{{/tr}} ({{status}} - {{error}})</p>
+              <p class="subtitle">{{#tr}}pages.errors.path{{/tr}}: {{path}}</p>
             </div>
             <div class="hero-foot">
               <div class="buttons is-right">
-                <a class="button is-link is-light" href="/">Go back home</a>
+                <a class="button is-link is-light" href="/">{{#tr}}pages.errors.go-to-home{{/tr}}</a>
               </div>
             </div>
           </section>        

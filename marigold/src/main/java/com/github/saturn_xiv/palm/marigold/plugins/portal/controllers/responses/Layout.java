@@ -1,6 +1,7 @@
 package com.github.saturn_xiv.palm.marigold.plugins.portal.controllers.responses;
 
 import java.io.Serializable;
+import java.time.Instant;
 import java.util.List;
 import java.util.Locale;
 
@@ -30,6 +31,7 @@ public class Layout implements Serializable {
         this.languages = localeRepository.findDistinctLanguages();
 
         this.project = new Project("Palm", "https://github.com/saturn-xiv/palm", buildProperties.getVersion());
+        this.createdAt = Instant.now();
     }
 
     public record Project(String name, String url, String version) {
@@ -42,7 +44,16 @@ public class Layout implements Serializable {
     private String copyright;
     private String description;
     private Project project;
+    private Instant createdAt;
     private List<String> languages;
+
+    public Instant getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(Instant createdAt) {
+        this.createdAt = createdAt;
+    }
 
     public List<String> getLanguages() {
         return languages;

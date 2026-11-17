@@ -31,7 +31,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 
-public record Webhook(@NotBlank @Size(max = 15) String version,
+public record GitWebhook(@NotBlank @Size(max = 15) String version,
         @NotBlank @Size(min = 8, max = 127) String secret,
         @NotBlank String file)
         implements Serializable {
@@ -46,7 +46,7 @@ public record Webhook(@NotBlank @Size(max = 15) String version,
         final var sn = UUID.randomUUID().toString();
         final var ip = request.getRemoteHost();
 
-        messageSender.produce(queue, sn, Task.newBuilder().setSn(sn).setName(name).setVersion(version())
+        messageSender.produce(queue, Task.newBuilder().setSn(sn).setName(name).setVersion(version())
                 .setSummary(summary).setScript(script).build());
         jobLogService.create(sn, ip, name, ip, summary, script);
     }
@@ -79,5 +79,5 @@ public record Webhook(@NotBlank @Size(max = 15) String version,
         return HexFormat.of().formatHex(buf);
     }
 
-    private final static Logger logger = LoggerFactory.getLogger(Webhook.class);
+    private final static Logger logger = LoggerFactory.getLogger(GitWebhook.class);
 }

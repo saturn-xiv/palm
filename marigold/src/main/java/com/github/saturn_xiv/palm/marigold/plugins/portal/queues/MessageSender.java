@@ -28,12 +28,12 @@ public class MessageSender {
 
     }
 
-    public void produce(String queue, String messageId, Message message) {
+    public void produce(String queue, Message message) {
         this.send("", queue, UUID.randomUUID().toString(), PROTOBUF_CONTENT_TYPE, message.toByteArray());
     }
 
     private void send(String exchange, String routingKey, String messageId, String contentType, byte[] body) {
-        logger.info("send message({} bytes) {}://{} to ({},{})", body.length, contentType, messageId, exchange,
+        logger.info("send message({} bytes) ({}, {}) to ({},{})", body.length, contentType, messageId, exchange,
                 routingKey);
         final var message = MessageBuilder.withBody(body).setMessageId(messageId).setContentType(contentType)
                 .setDeliveryMode(MessageDeliveryMode.PERSISTENT).build();
