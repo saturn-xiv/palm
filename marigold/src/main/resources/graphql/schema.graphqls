@@ -8,3 +8,72 @@ type Query {
   apiVersion: String!
   buildTime: DateTime!
 }
+
+type Mutation {
+  signUpByEmail(request: SignUpByEmailRequest!): Succeed!
+  signInByEmail(email: String!, password: String!): SignInResponse!
+  confirmForEmailUser(email: String!): Succeed!
+  confirmEmailUserByToken(token: String!): Succeed!
+  unlockForEmailUser(email: String!): Succeed!
+  unlockEmailUserByToken(token: String!): Succeed!
+  forgotPasswordForEmailUser(email: String!): Succeed!
+  resetPasswordForEmailUser(token: String!, password: String!): Succeed!
+  refresh: RefreshResponse!
+}
+
+type Succeed {
+  createdAt: DateTime!
+}
+
+input SignUpByEmailRequest {
+  name: String!
+  email: String!
+  password: String!
+  lang: String!
+  timezone: String!
+}
+
+type SignInResponse {
+  token: String!
+  page: PageLayout!
+  user: CurrentUser!
+}
+
+type PageLayout {
+  title: String!
+  subhead: String!
+  description: String!
+  keywords: [String!]!
+  copyright: String!
+  locale: String!
+  timezone: String!
+  languages: [String!]!
+}
+
+type RefreshResponse {
+  page: PageLayout!
+  user: CurrentUser!
+}
+
+type CurrentUser {
+  name: String!
+  avatar: String
+  roles: [Role!]!
+  permissions: [Permission!]!
+}
+
+type Role {
+  administrator: Boolean!
+  root: Boolean!
+  items: [String!]!
+}
+
+type Resource {
+  type: String!
+  id: ID
+}
+
+type Permission {
+  action: String!
+  resource: Resource!
+}

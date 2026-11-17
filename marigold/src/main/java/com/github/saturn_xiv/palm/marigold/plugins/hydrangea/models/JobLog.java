@@ -60,7 +60,7 @@ public class JobLog implements Serializable {
     @Column(nullable = false)
     private String script;
     private Instant launchedAt;
-    private String elapsed;
+    private Long elapsed;
     private Integer status_code;
     private String stdout;
     private String stderr;
@@ -143,11 +143,11 @@ public class JobLog implements Serializable {
         this.script = script;
     }
 
-    public String getElapsed() {
+    public Long getElapsed() {
         return elapsed;
     }
 
-    public void setElapsed(String elapsed) {
+    public void setElapsed(Long elapsed) {
         this.elapsed = elapsed;
     }
 

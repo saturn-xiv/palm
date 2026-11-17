@@ -98,5 +98,6 @@ public class InstallController {
     LocaleRepository localeRepository;
     @Resource
     MessageSource messageSource;
+    
     private final static Logger logger = LoggerFactory.getLogger(InstallController.class);
 }

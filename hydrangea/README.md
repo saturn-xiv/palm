@@ -19,9 +19,12 @@ $ source $PWD/tmp/python/bin/activate
 > python3 -m hydrangea -d worker -w 2
 > sudo -E env PATH="$PATH" python3 -m hydrangea -d worker -w 2
 
-# Install for production
+# building for production
+> pip install build
 > python3 -m build
-> pip install dist/hydrangea-0.1.0.post1.dev169+g37e9387f1.d20261106-py3-none-any.whl
+
+# Install for production
+> pip install --force-reinstall --no-deps dist/hydrangea-0.1.0.post1.dev169+g37e9387f1.d20261106-py3-none-any.whl
 > hydrangea -h
 ```
 

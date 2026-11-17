@@ -14,11 +14,12 @@ from . import time_it, to_timestamp, to_duration, render, protobuf_message_prope
 logger = logging.getLogger(__name__)
 
 
-def launch(config, queue):
+def launch(config):
     if is_stopped():
         return
 
     working_dir = Path(config['working-dir'])
+    queue = config['marigold']['hydrangea']['shell-run-queue']
     email_queue = config['marigold']['portal']['email-queue']
     db_url = open_postgresql(config['marigold']['postgresql'])
 
@@ -39,19 +40,21 @@ def launch(config, queue):
         result, elapsed = execute(working_dir, task)
         logger.debug("%d \n%s\n%s", result.returncode,
                      result.stdout, result.stderr)
-        req = hydrangea_pb2.StashJobRequest(
-            task=task,
-            status_code=result.returncode, stdout=result.stdout, stderr=result.stderr,
-            launched_at=to_timestamp(launched_at),
-            elapsed=to_duration(elapsed),
-        )
-        send_mail(channel, email_queue, config['cc'],
-                  config['bcc'], req, timedelta(seconds=elapsed))
+        send_mail(channel, email_queue,
+                  config['cc'], config['bcc'], {
+                      "task": task,
+                      "status_code": result.returncode,
+                      "stdout": result.stdout,
+                      "stderr": result.stderr,
+                      "launched_at": to_timestamp(launched_at),
+                      "elapsed": isodate.duration_isoformat(timedelta(microseconds=elapsed / 1_000)),
+                  })
+        logger.debug("save resulting for %s", task.sn)
         with psycopg.connect(db_url) as db:
             with db.cursor() as cur:
                 cur.execute(
-                    "UPDATE hydrangea_job_logs SET launched_at=%s elapsed=%s status_code=%s stdout=%s stderr=%s updated_at=CURRENT_TIMESTAMP version=version+1 WHERE sn=%s",
-                    (launched_at, isodate.duration_isoformat(timedelta(seconds=elapsed)),  result.returncode,
+                    "UPDATE hydrangea_job_logs SET launched_at=%s,elapsed=%s,status_code=%s,stdout=%s,stderr=%s,updated_at=CURRENT_TIMESTAMP WHERE sn=%s",
+                    (launched_at, elapsed,  result.returncode,
                      result.stdout, result.stderr, task.sn)
                 )
 
@@ -88,11 +91,10 @@ def execute(working_dir, task: hydrangea_pb2.Task):
     return subprocess.run(["/bin/sh", shell]+list(task.args), cwd=working_dir, capture_output=True, text=True)
 
 
-def send_mail(channel, queue, cc, bcc, req, elapsed):
-    args = {"req": req, "elapsed": elapsed}
+def send_mail(channel, queue, cc, bcc, args):
     subject = render("shell-job-report/subject.mustache", args)
     body = render("shell-job-report/body.mustache", args)
-    # logger.debug("%s\n%s", subject, body)
+    logger.debug("send email: %s\n%s", subject, body)
 
     task = email_pb2.Task(subject=subject.strip(),
                           body=email_pb2.Task.Body(html=True, content=body))
@@ -102,7 +104,7 @@ def send_mail(channel, queue, cc, bcc, req, elapsed):
         task.bcc.append(email_pb2.Task.Address(email=it))
 
     properties = protobuf_message_properties()
-    logger.debug("publish message to %s://%s/%s", queue,
+    logger.debug("publish email-send message to %s://%s/%s", queue,
                  properties.content_type, properties.message_id)
     channel.basic_publish(exchange='', routing_key=queue,
                           body=task.SerializeToString(), properties=properties)

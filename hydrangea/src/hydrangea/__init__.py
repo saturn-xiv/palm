@@ -36,10 +36,8 @@ def main():
     parser_rpc.add_argument('--server-crt', default='server.crt')
     parser_rpc.add_argument('--ca-crt', default='ca.crt')
 
-    parser_run_shell_script = sub_parsers.add_parser(
+    sub_parsers.add_parser(
         "run-shell-script", help="Launch a shell-script worker")
-    parser_run_shell_script.add_argument(
-        '-q', '--queue', required=True, help="queue name")
 
     args = parser.parse_args()
     logging.basicConfig(
@@ -53,4 +51,4 @@ def main():
         launch_rpc_server(config, args.port, args.workers, args.tls,
                           args.ca_crt, args.server_key, args.server_crt)
     elif args.command == "run-shell-script":
-        run_shell_script.launch(config, args.queue)
+        run_shell_script.launch(config)

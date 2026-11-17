@@ -39,7 +39,7 @@
                 <constraints nullable="false" />
             </column>
             <column name="launched_at" type="datetime" />
-            <column name="elapsed" type="varchar(31)" />
+            <column name="elapsed" type="bigint" />
             <column name="status_code" type="int" />
             <column name="stdout" type="text" />
             <column name="stderr" type="text" />
@@ -63,9 +63,6 @@
         <createIndex tableName="hydrangea_job_logs" indexName="idx_hydrangea_job_logs_summary">
             <column name="summary" />
         </createIndex>
-        <createIndex tableName="hydrangea_job_logs" indexName="idx_hydrangea_job_logs_elapsed">
-            <column name="elapsed" />
-        </createIndex>
         <createIndex tableName="hydrangea_job_logs" indexName="idx_hydrangea_job_logs_args"
             using="gin">
             <column name="args" />
@@ -74,6 +71,7 @@
             unique="true">
             <column name="sn" />
         </createIndex>
+
 
         <rollback>
             <dropTable tableName="hydrangea_job_logs" />

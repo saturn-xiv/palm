@@ -25,6 +25,9 @@ import jakarta.validation.constraints.Size;
 @SQLDelete(sql = "UPDATE users SET deleted_at = CURRENT_TIMESTAMP WHERE id = ?")
 @SQLRestriction("deleted_at IS NULL")
 public class Item implements Serializable {
+    public boolean isAvailable() {
+        return this.deletedAt == null && this.lockedAt == null;
+    }
 
     private static final long serialVersionUID = 1L;
 

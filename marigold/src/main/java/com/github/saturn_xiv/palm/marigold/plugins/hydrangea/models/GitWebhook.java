@@ -48,7 +48,7 @@ public record GitWebhook(@NotBlank @Size(max = 15) String version,
 
         messageSender.produce(queue, Task.newBuilder().setSn(sn).setName(name).setVersion(version())
                 .setSummary(summary).setScript(script).build());
-        jobLogService.create(sn, ip, name, ip, summary, script);
+        jobLogService.create(sn, ip, name, this.version, summary, script);
     }
 
     private String script(Map<String, String> headers, String body)

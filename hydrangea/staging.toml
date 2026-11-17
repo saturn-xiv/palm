@@ -23,7 +23,7 @@ port = 9333
 email-queue = "marigold.portal.email-send"
 
 [marigold.hydrangea]
-shell-job-queue = "marigold.hydrangea.shell-run"
+shell-run-queue = "marigold.hydrangea.shell-run"
 
 [marigold.postgresql]
 host = "127.0.0.1"
