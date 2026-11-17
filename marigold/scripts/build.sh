@@ -37,7 +37,7 @@ function build_java() {
     mvn package -Dmaven.test.skip=true
 
     mkdir -p $TARGET_DIR/$PACKAGE/$1
-    cp README.md staging.yml target/$1-*.jar $TARGET_DIR/$PACKAGE/$1/
+    cp README.md  liquibase-staging.properties staging.yml target/$1-*.jar $TARGET_DIR/$PACKAGE/$1/
 }
 
 function build_dashboard() {
