@@ -8,12 +8,16 @@ option java_outer_classname = "EmailProto";
 option java_package = "com.github.saturn_xiv.palm.plugins.email.v1";
 
 message Task {
+  enum Html {
+    NONE = 0;
+    FOUNDATION = 1;
+  }
   message Address {
     optional string name = 1;
     string email = 2;
   }
   message Body {
-    bool html = 1;
+    optional Html html = 1;
     string content = 2;
   }
   message Attachment {

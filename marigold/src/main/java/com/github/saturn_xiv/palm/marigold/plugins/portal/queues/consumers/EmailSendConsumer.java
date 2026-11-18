@@ -1,7 +1,11 @@
 package com.github.saturn_xiv.palm.marigold.plugins.portal.queues.consumers;
 
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
+import java.nio.charset.StandardCharsets;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -19,6 +23,7 @@ import com.github.saturn_xiv.palm.marigold.plugins.portal.utils.EmailSender;
 import com.github.saturn_xiv.palm.plugins.email.v1.Task;
 import com.github.saturn_xiv.palm.plugins.email.v1.Task.Address;
 import com.rabbitmq.client.Channel;
+import com.samskivert.mustache.Mustache;
 
 import jakarta.annotation.Resource;
 import jakarta.mail.MessagingException;
@@ -58,7 +63,20 @@ public class EmailSendConsumer {
         }
         {
             var body = task.getBody();
-            helper.setText(body.getContent(), body.getHtml());
+            if (body.hasHtml()) {
+                switch (body.getHtml()) {
+                    case FOUNDATION:
+                        helper.setText(foundation(body.getContent()), true);
+                        break;
+                    default:
+                        helper.setText(body.getContent(), true);
+                        break;
+                }
+
+            } else {
+                helper.setText(body.getContent(), false);
+            }
+
         }
         for (var it : task.getAttachmentsList()) {
             var buf = it.getContent();
@@ -82,10 +100,29 @@ public class EmailSendConsumer {
         return it.hasName() ? new InternetAddress(it.getEmail(), it.getName()) : new InternetAddress(it.getEmail());
     }
 
+    // https://get.foundation/emails/docs/css-guide.html
+    private String foundation(String content) throws IOException {
+        Map<String, String> model = new HashMap<>();
+        model.put("css", foundationEmailsCss.getContentAsString(StandardCharsets.UTF_8));
+        model.put("content", content);
+
+        try (var reader = new InputStreamReader(foundationIndex.getInputStream(), StandardCharsets.UTF_8)) {
+            var template = mustacheCompiler.compile(reader);
+            return template.execute(model);
+        }
+
+    }
+
     @Value("${spring.mail.username}")
     String from;
     @Resource
     EmailSender sender;
+    @Resource
+    Mustache.Compiler mustacheCompiler;
+    @Value("classpath:static/foundation-emails-2.3.0.css")
+    private org.springframework.core.io.Resource foundationEmailsCss;
+    @Value("classpath:templates/emails/foundation/index.mustache")
+    private org.springframework.core.io.Resource foundationIndex;
 
     private static final Logger logger = LoggerFactory.getLogger(EmailSendConsumer.class);
 }

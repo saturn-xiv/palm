@@ -27,7 +27,7 @@ public class I18nService {
             if (args == null) {
                 return x.getMessage();
             }
-            var tpl = Mustache.compiler().compile(x.getMessage());
+            var tpl = mustacheCompiler.compile(x.getMessage());
             return tpl.execute(args);
         }).orElse(String.format("%s.%s", lang, code));
     }
@@ -91,6 +91,8 @@ public class I18nService {
     LocaleRepository localeRepository;
     @Resource
     LocalesSync localesSync;
+    @Resource
+    Mustache.Compiler mustacheCompiler;
 
     private List<String> languages;
     private final static Logger logger = LoggerFactory.getLogger(I18nService.class);
