@@ -19,9 +19,6 @@ port = 9333
 
 [marigold]
 
-[marigold.portal]
-email-queue = "marigold.portal.email-send"
-
 [marigold.hydrangea]
 shell-run-queue = "marigold.hydrangea.shell-run"
 

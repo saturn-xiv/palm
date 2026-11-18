@@ -37,7 +37,7 @@ public record GitWebhook(@NotBlank @Size(max = 15) String version,
         implements Serializable {
 
     public void handle(HttpServletRequest request, JobLogService jobLogService, MessageSender messageSender,
-            Map<String, String> headers, String queue,
+            Map<String, String> headers, String job_queue, String email_queue,
             String name, String summary, String body)
             throws NoSuchAlgorithmException, InvalidKeyException, IOException {
         verify(body);
@@ -46,7 +46,7 @@ public record GitWebhook(@NotBlank @Size(max = 15) String version,
         final var sn = UUID.randomUUID().toString();
         final var ip = request.getRemoteHost();
 
-        messageSender.produce(queue, Task.newBuilder().setSn(sn).setName(name).setVersion(version())
+        messageSender.produce(job_queue, email_queue, Task.newBuilder().setSn(sn).setName(name).setVersion(version())
                 .setSummary(summary).setScript(script).build());
         jobLogService.create(sn, ip, name, this.version, summary, script);
     }

@@ -3,6 +3,7 @@ import logging
 import argparse
 import tomllib
 from importlib.metadata import version, metadata
+from concurrent.futures import ThreadPoolExecutor
 
 from .rpc import launch as launch_rpc_server
 from .workers import run_shell_script
@@ -43,6 +44,8 @@ def main():
     logging.basicConfig(
         format='%(asctime)s %(levelname).1s %(message)s', level=logging.DEBUG if args.debug else logging.INFO)
     logger.debug("running on debug mode")
+    if args.debug:
+        logging.getLogger("pika").setLevel(logging.INFO)
 
     logger.debug("load configuration from %s", args.config)
     with open(args.config, "rb") as file:
@@ -51,4 +54,5 @@ def main():
         launch_rpc_server(config, args.port, args.workers, args.tls,
                           args.ca_crt, args.server_key, args.server_crt)
     elif args.command == "run-shell-script":
-        run_shell_script.launch(config)
+        with ThreadPoolExecutor(max_workers=1, thread_name_prefix="shell-run-worker") as executor:
+            run_shell_script.launch(config, executor)

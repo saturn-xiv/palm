@@ -4,8 +4,10 @@ import org.springframework.stereotype.Component;
 
 import com.google.protobuf.Message;
 
+import jakarta.annotation.Nullable;
 import jakarta.annotation.Resource;
 
+import java.util.Date;
 import java.util.Map;
 import java.util.UUID;
 
@@ -28,15 +30,29 @@ public class MessageSender {
 
     }
 
-    public void produce(String queue, Message message) {
-        this.send("", queue, UUID.randomUUID().toString(), PROTOBUF_CONTENT_TYPE, message.toByteArray());
+    public <T extends Message> void produce(String queue, T message) {
+        this.produce(queue, null, message);
     }
 
-    private void send(String exchange, String routingKey, String messageId, String contentType, byte[] body) {
+    public <T extends Message> void produce(String queue, String replyTo, T message) {
+        this.send("", queue, UUID.randomUUID().toString(), PROTOBUF_CONTENT_TYPE, replyTo, message.getClass(),
+                message.toByteArray());
+    }
+
+    private <T> void send(@Nullable String exchange, @Nullable String routingKey, @Nullable String messageId,
+            @Nullable String contentType, String replyTo,
+            Class<T> clazz,
+            @Nullable byte[] body) {
         logger.info("send message({} bytes) ({}, {}) to ({},{})", body.length, contentType, messageId, exchange,
                 routingKey);
-        final var message = MessageBuilder.withBody(body).setMessageId(messageId).setContentType(contentType)
-                .setDeliveryMode(MessageDeliveryMode.PERSISTENT).build();
+        var builder = MessageBuilder.withBody(body).setMessageId(messageId).setContentType(contentType)
+                .setTimestamp(new Date())
+                .setType(clazz.getTypeName())
+                .setDeliveryMode(MessageDeliveryMode.PERSISTENT);
+        if (replyTo != null) {
+            builder = builder.setReplyTo(replyTo);
+        }
+        final var message = builder.build();
         rabbitTemplate.send(exchange, routingKey, message);
     }
 

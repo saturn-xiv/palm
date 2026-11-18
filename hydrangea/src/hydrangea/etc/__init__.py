@@ -33,10 +33,12 @@ def rabbitmq(config):
     virtual_host = config['virtual-host']
 
     logger.debug("open RabbitMQ %s@%s:%d/%s", user, host, port, virtual_host)
-    connection = pika.BlockingConnection(
-        pika.ConnectionParameters(host=host, port=port, virtual_host=virtual_host, credentials=pika.PlainCredentials(user, password)))
-    channel = connection.channel()
-    return channel
+    return pika.BlockingConnection(
+        pika.ConnectionParameters(
+            host=host, port=port, virtual_host=virtual_host,
+            credentials=pika.PlainCredentials(user, password), heartbeat=60
+        )
+    )
 
 
 def is_stopped():
