@@ -5,7 +5,7 @@ import warnings
 
 from hydrangea.protocols import wechatpay_pb2 as hydrangea_dot_protocols_dot_wechatpay__pb2
 
-GRPC_GENERATED_VERSION = '1.85.1'
+GRPC_GENERATED_VERSION = '1.85.3'
 GRPC_VERSION = grpc.__version__
 _version_not_supported = False
 

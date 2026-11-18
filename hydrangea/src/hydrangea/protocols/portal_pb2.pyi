@@ -7,7 +7,7 @@ from typing import ClassVar as _ClassVar, Optional as _Optional, Union as _Union
 
 DESCRIPTOR: _descriptor.FileDescriptor
 
-class PasswordRequest(_message.Message):
+class PasswordBox(_message.Message):
     __slots__ = ("plain", "salt")
     PLAIN_FIELD_NUMBER: _ClassVar[int]
     SALT_FIELD_NUMBER: _ClassVar[int]

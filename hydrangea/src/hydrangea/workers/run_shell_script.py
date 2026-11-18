@@ -72,7 +72,7 @@ def _build_email_task(cc, bcc, args):
     logger.debug("email message: %s\n%s", subject, body)
 
     task = email_pb2.Task(subject=subject.strip(),
-                          body=email_pb2.Task.Body(html=True, content=body))
+                          body=email_pb2.Task.Body(html=email_pb2.Task.Html.FOUNDATION, content=body))
     for it in cc:
         task.cc.append(email_pb2.Task.Address(email=it))
     for it in bcc:

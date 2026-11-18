@@ -1,8 +1,11 @@
-<h2>{{task.name}}(v{{task.version}}) - {{task.sn}}</h2>
+<h1>{{task.name}}(v{{task.version}}) - {{task.sn}}</h1>
 {{task.summary}}
 <hr />
-{{status_code}} {{elapsed}} seconds.
-<br />
-<pre>{{stdout}}</pre>
-<br />
-<pre> {{stderr}} </pre>
+<p>{{status_code}} {{elapsed}} seconds.</p>
+<p>
+  <pre>{{stdout}}</pre>
+</p>
+<p>
+  <pre>{{stderr}}</pre>
+</p>
+
