@@ -36,7 +36,7 @@ public class GogsController {
             @RequestHeader(value = "X-Gogs-Event", required = true) String event,
             @RequestHeader(value = "X-Gogs-Signature", required = true) String signature, @RequestBody String body)
             throws NoSuchAlgorithmException, InvalidKeyException, IOException {
-        logger.info("receive Gogs webhook {} {}", event, delivery);
+        logger.info("receive Gogs webhook ({},{})\n{}", event, delivery, body);
 
         Map<String, String> headers = new HashMap<>();
         headers.put("delivery", delivery);

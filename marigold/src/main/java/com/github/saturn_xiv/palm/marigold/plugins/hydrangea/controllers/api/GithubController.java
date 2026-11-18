@@ -43,7 +43,8 @@ public class GithubController {
             @RequestHeader(value = "X-GitHub-Hook-Installation-Target-ID", required = true) String installationTargetId,
             @RequestBody String body)
             throws NoSuchAlgorithmException, InvalidKeyException, IOException {
-        logger.info("receive Github webhook {} {} {}", hookId, event, delivery);
+        logger.info("receive Github webhook ({},{},{}) ({}, {})\n{}", hookId, event, delivery, installationTargetType,
+                installationTargetId, body);
         final var summary = String.format("called by Github webhook %s %s", event, delivery);
         Map<String, String> headers = new HashMap<>();
         headers.put("userAgent", userAgent);

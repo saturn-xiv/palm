@@ -87,8 +87,8 @@ def execute(working_dir, task: hydrangea_pb2.Task):
     with open(shell, "w", encoding="utf-8") as f:
         f.write(task.script)
         f.flush()
-    logger.debug("execute %s", shell)
-    return subprocess.run(["/bin/sh", shell]+list(task.args), cwd=working_dir, capture_output=True, text=True)
+    logger.info("execute %s", shell)
+    return subprocess.run(["/bin/bash", shell]+list(task.args), cwd=working_dir, capture_output=True, text=True)
 
 
 def send_mail(channel, queue, cc, bcc, args):
