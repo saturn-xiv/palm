@@ -1,0 +1,80 @@
+package com.github.saturn_xiv.palm.marigold.plugins.portal.graphql;
+
+import java.time.ZoneId;
+import java.util.Locale;
+import java.util.Optional;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.graphql.data.method.annotation.Argument;
+import org.springframework.graphql.data.method.annotation.MutationMapping;
+import org.springframework.graphql.data.method.annotation.QueryMapping;
+import org.springframework.graphql.execution.ErrorType;
+import org.springframework.stereotype.Controller;
+
+import com.github.saturn_xiv.palm.marigold.plugins.portal.etc.WechatProperties;
+import com.github.saturn_xiv.palm.marigold.plugins.portal.graphql.requests.SignInByWechatOauth2Request;
+import com.github.saturn_xiv.palm.marigold.plugins.portal.graphql.responses.SignInResponse;
+import com.github.saturn_xiv.palm.marigold.plugins.portal.queues.MessageSender;
+import com.github.saturn_xiv.palm.marigold.plugins.portal.repositories.WechatOauth2UserRepository;
+import com.github.saturn_xiv.palm.marigold.plugins.portal.services.UserService;
+import com.github.saturn_xiv.palm.marigold.plugins.portal.utils.RandomUtil;
+import com.github.saturn_xiv.palm.marigold.wechat.WechatApiClient;
+import com.github.saturn_xiv.palm.plugins.portal.v1.UserIndexResponse.Item.Type;
+
+import graphql.GraphqlErrorException;
+import jakarta.annotation.Resource;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.NotBlank;
+
+@Controller("portal.g.user-by-wechat-oauth2")
+public class UserByWechatOauth2Controller {
+    // https://developers.weixin.qq.com/doc/oplatform/Website_App/WeChat_Login/Wechat_Login.html
+    @QueryMapping
+    public String signInByWechatOauth2Url(@Argument @NotBlank String client, @Argument @NotBlank String home,
+            @Argument @NotBlank String lang) {
+        final var config = wechatProperties.oauth2().get(client);
+        final var state = randomUtil.alphanumeric(16);
+        return config.signInUrl(Locale.forLanguageTag(lang), home, state);
+    }
+
+    @MutationMapping
+    public SignInResponse signInByWechatOauth2(HttpServletRequest request_, @Argument @NotBlank String client,
+            @Argument @Valid SignInByWechatOauth2Request request) {
+        final var lang = Locale.forLanguageTag(request.lang());
+        final var timezone = ZoneId.of(request.timezone());
+        final var config = wechatProperties.oauth2().get(client);
+
+        logger.debug("fetch access token for ({}, {})", request.code(), config.appId());
+        final var accessToken = wechatApiClient.accessTokenByCode(config.appId(), config.secret(), request.code(),
+                Optional.empty());
+        accessToken.check();
+        final var info = wechatApiClient.userInfo(accessToken.getAccessToken(), config.appId(),
+                "zh".equals(lang.getLanguage()) ? WechatApiClient.SIMPLIFIED_CHINESE : WechatApiClient.ENGLISH);
+        info.check();
+
+        final var ip = request_.getRemoteHost();
+        userService.signIn(config.appId(), accessToken, info, ip, lang, timezone);
+        var it = wechatOauth2UserRepository.findByAppIdAndOpenId(config.appId(), accessToken.getOpenId()).get();
+        if (!it.isAvailable()) {
+            throw GraphqlErrorException.newErrorException().errorClassification(ErrorType.FORBIDDEN).build();
+        }
+        return new SignInResponse(it.getUser(), it.getSn(), Type.WECHAT_OAUTH2);
+    }
+
+    @Resource
+    WechatApiClient wechatApiClient;
+    @Resource
+    UserService userService;
+    @Resource
+    WechatOauth2UserRepository wechatOauth2UserRepository;
+    @Resource
+    MessageSender messageSender;
+    @Resource
+    RandomUtil randomUtil;
+    @Resource
+    WechatProperties wechatProperties;
+
+    private final static Logger logger = LoggerFactory.getLogger(UserByWechatOauth2Controller.class);
+}

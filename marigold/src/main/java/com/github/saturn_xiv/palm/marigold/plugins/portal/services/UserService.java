@@ -13,6 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.github.saturn_xiv.palm.marigold.plugins.portal.Plugin;
 import com.github.saturn_xiv.palm.marigold.plugins.portal.models.user.ByEmail;
+import com.github.saturn_xiv.palm.marigold.plugins.portal.models.user.ByWechatOauth2;
 import com.github.saturn_xiv.palm.marigold.plugins.portal.models.user.Item;
 import com.github.saturn_xiv.palm.marigold.plugins.portal.repositories.EmailUserRepository;
 import com.github.saturn_xiv.palm.marigold.plugins.portal.repositories.GoogleOauth2UserRepository;
@@ -24,11 +25,70 @@ import com.github.saturn_xiv.palm.marigold.plugins.portal.repositories.WechatMin
 import com.github.saturn_xiv.palm.marigold.plugins.portal.repositories.WechatOauth2UserRepository;
 import com.github.saturn_xiv.palm.marigold.plugins.portal.utils.CasbinEnforcer;
 import com.github.saturn_xiv.palm.marigold.plugins.portal.utils.Gravatar;
+import com.github.saturn_xiv.palm.marigold.wechat.responses.AccessTokenByCodeResponse;
+import com.github.saturn_xiv.palm.marigold.wechat.responses.UserInfoResponse;
+import com.github.saturn_xiv.palm.plugins.portal.v1.UserIndexResponse;
 
 import jakarta.annotation.Resource;
 
 @Service("portal.s.user")
 public class UserService {
+    @Transactional(rollbackFor = Throwable.class)
+    public void signIn(String appId, AccessTokenByCodeResponse accessTokenByCode, UserInfoResponse info,
+            String ip, Locale locale, ZoneId timezone) {
+        {
+            var cur = wechatOauth2UserRepository.findByAppIdAndOpenId(appId, accessTokenByCode.getOpenId());
+            if (cur.isPresent()) {
+                var it = cur.get();
+                if (!it.isAvailable()) {
+                    throw new IllegalArgumentException();
+                }
+                it.merge(accessTokenByCode, info);
+                wechatOauth2UserRepository.save(it);
+            } else {
+                var sn = UUID.randomUUID().toString();
+                this.create(sn, ip, locale, timezone);
+                var user = userRepository.findBySn(sn).get();
+                var it = new ByWechatOauth2();
+                it.setUser(user);
+                it.setAppId(appId);
+                it.setSn(UUID.randomUUID().toString());
+                it.merge(accessTokenByCode, info);
+                wechatOauth2UserRepository.save(it);
+            }
+        }
+        var it = wechatOauth2UserRepository.findByAppIdAndOpenId(appId, accessTokenByCode.getOpenId()).get();
+        signIn(it.getUser(), it.id(), ip, UserIndexResponse.Item.Type.WECHAT_OAUTH2);
+    }
+
+    @Transactional(rollbackFor = Throwable.class)
+    public void signIn(Item user, String email, String ip) {
+        signIn(user, ip, email, UserIndexResponse.Item.Type.EMAIL);
+    }
+
+    private void signIn(Item user, String ip, String code, UserIndexResponse.Item.Type type) {
+        logService.info(user, Plugin.class, ip, String.format("sign in by (%s, %s)", code, type));
+        user.setLastSignInAt(user.getCurrentSignInAt());
+        user.setLastSignInIp(user.getCurrentSignInIp());
+        user.setCurrentSignInIp(ip);
+        user.setCurrentSignInAt(Instant.now());
+        user.setSignInCount(user.getSignInCount() + 1);
+        userRepository.save(user);
+    }
+
+    @Transactional(rollbackFor = Throwable.class)
+    public void setWechatOauth2UseNickname(String appId, String openId, String nickname) {
+        var it = wechatOauth2UserRepository.findByAppIdAndOpenId(appId, openId).get();
+        it.setNickname(nickname);
+        wechatOauth2UserRepository.save(it);
+    }
+
+    @Transactional(rollbackFor = Throwable.class)
+    public void destroyWechatOauth2User(String appId, String openId, String ip, String reason) {
+        var it = wechatOauth2UserRepository.findByAppIdAndOpenId(appId, openId).get();
+        wechatOauth2UserRepository.delete(it);
+        logService.info(it.getUser(), Plugin.class, ip, String.format("Destroyed(%s)", reason));
+    }
 
     @Transactional(rollbackFor = Throwable.class)
     public void install(String name, String email, String rawPassword, Locale lang, ZoneId timezone, String ip)

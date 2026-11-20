@@ -71,6 +71,19 @@ spring:
       name: "www"
       password: "change-me"
 palm:
+  portal:
+    wechat:
+      oauth2:
+        first:
+          app-id: ""
+          secret: ""
+      mini-program:
+        first:
+          app-id: ""
+          secret: ""
+      message-push:
+        token: ""
+        encoding-aes-key: ""
   hydrangea:
     github:
       webhooks:

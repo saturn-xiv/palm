@@ -13,6 +13,9 @@ import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
+import com.github.saturn_xiv.palm.marigold.wechat.responses.AccessTokenByCodeResponse;
+import com.github.saturn_xiv.palm.marigold.wechat.responses.UserInfoResponse;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EntityListeners;
@@ -37,6 +40,25 @@ public class ByWechatOauth2 implements Serializable {
         this.privilege = new ArrayList<>();
     }
 
+    public void merge(AccessTokenByCodeResponse accessTokenByCode, UserInfoResponse info) {
+        this.accessToken = accessTokenByCode.getAccessToken();
+        this.refreshToken = accessTokenByCode.getRefreshToken();
+        this.privilege = info.getPrivilege();
+        this.openId = info.getOpenid();
+        this.unionId = info.getUnionId();
+        this.nickname = info.getNickname();
+        this.headImgUrl = info.getHeadImgUrl();
+    }
+
+    public String id() {
+        return String.format("%s.%s", appId, openId);
+    }
+
+    public boolean isAvailable() {
+        return this.deletedAt == null && this.lockedAt == null
+                && this.user.isAvailable();
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
@@ -46,13 +68,13 @@ public class ByWechatOauth2 implements Serializable {
     @Column(nullable = false)
     @Size(min = 36, max = 36)
     private String sn;
-    @Column(nullable = false)
+    @Column(nullable = false, updatable = false)
     @Size(max = 63)
     private String unionId;
-    @Column(nullable = false)
+    @Column(nullable = false, updatable = false)
     @Size(max = 63)
     private String appId;
-    @Column(nullable = false)
+    @Column(nullable = false, updatable = false)
     @Size(max = 63)
     private String openId;
     @Column(nullable = false)

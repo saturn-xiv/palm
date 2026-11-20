@@ -29,6 +29,11 @@ import jakarta.validation.constraints.Size;
 public class BySms implements Serializable {
     private static final long serialVersionUID = 1L;
 
+    public boolean isAvailable() {
+        return this.confirmedAt != null && this.deletedAt == null && this.lockedAt == null
+                && this.user.isAvailable();
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;

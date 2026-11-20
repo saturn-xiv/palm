@@ -37,6 +37,11 @@ public class ByGoogleOauth2 implements Serializable {
         this.grantedScopes = new ArrayList<>();
     }
 
+    public boolean isAvailable() {
+        return this.deletedAt == null && this.lockedAt == null
+                && this.user.isAvailable();
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;

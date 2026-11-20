@@ -7,11 +7,20 @@ scalar UUID
 type Query {
   apiVersion: String!
   buildTime: DateTime!
+  signInByWechatOauth2Url(
+    client: String!
+    home: String!
+    lang: String!
+  ): String!
 }
 
 type Mutation {
   signUpByEmail(request: SignUpByEmailRequest!): Succeed!
   signInByEmail(email: String!, password: String!): SignInResponse!
+  signInByWechatOauth2(
+    client: String!
+    request: SignInByWechatOauth2Request!
+  ): SignInResponse!
   confirmForEmailUser(email: String!): Succeed!
   confirmEmailUserByToken(token: String!): Succeed!
   unlockForEmailUser(email: String!): Succeed!
@@ -29,6 +38,13 @@ input SignUpByEmailRequest {
   name: String!
   email: String!
   password: String!
+  lang: String!
+  timezone: String!
+}
+
+input SignInByWechatOauth2Request {
+  code: String!
+  state: String!
   lang: String!
   timezone: String!
 }
