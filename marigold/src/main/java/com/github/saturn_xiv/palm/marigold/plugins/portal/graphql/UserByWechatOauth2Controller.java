@@ -17,9 +17,10 @@ import com.github.saturn_xiv.palm.marigold.plugins.portal.graphql.requests.SignI
 import com.github.saturn_xiv.palm.marigold.plugins.portal.graphql.responses.SignInResponse;
 import com.github.saturn_xiv.palm.marigold.plugins.portal.queues.MessageSender;
 import com.github.saturn_xiv.palm.marigold.plugins.portal.repositories.WechatOauth2UserRepository;
+import com.github.saturn_xiv.palm.marigold.plugins.portal.services.UserOauth2StateService;
 import com.github.saturn_xiv.palm.marigold.plugins.portal.services.UserService;
-import com.github.saturn_xiv.palm.marigold.plugins.portal.utils.RandomUtil;
 import com.github.saturn_xiv.palm.marigold.wechat.WechatApiClient;
+import com.github.saturn_xiv.palm.plugins.portal.v1.Oauth2State;
 import com.github.saturn_xiv.palm.plugins.portal.v1.UserIndexResponse.Item.Type;
 
 import graphql.GraphqlErrorException;
@@ -35,7 +36,7 @@ public class UserByWechatOauth2Controller {
     public String signInByWechatOauth2Url(@Argument @NotBlank String client, @Argument @NotBlank String home,
             @Argument @NotBlank String lang) {
         final var config = wechatProperties.oauth2().get(client);
-        final var state = randomUtil.alphanumeric(16);
+        final var state = userOauth2StateService.create(Oauth2State.Type.WECHAT);
         return config.signInUrl(Locale.forLanguageTag(lang), home, state);
     }
 
@@ -72,9 +73,9 @@ public class UserByWechatOauth2Controller {
     @Resource
     MessageSender messageSender;
     @Resource
-    RandomUtil randomUtil;
-    @Resource
     WechatProperties wechatProperties;
+    @Resource
+    UserOauth2StateService userOauth2StateService;
 
     private final static Logger logger = LoggerFactory.getLogger(UserByWechatOauth2Controller.class);
 }

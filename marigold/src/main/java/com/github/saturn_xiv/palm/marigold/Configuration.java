@@ -44,4 +44,5 @@ public class Configuration {
     public PasswordEncoder passwordEncoder() {
         return Argon2PasswordEncoder.defaultsForSpringSecurity_v5_8();
     }
+
 }

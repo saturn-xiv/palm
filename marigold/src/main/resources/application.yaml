@@ -28,7 +28,7 @@ spring:
   cache:
     type: redis
     redis:
-      time-to-live: 604800
+      time-to-live: P7D
       use-key-prefix: true
   task:
     execution:

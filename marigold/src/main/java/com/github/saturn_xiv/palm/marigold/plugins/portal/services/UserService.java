@@ -35,6 +35,7 @@ import jakarta.annotation.Resource;
 
 @Service("portal.s.user")
 public class UserService {
+
     @Transactional(rollbackFor = Throwable.class)
     public void signIn(String appId, JsCode2SessionResponse jsCode2Session, String ip, Locale locale,
             ZoneId timezone) {

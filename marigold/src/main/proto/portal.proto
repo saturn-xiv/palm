@@ -11,6 +11,14 @@ message PasswordBox {
   string plain = 1;
   double salt = 2;
 }
+message Oauth2State {
+  enum Type {
+    GOOGLE = 0;
+    WECHAT = 1;
+  }
+  Type type = 1;
+  optional string user = 2;
+}
 
 message UserIndexResponse {
   message Item {

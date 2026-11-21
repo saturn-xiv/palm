@@ -37,7 +37,7 @@ spring:
       database: 6
   cache:
     redis:
-      key-prefix: "marigold://"
+      key-prefix: "marigold://v20261121"
   rabbitmq:
     host: "127.0.0.1"
     port: 5672
