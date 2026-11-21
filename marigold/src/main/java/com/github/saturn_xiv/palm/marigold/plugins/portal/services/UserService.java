@@ -13,6 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.github.saturn_xiv.palm.marigold.plugins.portal.Plugin;
 import com.github.saturn_xiv.palm.marigold.plugins.portal.models.user.ByEmail;
+import com.github.saturn_xiv.palm.marigold.plugins.portal.models.user.ByWechatMiniProgram;
 import com.github.saturn_xiv.palm.marigold.plugins.portal.models.user.ByWechatOauth2;
 import com.github.saturn_xiv.palm.marigold.plugins.portal.models.user.Item;
 import com.github.saturn_xiv.palm.marigold.plugins.portal.repositories.EmailUserRepository;
@@ -26,6 +27,7 @@ import com.github.saturn_xiv.palm.marigold.plugins.portal.repositories.WechatOau
 import com.github.saturn_xiv.palm.marigold.plugins.portal.utils.CasbinEnforcer;
 import com.github.saturn_xiv.palm.marigold.plugins.portal.utils.Gravatar;
 import com.github.saturn_xiv.palm.marigold.wechat.responses.AccessTokenByCodeResponse;
+import com.github.saturn_xiv.palm.marigold.wechat.responses.JsCode2SessionResponse;
 import com.github.saturn_xiv.palm.marigold.wechat.responses.UserInfoResponse;
 import com.github.saturn_xiv.palm.plugins.portal.v1.UserIndexResponse;
 
@@ -33,6 +35,34 @@ import jakarta.annotation.Resource;
 
 @Service("portal.s.user")
 public class UserService {
+    @Transactional(rollbackFor = Throwable.class)
+    public void signIn(String appId, JsCode2SessionResponse jsCode2Session, String ip, Locale locale,
+            ZoneId timezone) {
+        {
+            var cur = wechatMiniProgramUserRepository.findByAppIdAndOpenId(appId, jsCode2Session.getOpenId());
+            if (cur.isPresent()) {
+                var it = cur.get();
+                if (!it.isAvailable()) {
+                    throw new IllegalArgumentException();
+                }
+                it.merge(jsCode2Session);
+                wechatMiniProgramUserRepository.save(it);
+            } else {
+                var sn = UUID.randomUUID().toString();
+                this.create(sn, "Anonymous", locale, timezone);
+                var user = userRepository.findBySn(sn).get();
+                var it = new ByWechatMiniProgram();
+                it.setUser(user);
+                it.setAppId(appId);
+                it.setSn(UUID.randomUUID().toString());
+                it.merge(jsCode2Session);
+                wechatMiniProgramUserRepository.save(it);
+            }
+        }
+        var it = wechatMiniProgramUserRepository.findByAppIdAndOpenId(appId, jsCode2Session.getOpenId()).get();
+        signIn(it.getUser(), it.id(), ip, UserIndexResponse.Item.Type.WECHAT_MINI_PROGRAM);
+    }
+
     @Transactional(rollbackFor = Throwable.class)
     public void signIn(String appId, AccessTokenByCodeResponse accessTokenByCode, UserInfoResponse info,
             String ip, Locale locale, ZoneId timezone) {
@@ -47,7 +77,7 @@ public class UserService {
                 wechatOauth2UserRepository.save(it);
             } else {
                 var sn = UUID.randomUUID().toString();
-                this.create(sn, ip, locale, timezone);
+                this.create(sn, info.getNickname(), locale, timezone);
                 var user = userRepository.findBySn(sn).get();
                 var it = new ByWechatOauth2();
                 it.setUser(user);

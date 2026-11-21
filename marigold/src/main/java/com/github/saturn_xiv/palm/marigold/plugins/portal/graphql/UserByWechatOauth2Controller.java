@@ -28,7 +28,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotBlank;
 
-@Controller("portal.g.user-by-wechat-oauth2")
+@Controller("portal.g.user.by-wechat-oauth2")
 public class UserByWechatOauth2Controller {
     // https://developers.weixin.qq.com/doc/oplatform/Website_App/WeChat_Login/Wechat_Login.html
     @QueryMapping

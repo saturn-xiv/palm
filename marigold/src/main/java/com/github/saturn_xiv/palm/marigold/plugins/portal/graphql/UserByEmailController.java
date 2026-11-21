@@ -30,7 +30,7 @@ import jakarta.validation.Valid;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 
-@Controller("portal.g.user-by-email")
+@Controller("portal.g.user.by-email")
 public class UserByEmailController {
     @MutationMapping
     public Succeed signUpByEmail(HttpServletRequest request_, @Argument @Valid SignUpByEmailRequest request)

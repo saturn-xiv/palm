@@ -17,16 +17,24 @@ type Query {
 type Mutation {
   signUpByEmail(request: SignUpByEmailRequest!): Succeed!
   signInByEmail(email: String!, password: String!): SignInResponse!
-  signInByWechatOauth2(
-    client: String!
-    request: SignInByWechatOauth2Request!
-  ): SignInResponse!
   confirmForEmailUser(email: String!): Succeed!
   confirmEmailUserByToken(token: String!): Succeed!
   unlockForEmailUser(email: String!): Succeed!
   unlockEmailUserByToken(token: String!): Succeed!
   forgotPasswordForEmailUser(email: String!): Succeed!
   resetPasswordForEmailUser(token: String!, password: String!): Succeed!
+  signInByWechatOauth2(
+    client: String!
+    request: SignInByWechatOauth2Request!
+  ): SignInResponse!
+  signInByWechatMiniProgram(
+    client: String!
+    request: SignInByWechatMiniProgramRequest!
+  ): SignInResponse!
+  setInfoForWechatMiniProgramUser(
+    nickname: String!
+    avatarUrl: String!
+  ): Succeed!
   refresh: RefreshResponse!
 }
 
@@ -45,6 +53,12 @@ input SignUpByEmailRequest {
 input SignInByWechatOauth2Request {
   code: String!
   state: String!
+  lang: String!
+  timezone: String!
+}
+
+input SignInByWechatMiniProgramRequest {
+  code: String!
   lang: String!
   timezone: String!
 }

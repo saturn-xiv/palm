@@ -9,6 +9,8 @@ import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
+import com.github.saturn_xiv.palm.marigold.wechat.responses.JsCode2SessionResponse;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EntityListeners;
@@ -29,9 +31,19 @@ import jakarta.validation.constraints.Size;
 public class ByWechatMiniProgram implements Serializable {
     private static final long serialVersionUID = 1L;
 
+    public String id() {
+        return String.format("%s.%s", appId, openId);
+    }
+
     public boolean isAvailable() {
         return this.deletedAt == null && this.lockedAt == null
                 && this.user.isAvailable();
+    }
+
+    public void merge(JsCode2SessionResponse jsCode2Session) {
+        this.openId = jsCode2Session.getOpenId();
+        this.unionId = jsCode2Session.getUnionId();
+        this.sessionKey = jsCode2Session.getSessionKey();
     }
 
     @Id
