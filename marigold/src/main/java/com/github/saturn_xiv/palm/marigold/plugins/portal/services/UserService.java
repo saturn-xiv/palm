@@ -13,6 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.github.saturn_xiv.palm.marigold.plugins.portal.Plugin;
 import com.github.saturn_xiv.palm.marigold.plugins.portal.models.user.ByEmail;
+import com.github.saturn_xiv.palm.marigold.plugins.portal.models.user.ByGoogleOauth2;
 import com.github.saturn_xiv.palm.marigold.plugins.portal.models.user.ByWechatMiniProgram;
 import com.github.saturn_xiv.palm.marigold.plugins.portal.models.user.ByWechatOauth2;
 import com.github.saturn_xiv.palm.marigold.plugins.portal.models.user.Item;
@@ -30,11 +31,41 @@ import com.github.saturn_xiv.palm.marigold.wechat.responses.AccessTokenByCodeRes
 import com.github.saturn_xiv.palm.marigold.wechat.responses.JsCode2SessionResponse;
 import com.github.saturn_xiv.palm.marigold.wechat.responses.UserInfoResponse;
 import com.github.saturn_xiv.palm.plugins.portal.v1.UserIndexResponse;
+import com.google.api.client.auth.oauth2.TokenResponse;
+import com.google.api.services.oauth2.model.Userinfo;
 
 import jakarta.annotation.Resource;
 
 @Service("portal.s.user")
 public class UserService {
+
+    @Transactional(rollbackFor = Throwable.class)
+    public void signIn(String clientId, TokenResponse tokenResponse, Userinfo userInfo, String ip, Locale locale,
+            ZoneId timezone) {
+        {
+            var cur = googleOauth2UserRepository.findByClientIdAndSub(clientId, userInfo.getId());
+            if (cur.isPresent()) {
+                var it = cur.get();
+                if (!it.isAvailable()) {
+                    throw new IllegalArgumentException();
+                }
+                it.merge(tokenResponse, userInfo);
+                googleOauth2UserRepository.save(it);
+            } else {
+                var sn = UUID.randomUUID().toString();
+                this.create(sn, userInfo.getName(), locale, timezone);
+                var user = userRepository.findBySn(sn).get();
+                var it = new ByGoogleOauth2();
+                it.setUser(user);
+                it.setClientId(clientId);
+                it.setSn(UUID.randomUUID().toString());
+                it.merge(tokenResponse, userInfo);
+                googleOauth2UserRepository.save(it);
+            }
+        }
+        var it = googleOauth2UserRepository.findByClientIdAndSub(clientId, userInfo.getId()).get();
+        signIn(it.getUser(), it.id(), ip, UserIndexResponse.Item.Type.GOOGLE_OAUTH2);
+    }
 
     @Transactional(rollbackFor = Throwable.class)
     public void signIn(String appId, JsCode2SessionResponse jsCode2Session, String ip, Locale locale,

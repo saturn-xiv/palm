@@ -9,9 +9,10 @@ type Query {
   buildTime: DateTime!
   signInByWechatOauth2Url(
     client: String!
-    home: String!
+    redirectUri: String!
     lang: String!
   ): String!
+  signInByGoogleOauth2Url(client: String!, redirectUri: String!): String!
 }
 
 type Mutation {
@@ -35,6 +36,11 @@ type Mutation {
     nickname: String!
     avatarUrl: String!
   ): Succeed!
+  signInByGoogleOauth2(
+    client: String!
+    request: SignInByGoogleOauth2Request!
+  ): SignInResponse!
+  revokeGoogleOauth2: Succeed!
   refresh: RefreshResponse!
 }
 
@@ -59,6 +65,14 @@ input SignInByWechatOauth2Request {
 
 input SignInByWechatMiniProgramRequest {
   code: String!
+  lang: String!
+  timezone: String!
+}
+
+input SignInByGoogleOauth2Request {
+  code: String!
+  redirectUri: String!
+  state: String!
   lang: String!
   timezone: String!
 }

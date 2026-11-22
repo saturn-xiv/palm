@@ -2,6 +2,7 @@ package com.github.saturn_xiv.palm.marigold.plugins.portal.services;
 
 import java.time.Duration;
 import java.util.Base64;
+import java.util.Optional;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,15 +17,19 @@ import com.google.protobuf.InvalidProtocolBufferException;
 public class UserOauth2StateService {
 
     public String create(Oauth2State.Type type) {
-        return this.create(type);
+        return this.create(type, Optional.empty());
     }
 
     public String create(Oauth2State.Type type, Item user) {
-        return this.create(type, user.getSn());
+        return this.create(type, Optional.of(user.getSn()));
     }
 
-    private String create(Oauth2State.Type type, String user) {
-        var it = Oauth2State.newBuilder().setType(type).setUser(user).build();
+    private String create(Oauth2State.Type type, Optional<String> user) {
+        var builder = Oauth2State.newBuilder().setType(type);
+        if (user.isPresent()) {
+            builder.setUser(user.get());
+        }
+        var it = builder.build();
         final var key = UUID.randomUUID().toString();
         var buf = it.toByteArray();
         var val = Base64.getUrlEncoder().withoutPadding().encodeToString(buf);

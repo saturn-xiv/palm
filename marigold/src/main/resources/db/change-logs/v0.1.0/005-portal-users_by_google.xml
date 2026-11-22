@@ -42,13 +42,7 @@
             <column name="name" type="varchar(63)" />
             <column name="picture" type="varchar(127)" />
             <column name="locale" type="varchar(15)" />
-            <column name="token" type="varchar(127)">
-                <constraints nullable="false" />
-            </column>
-            <column name="refresh_token" type="varchar(127)">
-                <constraints nullable="false" />
-            </column>
-            <column name="granted_scopes" type="jsonb">
+            <column name="token" type="jsonb">
                 <constraints nullable="false" />
             </column>
             <column name="locked_at" type="datetime" />
@@ -65,10 +59,6 @@
         </createTable>
 
 
-        <createIndex tableName="google_oauth2_users"
-            indexName="idx_google_oauth2_users_granted_scopes" using="gin">
-            <column name="granted_scopes" />
-        </createIndex>
         <createIndex tableName="google_oauth2_users" indexName="idx_google_oauth2_users_sn"
             unique="true">
             <column name="sn" />

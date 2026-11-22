@@ -2,8 +2,6 @@ package com.github.saturn_xiv.palm.marigold.plugins.portal.models.user;
 
 import java.io.Serializable;
 import java.time.Instant;
-import java.util.ArrayList;
-import java.util.List;
 
 import org.hibernate.annotations.JdbcTypeCode;
 import org.hibernate.annotations.SQLDelete;
@@ -12,6 +10,11 @@ import org.hibernate.type.SqlTypes;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+
+import com.google.api.client.auth.oauth2.TokenResponse;
+import com.google.api.services.oauth2.model.Userinfo;
+import com.google.auth.oauth2.AccessToken;
+import com.google.auth.oauth2.GoogleCredentials;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -33,13 +36,33 @@ import jakarta.validation.constraints.Size;
 public class ByGoogleOauth2 implements Serializable {
     private static final long serialVersionUID = 1L;
 
-    public ByGoogleOauth2() {
-        this.grantedScopes = new ArrayList<>();
+    public void merge(TokenResponse tokenResponse, Userinfo info) {
+        this.token = tokenResponse;
+
+        this.sub = info.getId();
+        this.email = info.getEmail();
+        this.emailVerified = info.isVerifiedEmail();
+        this.familyName = info.getFamilyName();
+        this.givenName = info.getGivenName();
+        this.gender = info.getGender();
+        this.hostedDomain = info.getHd();
+        this.name = info.getName();
+        this.link = info.getLink();
+        this.picture = info.getPicture();
+        this.locale = info.getLocale();
+    }
+
+    public String id() {
+        return String.format("%s.%s", clientId, email);
     }
 
     public boolean isAvailable() {
         return this.deletedAt == null && this.lockedAt == null
                 && this.user.isAvailable();
+    }
+
+    public GoogleCredentials credential() {
+        return GoogleCredentials.create(new AccessToken(this.token.getAccessToken(), null));
     }
 
     @Id
@@ -57,6 +80,9 @@ public class ByGoogleOauth2 implements Serializable {
     @Column(nullable = false)
     @Size(max = 36)
     private String sub;
+    @JdbcTypeCode(SqlTypes.JSON)
+    @Column(columnDefinition = "jsonb", nullable = false)
+    TokenResponse token;
     @Column(nullable = false)
     @Size(min = 5, max = 127)
     private String email;
@@ -77,15 +103,6 @@ public class ByGoogleOauth2 implements Serializable {
     private String picture;
     @Size(min = 2, max = 15)
     private String locale;
-    @Column(nullable = false)
-    @Size(max = 127)
-    private String token;
-    @Column(nullable = false)
-    @Size(max = 127)
-    private String refreshToken;
-    @JdbcTypeCode(SqlTypes.JSON)
-    @Column(columnDefinition = "jsonb", nullable = false)
-    private List<String> grantedScopes;
     private Instant lockedAt;
     private Instant deletedAt;
     @Version
@@ -217,28 +234,12 @@ public class ByGoogleOauth2 implements Serializable {
         this.locale = locale;
     }
 
-    public String getToken() {
+    public TokenResponse getToken() {
         return token;
     }
 
-    public void setToken(String token) {
+    public void setToken(TokenResponse token) {
         this.token = token;
-    }
-
-    public String getRefreshToken() {
-        return refreshToken;
-    }
-
-    public void setRefreshToken(String refreshToken) {
-        this.refreshToken = refreshToken;
-    }
-
-    public List<String> getGrantedScopes() {
-        return grantedScopes;
-    }
-
-    public void setGrantedScopes(List<String> grantedScopes) {
-        this.grantedScopes = grantedScopes;
     }
 
     public Instant getLockedAt() {

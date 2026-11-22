@@ -72,6 +72,10 @@ spring:
       password: "change-me"
 palm:
   portal:
+    google:
+      oauth2:
+        first:
+          client-id: ""
     wechat:
       oauth2:
         first:
