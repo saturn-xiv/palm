@@ -20,6 +20,22 @@ import jakarta.annotation.Resource;
 
 @Service("portal.s.i18n")
 public class I18nService {
+    @Transactional(rollbackFor = Throwable.class)
+    public void set(Locale lang, String code, String message) {
+        final var lng = lang.toLanguageTag();
+        var it = localeRepository.findByLangAndCode(lng, code);
+        if (it.isPresent()) {
+            var cur = it.get();
+            cur.setMessage(message);
+            localeRepository.save(cur);
+        } else {
+            var cur = new com.github.saturn_xiv.palm.marigold.plugins.portal.models.Locale();
+            cur.setLang(lng);
+            cur.setCode(code);
+            cur.setMessage(message);
+            localeRepository.save(cur);
+        }
+    }
 
     public String t(String lang, String code, Object args) {
         final var it = localeRepository.findByLangAndCode(lang, code);

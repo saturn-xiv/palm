@@ -6,6 +6,7 @@ set -e
 export WORK_DIR=$PWD
 export VCPKG_PACKAGES_HOME=$WORK_DIR/loquat/vcpkg/packages
 export PYTHON_HOME=$(python3 -c "import sys; import os; print(os.path.dirname(os.path.dirname(sys.executable)))")
+export NODE_BIN=$(command -v node)
 
 # -----------------------------------------------------------------------------
 
@@ -20,6 +21,23 @@ function generate_hydrangea() {
         $WORK_DIR/marigold/src/main/proto/*.proto
 }
 
+function generate_dashboard() {
+    echo "generate dashboard protocols"
+    local target=$WORK_DIR/marigold/dashboard/src/protocols
+    if [ -d $target ]
+    then
+        rm -r $target
+    fi
+    mkdir -p $target
+
+    $VCPKG_PACKAGES_HOME/protobuf_x64-linux-release/tools/protobuf/protoc \
+        -I $VCPKG_PACKAGES_HOME/protobuf_x64-linux-release/include/google/protobuf \
+        -I=$WORK_DIR/marigold/src/main/proto \
+        --js_out=import_style=commonjs,binary:$target \
+        --grpc-web_out=import_style=typescript,mode=grpcweb:$target \
+        $WORK_DIR/marigold/src/main/proto/*.proto     
+}
+
 function format_sources() {
     echo "format hydrangea"
     cd $WORK_DIR/hydrangea/
@@ -28,20 +46,28 @@ function format_sources() {
 
 # -----------------------------------------------------------------------------
 
-if [ ! -f $VCPKG_PACKAGES_HOME/protobuf_x64-linux-release/tools/protobuf/protoc ]
+if [[ ! -f $VCPKG_PACKAGES_HOME/protobuf_x64-linux-release/tools/protobuf/protoc ]]
 then
     echo "Couldn't found protoc command"
     exit 1
 fi
 
-if [ ! -f $PYTHON_HOME/bin/python-grpc-tools-protoc ]
+if [[ ! -f $PYTHON_HOME/bin/python-grpc-tools-protoc ]]
 then
     echo "Couldn't found protoc plugin for Python: pip install 'grpcio-tools~=1.82'"
     exit 1
 fi
 
+# 
+if [[ ! -f $(dirname $NODE_BIN)/protoc-gen-js || ! -f $(dirname $NODE_BIN)/protoc-gen-grpc-web ]]
+then
+    echo "Couldn't found protoc plugin for TypeScript, please check: https://github.com/grpc/grpc-web#code-generator-plugins"
+    exit 1
+fi
+
 
 generate_hydrangea
+generate_dashboard
 format_sources
 
 echo 'done.'

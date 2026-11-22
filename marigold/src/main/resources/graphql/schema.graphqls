@@ -7,7 +7,9 @@ scalar UUID
 type Query {
   apiVersion: String!
   buildTime: DateTime!
+
   indexLocaleByLang(lang: String!): [Locale!]!
+
   signInByWechatOauth2Url(
     client: String!
     redirectUri: String!
@@ -17,6 +19,8 @@ type Query {
 }
 
 type Mutation {
+  setLocale(lang: String!, string: String!, message: String!): Succeed!
+
   signUpByEmail(request: SignUpByEmailRequest!): Succeed!
   signInByEmail(email: String!, password: String!): SignInResponse!
   confirmForEmailUser(email: String!): Succeed!

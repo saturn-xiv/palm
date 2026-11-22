@@ -15,6 +15,20 @@ class PasswordBox(_message.Message):
     salt: float
     def __init__(self, plain: _Optional[str] = ..., salt: _Optional[float] = ...) -> None: ...
 
+class Oauth2State(_message.Message):
+    __slots__ = ("type", "user")
+    class Type(int, metaclass=_enum_type_wrapper.EnumTypeWrapper):
+        __slots__ = ()
+        GOOGLE: _ClassVar[Oauth2State.Type]
+        WECHAT: _ClassVar[Oauth2State.Type]
+    GOOGLE: Oauth2State.Type
+    WECHAT: Oauth2State.Type
+    TYPE_FIELD_NUMBER: _ClassVar[int]
+    USER_FIELD_NUMBER: _ClassVar[int]
+    type: Oauth2State.Type
+    user: str
+    def __init__(self, type: _Optional[_Union[Oauth2State.Type, str]] = ..., user: _Optional[str] = ...) -> None: ...
+
 class UserIndexResponse(_message.Message):
     __slots__ = ("items",)
     class Item(_message.Message):
