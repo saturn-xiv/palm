@@ -4,7 +4,8 @@
     <refs>
         <ref type="branch">
             <pattern>.+</pattern>
-            <version>${describe.tag.version}-${describe.distance}-${commit.short}${dirty}</version>
+            <version>
+                ${describe.tag.version}-${describe.distance}-${commit.short}${dirty}-${build.timestamp.year}${build.timestamp.month}${build.timestamp.day}${build.timestamp.hour}${build.timestamp.minute}${build.timestamp.second}</version>
         </ref>
     </refs>
 </configuration>
