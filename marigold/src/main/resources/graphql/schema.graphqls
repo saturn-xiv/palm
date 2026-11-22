@@ -123,7 +123,7 @@ type Author {
 
 type RefreshResponse {
   page: PageLayout!
-  user: CurrentUser!
+  user: CurrentUser
 }
 
 type CurrentUser {

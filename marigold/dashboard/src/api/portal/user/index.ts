@@ -8,7 +8,7 @@ export interface ISignInResponse {
 }
 
 export interface IRefreshResponse {
-  user: ILayout;
+  user?: ILayout;
   page: IPageLayout;
 }
 

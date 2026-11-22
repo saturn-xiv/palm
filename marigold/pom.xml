@@ -12,8 +12,8 @@
 	<groupId>com.github.saturn_xiv.palm</groupId>
 	<artifactId>marigold</artifactId>
 	<version>0.0.0-SNAPSHOT</version>
-	<name />
-	<description>A collection of gRPC services for Bougainvillea.</description>
+	<name>Marigold</name>
+	<description>An online education solution.</description>
 	<url>https://github.com/saturn-xiv/palm/tree/main/marigold</url>
 	<licenses>
 		<license>

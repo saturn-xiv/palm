@@ -15,8 +15,8 @@ import com.github.saturn_xiv.palm.marigold.plugins.portal.repositories.LocaleRep
 import com.github.saturn_xiv.palm.marigold.plugins.portal.services.I18nService;
 import com.github.saturn_xiv.palm.marigold.plugins.portal.services.SettingService;
 
-public class PageLayout implements Serializable {
-    public PageLayout(Locale locale, BuildProperties buildProperties, I18nService i18n, SettingService settings,
+public class Layout implements Serializable {
+    public Layout(Locale locale, BuildProperties buildProperties, I18nService i18n, SettingService settings,
             LocaleRepository localeRepository) {
 
         this.locale = locale.toLanguageTag();
@@ -42,7 +42,7 @@ public class PageLayout implements Serializable {
         }
     }
 
-    public PageLayout() {
+    public Layout() {
         this.keywords = new ArrayList<>();
         this.languages = new ArrayList<>();
     }
