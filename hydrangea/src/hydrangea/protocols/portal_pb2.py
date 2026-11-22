@@ -24,7 +24,7 @@ _sym_db = _symbol_database.Default()
 
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n hydrangea/protocols/portal.proto\x12\x0epalm.portal.v1\"*\n\x0bPasswordBox\x12\r\n\x05plain\x18\x01 \x01(\t\x12\x0c\n\x04salt\x18\x02 \x01(\x01\"y\n\x0bOauth2State\x12.\n\x04type\x18\x01 \x01(\x0e\x32 .palm.portal.v1.Oauth2State.Type\x12\x11\n\x04user\x18\x02 \x01(\tH\x00\x88\x01\x01\"\x1e\n\x04Type\x12\n\n\x06GOOGLE\x10\x00\x12\n\n\x06WECHAT\x10\x01\x42\x07\n\x05_user\"\xf5\x01\n\x11UserIndexResponse\x12\x35\n\x05items\x18\x01 \x03(\x0b\x32&.palm.portal.v1.UserIndexResponse.Item\x1a\xa8\x01\n\x04Item\x12\n\n\x02sn\x18\x01 \x01(\t\x12\x39\n\x04type\x18\x02 \x01(\x0e\x32+.palm.portal.v1.UserIndexResponse.Item.Type\"Y\n\x04Type\x12\t\n\x05\x45MAIL\x10\x00\x12\x07\n\x03SMS\x10\x01\x12\x11\n\rGOOGLE_OAUTH2\x10\x0b\x12\x11\n\rWECHAT_OAUTH2\x10\x0c\x12\x17\n\x13WECHAT_MINI_PROGRAM\x10\r\"}\n\tUserToken\x1a\x44\n\x07Payload\x12\x39\n\x04type\x18\x01 \x01(\x0e\x32+.palm.portal.v1.UserIndexResponse.Item.Type\"*\n\x08\x41udience\x12\x0b\n\x07SIGN_IN\x10\x00\x12\x11\n\rHYDRANGEA_JOB\x10\x01\x42_\n,com.github.saturn_xiv.palm.plugins.portal.v1B\x0bPortalProtoP\x01Z\x05./;v2\xaa\x02\x18Palm.Plugins.Portal.Grpcb\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n hydrangea/protocols/portal.proto\x12\x0epalm.portal.v1\",\n\x0bPasswordBox\x12\x0f\n\x07payload\x18\x01 \x01(\t\x12\x0c\n\x04salt\x18\x02 \x01(\x01\"y\n\x0bOauth2State\x12.\n\x04type\x18\x01 \x01(\x0e\x32 .palm.portal.v1.Oauth2State.Type\x12\x11\n\x04user\x18\x02 \x01(\tH\x00\x88\x01\x01\"\x1e\n\x04Type\x12\n\n\x06GOOGLE\x10\x00\x12\n\n\x06WECHAT\x10\x01\x42\x07\n\x05_user\"\xf5\x01\n\x11UserIndexResponse\x12\x35\n\x05items\x18\x01 \x03(\x0b\x32&.palm.portal.v1.UserIndexResponse.Item\x1a\xa8\x01\n\x04Item\x12\n\n\x02sn\x18\x01 \x01(\t\x12\x39\n\x04type\x18\x02 \x01(\x0e\x32+.palm.portal.v1.UserIndexResponse.Item.Type\"Y\n\x04Type\x12\t\n\x05\x45MAIL\x10\x00\x12\x07\n\x03SMS\x10\x01\x12\x11\n\rGOOGLE_OAUTH2\x10\x0b\x12\x11\n\rWECHAT_OAUTH2\x10\x0c\x12\x17\n\x13WECHAT_MINI_PROGRAM\x10\r\"}\n\tUserToken\x1a\x44\n\x07Payload\x12\x39\n\x04type\x18\x01 \x01(\x0e\x32+.palm.portal.v1.UserIndexResponse.Item.Type\"*\n\x08\x41udience\x12\x0b\n\x07SIGN_IN\x10\x00\x12\x11\n\rHYDRANGEA_JOB\x10\x01\x42_\n,com.github.saturn_xiv.palm.plugins.portal.v1B\x0bPortalProtoP\x01Z\x05./;v2\xaa\x02\x18Palm.Plugins.Portal.Grpcb\x06proto3')
 
 _globals = globals()
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, _globals)
@@ -33,21 +33,21 @@ if not _descriptor._USE_C_DESCRIPTORS:
   _globals['DESCRIPTOR']._loaded_options = None
   _globals['DESCRIPTOR']._serialized_options = b'\n,com.github.saturn_xiv.palm.plugins.portal.v1B\013PortalProtoP\001Z\005./;v2\252\002\030Palm.Plugins.Portal.Grpc'
   _globals['_PASSWORDBOX']._serialized_start=52
-  _globals['_PASSWORDBOX']._serialized_end=94
-  _globals['_OAUTH2STATE']._serialized_start=96
-  _globals['_OAUTH2STATE']._serialized_end=217
-  _globals['_OAUTH2STATE_TYPE']._serialized_start=178
-  _globals['_OAUTH2STATE_TYPE']._serialized_end=208
-  _globals['_USERINDEXRESPONSE']._serialized_start=220
-  _globals['_USERINDEXRESPONSE']._serialized_end=465
-  _globals['_USERINDEXRESPONSE_ITEM']._serialized_start=297
-  _globals['_USERINDEXRESPONSE_ITEM']._serialized_end=465
-  _globals['_USERINDEXRESPONSE_ITEM_TYPE']._serialized_start=376
-  _globals['_USERINDEXRESPONSE_ITEM_TYPE']._serialized_end=465
-  _globals['_USERTOKEN']._serialized_start=467
-  _globals['_USERTOKEN']._serialized_end=592
-  _globals['_USERTOKEN_PAYLOAD']._serialized_start=480
-  _globals['_USERTOKEN_PAYLOAD']._serialized_end=548
-  _globals['_USERTOKEN_AUDIENCE']._serialized_start=550
-  _globals['_USERTOKEN_AUDIENCE']._serialized_end=592
+  _globals['_PASSWORDBOX']._serialized_end=96
+  _globals['_OAUTH2STATE']._serialized_start=98
+  _globals['_OAUTH2STATE']._serialized_end=219
+  _globals['_OAUTH2STATE_TYPE']._serialized_start=180
+  _globals['_OAUTH2STATE_TYPE']._serialized_end=210
+  _globals['_USERINDEXRESPONSE']._serialized_start=222
+  _globals['_USERINDEXRESPONSE']._serialized_end=467
+  _globals['_USERINDEXRESPONSE_ITEM']._serialized_start=299
+  _globals['_USERINDEXRESPONSE_ITEM']._serialized_end=467
+  _globals['_USERINDEXRESPONSE_ITEM_TYPE']._serialized_start=378
+  _globals['_USERINDEXRESPONSE_ITEM_TYPE']._serialized_end=467
+  _globals['_USERTOKEN']._serialized_start=469
+  _globals['_USERTOKEN']._serialized_end=594
+  _globals['_USERTOKEN_PAYLOAD']._serialized_start=482
+  _globals['_USERTOKEN_PAYLOAD']._serialized_end=550
+  _globals['_USERTOKEN_AUDIENCE']._serialized_start=552
+  _globals['_USERTOKEN_AUDIENCE']._serialized_end=594
 # @@protoc_insertion_point(module_scope)

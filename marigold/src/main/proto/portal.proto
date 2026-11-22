@@ -8,7 +8,7 @@ option java_outer_classname = "PortalProto";
 option java_package = "com.github.saturn_xiv.palm.plugins.portal.v1";
 
 message PasswordBox {
-  string plain = 1;
+  string payload = 1;
   double salt = 2;
 }
 message Oauth2State {

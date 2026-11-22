@@ -8,12 +8,12 @@ from typing import ClassVar as _ClassVar, Optional as _Optional, Union as _Union
 DESCRIPTOR: _descriptor.FileDescriptor
 
 class PasswordBox(_message.Message):
-    __slots__ = ("plain", "salt")
-    PLAIN_FIELD_NUMBER: _ClassVar[int]
+    __slots__ = ("payload", "salt")
+    PAYLOAD_FIELD_NUMBER: _ClassVar[int]
     SALT_FIELD_NUMBER: _ClassVar[int]
-    plain: str
+    payload: str
     salt: float
-    def __init__(self, plain: _Optional[str] = ..., salt: _Optional[float] = ...) -> None: ...
+    def __init__(self, payload: _Optional[str] = ..., salt: _Optional[float] = ...) -> None: ...
 
 class Oauth2State(_message.Message):
     __slots__ = ("type", "user")
