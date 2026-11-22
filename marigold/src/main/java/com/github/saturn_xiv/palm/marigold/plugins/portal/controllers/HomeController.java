@@ -6,7 +6,6 @@ import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.boot.info.BuildProperties;
 import org.springframework.context.MessageSource;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
@@ -16,9 +15,7 @@ import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.github.saturn_xiv.palm.marigold.plugins.portal.controllers.responses.Layout;
-import com.github.saturn_xiv.palm.marigold.plugins.portal.repositories.LocaleRepository;
-import com.github.saturn_xiv.palm.marigold.plugins.portal.services.I18nService;
+import com.github.saturn_xiv.palm.marigold.plugins.portal.services.LayoutService;
 
 import jakarta.annotation.Resource;
 
@@ -36,20 +33,20 @@ public class HomeController {
 
     @GetMapping("/term-and-conditions")
     public String termAndConditions(Model model, Locale locale) {
-        setModel(model, locale, buildProperties, i18nService, localeRepository, "pages.term-and-conditions.title");
+        setModel(model, locale, layoutService, "pages.term-and-conditions.title");
         return "term-and-conditions";
     }
 
     @GetMapping("/")
     @PreAuthorize("permitAll()")
     public String index(Model model, Locale locale) {
-        setModel(model, locale, buildProperties, i18nService, localeRepository, "pages.home.title");
+        setModel(model, locale, layoutService, "pages.home.title");
         return "home";
     }
 
-    public static void setModel(Model model, Locale locale, BuildProperties buildProperties, I18nService i18nService,
-            LocaleRepository localeRepository, String title) {
-        var layout = new Layout(locale, buildProperties, i18nService, localeRepository);
+    public static void setModel(Model model, Locale locale, LayoutService layoutService, String title) {
+        var layout = layoutService.fetch(locale);
+
         model.addAttribute("layout", layout);
         model.addAttribute("title", title);
     }
@@ -63,13 +60,9 @@ public class HomeController {
     }
 
     @Resource
-    I18nService i18nService;
-    @Resource
-    LocaleRepository localeRepository;
+    LayoutService layoutService;
     @Resource
     MessageSource messageSource;
-    @Resource
-    BuildProperties buildProperties;
 
     public final static String FORM = "form";
     public final static String ERRORS = "errors";

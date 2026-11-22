@@ -28,7 +28,7 @@ public class HomeController {
     public static String password(String raw) throws InvalidProtocolBufferException {
         final var buf = Base64.getUrlDecoder().decode(raw);
         final var box = PasswordBox.parseFrom(buf);
-        return box.getPlain();
+        return box.getPayload();
     }
 
     public static String email(String raw) {

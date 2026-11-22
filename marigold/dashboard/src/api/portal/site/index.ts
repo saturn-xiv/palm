@@ -8,13 +8,20 @@ export interface ILayout {
   keywords: string[];
   description: string;
   copyright: string;
+  locale: string;
   languages: string[];
-  version: string;
+  buildTime: Date;
+  project: IProject;
 }
 
 export interface IAuthor {
   name: string;
   email: string;
+}
+export interface IProject {
+  name: string;
+  url: string;
+  version: string;
 }
 
 interface IApiVersionResponse {

@@ -15,6 +15,7 @@ message Oauth2State {
   enum Type {
     GOOGLE = 0;
     WECHAT = 1;
+    FACEBOOK=2;
   }
   Type type = 1;
   optional string user = 2;
@@ -25,9 +26,10 @@ message UserIndexResponse {
     enum Type {
       EMAIL = 0;
       SMS = 1;
-      GOOGLE_OAUTH2 = 11;
+      GOOGLE_OAUTH2 = 11;      
       WECHAT_OAUTH2 = 12;
       WECHAT_MINI_PROGRAM = 13;
+      FACEBOOK_OAUTH2 = 14;
     }
     string sn = 1;
     Type type = 2;

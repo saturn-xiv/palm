@@ -7,7 +7,6 @@ import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.boot.info.BuildProperties;
 import org.springframework.context.MessageSource;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
@@ -21,9 +20,8 @@ import org.springframework.web.server.ResponseStatusException;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.github.saturn_xiv.palm.marigold.plugins.portal.controllers.forms.InstallForm;
-import com.github.saturn_xiv.palm.marigold.plugins.portal.repositories.LocaleRepository;
 import com.github.saturn_xiv.palm.marigold.plugins.portal.repositories.UserRepository;
-import com.github.saturn_xiv.palm.marigold.plugins.portal.services.I18nService;
+import com.github.saturn_xiv.palm.marigold.plugins.portal.services.LayoutService;
 import com.github.saturn_xiv.palm.marigold.plugins.portal.services.UserService;
 
 import jakarta.annotation.Resource;
@@ -82,7 +80,7 @@ public class InstallController {
     }
 
     private String layout(Model model, Locale locale) {
-        HomeController.setModel(model, locale, buildProperties, i18nService, localeRepository, "pages.install.title");
+        HomeController.setModel(model, locale, layoutService, "pages.install.title");
         return "install";
     }
 
@@ -91,13 +89,9 @@ public class InstallController {
     @Resource
     UserService userService;
     @Resource
-    BuildProperties buildProperties;
-    @Resource
-    I18nService i18nService;
-    @Resource
-    LocaleRepository localeRepository;
+    LayoutService layoutService;
     @Resource
     MessageSource messageSource;
-    
+
     private final static Logger logger = LoggerFactory.getLogger(InstallController.class);
 }

@@ -8,6 +8,7 @@ import Layout from "../";
 import Description from "./Description";
 import Card from "./Card";
 import { GoogleIcon, FacebookIcon, WechatIcon, SitemarkIcon } from "./Icons";
+import { FormattedMessage } from "react-intl";
 
 // https://github.com/mui/material-ui/tree/v9.5.0/docs/data/material/getting-started/templates/sign-in-side
 const Widget = () => {
@@ -70,26 +71,26 @@ const Widget = () => {
                 <Button
                   fullWidth
                   variant="outlined"
-                  onClick={() => alert("Sign in with Google")}
+                  onClick={() => console.log("Sign in with Google")}
                   startIcon={<GoogleIcon />}
                 >
-                  Sign in with Google
+                  <FormattedMessage id="portal.layouts.anonymous.sign-in.by-google" />
                 </Button>
                 <Button
                   fullWidth
                   variant="outlined"
-                  onClick={() => alert("Sign in with Facebook")}
+                  onClick={() => console.log("Sign in with Facebook")}
                   startIcon={<FacebookIcon />}
                 >
-                  Sign in with Facebook
+                  <FormattedMessage id="portal.layouts.anonymous.sign-in.by-facebook" />
                 </Button>
                 <Button
                   fullWidth
                   variant="outlined"
-                  onClick={() => alert("Sign in with Wechat")}
+                  onClick={() => console.log("Sign in with Wechat")}
                   startIcon={<WechatIcon />}
                 >
-                  Sign in with Wechat
+                  <FormattedMessage id="portal.layouts.anonymous.sign-in.by-wechat" />
                 </Button>
               </Box>
             </Card>

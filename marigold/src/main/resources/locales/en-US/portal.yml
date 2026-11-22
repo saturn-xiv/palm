@@ -1,31 +1,69 @@
 layouts:
   anonymous:
+    sign-in:
+      by-facebook: "Sign in with Facebook"
+      by-google: "Sign in with Google"
+      by-wechat: "Sign in with Wechat"
     description:
       settings-suggest:
-        title: "Adaptable performance"
-        content: "Our product effortlessly adjusts to your needs, boosting efficiency and simplifying your tasks."
+        title: "Settings suggest"
+        content: "Content"
       construction:
-        title: "Built to last"
-        content: "Experience unmatched durability that goes above and beyond with lasting investment."
+        title: "Construction"
+        content: "Content"
       thumb-up-alt:
-        title: "Great user experience"
-        content: "Integrate our product into your routine with an intuitive and easy-to-use interface."
+        title: "Thumb up alt"
+        content: "Content"
       auto-fix-high:
-        title: "Innovative functionality"
-        content: "Stay ahead with features that set new standards, addressing your evolving needs better than the rest."
+        title: "Auto fix high"
+        content: "Content"
 emails:
   user:
-    confirm-by-email:
-      subject: ""
-      body: ""
-    unlock-by-email:
-      subject: ""
-      body: ""
-    reset-password-by-email:
-      subject: ""
-      body: ""
+    confirm:
+      subject: "Confirmation instructions"
+      body: "Welcome {{recipient}}!<br />You can confirm your account email through the link below:<br /><a href='{{home}}/my/anonymous/users/by-email/confirm/{{token}}' target='_blank' rel='noopener noreferrer'>Confirm my account</a>"
+    unlock:
+      subject: "Unlock instructions"
+      body: "Hello {{recipient}}!<br />Your account has been locked due to an excessive number of unsuccessful sign in attempts. Click the link below to unlock your account:<br /><a href='{{home}}/my/anonymous/users/by-email/unlock/{{token}}' target='_blank' rel='noopener noreferrer'>Unlock my account</a>"
+    reset-password:
+      subject: "Reset password instructions"
+      body: "Hello {{recipient}}!<br />Someone has requested a link to change your password. You can do this through the link below:<br /><a href='{{home}}/my/anonymous/users/by-email/reset-password/{{token}}' target='_blank' rel='noopener noreferrer'>Change my password</a><br />If you didn't request this, please ignore this email. Your password won't change until you access the link above and create a new one."
+    email-changed:
+      subject: "Email Changed"
+      body: "Hello {{recipient}}!<br />We're contacting you to notify you that your email has been changed to {{email}}."
+    password-changed:
+      subject: "Password Changed"
+      body: "Hello {{recipient}}!<br />We're contacting you to notify you that your password has been changed."
 pages:
   anonymous:
     users:
       sign-in:
         title: "Sign in"
+        succeed: Signed in successfully.
+      sign-up:
+        title: "Sign up"
+      sign-out:
+        succeed: Signed out successfully.
+      by-email:
+        sign-up:
+          instruction: Welcome! You have signed up successfully. A message with a confirmation link has been sent to your email address. Please follow the link to activate your account.
+        confirm:
+          title: Didn't receive confirmation instructions?
+          request: Resend confirmation instructions
+          instruction: You will receive an email with instructions for how to confirm your email address in a few minutes.
+          succeed: Your email address has been successfully confirmed. Please sign in to continue.
+        unlock:
+          title: Didn't receive unlock instructions?
+          request: Resend unlock instructions
+          instruction: You will receive an email with instructions for how to unlock your account in a few minutes.
+          succeed: Your account has been unlocked successfully. Please sign in to continue.
+        forgot-password:
+          title: Forgot your password?
+          request: Send me reset password instructions
+          instruction: You will receive an email with instructions on how to reset your password in a few minutes.
+        reset-password:
+          title: Reset my password
+          succeed: Your password has been changed successfully. Please sign in to continue.
+        destroy:
+          title: Cancel my account
+          succeed: Bye! Your account has been successfully cancelled. We hope to see you again soon.

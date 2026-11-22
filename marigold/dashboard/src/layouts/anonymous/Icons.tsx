@@ -10,7 +10,7 @@ export const WechatIcon = () => (
       viewBox="0 0 122.88 122.88"
     >
       <defs></defs>
-      <title>wechat-app</title>
+      <title>Wechat</title>
       <path
         className="cls-1"
         d="M25.2,0H97.68a25.27,25.27,0,0,1,25.2,25.2V97.68a25.27,25.27,0,0,1-25.2,25.2H25.2A25.27,25.27,0,0,1,0,97.68V25.2A25.27,25.27,0,0,1,25.2,0Z"

@@ -1,27 +1,28 @@
-import { type ILayout as ISiteLayout } from "../site";
+import { type ILayout as IPageLayout } from "../site";
 import graphql from "../../../graphql";
 
 export interface ISignInResponse {
   token: string;
   user: ILayout;
-  site: ISiteLayout;
+  page: IPageLayout;
 }
 
 export interface IRefreshResponse {
   user: ILayout;
-  site: ISiteLayout;
+  page: IPageLayout;
 }
 
-export const refresh = async (): Promise<IRefreshResponse> => {
+export const refresh = async (lang: string): Promise<IRefreshResponse> => {
   const res: { refresh: IRefreshResponse } = await graphql(
     `
-      query call {
-        refresh {
+      query call($lang: String!) {
+        refresh(lang: $lang) {
           user {
             lang
             timezone
             name
             avatar
+            isRoot
             isAdministrator
             roles
             permissions {
@@ -32,7 +33,7 @@ export const refresh = async (): Promise<IRefreshResponse> => {
               }
             }
           }
-          site {
+          page {
             favicon
             title
             subhead
@@ -40,16 +41,22 @@ export const refresh = async (): Promise<IRefreshResponse> => {
               name
               email
             }
+            project {
+              name
+              url
+              version
+            }
             keywords
             description
             copyright
+            locale
             languages
-            version
+            buildTime
           }
         }
       }
     `,
-    {},
+    { lang },
   );
   return res.refresh;
 };
@@ -59,13 +66,10 @@ export interface ILayout {
   timezone: string;
   name: string;
   avatar: string;
+  isRoot: boolean;
   isAdministrator: boolean;
   roles: string[];
   permissions: IPermission[];
-  hasEmail: boolean;
-  hasWechatOauth2: boolean;
-  hasWechatMiniProgram: boolean;
-  hasGoogleOauth2: boolean;
 }
 
 export interface IResource {

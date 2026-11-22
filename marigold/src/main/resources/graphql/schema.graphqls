@@ -8,7 +8,7 @@ type Query {
   apiVersion: String!
   buildTime: DateTime!
 
-  indexLocaleByLang(lang: String!): [Locale!]!
+  localeByLang(lang: String!): [Locale!]!
 
   signInByWechatOauth2Url(
     client: String!
@@ -16,6 +16,7 @@ type Query {
     lang: String!
   ): String!
   signInByGoogleOauth2Url(client: String!, redirectUri: String!): String!
+  refresh(lang: String!): RefreshResponse!
 }
 
 type Mutation {
@@ -46,7 +47,6 @@ type Mutation {
     request: SignInByGoogleOauth2Request!
   ): SignInResponse!
   revokeGoogleOauth2: Succeed!
-  refresh: RefreshResponse!
 }
 
 type Succeed {
@@ -97,14 +97,28 @@ type SignInResponse {
 }
 
 type PageLayout {
+  favicon: String
   title: String!
   subhead: String!
+  author: Author!
   description: String!
   keywords: [String!]!
   copyright: String!
   locale: String!
-  timezone: String!
   languages: [String!]!
+  project: Project!
+  buildTime: String!
+}
+
+type Project {
+  name: String!
+  url: String!
+  version: String!
+}
+
+type Author {
+  name: String!
+  email: String!
 }
 
 type RefreshResponse {
@@ -113,16 +127,14 @@ type RefreshResponse {
 }
 
 type CurrentUser {
+  lang: String!
+  timezone: String!
   name: String!
   avatar: String
-  roles: [Role!]!
+  isRoot: Boolean!
+  isAdministrator: Boolean!
+  roles: [String!]!
   permissions: [Permission!]!
-}
-
-type Role {
-  administrator: Boolean!
-  root: Boolean!
-  items: [String!]!
 }
 
 type Resource {

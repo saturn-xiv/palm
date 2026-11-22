@@ -19,6 +19,9 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
+import com.github.saturn_xiv.palm.plugins.rbac.v1.Action;
+import com.github.saturn_xiv.palm.plugins.rbac.v1.Object;
+import com.github.saturn_xiv.palm.plugins.rbac.v1.Permission;
 import com.github.saturn_xiv.palm.plugins.rbac.v1.Subject;
 import com.github.saturn_xiv.palm.plugins.rbac.v1.Subject.Role;
 import com.github.saturn_xiv.palm.plugins.rbac.v1.Subject.User;
@@ -44,6 +47,21 @@ public class CasbinEnforcer {
         if (enforcer.deleteRoleForUser(subject(user), subject(role))) {
             watcher.update();
         }
+    }
+
+    public List<Permission> getImplicitPermissionsForUser(int user) throws InvalidProtocolBufferException {
+        List<Permission> items = new ArrayList<>();
+        for (var rule : enforcer.getImplicitPermissionsForUser(subject(user))) {
+            if (rule.size() != 3) {
+                logger.error("invalid permission {}", String.join(",", rule));
+                continue;
+            }
+            items.add(Permission.newBuilder()
+                    .setAction(string2message(rule.get(1), Action.parser()))
+                    .setObject(string2message(rule.get(2), Object.parser()))
+                    .build());
+        }
+        return items;
     }
 
     public List<Role> getImplicitRolesForUser(int user) throws InvalidProtocolBufferException {

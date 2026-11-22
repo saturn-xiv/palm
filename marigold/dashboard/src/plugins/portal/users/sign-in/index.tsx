@@ -146,7 +146,31 @@ const Widget = () => {
           Sign in
         </Button>
         <Typography sx={{ textAlign: "center" }}>
-          Don&apos;t have an account?{" "}
+          Don&apos;t have an account? &nbsp;
+          <span>
+            <Link
+              href="/material-ui/getting-started/templates/sign-in/"
+              variant="body2"
+              sx={{ alignSelf: "center" }}
+            >
+              Sign up
+            </Link>
+          </span>
+        </Typography>
+        <Typography sx={{ textAlign: "center" }}>
+          Don&apos;t have an account? &nbsp;
+          <span>
+            <Link
+              href="/material-ui/getting-started/templates/sign-in/"
+              variant="body2"
+              sx={{ alignSelf: "center" }}
+            >
+              Sign up
+            </Link>
+          </span>
+        </Typography>
+        <Typography sx={{ textAlign: "center" }}>
+          Don&apos;t have an account? &nbsp;
           <span>
             <Link
               href="/material-ui/getting-started/templates/sign-in/"

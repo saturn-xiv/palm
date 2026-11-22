@@ -6,9 +6,12 @@ export default defineConfig({
   plugins: [react()],
   base: "/my/",
   server: {
+    host: "0.0.0.0",
+    port: 4000,
+    strictPort: true,
     proxy: {
-      "/graphql": "http://localhost:4000",
-      "/api": "http://localhost:4000",
+      "/graphql": "http://localhost:3000",
+      "/api": "http://localhost:3000",
     },
   },
   build: {

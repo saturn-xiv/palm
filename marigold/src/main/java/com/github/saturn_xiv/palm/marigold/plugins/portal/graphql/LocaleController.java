@@ -18,7 +18,7 @@ import jakarta.validation.constraints.NotBlank;
 @Controller("portal.g.locale")
 public class LocaleController {
     @QueryMapping
-    public List<com.github.saturn_xiv.palm.marigold.plugins.portal.models.Locale> indexLocaleByLang(
+    public List<com.github.saturn_xiv.palm.marigold.plugins.portal.models.Locale> localeByLang(
             @Argument @NotBlank String lang) {
         var lng = Locale.forLanguageTag(lang);
         return localeRepository.findByLang(lng.toLanguageTag());

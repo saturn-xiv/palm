@@ -79,9 +79,7 @@ public class I18nService {
 
     @PostConstruct
     void init() throws IOException {
-        if (localeRepository.count() == 0) {
-            this.sync();
-        }
+        this.sync();
         this.languages = localeRepository.findDistinctLanguages();
     }
 
@@ -90,12 +88,13 @@ public class I18nService {
         logger.warn("locales table is empty, will load data from resources");
         final var items = localesSync.load();
         for (var it : items) {
-            var lang = it.getLeft().toLanguageTag();
-            logger.debug("found locale {}.{}", lang, it.getMiddle());
-            if (localeRepository.findByLangAndCode(lang, lang).isEmpty()) {
+            final var lang = it.getLeft().toLanguageTag();
+            final var code = it.getMiddle();
+            logger.debug("found locale {}.{}", lang, code);
+            if (localeRepository.findByLangAndCode(lang, code).isEmpty()) {
                 var jt = new com.github.saturn_xiv.palm.marigold.plugins.portal.models.Locale();
                 jt.setLang(lang);
-                jt.setCode(it.getMiddle());
+                jt.setCode(code);
                 jt.setMessage(it.getRight());
                 localeRepository.save(jt);
             }

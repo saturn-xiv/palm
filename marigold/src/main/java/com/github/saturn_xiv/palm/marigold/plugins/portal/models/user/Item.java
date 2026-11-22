@@ -2,6 +2,8 @@ package com.github.saturn_xiv.palm.marigold.plugins.portal.models.user;
 
 import java.io.Serializable;
 import java.time.Instant;
+import java.time.ZoneId;
+import java.util.Locale;
 
 import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.SQLRestriction;
@@ -25,11 +27,19 @@ import jakarta.validation.constraints.Size;
 @SQLDelete(sql = "UPDATE users SET deleted_at = CURRENT_TIMESTAMP WHERE id = ?")
 @SQLRestriction("deleted_at IS NULL")
 public class Item implements Serializable {
+    private static final long serialVersionUID = 1L;
+
     public boolean isAvailable() {
         return this.deletedAt == null && this.lockedAt == null;
     }
 
-    private static final long serialVersionUID = 1L;
+    public Locale lang() {
+        return Locale.forLanguageTag(this.lang);
+    }
+
+    public ZoneId timezone() {
+        return ZoneId.of(this.timezone);
+    }
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

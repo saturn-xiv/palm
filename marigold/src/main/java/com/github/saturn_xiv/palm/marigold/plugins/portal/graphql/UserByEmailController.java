@@ -14,7 +14,6 @@ import org.springframework.stereotype.Controller;
 
 import com.github.saturn_xiv.palm.marigold.plugins.portal.controllers.responses.Succeed;
 import com.github.saturn_xiv.palm.marigold.plugins.portal.graphql.requests.SignUpByEmailRequest;
-import com.github.saturn_xiv.palm.marigold.plugins.portal.graphql.responses.RefreshResponse;
 import com.github.saturn_xiv.palm.marigold.plugins.portal.graphql.responses.SignInResponse;
 import com.github.saturn_xiv.palm.marigold.plugins.portal.models.user.ByEmail;
 import com.github.saturn_xiv.palm.marigold.plugins.portal.queues.MessageSender;
@@ -116,12 +115,6 @@ public class UserByEmailController {
 
         // TODO
         return new Succeed();
-    }
-
-    @MutationMapping
-    public RefreshResponse refresh() {
-        // TODO
-        return new RefreshResponse();
     }
 
     enum Action {
