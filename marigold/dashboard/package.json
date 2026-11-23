@@ -17,6 +17,7 @@
     "@graphiql/react": "^0.37.7",
     "@mdxeditor/editor": "^4.5.0",
     "@mui/icons-material": "^10.0.0-alpha.0",
+    "@mui/lab": "^10.0.0-alpha.0",
     "@mui/material": "^10.0.0-alpha.0",
     "@reduxjs/toolkit": "^2.15.0",
     "@types/google-protobuf": "^3.15.12",

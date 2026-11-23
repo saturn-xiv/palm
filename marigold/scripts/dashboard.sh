@@ -5,7 +5,8 @@ set -e
 # https://vite.dev/guide/#scaffolding-your-first-vite-project
 # https://mui.com/material-ui/getting-started/installation/
 npm install --save \
-    @mui/material@next @mui/icons-material@next @emotion/react @emotion/styled \
+    @mui/material@next @mui/icons-material@next @mui/lab@next \
+    @emotion/react @emotion/styled \
     @fontsource/inter @fontsource/roboto \
     react-router react-intl \
     remark-gfm react-markdown @mdxeditor/editor \

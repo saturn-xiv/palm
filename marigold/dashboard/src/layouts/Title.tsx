@@ -7,11 +7,10 @@ interface IProps {
 
 const Widget = ({ value }: IProps) => {
   const site = useAppSelector(selectLayout);
+  const t = `${value}|${site?.subhead || ""}|${site?.title || ""}`;
   return (
     <>
-      <title>
-        {value}|{site?.subhead || ""}|{site?.title || ""}
-      </title>
+      <title>{t}</title>
       {value}
     </>
   );
