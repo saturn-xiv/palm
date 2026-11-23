@@ -70,6 +70,18 @@ const Widget = () => {
         />
       </FormControl>
       <FormControl>
+        <FormLabel htmlFor="verifyCode">
+          <FormattedMessage id="fields.verify-code.label" />
+        </FormLabel>
+        <TextField
+          {...register("verifyCode")}
+          error={errors.verifyCode !== undefined}
+          helperText={errors.verifyCode?.message || ""}
+          variant="outlined"
+          color={errors.verifyCode ? "error" : "primary"}
+        />
+      </FormControl>
+      <FormControl>
         <Box sx={{ display: "flex", justifyContent: "space-between" }}>
           <FormLabel htmlFor="password">
             <FormattedMessage id="fields.password.label" />

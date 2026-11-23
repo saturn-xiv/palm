@@ -26,6 +26,21 @@ export const PASSWORD_MAX_LEN = 31;
 export const PASSWORD_PLACEHOLDER = "••••••";
 export const PHONE_NUMBER_MAX = 15;
 export const PHONE_NUMBER_MIN = 7;
+export const VERIFY_CODE_MIN = 4;
+export const VERIFY_CODE_MAX = 16;
+
+export const SignInBySmsFormSchema = z.object({
+  phoneNumber: z
+    .string()
+    .trim()
+    .min(PHONE_NUMBER_MIN)
+    .max(PHONE_NUMBER_MAX)
+    .toLowerCase(),
+
+  password: z.string().min(PASSWORD_MIN_LEN).max(PASSWORD_MAX_LEN),
+});
+
+export type SignInBySmsFormData = z.infer<typeof SignInBySmsFormSchema>;
 
 export const SignUpBySmsFormSchema = z
   .object({
@@ -36,6 +51,7 @@ export const SignUpBySmsFormSchema = z
       .max(PHONE_NUMBER_MAX)
       .toLowerCase(),
     name: z.string().trim().min(NAME_MIN_LEN).max(NAME_MAX_LEN),
+    verifyCode: z.string().trim().min(VERIFY_CODE_MIN).max(VERIFY_CODE_MAX),
     password: z.string().min(PASSWORD_MIN_LEN).max(PASSWORD_MAX_LEN),
     passwordConfirmation: z.string(),
   })
@@ -57,3 +73,10 @@ export const SignUpByEmailFormSchema = z
   });
 
 export type SignUpByEmailFormData = z.infer<typeof SignUpByEmailFormSchema>;
+
+export const SignInByEmailFormSchema = z.object({
+  email: z.email().trim().min(EMAIL_MIN_LEN).max(EMAIL_MAX_LEN).toLowerCase(),
+  password: z.string().min(PASSWORD_MIN_LEN).max(PASSWORD_MAX_LEN),
+});
+
+export type SignInByEmailFormData = z.infer<typeof SignInByEmailFormSchema>;

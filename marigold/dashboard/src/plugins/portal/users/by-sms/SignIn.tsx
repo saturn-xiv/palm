@@ -1,106 +1,77 @@
-import { useState, type SubmitEvent } from "react";
 import Button from "@mui/material/Button";
-import Checkbox from "@mui/material/Checkbox";
 import FormLabel from "@mui/material/FormLabel";
 import FormControl from "@mui/material/FormControl";
-import FormControlLabel from "@mui/material/FormControlLabel";
 import TextField from "@mui/material/TextField";
 import Box from "@mui/material/Box";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useForm } from "react-hook-form";
+import { FormattedMessage, useIntl } from "react-intl";
+
+import {
+  PASSWORD_PLACEHOLDER,
+  SignInBySmsFormSchema,
+  type SignInBySmsFormData,
+} from "../../../../api/portal";
 
 const Widget = () => {
-  const [emailError, setEmailError] = useState(false);
-  const [emailErrorMessage, setEmailErrorMessage] = useState("");
-  const [passwordError, setPasswordError] = useState(false);
-  const [passwordErrorMessage, setPasswordErrorMessage] = useState("");
+  const intl = useIntl();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<SignInBySmsFormData>({
+    resolver: zodResolver(SignInBySmsFormSchema),
+  });
 
-  const handleSubmit = (event: SubmitEvent<HTMLFormElement>) => {
-    event.preventDefault();
-
-    const data = new FormData(event.currentTarget);
+  const onSubmit = (data: SignInBySmsFormData) => {
+    // TODO
     console.log(data);
-  };
-
-  const validateInputs = () => {
-    const email = document.getElementById("email") as HTMLInputElement;
-    const password = document.getElementById("password") as HTMLInputElement;
-
-    let isValid = true;
-
-    if (!email.value || !/\S+@\S+\.\S+/.test(email.value)) {
-      setEmailError(true);
-      setEmailErrorMessage("Please enter a valid email address.");
-      isValid = false;
-    } else {
-      setEmailError(false);
-      setEmailErrorMessage("");
-    }
-
-    if (!password.value || password.value.length < 6) {
-      setPasswordError(true);
-      setPasswordErrorMessage("Password must be at least 6 characters long.");
-      isValid = false;
-    } else {
-      setPasswordError(false);
-      setPasswordErrorMessage("");
-    }
-
-    return isValid;
   };
 
   return (
     <Box
       component="form"
-      onSubmit={handleSubmit}
+      onSubmit={handleSubmit(onSubmit)}
       noValidate
       sx={{ display: "flex", flexDirection: "column", width: "100%", gap: 2 }}
     >
       <FormControl>
-        <FormLabel htmlFor="email">Phone number</FormLabel>
+        <FormLabel htmlFor="phoneNumber">
+          <FormattedMessage id="fields.phone-number.label" />
+        </FormLabel>
         <TextField
-          error={emailError}
-          helperText={emailErrorMessage}
-          id="email"
-          type="email"
-          name="email"
-          placeholder="your phone number"
-          autoComplete="email"
-          autoFocus
-          required
+          {...register("phoneNumber")}
+          error={errors.phoneNumber !== undefined}
+          helperText={errors.phoneNumber?.message || ""}
+          placeholder={intl.formatMessage({
+            id: "fields.phone-number.placeholder",
+          })}
+          autoComplete="phone-number"
           fullWidth
           variant="outlined"
-          color={emailError ? "error" : "primary"}
+          color={errors.phoneNumber ? "error" : "primary"}
         />
       </FormControl>
       <FormControl>
         <Box sx={{ display: "flex", justifyContent: "space-between" }}>
-          <FormLabel htmlFor="password">Password</FormLabel>
+          <FormLabel htmlFor="password">
+            <FormattedMessage id="fields.password.label" />
+          </FormLabel>
         </Box>
         <TextField
-          error={passwordError}
-          helperText={passwordErrorMessage}
-          name="password"
-          placeholder="••••••"
+          {...register("password")}
+          error={errors.password !== undefined}
+          helperText={errors.password?.message || ""}
+          placeholder={PASSWORD_PLACEHOLDER}
           type="password"
-          id="password"
           autoComplete="current-password"
-          autoFocus
-          required
           fullWidth
           variant="outlined"
-          color={passwordError ? "error" : "primary"}
+          color={errors.password ? "error" : "primary"}
         />
       </FormControl>
-      <FormControlLabel
-        control={<Checkbox value="remember" color="primary" />}
-        label="Remember me"
-      />
-      <Button
-        type="submit"
-        fullWidth
-        variant="contained"
-        onClick={validateInputs}
-      >
-        Sign in
+      <Button type="submit" fullWidth variant="contained">
+        <FormattedMessage id="portal.pages.anonymous.users.sign-up.request" />
       </Button>
     </Box>
   );
