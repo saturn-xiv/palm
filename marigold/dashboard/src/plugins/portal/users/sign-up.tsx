@@ -42,13 +42,13 @@ const Widget = () => {
         >
           <Tab
             label={intl.formatMessage({
-              id: "portal.pages.anonymous.users.sign-up.by-email",
+              id: "portal.pages.anonymous.users.by-email.title",
             })}
             value={BY_EMAIL}
           />
           <Tab
             label={intl.formatMessage({
-              id: "portal.pages.anonymous.users.sign-up.by-sms",
+              id: "portal.pages.anonymous.users.by-sms.title",
             })}
             value={BY_SMS}
           />

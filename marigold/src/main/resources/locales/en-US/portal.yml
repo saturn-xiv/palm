@@ -40,17 +40,16 @@ pages:
       sign-in:
         title: "Already have an account?"
         succeed: Signed in successfully.
-        by-sms: "By SMS"
-        by-email: "By email"
+        request: Sign in
       sign-up:
         title: "Don't have an account?"
-        by-sms: "By SMS"
-        by-email: "By email"
+        request: Sign up
       sign-out:
         succeed: Signed out successfully.
       by-sms:
-        request: Sign up
+        title: "By SMS"
       by-email:
+        title: "By email"
         sign-up:
           instruction: Welcome! You have signed up successfully. A message with a confirmation link has been sent to your email address. Please follow the link to activate your account.
         confirm:

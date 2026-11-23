@@ -12,7 +12,8 @@ npm install --save \
     remark-gfm react-markdown @mdxeditor/editor \
     slate slate-history slate-react \
     @graphiql/react \
-    formik yup usehooks-ts \
+    react-hook-form zod @hookform/resolvers \
+    usehooks-ts \
     jose dayjs video.js \
     qrcode @types/qrcode \
     @reduxjs/toolkit react-redux \
