@@ -3,12 +3,12 @@ import Stack from "@mui/material/Stack";
 import Divider from "@mui/material/Divider";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
+import { FormattedMessage } from "react-intl";
 
 import Layout from "../";
 import Description from "./Description";
 import Card from "./Card";
 import { GoogleIcon, FacebookIcon, WechatIcon, SitemarkIcon } from "./Icons";
-import { FormattedMessage } from "react-intl";
 
 // https://github.com/mui/material-ui/tree/v9.5.0/docs/data/material/getting-started/templates/sign-in-side
 const Widget = () => {
