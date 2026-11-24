@@ -1,6 +1,12 @@
 import { lazy } from "react";
+import type { AlertColor } from "@mui/material/Alert";
 
 import { type IRouter } from "..";
+
+export interface IAlertMessage {
+  content: string;
+  severity: AlertColor;
+}
 
 const router: IRouter = {
   anonymous: [

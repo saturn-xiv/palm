@@ -69,7 +69,7 @@ const Widget = () => {
         />
       </FormControl>
       <Button type="submit" fullWidth variant="contained">
-        <FormattedMessage id="portal.pages.anonymous.users.sign-up.request" />
+        <FormattedMessage id="portal.pages.anonymous.users.sign-in.request" />
       </Button>
     </Box>
   );

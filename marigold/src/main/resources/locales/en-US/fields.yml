@@ -7,6 +7,10 @@ password:
   label: "Password"
 password-confirmation:
   label: "Password confirmation"
+current-password:
+  label: "Current password"
+new-password:
+  label: "New password"
 code:
   label: "Code"
 verify-code:

@@ -81,3 +81,22 @@ export const SignInByEmailFormSchema = z.object({
 });
 
 export type SignInByEmailFormData = z.infer<typeof SignInByEmailFormSchema>;
+
+export const EmailFormSchema = z.object({
+  email: z.email().trim().min(EMAIL_MIN_LEN).max(EMAIL_MAX_LEN).toLowerCase(),
+});
+
+export type EmailFormData = z.infer<typeof EmailFormSchema>;
+
+export const ResetPasswordForEmailUserFormSchema = z
+  .object({
+    newPassword: z.string().min(PASSWORD_MIN_LEN).max(PASSWORD_MAX_LEN),
+    passwordConfirmation: z.string(),
+  })
+  .refine((data) => data.newPassword === data.passwordConfirmation, {
+    path: ["passwordConfirmation"],
+  });
+
+export type ResetPasswordForEmailUserFormData = z.infer<
+  typeof ResetPasswordForEmailUserFormSchema
+>;
