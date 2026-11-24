@@ -44,6 +44,7 @@ export type SignInBySmsFormData = z.infer<typeof SignInBySmsFormSchema>;
 
 export const SignUpBySmsFormSchema = z
   .object({
+    countryDialCode: z.string().trim().length(2),
     phoneNumber: z
       .string()
       .trim()

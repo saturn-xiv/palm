@@ -14,6 +14,8 @@ verify-code:
   fetch: "Get verify code"
 country-code:
   label: "Country code"
+country-dial-code:
+  label: "Country dial code"
 phone-number:
   label: "Phone number"
   placeholder: "Your phone number"

@@ -4,6 +4,8 @@ import FormControl from "@mui/material/FormControl";
 import TextField from "@mui/material/TextField";
 import Box from "@mui/material/Box";
 import Stack from "@mui/material/Stack";
+import MenuItem from "@mui/material/MenuItem";
+import Select from "@mui/material/Select";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { FormattedMessage, useIntl } from "react-intl";
@@ -13,22 +15,49 @@ import {
   SignUpBySmsFormSchema,
   type SignUpBySmsFormData,
 } from "../../../../api/portal";
+import { useEffect, useState } from "react";
+import {
+  DEFAULT_COUNTRY_DIAL_REGION,
+  indexCountryDialCodes,
+  type ICountryDialCode,
+} from "../../../../api/portal/phone-number";
+import { useAppSelector } from "../../../../hooks";
+import { selectLayout } from "../../../../reducers/layout";
 
 const Widget = () => {
+  const site = useAppSelector(selectLayout);
+  const [countryDialCodes, setCountryDialCodes] = useState<ICountryDialCode[]>([
+    { code: 0, name: "", region: DEFAULT_COUNTRY_DIAL_REGION },
+  ]);
   const intl = useIntl();
   const {
     register,
     handleSubmit,
+    getValues,
     formState: { errors },
   } = useForm<SignUpBySmsFormData>({
     resolver: zodResolver(SignUpBySmsFormSchema),
+    defaultValues: { countryDialCode: DEFAULT_COUNTRY_DIAL_REGION },
   });
 
   const onSubmit = (data: SignUpBySmsFormData) => {
     // TODO
     console.log(data);
   };
-  const onFetchVerifyCode = () => {};
+  const onFetchVerifyCode = () => {
+    const data = getValues();
+    console.log(data);
+  };
+
+  useEffect(() => {
+    const call = async () => {
+      if (site?.locale) {
+        const res = await indexCountryDialCodes(site?.locale);
+        setCountryDialCodes(res);
+      }
+    };
+    call();
+  }, [site]);
 
   return (
     <Box
@@ -54,11 +83,25 @@ const Widget = () => {
           color={errors.name ? "error" : "primary"}
         />
       </FormControl>
+
       <FormControl>
         <FormLabel htmlFor="phoneNumber">
           <FormattedMessage id="fields.phone-number.label" />
         </FormLabel>
         <Stack direction="row" spacing={2}>
+          <Select
+            {...register("countryDialCode")}
+            label={intl.formatMessage({ id: "fields.country-dial-code.label" })}
+            error={errors.countryDialCode !== undefined}
+            color={errors.countryDialCode ? "error" : "primary"}
+            defaultValue={DEFAULT_COUNTRY_DIAL_REGION}
+          >
+            {countryDialCodes.map((x, i) => (
+              <MenuItem key={i} value={x.region}>
+                +{x.code}&nbsp;{x.name}
+              </MenuItem>
+            ))}
+          </Select>
           <TextField
             {...register("phoneNumber")}
             error={errors.phoneNumber !== undefined}
@@ -67,7 +110,6 @@ const Widget = () => {
               id: "fields.phone-number.placeholder",
             })}
             autoComplete="phone-number"
-            fullWidth
             variant="outlined"
             color={errors.phoneNumber ? "error" : "primary"}
           />

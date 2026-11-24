@@ -121,6 +121,12 @@
 			<artifactId>google-api-services-oauth2</artifactId>
 			<version>v2-rev20200213-2.9.2</version>
 		</dependency>
+		<!-- Source: https://mvnrepository.com/artifact/com.googlecode.libphonenumber/libphonenumber -->
+		<dependency>
+			<groupId>com.googlecode.libphonenumber</groupId>
+			<artifactId>libphonenumber</artifactId>
+			<version>9.0.44</version>
+		</dependency>
 
 		<!-- Source:
 		https://mvnrepository.com/artifact/com.graphql-java/graphql-java-extended-scalars -->

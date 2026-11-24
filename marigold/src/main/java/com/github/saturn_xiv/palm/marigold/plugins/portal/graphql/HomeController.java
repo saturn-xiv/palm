@@ -8,7 +8,9 @@ import java.time.format.TextStyle;
 import java.util.Arrays;
 import java.util.Base64;
 import java.util.Currency;
+import java.util.List;
 import java.util.Locale;
+import java.util.Objects;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -18,6 +20,7 @@ import org.springframework.graphql.data.method.annotation.QueryMapping;
 import org.springframework.graphql.data.method.annotation.SchemaMapping;
 import org.springframework.stereotype.Controller;
 
+import com.github.saturn_xiv.palm.marigold.plugins.portal.utils.PhoneNumberHelper;
 import com.github.saturn_xiv.palm.plugins.portal.v1.PasswordBox;
 import com.google.protobuf.InvalidProtocolBufferException;
 
@@ -46,6 +49,10 @@ public class HomeController {
     }
 
     public record Timezone(String code, String name) implements Serializable {
+        @Override
+        public int hashCode() {
+            return Objects.hash(code);
+        }
     }
 
     @QueryMapping
@@ -58,6 +65,31 @@ public class HomeController {
     }
 
     public record Language(String tag, String name) implements Serializable {
+        @Override
+        public int hashCode() {
+            return Objects.hash(tag);
+        }
+    }
+
+    @QueryMapping
+    public List<CountryDialCode> countryDialCodes(@Argument @NotEmpty String lang) {
+        final var lng = Locale.forLanguageTag(lang);
+        return phoneNumberHelper.supportedRegions().stream()
+                .map((x) -> {
+                    return new CountryDialCode(this.phoneNumberHelper.countryCodeForRegion(x),
+                            new Locale.Builder()
+                                    .setRegion(x)
+                                    .build().getDisplayCountry(lng),
+                            x);
+                })
+                .toList();
+    }
+
+    public record CountryDialCode(int code, String name, String region) implements Serializable {
+        @Override
+        public int hashCode() {
+            return Objects.hash(region);
+        }
     }
 
     @QueryMapping
@@ -92,5 +124,7 @@ public class HomeController {
 
     @Resource
     BuildProperties buildProperties;
+    @Resource
+    PhoneNumberHelper phoneNumberHelper;
 
 }
