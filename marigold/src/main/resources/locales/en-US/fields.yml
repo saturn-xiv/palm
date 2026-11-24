@@ -11,6 +11,9 @@ code:
   label: "Code"
 verify-code:
   label: "Verify code"
+  fetch: "Get verify code"
+country-code:
+  label: "Country code"
 phone-number:
   label: "Phone number"
   placeholder: "Your phone number"

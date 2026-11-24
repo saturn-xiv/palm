@@ -8,6 +8,10 @@ type Query {
   apiVersion: String!
   buildTime: DateTime!
 
+  currencies: [Currency!]!
+  timezones(lang: String!): [Timezone!]!
+  languages(lang: String!): [Language!]!
+
   localeByLang(lang: String!): [Locale!]!
 
   signInByWechatOauth2Url(
@@ -53,12 +57,28 @@ type Succeed {
   createdAt: DateTime!
 }
 
+type Currency {
+  code: String!
+  name(lang: String!): String!
+  fractionDigits: Int!
+}
+
+type Timezone {
+  code: String!
+  name: String!
+}
+
 type Locale {
   id: ID!
   lang: String!
   code: String!
   message: String!
   updatedAt: DateTime!
+}
+
+type Language {
+  tag: String!
+  name: String!
 }
 
 input SignUpByEmailRequest {

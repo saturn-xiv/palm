@@ -3,6 +3,7 @@ import FormLabel from "@mui/material/FormLabel";
 import FormControl from "@mui/material/FormControl";
 import TextField from "@mui/material/TextField";
 import Box from "@mui/material/Box";
+import Stack from "@mui/material/Stack";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { FormattedMessage, useIntl } from "react-intl";
@@ -27,6 +28,7 @@ const Widget = () => {
     // TODO
     console.log(data);
   };
+  const onFetchVerifyCode = () => {};
 
   return (
     <Box
@@ -56,30 +58,38 @@ const Widget = () => {
         <FormLabel htmlFor="phoneNumber">
           <FormattedMessage id="fields.phone-number.label" />
         </FormLabel>
-        <TextField
-          {...register("phoneNumber")}
-          error={errors.phoneNumber !== undefined}
-          helperText={errors.phoneNumber?.message || ""}
-          placeholder={intl.formatMessage({
-            id: "fields.phone-number.placeholder",
-          })}
-          autoComplete="phone-number"
-          fullWidth
-          variant="outlined"
-          color={errors.phoneNumber ? "error" : "primary"}
-        />
+        <Stack direction="row" spacing={2}>
+          <TextField
+            {...register("phoneNumber")}
+            error={errors.phoneNumber !== undefined}
+            helperText={errors.phoneNumber?.message || ""}
+            placeholder={intl.formatMessage({
+              id: "fields.phone-number.placeholder",
+            })}
+            autoComplete="phone-number"
+            fullWidth
+            variant="outlined"
+            color={errors.phoneNumber ? "error" : "primary"}
+          />
+        </Stack>
       </FormControl>
       <FormControl>
         <FormLabel htmlFor="verifyCode">
           <FormattedMessage id="fields.verify-code.label" />
         </FormLabel>
-        <TextField
-          {...register("verifyCode")}
-          error={errors.verifyCode !== undefined}
-          helperText={errors.verifyCode?.message || ""}
-          variant="outlined"
-          color={errors.verifyCode ? "error" : "primary"}
-        />
+        <Stack direction="row" spacing={2}>
+          <TextField
+            {...register("verifyCode")}
+            error={errors.verifyCode !== undefined}
+            helperText={errors.verifyCode?.message || ""}
+            variant="outlined"
+            color={errors.verifyCode ? "error" : "primary"}
+            sx={{ width: "12ch" }}
+          />
+          <Button onClick={onFetchVerifyCode} variant="text" size="small">
+            <FormattedMessage id="fields.verify-code.fetch" />
+          </Button>
+        </Stack>
       </FormControl>
       <FormControl>
         <Box sx={{ display: "flex", justifyContent: "space-between" }}>
