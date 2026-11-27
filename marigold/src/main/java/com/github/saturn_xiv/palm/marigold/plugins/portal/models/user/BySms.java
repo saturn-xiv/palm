@@ -1,6 +1,5 @@
 package com.github.saturn_xiv.palm.marigold.plugins.portal.models.user;
 
-import java.io.Serializable;
 import java.time.Instant;
 
 import org.hibernate.annotations.SQLDelete;
@@ -26,9 +25,15 @@ import jakarta.validation.constraints.Size;
 @Table(name = "sms_users")
 @SQLDelete(sql = "UPDATE sms_users SET deleted_at = CURRENT_TIMESTAMP WHERE id = ?")
 @SQLRestriction("deleted_at IS NULL")
-public class BySms implements Serializable {
+public class BySms implements Info {
     private static final long serialVersionUID = 1L;
 
+    @Override
+    public String label() {
+        return String.format("%s%s", countryCode, phoneNumber);
+    }
+
+    @Override
     public boolean isAvailable() {
         return this.confirmedAt != null && this.deletedAt == null && this.lockedAt == null
                 && this.user.isAvailable();

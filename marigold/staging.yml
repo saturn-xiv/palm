@@ -107,7 +107,7 @@ palm:
     api-secret: ""
   queues:
     portal:
-      email-send: "marigold.portal.email-send"
-      sms-send: "marigold.portal.sms-send"
+      email-send: "portal.email-send"
+      sms-send: "portal.sms-send"
     hydrangea:
-      shell-run: "marigold.hydrangea.shell-run"
+      shell-run: "hydrangea.shell-run"

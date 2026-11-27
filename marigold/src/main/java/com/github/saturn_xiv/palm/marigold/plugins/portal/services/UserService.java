@@ -1,9 +1,16 @@
 package com.github.saturn_xiv.palm.marigold.plugins.portal.services;
 
+import java.net.DatagramSocket;
+import java.net.Inet4Address;
+import java.net.Inet6Address;
+import java.net.InetAddress;
+import java.net.SocketException;
+import java.net.UnknownHostException;
 import java.security.NoSuchAlgorithmException;
 import java.time.Instant;
 import java.time.ZoneId;
 import java.util.Locale;
+import java.util.Optional;
 import java.util.UUID;
 
 import org.springframework.context.MessageSource;
@@ -64,7 +71,7 @@ public class UserService {
             }
         }
         var it = googleOauth2UserRepository.findByClientIdAndSub(clientId, userInfo.getId()).get();
-        signIn(it.getUser(), it.id(), ip, UserIndexResponse.Item.Type.GOOGLE_OAUTH2);
+        signIn(it.getUser(), ip, it.label(), UserIndexResponse.Item.Type.GOOGLE_OAUTH2);
     }
 
     @Transactional(rollbackFor = Throwable.class)
@@ -92,7 +99,7 @@ public class UserService {
             }
         }
         var it = wechatMiniProgramUserRepository.findByAppIdAndOpenId(appId, jsCode2Session.getOpenId()).get();
-        signIn(it.getUser(), it.id(), ip, UserIndexResponse.Item.Type.WECHAT_MINI_PROGRAM);
+        signIn(it.getUser(), ip, it.label(), UserIndexResponse.Item.Type.WECHAT_MINI_PROGRAM);
     }
 
     @Transactional(rollbackFor = Throwable.class)
@@ -120,7 +127,7 @@ public class UserService {
             }
         }
         var it = wechatOauth2UserRepository.findByAppIdAndOpenId(appId, accessTokenByCode.getOpenId()).get();
-        signIn(it.getUser(), it.id(), ip, UserIndexResponse.Item.Type.WECHAT_OAUTH2);
+        signIn(it.getUser(), ip, it.label(), UserIndexResponse.Item.Type.WECHAT_OAUTH2);
     }
 
     @Transactional(rollbackFor = Throwable.class)
@@ -128,8 +135,8 @@ public class UserService {
         signIn(user, ip, email, UserIndexResponse.Item.Type.EMAIL);
     }
 
-    private void signIn(Item user, String ip, String code, UserIndexResponse.Item.Type type) {
-        logService.info(user, Plugin.class, ip, String.format("sign in by (%s, %s)", code, type));
+    private void signIn(Item user, String ip, String label, UserIndexResponse.Item.Type type) {
+        logService.info(user, Plugin.class, ip, String.format("sign in by (%s, %s)", label, type));
         user.setLastSignInAt(user.getCurrentSignInAt());
         user.setLastSignInIp(user.getCurrentSignInIp());
         user.setCurrentSignInIp(ip);
@@ -198,6 +205,14 @@ public class UserService {
         logService.info(it.getUser(), Plugin.class, ip, "Confirmed.");
     }
 
+    @Transactional(rollbackFor = Throwable.class)
+    public void setPassword(String email, String password, String ip) {
+        var it = emailUserRepository.findByEmail(email).get();
+        it.setPassword(passwordEncoder.encode(password));
+        emailUserRepository.save(it);
+        logService.info(it.getUser(), Plugin.class, ip, "Update password.");
+    }
+
     private void create(String sn, String name, Locale lang, ZoneId timezone) {
         var it = new Item();
         it.setSn(sn);
@@ -205,6 +220,21 @@ public class UserService {
         it.setLang(lang.toLanguageTag());
         it.setTimezone(timezone.getId());
         userRepository.save(it);
+    }
+
+    public static Optional<String> ip() throws SocketException, UnknownHostException {
+        try (final DatagramSocket socket = new DatagramSocket()) {
+            socket.connect(InetAddress.getByName("8.8.8.8"), 53);
+            InetAddress it = socket.getLocalAddress();
+            if (it instanceof Inet4Address) {
+                return Optional.of(it.getHostAddress());
+            }
+            if (it instanceof Inet6Address) {
+                return Optional.of(it.getHostAddress());
+            }
+        }
+
+        return Optional.empty();
     }
 
     @Resource

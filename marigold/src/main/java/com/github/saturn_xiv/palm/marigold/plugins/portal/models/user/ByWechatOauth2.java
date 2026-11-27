@@ -1,6 +1,5 @@
 package com.github.saturn_xiv.palm.marigold.plugins.portal.models.user;
 
-import java.io.Serializable;
 import java.time.Instant;
 import java.util.ArrayList;
 import java.util.List;
@@ -33,7 +32,7 @@ import jakarta.validation.constraints.Size;
 @Table(name = "wechat_oauth2_users")
 @SQLDelete(sql = "UPDATE wechat_oauth2_users SET deleted_at = CURRENT_TIMESTAMP WHERE id = ?")
 @SQLRestriction("deleted_at IS NULL")
-public class ByWechatOauth2 implements Serializable {
+public class ByWechatOauth2 implements Info {
     private static final long serialVersionUID = 1L;
 
     public ByWechatOauth2() {
@@ -50,10 +49,12 @@ public class ByWechatOauth2 implements Serializable {
         this.headImgUrl = info.getHeadImgUrl();
     }
 
-    public String id() {
+    @Override
+    public String label() {
         return String.format("%s.%s", appId, openId);
     }
 
+    @Override
     public boolean isAvailable() {
         return this.deletedAt == null && this.lockedAt == null
                 && this.user.isAvailable();

@@ -5,9 +5,11 @@ import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Base64;
 import java.util.List;
+import java.util.function.Function;
 
 import javax.sql.DataSource;
 
+import org.apache.commons.lang3.tuple.Pair;
 import org.casbin.adapter.JDBCAdapter;
 import org.casbin.jcasbin.main.Enforcer;
 import org.casbin.jcasbin.model.Model;
@@ -36,6 +38,10 @@ import jakarta.annotation.Resource;
 
 @Component("portal.u.casbin-enforcer")
 public class CasbinEnforcer {
+
+    public <T> T execute(Function<Pair<Enforcer, Watcher>, T> callback) {
+        return callback.apply(Pair.of(enforcer, watcher));
+    }
 
     public void addRoleForUser(int user, Role role) {
         if (enforcer.addRoleForUser(subject(user), subject(role))) {
@@ -103,22 +109,22 @@ public class CasbinEnforcer {
         return Role.newBuilder().setCode(code).build();
     }
 
-    private static String subject(int user) {
+    public static String subject(int user) {
         var it = Subject.newBuilder().setUser(User.newBuilder().setId(user).build()).build();
         return message2string(it);
     }
 
-    private static String subject(Role role) {
+    public static String subject(Role role) {
         var it = Subject.newBuilder().setRole(role).build();
         return message2string(it);
     }
 
-    private static <T extends Message> String message2string(T message) {
+    public static <T extends Message> String message2string(T message) {
         final var buf = message.toByteArray();
         return Base64.getUrlEncoder().withoutPadding().encodeToString(buf);
     }
 
-    private static <T extends Message> T string2message(String message, Parser<T> clazz)
+    public static <T extends Message> T string2message(String message, Parser<T> clazz)
             throws InvalidProtocolBufferException {
         final var buf = Base64.getUrlDecoder().decode(message);
         return clazz.parseFrom(buf);

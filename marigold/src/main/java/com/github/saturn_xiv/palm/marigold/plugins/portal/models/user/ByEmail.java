@@ -1,6 +1,5 @@
 package com.github.saturn_xiv.palm.marigold.plugins.portal.models.user;
 
-import java.io.Serializable;
 import java.time.Instant;
 
 import org.springframework.data.annotation.CreatedDate;
@@ -22,9 +21,15 @@ import jakarta.validation.constraints.Size;
 @Entity
 @EntityListeners(AuditingEntityListener.class)
 @Table(name = "email_users")
-public class ByEmail implements Serializable {
+public class ByEmail implements Info {
     private static final long serialVersionUID = 1L;
 
+    @Override
+    public String label() {
+        return String.format("%s<%s>", name, email);
+    }
+
+    @Override
     public boolean isAvailable() {
         return this.confirmedAt != null && this.deletedAt == null && this.lockedAt == null
                 && this.user.isAvailable();

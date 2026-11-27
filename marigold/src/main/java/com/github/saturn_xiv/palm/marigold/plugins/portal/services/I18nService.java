@@ -15,7 +15,6 @@ import com.github.saturn_xiv.palm.marigold.plugins.portal.utils.LocalesSync;
 import org.springframework.transaction.annotation.Transactional;
 import com.samskivert.mustache.Mustache;
 
-import jakarta.annotation.PostConstruct;
 import jakarta.annotation.Resource;
 
 @Service("portal.s.i18n")
@@ -63,7 +62,7 @@ public class I18nService {
 
     public Locale detect(Locale l) {
         final var s = l.toLanguageTag();
-        if (this.languages.contains(s)) {
+        if (localeRepository.findDistinctLanguages().contains(s)) {
             return l;
         }
         return Locale.US;
@@ -75,12 +74,6 @@ public class I18nService {
             items.add(Map.entry(it.getCode(), it.getMessage()));
         }
         return items;
-    }
-
-    @PostConstruct
-    void init() throws IOException {
-        this.sync();
-        this.languages = localeRepository.findDistinctLanguages();
     }
 
     @Transactional(rollbackFor = Throwable.class)
@@ -109,6 +102,5 @@ public class I18nService {
     @Resource
     Mustache.Compiler mustacheCompiler;
 
-    private List<String> languages;
     private final static Logger logger = LoggerFactory.getLogger(I18nService.class);
 }

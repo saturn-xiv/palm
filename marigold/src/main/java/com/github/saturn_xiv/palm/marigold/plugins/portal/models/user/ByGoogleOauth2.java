@@ -1,6 +1,5 @@
 package com.github.saturn_xiv.palm.marigold.plugins.portal.models.user;
 
-import java.io.Serializable;
 import java.time.Instant;
 
 import org.hibernate.annotations.JdbcTypeCode;
@@ -33,7 +32,7 @@ import jakarta.validation.constraints.Size;
 @Table(name = "google_oauth2_users")
 @SQLDelete(sql = "UPDATE google_oauth2_users SET deleted_at = CURRENT_TIMESTAMP WHERE id = ?")
 @SQLRestriction("deleted_at IS NULL")
-public class ByGoogleOauth2 implements Serializable {
+public class ByGoogleOauth2 implements Info {
     private static final long serialVersionUID = 1L;
 
     public void merge(TokenResponse tokenResponse, Userinfo info) {
@@ -52,10 +51,12 @@ public class ByGoogleOauth2 implements Serializable {
         this.locale = info.getLocale();
     }
 
-    public String id() {
+    @Override
+    public String label() {
         return String.format("%s.%s", clientId, email);
     }
 
+    @Override
     public boolean isAvailable() {
         return this.deletedAt == null && this.lockedAt == null
                 && this.user.isAvailable();

@@ -7,10 +7,27 @@ option java_multiple_files = true;
 option java_outer_classname = "PortalProto";
 option java_package = "com.github.saturn_xiv.palm.plugins.portal.v1";
 
+import "google/protobuf/empty.proto";
+
 message PasswordBox {
   string payload = 1;
   double salt = 2;
 }
+
+message Page {
+  int32 index = 1;
+  int32 size = 2;
+}
+
+message Pagination {
+  int32 total = 1;
+  int32 index = 2;
+  int32 size = 3;
+  int32 pages = 4;
+  bool next = 5;
+  bool previous = 6;
+}
+
 message Oauth2State {
   enum Type {
     GOOGLE = 0;
@@ -19,6 +36,24 @@ message Oauth2State {
   }
   Type type = 1;
   optional string user = 2;
+}
+
+service AdministratorService {
+  rpc DbSeeds(google.protobuf.Empty) returns (google.protobuf.Empty) {}
+  rpc ListUser(google.protobuf.Empty) returns (stream UserIndexResponse.Item) {}
+  rpc CreateUserByEmail(CreateUserByEmailRequest) returns (google.protobuf.Empty) {}
+  rpc SetPasswordForEmailUser(SetPasswordForEmailUserRequest) returns (google.protobuf.Empty) {}
+}
+
+message CreateUserByEmailRequest {
+  string name = 1;
+  string email = 2;
+  string password = 3;
+}
+
+message SetPasswordForEmailUserRequest {
+  string email = 1;
+  string password = 2;
 }
 
 message UserIndexResponse {
@@ -31,10 +66,14 @@ message UserIndexResponse {
       WECHAT_MINI_PROGRAM = 13;
       FACEBOOK_OAUTH2 = 14;
     }
-    string sn = 1;
-    Type type = 2;
+    int32 id = 1;
+    string sn = 2;
+    string name = 3;
+    string label = 4;
+    Type type = 99;
   }
   repeated Item items = 1;
+  Pagination pagination = 9;
 }
 
 message UserToken {
@@ -46,6 +85,7 @@ message UserToken {
     UserIndexResponse.Item.Type type = 1;
   }
 }
+
 
 
 
