@@ -127,6 +127,12 @@
 			<artifactId>libphonenumber</artifactId>
 			<version>9.0.44</version>
 		</dependency>
+		<!-- Source:
+		https://mvnrepository.com/artifact/tools.jackson.dataformat/jackson-dataformat-toml -->
+		<dependency>
+			<groupId>tools.jackson.dataformat</groupId>
+			<artifactId>jackson-dataformat-toml</artifactId>
+		</dependency>
 
 		<!-- Source:
 		https://mvnrepository.com/artifact/com.graphql-java/graphql-java-extended-scalars -->

@@ -89,6 +89,7 @@ palm:
         token: ""
         encoding-aes-key: ""
   hydrangea:
+    jobs-dir: "tmp/jobs"
     github:
       webhooks:
         echo:

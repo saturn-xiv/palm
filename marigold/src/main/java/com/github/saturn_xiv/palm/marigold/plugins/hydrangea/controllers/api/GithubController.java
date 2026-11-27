@@ -55,7 +55,7 @@ public class GithubController {
         headers.put("installationTargetType", installationTargetType);
 
         final var hook = webhooksProperties.webhooks().get(name);
-        hook.handle(request, jobLogService, messageSender, headers, this.job_queue, this.email_queue, name, summary,
+        hook.handle(request, jobLogService, messageSender, headers, this.jobQueue, this.emailQueue, name, summary,
                 body);
         return new Succeed();
     }
@@ -72,9 +72,9 @@ public class GithubController {
     @Resource
     MessageSender messageSender;
     @Value("${palm.queues.hydrangea.shell-run}")
-    String job_queue;
+    String jobQueue;
     @Value("${palm.queues.portal.email-send}")
-    String email_queue;
+    String emailQueue;
     @Resource
     JobLogService jobLogService;
 
