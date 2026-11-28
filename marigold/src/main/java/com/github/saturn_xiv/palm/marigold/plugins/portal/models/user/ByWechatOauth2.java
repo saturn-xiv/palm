@@ -4,6 +4,7 @@ import java.time.Instant;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.hibernate.annotations.DynamicUpdate;
 import org.hibernate.annotations.JdbcTypeCode;
 import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.SQLRestriction;
@@ -32,6 +33,7 @@ import jakarta.validation.constraints.Size;
 @Table(name = "wechat_oauth2_users")
 @SQLDelete(sql = "UPDATE wechat_oauth2_users SET deleted_at = CURRENT_TIMESTAMP WHERE id = ?")
 @SQLRestriction("deleted_at IS NULL")
+@DynamicUpdate
 public class ByWechatOauth2 implements Info {
     private static final long serialVersionUID = 1L;
 

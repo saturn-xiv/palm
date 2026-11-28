@@ -3,6 +3,7 @@ package com.github.saturn_xiv.palm.marigold.plugins.portal.models;
 import java.io.Serializable;
 import java.time.Instant;
 
+import org.hibernate.annotations.DynamicUpdate;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
@@ -20,6 +21,7 @@ import jakarta.validation.constraints.Size;
 @Entity
 @EntityListeners(AuditingEntityListener.class)
 @Table(name = "locales")
+@DynamicUpdate
 public class Locale implements Serializable {
     private static final long serialVersionUID = 1L;
 

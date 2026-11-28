@@ -2,6 +2,9 @@ package com.github.saturn_xiv.palm.marigold.plugins.portal.models.user;
 
 import java.time.Instant;
 
+import org.hibernate.annotations.DynamicUpdate;
+import org.hibernate.annotations.SQLDelete;
+import org.hibernate.annotations.SQLRestriction;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
@@ -21,6 +24,9 @@ import jakarta.validation.constraints.Size;
 @Entity
 @EntityListeners(AuditingEntityListener.class)
 @Table(name = "email_users")
+@SQLDelete(sql = "UPDATE email_users SET deleted_at = CURRENT_TIMESTAMP WHERE id = ?")
+@SQLRestriction("deleted_at IS NULL")
+@DynamicUpdate
 public class ByEmail implements Info {
     private static final long serialVersionUID = 1L;
 

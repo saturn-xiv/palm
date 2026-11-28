@@ -5,6 +5,7 @@ import java.time.Instant;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.hibernate.annotations.DynamicUpdate;
 import org.hibernate.annotations.JdbcTypeCode;
 import org.hibernate.type.SqlTypes;
 import org.springframework.data.annotation.CreatedDate;
@@ -27,6 +28,7 @@ import jakarta.validation.constraints.Size;
 @Entity
 @EntityListeners(AuditingEntityListener.class)
 @Table(name = "hydrangea_job_logs")
+@DynamicUpdate
 public class JobLog implements Serializable {
     private static final long serialVersionUID = 1L;
 

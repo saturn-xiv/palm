@@ -3,6 +3,7 @@ package com.github.saturn_xiv.palm.marigold.plugins.portal.models;
 import java.io.Serializable;
 import java.time.Instant;
 
+import org.hibernate.annotations.DynamicUpdate;
 import org.hibernate.annotations.JdbcTypeCode;
 import org.hibernate.type.SqlTypes;
 import org.springframework.data.annotation.CreatedDate;
@@ -26,6 +27,7 @@ import jakarta.validation.constraints.Size;
 @Entity
 @EntityListeners(AuditingEntityListener.class)
 @Table(name = "user_contacts")
+@DynamicUpdate
 public class Contact implements Serializable {
     private static final long serialVersionUID = 1L;
 

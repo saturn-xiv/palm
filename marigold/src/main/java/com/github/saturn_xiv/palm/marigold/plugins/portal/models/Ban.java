@@ -3,6 +3,7 @@ package com.github.saturn_xiv.palm.marigold.plugins.portal.models;
 import java.io.Serializable;
 import java.time.Instant;
 
+import org.hibernate.annotations.DynamicUpdate;
 import org.hibernate.annotations.JdbcTypeCode;
 import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.SQLRestriction;
@@ -28,6 +29,7 @@ import jakarta.validation.constraints.Size;
 @Table(name = "user_bans")
 @SQLDelete(sql = "UPDATE user_bans SET deleted_at = CURRENT_TIMESTAMP WHERE id = ?")
 @SQLRestriction("deleted_at IS NULL")
+@DynamicUpdate
 public class Ban implements Serializable {
     private static final long serialVersionUID = 1L;
 

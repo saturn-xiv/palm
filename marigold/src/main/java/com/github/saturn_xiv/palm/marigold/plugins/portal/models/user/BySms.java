@@ -2,6 +2,7 @@ package com.github.saturn_xiv.palm.marigold.plugins.portal.models.user;
 
 import java.time.Instant;
 
+import org.hibernate.annotations.DynamicUpdate;
 import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.SQLRestriction;
 import org.springframework.data.annotation.CreatedDate;
@@ -25,6 +26,7 @@ import jakarta.validation.constraints.Size;
 @Table(name = "sms_users")
 @SQLDelete(sql = "UPDATE sms_users SET deleted_at = CURRENT_TIMESTAMP WHERE id = ?")
 @SQLRestriction("deleted_at IS NULL")
+@DynamicUpdate
 public class BySms implements Info {
     private static final long serialVersionUID = 1L;
 

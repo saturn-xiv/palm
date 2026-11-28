@@ -2,6 +2,7 @@ package com.github.saturn_xiv.palm.marigold.plugins.portal.models.user;
 
 import java.time.Instant;
 
+import org.hibernate.annotations.DynamicUpdate;
 import org.hibernate.annotations.JdbcTypeCode;
 import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.SQLRestriction;
@@ -32,6 +33,7 @@ import jakarta.validation.constraints.Size;
 @Table(name = "google_oauth2_users")
 @SQLDelete(sql = "UPDATE google_oauth2_users SET deleted_at = CURRENT_TIMESTAMP WHERE id = ?")
 @SQLRestriction("deleted_at IS NULL")
+@DynamicUpdate
 public class ByGoogleOauth2 implements Info {
     private static final long serialVersionUID = 1L;
 
